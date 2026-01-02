@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Location Exploration & Recreation Guide - Tokyo in Film</title>
+    <meta name="description" content="Scout and recreate iconic film locations for your projects.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .guide-header {
+            background: linear-gradient(135deg, rgba(255, 0, 127, 0.1), rgba(0, 243, 255, 0.05));
+            border-bottom: 3px solid var(--accent-neon-pink);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+        }
+
+        .guide-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .guide-header .subtitle {
+            color: var(--accent-neon-cyan);
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .guide-content h2 {
+            color: var(--accent-neon-cyan);
+            border-bottom: 1px solid rgba(0, 243, 255, 0.3);
+            padding-bottom: 0.5rem;
+            margin-top: 2.5rem;
+            font-size: 1.5rem;
+        }
+
+        .intro-note {
+            background: rgba(0, 243, 255, 0.08);
+            border-left: 4px solid var(--accent-neon-cyan);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+        }
+
+        .form-field {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 4px;
+            padding: 1rem;
+            margin: 0.75rem 0;
+            min-height: 3rem;
+        }
+
+        .form-field.tall {
+            min-height: 5rem;
+        }
+
+        .form-label {
+            color: #fff;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .form-hint {
+            color: #888;
+            font-size: 0.9rem;
+            margin-top: 0.25rem;
+        }
+
+        .role-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .role-item {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            padding: 0.75rem;
+        }
+
+        .role-item label {
+            color: var(--accent-neon-pink);
+            font-weight: 600;
+        }
+
+        .checkbox-group {
+            display: flex;
+            gap: 2rem;
+            margin: 1rem 0;
+        }
+
+        .checkbox-group label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .download-section {
+            background: rgba(0, 243, 255, 0.05);
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        @media print {
+
+            nav,
+            footer,
+            .download-section {
+                display: none;
+            }
+
+            .form-field {
+                border: 1px solid #ccc;
+                background: #fff;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .role-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="logo">Tokyo in Film</div>
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <ul class="nav-list">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../pre-production/index.html">Pre-Production</a></li>
+            <li><a href="../production/index.html">Production</a></li>
+            <li><a href="../post-production/index.html">Post-Production</a></li>
+            <li><a href="../glossary.html">Glossary</a></li>
+            <li><a href="../free-guides.html" class="active">Free Guides</a></li>
+        </ul>
+    </nav>
+
+    <main class="container" style="padding-top: 100px;">
+        <div class="guide-header">
+            <p class="subtitle">Tokyo in Film &bull; Worksheet</p>
+            <h1>Location Exploration & Recreation Guide</h1>
+        </div>
+
+        <div class="textbook-content guide-content">
+
+            <div class="intro-note">
+                Use this while scouting the real location to decide how you will recreate your chosen scene.
+            </div>
+
+            <h2>Conditions</h2>
+            <p style="font-style: italic; color: #aaa;">(Fill this out while physically at the location)</p>
+
+            <label class="form-label">What parts of the original scene depend on conditions you can't control
+                here?</label>
+            <p class="form-hint">(light, weather, crowds, noise, obstacles)</p>
+            <div class="form-field tall"></div>
+
+            <label class="form-label">Which of these conditions can you <em>work with</em> rather than fight?</label>
+            <p class="form-hint">(Example: original scene was quiet; this space is crowded → change blocking to reflect
+                energy)</p>
+            <div class="form-field tall"></div>
+
+            <label class="form-label">What intention MUST remain the same for the scene to still be the same
+                scene?</label>
+            <p class="form-hint">(Emotion? Power dynamic? Motion? Reveal?)</p>
+            <div class="form-field tall"></div>
+
+            <h2>Location Shaping: How the Space Changes Your Recreation</h2>
+
+            <label class="form-label">What does THIS location naturally offer that the original shot did not?</label>
+            <p class="form-hint">(lines, depth, height, reflections, color, movement, sound, framing elements)</p>
+            <div class="form-field tall"></div>
+
+            <label class="form-label">How can those features replace or improve the original cinematic idea?</label>
+            <div class="form-field tall"></div>
+
+            <label class="form-label">What framing or angle from the original scene is impossible here, and what is your
+                replacement angle that keeps the same narrative purpose?</label>
+            <div class="form-field tall"></div>
+
+            <h2>Team Decision Points</h2>
+            <p style="font-style: italic; color: #aaa;">Ensuring everyone agrees BEFORE shooting</p>
+
+            <label class="form-label">In ONE sentence, what is the emotional or narrative beat we are
+                recreating?</label>
+            <div class="form-field"></div>
+
+            <label class="form-label">Does every team member understand this beat the same way?</label>
+            <div class="checkbox-group">
+                <label><input type="checkbox"> Yes</label>
+                <label><input type="checkbox"> No → Rewrite the beat together</label>
+            </div>
+
+            <label class="form-label">What is each person responsible for during the recreation?</label>
+            <div class="role-grid">
+                <div class="role-item">
+                    <label>Director:</label>
+                    <div class="form-field"></div>
+                </div>
+                <div class="role-item">
+                    <label>Camera/Framing Lead:</label>
+                    <div class="form-field"></div>
+                </div>
+                <div class="role-item">
+                    <label>Performance Lead:</label>
+                    <div class="form-field"></div>
+                </div>
+                <div class="role-item">
+                    <label>Continuity & Reference Lead:</label>
+                    <div class="form-field"></div>
+                </div>
+            </div>
+
+            <h2>Recreation Plan Snapshot</h2>
+            <p style="font-style: italic; color: #aaa;">The final box before shooting day</p>
+
+            <label class="form-label">Original film moment (describe simply):</label>
+            <div class="form-field tall"></div>
+
+            <label class="form-label">Adjusted version (what you will actually do here):</label>
+            <div class="form-field tall"></div>
+
+            <label class="form-label">How this version still communicates the same meaning:</label>
+            <div class="form-field tall"></div>
+
+            <div class="download-section">
+                <p>Print this worksheet to use during location scouting:</p>
+                <button class="btn" onclick="window.print()">Print / Save as PDF</button>
+            </div>
+
+        </div>
+
+        <div style="text-align: center; margin-top: 4rem; margin-bottom: 2rem;">
+            <a href="../free-guides.html" class="btn">&larr; Back to Free Guides</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Tokyo in Film. Open Educational Resource.</p>
+    </footer>
+
+    <script src="../js/mobile-nav.js"></script>
+</body>
+
+</html>

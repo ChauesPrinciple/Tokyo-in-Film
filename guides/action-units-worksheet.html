@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Action Units Worksheet - Tokyo in Film</title>
+    <meta name="description" content="Break down scenes into action units for better planning and execution.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .guide-header {
+            background: linear-gradient(135deg, rgba(255, 0, 127, 0.1), rgba(0, 243, 255, 0.05));
+            border-bottom: 3px solid var(--accent-neon-pink);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+        }
+
+        .guide-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .guide-header .subtitle {
+            color: var(--accent-neon-cyan);
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .guide-content h2 {
+            color: var(--accent-neon-cyan);
+            border-bottom: 1px solid rgba(0, 243, 255, 0.3);
+            padding-bottom: 0.5rem;
+            margin-top: 2.5rem;
+            font-size: 1.3rem;
+        }
+
+        .intro-box {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .form-field {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 4px;
+            padding: 1rem;
+            margin: 0.75rem 0;
+            min-height: 2.5rem;
+        }
+
+        .form-field.tall {
+            min-height: 4rem;
+        }
+
+        .form-label {
+            color: #aaa;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .numbered-field {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin: 0.75rem 0;
+        }
+
+        .numbered-field .number {
+            background: var(--accent-neon-pink);
+            color: #000;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .numbered-field .form-field {
+            flex: 1;
+            margin: 0;
+        }
+
+        .checkbox-field {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.5rem 0;
+        }
+
+        .checkbox-field input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            accent-color: var(--accent-neon-cyan);
+        }
+
+        .download-section {
+            background: rgba(0, 243, 255, 0.05);
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        @media print {
+
+            nav,
+            footer,
+            .download-section {
+                display: none;
+            }
+
+            .form-field {
+                border: 1px solid #ccc;
+                background: #fff;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="logo">Tokyo in Film</div>
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <ul class="nav-list">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../pre-production/index.html">Pre-Production</a></li>
+            <li><a href="../production/index.html">Production</a></li>
+            <li><a href="../post-production/index.html">Post-Production</a></li>
+            <li><a href="../glossary.html">Glossary</a></li>
+            <li><a href="../free-guides.html" class="active">Free Guides</a></li>
+        </ul>
+    </nav>
+
+    <main class="container" style="padding-top: 100px;">
+        <div class="guide-header">
+            <p class="subtitle">Tokyo in Film &bull; Worksheet</p>
+            <h1>Action Units</h1>
+            <p style="color: #aaa; margin-top: 0.5rem;">2–4 Action Unit Worksheet</p>
+        </div>
+
+        <div class="textbook-content guide-content">
+
+            <div class="intro-box">
+                <p>This worksheet captures one Hong Kong–style action unit, defined as <strong>2–4 continuous physical
+                        actions</strong> performed and filmed in order, without pause or reset.</p>
+                <p style="margin-top: 1rem;">This follows the method Quentin Tarantino describes when breaking down
+                    action scenes such as Kill Bill Vol. 1:</p>
+                <ul style="margin-top: 0.75rem;">
+                    <li>Action is broken into small groups of physical movements</li>
+                    <li>Each group is performed and shot as written</li>
+                    <li>The camera follows the action</li>
+                    <li>Continuity is created by what happens on camera, not fixed later</li>
+                </ul>
+                <p style="margin-top: 1rem;"><em>This sheet records only what happens next. It does not plan the entire
+                        fight.</em></p>
+            </div>
+
+            <h2>Project Context</h2>
+            <label class="form-label">Film / Project:</label>
+            <div class="form-field"></div>
+
+            <label class="form-label">Scene / Location:</label>
+            <div class="form-field"></div>
+
+            <label class="form-label">Purpose of this action unit in the scene (advance, overwhelm, reverse power,
+                escape, etc.):</label>
+            <div class="form-field tall"></div>
+
+            <h2>Action Unit — 2–4 Continuous Physical Actions</h2>
+            <p>Write ONLY physical actions. No pauses. No resets. Stop after the fourth action.</p>
+
+            <div class="numbered-field">
+                <span class="number">1</span>
+                <div class="form-field"></div>
+            </div>
+            <div class="numbered-field">
+                <span class="number">2</span>
+                <div class="form-field"></div>
+            </div>
+            <div class="numbered-field">
+                <span class="number">3</span>
+                <div class="form-field"></div>
+            </div>
+            <div class="numbered-field">
+                <span class="number">4</span>
+                <div class="form-field"></div>
+            </div>
+
+            <h2>Camera (For These Actions Only)</h2>
+            <label class="form-label">Camera position relative to action (front / side / behind / distance):</label>
+            <div class="form-field"></div>
+
+            <label class="form-label">Camera movement (static / pan / track / follow):</label>
+            <div class="form-field"></div>
+
+            <label class="form-label">What must remain visible for clarity (bodies, hands, weapons, direction):</label>
+            <div class="form-field"></div>
+
+            <h2>Shooting Method</h2>
+            <div class="checkbox-field">
+                <input type="checkbox" id="shot-order">
+                <label for="shot-order">These actions are shot in the order written</label>
+            </div>
+            <div class="checkbox-field">
+                <input type="checkbox" id="camera-changes">
+                <label for="camera-changes">Camera changes occur after these actions finish</label>
+            </div>
+
+            <h2>Physical Result (End of This Unit)</h2>
+            <label class="form-label">Performers — placement / orientation / contact:</label>
+            <div class="form-field"></div>
+
+            <label class="form-label">Environment — props moved / damage / blood present:</label>
+            <div class="form-field"></div>
+
+            <label class="form-label">Costume / body — tears / blood / dirt / fatigue:</label>
+            <div class="form-field"></div>
+
+            <h2>Reuse</h2>
+            <p>If the action continues, use a new copy of this worksheet to record the next 2–4 actions. Nothing on this
+                page assumes or requires chaining.</p>
+
+            <div class="download-section">
+                <p>Print this worksheet to fill out during production planning:</p>
+                <button class="btn" onclick="window.print()">Print / Save as PDF</button>
+            </div>
+
+        </div>
+
+        <div style="text-align: center; margin-top: 4rem; margin-bottom: 2rem;">
+            <a href="../free-guides.html" class="btn">&larr; Back to Free Guides</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Tokyo in Film. Open Educational Resource.</p>
+    </footer>
+
+    <script src="../js/mobile-nav.js"></script>
+</body>
+
+</html>

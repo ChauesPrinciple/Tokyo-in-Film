@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fight Scene Structure Worksheet - Tokyo in Film</title>
+    <meta name="description" content="Plan your fight scene structure using the Set-Rise-Twist-Tie framework.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .guide-header {
+            background: linear-gradient(135deg, rgba(255, 0, 127, 0.1), rgba(0, 243, 255, 0.05));
+            border-bottom: 3px solid var(--accent-neon-pink);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+        }
+
+        .guide-header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .guide-header .subtitle {
+            color: var(--accent-neon-cyan);
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .guide-content h2 {
+            color: var(--accent-neon-cyan);
+            border-bottom: 1px solid rgba(0, 243, 255, 0.3);
+            padding-bottom: 0.5rem;
+            margin-top: 2.5rem;
+            font-size: 1.4rem;
+        }
+
+        .intro-box {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .form-field {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 4px;
+            padding: 1rem;
+            margin: 0.75rem 0;
+            min-height: 2.5rem;
+        }
+
+        .form-field.tall {
+            min-height: 4rem;
+        }
+
+        .form-label {
+            color: #fff;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .option-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin: 0.75rem 0;
+        }
+
+        .option-item {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            color: #ccc;
+        }
+
+        .section-card {
+            background: rgba(0, 243, 255, 0.03);
+            border: 1px solid rgba(0, 243, 255, 0.15);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .section-card h3 {
+            color: var(--accent-neon-pink);
+            margin-bottom: 1rem;
+        }
+
+        .page-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .page-item {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 0.75rem;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .page-item label {
+            display: block;
+            color: var(--accent-neon-cyan);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .download-section {
+            background: rgba(0, 243, 255, 0.05);
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        @media print {
+
+            nav,
+            footer,
+            .download-section {
+                display: none;
+            }
+
+            .form-field {
+                border: 1px solid #ccc;
+                background: #fff;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .page-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="logo">Tokyo in Film</div>
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <ul class="nav-list">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../pre-production/index.html">Pre-Production</a></li>
+            <li><a href="../production/index.html">Production</a></li>
+            <li><a href="../post-production/index.html">Post-Production</a></li>
+            <li><a href="../glossary.html">Glossary</a></li>
+            <li><a href="../free-guides.html" class="active">Free Guides</a></li>
+        </ul>
+    </nav>
+
+    <main class="container" style="padding-top: 100px;">
+        <div class="guide-header">
+            <p class="subtitle">Tokyo in Film &bull; Worksheet</p>
+            <h1>Fight Scene Structure Worksheet</h1>
+            <p style="color: #aaa; margin-top: 0.5rem;">Set → Rise → Twist → Tie (Structure Map)</p>
+        </div>
+
+        <div class="textbook-content guide-content">
+
+            <div class="intro-box">
+                <p><strong>This worksheet plans the fight.</strong></p>
+                <p>The Action Unit worksheet records the physical execution.</p>
+                <p style="margin-top: 1rem; color: var(--accent-neon-cyan);">Complete this page <strong>before</strong>
+                    filling out any Action Unit worksheets.</p>
+            </div>
+
+            <h2>Project Context</h2>
+            <label class="form-label">Film / Project:</label>
+            <div class="form-field"></div>
+
+            <label class="form-label">Scene / Location:</label>
+            <div class="form-field"></div>
+
+            <label class="form-label">Brief description of the confrontation (one sentence):</label>
+            <div class="form-field tall"></div>
+
+            <div class="section-card">
+                <h3>SET — Why This Fight Exists</h3>
+
+                <label class="form-label">Personal stake (one sentence):</label>
+                <p style="color: #aaa;">If the hero fails, they lose...</p>
+                <div class="form-field"></div>
+
+                <label class="form-label">Internal conflict driving the fight:</label>
+                <div class="option-list">
+                    <span class="option-item">fear</span>
+                    <span class="option-item">pride</span>
+                    <span class="option-item">guilt</span>
+                    <span class="option-item">responsibility</span>
+                    <span class="option-item">anger</span>
+                    <span class="option-item">temptation</span>
+                    <span class="option-item">other</span>
+                </div>
+                <label class="form-label">Specify:</label>
+                <div class="form-field"></div>
+
+                <label class="form-label">What the hero is holding back or refusing to do at the start:</label>
+                <div class="form-field tall"></div>
+            </div>
+
+            <div class="section-card">
+                <h3>RISE — When the Fight Commits</h3>
+
+                <label class="form-label">What triggers escalation?</label>
+                <div class="option-list">
+                    <span class="option-item">space collapses</span>
+                    <span class="option-item">injury occurs</span>
+                    <span class="option-item">time pressure</span>
+                    <span class="option-item">opponent commits</span>
+                </div>
+                <label class="form-label">Specify trigger:</label>
+                <div class="form-field"></div>
+
+                <label class="form-label">What changes in the hero's behavior after escalation:</label>
+                <p style="color: #aaa;">Before escalation, the hero is...</p>
+                <div class="form-field"></div>
+                <p style="color: #aaa;">After escalation, the hero becomes...</p>
+                <div class="form-field"></div>
+            </div>
+
+            <div class="section-card">
+                <h3>TWIST — What Changes the Conditions</h3>
+
+                <label class="form-label">Type of change:</label>
+                <div class="option-list">
+                    <span class="option-item">limitation</span>
+                    <span class="option-item">rule change</span>
+                    <span class="option-item">tactic shift</span>
+                    <span class="option-item">loss of resource</span>
+                    <span class="option-item">outside interference</span>
+                </div>
+                <label class="form-label">Describe the change in one sentence:</label>
+                <div class="form-field tall"></div>
+
+                <label class="form-label">Resulting shift:</label>
+                <div class="option-list">
+                    <span class="option-item">hero loses an option</span>
+                    <span class="option-item">hero gains an option</span>
+                </div>
+                <label class="form-label">Specify which option:</label>
+                <div class="form-field"></div>
+            </div>
+
+            <div class="section-card">
+                <h3>TIE — What the Fight Means in the End</h3>
+
+                <label class="form-label">Ending meaning:</label>
+                <p style="color: #aaa;">The fight proves the hero has changed because they...</p>
+                <div class="form-field tall"></div>
+
+                <label class="form-label">Final choice made by the hero:</label>
+                <div class="option-list">
+                    <span class="option-item">restraint</span>
+                    <span class="option-item">sacrifice</span>
+                    <span class="option-item">consequence</span>
+                    <span class="option-item">failure</span>
+                    <span class="option-item">transformation</span>
+                </div>
+                <label class="form-label">Describe the choice in one sentence:</label>
+                <div class="form-field tall"></div>
+            </div>
+
+            <h2>Bridge to Action Unit Worksheets</h2>
+
+            <label class="form-label">Number of Action Unit worksheets this fight will use:</label>
+            <div class="option-list">
+                <span class="option-item">1</span>
+                <span class="option-item">2</span>
+                <span class="option-item">3</span>
+                <span class="option-item">4</span>
+                <span class="option-item">5</span>
+                <span class="option-item">6</span>
+            </div>
+
+            <label class="form-label">Assign a story function to each physical worksheet:</label>
+            <div class="page-grid">
+                <div class="page-item">
+                    <label>Page 1</label>
+                    <span style="font-size: 0.85rem; color: #888;">☐ Set ☐ Rise ☐ Twist ☐ Tie</span>
+                </div>
+                <div class="page-item">
+                    <label>Page 2</label>
+                    <span style="font-size: 0.85rem; color: #888;">☐ Set ☐ Rise ☐ Twist ☐ Tie</span>
+                </div>
+                <div class="page-item">
+                    <label>Page 3</label>
+                    <span style="font-size: 0.85rem; color: #888;">☐ Set ☐ Rise ☐ Twist ☐ Tie</span>
+                </div>
+                <div class="page-item">
+                    <label>Page 4</label>
+                    <span style="font-size: 0.85rem; color: #888;">☐ Set ☐ Rise ☐ Twist ☐ Tie</span>
+                </div>
+                <div class="page-item">
+                    <label>Page 5</label>
+                    <span style="font-size: 0.85rem; color: #888;">☐ Set ☐ Rise ☐ Twist ☐ Tie</span>
+                </div>
+                <div class="page-item">
+                    <label>Page 6</label>
+                    <span style="font-size: 0.85rem; color: #888;">☐ Set ☐ Rise ☐ Twist ☐ Tie</span>
+                </div>
+            </div>
+
+            <label class="form-label">Required condition at the end of each physical worksheet:</label>
+            <p style="color: #aaa; font-size: 0.9rem;">What must be physically true when that page ends</p>
+            <div class="form-field">End of Page 1:</div>
+            <div class="form-field">End of Page 2:</div>
+            <div class="form-field">End of Page 3:</div>
+            <div class="form-field">End of Page 4:</div>
+            <div class="form-field">End of Page 5:</div>
+            <div class="form-field">End of Page 6:</div>
+
+            <div class="download-section">
+                <p>Print this worksheet for fight scene planning:</p>
+                <button class="btn" onclick="window.print()">Print / Save as PDF</button>
+            </div>
+
+        </div>
+
+        <div style="text-align: center; margin-top: 4rem; margin-bottom: 2rem;">
+            <a href="../free-guides.html" class="btn">&larr; Back to Free Guides</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Tokyo in Film. Open Educational Resource.</p>
+    </footer>
+
+    <script src="../js/mobile-nav.js"></script>
+</body>
+
+</html>

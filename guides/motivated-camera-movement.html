@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motivated Camera Movement - Tokyo in Film</title>
+    <meta name="description"
+        content="Learn how to create purposeful camera movements that serve the story in action and fight scenes.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .guide-header {
+            background: linear-gradient(135deg, rgba(255, 0, 127, 0.1), rgba(0, 243, 255, 0.05));
+            border-bottom: 3px solid var(--accent-neon-pink);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+        }
+
+        .guide-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .guide-header .subtitle {
+            color: var(--accent-neon-cyan);
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .guide-content h2 {
+            color: var(--accent-neon-cyan);
+            border-bottom: 1px solid rgba(0, 243, 255, 0.3);
+            padding-bottom: 0.5rem;
+            margin-top: 2.5rem;
+            font-size: 1.5rem;
+        }
+
+        .example-box {
+            background: rgba(0, 243, 255, 0.08);
+            border-left: 4px solid var(--accent-neon-cyan);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .example-box h3 {
+            color: var(--accent-neon-cyan);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .form-field {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 4px;
+            padding: 1rem;
+            margin: 0.75rem 0;
+            min-height: 3rem;
+        }
+
+        .form-label {
+            color: #fff;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .checkbox-list {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0;
+        }
+
+        .checkbox-list li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+
+        .checkbox-list input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--accent-neon-cyan);
+            margin-top: 3px;
+        }
+
+        .option-grid {
+            display: grid;
+            gap: 0.75rem;
+            margin: 1rem 0;
+        }
+
+        .option-item {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 0.75rem 1rem;
+            border-radius: 4px;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+
+        .option-item input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--accent-neon-pink);
+            margin-top: 3px;
+        }
+
+        .option-item strong {
+            color: var(--accent-neon-pink);
+        }
+
+        .sentence-fill {
+            background: rgba(255, 0, 127, 0.05);
+            border: 1px solid rgba(255, 0, 127, 0.2);
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+
+        .sentence-fill em {
+            color: var(--accent-neon-pink);
+        }
+
+        .download-section {
+            background: rgba(0, 243, 255, 0.05);
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        @media print {
+
+            nav,
+            footer,
+            .download-section {
+                display: none;
+            }
+
+            .form-field {
+                border: 1px solid #ccc;
+                background: #fff;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="logo">Tokyo in Film</div>
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <ul class="nav-list">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../pre-production/index.html">Pre-Production</a></li>
+            <li><a href="../production/index.html">Production</a></li>
+            <li><a href="../post-production/index.html">Post-Production</a></li>
+            <li><a href="../glossary.html">Glossary</a></li>
+            <li><a href="../free-guides.html" class="active">Free Guides</a></li>
+        </ul>
+    </nav>
+
+    <main class="container" style="padding-top: 100px;">
+        <div class="guide-header">
+            <p class="subtitle">Tokyo in Film &bull; Worksheet</p>
+            <h1>Motivated Camera Movement</h1>
+            <p style="color: #aaa; margin-top: 0.5rem;">Action / Fight Scenes</p>
+        </div>
+
+        <div class="textbook-content guide-content">
+
+            <div class="example-box">
+                <h3>Orienting Example (Read First)</h3>
+                <p><strong>The Seven Samurai</strong></p>
+                <p>In a village battle exchange:</p>
+                <ul>
+                    <li><strong>What changes:</strong> a new attacker enters from the left.</li>
+                    <li><strong>What the audience must understand:</strong> where the new threat is in relation to the
+                        samurai.</li>
+                    <li><strong>Camera response:</strong> the frame widens.</li>
+                    <li><strong>What must remain readable:</strong> distance between fighters and the entry path.</li>
+                    <li><strong>Result:</strong> the audience understands who can be hit next and from where.</li>
+                </ul>
+                <p style="margin-top: 1rem;">This worksheet asks you to make those same decisions for your own exchange.
+                </p>
+            </div>
+
+            <h2>Context</h2>
+            <p>This page answers <strong>one question only</strong>:</p>
+            <p style="font-size: 1.1rem; color: #fff;"><strong>How does the camera help the audience understand what
+                    changed during this exchange?</strong></p>
+
+            <h2>Information Change</h2>
+            <p>Every camera decision is tied to <strong>a change in information</strong>.</p>
+            <p>Choose the <strong>one most important thing</strong> the audience must understand after this exchange
+                ends:</p>
+
+            <ul class="checkbox-list">
+                <li><input type="checkbox"> Where everyone is in space (distance, angles, trapped paths)</li>
+                <li><input type="checkbox"> Where the immediate threat is</li>
+                <li><input type="checkbox"> Who has advantage or disadvantage right now</li>
+                <li><input type="checkbox"> What the hero intends to do</li>
+                <li><input type="checkbox"> What damage has occurred</li>
+                <li><input type="checkbox"> What limitation now exists (injury, rule, loss)</li>
+                <li><input type="checkbox"> What decision the hero has made</li>
+                <li><input type="checkbox"> Other: <span
+                        style="border-bottom: 1px solid #666; display: inline-block; width: 200px;"></span></li>
+            </ul>
+
+            <label class="form-label">State it clearly in one sentence:</label>
+            <div class="form-field"></div>
+
+            <h2>Camera Response</h2>
+            <p>Now decide <strong>how the camera behaves</strong> in order to make that information clear.</p>
+            <p>Circle <strong>one</strong> primary response:</p>
+
+            <div class="option-grid">
+                <div class="option-item">
+                    <input type="radio" name="camera" id="cam-a">
+                    <label for="cam-a"><strong>A) Reframe</strong> – change framing to include or exclude
+                        information</label>
+                </div>
+                <div class="option-item">
+                    <input type="radio" name="camera" id="cam-b">
+                    <label for="cam-b"><strong>B) Track / follow</strong> – move with a subject to keep information
+                        visible</label>
+                </div>
+                <div class="option-item">
+                    <input type="radio" name="camera" id="cam-c">
+                    <label for="cam-c"><strong>C) Push in</strong> – reduce space to isolate attention</label>
+                </div>
+                <div class="option-item">
+                    <input type="radio" name="camera" id="cam-d">
+                    <label for="cam-d"><strong>D) Pull back</strong> – increase space to clarify relationships</label>
+                </div>
+                <div class="option-item">
+                    <input type="radio" name="camera" id="cam-e">
+                    <label for="cam-e"><strong>E) Hold</strong> – remain stable so consequence can register</label>
+                </div>
+                <div class="option-item">
+                    <input type="radio" name="camera" id="cam-f">
+                    <label for="cam-f"><strong>F) Cut</strong> – redirect attention to new information</label>
+                </div>
+            </div>
+
+            <div class="sentence-fill">
+                <p>"The camera does this so the audience understands that</p>
+                <div class="form-field"></div>
+                <p>."</p>
+            </div>
+
+            <h2>Visibility Requirement</h2>
+            <p style="font-style: italic; color: #aaa;">(What must stay visible so the camera choice actually works)</p>
+            <p>Camera movement only succeeds if the <strong>right things remain readable</strong>.</p>
+            <p>Select what must stay visible <strong>during this exchange</strong>, or the information will be lost:</p>
+
+            <ul class="checkbox-list">
+                <li><input type="checkbox"> Bodies</li>
+                <li><input type="checkbox"> Hands</li>
+                <li><input type="checkbox"> Weapons</li>
+                <li><input type="checkbox"> Direction of movement</li>
+                <li><input type="checkbox"> Distance between characters</li>
+                <li><input type="checkbox"> Point of impact</li>
+                <li><input type="checkbox"> Entry / exit paths</li>
+            </ul>
+
+            <div class="sentence-fill">
+                <p>"If this is not visible, the audience will not understand</p>
+                <div class="form-field"></div>
+                <p>."</p>
+            </div>
+
+            <h2>End Condition</h2>
+            <p style="font-style: italic; color: #aaa;">(What the audience now knows that they did not before)</p>
+
+            <label class="form-label">By the end of this exchange, the audience understands:</label>
+            <div class="form-field"></div>
+
+            <h2>Student Confirmation</h2>
+            <p>I can point to:</p>
+            <ul class="checkbox-list">
+                <li><input type="checkbox"> The information that changed</li>
+                <li><input type="checkbox"> The camera behavior that communicates it</li>
+                <li><input type="checkbox"> What had to stay visible for that to work</li>
+            </ul>
+
+            <div class="download-section">
+                <p>Print this worksheet for production planning:</p>
+                <button class="btn" onclick="window.print()">Print / Save as PDF</button>
+            </div>
+
+        </div>
+
+        <div style="text-align: center; margin-top: 4rem; margin-bottom: 2rem;">
+            <a href="../free-guides.html" class="btn">&larr; Back to Free Guides</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Tokyo in Film. Open Educational Resource.</p>
+    </footer>
+
+    <script src="../js/mobile-nav.js"></script>
+</body>
+
+</html>
