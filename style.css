@@ -318,6 +318,15 @@ footer {
     padding-top: 1rem;
 }
 
+/* Global Video/Iframe Scaling - Fill container width */
+.textbook-content iframe,
+.textbook-content video,
+.container iframe,
+.container video {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
 
 /* Mobile Navigation & Responsive Fixes */
 @media (max-width: 768px) {
