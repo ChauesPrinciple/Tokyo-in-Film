@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4.2 Sound Design - Tokyo in Film</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .video-fallback-link {
+            display: block;
+            text-align: center;
+            margin-top: 0.5rem;
+            color: #888;
+            font-size: 0.9rem;
+            text-decoration: underline;
+        }
+
+        .video-fallback-link:hover {
+            color: var(--accent-neon-cyan);
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="logo">Tokyo in Film</div>
+        <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../pre-production/index.html">Pre-Production</a></li>
+            <li><a href="../production/index.html">Production</a></li>
+            <li><a href="index.html" class="active">Post-Production</a></li><li><a href="../glossary.html">Glossary</a></li><li><a href="../free-guides.html">Free Guides</a></li>
+        </ul>
+    </nav>
+
+    <main class="container" style="padding-top: 100px;">
+        <span class="toc-number">4.2</span>
+        <h1>Sound Design</h1>
+
+        <div class="textbook-content">
+
+            <div class="banner-image-wrap"
+                style="background-image: url('https://human.libretexts.org/@api/deki/files/156816/ezgif.com-resize_3.gif');">
+                <p>&nbsp;</p>
+            </div>
+
+            <p>Sound design is where the magic happens in post-production, taking raw audio and crafting it into an
+                immersive soundscape that shapes the audience’s experience. Here, sounds aren’t just cleaned up—they’re
+                created, layered, and manipulated to serve the story. Whether it’s enhancing dialogue, adding foley
+                effects, or weaving a haunting score into the mix, sound design turns the invisible into the
+                unforgettable, creating emotional and narrative depth that sticks with us long after the credits roll.
+            </p>
+
+            <p>In <em>Your Name</em>, sound grounds us in two vastly different worlds while also connecting them.</p>
+
+            <p>The city hum of Tokyo contrasts with the natural symphony of Mitsuha’s rural town, from train crossings
+                to cicadas, setting the stage for their body-swapping journey. But it’s in the surreal, otherworldly
+                moments—when time bends and their worlds blur together—that sound plays its most crucial role.
+                Atmospheric shifts and delicate tonal changes create an emotional resonance that guides the audience
+                through their disorientation and longing. Here, sound doesn’t just accompany the visuals; it bridges
+                gaps, turning moments of stillness into powerful reflections on memory and connection.</p>
+
+            <p>Then there’s <em>Akira</em>.</p>
+
+            <p>Neo-Tokyo hums with chaos, rebellion, and destruction, and its sound design doesn’t just mirror this—it
+                embodies it. From the metallic screech of Kaneda’s iconic motorcycle to the bone-chilling, distorted
+                reverberations of Tetsuo’s monstrous transformation, <em>Akira</em> uses sound to make the city itself
+                feel alive, oppressive, and volatile. It’s dissonant and layered, forcing us to feel the tension of a
+                society on the brink. These sounds weren’t captured on set—they were meticulously created in post,
+                amplifying the intensity of every moment and drawing us deeper into this dystopian nightmare. Meanwhile,
+                in <em>Tokyo Ghoul</em>, sound design plays with contrast to emphasize Kaneki’s fractured identity.
+                Silence creeps in during moments of unease, only to be shattered by the wet, visceral sound of ghouls
+                feeding or the distorted cries of their prey. Post-production sound here creates tension not just in
+                what we hear but in what we don’t, as moments of quiet dread make every scream, step, and strike land
+                harder. These auditory layers, from subtle breathing to monstrous growls, transform Kaneki’s internal
+                conflict into an external sensory experience, making the soundscape as unsettling as the story itself.
+            </p>
+
+            <p>This is the power of sound design: it doesn’t just reflect what’s on screen—it deepens it, creating a
+                world that feels richer and more alive. As we dig into ADR, foley, and sound editing techniques, keep
+                these films in mind. They show us that sound isn’t just an accessory to the image; it’s co-expressive,
+                shaping how we see, feel, and experience the world of cinema.</p>
+
+
+
+            <p>In the last chapter, we focused on editing the visual elements in a motion picture and how the shots fit
+                together to create a narrative flow and communicate with the audience. As it turns out, sound requires a
+                similar approach in post-production and is often even <em>more </em>“invisible” than picture editing
+                techniques. (In fact, if there are any sound editors reading this book, they probably noticed that
+                picture editing has a whole chapter, and all they get is this one crumby section. Typical.)</p>
+
+            <p>But sound editing is much more than simply joining up the sounds that already exist. It involves
+                <em>creating</em> all of the sounds that weren’t recorded on set to make up the rich soundscape of the
+                finished motion picture. In that sense, it is literally more “creative” than picture editing! (How’s
+                that, sound editors? Feel better now?)
+            </p>
+
+            <p>One important bit of post-production sound creation has to do with dialogue. Sometimes, an actor’s
+                dialogue for that perfect take is unusable because of distracting ambient sounds or a poorly placed
+                microphone. (C’mon, location sound recordist, you had one job!) In that case, sound editors bring in the
+                actors to perform <strong>ADR</strong>, short for Automated Dialogue Replacement (sometimes also
+                referred to as Additional Dialogue Recording or “looping”). They simply play the scene in a repeating
+                “loop” as the actors record the lines repeatedly until they match the performance on screen. Then, the
+                sound editors adjust the quality of the recording to match the setting of the scene.</p>
+
+            <p>But what about all those other sounds that weren’t recorded on set? The birds chirping, the cars passing,
+                even those footsteps? Those too, have to be created and gathered together in post-production and layered
+                into the sound design. Many of these sounds already exist in extensive sound libraries, pre-recorded by
+                sound technicians and made available for editors. But many of them must be created to match exactly what
+                the audience will see on screen. That’s where <strong>foley artists </strong>come in.</p>
+
+            <p>Foley artists are a special breed of technicians, part sound recordists, and part performance artists.
+                Their job is to fill in the missing sounds in a given scene. By any means necessary:</p>
+
+            <div class="mt-video-widget mt-video-width-55">
+                <div style="position: relative; width: 100%; height: 325px;">
+                    <iframe enablejsapi="true" height="325" id="widget120"
+                        src="https://www.youtube.com/embed/WnozP8OWeik" title="Foley Artists" width="100%"
+                        frameborder="0" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                </div>
+                <a href="https://www.youtube.com/watch?v=WnozP8OWeik" target="_blank" class="video-fallback-link">Watch
+                    on YouTube</a>
+            </div>
+
+            <p>Foley artists have to get creative when it comes to imitating common (and not-so-common) sounds. But
+                sound editors must go beyond recreating the most obvious sounds associated with a scene. Every rustle of
+                clothing, a hand on a cup, brushing a hair behind an ear. These tiny details, most of which we would
+                never notice unless they weren’t there, help create continuity in the final edit.</p>
+
+            <p>Yes, there’s that word again: <strong>continuity</strong>. Editing pictures for continuity means creating
+                a narrative flow that keeps the audience engaged with the story. Editing sound for continuity has the
+                same goal but relies on different techniques. For example, if we see someone walking on gravel but hear
+                them walking on a hardwood floor, that break with continuity – or, in this case, logic – will take us
+                out of the narrative. The soundscape must match the cinematography to maintain continuity. And since so
+                much of the sound we hear in cinema is created and added in post-production, that requires incredible
+                attention to detail.</p>
+
+            <p>But there are other ways editors can use sound to support the principle of narrative continuity, and not
+                always by matching exactly what we see on screen. For example, a <strong>sound bridge </strong>can be
+                used to help transition from one shot to another by overlapping the sound of each shot. This can be done
+                in anticipation of the next shot by bringing up the audio before we cut to it on screen, known as a
+                <strong>J-cut</strong>, or by continuing the audio of the previous shot into the first few seconds of
+                the next, known as an <strong>L-cut</strong>. This technique is most noticeable in transitions between
+                radically different scenes, but editors use it constantly in more subtle ways, especially in
+                dialogue-heavy scenes. Here are some quick examples:
+            </p>
+
+            <div class="mt-video-widget mt-video-width-55">
+                <div style="position: relative; width: 100%; height: 325px;">
+                    <iframe enablejsapi="true" height="325" id="widget122"
+                        src="https://www.youtube.com/embed/eyH-a964kAs" title="Sound Bridges: J-Cuts & L-Cuts"
+                        width="100%" frameborder="0" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                </div>
+                <a href="https://www.youtube.com/watch?v=eyH-a964kAs" target="_blank" class="video-fallback-link">Watch
+                    on YouTube</a>
+            </div>
+
+            <p>And just like picture editing, sound editing can also work against audience expectations, leaning into
+                <strong>discontinuity</strong> with the use of <strong>asynchronous </strong>sounds that seem related to
+                what we’re seeing on screen but are otherwise out of sync. These are sound tricks intended to either
+                directly contrast what we see on screen or to provide just enough disorientation to set us on edge.
+                Here’s one famous example of asynchronous sound from Alfred Hitchcock’s <em>The 39 Steps</em> (1935):
+            </p>
+
+            <div class="mt-video-widget mt-video-width-55">
+                <div style="position: relative; width: 100%; height: 325px;">
+                    <iframe enablejsapi="true" height="325" id="widget124"
+                        src="https://www.youtube.com/embed/ilhh5bXwDv0"
+                        title="The 39 Steps (1935) - Train Whistle Scream" width="100%" frameborder="0"
+                        referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                </div>
+                <a href="https://www.youtube.com/watch?v=ilhh5bXwDv0" target="_blank" class="video-fallback-link">Watch
+                    on YouTube</a>
+            </div>
+
+            <p>The woman opening the train compartment door discovers a dead body, but instead of hearing her scream, we
+                hear the train whistle. In this case, we get an asynchronous sound combined with a J-cut.</p>
+
+            <p>Production sound recording and sound editing are all part of the overall <strong>sound design </strong>of
+                cinema, and there are lots of moving parts to track throughout the process. Take a look at how one
+                filmmaker, David Fincher (along with Christopher Nolan, George Lucas, and a few others), uses all of
+                these elements of sound design to embrace the idea of sound as co-expressive with the moving image:</p>
+
+            <div class="mt-video-widget mt-video-width-55">
+                <div style="position: relative; width: 100%; height: 325px;">
+                    <iframe enablejsapi="true" height="325" id="widget126"
+                        src="https://www.youtube.com/embed/as2Rk4WcljA"
+                        title="David Fincher - And the Other Way is Wrong" width="100%" frameborder="0"
+                        referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                </div>
+                <a href="https://www.youtube.com/watch?v=as2Rk4WcljA" target="_blank" class="video-fallback-link">Watch
+                    on YouTube</a>
+            </div>
+
+            <div class="banner-image-wrap"
+                style="background-image: url('https://human.libretexts.org/@api/deki/files/156816/ezgif.com-resize_3.gif');">
+                <p>&nbsp;</p>
+            </div>
+
+            <p>Once all of the sound editing is done and matched up with the image, the whole process moves to the
+                <strong>sound mixer</strong> to finalize the project. And if you’ve ever wondered why there are two
+                Academy Awards for sound, one for sound editing and one for sound mixing, this is why. (Or maybe you’ve
+                never wondered that because that’s when you decided to grab a snack. I mean, who pays attention to Best
+                Sound Mixing?) Sound mixers must take all of the various sound elements brought together by the editors,
+                including the music composed for the score (more on that later), and balance them perfectly so the
+                audience hears exactly what the filmmakers want them to hear from shot to shot and scene to scene.
+            </p>
+
+            <p>This is a very delicate process. On the one hand, the sound mix can be objectively calibrated according
+                to a precise decibel level, or degree of loudness, for each layer of sound. Dialogue within a certain
+                acceptable range of loudness, music in its range, sound effects in theirs. Basic math. On the other
+                hand, the mix can and should be a subjective process, with actual humans in a room making adjustments
+                based on the feel of each shot and scene. Most of the time, it’s both. When it’s done well, the audience
+                will feel immersed in each scene, hearing every line of dialogue clearly, even when there are car
+                crashes, explosions, and a driving musical score.</p>
+
+            <p>For example, check out this deconstruction of the sound design from a single scene from <em>The Bourne
+                    Identity </em>(2002):</p>
+
+            <div class="mt-video-widget mt-video-width-55">
+                <div style="position: relative; width: 100%; height: 325px;">
+                    <iframe enablejsapi="true" height="325" id="widget128"
+                        src="https://www.youtube.com/embed/yBFferOQeVI"
+                        title="Car chase sound design in The Bourne Identity" width="100%" frameborder="0"
+                        referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                </div>
+                <a href="https://www.youtube.com/watch?v=yBFferOQeVI" target="_blank" class="video-fallback-link">Watch
+                    on YouTube</a>
+            </div>
+
+            <p>Sound mixing is one of those technical aspects of filmmaking that has evolved over the decades,
+                especially as the technology for sound recording and reproduction has changed in more recent years.
+                Starting with the birth of cinema sound in 1927, movie houses had to be rigged for sound reproduction.
+                Which usually meant a couple of massive, low-quality speakers. But by 1940, sound mixers were already
+                experimenting with the concept of <strong>surround sound</strong> and the ability to move the various
+                channels of sound around a theater through multiple speakers to match the action on screen.</p>
+
+            <p>As the century rolled on, newer, high-fidelity sound reproduction found its way into theaters, allowing
+                for more sophisticated surround sound systems and, consequently, more work for sound mixers to create an
+                immersive experience for audiences. George Lucas introduced THX in 1983, a theatrical standard for sound
+                reproduction in theaters to coincide with the release of <em>Return of the Jedi</em>. In 1987, a French
+                engineer pioneered 5.1 surround sound, which standardized splitting the audio into six distinct
+                channels: two in the front, two in the rear, one in the center, and one just for low bass sound. As
+                recently as 2012, Dolby introduced Dolby Atmos, a new surround sound technology that heightens the
+                available options for sound mixers. Now, sound can appear to be coming from in front, behind, below, or
+                above audiences, creating a 3-D aural experience.</p>
+
+            <p>And every element in the final soundtrack has to be calibrated and assigned by the sound mixer. Check out
+                how complex the process was for the sound mixers on <em>Ford v Ferrari </em>(2019):</p>
+
+            <div class="mt-video-widget mt-video-width-55">
+                <div style="position: relative; width: 100%; height: 325px;">
+                    <iframe enablejsapi="true" height="325" id="widget130"
+                        src="https://www.youtube.com/embed/1GyqrRu492Q"
+                        title="‘Ford v Ferrari’ Sound Editors Explain Mixing Sound for Film | Vanity Fair" width="100%"
+                        frameborder="0" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                </div>
+                <a href="https://www.youtube.com/watch?v=1GyqrRu492Q" target="_blank" class="video-fallback-link">Watch
+                    on YouTube</a>
+            </div>
+
+            <p>Finding the right mix of sound is critical for any cinematic experience, but one element that many
+                filmmakers (and audiences) neglect is the use of <strong>silence</strong>. The absence of sound can be
+                just as powerful, if not more powerful, than the many layers of sound in the final track. Silence can
+                punctuate an emotional moment or put us in the headspace of a character in a way that visuals alone
+                simply cannot.</p>
+
+            <p>Check out how skillfully Martin Scorsese uses silence throughout his films:</p>
+
+            <div class="mt-video-widget mt-video-width-55">
+                <div style="position: relative; width: 100%; height: 325px;">
+                    <iframe enablejsapi="true" height="325" id="widget132"
+                        src="https://www.youtube.com/embed/NUrTRjEXjSM" title="Martin Scorsese - The Art of Silence"
+                        width="100%" frameborder="0" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                </div>
+                <a href="https://www.youtube.com/watch?v=NUrTRjEXjSM" target="_blank" class="video-fallback-link">Watch
+                    on YouTube</a>
+            </div>
+
+            <p>Of course, in most of these examples, silence refers to the lack of dialogue or a dampening of the
+                ambient sound. Rarely is a filmmaker brave enough to remove all sound completely from a soundtrack. Dead
+                air has a very different quality to it than simply lowering the volume of the mix. But a few brave souls
+                have given it a try. Here’s French New Wave experimental filmmaker Jean Luc Godard playing an aural joke
+                in <em>Band à part </em>(1964):</p>
+
+            <div class="mt-video-widget mt-video-width-55">
+                <div style="position: relative; width: 100%; height: 325px;">
+                    <iframe enablejsapi="true" height="325" id="widget134"
+                        src="https://www.youtube.com/embed/7nTvuUDvHh4" title="Bande à part - One Minute of Silence"
+                        width="100%" frameborder="0" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                </div>
+                <a href="https://www.youtube.com/watch?v=7nTvuUDvHh4" target="_blank" class="video-fallback-link">Watch
+                    on YouTube</a>
+            </div>
+
+            <p>It’s not actually a full minute of dead air – it’s more like 36 seconds – but it feels like an hour.</p>
+
+            <p>Compare that to this scene from the more recent film <em>Gravity </em>(2013):</p>
+
+            <div class="mt-video-widget mt-video-width-55">
+                <div style="position: relative; width: 100%; height: 325px;">
+                    <iframe enablejsapi="true" height="325" id="widget136"
+                        src="https://www.youtube.com/embed/EThczHxvjKo"
+                        title="Gravity - Clip (7/11): Ryan's Hallucination" width="100%" frameborder="0"
+                        referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                </div>
+                <a href="https://www.youtube.com/watch?v=EThczHxvjKo" target="_blank" class="video-fallback-link">Watch
+                    on YouTube</a>
+            </div>
+
+            <p>That was also 36 seconds. Perhaps a little wink from the director Alfonso Cuaròn to the French master
+                Godard. But both are startling examples of the rare attempt to remove all sound to great effect
+                completely.</p>
+
+
+
+            <p>One of the most recognizable elements in the sound of cinema is, of course, music. And its importance
+                actually pre-dates the synchronization of sound in 1927. Musical accompaniment was almost always part of
+                the theatrical experience in the silent era, and films were often shipped to theaters with a written
+                score to be performed during the screening. Predictably, the first “talking picture” was a musical and
+                had more singing than actual talking.</p>
+
+            <p>As the use of sound in cinema has become increasingly sophisticated over the last century, music has
+                remained central to how filmmakers communicate effectively (and sometimes not so effectively) with an
+                audience. At its best, music can draw us into a cinematic experience, immersing us in a series of
+                authentic, emotional moments. At its worst, it can ruin the experience altogether, telling us how to
+                feel from scene to scene with an annoying persistence.</p>
+
+            <p>But before we try to sort out the best from the worst, let’s clarify some technical details about how and
+                what type of music is used in cinema. First, we need to distinguish between <strong>diegetic
+                </strong>and <strong>non-diegetic </strong>music. If the characters on screen also hear the music we
+                hear, that is, it is part of the world of the film or TV series, then it is <strong>diegetic
+                </strong>music. If the music is <em>not</em> a part of the world of the film or TV series, and only the
+                audience can hear it, then it is <strong>non-diegetic</strong> music. Too abstract? Okay, if a song is
+                playing on a radio in a scene, and the characters are dancing to it, then it is diegetic. But if scary,
+                high-pitched violins start playing as the Final Girl considers going down into the basement to see if
+                the killer is down there (and we all <em>know</em> the killer is down there because those damn violins
+                are playing even though she can’t hear them!), then it is non-diegetic.</p>
+
+            <p>Diegetic versus non-diegetic sound is a critical concept in the analysis of cinema, and crafty filmmakers
+                can play with our expectations once we know the difference (even if we didn’t know the terms before
+                now). For example, non-diegetic music can communicate one emotion to the audience, while diegetic music
+                communicates something entirely different for the characters on screen. Think about the movie <em>JAWS
+                </em>(1975). Even if you haven’t seen it, you know those two deep notes – <em>da dum… da dum</em> – that
+                start out slow, then build and build, letting us know the shark is about to attack. Meanwhile, the kids
+                in the water are listening to pop music, completely oblivious to the fact that one of them is about to
+                be eaten alive!</p>
+
+            <div class="mt-video-widget mt-video-width-55">
+                <div style="position: relative; width: 100%; height: 325px;">
+                    <iframe enablejsapi="true" height="325" id="widget138"
+                        src="https://www.youtube.com/embed/rW23RsUTb2Y"
+                        title="Jaws (1975) - Get out of the Water Scene (2/10) | Movieclips" width="100%"
+                        frameborder="0" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                </div>
+                <a href="https://www.youtube.com/watch?v=rW23RsUTb2Y" target="_blank" class="video-fallback-link">Watch
+                    on YouTube</a>
+            </div>
+
+            <p>And this concept applies to more than just music. Titles, for example, are a non-diegetic element of
+                mise-en-scene. The audience can see them, but the characters can’t.</p>
+
+            <p>Second, we need to distinguish between a <strong>score </strong>written by a <strong>composer</strong>
+                and what we could call a <strong>soundtrack </strong>of popular music used throughout that same motion
+                picture. The use of popular music in film has a long history, and many of the early musicals in the
+                1930s, 40s, and 50s were designed around popular songs of the day. These days, most films or TV series
+                have a <strong>music supervisor </strong>who is responsible for identifying and acquiring the rights for
+                any popular or pre-existing music the filmmakers want to use in the final edit. Sometimes, those songs
+                are diegetic – that is, they are played on screen for the characters to hear and respond to – or they
+                are non-diegetic – that is, they are just for the audience to put us in a certain mood or frame of mind.
+                Either way, they are almost <em>always</em> added in post-production after complete filming. Even if
+                they are meant to be diegetic, playing the actual song during filming would make editing between
+                dialogue takes impossible. The actors have just to pretend they are listening to the song in the scene,
+                which is fine since pretending is what they do for a living.</p>
+
+            <p>But the type of music that gets the most attention in formal analysis is the score, the original
+                composition written and recorded for a specific motion picture. A film score, unlike popular music, is
+                <em>always</em> non-diegetic. It’s just for us in the audience. If the kids in the water could hear the
+                theme from <em>JAWS,</em> they’d get out of the damn water, and we wouldn’t have a movie to watch. It is
+                also <em>always</em> recorded after the final edit of the picture is complete. That’s because the score
+                must be timed to the rhythm of the finished film, each note tied to a moment on screen to achieve the
+                desired effect. Changes in the edit will require changes in the score to match.
+            </p>
+
+            <p>It is in the score that a film can take full advantage of music’s expressive, emotional range. But it’s
+                also where filmmakers can go terribly wrong. Music in film should be co-expressive with the moving
+                image, working in concert to tell the story (pun intended, see what I did there?). The most forgettable
+                scores simply mirror the action on screen. Instead of adding another dimension, what we see is what we
+                hear. Far worse is a score that does little more than tell us what to feel and when to feel it. The
+                musical equivalent of a big APPLAUSE sign.</p>
+
+            <p>These tendencies in cinematic music are what led philosopher and music critic Theodor Adorno to complain
+                that the standard approach to film scores was simply to “interpret the meaning of the action of the less
+                intelligent members of the audience.” Ouch. But, in a way, he’s not wrong. It's not about the less
+                intelligent bit. But about how filmmakers <em>assume</em> a lack of intelligence, or maybe awareness, of
+                the power of music in cinema. Take the Marvel Cinematic Universe, for example. You all know the theme of
+                <em>JAWS</em>. You probably also know the musical theme for <em>Star Wars</em>, <em>Raiders of the Lost
+                    Ark</em>, and maybe even <em>Harry Potter</em>. But can you hum a single tune from <em>any</em>
+                Marvel movie? Weird, right? Check this out:
+            </p>
+
+            <div class="mt-video-widget mt-video-width-55">
+                <div style="position: relative; width: 100%; height: 325px;">
+                    <iframe enablejsapi="true" height="325" id="widget140"
+                        src="https://www.youtube.com/embed/7vfqkvwW2fs" title="The Marvel Symphonic Universe"
+                        width="100%" frameborder="0" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                </div>
+                <a href="https://www.youtube.com/watch?v=7vfqkvwW2fs" target="_blank" class="video-fallback-link">Watch
+                    on YouTube</a>
+            </div>
+
+            <p>The best cinema scores can do so much more than simply mirror the action or tell us how to feel. They can
+                set a tone, play with tempo, and subvert expectations. Music designed for cinema with the same care and
+                thematic awareness as cinematography, mise-en-scene, or editing can transform our experience without us
+                even realizing how and why it is happening.</p>
+
+            <p>Take composer Hans Zimmer, for example. Zimmer has composed scores for over 150 films, working with
+                dozens of filmmakers. And he understands how music can support and enhance a narrative theme, creating a
+                cohesive whole. In his work with Christopher Nolan, <em>The Dark Knight</em> (2008), <em>Inception
+                </em>(2010), and <em>Interstellar</em> (2014), his compositions explore the recurring theme of time:</p>
+
+            <div class="mt-video-widget mt-video-width-55">
+                <div style="position: relative; width: 100%; height: 325px;">
+                    <iframe height="325" src="https://player.vimeo.com/video/193995233" width="100%" frameborder="0"
+                        allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <a href="https://vimeo.com/193995233" target="_blank" class="video-fallback-link">Watch on Vimeo</a>
+            </div>
+
+            <p>Musical scores can also emphasize a moment or signal an important character. Composers use recurring
+                themes, or <strong>motifs</strong>, as a kind of signature (or even a brand) for a film or tv series.
+                The most famous of these are the ones you can probably hum to yourself right now, again like <em>Star
+                    Wars</em>, <em>Raiders of the Lost Ark</em>, maybe even <em>Harry Potter</em>. Composers can use
+                this same concept for a specific character as well, known as a <strong>leitmotif</strong>. Think of
+                those two ominous notes we associate with the shark in <em>JAWS</em>. That’s a leitmotif. Or the
+                triumphant horns we hear every time Indiana Jones shows up in <em>Raiders</em>. That’s a leitmotif.</p>
+
+            <p>Oh, and all those movies I mentioned just now? They all have the same composer. His name is John
+                Williams. And he’s a legend:</p>
+
+            <div class="mt-video-widget mt-video-width-55">
+                <div style="position: relative; width: 100%; height: 325px;">
+                    <iframe enablejsapi="true" height="325" id="widget142"
+                        src="https://www.youtube.com/embed/rLWgnJxapYA"
+                        title="John Williams and the universal language of film music" width="100%" frameborder="0"
+                        referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                </div>
+                <a href="https://www.youtube.com/watch?v=rLWgnJxapYA" target="_blank" class="video-fallback-link">Watch
+                    on YouTube</a>
+            </div>
+
+            <p>While we are not analyzing a Studio Ghibli film in this section, I would be remiss not to mention Mamoru
+                Fujisawa, better known by his professional name, Joe Hisaishi, a Japanese composer and conductor whose
+                partnership with Miyazaki began in the early 1980s. In fact, Hisaishi's success and global recognition
+                garnered him the moniker ‘the Japanese John Williams.’</p>
+
+            <p>Yet, as amazing has Hisaishi and Williams are as composers, cinema is set apart as an art form for its
+                ability, and need, to blend all of the arts into something more, and it is the blend of Miyazaki's
+                artistry and vision, Hisaishi's emotive compositions, and uniquely Japanese sentiment that creates
+                Ghibli's magic.</p>
+
+            <p>For instance, Shantanu Singh over at <u><a
+                        href="https://medium.com/@shantanusighs/studio-ghibli-the-mechanics-behind-miyazakis-melody-of-nostalgia-f77a254b712d">Medium</a></u>
+                notes:</p>
+
+            <blockquote>
+                <p>One of the things that Miyazaki often talks about is “Ma”, or as he calls it, the silence between the
+                    clap. “Ma” is a Japanese concept that refers to the respite between activity. Miyazaki deftly
+                    integrates this respite within his work. He makes sure that there is stillness between the chaos. A
+                    moment where you can pause and just enjoy the beautiful scenery, the vibrant colors, and the music
+                    that accompanies it all.</p>
+            </blockquote>
+
+            <p>We do have the option, however, of studying another notable collaborative duo, Shinichiro Watanabe and
+                Yoko Kanno, who created Cowboy Bebop, Samurai Champloo, Space Dandy, and others, who are directly
+                inspired by not only a genre of music but are crafted like a (delightfully) self-contained album.</p>
+
+            <p>GammaRay gives us a nice documentation of Shinichiro's inspirations as well as how Kanno inspired
+                Watanabe in real-time:</p>
+
+            <div class="mt-video-widget mt-video-width-55">
+                <div style="position: relative; width: 100%; height: 360px;">
+                    <iframe
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen="" enablejsapi="true" frameborder="0" height="360" id="widget144"
+                        referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/bIVFXsimy0Y"
+                        title="COWBOY BEBOP: The Art of Music Scoring  Anime" width="100%"></iframe>
+                </div>
+                <a href="https://www.youtube.com/watch?v=bIVFXsimy0Y" target="_blank" class="video-fallback-link">Watch
+                    on YouTube</a>
+                <figcaption class="mt-align-center">COWBOY BEBOP: The Art of Music Scoring Anime</figcaption>
+            </div>
+
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2026 Tokyo in Film. Adapted from the user's provided text.</p>
+    </footer>
+<script src="../js/glossary.js"></script></body>
+
+</html>
+
+
+

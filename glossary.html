@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filmmaking Glossary - Tokyo in Film</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .glossary-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 8px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .glossary-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 243, 255, 0.1);
+            border-color: var(--accent-neon-cyan);
+        }
+
+        .glossary-term {
+            color: var(--accent-neon-cyan);
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .glossary-def {
+            color: #ddd;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .category-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #aaa;
+            margin-bottom: 0.5rem;
+            border-bottom: 1px solid var(--accent-red);
+        }
+
+        #search-input {
+            width: 100%;
+            max-width: 500px;
+            padding: 1rem;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.3);
+            color: white;
+            margin-bottom: 2rem;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #search-input:focus {
+            outline: none;
+            border-color: var(--accent-neon-cyan);
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.2);
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="logo">Tokyo in Film</div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="pre-production/index.html">Pre-Production</a></li>
+            <li><a href="production/index.html">Production</a></li>
+            <li><a href="post-production/index.html">Post-Production</a></li>
+            <li><a href="free-guides.html">Free Guides</a></li>
+        </ul>
+    </nav>
+
+    <main class="container" style="padding-top: 100px;">
+        <h1 style="text-align: center; margin-bottom: 1rem;">Filmmaking Glossary</h1>
+        <p style="text-align: center; color: #bbb; max-width: 600px; margin: 0 auto 3rem;">
+            Essential terms and concepts for the modern filmmaker. Search below to find definitions from Pre-Production
+            to Post.
+        </p>
+
+        <input type="text" id="search-input" placeholder="Search terms (e.g., 'Bokeh', 'Gaffer')...">
+
+        <div id="glossary-container" class="glossary-grid">
+            <!-- Terms will be injected here by JS -->
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Tokyo in Film. Adapted from Humanities LibreTexts.</p>
+    </footer>
+
+    <!-- Load the glossary data -->
+    <script src="js/glossary.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('glossary-container');
+            const searchInput = document.getElementById('search-input');
+
+            // Function to categorize term (simple heuristic or manual mapping could be added)
+            // For now, we just display the term and definition.
+
+            function renderTerms(filter = "") {
+                container.innerHTML = '';
+                const lowerFilter = filter.toLowerCase();
+
+                // Sort terms alphabetically
+                const sortedTerms = glossaryTerms.sort((a, b) => a.term.localeCompare(b.term));
+
+                sortedTerms.forEach(item => {
+                    if (item.term.toLowerCase().includes(lowerFilter) || item.definition.toLowerCase().includes(lowerFilter)) {
+                        const card = document.createElement('div');
+                        card.className = 'glossary-card';
+
+                        card.innerHTML = `
+                            <div class="glossary-term">${item.term}</div>
+                            <div class="glossary-def">${item.definition}</div>
+                        `;
+                        container.appendChild(card);
+                    }
+                });
+
+                if (container.children.length === 0) {
+                    container.innerHTML = '<p style="text-align:center; grid-column: 1/-1; color: #777;">No terms found matching your search.</p>';
+                }
+            }
+
+            // Initial Render
+            renderTerms();
+
+            // Search Listener
+            searchInput.addEventListener('input', (e) => {
+                renderTerms(e.target.value);
+            });
+        });
+    </script>
+</body>
+
+</html>
