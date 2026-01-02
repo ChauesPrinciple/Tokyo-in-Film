@@ -20,7 +20,12 @@
 
     <nav>
         <div class="logo">Tokyo in Film</div>
-        <ul>
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <ul class="nav-list">
             <li><a href="index.html" class="active">Home</a></li>
             <li><a href="pre-production/index.html">Pre-Production</a></li>
             <li><a href="production/index.html">Production</a></li>
@@ -70,6 +75,38 @@
             </aside>
         </div>
     </section>
+
+    </section>
+
+    <main id="explore" class="container">
+        <div class="intro">
+            <h2>Course Modules</h2>
+            <p>Explore the three phases of filmmaking, adapted from Russell Sharman's <em>Moving Pictures</em> and
+                tailored for the Tokyo study abroad experience.</p>
+        </div>
+
+        <div class="section-grid">
+            <article class="card">
+                <h3>Pre-Production</h3>
+                <p>The foundation of your film. Learn about screenwriting, storyboarding, and scouting locations in
+                    Tokyo's diverse wards.</p>
+                <a href="pre-production/index.html" class="card-link">Enter Phase 1 &rarr;</a>
+            </article>
+
+            <article class="card">
+                <h3>Production</h3>
+                <p>Lights, Camera, Action. Master the art of cinematography, lighting, and directing in the bustling
+                    streets of Shibuya and Shinjuku.</p>
+                <a href="production/index.html" class="card-link">Enter Phase 2 &rarr;</a>
+            </article>
+
+            <article class="card">
+                <h3>Post-Production</h3>
+                <p>The final cut. Editing, sound design, and color grading to bring your cinematic vision to life.</p>
+                <a href="post-production/index.html" class="card-link">Enter Phase 3 &rarr;</a>
+            </article>
+        </div>
+    </main>
 
     <section id="map-section" class="container" style="padding: 0 2rem 4rem;">
         <h2 style="text-align: center; margin-bottom: 2rem;">Interactive Map of Iconic Locations</h2>
@@ -134,41 +171,14 @@
         </ul>
     </section>
 
-    <main id="explore" class="container">
-        <div class="intro">
-            <h2>Course Modules</h2>
-            <p>Explore the three phases of filmmaking, adapted from Russell Sharman's <em>Moving Pictures</em> and
-                tailored for the Tokyo study abroad experience.</p>
-        </div>
-
-        <div class="section-grid">
-            <article class="card">
-                <h3>Pre-Production</h3>
-                <p>The foundation of your film. Learn about screenwriting, storyboarding, and scouting locations in
-                    Tokyo's diverse wards.</p>
-                <a href="pre-production/index.html" class="card-link">Enter Phase 1 &rarr;</a>
-            </article>
-
-            <article class="card">
-                <h3>Production</h3>
-                <p>Lights, Camera, Action. Master the art of cinematography, lighting, and directing in the bustling
-                    streets of Shibuya and Shinjuku.</p>
-                <a href="production/index.html" class="card-link">Enter Phase 2 &rarr;</a>
-            </article>
-
-            <article class="card">
-                <h3>Post-Production</h3>
-                <p>The final cut. Editing, sound design, and color grading to bring your cinematic vision to life.</p>
-                <a href="post-production/index.html" class="card-link">Enter Phase 3 &rarr;</a>
-            </article>
-        </div>
-    </main>
+    </section>
 
     <footer>
         <p>&copy; 2026 Tokyo in Film. Adapted from Humanities LibreTexts.</p>
     </footer>
 
     <script src="js/glossary.js"></script>
+    <script src="js/mobile-nav.js"></script>
 </body>
 
 </html>

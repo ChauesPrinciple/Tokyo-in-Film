@@ -13,7 +13,12 @@
 <body>
     <nav>
         <div class="logo">Tokyo in Film</div>
-        <ul>
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <ul class="nav-list">
             <li><a href="../index.html">Home</a></li>
             <li><a href="../pre-production/index.html">Pre-Production</a></li>
             <li><a href="index.html" class="active">Production</a></li>
@@ -41,11 +46,10 @@
                 <div class="card-form">
                     <h3>Production Worksheet</h3>
                     <p>Please fill out the following worksheet as part of your production planning.</p>
-                    <div style="position: relative; overflow: hidden; padding-top: 100%;">
+                    <div class="form-embed-container">
                         <iframe
                             src="https://docs.google.com/forms/d/e/1FAIpQLSeVAX5ZOhsaMstznm382iix04zlIO9ae0ruNqfo7E3YpUvdSg/viewform?embedded=true"
-                            width="640" height="800" frameborder="0" marginheight="0" marginwidth="0"
-                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;"
+                            width="100%" height="2000" frameborder="0" marginheight="0" marginwidth="0"
                             title="Production Worksheet Form">Loading…</iframe>
                     </div>
                 </div>
@@ -53,19 +57,22 @@
                 <div class="card-form">
                     <h3>Worksheet: Choreographed Motion</h3>
                     <p>Standardize your footage for the library: What changes, and how the camera makes it readable.</p>
-                    <iframe
-                        src="https://docs.google.com/forms/d/e/1FAIpQLSdGVfis8fQuBG8LqghEC0mpjKQ6_r78TEtqBE0pFjDxpeYuOg/viewform?embedded=true"
-                        width="640" height="2800" frameborder="0" marginheight="0" marginwidth="0"
-                        title="Choreographed Motion Worksheet Form">Loading…</iframe>
+                    <div class="form-embed-container">
+                        <iframe
+                            src="https://docs.google.com/forms/d/e/1FAIpQLSdGVfis8fQuBG8LqghEC0mpjKQ6_r78TEtqBE0pFjDxpeYuOg/viewform?embedded=true"
+                            width="100%" height="2800" frameborder="0" marginheight="0" marginwidth="0"
+                            title="Choreographed Motion Worksheet Form">Loading…</iframe>
+                    </div>
                 </div>
             </div>
 
             <div style="text-align: center; margin-top: 4rem; margin-bottom: 2rem;">
-                <a href="../post-production/index.html" class="btn">Next Phase: Post-Production &rarr;</a>
+                <a href="mise-en-scene.html" class="btn">Next Chapter: Mise-en-Scène &rarr;</a>
             </div>
         </div>
     </main>
     <script src="../js/glossary.js"></script>
+    <script src="../js/mobile-nav.js"></script>
 </body>
 
 </html>

@@ -85,7 +85,11 @@ nav .logo {
     letter-spacing: 0.2em;
 }
 
-nav ul {
+.menu-toggle {
+    display: none;
+}
+
+.nav-list {
     display: flex;
     list-style: none;
     gap: 2rem;
@@ -315,16 +319,68 @@ footer {
 }
 
 
-/* Mobile */
+/* Mobile Navigation & Responsive Fixes */
 @media (max-width: 768px) {
     h1 {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
     }
 
-    nav ul {
-        display: none;
+    /* Hamburger Menu */
+    .menu-toggle {
+        display: block;
+        cursor: pointer;
     }
 
+    .menu-toggle .bar {
+        display: block;
+        width: 25px;
+        height: 3px;
+        margin: 5px auto;
+        -webkit-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+        background-color: white;
+    }
+
+    /* Mobile Nav List */
+    .nav-list {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 60px;
+        /* Adjust based on navbar height */
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 60px);
+        background-color: rgba(5, 5, 5, 0.98);
+        text-align: center;
+        transition: 0.3s;
+        box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+        padding-top: 2rem;
+        gap: 1.5rem;
+    }
+
+    .nav-list.active {
+        left: 0;
+    }
+
+    .nav-list li {
+        margin: 0;
+    }
+
+    /* Hamburger Animation */
+    .menu-toggle.is-active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menu-toggle.is-active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .menu-toggle.is-active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    /* Grid & Layout Adjustments */
     .intro-grid {
         grid-template-columns: 1fr;
     }
@@ -335,6 +391,25 @@ footer {
 
     .intro-main {
         text-align: center;
+    }
+
+    /* Fix Video/Map Overflows */
+    iframe,
+    video,
+    .map-container {
+        max-width: 100% !important;
+        width: 100%;
+    }
+
+    /* Fix Forms on Mobile */
+    .card-form {
+        padding: 1rem;
+        margin: 1.5rem 0;
+    }
+
+    /* Fix Table of Contents / Modules */
+    .section-grid {
+        grid-template-columns: 1fr;
     }
 }
 
@@ -628,10 +703,10 @@ blockquote {
 
 /* Form Embed Styling */
 .card-form {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+    border: 1px solid rgba(255, 255, 255, 0.15);
     border-top: 4px solid var(--accent-neon-pink);
-    border-radius: 8px;
+    border-radius: 12px;
     padding: 2rem;
     margin: 3rem auto;
     max-width: 850px;
@@ -641,13 +716,13 @@ blockquote {
 
 .card-form:hover {
     border-color: var(--accent-neon-pink);
-    box-shadow: 0 15px 40px rgba(255, 0, 127, 0.1);
+    box-shadow: 0 15px 40px rgba(255, 0, 127, 0.15);
     transform: translateY(-2px);
 }
 
 .card-form h3 {
     text-align: center;
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     margin-bottom: 0.5rem;
     color: #fff;
     letter-spacing: 0.1em;
@@ -656,23 +731,42 @@ blockquote {
 .card-form p {
     text-align: center;
     color: #aaa;
-    margin-bottom: 2rem;
-    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
 }
 
-/* Adjust Iframe within card */
-.card-form iframe {
+/* Responsive Iframe Container */
+.card-form .form-embed-container {
+    position: relative;
     width: 100%;
-    border-radius: 4px;
+    height: 600px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-radius: 8px;
     background: #fff;
-    /* Ensure form background is readable if transparent */
+    -webkit-overflow-scrolling: touch;
+}
+
+.card-form .form-embed-container iframe {
+    width: 100%;
+    height: 2800px;
+    border: none;
+    display: block;
+}
+
+/* Adjust Iframe within card (direct embed without container) */
+.card-form>iframe {
+    width: 100%;
+    max-height: 600px;
+    border-radius: 8px;
+    background: #fff;
     border: none;
 }
 
 /* Side-by-Side Grid for Forms */
 .forms-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
     max-width: 1400px;
     margin: 3rem auto;
@@ -681,6 +775,29 @@ blockquote {
 .forms-grid .card-form {
     margin: 0;
     max-width: 100%;
-    height: 100%;
-    /* Equal height */
+}
+
+/* Form Grid Mobile Styles */
+@media (max-width: 900px) {
+    .forms-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .card-form {
+        padding: 1.5rem;
+        margin: 1.5rem auto;
+    }
+
+    .card-form h3 {
+        font-size: 1.3rem;
+    }
+
+    .card-form .form-embed-container {
+        height: 500px;
+    }
+
+    .card-form>iframe {
+        max-height: 500px;
+    }
 }
