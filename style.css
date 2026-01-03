@@ -647,6 +647,14 @@ blockquote {
     display: none;
 }
 
+.chapter-banner {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    display: block;
+}
+
 @media (max-width: 768px) {
     .banner-image-wrap {
         min-height: 80px;
