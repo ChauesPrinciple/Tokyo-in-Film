@@ -1069,41 +1069,46 @@ blockquote {
     }
 }
 
-/* Infinite Game Section - High Specificity */
+/* Infinite Game Section - Compact High Specificity */
 .textbook-content .infinite-game-box {
-    margin-top: 3rem !important;
-    padding: 2rem !important;
-    border: 3px solid var(--accent-neon-cyan) !important;
+    margin-top: 2rem !important;
+    padding: 1.5rem !important;
+    border: 2px solid var(--accent-neon-cyan) !important;
     border-radius: 8px !important;
     background-color: rgba(10, 20, 40, 0.9) !important;
-    box-shadow: 0 0 25px rgba(0, 243, 255, 0.2) !important;
+    box-shadow: 0 0 15px rgba(0, 243, 255, 0.15) !important;
     position: relative;
     z-index: 10;
 }
 
 .textbook-content .infinite-game-box h3 {
     color: var(--accent-neon-cyan) !important;
-    margin-bottom: 1rem !important;
-    font-size: 1.8rem !important;
-    text-shadow: 0 0 8px rgba(0, 243, 255, 0.5) !important;
+    margin-bottom: 0.5rem !important;
+    font-size: 1.4rem !important;
+    text-shadow: 0 0 5px rgba(0, 243, 255, 0.4) !important;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.05em;
     border: none !important;
-    /* Prevent conflicts */
+}
+
+.textbook-content .infinite-game-box p {
+    margin-bottom: 0.8rem;
+    font-size: 0.95rem;
 }
 
 .textbook-content .infinite-game-box ul {
     list-style: none !important;
     padding: 0 !important;
-    margin: 1.5rem 0 !important;
+    margin: 0.8rem 0 !important;
 }
 
 .textbook-content .infinite-game-box li {
-    margin-bottom: 1rem !important;
-    padding-left: 2rem !important;
+    margin-bottom: 0.5rem !important;
+    padding-left: 1.5rem !important;
     position: relative !important;
-    line-height: 1.6 !important;
+    line-height: 1.4 !important;
     display: block !important;
+    font-size: 0.95rem;
 }
 
 .textbook-content .infinite-game-box li::before {
@@ -1112,7 +1117,7 @@ blockquote {
     left: 0 !important;
     top: 2px !important;
     color: var(--accent-neon-pink) !important;
-    font-size: 1rem !important;
+    font-size: 0.8rem !important;
     line-height: inherit !important;
 }
 
@@ -1123,12 +1128,12 @@ blockquote {
 
 .infinite-game-price {
     font-family: var(--font-heading) !important;
-    font-size: 1.3rem !important;
+    font-size: 1.1rem !important;
     color: var(--accent-neon-pink) !important;
-    margin-top: 2rem !important;
+    margin-top: 1rem !important;
     display: block !important;
     text-align: center !important;
-    border-top: 1px solid rgba(255, 255, 255, 0.3) !important;
-    padding-top: 1.5rem !important;
-    font-weight: 800 !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.2) !important;
+    padding-top: 1rem !important;
+    font-weight: 700 !important;
 }
