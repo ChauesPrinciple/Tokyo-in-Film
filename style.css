@@ -1084,7 +1084,12 @@ blockquote {
 .textbook-content .infinite-game-box h3 {
     color: var(--accent-neon-cyan) !important;
     margin-bottom: 0.5rem !important;
-    font-size: 1.4rem !important;
+    font-size: 1.3rem !important;
+    /* Slightly smaller to fit */
+    white-space: nowrap !important;
+    /* Force one line */
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
     text-shadow: 0 0 5px rgba(0, 243, 255, 0.4) !important;
     text-transform: uppercase;
     letter-spacing: 0.05em;
