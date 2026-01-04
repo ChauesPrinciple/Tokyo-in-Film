@@ -1068,3 +1068,55 @@ blockquote {
         page-break-inside: avoid;
     }
 }
+/* Infinite Game Section */
+.infinite-game-box {
+    margin-top: 3rem;
+    padding: 2rem;
+    border: 2px solid var(--accent-neon-cyan);
+    border-radius: 8px;
+    background-color: rgba(10, 10, 35, 0.4); /* Slight dark blue tint */
+    box-shadow: 0 0 15px rgba(0, 243, 255, 0.1);
+}
+
+.infinite-game-box h3 {
+    color: var(--accent-neon-cyan);
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+    text-shadow: 0 0 5px rgba(0, 243, 255, 0.3);
+}
+
+.infinite-game-box ul {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0;
+}
+
+.infinite-game-box li {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.infinite-game-box li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    color: var(--accent-neon-pink);
+    font-size: 0.8rem;
+    top: 0.3rem;
+}
+
+.infinite-game-box strong {
+    color: #fff;
+}
+
+.infinite-game-price {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    color: var(--accent-neon-pink);
+    margin-top: 1.5rem;
+    display: block;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 1rem;
+}
