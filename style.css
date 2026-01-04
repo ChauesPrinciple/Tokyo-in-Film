@@ -872,4 +872,187 @@ blockquote {
 .student-quote footer cite {
     font-style: italic;
     color: var(--accent-neon-cyan);
+}/* Forms Grid */
+.forms-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+@media (max-width: 900px) {
+    .forms-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Worksheet / Interactive Forms Styling */
+.worksheet-input,
+.worksheet-textarea {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    padding: 0.8rem;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    border-radius: 4px;
+    margin-top: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.worksheet-input:focus,
+.worksheet-textarea:focus {
+    outline: none;
+    border-color: var(--accent-neon-cyan);
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 10px rgba(0, 243, 255, 0.1);
+}
+
+.worksheet-textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.print-btn-container {
+    text-align: right;
+    margin-bottom: 2rem;
+}
+
+.print-btn {
+    background: var(--accent-neon-cyan);
+    color: #000;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: transform 0.2s;
+}
+
+.print-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px var(--accent-neon-cyan);
+}
+
+
+/* PRINT STYLES - PDF GENERATION */
+@media print {
+    @page {
+        size: letter;
+        margin: 1in;
+    }
+
+    body {
+        background: #fff !important;
+        color: #000 !important;
+        font-family: 'Times New Roman', serif;
+        /* Better for reading on paper */
+    }
+
+    /* Hide UI Elements */
+    nav,
+    footer,
+    .btn,
+    .print-btn-container,
+    .video-fallback-link,
+    .menu-toggle,
+    .mt-video-widget,
+    iframe {
+        display: none !important;
+    }
+
+    /* Reset Layouts */
+    .container {
+        padding: 0 !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+    }
+
+    .forms-grid {
+        display: block !important;
+    }
+
+    .card-form {
+        box-shadow: none !important;
+        border: 1px solid #000 !important;
+        background: none !important;
+        color: #000 !important;
+        page-break-inside: avoid;
+        margin-bottom: 2rem;
+    }
+
+    /* Styling Headers */
+    h1,
+    h2,
+    h3,
+    h4 {
+        color: #000 !important;
+        text-shadow: none !important;
+        border-bottom-color: #000 !important;
+    }
+
+    h1 {
+        font-size: 24pt;
+    }
+
+    h2 {
+        font-size: 18pt;
+        margin-top: 2rem;
+    }
+
+    h3 {
+        font-size: 14pt;
+    }
+
+    /* Box Exercises Print */
+    .box-exercise,
+    .box-example,
+    .box-emphasis {
+        background: none !important;
+        border: 1px solid #ccc !important;
+        color: #000 !important;
+        padding: 1rem !important;
+    }
+
+    .box-legend {
+        color: #000 !important;
+        font-weight: bold;
+        border-bottom: 1px solid #ccc;
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+
+    /* Print Inputs */
+    .worksheet-textarea,
+    .worksheet-input {
+        border: 1px solid #000 !important;
+        background: none !important;
+        color: #000 !important;
+        resize: none;
+        box-shadow: none !important;
+        /* Ensure user text is visible */
+        font-family: 'Courier New', monospace;
+        font-size: 11pt;
+    }
+
+    /* Force background colors if user enabled "Background Graphics" but usually we want clean */
+    * {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    a {
+        text-decoration: underline;
+        color: #000 !important;
+    }
+
+    /* Ensure page breaks don't cut textareas */
+    .box-exercise {
+        page-break-inside: avoid;
+    }
 }
