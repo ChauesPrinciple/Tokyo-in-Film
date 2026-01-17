@@ -1,230 +1,621 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tokyo in Film - Open Courseware</title>
-    <meta name="description"
-        content="A comprehensive Open Educational Resource (OER) for filmmaking students in Tokyo. Explore Pre-Production, Production, and Post-Production guides through the lens of Japanese cinema.">
-    <meta name="keywords" content="Filmmaking, Tokyo, OER, Study Abroad, Cinema, Film Production, Japanese Film">
-    <meta name="author" content="Tokyo in Film">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@700;900&display=swap"
+    <title>Chaues Productions</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Robert Ladd's filmmaking, travel projects, and Japan location work." />
+    <meta property="og:title" content="Robert Ladd - Filmmaker & Location Guide | Chaues Productions">
+    <meta property="og:description"
+        content="Adventure-driven filmmaker and Japan location scout. Professional videography, travel planning, and cultural fieldwork across Japan.">
+    <meta property="og:image" content="assets/images/image07.png">
+    <meta property="og:url" content="https://chauesprinciple.github.io/Tokyo-in-Film/">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,400;0,500;1,400&family=Lato:ital,wght@0,300;1,300&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+
+    <style>
+        :root {
+            --bg-overlay: linear-gradient(to top, rgba(39, 43, 48, 0.48), rgba(39, 43, 48, 0.48));
+            --text-color: rgba(255, 255, 255, 0.85);
+            --accent-color: #ffffff;
+            --font-main: 'Nunito Sans', sans-serif;
+            --font-title: 'Lato', sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #272B30;
+            background-image: var(--bg-overlay), url('assets/images/bg.jpg');
+            background-size: auto, cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: var(--text-color);
+            font-family: var(--font-main);
+            line-height: 1.75;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 46rem;
+            padding: 3rem 2rem;
+            text-align: left;
+            animation: fadeIn 0.8s ease-in;
+        }
+
+        /* Profile Image */
+        .profile-img {
+            display: block;
+            width: 10rem;
+            /* Increased size as requested */
+            height: 10rem;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            margin: 0 auto 2rem auto;
+            padding: 0.25rem;
+        }
+
+        .profile-img img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        /* Title */
+        h1 {
+            font-family: var(--font-title);
+            font-size: 3.25em;
+            font-weight: 300;
+            color: #fff;
+            text-align: center;
+            margin: 0 0 2rem 0;
+            line-height: 1.25;
+        }
+
+        /* Access Links Box */
+        .links-box {
+            background-color: rgba(255, 255, 255, 0.13);
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            border-radius: 3rem;
+            padding: 1.25rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .main-btn {
+            background-color: #fff;
+            color: #000;
+            padding: 1rem 3rem;
+            border-radius: 2.5rem;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.5em;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: transform 0.2s;
+            box-sizing: border-box;
+            max-width: 100%;
+        }
+
+        .main-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1.25rem;
+            align-items: center;
+        }
+
+        .social-link {
+            width: 4rem;
+            height: 4rem;
+            background: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s;
+            color: #000;
+        }
+
+        .social-link:hover {
+            transform: scale(1.1);
+        }
+
+        .social-link svg {
+            width: 60%;
+            height: 60%;
+            fill: currentColor;
+        }
+
+        /* Text Sections */
+        .bio-text {
+            text-align: left;
+            margin: 2rem 0;
+            font-size: 1.25rem;
+        }
+
+        .collab-text {
+            text-align: left;
+            margin: 3rem 0;
+            font-size: 1.25rem;
+        }
+
+        .collab-text strong {
+            display: block;
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+
+        .collab-jap {
+            margin-top: 0.5rem;
+            display: block;
+        }
+
+        .section-header {
+            font-size: 1.5em;
+            color: rgba(255, 255, 255, 0.87);
+            margin: 4rem 0 2rem 0;
+            text-align: center;
+            font-variant: small-caps;
+            font-weight: 500;
+        }
+
+        .donation-text {
+            margin-bottom: 3rem;
+            font-size: 1.25rem;
+        }
+
+        /* Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .gallery-item {
+            position: relative;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 4px;
+            transition: filter 0.2s;
+        }
+
+        .gallery-item:hover img {
+            filter: brightness(1.1);
+        }
+
+        .caption {
+            margin-top: 0.5rem;
+            font-size: 0.9em;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Partners Section - Fixed Grid */
+        .partners-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 1rem;
+            align-items: center;
+            justify-items: center;
+            text-align: center;
+        }
+
+        .partner-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            width: 100%;
+        }
+
+        .partner-img {
+            width: 100%;
+            height: 12rem;
+            /* Fixed height to balance logos */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            padding: 1rem;
+            transition: opacity 0.25s, transform 0.25s;
+            border-radius: 4px;
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .partner-img:hover {
+            transform: scale(1.02);
+            opacity: 0.9;
+        }
+
+        .partner-img img {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            display: block;
+            object-fit: contain;
+        }
+
+        .contact-btn {
+            background-color: #fff;
+            color: #000;
+            padding: 1rem 2rem;
+            border-radius: 2.5rem;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1em;
+            display: block;
+            width: fit-content;
+            margin: 0 auto 1rem auto;
+            transition: transform 0.2s;
+        }
+
+        .contact-btn:hover {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 736px) {
+            .links-box {
+                flex-direction: column;
+            }
+
+            .main-btn {
+                width: 100%;
+                justify-content: center;
+                padding: 1rem;
+            }
+
+            .partners-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+        }
+
+        .contact-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            margin: 2rem auto;
+            width: 100%;
+            max-width: 32rem;
+        }
+
+        .contact-card {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            text-align: center;
+            text-decoration: none;
+            color: #fff;
+            transition: transform 0.2s, background 0.2s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .contact-card svg {
+            width: 2rem;
+            height: 2rem;
+            margin-bottom: 0.75rem;
+            fill: #fff;
+        }
+
+        .contact-card strong {
+            display: block;
+            font-size: 1.2rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-card span {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .contact-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            margin: 2rem auto;
+            width: 100%;
+            max-width: 32rem;
+        }
+
+        .contact-card {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            text-align: center;
+            text-decoration: none;
+            color: #fff;
+            transition: transform 0.2s, background 0.2s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .contact-card svg {
+            width: 2rem;
+            height: 2rem;
+            margin-bottom: 0.75rem;
+            fill: #fff;
+        }
+
+        .contact-card strong {
+            display: block;
+            font-size: 1.2rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-card span {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .contact-card {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            text-align: center;
+            text-decoration: none;
+            color: #fff;
+            transition: transform 0.2s, background 0.2s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .contact-card svg {
+            width: 2rem;
+            height: 2rem;
+            margin-bottom: 0.75rem;
+            fill: #fff;
+        }
+
+        .contact-card strong {
+            display: block;
+            font-size: 1.2rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-card span {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+    </style>
+    <style>
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <nav>
-        <div class="logo">
-            Tokyo in Film
-            <div class="dropdown-menu">
-                <a href="https://chauesprinciple.github.io/Tokyo-in-Film/" class="dropdown-item current">Tokyo in
-                    Film</a>
-                <a href="https://chauesprinciple.github.io/Ancient-literature/" class="dropdown-item">Ancient
-                    Literature</a>
+    <div class="container">
+        <!-- Profile -->
+        <div class="profile-img">
+            <img src="assets/images/image07.png" alt="Robert Ladd">
+        </div>
+
+        <h1>Robert Ladd</h1>
+
+        <!-- Nav Links -->
+        <div class="links-box">
+            <a href="https://chauesprinciple.github.io/Tokyo-in-Film/" class="main-btn">
+                <svg viewBox="0 0 40 40" style="width:1.2em;height:1.2em;">
+                    <path
+                        d="M36.5,12.7c0,.7-.7,1.1-1.3.8l-3-2.9-11.1,11.1c-.4.3-.8.5-1.3.2-.3-.1-1.6-1.5-1.8-1.7-.2-.3-.2-.7,0-1,3.3-3.5,7.8-7.8,11.2-11.2,0,0,0,0,.1,0h0c0,0-3.1-3.2-3.1-3.2-.4-.5,0-1.2.5-1.2h9.2c.3.2.5.4.5.8v8.6ZM20.9,9.1h-12.4c-1.5.2-2.5,1.3-2.6,2.8v18.5c0,1.3.9,2.5,2.3,2.7,6.8.2,13.6,0,20.4,0,1.5,0,2.6-1,2.8-2.5v-10.7c.2-1.4,2.1-1.5,2.4,0v10.8c-.2,2.6-2.4,4.7-4.9,4.8H8.4c-2.6-.2-4.7-2.3-4.9-4.9V11.7c.2-2.7,2.2-5,5-5h12.3c1.5.2,1.5,2.2,0,2.4Z" />
+                </svg>
+                Tokyo in Film
+            </a>
+
+            <div class="social-icons">
+                <!-- Instagram -->
+                <a href="https://www.instagram.com/chaues/" class="social-link" title="Instagram">
+                    <svg viewBox="0 0 40 40">
+                        <path
+                            d="M20,7c4.2,0,4.7,0,6.3,0.1c1.5,0.1,2.3,0.3,3,0.5C30,8,30.5,8.3,31.1,8.9c0.5,0.5,0.9,1.1,1.2,1.8c0.2,0.5,0.5,1.4,0.5,3 C33,15.3,33,15.8,33,20s0,4.7-0.1,6.3c-0.1,1.5-0.3,2.3-0.5,3c-0.3,0.7-0.6,1.2-1.2,1.8c-0.5,0.5-1.1,0.9-1.8,1.2 c-0.5,0.2-1.4,0.5-3,0.5C24.7,33,24.2,33,20,33s-4.7,0-6.3-0.1c-1.5-0.1-2.3-0.3-3-0.5C10,32,9.5,31.7,8.9,31.1 C8.4,30.6,8,30,7.7,29.3c-0.2-0.5-0.5-1.4-0.5-3C7,24.7,7,24.2,7,20s0-4.7,0.1-6.3c0.1-1.5,0.3-2.3,0.5-3C8,10,8.3,9.5,8.9,8.9 C9.4,8.4,10,8,10.7,7.7c0.5-0.2,1.4-0.5,3-0.5C15.3,7.1,15.8,7,20,7z M20,4.3c-4.3,0-4.8,0-6.5,0.1c-1.6,0-2.8,0.3-3.8,0.7 C8.7,5.5,7.8,6,6.9,6.9C6,7.8,5.5,8.7,5.1,9.7c-0.4,1-0.6,2.1-0.7,3.8c-0.1,1.7-0.1,2.2-0.1,6.5s0,4.8,0.1,6.5 c0,1.6,0.3,2.8,0.7,3.8c0.4,1,0.9,1.9,1.8,2.8c0.9,0.9,1.7,1.4,2.8,1.8c1,0.4,2.1,0.6,3.8,0.7c1.6,0.1,2.2,0.1,6.5,0.1 s4.8,0,6.5-0.1c1.6-0.1,2.9-0.3,3.8-0.7c1-0.4,1.9-0.9,2.8-1.8c0.9-0.9,1.4-1.7,1.8-2.8c0.4-1,0.6-2.1,0.7-3.8 c0.1-1.6,0.1-2.2,0.1-6.5s0-4.8-0.1-6.5c-0.1-1.6-0.3-2.9-0.7-3.8c-0.4-1-0.9-1.9-1.8-2.8c-0.9-0.9-1.7-1.4-2.8-1.8 c-1-0.4-2.1-0.6-3.8-0.7C24.8,4.3,24.3,4.3,20,4.3L20,4.3L20,4.3z" />
+                        <path
+                            d="M20,11.9c-4.5,0-8.1,3.7-8.1,8.1s3.7,8.1,8.1,8.1s8.1-3.7,8.1-8.1S24.5,11.9,20,11.9z M20,25.2c-2.9,0-5.2-2.3-5.2-5.2 s2.3-5.2,5.2-5.2s5.2,2.3,5.2,5.2S22.9,25.2,20,25.2z" />
+                        <path
+                            d="M30.6,11.6c0,1-0.8,1.9-1.9,1.9c-1,0-1.9-0.8-1.9-1.9s0.8-1.9,1.9-1.9C29.8,9.7,30.6,10.5,30.6,11.6z" />
+                    </svg>
+                </a>
+                <!-- Line -->
+                <a href="https://line.me/ti/p/j_occcYKZT" class="social-link" title="Line">
+                    <svg viewBox="0 0 40 40">
+                        <path
+                            d="M34.1,28.7L34.1,28.7c-3.8,4.4-12.2,9.7-14.1,10.5c-1.9,0.8-1.6-0.5-1.6-1c0-0.3,0.3-1.5,0.3-1.5 c0.1-0.5,0.1-1.2-0.1-1.6c-0.2-0.5-1-0.8-1.6-0.9C8.4,33,2,26.9,2,19.7C2,11.6,10.1,5,20,5c9.9,0,18,6.6,18,14.7 C38,22.9,36.8,25.8,34.1,28.7z M13.6,22.7c0-0.2-0.2-0.4-0.4-0.4H9.9v-6.3c0-0.2-0.2-0.4-0.4-0.4H8.3c-0.2,0-0.4,0.2-0.4,0.4V24v0 c0,0.1,0,0.2,0.1,0.2c0,0,0,0,0,0c0,0,0,0,0,0c0.1,0.1,0.1,0.1,0.2,0.1h0h5c0.2,0,0.4-0.2,0.4-0.4V22.7z M16.7,16.1 c0-0.2-0.2-0.4-0.4-0.4h-1.3c-0.2,0-0.4,0.2-0.4,0.4V24c0,0.2,0.2,0.4,0.4,0.4h1.3c0.2,0,0.4-0.2,0.4-0.4V16.1z M25.4,16.1 c0-0.2-0.2-0.4-0.4-0.4h-1.3c-0.2,0-0.4,0.2-0.4,0.4v4.7l-3.6-4.9c0,0,0,0,0,0c0,0,0,0,0,0c0,0,0,0,0,0c0,0,0,0,0,0c0,0,0,0,0,0c0,0,0,0,0,0c0,0,0,0,0,0c0,0,0,0,0,0c0,0,0,0,0,0c0,0,0,0,0,0c0,0,0,0,0,0c0,0,0,0,0,0c0,0,0,0,0,0h-1.3c-0.2,0-0.4,0.2-0.4,0.4V24c0,0.2,0.2,0.4,0.4,0.4h1.3c0.2,0,0.4-0.2,0.4-0.4 v-4.7l3.6,4.9c0,0,0.1,0.1,0.1,0.1c0,0,0,0,0,0c0,0,0,0,0,0c0,0,0,0,0,0c0,0,0,0,0,0c0,0,0,0,0,0c0,0,0,0,0,0c0,0,0,0,0,0c0,0,0,0,0,0c0,0,0.1,0,0.1,0H25c0.2,0,0.4-0.2,0.4-0.4V16.1z M32.4,22.7c0-0.2-0.2-0.4-0.4-0.4h-3.4V21H32c0.2,0,0.4-0.2,0.4-0.4 v-1.3c0-0.2-0.2-0.4-0.4-0.4h-3.4v-1.3H32c0.2,0,0.4-0.2,0.4-0.4v-1.3c0-0.2-0.2-0.4-0.4-0.4h-5h0c-0.1,0-0.2,0-0.2,0.1c0,0,0,0,0,0c0,0,0,0,0,0c-0.1,0.1-0.1,0.1-0.1,0.2v0V24v0c0,0.1,0,0.2,0.1,0.2c0,0,0,0,0,0c0,0,0,0,0,0c0.1,0.1,0.1,0.1,0.2,0.1h0h5 c0.2,0,0.4-0.2,0.4-0.4V22.7z" />
+                    </svg>
+                </a>
+                <!-- Maps -->
+                <a href="https://www.google.com/maps/d/edit?mid=15nX9WCoPEgAOsHBS63tG2ExaqblFuzE&ll=36.69038991248443%2C137.36908844999996&z=6"
+                    class="social-link" title="Google Maps Local Guides">
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                    </svg>
+                </a>
             </div>
         </div>
-        <div class="menu-toggle" id="mobile-menu">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
+
+        <!-- Bio -->
+        <div class="bio-text">
+            <p>I’m an adventure-driven filmmaker and educator whose work grows out of being on the ground, walking
+                mountain routes, scouting backstreets, filming in real locations, and building maps that connect
+                cinematic storytelling to lived experience.</p>
+            <p>I created Tokyo in Film and its ongoing location project,
+                documenting shrines, rail lines, neighborhoods, coastlines, and historical sites across Japan. My
+                videography ranges from action choreography with local stunt teams to travel films and cultural
+                fieldwork. I’ve carried this approach across more than thirty countries over three passports, letting
+                each place shape the way I frame what I see.</p>
+            <p>If you would like to hire me for professional planning or
+                as an on-site guide, I can provide travel itineraries for places you may not otherwise find and/or full
+                logistical planning. If you would like to hire me for videography or editing, please contact me below.
+            </p>
         </div>
-        <ul class="nav-list">
-            <li><a href="index.html" class="active">Home</a></li>
-            <li><a href="scene-project.html">The Scene Project</a></li>
-            <li><a href="pre-production/index.html">Pre-Production</a></li>
-            <li><a href="production/index.html">Production</a></li>
-            <li><a href="post-production/index.html">Post-Production</a></li>
-            <li><a href="glossary.html">Glossary</a></li>
-            <li><a href="free-guides.html">Free Guides</a></li>
-        </ul>
-    </nav>
 
-    <header class="hero">
-        <img src="assets/cover.jpg" alt="Tokyo in Film Cover" class="hero-bg">
-        <div class="hero-content">
-            <h1>CINEMA IN CONTEXT</h1>
-            <p>A comprehensive guide to filmmaking through the lens of Tokyo.</p>
-            <a href="#map-section" class="btn">Explore Locations</a>
+        <!-- Collab -->
+        <div class="collab-text">
+            <p style="margin-bottom: 1rem;">Choose an option below to get in touch:</p>
+
+            <div class="contact-grid">
+                <!-- Button 1: Production -->
+
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdgPml3YpzJD4UhFtxM_PbYwfqgGsLJwObNiFaCEVLu1tzTFg/viewform"
+                    class="contact-card" target="_blank" rel="noopener noreferrer">
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z" />
+                    </svg>
+                    <strong>Video & Production</strong>
+                    <span>Editing, Writing, Videography</span>
+                </a>
+
+                <!-- Button 2: Planning -->
+
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfdWWbpqfl-k4JKedyTJF-JhbWG8_l2zguDloL9ea1veMnNxw/viewform"
+                    class="contact-card" target="_blank" rel="noopener noreferrer">
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                    </svg>
+                    <strong>Trip Planning & Guides</strong>
+                    <span>Itineraries, Virtual Planning, On-Site</span>
+                </a>
+
+                <!-- Button 3: Tokyo/Partners -->
+
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLScX4WYdnTzry-I3kw5iioerv7q0JZuA1bhkjzFkD25niC_FYg/viewform"
+                    class="contact-card" target="_blank" rel="noopener noreferrer">
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M12 7c-2.76 0-5 2.24-5 5 0 .65.13 1.26.36 1.83l2.92-2.92c-.06-.3-.1-.61-.1-.91 0-1.66 1.34-3 3-3 1.66 0 3 1.34 3 3 0 1.66-1.34 3-3 3-.3 0-.61-.04-.91-.1l-2.92 2.92c.57.23 1.18.36 1.83.36 2.76 0 5-2.24 5-5s-2.24-5-5-5zm-7 5c0 3.87 3.13 7 7 7 3.87 0 7-3.13 7-7s-3.13-7-7-7-7 3.13-7 7z" />
+                    </svg>
+                    <strong>Tokyo & Partnerships</strong>
+                    <span>Businesses, Course Partners, Annual May Availability</span>
+                </a>
+            </div>
+
+            <p>For local companies, organizations, and community groups that want to partner with me, I welcome
+                opportunities to collaborate; please contact me!</p>
+            <span class="collab-jap">地域の企業、団体、コミュニティの皆さまで私との協力をご希望の方はぜひご連絡ください!</span>
         </div>
-    </header>
 
-    <section id="intro-text" class="container" style="padding-bottom: 2rem;">
-        <div class="intro-grid">
-            <div class="intro-main">
-                <h2>Filming a Scene</h2>
-                <div class="textbook-content">
-                    <p>Tokyo is one of the most filmed cities in the world. Its streets,
-                        interiors, trains, and neighborhoods have been used repeatedly to stage some of cinema's most
-                        enduring
-                        moments.</p>
-                    <p>This course is grounded in the study and filming of individual scenes. We examine how filmmakers
-                        use
-                        Tokyo to shape performance, framing, movement, and atmosphere within a single, contained moment,
-                        and how
-                        meaning is constructed at the scale of a scene rather than an entire film.</p>
+        <!-- Partners Header -->
+        <p class="section-header">Local Partners of Tokyo in Film:</p>
 
-                    <div class="infinite-game-box">
-                        <h3>The Infinite Game: Tokyo Stock Footage Project</h3>
-                        <p>An ever-expanding library of cinematic Tokyo B-roll and stock footage. Students capture
-                            high-quality
-                            raw material of the city's unique atmosphere, creating a sustainable resource for future
-                            storytellers.</p>
-                        <ul>
-                            <li><strong>For Students:</strong> Submit your high-quality raw footage to build our
-                                sustainable library. Contributors get free access to the entire archive.</li>
-                            <li><strong>For Creators:</strong> Purchase access to this unique library of cinematic Tokyo
-                                footage. Your support directly funds equipment and resources for future student
-                                filming.</li>
-                        </ul>
-                        <span class="infinite-game-price">
-                            Access the Library: $20 for a password with infinite access.<br>
-                            <a href="mailto:factum.est.illud@gmail.com"
-                                style="font-size: 0.9rem; text-decoration: underline; color: #fff;">Contact to
-                                Purchase</a>
-                        </span>
-                    </div>
+        <!-- Partners Grid -->
+        <div class="partners-grid">
+            <div class="partner-item">
+                <div class="partner-img">
+                    <a href="https://bonsairacing.com/custom-experiences.html" target="_blank"
+                        rel="noopener noreferrer">
+                        <img src="assets/images/image01.png" alt="Bonsai Racing">
+                    </a>
                 </div>
             </div>
-            <aside class="partner-sidebar">
-                <h3>Local Partners</h3>
-                <a href="https://bonsairacing.com/custom-experiences.html" target="_blank" class="partner-item">
-                    <img src="assets/bonsai_racing.png" alt="Bonsai Racing">
-                </a>
-                <a href="https://en.tokyo-bunbun.jp/" target="_blank" class="partner-item">
-                    <img src="assets/tokyo_bunbun.png" alt="Tokyo BunBun">
-                </a>
-                <p class="partner-message">
-                    For local companies, organizations, and community groups that want to partner with me, I welcome
-                    opportunities to collaborate; please contact me! <br><br>
-                    地域企業、団体、そしてコミュニティグループの皆様で、パートナーシップをご希望の方は、ぜひご連絡ください！ご協力できる機会を心よりお待ちしております。
-                </p>
-            </aside>
-        </div>
-    </section>
 
-    <main id="explore" class="container">
-        <div class="intro">
-            <h2>Course Modules</h2>
-            <p>Explore the three phases of filmmaking, adapted from Russell Sharman's <em>Moving Pictures</em> and
-                tailored for the Tokyo study abroad experience.</p>
+            <div class="partner-item">
+                <div class="partner-img">
+                    <a href="https://widgets.bokun.io/online-sales/4cc31eb8-9879-4fa5-a048-b0d8d3efee8c/product-list/70997?page=1"
+                        target="_blank" rel="noopener noreferrer">
+                        <img src="assets/images/image02.png" alt="Tokyo BunBun">
+                    </a>
+                </div>
+            </div>
         </div>
 
-        <div class="section-grid">
-            <article class="card">
-                <h3>Pre-Production</h3>
-                <p>The foundation of your film. Learn about screenwriting, storyboarding, and scouting locations in
-                    Tokyo's diverse wards.</p>
-                <a href="pre-production/index.html" class="card-link">Enter Phase 1 &rarr;</a>
-            </article>
-
-            <article class="card">
-                <h3>Production</h3>
-                <p>Lights, Camera, Action. Master the art of cinematography, lighting, and directing in the bustling
-                    streets of Shibuya and Shinjuku.</p>
-                <a href="production/index.html" class="card-link">Enter Phase 2 &rarr;</a>
-            </article>
-
-            <article class="card">
-                <h3>Post-Production</h3>
-                <p>The final cut. Editing, sound design, and color grading to bring your cinematic vision to life.</p>
-                <a href="post-production/index.html" class="card-link">Enter Phase 3 &rarr;</a>
-            </article>
-        </div>
-
-        <div style="text-align: center; margin-top: 3rem;">
-            <a href="https://www.instagram.com/chaues/" target="_blank" class="btn">📷 See Student Films & Projects</a>
-        </div>
-    </main>
-
-    <section id="map-section" class="container" style="padding: 0 2rem 4rem;">
-        <h2 style="text-align: center; margin-bottom: 2rem;">Interactive Map of Iconic Locations</h2>
-        <div class="map-container"
-            style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border: 1px solid var(--accent-neon-cyan); box-shadow: 0 0 20px rgba(0, 243, 255, 0.2);">
-            <iframe src="https://www.google.com/maps/d/embed?mid=1V4GApFpOipMmySIyy2loBujui--BV3Y" width="640"
-                height="480" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
-                allowfullscreen title="Interactive Map of Tokyo Film Locations"></iframe>
-        </div>
-        <ul class="map-key-list">
-            <li><span>⭐</span> Class-Specific Excursions</li>
-            <li><span>🎥</span> Class-Specific Filming Locations</li>
-            <li><span>🍜</span> Special Food Recommendations</li>
-            <li><span>🌳</span> Greenery and Parks</li>
-            <li><span>⛩️</span> Special Shrines</li>
-            <li style="color: silver;"><span class="icon-silver">🛍️</span> Otaku and Thrift Shopping</li>
-        </ul>
-    </section>
-
-    <section id="film-list" class="container">
-        <h2 style="text-align: center;">Analyzed Films</h2>
-        <p style="text-align: center; margin-bottom: 2rem; color: #bbb;">The films (and anime) we will analyze for this
-            class:</p>
-        <ul class="film-grid"
-            style="list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.5rem; padding: 0;">
-            <li class="film-item"><a href="https://www.imdb.com/title/tt1433830/" target="_blank">13 Assassins</a> <span
-                    class="director">Takashi Miike</span></li>
-            <li class="film-item"><a href="https://www.imdb.com/title/tt0094625/" target="_blank">Akira</a> <span
-                    class="director">Katsuhiro Ōtomo</span></li>
-            <li class="film-item"><a href="https://www.imdb.com/title/tt13616990/" target="_blank">Chainsaw Man</a>
-                <span class="director">Tatsuya Yoshihara</span>
-            </li>
-            <li class="film-item"><a href="https://www.imdb.com/title/tt0463985/" target="_blank">Fast and Furious:
-                    Tokyo Drift</a> <span class="director">Justin Lin</span></li>
-            <li class="film-item"><a href="https://www.imdb.com/title/tt23289160/" target="_blank">Godzilla Minus One
-                    (2023)</a> <span class="director">Takashi Yamazaki</span></li>
-            <li class="film-item"><a href="https://www.imdb.com/title/tt0455546/" target="_blank">Initial D</a> <span
-                    class="director">Andrew Lau, Alan Mak</span></li>
-            <li class="film-item"><a href="https://www.imdb.com/title/tt1772925/" target="_blank">Jiro Dreams of
-                    Sushi</a> <span class="director">David Gelb</span></li>
-            <li class="film-item"><a href="https://www.imdb.com/title/tt14564344/" target="_blank">Kubi</a> <span
-                    class="director">Takeshi Kitano</span></li>
-            <li class="film-item"><a href="https://www.imdb.com/title/tt0058279/" target="_blank">Pale Flower</a> <span
-                    class="director">Masahiro Shinoda</span></li>
-            <li class="film-item"><a href="https://www.imdb.com/title/tt6583944/" target="_blank">Ramen Heads</a> <span
-                    class="director">Koki Shigeno</span></li>
-            <li class="film-item"><a href="https://www.imdb.com/title/tt8075192/" target="_blank">Shoplifters</a> <span
-                    class="director">Hirokazu Koreeda</span></li>
-            <li class="film-item"><a href="https://www.imdb.com/title/tt0245429/" target="_blank">Spirited Away</a>
-                <span class="director">Hayao Miyazaki</span>
-            </li>
-            <li class="film-item"><a href="https://www.imdb.com/title/tt0047478/" target="_blank">The Seven Samurai</a>
-                <span class="director">Akira Kurosawa</span>
-            </li>
-            <li class="film-item"><a href="https://www.imdb.com/title/tt3741634/" target="_blank">Tokyo Ghoul</a> <span
-                    class="director">Shūhei Morita</span></li>
-            <li class="film-item"><a href="https://www.imdb.com/title/tt6472710/" target="_blank">Tsukigakirei</a> <span
-                    class="director">Seiji Kishi</span></li>
-            <li class="film-item"><a href="https://www.imdb.com/title/tt5311514/" target="_blank">Your Name</a> or <a
-                    href="https://www.imdb.com/title/tt16428256/" target="_blank">Suzume</a> <span
-                    class="director">Makoto Shinkai</span></li>
-        </ul>
-    </section>
-
-    <footer
-        style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid rgba(255, 255, 255, 0.1); font-size: 0.9rem; color: #888;">
-        <p>&copy; 2026 Tokyo in Film.</p>
-        <div class="attribution-text" style="margin-top: 1.5rem; line-height: 1.6;">
-            <p>
-                <a href="https://chauesprinciple.github.io/Tokyo-in-Film/"
-                    style="color: inherit; text-decoration: underline;">Tokyo in Film</a> &copy; 2023 by
-                <a href="https://example.com" style="color: inherit; text-decoration: underline;">Robert Ladd</a> is
-                licensed under
-                <a href="https://creativecommons.org/licenses/by-sa/4.0/"
-                    style="color: inherit; text-decoration: underline;">Creative Commons Attribution-ShareAlike 4.0
-                    International</a>.
-            </p>
-            <p style="margin-top: 1rem;">
-                <strong>Adapted from:</strong> <em>Moving Pictures: An Introduction to Cinema</em> by Russell Sharman.
+        <!-- Donation -->
+        <div class="donation-text">
+            <p>My work is built on authentic, location-based filmmaking and a commitment to helping my students
+                understand places through direct experience. Most of the work I do is non-profit, including the
+                textbooks that I write. Feel free to donate; all proceeds go to equipment or production for my students:
             </p>
         </div>
-    </footer>
 
-    <script src="js/glossary.js"></script>
-    <script src="js/mobile-nav.js"></script>
+        <!-- Gallery -->
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <a href="assets/images/gallery01/26e244bf_original.jpg">
+                    <img src="assets/images/gallery01/26e244bf.jpg" alt="Mount Fuji at Fuji Q">
+                </a>
+                <div class="caption">Mount Fuji at Fuji Q</div>
+            </div>
+            <div class="gallery-item">
+                <a href="assets/images/gallery01/d3df87c0_original.jpg">
+                    <img src="assets/images/gallery01/d3df87c0.jpg" alt="Ganryū Island">
+                </a>
+                <div class="caption">Ganryū Island</div>
+            </div>
+            <div class="gallery-item">
+                <a href="assets/images/gallery01/be369aa0_original.jpg">
+                    <img src="assets/images/gallery01/be369aa0.jpg" alt="Nara">
+                </a>
+                <div class="caption">Nara</div>
+            </div>
+        </div>
+
+    </div>
+
+    </div>
+
+
+
 </body>
 
 </html>
