@@ -2,205 +2,173 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tokyo in Film - Open Courseware</title>
-    <meta name="description"
-        content="A comprehensive Open Educational Resource (OER) for filmmaking students in Tokyo. Explore Pre-Production, Production, and Post-Production guides through the lens of Japanese cinema.">
-    <meta name="keywords" content="Filmmaking, Tokyo, OER, Study Abroad, Cinema, Film Production, Japanese Film">
-    <meta name="author" content="Tokyo in Film">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@700;900&display=swap"
+    <title>Chaues Productions</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Robert Ladd's filmmaking, travel projects, and Japan location work." />
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,400;0,500;1,400&family=Lato:ital,wght@0,300;1,300&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Embedding critical landing page styles to ensure it works even if style.css differs */
+        :root {
+            --bg-overlay: linear-gradient(to top, rgba(39, 43, 48, 0.48), rgba(39, 43, 48, 0.48));
+            --font-main: 'Nunito Sans', sans-serif;
+            --font-title: 'Lato', sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #272B30;
+            color: rgba(255, 255, 255, 0.85);
+            font-family: var(--font-main);
+            line-height: 1.75;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: var(--bg-overlay), url('assets/images/bg.jpg');
+            background-size: cover;
+            background-position: center center;
+            z-index: -1;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 46rem;
+            padding: 3rem 2rem;
+            animation: fadeIn 0.8s ease-in;
+        }
+
+        .profile-img {
+            width: 10rem;
+            height: 10rem;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            margin: 0 auto 2rem auto;
+            padding: 0.25rem;
+        }
+
+        .profile-img img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        h1 {
+            font-family: var(--font-title);
+            font-size: 3.25em;
+            font-weight: 300;
+            color: #fff;
+            text-align: center;
+            margin: 0 0 2rem 0;
+        }
+
+        .links-box {
+            background-color: rgba(255, 255, 255, 0.13);
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            border-radius: 3rem;
+            padding: 1.25rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .main-btn {
+            background-color: #fff;
+            color: #000;
+            padding: 1rem 3rem;
+            border-radius: 2.5rem;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.5em;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .main-btn:hover {
+            transform: scale(1.05);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <nav>
-        <div class="logo">Tokyo in Film</div>
-        <div class="menu-toggle" id="mobile-menu">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
+    <div class="container">
+        <!-- Profile -->
+        <div class="profile-img">
+            <img src="assets/images/image07.png" alt="Robert Ladd">
         </div>
-        <ul class="nav-list">
-            <li><a href="index.html" class="active">Home</a></li>
-            <li><a href="pre-production/index.html">Pre-Production</a></li>
-            <li><a href="production/index.html">Production</a></li>
-            <li><a href="post-production/index.html">Post-Production</a></li>
-            <li><a href="glossary.html">Glossary</a></li>
-            <li><a href="free-guides.html">Free Guides</a></li>
-        </ul>
-    </nav>
 
-    <header class="hero">
-        <img src="assets/cover.jpg" alt="Tokyo in Film Cover" class="hero-bg">
-        <div class="hero-content">
-            <h1>CINEMA IN CONTEXT</h1>
-            <p>A comprehensive guide to filmmaking through the lens of Tokyo.</p>
-            <a href="#map-section" class="btn">Explore Locations</a>
-        </div>
-    </header>
+        <h1>Robert Ladd</h1>
 
-    <section id="intro-text" class="container" style="padding-bottom: 2rem;">
-        <div class="intro-grid">
-            <div class="intro-main">
-                <h2>Filming a Scene</h2>
-                <div class="textbook-content">
-                    <p>Tokyo is one of the most filmed cities in the world. Its streets,
-                        interiors, trains, and neighborhoods have been used repeatedly to stage some of cinema's most
-                        enduring
-                        moments.</p>
-                    <p>This course is grounded in the study and filming of individual scenes. We examine how filmmakers
-                        use
-                        Tokyo to shape performance, framing, movement, and atmosphere within a single, contained moment,
-                        and how
-                        meaning is constructed at the scale of a scene rather than an entire film.</p>
+        <!-- Nav Links -->
+        <div class="links-box">
+            <a href="https://chauesprinciple.github.io/Tokyo-in-Film/" class="main-btn">
+                <svg viewBox="0 0 40 40" style="width:1.2em;height:1.2em;">
+                    <path
+                        d="M36.5,12.7c0,.7-.7,1.1-1.3.8l-3-2.9-11.1,11.1c-.4.3-.8.5-1.3.2-.3-.1-1.6-1.5-1.8-1.7-.2-.3-.2-.7,0-1,3.3-3.5,7.8-7.8,11.2-11.2,0,0,0,0,.1,0h0c0,0-3.1-3.2-3.1-3.2-.4-.5,0-1.2.5-1.2h9.2c.3.2.5.4.5.8v8.6ZM20.9,9.1h-12.4c-1.5.2-2.5,1.3-2.6,2.8v18.5c0,1.3.9,2.5,2.3,2.7,6.8.2,13.6,0,20.4,0,1.5,0,2.6-1,2.8-2.5v-10.7c.2-1.4,2.1-1.5,2.4,0v10.8c-.2,2.6-2.4,4.7-4.9,4.8H8.4c-2.6-.2-4.7-2.3-4.9-4.9V11.7c.2-2.7,2.2-5,5-5h12.3c1.5.2,1.5,2.2,0,2.4Z" />
+                </svg>
+                Tokyo in Film
+            </a>
 
-                    <div class="infinite-game-box">
-                        <h3>The Infinite Game: Tokyo Stock Footage Project</h3>
-                        <p>An ever-expanding library of cinematic Tokyo B-roll and stock footage. Students capture
-                            high-quality
-                            raw material of the city's unique atmosphere, creating a sustainable resource for future
-                            storytellers.</p>
-                        <ul>
-                            <li><strong>For Students:</strong> Submit your high-quality raw footage to build our
-                                sustainable library. Contributors get free access to the entire archive.</li>
-                            <li><strong>For Creators:</strong> Purchase access to this unique library of cinematic Tokyo
-                                footage. Your support directly funds equipment and resources for future student
-                                filming.</li>
-                        </ul>
-                        <span class="infinite-game-price">
-                            Access the Library: $20 for a password with infinite access.<br>
-                            <a href="mailto:factum.est.illud@gmail.com"
-                                style="font-size: 0.9rem; text-decoration: underline; color: #fff;">Contact to
-                                Purchase</a>
-                        </span>
-                    </div>
-                </div>
+            <!-- Social Icons (Simplified for restoration) -->
+            <div style="display: flex; gap: 1rem;">
+                <a href="https://www.instagram.com/chaues/" style="color:#fff;">
+                    <svg style="width: 2rem; height: 2rem; fill: currentColor;" viewBox="0 0 24 24">
+                        <path
+                            d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M19,5A1,1 0 0,1 20,6A1,1 0 0,1 19,7A1,1 0 0,1 18,6A1,1 0 0,1 19,5Z" />
+                    </svg>
+                </a>
             </div>
-            <aside class="partner-sidebar">
-                <h3>Local Partners</h3>
-                <a href="https://bonsairacing.com/custom-experiences.html" target="_blank" class="partner-item">
-                    <img src="assets/bonsai_racing.png" alt="Bonsai Racing">
-                </a>
-                <a href="https://en.tokyo-bunbun.jp/" target="_blank" class="partner-item">
-                    <img src="assets/tokyo_bunbun.png" alt="Tokyo BunBun">
-                </a>
-                <p class="partner-message">
-                    For local companies, organizations, and community groups that want to partner with me, I welcome
-                    opportunities to collaborate; please contact me! <br><br>
-                    地域企業、団体、そしてコミュニティグループの皆様で、パートナーシップをご希望の方は、ぜひご連絡ください！ご協力できる機会を心よりお待ちしております。
-                </p>
-            </aside>
-        </div>
-    </section>
-
-    <main id="explore" class="container">
-        <div class="intro">
-            <h2>Course Modules</h2>
-            <p>Explore the three phases of filmmaking, adapted from Russell Sharman's <em>Moving Pictures</em> and
-                tailored for the Tokyo study abroad experience.</p>
         </div>
 
-        <div class="section-grid">
-            <article class="card">
-                <h3>Pre-Production</h3>
-                <p>The foundation of your film. Learn about screenwriting, storyboarding, and scouting locations in
-                    Tokyo's diverse wards.</p>
-                <a href="pre-production/index.html" class="card-link">Enter Phase 1 &rarr;</a>
-            </article>
-
-            <article class="card">
-                <h3>Production</h3>
-                <p>Lights, Camera, Action. Master the art of cinematography, lighting, and directing in the bustling
-                    streets of Shibuya and Shinjuku.</p>
-                <a href="production/index.html" class="card-link">Enter Phase 2 &rarr;</a>
-            </article>
-
-            <article class="card">
-                <h3>Post-Production</h3>
-                <p>The final cut. Editing, sound design, and color grading to bring your cinematic vision to life.</p>
-                <a href="post-production/index.html" class="card-link">Enter Phase 3 &rarr;</a>
-            </article>
+        <div class="bio-text">
+            <p>I’m an adventure-driven filmmaker and location scout. I created Tokyo in Film to document the cinematic
+                soul of Japan.</p>
         </div>
 
-        <div style="text-align: center; margin-top: 3rem;">
-            <a href="https://www.instagram.com/chaues/" target="_blank" class="btn">📷 See Student Films & Projects</a>
+        <div class="collab-text">
+            <p>Contact Options:</p>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdgPml3YpzJD4UhFtxM_PbYwfqgGsLJwObNiFaCEVLu1tzTFg/viewform"
+                    class="main-btn" style="padding: 0.5rem 1rem; font-size: 1rem; color: #000;">Video Production</a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfdWWbpqfl-k4JKedyTJF-JhbWG8_l2zguDloL9ea1veMnNxw/viewform"
+                    class="main-btn" style="padding: 0.5rem 1rem; font-size: 1rem; color: #000;">Trip Planning</a>
+            </div>
         </div>
-    </main>
 
-    <section id="map-section" class="container" style="padding: 0 2rem 4rem;">
-        <h2 style="text-align: center; margin-bottom: 2rem;">Interactive Map of Iconic Locations</h2>
-        <div class="map-container"
-            style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border: 1px solid var(--accent-neon-cyan); box-shadow: 0 0 20px rgba(0, 243, 255, 0.2);">
-            <iframe src="https://www.google.com/maps/d/embed?mid=1V4GApFpOipMmySIyy2loBujui--BV3Y" width="640"
-                height="480" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
-                allowfullscreen title="Interactive Map of Tokyo Film Locations"></iframe>
-        </div>
-        <ul class="map-key-list">
-            <li><span>⭐</span> Class-Specific Excursions</li>
-            <li><span>🎥</span> Class-Specific Filming Locations</li>
-            <li><span>🍜</span> Special Food Recommendations</li>
-            <li><span>🌳</span> Greenery and Parks</li>
-            <li><span>⛩️</span> Special Shrines</li>
-            <li style="color: silver;"><span class="icon-silver">🛍️</span> Otaku and Thrift Shopping</li>
-        </ul>
-    </section>
-
-    <section id="film-list" class="container">
-        <h2 style="text-align: center;">Analyzed Films</h2>
-        <p style="text-align: center; margin-bottom: 2rem; color: #bbb;">The films (and anime) we will analyze for this
-            class:</p>
-        <ul class="film-grid"
-            style="list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.5rem; padding: 0;">
-            <li class="film-item"><a href="https://www.imdb.com/title/tt1433830/" target="_blank">13 Assassins</a> <span
-                    class="director">Takashi Miike</span></li>
-            <li class="film-item"><a href="https://www.imdb.com/title/tt0094625/" target="_blank">Akira</a> <span
-                    class="director">Katsuhiro Ōtomo</span></li>
-            <li class="film-item"><a href="https://www.imdb.com/title/tt13616990/" target="_blank">Chainsaw Man</a>
-                <span class="director">Tatsuya Yoshihara</span>
-            </li>
-            <li class="film-item"><a href="https://www.imdb.com/title/tt0463985/" target="_blank">Fast and Furious:
-                    Tokyo Drift</a> <span class="director">Justin Lin</span></li>
-            <li class="film-item"><a href="https://www.imdb.com/title/tt23289160/" target="_blank">Godzilla Minus One
-                    (2023)</a> <span class="director">Takashi Yamazaki</span></li>
-            <li class="film-item"><a href="https://www.imdb.com/title/tt0455546/" target="_blank">Initial D</a> <span
-                    class="director">Andrew Lau, Alan Mak</span></li>
-            <li class="film-item"><a href="https://www.imdb.com/title/tt1772925/" target="_blank">Jiro Dreams of
-                    Sushi</a> <span class="director">David Gelb</span></li>
-            <li class="film-item"><a href="https://www.imdb.com/title/tt14564344/" target="_blank">Kubi</a> <span
-                    class="director">Takeshi Kitano</span></li>
-            <li class="film-item"><a href="https://www.imdb.com/title/tt0058279/" target="_blank">Pale Flower</a> <span
-                    class="director">Masahiro Shinoda</span></li>
-            <li class="film-item"><a href="https://www.imdb.com/title/tt6583944/" target="_blank">Ramen Heads</a> <span
-                    class="director">Koki Shigeno</span></li>
-            <li class="film-item"><a href="https://www.imdb.com/title/tt8075192/" target="_blank">Shoplifters</a> <span
-                    class="director">Hirokazu Koreeda</span></li>
-            <li class="film-item"><a href="https://www.imdb.com/title/tt0245429/" target="_blank">Spirited Away</a>
-                <span class="director">Hayao Miyazaki</span>
-            </li>
-            <li class="film-item"><a href="https://www.imdb.com/title/tt0047478/" target="_blank">The Seven Samurai</a>
-                <span class="director">Akira Kurosawa</span>
-            </li>
-            <li class="film-item"><a href="https://www.imdb.com/title/tt3741634/" target="_blank">Tokyo Ghoul</a> <span
-                    class="director">Shūhei Morita</span></li>
-            <li class="film-item"><a href="https://www.imdb.com/title/tt6472710/" target="_blank">Tsukigakirei</a> <span
-                    class="director">Seiji Kishi</span></li>
-            <li class="film-item"><a href="https://www.imdb.com/title/tt5311514/" target="_blank">Your Name</a> or <a
-                    href="https://www.imdb.com/title/tt16428256/" target="_blank">Suzume</a> <span
-                    class="director">Makoto Shinkai</span></li>
-        </ul>
-    </section>
-
-    <footer>
-        <p>&copy; 2026 Tokyo in Film.</p>
-    </footer>
-
-    <script src="js/glossary.js"></script>
-    <script src="js/mobile-nav.js"></script>
+    </div>
 </body>
 
 </html>
