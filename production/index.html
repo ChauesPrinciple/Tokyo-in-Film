@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -7,19 +7,21 @@
     <title>Production - Tokyo in Film</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@700;900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../style.css?v=4">
 </head>
 
 <body>
 
     <nav>
         <div class="logo">
-    Tokyo in Film
-    <div class="dropdown-menu">
-        <a href="https://chauesprinciple.github.io/Tokyo-in-Film/" class="dropdown-item current">Tokyo in Film</a>
-        <a href="https://chauesprinciple.github.io/Ancient-literature/" class="dropdown-item">Ancient Literature</a>
-    </div>
-</div>
+            Tokyo in Film
+            <div class="dropdown-menu">
+                <a href="https://chauesprinciple.github.io/Tokyo-in-Film/" class="dropdown-item current">Tokyo in
+                    Film</a>
+                <a href="https://chauesprinciple.github.io/Ancient-literature/" class="dropdown-item">Ancient
+                    Literature</a>
+            </div>
+        </div>
         <div class="menu-toggle" id="mobile-menu">
             <span class="bar"></span>
             <span class="bar"></span>
@@ -50,7 +52,7 @@
 
             <a href="mise-en-scene.html" class="toc-item">
                 <span class="toc-number">2.2</span>
-                <h3>Mise-en-Scène (On Set)</h3>
+                <h3>Mise-en-Sc�ne (On Set)</h3>
                 <p>Acting and Cinematic Style adjustments.</p>
             </a>
 
@@ -79,8 +81,41 @@
         <p>&copy; 2026 Tokyo in Film.</p>
     </footer>
 
-    <script src="../js/glossary.js"></script>
-    <script src="../js/mobile-nav.js"></script>
+    <script src="../js/glossary.js?v=4"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log("Force-inlined Dropdown Script Loaded");
+
+            const mobileMenu = document.getElementById('mobile-menu');
+            const navList = document.querySelector('.nav-list');
+
+            if (mobileMenu) {
+                mobileMenu.addEventListener('click', () => {
+                    navList.classList.toggle('active');
+                    mobileMenu.classList.toggle('is-active');
+                });
+            }
+
+            // Dropdown Toggle Logic
+            const logo = document.querySelector('.logo');
+            if (logo) {
+                logo.addEventListener('click', (e) => {
+                    // Only toggle if the click is on the logo container itself or the text, 
+                    // not if the user is clicking an actual link inside the dropdown
+                    if (!e.target.closest('.dropdown-item')) {
+                        logo.classList.toggle('active');
+                    }
+                });
+
+                // Close dropdown when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (!logo.contains(e.target)) {
+                        logo.classList.remove('active');
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>

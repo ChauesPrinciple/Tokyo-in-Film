@@ -114,17 +114,26 @@ nav .logo:hover::after {
     border-top: 2px solid var(--accent-neon-cyan);
     border-radius: 0 0 8px 8px;
     padding: 0.5rem;
-    display: none;
+    display: flex;
     flex-direction: column;
     gap: 0.25rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     z-index: 2000;
+
+    /* Animation & Visibility */
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
 }
 
-nav .logo:hover .dropdown-menu,
 nav .logo.active .dropdown-menu,
-.dropdown-menu:hover {
-    display: flex;
+nav .logo:hover .dropdown-menu {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
 }
 
 .dropdown-item {
@@ -148,7 +157,6 @@ nav .logo.active .dropdown-menu,
     color: #fff;
     border-left-color: var(--accent-neon-pink);
     background: rgba(255, 0, 127, 0.05);
-    pointer-events: none;
 }
 
 .menu-toggle {
@@ -1334,10 +1342,12 @@ blockquote {
 .req-list li {
     border-left-color: #ffd700;
 }
+
 /* Responsive Video Wrapper */
 .video-wrapper {
     position: relative;
-    padding-bottom: 56.25%; /* 16:9 */
+    padding-bottom: 56.25%;
+    /* 16:9 */
     height: 0;
     overflow: hidden;
     max-width: 100%;
@@ -1351,3 +1361,5 @@ blockquote {
     height: 100%;
     border: 0;
 }
+
+/ *   F o r c e   R e f r e s h   * /     

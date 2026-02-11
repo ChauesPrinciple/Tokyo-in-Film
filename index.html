@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -13,13 +13,21 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@700;900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=5">
 </head>
 
 <body>
 
     <nav>
-        <div class="logo">Tokyo in Film</div>
+        <div class="logo">
+            Tokyo in Film
+            <div class="dropdown-menu">
+                <a href="index.html" class="dropdown-item current">Tokyo in
+                    Film</a>
+                <a href="https://chauesprinciple.github.io/Ancient-literature/" class="dropdown-item">Ancient
+                    Literature</a>
+            </div>
+        </div>
         <div class="menu-toggle" id="mobile-menu">
             <span class="bar"></span>
             <span class="bar"></span>
@@ -27,6 +35,7 @@
         </div>
         <ul class="nav-list">
             <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="scene-project.html">The Scene Project</a></li>
             <li><a href="pre-production/index.html">Pre-Production</a></li>
             <li><a href="production/index.html">Production</a></li>
             <li><a href="post-production/index.html">Post-Production</a></li>
@@ -92,7 +101,7 @@
                 <p class="partner-message">
                     For local companies, organizations, and community groups that want to partner with me, I welcome
                     opportunities to collaborate; please contact me! <br><br>
-                    地域企業、団体、そしてコミュニティグループの皆様で、パートナーシップをご希望の方は、ぜひご連絡ください！ご協力できる機会を心よりお待ちしております。
+                    ???????????????????????????????????????????????????!??????????????????????
                 </p>
             </aside>
         </div>
@@ -128,7 +137,7 @@
         </div>
 
         <div style="text-align: center; margin-top: 3rem;">
-            <a href="https://www.instagram.com/chaues/" target="_blank" class="btn">📷 See Student Films & Projects</a>
+            <a href="https://www.instagram.com/chaues/" target="_blank" class="btn">?? See Student Films & Projects</a>
         </div>
     </main>
 
@@ -141,12 +150,12 @@
                 allowfullscreen title="Interactive Map of Tokyo Film Locations"></iframe>
         </div>
         <ul class="map-key-list">
-            <li><span>⭐</span> Class-Specific Excursions</li>
-            <li><span>🎥</span> Class-Specific Filming Locations</li>
-            <li><span>🍜</span> Special Food Recommendations</li>
-            <li><span>🌳</span> Greenery and Parks</li>
-            <li><span>⛩️</span> Special Shrines</li>
-            <li style="color: silver;"><span class="icon-silver">🛍️</span> Otaku and Thrift Shopping</li>
+            <li><span>?</span> Class-Specific Excursions</li>
+            <li><span>??</span> Class-Specific Filming Locations</li>
+            <li><span>??</span> Special Food Recommendations</li>
+            <li><span>??</span> Greenery and Parks</li>
+            <li><span>??</span> Special Shrines</li>
+            <li style="color: silver;"><span class="icon-silver">???</span> Otaku and Thrift Shopping</li>
         </ul>
     </section>
 
@@ -159,7 +168,7 @@
             <li class="film-item"><a href="https://www.imdb.com/title/tt1433830/" target="_blank">13 Assassins</a> <span
                     class="director">Takashi Miike</span></li>
             <li class="film-item"><a href="https://www.imdb.com/title/tt0094625/" target="_blank">Akira</a> <span
-                    class="director">Katsuhiro Ōtomo</span></li>
+                    class="director">Katsuhiro Otomo</span></li>
             <li class="film-item"><a href="https://www.imdb.com/title/tt13616990/" target="_blank">Chainsaw Man</a>
                 <span class="director">Tatsuya Yoshihara</span>
             </li>
@@ -186,7 +195,7 @@
                 <span class="director">Akira Kurosawa</span>
             </li>
             <li class="film-item"><a href="https://www.imdb.com/title/tt3741634/" target="_blank">Tokyo Ghoul</a> <span
-                    class="director">Shūhei Morita</span></li>
+                    class="director">Shuhei Morita</span></li>
             <li class="film-item"><a href="https://www.imdb.com/title/tt6472710/" target="_blank">Tsukigakirei</a> <span
                     class="director">Seiji Kishi</span></li>
             <li class="film-item"><a href="https://www.imdb.com/title/tt5311514/" target="_blank">Your Name</a> or <a
@@ -195,12 +204,60 @@
         </ul>
     </section>
 
-    <footer>
+    <footer
+        style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid rgba(255, 255, 255, 0.1); font-size: 0.9rem; color: #888;">
         <p>&copy; 2026 Tokyo in Film.</p>
+        <div class="attribution-text" style="margin-top: 1.5rem; line-height: 1.6;">
+            <p>
+                <a href="https://chauesprinciple.github.io/Tokyo-in-Film/"
+                    style="color: inherit; text-decoration: underline;">Tokyo in Film</a> &copy; 2023 by
+                <a href="https://example.com" style="color: inherit; text-decoration: underline;">Robert Ladd</a> is
+                licensed under
+                <a href="https://creativecommons.org/licenses/by-sa/4.0/"
+                    style="color: inherit; text-decoration: underline;">Creative Commons Attribution-ShareAlike 4.0
+                    International</a>.
+            </p>
+            <p style="margin-top: 1rem;">
+                <strong>Adapted from:</strong> <em>Moving Pictures: An Introduction to Cinema</em> by Russell Sharman.
+            </p>
+        </div>
     </footer>
 
     <script src="js/glossary.js"></script>
-    <script src="js/mobile-nav.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log("Force-inlined Dropdown Script Loaded");
+
+            const mobileMenu = document.getElementById('mobile-menu');
+            const navList = document.querySelector('.nav-list');
+
+            if (mobileMenu) {
+                mobileMenu.addEventListener('click', () => {
+                    navList.classList.toggle('active');
+                    mobileMenu.classList.toggle('is-active');
+                });
+            }
+
+            // Dropdown Toggle Logic
+            const logo = document.querySelector('.logo');
+            if (logo) {
+                logo.addEventListener('click', (e) => {
+                    // Only toggle if the click is on the logo container itself or the text, 
+                    // not if the user is clicking an actual link inside the dropdown
+                    if (!e.target.closest('.dropdown-item')) {
+                        logo.classList.toggle('active');
+                    }
+                });
+
+                // Close dropdown when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (!logo.contains(e.target)) {
+                        logo.classList.remove('active');
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -9,7 +9,7 @@
         content="Download free filmmaking guides, forms, and templates from the Tokyo in Film course.">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@700;900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=5">
     <style>
         .resource-grid {
             display: grid;
@@ -84,12 +84,14 @@
 
     <nav>
         <div class="logo">
-    Tokyo in Film
-    <div class="dropdown-menu">
-        <a href="https://chauesprinciple.github.io/Tokyo-in-Film/" class="dropdown-item current">Tokyo in Film</a>
-        <a href="https://chauesprinciple.github.io/Ancient-literature/" class="dropdown-item">Ancient Literature</a>
-    </div>
-</div>
+            Tokyo in Film
+            <div class="dropdown-menu">
+                <a href="https://chauesprinciple.github.io/Tokyo-in-Film/" class="dropdown-item current">Tokyo in
+                    Film</a>
+                <a href="https://chauesprinciple.github.io/Ancient-literature/" class="dropdown-item">Ancient
+                    Literature</a>
+            </div>
+        </div>
         <div class="menu-toggle" id="mobile-menu">
             <span class="bar"></span>
             <span class="bar"></span>
@@ -109,7 +111,7 @@
     <main class="container" style="padding-top: 100px;">
         <h1 style="margin-bottom: 1rem;">Filmmakers Toolkit</h1>
         <p class="intro-text" style="color: #bbb; max-width: 600px; margin-bottom: 1.5rem;">
-            Downloadable resources for your production—all completely free.
+            Downloadable resources for your production�all completely free.
         </p>
         <p class="intro-text" style="color: #bbb; max-width: 600px; margin-bottom: 2rem;">
             This entire textbook is a labor of love, created for students and filmmakers everywhere. If it's helped you,
@@ -226,8 +228,41 @@
         <p>&copy; 2026 Tokyo in Film.</p>
     </footer>
 
-    <script src="js/glossary.js"></script>
-    <script src="js/mobile-nav.js"></script>
+    <script src="js/glossary.js?v=4"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log("Force-inlined Dropdown Script Loaded");
+
+            const mobileMenu = document.getElementById('mobile-menu');
+            const navList = document.querySelector('.nav-list');
+
+            if (mobileMenu) {
+                mobileMenu.addEventListener('click', () => {
+                    navList.classList.toggle('active');
+                    mobileMenu.classList.toggle('is-active');
+                });
+            }
+
+            // Dropdown Toggle Logic
+            const logo = document.querySelector('.logo');
+            if (logo) {
+                logo.addEventListener('click', (e) => {
+                    // Only toggle if the click is on the logo container itself or the text, 
+                    // not if the user is clicking an actual link inside the dropdown
+                    if (!e.target.closest('.dropdown-item')) {
+                        logo.classList.toggle('active');
+                    }
+                });
+
+                // Close dropdown when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (!logo.contains(e.target)) {
+                        logo.classList.remove('active');
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>

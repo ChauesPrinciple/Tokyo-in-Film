@@ -1,4 +1,4 @@
-ï»¿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@700;900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=4">
 </head>
 
 <body>
@@ -59,9 +59,9 @@
                     short film. At the heart of this project is a deeper appreciation of film and its connection to
                     Tokyo.</p>
                 <p>You will recreate, adapt, or craft a new scene inspired by the films we analyze, using Tokyo as your
-                    creative playground. This process isnâ€™t about technical mastery. Itâ€™s about embracing the art of
+                    creative playground. This process isn’t about technical mastery. It’s about embracing the art of
                     experimentation, playing with storytelling techniques, and finding your own voice within the world
-                    of cinema. By engaging with these films, youâ€™ll explore how they capture the essence of Tokyo, not
+                    of cinema. By engaging with these films, you’ll explore how they capture the essence of Tokyo, not
                     just as a backdrop, but as a character within each story.</p>
             </div>
         </section>
@@ -70,7 +70,7 @@
         <section class="project-section">
             <h2>The Assignment: Filming a Scene</h2>
             <p>Your group will recreate, adapt, or design a scene inspired by one of the films analyzed in the course.
-                Use Tokyoâ€™s rich variety of locations to enrich your visual storytelling.</p>
+                Use Tokyo’s rich variety of locations to enrich your visual storytelling.</p>
 
             <div class="option-grid">
                 <article class="option-card">
@@ -85,7 +85,7 @@
                 </article>
                 <article class="option-card">
                     <h3>3. Create a New Scene</h3>
-                    <p>Design a completely new scene inspired by a filmâ€™s style or narrative, showcasing your unique
+                    <p>Design a completely new scene inspired by a film’s style or narrative, showcasing your unique
                         interpretation of the film's mood or visual language.</p>
                 </article>
             </div>
@@ -176,7 +176,7 @@
                 </ul>
 
                 <h3>Collaborative Requirement</h3>
-                <p>Each student must assist another groupâ€™s project for at least <strong>two hours</strong> (as cast or
+                <p>Each student must assist another group’s project for at least <strong>two hours</strong> (as cast or
                     crew). Include proof (photos, logs) in your submission.</p>
 
                 <h3>Extra Credit</h3>
@@ -201,7 +201,40 @@
         <p>&copy; 2026 Tokyo in Film. Content adapted from LibreTexts.</p>
     </footer>
 
-    <script src="js/mobile-nav.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log("Force-inlined Dropdown Script Loaded");
+
+            const mobileMenu = document.getElementById('mobile-menu');
+            const navList = document.querySelector('.nav-list');
+
+            if (mobileMenu) {
+                mobileMenu.addEventListener('click', () => {
+                    navList.classList.toggle('active');
+                    mobileMenu.classList.toggle('is-active');
+                });
+            }
+
+            // Dropdown Toggle Logic
+            const logo = document.querySelector('.logo');
+            if (logo) {
+                logo.addEventListener('click', (e) => {
+                    // Only toggle if the click is on the logo container itself or the text, 
+                    // not if the user is clicking an actual link inside the dropdown
+                    if (!e.target.closest('.dropdown-item')) {
+                        logo.classList.toggle('active');
+                    }
+                });
+
+                // Close dropdown when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (!logo.contains(e.target)) {
+                        logo.classList.remove('active');
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>
