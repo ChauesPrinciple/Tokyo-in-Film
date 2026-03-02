@@ -320,6 +320,16 @@ nav ul li a.active {
     margin-bottom: 1.5rem;
 }
 
+.textbook-content ul,
+.textbook-content ol {
+    margin-bottom: 1.5rem;
+    padding-left: 2rem;
+}
+
+.textbook-content li {
+    margin-bottom: 0.5rem;
+}
+
 /* Footer */
 footer {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -502,6 +512,7 @@ footer {
         width: 100% !important;
         box-sizing: border-box;
     }
+
 
     /* Constrain content blocks */
     .textbook-content,
@@ -1362,4 +1373,19 @@ blockquote {
     border: 0;
 }
 
-/ *   F o r c e   R e f r e s h   * /     
+/* Force Refresh */
+
+/* Map Key Styling */
+.map-key-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 1.5rem auto;
+    max-width: 640px;
+}
+
+.map-key-list li {
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
