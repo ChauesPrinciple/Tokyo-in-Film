@@ -116,7 +116,8 @@
     function renderVideo(wrap, node) {
       if (node.title) { const lbl = el('div', 'tif-label'); lbl.textContent = node.title; wrap.appendChild(lbl); }
       const vw = el('div', 'tif-video-wrap');
-      vw.innerHTML = `<iframe src="https://www.youtube.com/embed/${node.videoId}?rel=0" allowfullscreen loading="lazy" title="${node.title || 'Video'}"></iframe>`;
+      const vSrc = 'https://www.youtube.com/embed/' + node.videoId + '?rel=0' + (node.videoStart ? '&start=' + node.videoStart : '');
+      vw.innerHTML = '<iframe src="' + vSrc + '" allowfullscreen loading="lazy" title="' + (node.title || 'Video') + '"></iframe>';
       wrap.appendChild(vw);
 
       let needed = 0, done = 0;
