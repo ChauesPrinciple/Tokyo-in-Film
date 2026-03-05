@@ -9,7 +9,7 @@
         rel="stylesheet">
     <link rel="stylesheet" href="../style.css?v=8">
     <style>
-        .assign-tabs { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0 0; }
+        .assign-tabs { display: flex; flex-wrap: nowrap; gap: 0.5rem; margin: 2rem 0 0; overflow-x: auto; }
         .assign-tab { padding: 0.5rem 1.1rem; border: 1px solid rgba(255,255,255,0.2); border-radius: 4px 4px 0 0; cursor: pointer; font-size: 0.9rem; color: #bbb; background: rgba(0,0,0,0.2); border-bottom: none; transition: all 0.2s; }
         .assign-tab:hover { color: #fff; border-color: rgba(255,255,255,0.4); }
         .assign-tab.active { background: rgba(255,0,127,0.12); border-color: var(--accent-neon-pink); color: var(--accent-neon-pink); font-weight: 600; }
@@ -80,10 +80,10 @@
 
             <h3 style="margin-bottom: 1rem; color: var(--accent-neon-pink); text-align: center; margin-top: 2rem;">Choose Your Role</h3>
             <div class="assign-tabs">
-                <div class="assign-tab active" onclick="showAssign('stock')">Sustainable Stock Footage</div>
-                <div class="assign-tab" onclick="showAssign('railways')">Tokyo's Railways in Motion</div>
-                <div class="assign-tab" onclick="showAssign('choreo')">Choreographed Motion</div>
-                <div class="assign-tab" onclick="showAssign('miniatures')">Miniatures in Motion <span style="font-size:0.75rem; color:var(--accent-neon-cyan); font-weight:400;">(Advanced)</span></div>
+                <div class="assign-tab active" onclick="showAssign('stock')">Stock Footage</div>
+                <div class="assign-tab" onclick="showAssign('railways')">Railways</div>
+                <div class="assign-tab" onclick="showAssign('choreo')">Choreography</div>
+                <div class="assign-tab" onclick="showAssign('miniatures')">Miniatures <span style="font-size:0.75rem; color:var(--accent-neon-cyan); font-weight:400;">(Advanced)</span></div>
             </div>
 
             <div class="assign-panels">
