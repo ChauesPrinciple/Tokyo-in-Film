@@ -8,6 +8,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@700;900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="../style.css?v=8">
+    <style>
+        .assign-tabs { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0 0; }
+        .assign-tab { padding: 0.5rem 1.1rem; border: 1px solid rgba(255,255,255,0.2); border-radius: 4px 4px 0 0; cursor: pointer; font-size: 0.9rem; color: #bbb; background: rgba(0,0,0,0.2); border-bottom: none; transition: all 0.2s; }
+        .assign-tab:hover { color: #fff; border-color: rgba(255,255,255,0.4); }
+        .assign-tab.active { background: rgba(255,0,127,0.12); border-color: var(--accent-neon-pink); color: var(--accent-neon-pink); font-weight: 600; }
+        .assign-panels { border: 1px solid rgba(255,0,127,0.25); border-radius: 0 8px 8px 8px; padding: 2rem; background: rgba(0,0,0,0.15); margin-bottom: 2.5rem; }
+        .assign-panel { display: none; }
+        .assign-panel.active { display: block; }
+        .assign-panel h3 { color: var(--accent-neon-cyan); margin-top: 1.75rem; margin-bottom: 0.5rem; }
+        .assign-panel h3:first-child { margin-top: 0; }
+        .step-row { display: flex; align-items: flex-start; gap: 0.85rem; margin: 1.5rem 0 0.5rem; }
+        .step-num { display: inline-flex; align-items: center; justify-content: center; min-width: 2rem; height: 2rem; background: var(--accent-neon-pink); color: #000; font-weight: 700; border-radius: 50%; font-size: 0.95rem; }
+        .step-row h4 { margin: 0; line-height: 2rem; }
+        .assign-del { background: rgba(255,0,127,0.06); border: 1px solid rgba(255,0,127,0.28); border-radius: 8px; padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+        .assign-del h4 { margin: 0 0 0.6rem; }
+        .final-note { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1.25rem; margin-top: 1.5rem; font-style: italic; color: #bbb; }
+        @media(max-width:600px){ .assign-tab{ font-size:0.78rem; padding:0.4rem 0.7rem; } .assign-panels{ padding:1.25rem; } }
+    </style>
 </head>
 
 <body>
@@ -56,7 +74,246 @@
             <script src="../js/scenario.js"></script>
             <script src="post-guide.js"></script>
 
-            <h3 style="margin-bottom: 1rem; color: var(--accent-neon-pink); text-align: center;">Choose Your Add On</h3>
+            <h2 style="margin-top: 3rem;">In-Class Assignments</h2>
+            <p>Choose one assignment to complete and apply those post-production techniques directly to your own film, developing skills in editing, sound mixing, and visual storytelling.</p>
+
+            <div class="assign-tabs">
+                <div class="assign-tab active" onclick="showAssign('genre')">Genre Emulation</div>
+                <div class="assign-tab" onclick="showAssign('deconstruct')">Deconstructing Narrative</div>
+                <div class="assign-tab" onclick="showAssign('tone')">Tone Flip</div>
+                <div class="assign-tab" onclick="showAssign('remix')">Visual + Rhythm Remix</div>
+            </div>
+
+            <div class="assign-panels">
+
+                <!-- GENRE EMULATION -->
+                <div class="assign-panel active" id="assign-genre">
+                    <p><em>Match the Mood of a Studied Film</em></p>
+                    <p>This assignment challenges you to re-edit footage from the shared class archive to match the tone and style of a specific film we have studied. Drawing inspiration from titles like <em>Spirited Away</em>, <em>Tokyo Drift</em>, <em>Shoplifters</em>, or <em>13 Assassins</em>, your goal is to transform everyday visuals into cinematic sequences through pacing, editing rhythm, sound, and light visual effects.</p>
+                    <p>By using existing footage—such as Tokyo's rail lines, shrine steps, figurines, and atmospheric cityscapes—you will learn how to shape emotion and narrative through post-production choices.</p>
+
+                    <h3>What You Will Do</h3>
+                    <div class="step-row"><span class="step-num">1</span><h4>Select a Film and Tone to Emulate</h4></div>
+                    <p>Choose one film from our class list and identify its stylistic tone:</p>
+                    <ul>
+                        <li><em>Spirited Away</em> – Stillness, ambient layering, dreamlike transitions</li>
+                        <li><em>Tokyo Drift</em> – Fast cuts, neon reflections, motion-forward pacing</li>
+                        <li><em>13 Assassins</em> – Sparse editing, silence, visual tension</li>
+                        <li><em>Shoplifters</em> – Naturalism, handheld rhythm, warm interior tones</li>
+                        <li><em>Tsukigakirei</em> – Slow transitions, pastel color palette, seasonal emotion</li>
+                        <li><em>Akira</em> – Chaotic motion, synth-driven urgency, color saturation</li>
+                    </ul>
+                    <p>Your task is to recreate the cinematic essence of one of these films using 3–5 clips from our footage archive.</p>
+
+                    <div class="step-row"><span class="step-num">2</span><h4>Edit for Tone and Rhythm</h4></div>
+                    <p>Using Shotcut, CapCut, OpenShot, or any accessible video editor:</p>
+                    <ul>
+                        <li>Arrange your selected clips into a 15–30 second sequence</li>
+                        <li>Cut and time the footage to match the pacing of the original film</li>
+                        <li>Add a minimal soundtrack or ambient sounds to reinforce tone</li>
+                        <li>Optionally, use basic color correction tools to evoke the original's palette</li>
+                    </ul>
+
+                    <div class="step-row"><span class="step-num">3</span><h4>Write a Reflection</h4></div>
+                    <p>In a short paragraph (approximately 150 words), briefly describe:</p>
+                    <ul>
+                        <li>The film you referenced</li>
+                        <li>The tone or aesthetic choices you aimed to match</li>
+                        <li>The post-production decisions that helped shape the final result</li>
+                    </ul>
+
+                    <div class="assign-del">
+                        <h4>Deliverables</h4>
+                        <p>Upload the following to the class Dropbox folder using the naming format below:</p>
+                        <ul>
+                            <li><strong>Final Edited Scene</strong> – A 15–30 second video that demonstrates clear tone matching through editing and sound. Resolution: HD (720p or higher). File format: .mp4 or .mov</li>
+                            <li><strong>Reflection</strong> – A short, clearly written 150-word document (Word or PDF)</li>
+                        </ul>
+                        <p style="margin-bottom:0;"><strong>File Naming Format:</strong> <code>YourName_GenreMatchScene_01</code></p>
+                    </div>
+
+                    <h3>Why This Matters</h3>
+                    <p>This assignment strengthens your ability to analyze and recreate cinematic language—not just through visuals, but through editing rhythm, sound, and tone. By emulating a specific film style using shared footage, you will learn how post-production transforms raw material into an emotionally resonant scene. The skills you practice here—mood-matching, pacing, and tonal cohesion—are essential for both documentary and narrative filmmaking.</p>
+                </div>
+
+                <!-- DECONSTRUCTING NARRATIVE -->
+                <div class="assign-panel" id="assign-deconstruct">
+                    <p><em>Postmodern Kaiju Scene</em></p>
+                    <p>This assignment challenges you to deconstruct traditional Kaiju storytelling using footage from our class archive and provided Kaiju VFX assets. Instead of following the expected "giant monster = chaos" trope, you will explore what happens when a Kaiju enters a scene—and nobody reacts.</p>
+                    <p>Using postmodern editing techniques, sound design, and compositing, you will build a short, ironic, or emotionally ambiguous scene that places a massive monster inside an everyday setting. Think <em>Spirited Away</em> meets <em>Godzilla Minus One</em> with a dash of <em>Adrift in Tokyo</em>.</p>
+
+                    <h3>What You Will Do</h3>
+                    <div class="step-row"><span class="step-num">1</span><h4>Select Raw Footage</h4></div>
+                    <p>Use 1–2 clips from the shared production archive (no new filming required). Choose footage that contrasts sharply with the traditional Kaiju genre:</p>
+                    <p><strong>Examples:</strong></p>
+                    <ul>
+                        <li>A peaceful park at golden hour (Yoyogi, Ueno)</li>
+                        <li>Rain falling on a bus window (inspired by <em>Spirited Away</em>)</li>
+                        <li>Shibuya Crossing crowds (slice-of-life / <em>Aggretsuko</em>)</li>
+                        <li>Stationary shots of vending machines, rooftops, or staircases</li>
+                    </ul>
+                    <p>The Kaiju's presence should feel out of place—but characters in the footage behave as if nothing is wrong.</p>
+
+                    <div class="step-row"><span class="step-num">2</span><h4>Integrate the Kaiju VFX</h4></div>
+                    <p>Use the provided Kaiju assets (pre-keyed or green screen) and composite them into your chosen scene.</p>
+                    <p><strong>Editing Tips:</strong></p>
+                    <ul>
+                        <li>Use scaling, opacity, and positioning tools to place the Kaiju convincingly into the frame</li>
+                        <li>Match the angle, light direction, and depth to blend the VFX with your shot</li>
+                        <li>Use layering tricks to position the Kaiju behind or between foreground elements for realism</li>
+                    </ul>
+                    <p><strong>Recommended Tools:</strong></p>
+                    <ul>
+                        <li>HitFilm Free (for VFX layering and masking)</li>
+                        <li>Shotcut, CapCut, or OpenShot (for trimming, audio, and exporting)</li>
+                    </ul>
+
+                    <div class="step-row"><span class="step-num">3</span><h4>Sound Design for Irony or Ambiguity</h4></div>
+                    <p>Overlay your scene with audio that enhances the absurdity or stillness of the situation:</p>
+                    <ul>
+                        <li>Cheery background music (e.g., lo-fi beats, muzak, or city ambience)</li>
+                        <li>Understated ambient effects (cicadas, vending machine hums, distant traffic)</li>
+                        <li>Subtle audio glitches, distortions, or reverb for unsettling effect</li>
+                    </ul>
+                    <p>Avoid traditional "panic" sound effects—this scene is about quiet disruption, not action spectacle.</p>
+
+                    <div class="assign-del">
+                        <h4>Deliverables</h4>
+                        <p>Upload the following to the class Dropbox folder using the naming format below:</p>
+                        <ul>
+                            <li><strong>Final Edited Scene</strong> – A 10–20 second video that features your Kaiju integration and sound design. Resolution: HD (720p or higher). File format: .mp4 or .mov</li>
+                            <li><strong>VFX Breakdown</strong> (150–200 words) – Explain how you placed and scaled the Kaiju; mention any compositing challenges or creative choices</li>
+                            <li><strong>Sound Design Notes</strong> – A short summary (100 words) describing how your sound choices shift tone or subvert expectations</li>
+                        </ul>
+                        <p style="margin-bottom:0;"><strong>File Naming Format:</strong> <code>YourName_KaijuScene_01</code></p>
+                    </div>
+
+                    <h3>Why This Matters</h3>
+                    <p>This assignment teaches you how to combine visual irony, sound manipulation, and digital layering to create a postmodern take on genre filmmaking. By integrating a symbol of destruction into a calm, indifferent world, you will learn how VFX and editing can rewrite narrative assumptions—and how humor or discomfort can emerge from silence, timing, and contrast.</p>
+                </div>
+
+                <!-- TONE FLIP -->
+                <div class="assign-panel" id="assign-tone">
+                    <p><em>Recut the Mood</em></p>
+                    <p>This assignment invites you to explore how editing and sound alone can completely shift the mood of a scene. Using footage from the shared class archive—such as trains, shrine steps, crowds, or choreography—you will re-edit material to give it a radically different emotional tone than it might naturally suggest.</p>
+                    <p>Whether you turn a peaceful moment into something tense, a mundane shot into comedy, or urban chaos into dreamy tranquility, the goal is to understand how tone is built, broken, and remade in post-production.</p>
+
+                    <h3>What You Will Do</h3>
+                    <div class="step-row"><span class="step-num">1</span><h4>Choose 2–3 Clips from the Class Archive</h4></div>
+                    <p>Select footage that has a clear, natural tone—and imagine what it would feel like if the tone were reversed.</p>
+                    <p><strong>Examples:</strong></p>
+                    <ul>
+                        <li>A vending machine shot becomes a horror intro</li>
+                        <li>High-speed rail footage becomes a meditative lull</li>
+                        <li>A crowded crossing is edited like a romantic montage</li>
+                        <li>Kaiju miniature footage is re-scored as a coming-of-age drama</li>
+                    </ul>
+                    <p>Think of this as a form of remix: not changing what is shown, but completely altering how it feels.</p>
+
+                    <div class="step-row"><span class="step-num">2</span><h4>Recut for Contrast</h4></div>
+                    <p>Using beginner-friendly editing software (CapCut, Shotcut, OpenShot):</p>
+                    <ul>
+                        <li>Rearrange or trim the footage to manipulate timing</li>
+                        <li>Slow down, speed up, or freeze parts for emotional impact</li>
+                        <li>Apply music and sound effects that conflict with the image</li>
+                    </ul>
+                    <p>Use basic color grading or filters to shift atmosphere:</p>
+                    <ul>
+                        <li>Warm and nostalgic</li>
+                        <li>Cold and unsettling</li>
+                        <li>Neon and surreal</li>
+                    </ul>
+
+                    <div class="step-row"><span class="step-num">3</span><h4>Reflect on the Transformation</h4></div>
+                    <p>After editing, write a short paragraph reflecting on:</p>
+                    <ul>
+                        <li>The original tone you perceived in the footage</li>
+                        <li>What new tone you created through your edits</li>
+                        <li>The specific editing or audio choices that made the shift happen</li>
+                    </ul>
+
+                    <div class="assign-del">
+                        <h4>Deliverables</h4>
+                        <p>Upload the following to the class Dropbox folder using the naming format below:</p>
+                        <ul>
+                            <li><strong>Final Edited Scene</strong> – A 15–30 second video that reimagines the tone of your chosen footage. Resolution: HD (720p or higher). File format: .mp4 or .mov</li>
+                            <li><strong>Mood Flip Reflection</strong> (150 words) – Describe the tone transformation; highlight specific technical decisions that shaped the change</li>
+                        </ul>
+                        <p style="margin-bottom:0;"><strong>File Naming Format:</strong> <code>YourName_ToneFlipScene_01</code></p>
+                    </div>
+
+                    <h3>Why This Matters</h3>
+                    <p>This assignment helps you understand how cinematic tone is constructed—not through story or performance, but through sound, pacing, and image treatment. By recutting existing footage to create a new emotional experience, you will build a foundational editing instinct: knowing that what footage means is not fixed—it is shaped entirely by how you present it.</p>
+                </div>
+
+                <!-- VISUAL + RHYTHM REMIX -->
+                <div class="assign-panel" id="assign-remix">
+                    <p><em>Edit Like a Music Video</em></p>
+                    <p>This assignment invites you to explore how rhythm, pacing, and visual texture can turn everyday moments into cinematic sequences. Using 3–5 shots from the class footage archive—whether trains, shrine steps, wind in trees, street movement, or figurines—you will craft a visually driven mood piece set to sound.</p>
+                    <p>Think of this as building a short visual poem: one that does not rely on characters or dialogue, but creates emotion through movement, flow, and image sequencing.</p>
+
+                    <h3>What You Will Do</h3>
+                    <div class="step-row"><span class="step-num">1</span><h4>Select and Sequence Archive Footage</h4></div>
+                    <p>Choose 3–5 short video clips from the class archive that share a visual rhythm or emotional quality.</p>
+                    <p><strong>Examples:</strong></p>
+                    <ul>
+                        <li>Trees swaying + train crossing + vending machine lights</li>
+                        <li>Footsteps on shrine steps + drifting clouds + urban noise</li>
+                        <li>Miniature figurines staged in environments, paired with environmental textures</li>
+                    </ul>
+                    <p>You are not building a narrative—you are creating an emotional arc through image flow.</p>
+
+                    <div class="step-row"><span class="step-num">2</span><h4>Set Your Sequence to Music or Ambience</h4></div>
+                    <p>Import your clips into a basic editor (CapCut, OpenShot, Shotcut) and:</p>
+                    <ul>
+                        <li>Arrange your footage to match the rhythm of a soundtrack</li>
+                        <li>Time cuts or transitions to specific beats or shifts in sound</li>
+                        <li>Add cross-dissolves, fade-ins, or jump cuts to accentuate flow</li>
+                        <li>Optional: apply color grading or filters to unify tone</li>
+                    </ul>
+                    <p><strong>Sound Options:</strong></p>
+                    <ul>
+                        <li>Instrumental tracks</li>
+                        <li>Ambient city sounds</li>
+                        <li>Lo-fi textures or nature recordings</li>
+                        <li>Rhythmic loops</li>
+                    </ul>
+                    <p><strong>Tip:</strong> You can record your own sounds (bike bells, wind, crosswalks) or use free libraries.</p>
+
+                    <div class="step-row"><span class="step-num">3</span><h4>Describe Your Mood and Method</h4></div>
+                    <p>After editing, reflect briefly on your creative approach:</p>
+                    <ul>
+                        <li>What mood or feeling did you aim to create?</li>
+                        <li>How did you use rhythm, sound, or color to shape it?</li>
+                        <li>What emotional logic guided your sequence?</li>
+                    </ul>
+
+                    <div class="assign-del">
+                        <h4>Deliverables</h4>
+                        <p>Upload the following to the class Dropbox folder using the naming format below:</p>
+                        <ul>
+                            <li><strong>Final Video Remix</strong> – A 15–30 second video sequence built on rhythm, visual flow, and sound. Resolution: HD (720p or higher). File format: .mp4 or .mov</li>
+                            <li><strong>Mood Note + Screenshots</strong> – A short paragraph (100 words) describing the tone you built; 2 screenshot stills from your sequence—before and after any color/sound treatment</li>
+                        </ul>
+                        <p style="margin-bottom:0;"><strong>File Naming Format:</strong> <code>YourName_VisualRemix_01</code></p>
+                    </div>
+
+                    <h3>Why This Matters</h3>
+                    <p>This assignment sharpens your eye for visual pacing, atmosphere, and sound-image relationship—skills that translate directly to trailer cutting, montage editing, music video design, and experimental short films. By treating footage as rhythm and emotion rather than plot, you will develop intuitive editing instincts essential to cinematic storytelling.</p>
+                </div>
+
+            </div><!-- end assign-panels -->
+
+            <script>
+                function showAssign(id) {
+                    document.querySelectorAll('.assign-tab').forEach(function(t){ t.classList.remove('active'); });
+                    document.querySelectorAll('.assign-panel').forEach(function(p){ p.classList.remove('active'); });
+                    event.currentTarget.classList.add('active');
+                    document.getElementById('assign-' + id).classList.add('active');
+                }
+            </script>
+
+            <h3 style="margin-bottom: 1rem; color: var(--accent-neon-pink); text-align: center; margin-top: 3rem;">Choose Your Add On</h3>
             <div class="forms-grid">
                 <div class="card-form">
                     <h3>Worksheet: "Favorite Place" Add-On</h3>
