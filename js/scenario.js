@@ -25,6 +25,7 @@
 .tif-check-row input{accent-color:#00f5ff;width:15px;height:15px}
 .tif-info{background:rgba(0,245,255,.07);border-left:3px solid #00f5ff;border-radius:0 4px 4px 0;padding:.7rem 1rem;font-size:.9rem;color:#b0e0e6}
 .tif-branch-q{font-size:1rem;font-weight:600;color:#fff;margin-bottom:1.1rem}
+.tif-inner{flex:1;display:flex;flex-direction:column;justify-content:center}
 .tif-choices{display:flex;flex-direction:column;gap:.7rem}
 .tif-choice{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.14);border-radius:8px;padding:.75rem 1.1rem;color:#ccd;text-align:left;cursor:pointer;font-size:.93rem;transition:all .15s;width:100%}
 .tif-choice:hover:not(:disabled){border-color:#00f5ff;background:rgba(0,245,255,.07);color:#fff}
@@ -33,7 +34,7 @@
 .tif-proceed{display:inline-block;margin-top:1.5rem;padding:.55rem 2rem;background:#00f5ff;color:#000;border:none;border-radius:30px;font-weight:700;font-size:.9rem;cursor:pointer;letter-spacing:.05em;text-transform:uppercase;transition:background .15s}
 .tif-proceed:hover:not(:disabled){background:#fff}
 .tif-proceed:disabled{opacity:.35;cursor:not-allowed}
-.tif-start,.tif-end{text-align:center;padding:1.5rem 0 2rem;margin:auto 0;width:100%}
+.tif-start,.tif-end{text-align:center;padding:1.5rem 0 2rem;width:100%;max-width:600px;margin:0 auto}
 .tif-start h2,.tif-end h2{color:#00f5ff;font-family:'Outfit',sans-serif;font-size:1.5rem;margin-bottom:.75rem}
 .tif-start p,.tif-end p{color:#aaa;margin-bottom:1.8rem;max-width:540px;margin-left:auto;margin-right:auto}
 .tif-start-btn{padding:.75rem 2.2rem;background:#ff2d78;color:#fff;border:none;border-radius:30px;font-weight:700;font-size:.95rem;cursor:pointer;letter-spacing:.05em;text-transform:uppercase;transition:background .15s}
@@ -65,13 +66,34 @@
     const nodeMap = {};
     scenario.nodes.forEach(n => { nodeMap[n.id] = n; });
     let maxH = 0;
+    let currentWrap = null;
 
-    function lockHeight(wrap) {
-      requestAnimationFrame(function () {
+    function applyHeight(wrap) {
+      if (maxH > 0) wrap.style.minHeight = maxH + 'px';
+    }
+
+    function premeasure() {
+      const w = container.offsetWidth || 760;
+      const probe = document.createElement('div');
+      probe.style.cssText = 'position:fixed;visibility:hidden;pointer-events:none;top:-9999px;left:0;width:' + w + 'px;z-index:-1;';
+      document.body.appendChild(probe);
+      scenario.nodes.forEach(function (n) {
+        probe.innerHTML = '';
+        const wrap = el('div', 'tif-scenario');
+        if (n.type === 'video') {
+          renderVideo(wrap, n);
+        } else {
+          const inner = el('div', 'tif-inner');
+          if (n.type === 'text') renderText(inner, n);
+          else if (n.type === 'branch') renderBranch(inner, n);
+          wrap.appendChild(inner);
+        }
+        probe.appendChild(wrap);
         const h = wrap.offsetHeight;
         if (h > maxH) maxH = h;
-        wrap.style.minHeight = maxH + 'px';
       });
+      document.body.removeChild(probe);
+      if (currentWrap) applyHeight(currentWrap);
     }
 
     function go(id) {
@@ -80,11 +102,17 @@
       if (!node) { showEnd(); return; }
       container.innerHTML = '';
       const wrap = el('div', 'tif-scenario');
-      if (node.type === 'text') renderText(wrap, node);
-      else if (node.type === 'branch') renderBranch(wrap, node);
-      else if (node.type === 'video') renderVideo(wrap, node);
+      if (node.type === 'video') {
+        renderVideo(wrap, node);
+      } else {
+        const inner = el('div', 'tif-inner');
+        if (node.type === 'text') renderText(inner, node);
+        else if (node.type === 'branch') renderBranch(inner, node);
+        wrap.appendChild(inner);
+      }
+      applyHeight(wrap);
       container.appendChild(wrap);
-      lockHeight(wrap);
+      currentWrap = wrap;
       container.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
@@ -196,8 +224,9 @@
       e.innerHTML = `<h2>&#10003; Guide Complete</h2><p>${msg || 'You have completed this decision-making guide. Proceed to the worksheets below.'}</p>`;
       const rb = el('button', 'tif-restart'); rb.textContent = '\u21ba Restart Guide';
       rb.onclick = () => showStart();
-      e.appendChild(rb); wrap.appendChild(e); container.appendChild(wrap);
-      if (maxH > 0) wrap.style.minHeight = maxH + 'px';
+      e.appendChild(rb);
+      const endInner = el('div', 'tif-inner'); endInner.appendChild(e);
+      wrap.appendChild(endInner); applyHeight(wrap); container.appendChild(wrap); currentWrap = wrap;
     }
 
     function showStart() {
@@ -207,9 +236,12 @@
       s.innerHTML = `<h2>${scenario.title}</h2><p>${scenario.subtitle || 'Work through this guide before completing the worksheets below.'}</p>`;
       const btn = el('button', 'tif-start-btn'); btn.textContent = 'Start the Guide';
       btn.onclick = () => go(0);
-      s.appendChild(btn); wrap.appendChild(s); container.appendChild(wrap);
+      s.appendChild(btn);
+      const startInner = el('div', 'tif-inner'); startInner.appendChild(s);
+      wrap.appendChild(startInner); applyHeight(wrap); container.appendChild(wrap); currentWrap = wrap;
     }
 
     showStart();
+    requestAnimationFrame(premeasure);
   };
 })();
