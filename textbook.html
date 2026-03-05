@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -13,7 +13,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@700;900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=7">
 </head>
 
 <body>
@@ -21,11 +21,7 @@
     <nav>
         <div class="nav-brand" style="display: flex; align-items: center; gap: 1rem;">
 <div class="logo">Tokyo in Film</div>
-            <a href="https://www.instagram.com/chaues/" target="_blank" class="ig-icon" aria-label="Instagram" style="color: #fff; transition: color 0.3s ease; display: flex; align-items: center; padding-top: 2px;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16" style="margin-top:2px;">
-                    <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.036 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"/>
-                </svg>
-            </a>
+            <a href="https://www.instagram.com/chaues/" target="_blank" class="ig-icon" aria-label="Instagram"></a>
         </div>
         <div class="menu-toggle" id="mobile-menu">
             <span class="bar"></span>
@@ -98,8 +94,7 @@
                 </a>
                 <p class="partner-message">
                     For local companies, organizations, and community groups that want to partner with me, I welcome
-                    opportunities to collaborate; please contact me! <br><br>
-                    !
+                    opportunities to collaborate; please contact me. <br><br>
                 </p>
             </aside>
         </div>
@@ -140,7 +135,7 @@
     </main>
 
     <section id="map-section" class="container" style="padding: 0 2rem 4rem;">
-        <h2 style="text-align: center; margin-bottom: 2rem;">Interactive Map of Iconic Locations</h2>
+        <div style="text-align: center; margin-bottom: 2rem;"><h2>Interactive Map of Iconic Locations</h2></div>
         <div class="map-container"
             style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border: 1px solid var(--accent-neon-cyan); box-shadow: 0 0 20px rgba(0, 243, 255, 0.2);">
             <iframe src="https://www.google.com/maps/d/embed?mid=1V4GApFpOipMmySIyy2loBujui--BV3Y" width="640"
@@ -159,48 +154,129 @@
     </section>
 
     <section id="film-list" class="container">
-        <h2 style="text-align: center;">Analyzed Films</h2>
-        <p style="text-align: center; margin-bottom: 2rem; color: #bbb;">The films (and anime) we will analyze for this
-            class:</p>
-        <ul class="film-grid"
-            style="list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.5rem; padding: 0;">
-            <li class="film-item"><a href="https://www.imdb.com/title/tt1433830/" target="_blank">13 Assassins</a> <span
-                    class="director">Takashi Miike</span></li>
-            <li class="film-item"><a href="https://www.imdb.com/title/tt0094625/" target="_blank">Akira</a> <span
-                    class="director">Katsuhiro Otomo</span></li>
-            <li class="film-item"><a href="https://www.imdb.com/title/tt13616990/" target="_blank">Chainsaw Man</a>
-                <span class="director">Tatsuya Yoshihara</span>
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <h2>2026 Film List</h2>
+            <p style="color: #bbb;">The films (and anime) we will analyze for this class:</p>
+        </div>
+        <ul class="film-slider" id="filmSlider">
+            <li class="film-slide">
+                <p class="film-slide-number">01 / 16</p>
+                <h3 class="film-slide-title"><a href="https://www.imdb.com/title/tt1433830/" target="_blank">13 Assassins</a></h3>
+                <p class="film-slide-genre">Action · Historical Epic</p>
+                <p class="film-slide-logline">Twelve samurai are assembled to assassinate a sadistic lord before he can rise to power in feudal Japan.</p>
+                <p class="film-slide-director">Takashi Miike</p>
             </li>
-            <li class="film-item"><a href="https://www.imdb.com/title/tt0463985/" target="_blank">Fast and Furious:
-                    Tokyo Drift</a> <span class="director">Justin Lin</span></li>
-            <li class="film-item"><a href="https://www.imdb.com/title/tt23289160/" target="_blank">Godzilla Minus One
-                    (2023)</a> <span class="director">Takashi Yamazaki</span></li>
-            <li class="film-item"><a href="https://www.imdb.com/title/tt0455546/" target="_blank">Initial D</a> <span
-                    class="director">Andrew Lau, Alan Mak</span></li>
-            <li class="film-item"><a href="https://www.imdb.com/title/tt1772925/" target="_blank">Jiro Dreams of
-                    Sushi</a> <span class="director">David Gelb</span></li>
-            <li class="film-item"><a href="https://www.imdb.com/title/tt14564344/" target="_blank">Kubi</a> <span
-                    class="director">Takeshi Kitano</span></li>
-            <li class="film-item"><a href="https://www.imdb.com/title/tt0058279/" target="_blank">Pale Flower</a> <span
-                    class="director">Masahiro Shinoda</span></li>
-            <li class="film-item"><a href="https://www.imdb.com/title/tt6583944/" target="_blank">Ramen Heads</a> <span
-                    class="director">Koki Shigeno</span></li>
-            <li class="film-item"><a href="https://www.imdb.com/title/tt8075192/" target="_blank">Shoplifters</a> <span
-                    class="director">Hirokazu Koreeda</span></li>
-            <li class="film-item"><a href="https://www.imdb.com/title/tt0245429/" target="_blank">Spirited Away</a>
-                <span class="director">Hayao Miyazaki</span>
+            <li class="film-slide">
+                <p class="film-slide-number">02 / 16</p>
+                <h3 class="film-slide-title"><a href="https://www.imdb.com/title/tt0094625/" target="_blank">Akira</a></h3>
+                <p class="film-slide-genre">Sci-Fi · Anime</p>
+                <p class="film-slide-logline">A biker's latent psychic powers spiral out of control, threatening to destroy the dystopian future city of Neo-Tokyo.</p>
+                <p class="film-slide-director">Katsuhiro Otomo</p>
             </li>
-            <li class="film-item"><a href="https://www.imdb.com/title/tt0047478/" target="_blank">The Seven Samurai</a>
-                <span class="director">Akira Kurosawa</span>
+            <li class="film-slide">
+                <p class="film-slide-number">03 / 16</p>
+                <h3 class="film-slide-title"><a href="https://www.imdb.com/title/tt13616990/" target="_blank">Chainsaw Man</a></h3>
+                <p class="film-slide-genre">Action · Dark Fantasy · Anime</p>
+                <p class="film-slide-logline">A debt-ridden boy merges with his devil dog to become a demon-hunter working for a shadowy government agency.</p>
+                <p class="film-slide-director">Tatsuya Yoshihara</p>
             </li>
-            <li class="film-item"><a href="https://www.imdb.com/title/tt3741634/" target="_blank">Tokyo Ghoul</a> <span
-                    class="director">Shuhei Morita</span></li>
-            <li class="film-item"><a href="https://www.imdb.com/title/tt6472710/" target="_blank">Tsukigakirei</a> <span
-                    class="director">Seiji Kishi</span></li>
-            <li class="film-item"><a href="https://www.imdb.com/title/tt5311514/" target="_blank">Your Name</a> or <a
-                    href="https://www.imdb.com/title/tt16428256/" target="_blank">Suzume</a> <span
-                    class="director">Makoto Shinkai</span></li>
+            <li class="film-slide">
+                <p class="film-slide-number">04 / 16</p>
+                <h3 class="film-slide-title"><a href="https://www.imdb.com/title/tt0463985/" target="_blank">Fast and Furious: Tokyo Drift</a></h3>
+                <p class="film-slide-genre">Action · Street Racing</p>
+                <p class="film-slide-logline">A reckless American racer is exiled to Tokyo, where he discovers drift culture and falls into the orbit of the local yakuza.</p>
+                <p class="film-slide-director">Justin Lin</p>
+            </li>
+            <li class="film-slide">
+                <p class="film-slide-number">05 / 16</p>
+                <h3 class="film-slide-title"><a href="https://www.imdb.com/title/tt23289160/" target="_blank">Godzilla Minus One</a></h3>
+                <p class="film-slide-genre">Monster Drama</p>
+                <p class="film-slide-logline">In the ruins of postwar Japan, a traumatized kamikaze pilot must face a devastating monster as the nation struggles to survive.</p>
+                <p class="film-slide-director">Takashi Yamazaki</p>
+            </li>
+            <li class="film-slide">
+                <p class="film-slide-number">06 / 16</p>
+                <h3 class="film-slide-title"><a href="https://www.imdb.com/title/tt0455546/" target="_blank">Initial D</a></h3>
+                <p class="film-slide-genre">Action · Sports</p>
+                <p class="film-slide-logline">A teenage tofu delivery driver becomes an underground street racing legend on the mountain passes of Japan.</p>
+                <p class="film-slide-director">Andrew Lau, Alan Mak</p>
+            </li>
+            <li class="film-slide">
+                <p class="film-slide-number">07 / 16</p>
+                <h3 class="film-slide-title"><a href="https://www.imdb.com/title/tt1772925/" target="_blank">Jiro Dreams of Sushi</a></h3>
+                <p class="film-slide-genre">Documentary</p>
+                <p class="film-slide-logline">An 85-year-old sushi master and his sons pursue perfection in a tiny Tokyo basement restaurant that holds three Michelin stars.</p>
+                <p class="film-slide-director">David Gelb</p>
+            </li>
+            <li class="film-slide">
+                <p class="film-slide-number">08 / 16</p>
+                <h3 class="film-slide-title"><a href="https://www.imdb.com/title/tt14564344/" target="_blank">Kubi</a></h3>
+                <p class="film-slide-genre">Historical · Dark Comedy</p>
+                <p class="film-slide-logline">In 16th-century Japan, samurai ambitions, forbidden desire, and treachery converge in the days before a legendary betrayal.</p>
+                <p class="film-slide-director">Takeshi Kitano</p>
+            </li>
+            <li class="film-slide">
+                <p class="film-slide-number">09 / 16</p>
+                <h3 class="film-slide-title"><a href="https://www.imdb.com/title/tt0058279/" target="_blank">Pale Flower</a></h3>
+                <p class="film-slide-genre">Noir · Crime Drama</p>
+                <p class="film-slide-logline">A yakuza released from prison becomes enthralled by a mysterious woman whose compulsive gambling masks a fatal death wish.</p>
+                <p class="film-slide-director">Masahiro Shinoda</p>
+            </li>
+            <li class="film-slide">
+                <p class="film-slide-number">10 / 16</p>
+                <h3 class="film-slide-title"><a href="https://www.imdb.com/title/tt6583944/" target="_blank">Ramen Heads</a></h3>
+                <p class="film-slide-genre">Documentary · Food</p>
+                <p class="film-slide-logline">An obsessive portrait of Japan's ramen culture, following the country's top chefs on their relentless pursuit of the perfect bowl.</p>
+                <p class="film-slide-director">Koki Shigeno</p>
+            </li>
+            <li class="film-slide">
+                <p class="film-slide-number">11 / 16</p>
+                <h3 class="film-slide-title"><a href="https://www.imdb.com/title/tt8075192/" target="_blank">Shoplifters</a></h3>
+                <p class="film-slide-genre">Drama</p>
+                <p class="film-slide-logline">A makeshift family of petty thieves living on society's margins discovers that chosen bonds can be stronger than blood.</p>
+                <p class="film-slide-director">Hirokazu Koreeda</p>
+            </li>
+            <li class="film-slide">
+                <p class="film-slide-number">12 / 16</p>
+                <h3 class="film-slide-title"><a href="https://www.imdb.com/title/tt0245429/" target="_blank">Spirited Away</a></h3>
+                <p class="film-slide-genre">Fantasy · Anime</p>
+                <p class="film-slide-logline">A ten-year-old girl stumbles into a spirit world and must work to free herself and her transformed parents from its enchanted rules.</p>
+                <p class="film-slide-director">Hayao Miyazaki</p>
+            </li>
+            <li class="film-slide">
+                <p class="film-slide-number">13 / 16</p>
+                <h3 class="film-slide-title"><a href="https://www.imdb.com/title/tt0047478/" target="_blank">The Seven Samurai</a></h3>
+                <p class="film-slide-genre">Action · Epic Drama</p>
+                <p class="film-slide-logline">A masterless swordsman recruits six samurai to protect a helpless farming village from a ruthless gang of bandits.</p>
+                <p class="film-slide-director">Akira Kurosawa</p>
+            </li>
+            <li class="film-slide">
+                <p class="film-slide-number">14 / 16</p>
+                <h3 class="film-slide-title"><a href="https://www.imdb.com/title/tt3741634/" target="_blank">Tokyo Ghoul</a></h3>
+                <p class="film-slide-genre">Horror · Fantasy · Anime</p>
+                <p class="film-slide-logline">A college student becomes half-ghoul after a deadly encounter, forced to survive between the human world and the world of monsters.</p>
+                <p class="film-slide-director">Shuhei Morita</p>
+            </li>
+            <li class="film-slide">
+                <p class="film-slide-number">15 / 16</p>
+                <h3 class="film-slide-title"><a href="https://www.imdb.com/title/tt6472710/" target="_blank">Tsukigakirei</a></h3>
+                <p class="film-slide-genre">Romance · Anime</p>
+                <p class="film-slide-logline">Two shy middle schoolers navigate first love through anxious texts and quiet glances across an ordinary school year.</p>
+                <p class="film-slide-director">Seiji Kishi</p>
+            </li>
+            <li class="film-slide">
+                <p class="film-slide-number">16 / 16</p>
+                <h3 class="film-slide-title"><a href="https://www.imdb.com/title/tt5311514/" target="_blank">Your Name</a> / <a href="https://www.imdb.com/title/tt16428256/" target="_blank">Suzume</a></h3>
+                <p class="film-slide-genre">Fantasy · Anime</p>
+                <p class="film-slide-logline">Two young people, separated by distance and time, must race to prevent a catastrophe only they can see coming.</p>
+                <p class="film-slide-director">Makoto Shinkai</p>
+            </li>
         </ul>
+        <div class="film-slider-nav">
+            <button class="slider-btn" id="sliderPrev" disabled>&#8592; Prev</button>
+            <span class="slider-counter" id="sliderCounter">1 / 16</span>
+            <button class="slider-btn" id="sliderNext">Next &#8594;</button>
+        </div>
     </section>
 
     <footer>
@@ -208,7 +284,56 @@
     </footer>
 
     <script src="js/glossary.js"></script>
-    <script src="js/mobile-nav.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const filmSlider = document.getElementById('filmSlider');
+            if (filmSlider) {
+                const slides = filmSlider.querySelectorAll('.film-slide');
+                const prevBtn = document.getElementById('sliderPrev');
+                const nextBtn = document.getElementById('sliderNext');
+                const counter = document.getElementById('sliderCounter');
+                let current = 0;
+                function updateSlider() {
+                    prevBtn.disabled = current === 0;
+                    nextBtn.disabled = current === slides.length - 1;
+                    counter.textContent = `${current + 1} / ${slides.length}`;
+                }
+                function goTo(index) {
+                    current = Math.max(0, Math.min(index, slides.length - 1));
+                    filmSlider.scrollTo({ left: current * filmSlider.clientWidth, behavior: 'smooth' });
+                    updateSlider();
+                }
+                prevBtn.addEventListener('click', () => goTo(current - 1));
+                nextBtn.addEventListener('click', () => goTo(current + 1));
+                filmSlider.addEventListener('scroll', () => {
+                    const index = Math.round(filmSlider.scrollLeft / filmSlider.clientWidth);
+                    if (index !== current) { current = index; updateSlider(); }
+                });
+                // Drag-to-scroll
+                let isDragging = false, dragStartX, dragScrollLeft;
+                filmSlider.addEventListener('mousedown', (e) => {
+                    isDragging = true;
+                    filmSlider.classList.add('is-dragging');
+                    dragStartX = e.pageX - filmSlider.offsetLeft;
+                    dragScrollLeft = filmSlider.scrollLeft;
+                    e.preventDefault();
+                });
+                const endDrag = () => {
+                    if (!isDragging) return;
+                    isDragging = false;
+                    filmSlider.classList.remove('is-dragging');
+                    goTo(Math.round(filmSlider.scrollLeft / filmSlider.clientWidth));
+                };
+                filmSlider.addEventListener('mouseup', endDrag);
+                filmSlider.addEventListener('mouseleave', endDrag);
+                filmSlider.addEventListener('mousemove', (e) => {
+                    if (!isDragging) return;
+                    e.preventDefault();
+                    filmSlider.scrollLeft = dragScrollLeft - (e.pageX - filmSlider.offsetLeft - dragStartX);
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>
