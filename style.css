@@ -694,6 +694,69 @@ footer {
     .section-grid {
         grid-template-columns: 1fr;
     }
+
+    /* Hero: enforce min-height and fill with cover on mobile */
+    .hero {
+        min-height: 220px;
+    }
+
+    .hero-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+
+    .hero-content {
+        padding: 1rem;
+        width: 90%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    /* Button sizing */
+    .btn {
+        padding: 0.7rem 1.5rem;
+        font-size: 0.85rem;
+        letter-spacing: 0.1em;
+    }
+
+    /* General image safety */
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Table overflow on mobile */
+    table {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        width: 100%;
+    }
+
+    /* Option cards single column */
+    .option-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Container padding reduction */
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
 }
 
 /* TOC Grid */
