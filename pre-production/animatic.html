@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animatic: Timing the Visual Beat - Tokyo in Film</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../style.css?v=8">
+    <style>
+        .assignment-label {
+            display: inline-block;
+            background: rgba(255, 0, 127, 0.15);
+            border: 1px solid var(--accent-neon-pink);
+            color: var(--accent-neon-pink);
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+        .example-box {
+            background: rgba(0, 243, 255, 0.06);
+            border-left: 4px solid var(--accent-neon-cyan);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .deliverables-box {
+            background: rgba(255, 0, 127, 0.06);
+            border: 1px solid rgba(255, 0, 127, 0.3);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        .final-thought {
+            background: rgba(0, 0, 0, 0.3);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            margin-top: 3rem;
+            border-radius: 8px;
+            font-style: italic;
+            text-align: center;
+        }
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 2rem;
+            height: 2rem;
+            background: var(--accent-neon-pink);
+            color: #000;
+            font-weight: 700;
+            border-radius: 50%;
+            margin-right: 0.75rem;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+        .step-heading {
+            display: flex;
+            align-items: center;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+        }
+        .step-heading h3 { margin: 0; }
+        .advanced-tag {
+            display: inline-block;
+            background: rgba(0, 243, 255, 0.15);
+            border: 1px solid var(--accent-neon-cyan);
+            color: var(--accent-neon-cyan);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            margin-left: 0.5rem;
+            vertical-align: middle;
+        }
+        .page-nav {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .booklet-nav {
+            background: rgba(0,0,0,0.2);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .booklet-nav h4 { margin: 0 0 0.75rem; color: var(--accent-neon-cyan); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.08em; }
+        .booklet-nav-links { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .booklet-nav-links a { font-size: 0.85rem; padding: 0.3rem 0.8rem; border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; color: #ccc; text-decoration: none; }
+        .booklet-nav-links a:hover { border-color: var(--accent-neon-pink); color: var(--accent-neon-pink); }
+        .booklet-nav-links a.current { border-color: var(--accent-neon-pink); color: var(--accent-neon-pink); background: rgba(255,0,127,0.1); }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="nav-brand" style="display: flex; align-items: center; gap: 1rem;">
+            <div class="logo">
+                Tokyo in Film
+                <div class="dropdown-menu">
+                    <a href="https://chauesprinciple.github.io/Tokyo-in-Film/" class="dropdown-item current">Tokyo in Film</a>
+                    <a href="https://chauesprinciple.github.io/Ancient-literature/" class="dropdown-item">Ancient Literature</a>
+                </div>
+            </div>
+            <a href="https://www.instagram.com/chaues/" target="_blank" class="ig-icon" aria-label="Instagram"></a>
+        </div>
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        </div>
+        <ul class="nav-list">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../scene-project.html">The Scene Project</a></li>
+            <li><a href="index.html" class="active">Pre-Production</a></li>
+            <li><a href="../production/index.html">Production</a></li>
+            <li><a href="../post-production/index.html">Post-Production</a></li>
+            <li><a href="../glossary.html">Glossary</a></li>
+            <li><a href="../free-guides.html">Free Guides</a></li>
+        </ul>
+    </nav>
+
+    <main class="container" style="padding-top: 100px;">
+        <span class="toc-number">1.1.3</span>
+        <div class="assignment-label">Pre-Production &bull; In-Class Activity</div>
+        <h1>Animatic: Timing the Visual Beat <span class="advanced-tag">Advanced</span></h1>
+
+        <div class="textbook-content">
+
+            <div class="booklet-nav">
+                <h4>Pre-Production Assignments</h4>
+                <div class="booklet-nav-links">
+                    <a href="script.html">Script</a>
+                    <a href="storyboard.html">Storyboard</a>
+                    <a href="animatic.html" class="current">Animatic</a>
+                    <a href="shot-list.html">Shot List</a>
+                    <a href="pilgrimage-shots.html">Pilgrimage Shots</a>
+                </div>
+            </div>
+
+            <p>An animatic is the next step beyond a storyboard. Where a storyboard defines what the camera sees, an
+                animatic defines <em>when</em> it sees it, and for how long. You are building a rough, timed version of
+                your film before a single frame is shot. This is where visual intention meets temporal thinking.</p>
+
+            <p>Used in animation, commercials, and complex live-action pre-production, the animatic trains you to make
+                decisions about pacing, rhythm, and image duration before the edit room. If a storyboard is a score,
+                the animatic is the first rehearsal.</p>
+
+            <h2>Your Goal</h2>
+            <p>Select a 20 to 30 second movement-based scene from your own short film project. Using your storyboard
+                frames (or new rough images), assemble a timed sequence that communicates how the scene will feel in
+                motion. The animatic should include basic pacing, rhythm, and, where applicable, temporary audio to
+                suggest timing.</p>
+
+            <p>The question is not just what the audience sees; it is how long they live inside each image, and what
+                that duration does to the emotion of the scene.</p>
+
+            <h2>Step-by-Step Instructions</h2>
+
+            <div class="step-heading">
+                <span class="step-number">1</span>
+                <h3>Gather or Create Your Frames</h3>
+            </div>
+            <p>Use your storyboard panels or create new rough images (hand-drawn or digital). Scan or photograph them
+                if working on paper. You do not need polished art; clarity of composition is all that matters.</p>
+            <ul>
+                <li>Minimum of 6 frames for a 20 to 30 second sequence</li>
+                <li>Each frame should clearly indicate shot type, subject position, and any movement direction</li>
+                <li>Label each frame with its approximate screen duration</li>
+            </ul>
+
+            <div class="step-heading">
+                <span class="step-number">2</span>
+                <h3>Assemble the Timed Sequence</h3>
+            </div>
+            <p>Import your frames into a video editing tool (DaVinci Resolve, iMovie, CapCut, or similar) and set the
+                duration of each frame to match your intended screen time. Ask yourself:</p>
+            <ul>
+                <li>Does this shot breathe, or does it rush?</li>
+                <li>Where does a longer hold create tension?</li>
+                <li>Where does a quick cut create urgency or disorientation?</li>
+            </ul>
+
+            <div class="example-box">
+                <p><strong>Timing as storytelling:</strong> A 4-second hold on a character's face before they speak
+                    changes the meaning of their words. A half-second cut between two locations suggests panic. Decide
+                    every duration on purpose.</p>
+            </div>
+
+            <div class="step-heading">
+                <span class="step-number">3</span>
+                <h3>Add Temporary Audio (Optional but Recommended)</h3>
+            </div>
+            <p>Animatics gain enormously from even rough audio. Consider adding:</p>
+            <ul>
+                <li>Voiceover narration to indicate dialogue or internal thought</li>
+                <li>Temporary music or ambient sound to establish tone</li>
+                <li>Sound effect placeholders (e.g., a clap to mark a door slam or footstep rhythm)</li>
+            </ul>
+            <p>This does not need to be your final audio. It is a scaffold to test whether the scene's emotional rhythm
+                holds when image and sound are combined.</p>
+
+            <div class="step-heading">
+                <span class="step-number">4</span>
+                <h3>Review and Refine</h3>
+            </div>
+            <p>Watch your animatic at least three times before submitting. Ask:</p>
+            <ul>
+                <li>Does the scene communicate its emotional intention without spoken explanation?</li>
+                <li>Are there moments that drag, or moments that feel cut too soon?</li>
+                <li>Does the pacing feel appropriate to the genre and tone of your project?</li>
+            </ul>
+            <p>Adjust durations, reorder frames if needed, and refine until the sequence feels like it is moving with
+                purpose.</p>
+
+            <div class="deliverables-box">
+                <h3 style="margin-top: 0;">Deliverables</h3>
+                <ul>
+                    <li>Exported video file or shareable link (10 to 30 seconds)</li>
+                    <li>A short director's note (100 to 150 words) explaining the pacing choices and what emotional
+                        rhythm you aimed for</li>
+                    <li>Optional: include a brief frame-by-frame breakdown listing each shot's duration and intended
+                        effect</li>
+                </ul>
+                <p><strong>Upload to:</strong> <code>Animatic_[ProjectTitle]_[YourName]</code></p>
+            </div>
+
+            <h2>Why This Matters</h2>
+            <p>An animatic is not just a pre-production formality; it is a directorial argument. It says: this is how
+                time moves in my film. This is the rhythm I am building toward. This is what I want the audience to
+                feel, and for how long.</p>
+            <ul>
+                <li>Animatics train temporal thinking: how motion and image create rhythm</li>
+                <li>They reveal pacing problems before the edit room, when changes are cheap</li>
+                <li>They make your creative vision communicable to a crew</li>
+            </ul>
+
+            <div class="final-thought">
+                <p>A film that exists only in your head is not yet a film. An animatic is your first proof that the
+                    film is real.</p>
+            </div>
+
+            <div class="page-nav">
+                <a href="storyboard.html" class="btn">&larr; Previous: Storyboard</a>
+                <a href="shot-list.html" class="btn">Next: Shot List &rarr;</a>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Tokyo in Film.</p>
+        <div class="attribution-text">
+            <p><a href="https://chauesprinciple.github.io/Tokyo-in-Film/">Tokyo in Film</a> &copy; 2023 by <a
+                    href="https://chauesprinciple.github.io/ChauesProductions/">Robert Ladd</a> is licensed under <a
+                    href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0
+                    International</a>.</p>
+            <p><strong>Originally adapted from:</strong> <em>Moving Pictures: An Introduction to Cinema</em> by Russell
+                Sharman.</p>
+        </div>
+    </footer>
+
+    <script src="../js/glossary.js"></script>
+    <script src="../js/mobile-nav.js"></script>
+</body>
+
+</html>

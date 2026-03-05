@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pilgrimage Shots: Locating the Frame - Tokyo in Film</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../style.css?v=8">
+    <style>
+        .assignment-label {
+            display: inline-block;
+            background: rgba(255, 0, 127, 0.15);
+            border: 1px solid var(--accent-neon-pink);
+            color: var(--accent-neon-pink);
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+        .example-box {
+            background: rgba(0, 243, 255, 0.06);
+            border-left: 4px solid var(--accent-neon-cyan);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .deliverables-box {
+            background: rgba(255, 0, 127, 0.06);
+            border: 1px solid rgba(255, 0, 127, 0.3);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        .final-thought {
+            background: rgba(0, 0, 0, 0.3);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            margin-top: 3rem;
+            border-radius: 8px;
+            font-style: italic;
+            text-align: center;
+        }
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 2rem;
+            height: 2rem;
+            background: var(--accent-neon-pink);
+            color: #000;
+            font-weight: 700;
+            border-radius: 50%;
+            margin-right: 0.75rem;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+        .step-heading {
+            display: flex;
+            align-items: center;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+        }
+        .step-heading h3 { margin: 0; }
+        .location-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.9rem;
+        }
+        .location-table th {
+            background: rgba(255, 0, 127, 0.15);
+            color: var(--accent-neon-pink);
+            padding: 0.6rem 0.75rem;
+            text-align: left;
+            border: 1px solid rgba(255,255,255,0.1);
+            font-weight: 600;
+        }
+        .location-table td {
+            padding: 0.5rem 0.75rem;
+            border: 1px solid rgba(255,255,255,0.08);
+            color: #ccc;
+            vertical-align: top;
+        }
+        .location-table tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+        .location-section {
+            background: rgba(0,0,0,0.2);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 1.25rem 1.5rem;
+            margin: 1.25rem 0;
+        }
+        .location-section h4 {
+            margin: 0 0 0.75rem;
+            color: var(--accent-neon-cyan);
+        }
+        .page-nav {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .booklet-nav {
+            background: rgba(0,0,0,0.2);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .booklet-nav h4 { margin: 0 0 0.75rem; color: var(--accent-neon-cyan); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.08em; }
+        .booklet-nav-links { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .booklet-nav-links a { font-size: 0.85rem; padding: 0.3rem 0.8rem; border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; color: #ccc; text-decoration: none; }
+        .booklet-nav-links a:hover { border-color: var(--accent-neon-pink); color: var(--accent-neon-pink); }
+        .booklet-nav-links a.current { border-color: var(--accent-neon-pink); color: var(--accent-neon-pink); background: rgba(255,0,127,0.1); }
+        @media (max-width: 700px) {
+            .location-table { font-size: 0.8rem; }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="nav-brand" style="display: flex; align-items: center; gap: 1rem;">
+            <div class="logo">
+                Tokyo in Film
+                <div class="dropdown-menu">
+                    <a href="https://chauesprinciple.github.io/Tokyo-in-Film/" class="dropdown-item current">Tokyo in Film</a>
+                    <a href="https://chauesprinciple.github.io/Ancient-literature/" class="dropdown-item">Ancient Literature</a>
+                </div>
+            </div>
+            <a href="https://www.instagram.com/chaues/" target="_blank" class="ig-icon" aria-label="Instagram"></a>
+        </div>
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        </div>
+        <ul class="nav-list">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../scene-project.html">The Scene Project</a></li>
+            <li><a href="index.html" class="active">Pre-Production</a></li>
+            <li><a href="../production/index.html">Production</a></li>
+            <li><a href="../post-production/index.html">Post-Production</a></li>
+            <li><a href="../glossary.html">Glossary</a></li>
+            <li><a href="../free-guides.html">Free Guides</a></li>
+        </ul>
+    </nav>
+
+    <main class="container" style="padding-top: 100px;">
+        <span class="toc-number">1.1.5</span>
+        <div class="assignment-label">Pre-Production &bull; In-Class Activity</div>
+        <h1>Pilgrimage Shots: Locating the Frame</h1>
+        <p style="color: var(--accent-neon-cyan); font-style: italic;">In <em>Your Name</em>, <em>Tokyo Ghoul</em>, and Beyond</p>
+
+        <div class="textbook-content">
+
+            <div class="booklet-nav">
+                <h4>Pre-Production Assignments</h4>
+                <div class="booklet-nav-links">
+                    <a href="script.html">Script</a>
+                    <a href="storyboard.html">Storyboard</a>
+                    <a href="animatic.html">Animatic</a>
+                    <a href="shot-list.html">Shot List</a>
+                    <a href="pilgrimage-shots.html" class="current">Pilgrimage Shots</a>
+                </div>
+            </div>
+
+            <p>This assignment challenges you to step into the director's shoes, literally. You will visit a real Tokyo
+                location featured in <em>Your Name</em>, <em>Tokyo Ghoul</em>, or another course film that transforms
+                real space into cinematic meaning. These include <em>Tsukigakirei</em>, which frames Kawagoe's riverside
+                and school grounds with a still, observational lens to mirror adolescent hesitation; <em>Initial D</em>,
+                where Tokyo's outer mountain roads become liminal speed zones charged with nocturnal motion and
+                solitude; <em>Godzilla Minus One</em>, which renders Ginza and Shimbashi as national trauma sites
+                through axial composition and architectural rupture; <em>Kubi</em>, where Nikko's temples and Yabusame
+                grounds stage ritualized absurdity through symmetrical wide shots; and <em>The Seven Samurai</em>, which
+                uses village topography and seasonal texture to choreograph tension, community, and defense.</p>
+
+            <p>This is not about fan tourism. It is about understanding how space, architecture, and natural light
+                construct emotional and thematic weight. In anime and film, cityscapes and rural structures are not just
+                backgrounds; they are emotional scaffolding. A staircase becomes destiny. An alley becomes violence. A
+                shrine becomes judgment. A parade ground becomes the geometry of war. Your task is to return to these
+                locations with a camera and a filmmaker's eye, to uncover what these frames teach us about the language
+                of cinema.</p>
+
+            <h2>Your Goal</h2>
+            <p>Select one specific shot from <em>Your Name</em> or <em>Tokyo Ghoul</em> (or another approved course
+                film) that takes place in a real-world Tokyo location. Then recreate that image on location using one of
+                two visual strategies:</p>
+            <ul>
+                <li>A <strong>side-by-side comparison</strong>: the original film frame alongside your live photo</li>
+                <li>A <strong>postcard overlay</strong>: holding the film frame physically (or digitally) in front of
+                    the real location and aligning it to match</li>
+            </ul>
+            <p>After capturing the shot, you will write a 300 to 400 word location plan explaining how the scene uses
+                the setting to shape tone or emotion, what changed when you saw it in person, and how this space could
+                function in your own future film work.</p>
+
+            <h2>Step-by-Step Instructions</h2>
+
+            <div class="step-heading">
+                <span class="step-number">1</span>
+                <h3>Choose Your Scene</h3>
+            </div>
+            <p>Pick one of the following series and find a specific frame tied to a real location:</p>
+
+            <div style="overflow-x: auto;">
+                <table class="location-table">
+                    <thead>
+                        <tr>
+                            <th>Series / Film</th>
+                            <th>Suggested Locations</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><em>Your Name</em></td>
+                            <td>
+                                Suga Shrine Stairs (Yotsuya)<br>
+                                Yotsuya Station Exit<br>
+                                Shinanomachi pedestrian bridge<br>
+                                Shibuya Crossing<br>
+                                Caf&eacute; La Boh&eacute;me (Shinjuku)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><em>Tokyo Ghoul</em></td>
+                            <td>
+                                Rikkyo University (Kamii University)<br>
+                                Kabukicho alleyways (4th Ward)<br>
+                                Museum Caf&eacute; (Anteiku)<br>
+                                Shibuya Crossing (13th Ward)<br>
+                                Tokyo Tower / Roppongi (3rd Ward)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><em>Tsukigakirei</em></td>
+                            <td>Kawagoe (Taisho Roman Street, riverside path, local school grounds)</td>
+                        </tr>
+                        <tr>
+                            <td><em>Initial D</em></td>
+                            <td>Optional excursion. See instructor for details.</td>
+                        </tr>
+                        <tr>
+                            <td><em>Godzilla Minus One</em></td>
+                            <td>Ginza, Shimbashi, Hibiya Park</td>
+                        </tr>
+                        <tr>
+                            <td><em>Kubi</em> / <em>The Seven Samurai</em> / <em>13 Assassins</em></td>
+                            <td>Nikko and Kawagoe (see detailed breakdown below)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 style="margin-top: 2.5rem;">Nikko: For <em>Kubi</em>, <em>The Seven Samurai</em>, and <em>13 Assassins</em></h3>
+
+            <div class="location-section">
+                <h4>Shrines (Toshogu, Futarasan)</h4>
+                <p>Use the symmetry of temple approaches and gate-lined paths to mirror <em>Kubi</em>'s stylized
+                    compositions and ironic serenity before eruptions of violence. These spaces offer strong axial
+                    framing and depth of field opportunities rarely available in urban Tokyo.</p>
+            </div>
+
+            <div class="location-section">
+                <h4>Yabusame Tournament Grounds and Stables (Nikko Tamozawa Imperial Villa area)</h4>
+                <p>Ideal for capturing mounted processionals and martial ritual. Recreate the geometric rhythms seen in
+                    <em>The Seven Samurai</em>'s horse drills and <em>13 Assassins</em>'s combat rehearsal sequences.
+                    Focus on the relationship between figure, ground, and movement within a defined corridor.</p>
+            </div>
+
+            <div class="location-section">
+                <h4>Forest Pathways (between Toshogu and Kanmangafuchi Abyss)</h4>
+                <p>These winding, elevated tracks match the ambush staging in <em>13 Assassins</em>. Use low or
+                    obscured angles to evoke suspense and spatial uncertainty. The canopy and dappled light create
+                    natural contrast that mirrors the film's tonal shifts between ceremony and chaos.</p>
+            </div>
+
+            <h3 style="margin-top: 2.5rem;">Kawagoe: For <em>Kubi</em>, <em>The Seven Samurai</em>, and <em>13 Assassins</em></h3>
+
+            <div class="location-section">
+                <h4>Taisho Roman Street and Kurazukuri Zone</h4>
+                <p>These preserved Edo-era townscapes support wide-lens shots of group movement, parades, and civilian
+                    presence, reminiscent of pre-battle tension in <em>The Seven Samurai</em> and <em>13
+                    Assassins</em>. The continuous street facades create natural leading lines and depth that reward
+                    careful framing.</p>
+            </div>
+
+            <div class="location-section">
+                <h4>Warehouse District Alleyways</h4>
+                <p>Use for tighter framing and shadowed tension, well-suited to covert movement, betrayal, or duels.
+                    The compressed sightlines and irregular geometry create natural obstacles that force compositional
+                    decisions. Work with what the space denies you, not just what it offers.</p>
+            </div>
+
+            <div class="location-section">
+                <h4>Festival Routes (near Kawagoe Hikawa Shrine)</h4>
+                <p>Can be staged to evoke civic order before disruption, as seen in the lead-up to violent turns in
+                    <em>Kubi</em>. Wide shots of procession routes and shrine approaches establish the formal geometry
+                    that makes their eventual collapse emotionally legible.</p>
+            </div>
+
+            <p>Use reference images from the film or published anime pilgrimage guides to prepare your frame match
+                before arriving on location.</p>
+
+            <div class="step-heading">
+                <span class="step-number">2</span>
+                <h3>Recreate the Shot</h3>
+            </div>
+            <p>Travel to the location and capture your version of the film frame using one of these two approaches:</p>
+            <ul>
+                <li><strong>Side-by-side format</strong>: line up your live-action photo with the original frame and
+                    present them together</li>
+                <li><strong>Postcard overlay</strong>: hold the film still (printed or on a phone screen) in front of
+                    the real setting and photograph them together, aligning the composition as closely as possible</li>
+            </ul>
+            <p>Your frame does not need to be perfect. This is about angle, composition, and the translation of
+                animated or filmed emotion into real space. The gap between the original and yours is part of the
+                learning.</p>
+
+            <div class="step-heading">
+                <span class="step-number">3</span>
+                <h3>Write Your Location Plan (300 to 400 words)</h3>
+            </div>
+            <p>Address all four of the following in your written response:</p>
+            <ul>
+                <li>Why did you choose this frame?</li>
+                <li>What role does the location play in the original scene's tone, pacing, or symbolism?</li>
+                <li>What was different or surprising about seeing the space in person?</li>
+                <li>Could this location work in your own project? What kind of story would unfold here?</li>
+            </ul>
+
+            <div class="example-box">
+                <p><strong>What to look for on location:</strong> The original composition in <em>Your Name</em> uses
+                    the Suga Shrine stairs as a visual threshold, a border between worlds, ordinary life below and
+                    something unknown above. When you stand at the bottom of those stairs, ask not what they look like,
+                    but what they feel like to ascend. That feeling is the film's argument. Your job is to find it
+                    again through your own lens.</p>
+            </div>
+
+            <div class="deliverables-box">
+                <h3 style="margin-top: 0;">Deliverables</h3>
+                <ul>
+                    <li>One photographic match (side-by-side or overlay format)</li>
+                    <li>One location plan document (300 to 400 words) addressing all four required questions</li>
+                    <li>Optional: GPS pin or Google Maps link to your exact shooting location</li>
+                </ul>
+                <p><strong>Upload to:</strong> <code>LocationPilgrimage_[Film]_[YourName]</code></p>
+            </div>
+
+            <h2>Why This Matters</h2>
+            <p>Directing does not start on set; it starts in space. This assignment trains you to:</p>
+            <ul>
+                <li>Think like a location scout with a director's instinct</li>
+                <li>Understand how real-world geometry supports animated and filmed rhythm</li>
+                <li>Use framing and architecture as emotional tools before a camera is ever raised</li>
+            </ul>
+            <p>This is cinematic thinking applied to real-world geography.</p>
+
+            <div class="final-thought">
+                <p>The stairs in <em>Your Name</em> are not magic because they are animated.</p>
+                <p>They are magic because they are composed, grounded, and felt.</p>
+                <p>This assignment asks you to find that feeling again, through your lens.</p>
+            </div>
+
+            <div class="page-nav">
+                <a href="shot-list.html" class="btn">&larr; Previous: Shot List</a>
+                <a href="guide.html" class="btn">Back to 1.1 Pre-Production Stage &rarr;</a>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Tokyo in Film.</p>
+        <div class="attribution-text">
+            <p><a href="https://chauesprinciple.github.io/Tokyo-in-Film/">Tokyo in Film</a> &copy; 2023 by <a
+                    href="https://chauesprinciple.github.io/ChauesProductions/">Robert Ladd</a> is licensed under <a
+                    href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0
+                    International</a>.</p>
+            <p><strong>Originally adapted from:</strong> <em>Moving Pictures: An Introduction to Cinema</em> by Russell
+                Sharman.</p>
+        </div>
+    </footer>
+
+    <script src="../js/glossary.js"></script>
+    <script src="../js/mobile-nav.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Script: Writing the Cinematic Beat - Tokyo in Film</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../style.css?v=8">
+    <style>
+        .assignment-label {
+            display: inline-block;
+            background: rgba(255, 0, 127, 0.15);
+            border: 1px solid var(--accent-neon-pink);
+            color: var(--accent-neon-pink);
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+        .example-box {
+            background: rgba(0, 243, 255, 0.06);
+            border-left: 4px solid var(--accent-neon-cyan);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .example-box p { margin: 0.4rem 0; }
+        .bad-example { color: #ff6b6b; }
+        .good-example { color: #6bff9e; }
+        .deliverables-box {
+            background: rgba(255, 0, 127, 0.06);
+            border: 1px solid rgba(255, 0, 127, 0.3);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        .final-thought {
+            background: rgba(0, 0, 0, 0.3);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            margin-top: 3rem;
+            border-radius: 8px;
+            font-style: italic;
+            text-align: center;
+        }
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 2rem;
+            height: 2rem;
+            background: var(--accent-neon-pink);
+            color: #000;
+            font-weight: 700;
+            border-radius: 50%;
+            margin-right: 0.75rem;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+        .step-heading {
+            display: flex;
+            align-items: center;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+        }
+        .step-heading h3 { margin: 0; }
+        .page-nav {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .booklet-nav {
+            background: rgba(0,0,0,0.2);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .booklet-nav h4 { margin: 0 0 0.75rem; color: var(--accent-neon-cyan); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.08em; }
+        .booklet-nav-links { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .booklet-nav-links a { font-size: 0.85rem; padding: 0.3rem 0.8rem; border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; color: #ccc; text-decoration: none; }
+        .booklet-nav-links a:hover { border-color: var(--accent-neon-pink); color: var(--accent-neon-pink); }
+        .booklet-nav-links a.current { border-color: var(--accent-neon-pink); color: var(--accent-neon-pink); background: rgba(255,0,127,0.1); }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="nav-brand" style="display: flex; align-items: center; gap: 1rem;">
+            <div class="logo">
+                Tokyo in Film
+                <div class="dropdown-menu">
+                    <a href="https://chauesprinciple.github.io/Tokyo-in-Film/" class="dropdown-item current">Tokyo in Film</a>
+                    <a href="https://chauesprinciple.github.io/Ancient-literature/" class="dropdown-item">Ancient Literature</a>
+                </div>
+            </div>
+            <a href="https://www.instagram.com/chaues/" target="_blank" class="ig-icon" aria-label="Instagram"></a>
+        </div>
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        </div>
+        <ul class="nav-list">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../scene-project.html">The Scene Project</a></li>
+            <li><a href="index.html" class="active">Pre-Production</a></li>
+            <li><a href="../production/index.html">Production</a></li>
+            <li><a href="../post-production/index.html">Post-Production</a></li>
+            <li><a href="../glossary.html">Glossary</a></li>
+            <li><a href="../free-guides.html">Free Guides</a></li>
+        </ul>
+    </nav>
+
+    <main class="container" style="padding-top: 100px;">
+        <span class="toc-number">1.1.1</span>
+        <div class="assignment-label">Pre-Production &bull; In-Class Activity</div>
+        <h1>Script: Writing the Cinematic Beat</h1>
+
+        <div class="textbook-content">
+
+            <div class="booklet-nav">
+                <h4>Pre-Production Assignments</h4>
+                <div class="booklet-nav-links">
+                    <a href="script.html" class="current">Script</a>
+                    <a href="storyboard.html">Storyboard</a>
+                    <a href="animatic.html">Animatic</a>
+                    <a href="shot-list.html">Shot List</a>
+                    <a href="pilgrimage-shots.html">Pilgrimage Shots</a>
+                </div>
+            </div>
+
+            <p>This assignment challenges you to script a short, movement-based moment that conveys emotion or escalation
+                through precise action, physical rhythm, and camera-conscious direction. You are not writing a play. You
+                are writing for the screen, where motion, silence, and framing matter as much as words, often more.</p>
+
+            <p>Whether it is a glance held too long, a character pacing before a confession, or the slow draw of a
+                weapon, your script must guide the reader to see the film in their head. This is about controlling time,
+                space, and tone on the page, before you touch a storyboard or camera.</p>
+
+            <h2>Your Goal</h2>
+            <p>Write a brief, formatted screenplay (30 to 45 seconds) for a pivotal visual moment in your project. The
+                scene should revolve around movement, blocking, and tension-building, not extended dialogue. The goal is
+                to capture emotion through cinematic rhythm.</p>
+
+            <p>Think:</p>
+            <ul>
+                <li>A confrontation where no one says what they mean</li>
+                <li>A private breakdown in a public space</li>
+                <li>A chase that reveals character, not just momentum</li>
+            </ul>
+
+            <p>Your writing must be readable as cinema, not as prose, not as exposition. This is a director's draft,
+                not a novelist's.</p>
+
+            <h2>Step-by-Step Instructions</h2>
+
+            <div class="step-heading">
+                <span class="step-number">1</span>
+                <h3>Choose a Visual Moment</h3>
+            </div>
+            <p>Select a 30 to 45 second moment from your project that contains:</p>
+            <ul>
+                <li>A physical action or behavioral shift</li>
+                <li>Minimal or purposeful dialogue</li>
+                <li>An emotional or narrative turning point</li>
+            </ul>
+
+            <p>Example beats:</p>
+            <ul>
+                <li>A character hesitates before walking through a door</li>
+                <li>Two people almost speak, but one leaves first</li>
+                <li>Someone prepares a space for something that never happens</li>
+            </ul>
+
+            <div class="step-heading">
+                <span class="step-number">2</span>
+                <h3>Write the Scene in Screenplay Format</h3>
+            </div>
+            <p>Use standard screenplay formatting. Tools like Celtx, Arc Studio, or WriterDuet (free versions) will
+                help.</p>
+
+            <p>What to include:</p>
+            <ul>
+                <li>Sluglines (INT./EXT., time of day)</li>
+                <li>Action lines (short, visual, cinematic)</li>
+                <li>Minimal dialogue, only when essential</li>
+                <li>Character behavior: physical choices, posture, glance, pacing</li>
+                <li>Sound and space: when relevant, note ambient tension (e.g., distant train horn, flickering lights)</li>
+            </ul>
+
+            <div class="example-box">
+                <p class="bad-example"><strong>Weak example:</strong> &ldquo;She is nervous and sad.&rdquo;</p>
+                <p class="good-example"><strong>Strong example:</strong> &ldquo;She adjusts her jacket again. A third time. Does not move.&rdquo;</p>
+            </div>
+
+            <p>Your job is to suggest the film, not describe it.</p>
+
+            <div class="deliverables-box">
+                <h3 style="margin-top: 0;">Deliverables</h3>
+                <ul>
+                    <li>A PDF or formatted script of one scene (30 to 45 seconds)</li>
+                    <li>Optional: a 100-word reflection on how movement and silence are doing the storytelling</li>
+                </ul>
+                <p><strong>Upload to:</strong> <code>Script_[SceneTitle]_[YourName]</code></p>
+            </div>
+
+            <h2>Why This Matters</h2>
+            <p>Before you shoot a scene, you must write it clearly enough that others can see it, feel it, before it is
+                real. This assignment builds:</p>
+            <ul>
+                <li>Spatial writing discipline</li>
+                <li>Cinematic tempo</li>
+                <li>Visual emotional control</li>
+            </ul>
+            <p>If your script can be sketched, scored, or cut, it is working.</p>
+
+            <div class="final-thought">
+                <p>A great scene does not begin with dialogue. It begins with a choice, a movement, a pause. Film it
+                    first in the reader's mind.</p>
+                <p>That is the script's job.</p>
+            </div>
+
+            <div class="page-nav">
+                <a href="guide.html" class="btn">&larr; Back to 1.1 Pre-Production Stage</a>
+                <a href="storyboard.html" class="btn">Next: Storyboard &rarr;</a>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Tokyo in Film.</p>
+        <div class="attribution-text">
+            <p><a href="https://chauesprinciple.github.io/Tokyo-in-Film/">Tokyo in Film</a> &copy; 2023 by <a
+                    href="https://chauesprinciple.github.io/ChauesProductions/">Robert Ladd</a> is licensed under <a
+                    href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0
+                    International</a>.</p>
+            <p><strong>Originally adapted from:</strong> <em>Moving Pictures: An Introduction to Cinema</em> by Russell
+                Sharman.</p>
+        </div>
+    </footer>
+
+    <script src="../js/glossary.js"></script>
+    <script src="../js/mobile-nav.js"></script>
+</body>
+
+</html>

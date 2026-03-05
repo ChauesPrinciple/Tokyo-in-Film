@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Storyboard: Visualizing a Movement-Driven Scene - Tokyo in Film</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../style.css?v=8">
+    <style>
+        .assignment-label {
+            display: inline-block;
+            background: rgba(255, 0, 127, 0.15);
+            border: 1px solid var(--accent-neon-pink);
+            color: var(--accent-neon-pink);
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+        .example-box {
+            background: rgba(0, 243, 255, 0.06);
+            border-left: 4px solid var(--accent-neon-cyan);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .deliverables-box {
+            background: rgba(255, 0, 127, 0.06);
+            border: 1px solid rgba(255, 0, 127, 0.3);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        .final-thought {
+            background: rgba(0, 0, 0, 0.3);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            margin-top: 3rem;
+            border-radius: 8px;
+            font-style: italic;
+            text-align: center;
+        }
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 2rem;
+            height: 2rem;
+            background: var(--accent-neon-pink);
+            color: #000;
+            font-weight: 700;
+            border-radius: 50%;
+            margin-right: 0.75rem;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+        .step-heading {
+            display: flex;
+            align-items: center;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+        }
+        .step-heading h3 { margin: 0; }
+        .format-option {
+            background: rgba(0,0,0,0.2);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 1.25rem 1.5rem;
+            margin: 1rem 0;
+        }
+        .format-option h4 { margin: 0 0 0.75rem; color: var(--accent-neon-cyan); }
+        .page-nav {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .booklet-nav {
+            background: rgba(0,0,0,0.2);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .booklet-nav h4 { margin: 0 0 0.75rem; color: var(--accent-neon-cyan); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.08em; }
+        .booklet-nav-links { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .booklet-nav-links a { font-size: 0.85rem; padding: 0.3rem 0.8rem; border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; color: #ccc; text-decoration: none; }
+        .booklet-nav-links a:hover { border-color: var(--accent-neon-pink); color: var(--accent-neon-pink); }
+        .booklet-nav-links a.current { border-color: var(--accent-neon-pink); color: var(--accent-neon-pink); background: rgba(255,0,127,0.1); }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="nav-brand" style="display: flex; align-items: center; gap: 1rem;">
+            <div class="logo">
+                Tokyo in Film
+                <div class="dropdown-menu">
+                    <a href="https://chauesprinciple.github.io/Tokyo-in-Film/" class="dropdown-item current">Tokyo in Film</a>
+                    <a href="https://chauesprinciple.github.io/Ancient-literature/" class="dropdown-item">Ancient Literature</a>
+                </div>
+            </div>
+            <a href="https://www.instagram.com/chaues/" target="_blank" class="ig-icon" aria-label="Instagram"></a>
+        </div>
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        </div>
+        <ul class="nav-list">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../scene-project.html">The Scene Project</a></li>
+            <li><a href="index.html" class="active">Pre-Production</a></li>
+            <li><a href="../production/index.html">Production</a></li>
+            <li><a href="../post-production/index.html">Post-Production</a></li>
+            <li><a href="../glossary.html">Glossary</a></li>
+            <li><a href="../free-guides.html">Free Guides</a></li>
+        </ul>
+    </nav>
+
+    <main class="container" style="padding-top: 100px;">
+        <span class="toc-number">1.1.2</span>
+        <div class="assignment-label">Pre-Production &bull; In-Class Activity</div>
+        <h1>Storyboard: Visualizing a Movement-Driven Scene</h1>
+
+        <div class="textbook-content">
+
+            <div class="booklet-nav">
+                <h4>Pre-Production Assignments</h4>
+                <div class="booklet-nav-links">
+                    <a href="script.html">Script</a>
+                    <a href="storyboard.html" class="current">Storyboard</a>
+                    <a href="animatic.html">Animatic</a>
+                    <a href="shot-list.html">Shot List</a>
+                    <a href="pilgrimage-shots.html">Pilgrimage Shots</a>
+                </div>
+            </div>
+
+            <p>This assignment challenges you to develop a cinematic visual blueprint for one of your film's key
+                sequences. Using storyboarding techniques, you will translate your scene into a series of visual beats,
+                emphasizing framing, character motion, and camera movement. The goal is to pre-visualize how the story
+                unfolds on screen, beat by beat, before the camera ever rolls.</p>
+
+            <p>Whether you are staging a moment of urgency, hesitation, confrontation, or revelation, this task demands
+                clarity of vision and precision of execution. In animation, storyboards provide the skeleton. In
+                live-action, they serve as a visual contract between director, DP, and crew. Your frames are not
+                sketches for sketching's sake; they are instructions, decisions, and cinematic intentions.</p>
+
+            <h2>Your Goal</h2>
+            <p>Select a 20 to 30 second movement-based scene from your own short film project. This may be a chase, a
+                procession, an emotionally loaded walk, or a character's physical reaction to space or another person.
+                You will break the scene into 6 to 8 storyboard frames, clearly visualizing how the camera frames the
+                action and why the movement matters.</p>
+
+            <p>You are not illustrating the script; you are designing the film.</p>
+
+            <h2>Step-by-Step Instructions</h2>
+
+            <div class="step-heading">
+                <span class="step-number">1</span>
+                <h3>Choose Your Scene</h3>
+            </div>
+            <p>Pick a 20 to 30 second section of your film that revolves around motion or physical behavior. Avoid
+                dialogue-heavy static scenes. Prioritize sequences where blocking, pacing, and framing carry meaning.</p>
+
+            <div class="example-box">
+                <p><strong>Examples from course films:</strong></p>
+                <ul>
+                    <li>A character walks through a crowd, isolated and ignored (<em>Adrift in Tokyo</em>)</li>
+                    <li>A confrontation escalates without words (<em>13 Assassins</em>)</li>
+                    <li>A character throws open a door and runs into the night (<em>Your Name</em>)</li>
+                </ul>
+            </div>
+
+            <div class="step-heading">
+                <span class="step-number">2</span>
+                <h3>Break Down the Sequence</h3>
+            </div>
+            <p>Identify key action beats and camera perspectives. Ask:</p>
+            <ul>
+                <li>Where does the character start and end?</li>
+                <li>What does the camera need to see, and when?</li>
+                <li>Where should we cut, or hold?</li>
+            </ul>
+            <p>Focus on intentional framing: when do we go wide to show space? When do we go tight to show emotion?</p>
+
+            <div class="step-heading">
+                <span class="step-number">3</span>
+                <h3>Create Your Storyboard</h3>
+            </div>
+            <p>Produce 6 to 8 sequential frames, clearly drawn and annotated with:</p>
+            <ul>
+                <li>Shot type and camera angle</li>
+                <li>Camera movement (dolly, pan, static)</li>
+                <li>Subject movement</li>
+                <li>Environmental or lighting cues (if relevant)</li>
+                <li>One action note per frame</li>
+            </ul>
+
+            <div class="deliverables-box">
+                <h3 style="margin-top: 0;">Deliverables</h3>
+                <ul>
+                    <li>PDF or scanned storyboard images with annotations (6 to 8 frames)</li>
+                    <li>A short director's note (100 to 150 words) explaining why this scene was chosen and what
+                        visual and emotional rhythm you are aiming for</li>
+                </ul>
+                <p><strong>Upload to:</strong> <code>Storyboard_[ProjectTitle]_[YourName]</code></p>
+            </div>
+
+            <h2>Why This Matters</h2>
+            <p>This is not concept art. It is a directorial pre-visualization tool.</p>
+            <ul>
+                <li>Storyboarding teaches clarity of visual intention</li>
+                <li>Frames make your film communicable to collaborators and executable on set</li>
+                <li>Visual planning separates reactive shooting from deliberate directing</li>
+            </ul>
+            <p>A film that exists only in your head is not yet a film.</p>
+
+            <div class="final-thought">
+                <p>Motion is only cinematic if it is seen with intention. A glance. A step. A slide. A pause.</p>
+                <p>Frame it. Anchor it. Decide it.</p>
+            </div>
+
+            <div class="page-nav">
+                <a href="script.html" class="btn">&larr; Previous: Script</a>
+                <a href="animatic.html" class="btn">Next: Animatic &rarr;</a>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Tokyo in Film.</p>
+        <div class="attribution-text">
+            <p><a href="https://chauesprinciple.github.io/Tokyo-in-Film/">Tokyo in Film</a> &copy; 2023 by <a
+                    href="https://chauesprinciple.github.io/ChauesProductions/">Robert Ladd</a> is licensed under <a
+                    href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0
+                    International</a>.</p>
+            <p><strong>Originally adapted from:</strong> <em>Moving Pictures: An Introduction to Cinema</em> by Russell
+                Sharman.</p>
+        </div>
+    </footer>
+
+    <script src="../js/glossary.js"></script>
+    <script src="../js/mobile-nav.js"></script>
+</body>
+
+</html>

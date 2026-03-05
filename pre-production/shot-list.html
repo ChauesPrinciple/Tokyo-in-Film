@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shot List: Structuring a Scene Through Visual Logic - Tokyo in Film</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../style.css?v=8">
+    <style>
+        .assignment-label {
+            display: inline-block;
+            background: rgba(255, 0, 127, 0.15);
+            border: 1px solid var(--accent-neon-pink);
+            color: var(--accent-neon-pink);
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+        .example-box {
+            background: rgba(0, 243, 255, 0.06);
+            border-left: 4px solid var(--accent-neon-cyan);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .deliverables-box {
+            background: rgba(255, 0, 127, 0.06);
+            border: 1px solid rgba(255, 0, 127, 0.3);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        .final-thought {
+            background: rgba(0, 0, 0, 0.3);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            margin-top: 3rem;
+            border-radius: 8px;
+            font-style: italic;
+            text-align: center;
+        }
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 2rem;
+            height: 2rem;
+            background: var(--accent-neon-pink);
+            color: #000;
+            font-weight: 700;
+            border-radius: 50%;
+            margin-right: 0.75rem;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+        .step-heading {
+            display: flex;
+            align-items: center;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+        }
+        .step-heading h3 { margin: 0; }
+        .shot-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.9rem;
+        }
+        .shot-table th {
+            background: rgba(255, 0, 127, 0.15);
+            color: var(--accent-neon-pink);
+            padding: 0.6rem 0.75rem;
+            text-align: left;
+            border: 1px solid rgba(255,255,255,0.1);
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        .shot-table td {
+            padding: 0.5rem 0.75rem;
+            border: 1px solid rgba(255,255,255,0.08);
+            color: #ccc;
+            vertical-align: top;
+        }
+        .shot-table tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+        .shot-table tr.empty td { height: 2.5rem; color: rgba(255,255,255,0.15); font-style: italic; }
+        .page-nav {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .booklet-nav {
+            background: rgba(0,0,0,0.2);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .booklet-nav h4 { margin: 0 0 0.75rem; color: var(--accent-neon-cyan); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.08em; }
+        .booklet-nav-links { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .booklet-nav-links a { font-size: 0.85rem; padding: 0.3rem 0.8rem; border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; color: #ccc; text-decoration: none; }
+        .booklet-nav-links a:hover { border-color: var(--accent-neon-pink); color: var(--accent-neon-pink); }
+        .booklet-nav-links a.current { border-color: var(--accent-neon-pink); color: var(--accent-neon-pink); background: rgba(255,0,127,0.1); }
+        @media (max-width: 700px) {
+            .shot-table { font-size: 0.78rem; }
+            .shot-table th, .shot-table td { padding: 0.4rem 0.5rem; }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="nav-brand" style="display: flex; align-items: center; gap: 1rem;">
+            <div class="logo">
+                Tokyo in Film
+                <div class="dropdown-menu">
+                    <a href="https://chauesprinciple.github.io/Tokyo-in-Film/" class="dropdown-item current">Tokyo in Film</a>
+                    <a href="https://chauesprinciple.github.io/Ancient-literature/" class="dropdown-item">Ancient Literature</a>
+                </div>
+            </div>
+            <a href="https://www.instagram.com/chaues/" target="_blank" class="ig-icon" aria-label="Instagram"></a>
+        </div>
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        </div>
+        <ul class="nav-list">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../scene-project.html">The Scene Project</a></li>
+            <li><a href="index.html" class="active">Pre-Production</a></li>
+            <li><a href="../production/index.html">Production</a></li>
+            <li><a href="../post-production/index.html">Post-Production</a></li>
+            <li><a href="../glossary.html">Glossary</a></li>
+            <li><a href="../free-guides.html">Free Guides</a></li>
+        </ul>
+    </nav>
+
+    <main class="container" style="padding-top: 100px;">
+        <span class="toc-number">1.1.4</span>
+        <div class="assignment-label">Pre-Production &bull; In-Class Activity</div>
+        <h1>Shot List: Structuring a Scene Through Visual Logic</h1>
+
+        <div class="textbook-content">
+
+            <div class="booklet-nav">
+                <h4>Pre-Production Assignments</h4>
+                <div class="booklet-nav-links">
+                    <a href="script.html">Script</a>
+                    <a href="storyboard.html">Storyboard</a>
+                    <a href="animatic.html">Animatic</a>
+                    <a href="shot-list.html" class="current">Shot List</a>
+                    <a href="pilgrimage-shots.html">Pilgrimage Shots</a>
+                </div>
+            </div>
+
+            <p>A film is not made in the moment of inspiration; it is built, brick by brick, shot by shot. This
+                assignment challenges you to create a detailed shot list for one of your scene's key moments,
+                transforming your ideas into an executable visual sequence.</p>
+
+            <p>A great shot list is more than a checklist; it is a structural score. It defines rhythm, frames
+                emotional tone, and ensures that your coverage is purposeful, not reactive. Every shot is a decision
+                about what the audience sees, when, and how.</p>
+
+            <h2>Your Goal</h2>
+            <p>Select a 20 to 30 second segment of your short film where visual coverage shapes mood or momentum. Your
+                task is to build a professional-caliber shot list that breaks this moment into discrete, carefully
+                chosen camera setups.</p>
+
+            <p>The shot list must account for:</p>
+            <ul>
+                <li>Framing and angle</li>
+                <li>Camera movement (or stillness)</li>
+                <li>Duration and pacing</li>
+                <li>Action and performance cues</li>
+            </ul>
+            <p>Your goal is to make the scene cuttable before it is shot.</p>
+
+            <h2>Step-by-Step Instructions</h2>
+
+            <div class="step-heading">
+                <span class="step-number">1</span>
+                <h3>Choose Your Sequence</h3>
+            </div>
+            <p>Select a scene or beat that includes meaningful movement, gesture, or emotional progression. This could
+                be:</p>
+            <ul>
+                <li>A walk through an emotionally charged space (<em>Shoplifters</em>, <em>Tsukigakirei</em>)</li>
+                <li>A tense face-off (<em>Kubi</em>, <em>13 Assassins</em>)</li>
+                <li>A moment of urban disorientation (<em>Spirited Away</em>, <em>Jujutsu Kaisen</em>)</li>
+            </ul>
+            <p>Avoid scenes that rely only on static two-shots or dialogue coverage.</p>
+
+            <div class="step-heading">
+                <span class="step-number">2</span>
+                <h3>Break Down the Scene into Shots</h3>
+            </div>
+            <p>Create a shot list table using the five columns below. Include at least 8 to 10 shots, covering both
+                performance beats and spatial logic.</p>
+
+            <div style="overflow-x: auto;">
+                <table class="shot-table">
+                    <thead>
+                        <tr>
+                            <th>Shot #</th>
+                            <th>Shot Type / Framing</th>
+                            <th>Camera Movement</th>
+                            <th>Duration (approx.)</th>
+                            <th>Action / Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Medium Close-Up</td>
+                            <td>Static</td>
+                            <td>4 sec</td>
+                            <td>Character wipes blood from lip, looks offscreen</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Over-the-Shoulder</td>
+                            <td>Dolly in</td>
+                            <td>3 sec</td>
+                            <td>Subject approaches slowly, eyes fixed</td>
+                        </tr>
+                        <tr class="empty"><td>3</td><td></td><td></td><td></td><td></td></tr>
+                        <tr class="empty"><td>4</td><td></td><td></td><td></td><td></td></tr>
+                        <tr class="empty"><td>5</td><td></td><td></td><td></td><td></td></tr>
+                        <tr class="empty"><td>6</td><td></td><td></td><td></td><td></td></tr>
+                        <tr class="empty"><td>7</td><td></td><td></td><td></td><td></td></tr>
+                        <tr class="empty"><td>8</td><td></td><td></td><td></td><td></td></tr>
+                        <tr class="empty"><td>9</td><td></td><td></td><td></td><td></td></tr>
+                        <tr class="empty"><td>10</td><td></td><td></td><td></td><td></td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p>As you build your list, pay attention to:</p>
+            <ul>
+                <li><strong>Axis of action</strong>: do you keep it, or cross it deliberately?</li>
+                <li><strong>Cut rhythm</strong>: when do you linger, when do you shift?</li>
+                <li><strong>Foreground vs. background activation</strong>: where is the visual energy in each frame?</li>
+            </ul>
+
+            <div class="step-heading">
+                <span class="step-number">3</span>
+                <h3>Consider Spatial and Emotional Progression</h3>
+            </div>
+            <p>Do not just list shots; think through the scene as a whole:</p>
+            <ul>
+                <li>What begins wide and tightens toward the emotional peak?</li>
+                <li>When does the camera mirror or oppose the character's psychology?</li>
+                <li>Are transitions clean, or deliberately jarring?</li>
+            </ul>
+
+            <div class="example-box">
+                <p><strong>Coverage strategy example:</strong> Open wide to establish space and power dynamics. Cut to
+                    a medium on the dominant figure. Hold on the subordinate's reaction in close-up. Widen again only
+                    when the power shifts. Every change in frame size should mean something.</p>
+            </div>
+
+            <div class="deliverables-box">
+                <h3 style="margin-top: 0;">Deliverables</h3>
+                <ul>
+                    <li>One shot list table (PDF or doc format) with at least 8 shots and all five columns completed</li>
+                    <li>Clear, readable formatting</li>
+                    <li>Optional: a 100-word note on your coverage strategy, how your camera moves (or does not), and
+                        why</li>
+                </ul>
+                <p><strong>Upload to:</strong> <code>Shotlist_[ProjectTitle]_[YourName]</code></p>
+            </div>
+
+            <h2>Why This Matters</h2>
+            <p>A well-structured shot list does more than map the scene; it directs the energy. It defines whether a
+                moment stutters or flows, isolates or entangles. This is not busywork; it is the groundwork of
+                directing.</p>
+            <p>If your film cannot be broken down into shots, it cannot yet be shot.</p>
+
+            <div class="final-thought">
+                <p>Every shot is a verb. It asks a question: What do we show? Who sees it? When do we cut, and why?</p>
+                <p>If you can answer that, you are thinking like a director.</p>
+            </div>
+
+            <div class="page-nav">
+                <a href="animatic.html" class="btn">&larr; Previous: Animatic</a>
+                <a href="pilgrimage-shots.html" class="btn">Next: Pilgrimage Shots &rarr;</a>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Tokyo in Film.</p>
+        <div class="attribution-text">
+            <p><a href="https://chauesprinciple.github.io/Tokyo-in-Film/">Tokyo in Film</a> &copy; 2023 by <a
+                    href="https://chauesprinciple.github.io/ChauesProductions/">Robert Ladd</a> is licensed under <a
+                    href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0
+                    International</a>.</p>
+            <p><strong>Originally adapted from:</strong> <em>Moving Pictures: An Introduction to Cinema</em> by Russell
+                Sharman.</p>
+        </div>
+    </footer>
+
+    <script src="../js/glossary.js"></script>
+    <script src="../js/mobile-nav.js"></script>
+</body>
+
+</html>
