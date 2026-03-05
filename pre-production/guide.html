@@ -92,9 +92,8 @@
             <div class="assign-tabs">
                 <div class="assign-tab active" onclick="showAssign('script')">Script</div>
                 <div class="assign-tab" onclick="showAssign('storyboard')">Storyboard</div>
-                <div class="assign-tab" onclick="showAssign('animatic')">Animatic</div>
                 <div class="assign-tab" onclick="showAssign('shotlist')">Shot List</div>
-                <div class="assign-tab" onclick="showAssign('pilgrimage')">Pilgrimage Shots</div>
+                <div class="assign-tab" onclick="showAssign('animatic')">Animatic <span style="font-size:0.75rem; color:var(--accent-neon-cyan); font-weight:400;">(Advanced)</span></div>
             </div>
 
             <div class="assign-panels">
@@ -183,7 +182,7 @@
                         dialogue-heavy static scenes. Prioritize sequences where blocking, pacing, and framing carry
                         meaning. Examples from course films:</p>
                     <ul>
-                        <li>A character walks through a crowd, isolated and ignored (<em>Adrift in Tokyo</em>)</li>
+                        <li>A character moves through a crowded market, present but invisible to those around them (<em>Shoplifters</em>)</li>
                         <li>A confrontation escalates without words (<em>13 Assassins</em>)</li>
                         <li>A character throws open a door and runs into the night (<em>Your Name</em>)</li>
                     </ul>
@@ -221,9 +220,79 @@
                         slide. A pause. Frame it. Anchor it. Decide it.</div>
                 </div>
 
-                <!-- ANIMATIC -->
+                <!-- SHOT LIST -->
+                <div class="assign-panel" id="assign-shotlist">
+                    <p><em>Structuring a Scene Through Visual Logic</em></p>
+                    <p>A film is not made in the moment of inspiration; it is built, brick by brick, shot by shot. This
+                        assignment challenges you to create a detailed shot list for one of your scene's key moments,
+                        transforming your ideas into an executable visual sequence.</p>
+                    <p>A great shot list is more than a checklist; it is a structural score. It defines rhythm, frames
+                        emotional tone, and ensures that your coverage is purposeful, not reactive. Every shot is a
+                        decision about what the audience sees, when, and how.</p>
+
+                    <h3>Your Goal</h3>
+                    <p>Select a 20 to 30 second segment where visual coverage shapes mood or momentum. Build a
+                        professional shot list that breaks this moment into discrete, carefully chosen camera setups
+                        accounting for: framing and angle, camera movement (or stillness), duration and pacing, and
+                        action and performance cues. Make the scene cuttable before it is shot.</p>
+
+                    <h3>Step-by-Step Instructions</h3>
+                    <div class="step-row"><span class="step-num">1</span><h4>Choose Your Sequence</h4></div>
+                    <p>Select a scene with meaningful movement, gesture, or emotional progression. Options:</p>
+                    <ul>
+                        <li>A walk through an emotionally charged space (<em>Shoplifters</em>, <em>Tsukigakirei</em>)</li>
+                        <li>A tense face-off (<em>Kubi</em>, <em>13 Assassins</em>)</li>
+                        <li>A moment of urban disorientation (<em>Spirited Away</em>, <em>Tokyo Ghoul</em>)</li>
+                    </ul>
+                    <p>Avoid scenes that rely only on static two-shots or dialogue coverage.</p>
+
+                    <div class="step-row"><span class="step-num">2</span><h4>Build Your Shot List Table</h4></div>
+                    <p>Include at least 8 to 10 shots. Use these five columns:</p>
+                    <div style="overflow-x:auto;">
+                        <table class="shot-table">
+                            <thead>
+                                <tr>
+                                    <th>Shot #</th><th>Shot Type / Framing</th><th>Camera Movement</th><th>Duration</th><th>Action / Notes</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>1</td><td>Medium Close-Up</td><td>Static</td><td>4 sec</td><td>Character wipes blood from lip, looks offscreen</td></tr>
+                                <tr><td>2</td><td>Over-the-Shoulder</td><td>Dolly in</td><td>3 sec</td><td>Subject approaches slowly, eyes fixed</td></tr>
+                                <tr class="empty"><td>3</td><td></td><td></td><td></td><td></td></tr>
+                                <tr class="empty"><td>4</td><td></td><td></td><td></td><td></td></tr>
+                                <tr class="empty"><td>5</td><td></td><td></td><td></td><td></td></tr>
+                                <tr class="empty"><td>6</td><td></td><td></td><td></td><td></td></tr>
+                                <tr class="empty"><td>7</td><td></td><td></td><td></td><td></td></tr>
+                                <tr class="empty"><td>8</td><td></td><td></td><td></td><td></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>Pay attention to: axis of action (keep or cross it?), cut rhythm (when do you linger, when do you
+                        shift?), and foreground vs. background activation.</p>
+
+                    <div class="step-row"><span class="step-num">3</span><h4>Consider Spatial and Emotional Progression</h4></div>
+                    <p>What begins wide and tightens? When does the camera mirror or oppose the character's psychology?
+                        Are transitions clean, or deliberately jarring?</p>
+
+                    <div class="assign-del">
+                        <h4>Deliverables</h4>
+                        <ul>
+                            <li>Shot list table, PDF or doc format, at least 8 shots, all five columns complete</li>
+                            <li>Optional: 100-word note on your coverage strategy</li>
+                        </ul>
+                        <p style="margin-bottom:0;"><strong>Upload to:</strong> <code>Shotlist_[ProjectTitle]_[YourName]</code></p>
+                    </div>
+
+                    <h3>Why This Matters</h3>
+                    <p>A well-structured shot list directs the energy. It defines whether a moment stutters or flows,
+                        isolates or entangles. If your film cannot be broken down into shots, it cannot yet be shot.</p>
+                    <div class="final-note">Every shot is a verb. It asks: What do we show? Who sees it? When do we
+                        cut, and why? If you can answer that, you are thinking like a director.</div>
+                </div>
+
+                <!-- ANIMATIC (ADVANCED) -->
                 <div class="assign-panel" id="assign-animatic">
-                    <p><em>Timing the Visual Beat &mdash; Advanced Option</em></p>
+                    <p><em>Timing the Visual Beat (Advanced Option)</em></p>
                     <p>An animatic is the next step beyond a storyboard. Where a storyboard defines what the camera
                         sees, an animatic defines <em>when</em> it sees it, and for how long. You are building a rough,
                         timed version of your film before a single frame is shot. Used in animation, commercials, and
@@ -279,162 +348,6 @@
                         your first proof that the film is real.</p>
                 </div>
 
-                <!-- SHOT LIST -->
-                <div class="assign-panel" id="assign-shotlist">
-                    <p><em>Structuring a Scene Through Visual Logic</em></p>
-                    <p>A film is not made in the moment of inspiration; it is built, brick by brick, shot by shot. This
-                        assignment challenges you to create a detailed shot list for one of your scene's key moments,
-                        transforming your ideas into an executable visual sequence.</p>
-                    <p>A great shot list is more than a checklist; it is a structural score. It defines rhythm, frames
-                        emotional tone, and ensures that your coverage is purposeful, not reactive. Every shot is a
-                        decision about what the audience sees, when, and how.</p>
-
-                    <h3>Your Goal</h3>
-                    <p>Select a 20 to 30 second segment where visual coverage shapes mood or momentum. Build a
-                        professional shot list that breaks this moment into discrete, carefully chosen camera setups
-                        accounting for: framing and angle, camera movement (or stillness), duration and pacing, and
-                        action and performance cues. Make the scene cuttable before it is shot.</p>
-
-                    <h3>Step-by-Step Instructions</h3>
-                    <div class="step-row"><span class="step-num">1</span><h4>Choose Your Sequence</h4></div>
-                    <p>Select a scene with meaningful movement, gesture, or emotional progression. Options:</p>
-                    <ul>
-                        <li>A walk through an emotionally charged space (<em>Shoplifters</em>, <em>Tsukigakirei</em>)</li>
-                        <li>A tense face-off (<em>Kubi</em>, <em>13 Assassins</em>)</li>
-                        <li>A moment of urban disorientation (<em>Spirited Away</em>, <em>Jujutsu Kaisen</em>)</li>
-                    </ul>
-                    <p>Avoid scenes that rely only on static two-shots or dialogue coverage.</p>
-
-                    <div class="step-row"><span class="step-num">2</span><h4>Build Your Shot List Table</h4></div>
-                    <p>Include at least 8 to 10 shots. Use these five columns:</p>
-                    <div style="overflow-x:auto;">
-                        <table class="shot-table">
-                            <thead>
-                                <tr>
-                                    <th>Shot #</th><th>Shot Type / Framing</th><th>Camera Movement</th><th>Duration</th><th>Action / Notes</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr><td>1</td><td>Medium Close-Up</td><td>Static</td><td>4 sec</td><td>Character wipes blood from lip, looks offscreen</td></tr>
-                                <tr><td>2</td><td>Over-the-Shoulder</td><td>Dolly in</td><td>3 sec</td><td>Subject approaches slowly, eyes fixed</td></tr>
-                                <tr class="empty"><td>3</td><td></td><td></td><td></td><td></td></tr>
-                                <tr class="empty"><td>4</td><td></td><td></td><td></td><td></td></tr>
-                                <tr class="empty"><td>5</td><td></td><td></td><td></td><td></td></tr>
-                                <tr class="empty"><td>6</td><td></td><td></td><td></td><td></td></tr>
-                                <tr class="empty"><td>7</td><td></td><td></td><td></td><td></td></tr>
-                                <tr class="empty"><td>8</td><td></td><td></td><td></td><td></td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <p>Pay attention to: axis of action (keep or cross it?), cut rhythm (when do you linger, when do you
-                        shift?), and foreground vs. background activation.</p>
-
-                    <div class="step-row"><span class="step-num">3</span><h4>Consider Spatial and Emotional Progression</h4></div>
-                    <p>What begins wide and tightens? When does the camera mirror or oppose the character's psychology?
-                        Are transitions clean, or deliberately jarring?</p>
-
-                    <div class="assign-del">
-                        <h4>Deliverables</h4>
-                        <ul>
-                            <li>Shot list table, PDF or doc format, at least 8 shots, all five columns complete</li>
-                            <li>Optional: 100-word note on your coverage strategy</li>
-                        </ul>
-                        <p style="margin-bottom:0;"><strong>Upload to:</strong> <code>Shotlist_[ProjectTitle]_[YourName]</code></p>
-                    </div>
-
-                    <h3>Why This Matters</h3>
-                    <p>A well-structured shot list directs the energy. It defines whether a moment stutters or flows,
-                        isolates or entangles. If your film cannot be broken down into shots, it cannot yet be shot.</p>
-                    <div class="final-note">Every shot is a verb. It asks: What do we show? Who sees it? When do we
-                        cut, and why? If you can answer that, you are thinking like a director.</div>
-                </div>
-
-                <!-- PILGRIMAGE SHOTS -->
-                <div class="assign-panel" id="assign-pilgrimage">
-                    <p><em>Locating the Frame in <em>Your Name</em>, <em>Tokyo Ghoul</em>, and Beyond</em></p>
-                    <p>You will visit a real Tokyo location featured in <em>Your Name</em>, <em>Tokyo Ghoul</em>, or
-                        another course film that transforms real space into cinematic meaning. These include
-                        <em>Tsukigakirei</em>, which frames Kawagoe's riverside and school grounds with a still,
-                        observational lens to mirror adolescent hesitation; <em>Initial D</em>, where Tokyo's outer
-                        mountain roads become liminal speed zones charged with nocturnal motion and solitude;
-                        <em>Godzilla Minus One</em>, which renders Ginza and Shimbashi as national trauma sites through
-                        axial composition and architectural rupture; <em>Kubi</em>, where Nikko's temples and Yabusame
-                        grounds stage ritualized absurdity through symmetrical wide shots; and <em>The Seven
-                        Samurai</em>, which uses village topography and seasonal texture to choreograph tension,
-                        community, and defense.</p>
-                    <p>This is not about fan tourism. It is about understanding how space, architecture, and natural
-                        light construct emotional and thematic weight. A staircase becomes destiny. An alley becomes
-                        violence. A shrine becomes judgment. Your task is to return to these locations with a camera
-                        and a filmmaker's eye.</p>
-
-                    <h3>Your Goal</h3>
-                    <p>Select one specific shot from a course film that takes place in a real-world Tokyo location. Then
-                        recreate that image on location using one of two strategies:</p>
-                    <ul>
-                        <li><strong>Side-by-side comparison:</strong> the original film frame alongside your live photo</li>
-                        <li><strong>Postcard overlay:</strong> hold the film frame (physically or digitally) in front of
-                            the real location and align it to match</li>
-                    </ul>
-                    <p>After capturing the shot, write a 300 to 400 word location plan.</p>
-
-                    <h3>Step-by-Step Instructions</h3>
-                    <div class="step-row"><span class="step-num">1</span><h4>Choose Your Scene</h4></div>
-                    <div style="overflow-x:auto;">
-                        <table class="loc-table">
-                            <thead><tr><th>Series / Film</th><th>Suggested Locations</th></tr></thead>
-                            <tbody>
-                                <tr><td><em>Your Name</em></td><td>Suga Shrine Stairs (Yotsuya) &bull; Yotsuya Station Exit &bull; Shinanomachi pedestrian bridge &bull; Shibuya Crossing &bull; Caf&eacute; La Boh&eacute;me (Shinjuku)</td></tr>
-                                <tr><td><em>Tokyo Ghoul</em></td><td>Rikkyo University (Kamii University) &bull; Kabukicho alleyways (4th Ward) &bull; Museum Caf&eacute; (Anteiku) &bull; Shibuya Crossing (13th Ward) &bull; Tokyo Tower / Roppongi (3rd Ward)</td></tr>
-                                <tr><td><em>Tsukigakirei</em></td><td>Kawagoe (Taisho Roman Street, riverside path, local school grounds)</td></tr>
-                                <tr><td><em>Initial D</em></td><td>Optional excursion. See instructor.</td></tr>
-                                <tr><td><em>Godzilla Minus One</em></td><td>Ginza &bull; Shimbashi &bull; Hibiya Park</td></tr>
-                                <tr><td><em>Kubi / Seven Samurai / 13 Assassins</em></td><td>Nikko and Kawagoe (see breakdown below)</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <p><strong>Nikko</strong> (for <em>Kubi</em>, <em>Seven Samurai</em>, <em>13 Assassins</em>)</p>
-                    <div class="loc-box"><h5>Shrines (Toshogu, Futarasan)</h5><p style="margin:0;">Use the symmetry of temple approaches and gate-lined paths to mirror <em>Kubi</em>'s stylized compositions and ironic serenity before eruptions of violence.</p></div>
-                    <div class="loc-box"><h5>Yabusame Tournament Grounds and Stables (Nikko Tamozawa Imperial Villa area)</h5><p style="margin:0;">Ideal for capturing mounted processionals and martial ritual. Recreate the geometric rhythms seen in <em>The Seven Samurai</em>'s horse drills and <em>13 Assassins</em>'s combat rehearsal sequences.</p></div>
-                    <div class="loc-box"><h5>Forest Pathways (between Toshogu and Kanmangafuchi Abyss)</h5><p style="margin:0;">These winding, elevated tracks match the ambush staging in <em>13 Assassins</em>. Use low or obscured angles to evoke suspense and spatial uncertainty.</p></div>
-
-                    <p><strong>Kawagoe</strong> (for <em>Kubi</em>, <em>Seven Samurai</em>, <em>13 Assassins</em>)</p>
-                    <div class="loc-box"><h5>Taisho Roman Street and Kurazukuri Zone</h5><p style="margin:0;">Preserved Edo-era townscapes for wide-lens shots of group movement, parades, and civilian presence, reminiscent of pre-battle tension in <em>The Seven Samurai</em> and <em>13 Assassins</em>.</p></div>
-                    <div class="loc-box"><h5>Warehouse District Alleyways</h5><p style="margin:0;">Tighter framing and shadowed tension, suited to covert movement, betrayal, or duels.</p></div>
-                    <div class="loc-box"><h5>Festival Routes (near Kawagoe Hikawa Shrine)</h5><p style="margin:0;">Evokes civic order before disruption, as seen in the lead-up to violent turns in <em>Kubi</em>.</p></div>
-
-                    <div class="step-row"><span class="step-num">2</span><h4>Recreate the Shot</h4></div>
-                    <p>Your frame does not need to be perfect. This is about angle, composition, and the translation of
-                        animated or filmed emotion into real space. The gap between the original and yours is part of
-                        the learning.</p>
-
-                    <div class="step-row"><span class="step-num">3</span><h4>Write Your Location Plan (300 to 400 words)</h4></div>
-                    <ul>
-                        <li>Why did you choose this frame?</li>
-                        <li>What role does the location play in the original scene's tone, pacing, or symbolism?</li>
-                        <li>What was different or surprising about seeing the space in person?</li>
-                        <li>Could this location work in your own project? What kind of story would unfold here?</li>
-                    </ul>
-
-                    <div class="assign-del">
-                        <h4>Deliverables</h4>
-                        <ul>
-                            <li>One photographic match (side-by-side or overlay)</li>
-                            <li>Location plan document (300 to 400 words), all four questions addressed</li>
-                            <li>Optional: GPS pin or Google Maps link</li>
-                        </ul>
-                        <p style="margin-bottom:0;"><strong>Upload to:</strong> <code>LocationPilgrimage_[Film]_[YourName]</code></p>
-                    </div>
-
-                    <h3>Why This Matters</h3>
-                    <p>Directing does not start on set; it starts in space. This assignment trains you to think like a
-                        location scout with a director's instinct, understand how real-world geometry supports animated
-                        and filmed rhythm, and use framing and architecture as emotional tools before a camera is
-                        raised.</p>
-                    <div class="final-note">The stairs in <em>Your Name</em> are not magic because they are animated.
-                        They are magic because they are composed, grounded, and felt. This assignment asks you to find
-                        that feeling again, through your lens.</div>
-                </div>
 
             </div><!-- end assign-panels -->
 
