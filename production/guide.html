@@ -8,6 +8,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@700;900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="../style.css?v=8">
+    <style>
+        .assign-tabs { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0 0; }
+        .assign-tab { padding: 0.5rem 1.1rem; border: 1px solid rgba(255,255,255,0.2); border-radius: 4px 4px 0 0; cursor: pointer; font-size: 0.9rem; color: #bbb; background: rgba(0,0,0,0.2); border-bottom: none; transition: all 0.2s; }
+        .assign-tab:hover { color: #fff; border-color: rgba(255,255,255,0.4); }
+        .assign-tab.active { background: rgba(255,0,127,0.12); border-color: var(--accent-neon-pink); color: var(--accent-neon-pink); font-weight: 600; }
+        .assign-panels { border: 1px solid rgba(255,0,127,0.25); border-radius: 0 8px 8px 8px; padding: 2rem; background: rgba(0,0,0,0.15); margin-bottom: 2.5rem; }
+        .assign-panel { display: none; }
+        .assign-panel.active { display: block; }
+        .assign-panel h3 { color: var(--accent-neon-cyan); margin-top: 1.75rem; margin-bottom: 0.5rem; }
+        .assign-panel h3:first-child { margin-top: 0; }
+        .step-row { display: flex; align-items: flex-start; gap: 0.85rem; margin: 1.5rem 0 0.5rem; }
+        .step-num { display: inline-flex; align-items: center; justify-content: center; min-width: 2rem; height: 2rem; background: var(--accent-neon-pink); color: #000; font-weight: 700; border-radius: 50%; font-size: 0.95rem; }
+        .step-row h4 { margin: 0; line-height: 2rem; }
+        .assign-del { background: rgba(255,0,127,0.06); border: 1px solid rgba(255,0,127,0.28); border-radius: 8px; padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+        .assign-del h4 { margin: 0 0 0.6rem; }
+        .final-note { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1.25rem; margin-top: 1.5rem; font-style: italic; color: #bbb; }
+        .loc-box { background:rgba(0,0,0,0.2); border:1px solid rgba(255,255,255,0.08); border-radius:6px; padding:1rem 1.25rem; margin:0.75rem 0; }
+        .loc-box h5 { margin:0 0 0.4rem; color:var(--accent-neon-cyan); font-size:0.95rem; }
+        @media(max-width:600px){ .assign-tab{ font-size:0.78rem; padding:0.4rem 0.7rem; } .assign-panels{ padding:1.25rem; } }
+    </style>
 </head>
 
 <body>
@@ -55,7 +75,322 @@
             <script src="../js/scenario.js"></script>
             <script src="prod-guide.js"></script>
 
-            <h3 style="margin-bottom: 1rem; color: var(--accent-neon-pink); text-align: center;">Choose Your Add On</h3>
+            <h2 style="margin-top: 3rem;">In-Class Assignments</h2>
+            <p>Choose one assignment to complete and apply what you learn directly to your own film, developing key production skills like camera work, blocking, and managing the shooting schedule.</p>
+
+            <div class="assign-tabs">
+                <div class="assign-tab active" onclick="showAssign('stock')">Sustainable Stock Footage</div>
+                <div class="assign-tab" onclick="showAssign('railways')">Tokyo's Railways in Motion</div>
+                <div class="assign-tab" onclick="showAssign('choreo')">Choreographed Motion</div>
+                <div class="assign-tab" onclick="showAssign('miniatures')">Miniatures in Motion</div>
+            </div>
+
+            <div class="assign-panels">
+
+                <!-- SUSTAINABLE STOCK FOOTAGE -->
+                <div class="assign-panel active" id="assign-stock">
+                    <p>This assignment challenges you to recreate movement-based or atmospheric scenes inspired by Japanese cinema and animation, filmed at real-world Tokyo locations. The focus is on capturing high-quality raw footage that emphasizes visual storytelling, while building a sustainable library of stock footage for future student projects.</p>
+                    <p>By drawing inspiration from iconic scenes—whether it is Godzilla emerging near Tokyo Tower, bustling crowds at Shibuya Crossing, or serene moments at Suga Shrine—you will develop an eye for location-based cinematography while learning to adapt cinematic techniques to real-world settings.</p>
+
+                    <h3>What You Will Do</h3>
+                    <div class="step-row"><span class="step-num">1</span><h4>Select a Scene and Location</h4></div>
+                    <p>Choose a location from our interactive map that connects to a film or anime from our class list. Your task is to recreate the cinematic essence of an iconic moment—capturing raw, reusable footage of the setting, movement, or atmosphere.</p>
+                    
+                    <p><strong>Examples of Scene Concepts and Locations:</strong></p>
+                    
+                    <div class="loc-box"><h5>Tokyo Tower (Godzilla Minus One)</h5><p style="margin:0;"><strong>Scene Inspiration:</strong> Godzilla towering over Tokyo's skyline, evoking grandeur and scale.<br><strong>Raw Footage Idea:</strong> A wide shot of Tokyo Tower framed against the night sky, a slow pan capturing its iconic silhouette, or low-angle shots emphasizing its height.</p></div>
+                    
+                    <div class="loc-box"><h5>Shibuya Crossing (Aggretsuko, Adrift in Tokyo)</h5><p style="margin:0;"><strong>Scene Inspiration:</strong> Chaotic yet beautiful urban movement.<br><strong>Raw Footage Idea:</strong> Static and panning shots of synchronized pedestrians crossing, close-ups of feet and reflections in the wet pavement, or time-lapse clips capturing the flow of the crowd.</p></div>
+                    
+                    <div class="loc-box"><h5>Suga Shrine Staircase (Your Name)</h5><p style="margin:0;"><strong>Scene Inspiration:</strong> Emotional moments framed by quiet, reflective movement on the staircase.<br><strong>Raw Footage Idea:</strong> Slow pans up or down the stairs during golden hour, close-ups of shadows or people's feet stepping, and wide shots capturing the surrounding serenity.</p></div>
+                    
+                    <div class="loc-box"><h5>Edo-Tokyo Open Air Architectural Museum (Spirited Away, The Seven Samurai)</h5><p style="margin:0;"><strong>Scene Inspiration:</strong> Historical or fantasy settings with a timeless atmosphere.<br><strong>Raw Footage Idea:</strong> Tracking shots of characters moving through the museum's Edo-period structures, close-ups of architectural details, or wide shots of actors interacting with the environment.</p></div>
+                    
+                    <div class="loc-box"><h5>Rainbow Bridge (Weathering With You)</h5><p style="margin:0;"><strong>Scene Inspiration:</strong> Dream-like cityscapes and expansive skies.<br><strong>Raw Footage Idea:</strong> Wide shots of the bridge during sunset, reflections of lights on the water, and slow zooms capturing the skyline under changing weather.</p></div>
+
+                    <div class="step-row"><span class="step-num">2</span><h4>Plan Your Shots</h4></div>
+                    <p>Before you film, outline your approach to ensure your footage aligns with cinematic quality while remaining versatile for other projects.</p>
+                    
+                    <p><strong>Planning Guidelines:</strong></p>
+                    <ul>
+                        <li><strong>Framing and Composition:</strong> Include a variety of wide shots, medium shots, and close-ups to provide flexibility.
+                            <ul>
+                                <li>Example: For the Godzilla Statue, capture wide establishing shots and tight angles of the details, evoking the scale of the monster's influence.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Camera Movement:</strong> Decide whether the scene benefits from static shots, subtle pans, or tracking movement. Keep your movements clean and steady.
+                            <ul>
+                                <li>Example: For Shibuya Crossing, combine static shots for clarity with slow tracking shots to highlight crowd flow.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Lighting and Atmosphere:</strong> Plan your timing to capture the mood—early mornings for soft light, evenings for vibrant neon reflections.
+                            <ul>
+                                <li>Example: Golden hour at Suga Shrine enhances emotional resonance, while rainy evenings at Shinagawa Station evoke nostalgia and introspection.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Environmental Details:</strong> Focus on elements like reflections, textures, and natural movement.
+                            <ul>
+                                <li>Example: Raindrops on a bus window (Spirited Away) or neon lights reflected on water (Akira).</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <div class="step-row"><span class="step-num">3</span><h4>Film Your Raw Footage</h4></div>
+                    <p>Head to your chosen location and shoot 3–5 short video clips (10–20 seconds each). Your focus is on capturing clean, visually interesting footage that reflects the scene's cinematic inspiration.</p>
+                    
+                    <p><strong>Filming Requirements:</strong></p>
+                    <ul>
+                        <li><strong>Resolution:</strong> Shoot in HD (1080p) or 4K for clarity.</li>
+                        <li><strong>Clip Length:</strong> Each shot must be 10–20 seconds.</li>
+                        <li><strong>Stability:</strong> Use tripods or stabilizers for steady, professional-looking shots.</li>
+                        <li><strong>Quality:</strong> Pay attention to lighting, focus, and framing to avoid overexposed or blurry shots.</li>
+                        <li><strong>Raw Footage:</strong> Submit unedited clips—no filters, effects, or edits. Ambient sound may be included if appropriate.</li>
+                    </ul>
+                    
+                    <p><strong>File Naming Format:</strong><br><code>[YourName_Location_ShotDescription]</code><br>Example: <code>JaneDoe_SugaShrine_WideAngleSteps_01</code><br>Example: <code>JohnSmith_ShibuyaCrossing_CrowdPan_02</code></p>
+
+                    <div class="step-row"><span class="step-num">4</span><h4>Submission Guidelines</h4></div>
+                    <p>Upload your raw footage to the class Dropbox folder using the specified naming format. Your contributions will be archived and shared as part of a sustainable stock footage library, accessible for current and future projects.</p>
+
+                    <h3>Why This Matters</h3>
+                    <p>This exercise builds your ability to see cinematic potential in everyday locations, capturing moments that feel visually rich and narrative-neutral. You are not only learning to recreate cinematic techniques in real-world settings but also contributing to a resource that can elevate future student projects—whether they are set in bustling cityscapes, serene shrines, or historical landmarks.</p>
+                    
+                    <p><strong>Examples of Versatile Uses:</strong></p>
+                    <ul>
+                        <li>Tokyo Tower footage can enhance scenes in student projects set against expansive city backdrops.</li>
+                        <li>Shibuya Crossing shots provide dynamic B-roll for urban-centered narratives.</li>
+                        <li>Edo-period structures offer timeless visuals for historical recreations or fantasy projects.</li>
+                    </ul>
+
+                    <div class="assign-del">
+                        <h4>Deliverables</h4>
+                        <ul>
+                            <li><strong>3–5 Raw Footage Clips:</strong> High-quality, unedited clips that align with the assignment focus.</li>
+                            <li><strong>File Naming:</strong> Correct naming format for easy organization.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- TOKYO'S RAILWAYS IN MOTION -->
+                <div class="assign-panel" id="assign-railways">
+                    <p>In this assignment, you will capture cinematic B-roll footage of Tokyo's railway system from a single, designated vantage point. Drawing on compositional techniques and observational detail, your goal is to express the rhythm, movement, and atmosphere of urban transport. This footage will emphasize framing, motion, and lighting to tell a visual story of infrastructure in motion.</p>
+                    
+                    <p><strong>Examples to Draw From:</strong></p>
+                    <ul>
+                        <li>Overhead views of converging train lines</li>
+                        <li>Reflections of trains in water or glass</li>
+                        <li>Commuter density during morning rush</li>
+                        <li>Light trails from nighttime rail movement</li>
+                        <li>Shinkansen slicing across layered city backdrops</li>
+                        <li>Trains framed through fences, platforms, or windows</li>
+                    </ul>
+
+                    <h3>What You Will Do</h3>
+                    <div class="step-row"><span class="step-num">1</span><h4>Location Selection</h4></div>
+                    <p>Choose one of the following four locations. Each site includes shooting recommendations for time, angle, equipment, and travel.</p>
+                    
+                    <div class="loc-box"><h5>Hijiribashi Bridge (Ochanomizu Station)</h5><p style="margin:0;"><strong>Best for:</strong> Overhead views of multiple train lines crossing the Kanda River<br><strong>Best time:</strong><br>• Late afternoon (2 PM – 4 PM) – Soft lighting and water reflections<br>• Early morning (7 AM – 9 AM) – Commuter density and rapid train movement<br><strong>Best angles:</strong><br>• West side of bridge – Captures Chuo (orange) and Sobu (yellow) lines over the river<br>• Zoom lens (70mm–200mm) – Layers multiple trains in motion<br><strong>How to get there:</strong><br>1. Walk to Ueno Station (5 min)<br>2. Take Tokyo Metro Ginza Line to Suehirocho Station (2 min)<br>3. Walk 7 minutes south to Hijiribashi Bridge</p></div>
+                    
+                    <div class="loc-box"><h5>Nippori Station (Shimogoinden Bridge)</h5><p style="margin:0;"><strong>Best for:</strong> Elevated multi-line views, including Shinkansen, commuter, and freight trains<br><strong>Best time:</strong><br>• Morning rush (7 AM – 9 AM) – High frequency and density<br>• Late afternoon (4 PM – 6 PM) – Golden hour reflections<br>• Nighttime (7 PM – 9 PM) – Long exposure light trails<br><strong>Best angles:</strong><br>• Midpoint of pedestrian bridge – Up to 14 visible train tracks<br>• Face west – Captures sunsets and city skyline<br>• Wide lens (24mm or wider) – Emphasizes infrastructure scale<br><strong>How to get there:</strong><br>4. Walk to Ueno Station (5 min)<br>5. Take JR Yamanote Line to Nippori Station (3 min)<br>6. Exit North Gate, walk 2 minutes to Shimogoinden Bridge</p></div>
+                    
+                    <div class="loc-box"><h5>Kitte Building Rooftop (Tokyo Station)</h5><p style="margin:0;"><strong>Best for:</strong> Close-up views of arriving Shinkansen framed by city towers<br><strong>Best time:</strong><br>• Midday (11 AM – 2 PM) – Trains every 3–5 minutes<br>• Late afternoon (3 PM – 6 PM) – Direct light across train surfaces<br>• Blue hour (6 PM – 7 PM) – Reflections from city lights<br><strong>Best angles:</strong><br>• Edge of rooftop terrace – Overhead view of multiple platforms<br>• 50mm or 100–200mm telephoto – For isolating specific Shinkansen models<br>• Long exposure – For motion blur of arrivals<br><strong>How to get there:</strong><br>7. Walk to Ueno Station (5 min)<br>8. Take JR Yamanote Line to Tokyo Station (7 min)<br>9. Exit Marunouchi South Gate, enter Kitte Marunouchi, take elevator to rooftop</p></div>
+                    
+                    <div class="loc-box"><h5>Asukayama Park (Kita Ward)</h5><p style="margin:0;"><strong>Best for:</strong> Panoramic views of Shinkansen with park and skyline context<br><strong>Best time:</strong><br>• Midday (11 AM – 2 PM) – Highlights speed and detail<br>• Afternoon (2 PM – 4 PM) – Deepens shadows for dimensionality<br>• Late evening (5 PM – 7 PM, summer) – Golden hour against skyline<br><strong>Best angles:</strong><br>• Hilltop viewing area – Wide shot of Tohoku, Akita, and Hokkaido Shinkansen<br>• Train playground – Includes decommissioned steam engine and tram<br>• Zoom lens (150mm–300mm) – For tracking through trees<br><strong>How to get there:</strong><br>10. Walk to Ueno Station (5 min)<br>11. Take JR Keihin-Tohoku Line to Oji Station (10 min)<br>12. Walk 3 minutes to Asukayama Park</p></div>
+
+                    <div class="step-row"><span class="step-num">2</span><h4>Filming</h4></div>
+                    <p>At your chosen location, record a minimum of 9 short clips (5–10 seconds each), using the following techniques to vary your visual storytelling:</p>
+                    <ul>
+                        <li>Establishing shots of the overall train landscape or station</li>
+                        <li>Close-ups of train wheels, passengers, platform textures</li>
+                        <li>Panning or tracking shots of trains in motion</li>
+                        <li>Compositions using reflective surfaces, fences, or glass</li>
+                        <li>Lighting contrast – Golden hour, dusk, or night shots</li>
+                        <li>Slow-motion clips for smooth visual rhythm</li>
+                        <li>Long exposure for train light trails at night</li>
+                    </ul>
+
+                    <div class="step-row"><span class="step-num">3</span><h4>Submission</h4></div>
+                    <p>Upload your final work to a shared Google Drive folder. Clearly label all files. Your submission should include:</p>
+                    <ul>
+                        <li><strong>9 raw footage clips</strong>, labeled by location and shot type</li>
+                        <li><strong>A 300–500 word written reflection</strong> (Word format) addressing:
+                            <ul>
+                                <li>Visual themes that emerged in your footage</li>
+                                <li>How time of day and environment shaped your shots</li>
+                                <li>Technical or environmental challenges</li>
+                                <li>What you would change or explore further if reshooting</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- CHOREOGRAPHED MOTION -->
+                <div class="assign-panel" id="assign-choreo">
+                    <p>In this assignment, you will build a professional-quality visual archive by filming either evocative slice-of-life moments or choreographed movement sequences. Drawing from Japanese cinema and animation, your footage should highlight movement, rhythm, and atmosphere. All material will contribute to a shared, reusable class library for current and future creative projects.</p>
+
+                    <h3>Option A: Slice-of-Life Visual Poetry</h3>
+                    <p>Inspired by everyday imagery in Japanese film and anime, this option focuses on short, atmospheric clips that capture the quiet rhythm of daily life. The goal is not narrative but tone—moments that breathe.</p>
+                    
+                    <p><strong>Examples to Reference</strong></p>
+                    <ul>
+                        <li>Trains gliding through a station (Adrift in Tokyo, Your Name, Jujutsu Kaisen)</li>
+                        <li>Rainfall against glass (Spirited Away, The Garden of Words)</li>
+                        <li>Shibuya crosswalk crowds (Aggretsuko, Adrift in Tokyo)</li>
+                        <li>Trees rustling in the wind (My Neighbor Totoro)</li>
+                        <li>Neon light bouncing off pavement (Akira, Tokyo Ghoul)</li>
+                        <li>Static objects like bicycles, vending machines, rooftops (The Seven Samurai)</li>
+                    </ul>
+
+                    <h4>What You Will Film</h4>
+                    <p>Capture 2–3 short, raw footage clips (10–15 seconds each). Each should showcase atmosphere through composition, framing, and ambient motion.</p>
+                    
+                    <p><strong>Framing Suggestions</strong></p>
+                    <ul>
+                        <li>Use a range of wide, medium, and close-up shots</li>
+                        <li>Consider panning slowly to follow subtle movement</li>
+                        <li>Frame through windows, fences, or doorways for depth</li>
+                    </ul>
+                    
+                    <p><strong>Lighting & Timing</strong></p>
+                    <ul>
+                        <li>Prioritize natural light: golden hour, overcast days, or nighttime glow</li>
+                        <li>Use reflections, shadows, or fog when available</li>
+                        <li>Include natural sound when it enhances the image (rain, footsteps, train sounds)</li>
+                    </ul>
+
+                    <p><strong>Submission</strong><br>Upload raw, unedited clips to the class Dropbox. Use clear naming conventions.<br>Example: <code>Jamie_TokyoRain_01.mov</code> or <code>Alex_ShibuyaWalk_02.mov</code></p>
+
+                    <h3>Option B: Action-Based Movement</h3>
+                    <p>This option focuses on dynamic motion. You will translate choreographed movement—fight scenes, kinetic gestures, or stunts—into cinematic footage. Think energy, clarity, and impact.</p>
+                    
+                    <p><strong>Examples to Reference</strong></p>
+                    <ul>
+                        <li>Swordplay or melee combat (The Seven Samurai)</li>
+                        <li>Vehicle movement and skids (Akira, Fast & Furious: Tokyo Drift, Initial D)</li>
+                        <li>Sprinting through Tokyo streets (Your Name, Beyond the Two Infinite Minutes)</li>
+                        <li>High-intensity clashes (Jujutsu Kaisen: Shibuya Incident)</li>
+                        <li>Massive destruction (Godzilla Minus One)</li>
+                    </ul>
+
+                    <p><strong>Optional Training</strong><br>Students may opt into the Tokyo BunBun Choreography Workshop to train with professionals in blocking, safety, and camera strategies for filming movement.</p>
+
+                    <h4>What You Will Film</h4>
+                    <p>Record 2–3 clips (10–15 seconds each) of a choreographed movement sequence. Each should be clean, cinematic, and movement-forward.</p>
+                    
+                    <p><strong>Planning Requirement</strong><br>Submit a 1-page breakdown document with:</p>
+                    <ul>
+                        <li>Step-by-step choreography directions</li>
+                        <li>Your camera plan (angles, movement, rhythm)</li>
+                        <li>Safety protocols, timing strategies, and gear considerations</li>
+                    </ul>
+
+                    <p><strong>Filming Tips</strong></p>
+                    <ul>
+                        <li>Cover the action from wide and close angles</li>
+                        <li>Use handheld or steady shots based on the scene's tone</li>
+                        <li>Make sure performers' movement reads clearly in the frame</li>
+                    </ul>
+
+                    <p><strong>Submission</strong><br>Upload raw clips to the Dropbox with consistent labeling.<br>Example: <code>Nina_SwordClash_01.mov</code> or <code>Devon_UrbanRun_03.mov</code><br>Include your movement breakdown as a Word or PDF document.</p>
+
+                    <div class="assign-del">
+                        <h4>Deliverables (For Both Options)</h4>
+                        <ul>
+                            <li><strong>2–3 raw clips</strong> (10–15 seconds each)</li>
+                            <li><strong>Option A:</strong> Slice-of-life footage that captures stillness, tone, and place</li>
+                            <li><strong>Option B:</strong> Action sequences with strong choreography and camera flow</li>
+                            <li><strong>Labeled file names</strong> for all footage</li>
+                            <li><strong>Movement breakdown</strong> (Option B only)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- MINIATURES IN MOTION -->
+                <div class="assign-panel" id="assign-miniatures">
+                    <h3>Miniatures in Motion: Tokyo Reimagined Through Scale</h3>
+                    <p>In this assignment, you will create a professional-quality visual archive using figurines or models (e.g., Gundam, Godzilla, Ultraman, Evangelion units) to reframe Tokyo's real-world environments through forced perspective, staging, and cinematic composition. Your footage will explore how scale, architecture, and urban life interact when seen through the eyes of iconic fictional giants or mech miniatures.</p>
+                    <p>All material will be added to the shared class library for future creative use—including compositing, animation overlays, and hybrid storytelling.</p>
+
+                    <h3>Option A: Monumental Stillness – Slice-of-City Reimagined</h3>
+                    <p>This path focuses on slice-of-life vignettes, where a figurine is quietly inserted into Tokyo's daily rhythm. Your job is to make it feel both out of place and totally at home.</p>
+                    
+                    <p><strong>Examples to Reference:</strong></p>
+                    <ul>
+                        <li>A 1/144 Gundam at rest atop an actual rooftop HVAC unit</li>
+                        <li>Godzilla gazing contemplatively across Tokyo Bay</li>
+                        <li>A mecha hidden behind vending machines or parked scooters</li>
+                        <li>Neon bouncing off a model's glossy armor at night</li>
+                        <li>Figurines partially obscured by rainy windows, train doors, or glass fences</li>
+                    </ul>
+
+                    <h4>What You Will Film:</h4>
+                    <ul>
+                        <li>2–3 raw clips (10–15 seconds each)</li>
+                        <li>Use real Tokyo locations and insert the model into the space</li>
+                        <li>Prioritize atmosphere and visual storytelling over narrative</li>
+                    </ul>
+
+                    <p><strong>Composition Tips:</strong></p>
+                    <ul>
+                        <li>Frame for depth and scale contrast (tiny figure, big world)</li>
+                        <li>Use shallow depth of field to isolate your subject</li>
+                        <li>Shoot through real textures—mesh fences, condensation, umbrellas</li>
+                    </ul>
+
+                    <p><strong>Lighting & Texture:</strong></p>
+                    <ul>
+                        <li>Golden hour, rainy days, or nighttime glows add cinematic layers</li>
+                        <li>Explore shadow play and reflections (in puddles, glass panels)</li>
+                    </ul>
+
+                    <h3>Option B: Action in Miniature – Choreographed Destruction</h3>
+                    <p>In this variation, you are staging dynamic action using figurines—kaiju fights, mecha standoffs, or destruction frozen mid-motion.</p>
+                    
+                    <p><strong>Inspiration Examples:</strong></p>
+                    <ul>
+                        <li>Stop-motion poses of Godzilla amidst real construction sites</li>
+                        <li>Gundam dodging among traffic pylons or alley detritus</li>
+                        <li>A "destroyed" cardboard building mid-collapse beside an actual bridge</li>
+                        <li>Handheld chase shots using dynamic focus and dolly movement</li>
+                    </ul>
+
+                    <h4>What You Will Film:</h4>
+                    <ul>
+                        <li>2–3 choreographed clips (10–15 seconds each)</li>
+                        <li>Use real-world surfaces (concrete, asphalt, scaffolding) as your set</li>
+                        <li>Incorporate movement: camera pans, tilts, or mini puppet-based shifts</li>
+                    </ul>
+
+                    <p><strong>Required Planning Document (1 Page):</strong></p>
+                    <ul>
+                        <li>Poses and transitions (fight stances, implied action beats)</li>
+                        <li>Camera strategy (angles to exaggerate scale, hide joints, etc.)</li>
+                        <li>Safety precautions (especially if filming in public areas)</li>
+                        <li>Optional: Light rig setup, rain protection, wire removal strategy</li>
+                    </ul>
+
+                    <div class="assign-del">
+                        <h4>Submission Checklist (All Options)</h4>
+                        <ul>
+                            <li><strong>2–3 raw clips</strong>, properly labeled<br>◦ e.g., <code>Kaito_GundamSkytree_01.mov</code> / <code>Ami_ZillaRainAlley_02.mov</code></li>
+                            <li><strong>Option B includes a movement breakdown document</strong> (Word or PDF)</li>
+                            <li><strong>Upload to the shared Dropbox folder</strong></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div><!-- end assign-panels -->
+
+            <script>
+                function showAssign(id) {
+                    document.querySelectorAll('.assign-tab').forEach(function(t){ t.classList.remove('active'); });
+                    document.querySelectorAll('.assign-panel').forEach(function(p){ p.classList.remove('active'); });
+                    event.currentTarget.classList.add('active');
+                    document.getElementById('assign-' + id).classList.add('active');
+                }
+            </script>
+
+            <h3 style="margin-bottom: 1rem; color: var(--accent-neon-pink); text-align: center; margin-top: 3rem;">Choose Your Add On</h3>
             <div class="forms-grid">
                 <div class="card-form">
                     <h3>Add On: Geometry Worksheet</h3>
