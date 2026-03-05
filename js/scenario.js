@@ -1,7 +1,7 @@
 /* Tokyo in Film — Branching Scenario Engine v1.0 */
 (function () {
   const CSS = `
-.tif-scenario{background:#16162a;border:1px solid #2a2a4a;border-radius:12px;padding:2rem;margin:2rem 0;color:#e0e0ff;font-family:'Inter',sans-serif;line-height:1.7;min-height:480px;display:flex;flex-direction:column;justify-content:flex-start}
+.tif-scenario{background:#16162a;border:1px solid #2a2a4a;border-radius:12px;padding:2rem;margin:2rem 0;color:#e0e0ff;font-family:'Inter',sans-serif;line-height:1.7;display:flex;flex-direction:column;justify-content:flex-start;box-sizing:border-box}
 .tif-label{font-size:.8rem;text-transform:uppercase;letter-spacing:.12em;color:#ff2d78;font-weight:700;margin-bottom:.75rem}
 .tif-content h3,.tif-content h2{color:#00f5ff;font-family:'Outfit',sans-serif;margin:1.2rem 0 .5rem}
 .tif-content strong{color:#fff}
@@ -64,6 +64,15 @@
 
     const nodeMap = {};
     scenario.nodes.forEach(n => { nodeMap[n.id] = n; });
+    let maxH = 0;
+
+    function lockHeight(wrap) {
+      requestAnimationFrame(function () {
+        const h = wrap.offsetHeight;
+        if (h > maxH) maxH = h;
+        wrap.style.minHeight = maxH + 'px';
+      });
+    }
 
     function go(id) {
       if (id === -1 || id == null) { showEnd(); return; }
@@ -75,6 +84,7 @@
       else if (node.type === 'branch') renderBranch(wrap, node);
       else if (node.type === 'video') renderVideo(wrap, node);
       container.appendChild(wrap);
+      lockHeight(wrap);
       container.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
@@ -187,6 +197,7 @@
       const rb = el('button', 'tif-restart'); rb.textContent = '\u21ba Restart Guide';
       rb.onclick = () => showStart();
       e.appendChild(rb); wrap.appendChild(e); container.appendChild(wrap);
+      if (maxH > 0) wrap.style.minHeight = maxH + 'px';
     }
 
     function showStart() {
