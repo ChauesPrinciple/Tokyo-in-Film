@@ -84,7 +84,11 @@ initScenario({
         question:'We have considered which &ldquo;scene&rdquo; of our short film is the &ldquo;core&rdquo; of the project, and by identifying the scene with the most meaning have identified the scenes that can be changed or adapted without detracting from the overall film or theme.',
         correct:true},
        {type:'info',
-        text:'Consider using expressions and body language to convey meaning, or shortening unnecessary information, especially if your actors are nervous or having a difficult time.'}
+        text:'Consider using expressions and body language to convey meaning, or shortening unnecessary information, especially if your actors are nervous or having a difficult time.'},
+       {type:'info',
+        text:'How can you use our classtime / excursions to create content for your film?'},
+       {type:'info',
+        text:'Solutions do not have to be complicated; with a little creativity, we can create incredible effects with the smallest items.'}
      ],
      next:10},
 

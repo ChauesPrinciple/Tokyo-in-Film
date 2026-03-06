@@ -90,7 +90,11 @@ initScenario({
         question:'Do you remember that some models are provided if you don\'t have any &mdash; both Cybercity and Kaiju?',
         correct:true},
        {type:'info',
-        text:'The rest of the video does get technical, and you\'re more than welcome to attempt it! However, the basics needed are covered in this section.'}
+        text:'The rest of the video does get technical, and you\'re more than welcome to attempt it! However, the basics needed are covered in this section.'},
+       {type:'info',
+        text:'How can you use our classtime / excursions to create content for your film?'},
+       {type:'info',
+        text:'Solutions do not have to be complicated; with a little creativity, we can create incredible effects with the smallest items.'}
      ],
      next:14},
 

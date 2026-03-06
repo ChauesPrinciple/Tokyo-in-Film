@@ -3,7 +3,7 @@
   const CSS = `
 .tif-scenario{background:#16162a;border:1px solid #2a2a4a;border-radius:12px;padding:2rem;margin:2rem 0;color:#e0e0ff;font-family:'Inter',sans-serif;line-height:1.7;display:flex;flex-direction:column;justify-content:flex-start;box-sizing:border-box}
 .tif-label{font-size:.8rem;text-transform:uppercase;letter-spacing:.12em;color:#ff2d78;font-weight:700;margin-bottom:.75rem}
-.tif-content h3,.tif-content h2{color:#00f5ff;font-family:'Outfit',sans-serif;margin:1.2rem 0 .5rem}
+.tif-content h3,.tif-content h2{color:#00f5ff;font-family:'Cinzel',sans-serif;margin:1.2rem 0 .5rem}
 .tif-content strong{color:#fff}
 .tif-content a{color:#00f5ff}
 .tif-content ul,.tif-content ol{padding-left:1.4rem;margin:.5rem 0}
@@ -12,7 +12,7 @@
 .tif-video-wrap{position:relative;padding-bottom:56.25%;height:0;border-radius:8px;overflow:hidden;margin-bottom:1.5rem;background:#000}
 .tif-video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
 .tif-qs{background:rgba(0,0,0,.3);border-radius:8px;padding:1.2rem;margin-bottom:1.5rem}
-.tif-qs h4{color:#00f5ff;margin:0 0 1rem;font-size:.95rem;font-family:'Outfit',sans-serif}
+.tif-qs h4{color:#00f5ff;margin:0 0 1rem;font-size:.95rem;font-family:'Cinzel',sans-serif}
 .tif-q-item{margin-bottom:1.4rem;padding-bottom:1.4rem;border-bottom:1px solid rgba(255,255,255,.07)}
 .tif-q-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
 .tif-q-text{margin-bottom:.7rem;font-size:.93rem}
@@ -35,7 +35,7 @@
 .tif-proceed:hover:not(:disabled){background:#fff}
 .tif-proceed:disabled{opacity:.35;cursor:not-allowed}
 .tif-start,.tif-end{text-align:center;padding:1.5rem 0 2rem;width:100%;max-width:600px;margin:0 auto}
-.tif-start h2,.tif-end h2{color:#00f5ff;font-family:'Outfit',sans-serif;font-size:1.5rem;margin-bottom:.75rem}
+.tif-start h2,.tif-end h2{color:#00f5ff;font-family:'Cinzel',sans-serif;font-size:1.5rem;margin-bottom:.75rem}
 .tif-start p,.tif-end p{color:#aaa;margin-bottom:1.8rem;max-width:540px;margin-left:auto;margin-right:auto}
 .tif-start-btn{padding:.75rem 2.2rem;background:#ff2d78;color:#fff;border:none;border-radius:30px;font-weight:700;font-size:.95rem;cursor:pointer;letter-spacing:.05em;text-transform:uppercase;transition:background .15s}
 .tif-start-btn:hover{background:#ff5599}
