@@ -4,7 +4,7 @@ initScenario({
   subtitle: 'Work through this guide to plan and reflect on your production process before completing the worksheets below.',
   nodes: [
     {id:0, type:'text', title:'Daily Set-Up and Shot Planning',
-     content:'<p><strong>Key Decisions</strong>: Camera angles, shot order, lighting setup, sound checks.</p><ul><li><strong>Decision Lead</strong>: <strong>Director</strong>, with input from <strong>Cinematographer</strong>, <strong>Assistant Director (AD)</strong>, and <strong>Sound Technician</strong> (if applicable).</li><li><strong>Supporting Roles</strong>:<ul><li>Cinematographer finalizes camera and lighting setup.</li><li>AD ensures crew readiness and adherence to the schedule.</li></ul></li><li><strong>Collaboration Flow</strong>: The Director and AD start with a briefing, reviewing the storyboard or shot list with the Cinematographer and Sound team to ensure readiness.</li></ul>',
+     content:'<p><strong>Key Decisions</strong>: Camera angles, shot order, lighting setup, sound checks.</p><ul><li><strong>Decision Lead</strong>: <strong>Director</strong>, with input from <strong>Cinematographer</strong> and <strong>Assistant Director (AD)</strong> or <strong>Sound Technician</strong> where applicable.</li><li><strong>Supporting Roles</strong>:<ul><li>Cinematographer finalizes camera and lighting setup.</li><li>In a 3-person team, the Director may double as AD; the third member handles sound and continuity.</li></ul></li><li><strong>Collaboration Flow</strong>: Start with a brief team review of the storyboard or shot list before each session. Confirm roles, locations, and equipment before moving to the set.</li></ul><p><strong>Minimum team of 3:</strong> Director &mdash; Cinematographer &mdash; Sound/Continuity. Auxiliary tasks (acting, location management) are shared as needed.</p>',
      next:1},
 
     {id:1, type:'branch',
@@ -18,7 +18,8 @@ initScenario({
      question:'<p>Does the location align with the scene\'s visual and narrative goals?</p>',
      choices:[
        {text:'Yes: The location matches the mood and visual style of our scene.', next:3},
-       {text:'No: The location doesn\'t fully match our vision.', next:3}
+       {text:'No: The location doesn\'t fully match our vision.', next:3,
+        feedback:'<p>That is okay. Identify the core visual elements of the scene — mood, depth, texture, color — and find what your available location <em>does</em> offer. Adapt your framing and shot list to make the most of what you have rather than what you wish you had.</p>'}
      ]},
 
     {id:3, type:'video', title:'Everyone has a plan until...',
@@ -107,7 +108,7 @@ initScenario({
      question:'<p>Have you kept track of the schedule and allocated adequate time for each shot, and maintained clear and constant communication using radios or designated signals to address concerns and updates during the shoot?</p>',
      choices:[
        {text:'Yes.', next:-1},
-       {text:'No.', next:-1, feedback:'<p>Do not pass go. :(</p>'}
+       {text:'No.', next:-1, feedback:'<p><strong>Before wrapping up:</strong> Confirm the day’s schedule with your team, assign someone to monitor time on each shot, and establish a clear signal or channel for on-set communication. Falling behind on one shot can cascade through the rest of the day.</p>'}
      ]}
   ]
 }, 'scenario-prod');

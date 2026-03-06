@@ -41,7 +41,8 @@ initScenario({
         next:4,
         feedback:'<p><em>Example</em>: Filming in a quieter backstreet instead of Shibuya Crossing to minimize crowd control needs.</p><p>A quieter street keeps the urban feel while simplifying logistics, though it may lose the intensity of the original setting.</p>'},
        {text:'Studio or Controlled Setting',
-        next:4}
+        next:4,
+        feedback:'<p><em>Example</em>: Filming in a classroom, hallway, or apartment to replicate an interior scene.</p><p>A controlled environment gives you maximum flexibility over lighting and sound, but requires careful set dressing to avoid looking generic. Think about what props, lighting, and framing choices will sell the location.</p>'}
      ]},
 
     {id:4, type:'video', title:'Team Work makes the Dream Work',

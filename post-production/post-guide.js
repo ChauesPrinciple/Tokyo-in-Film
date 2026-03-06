@@ -23,7 +23,13 @@ initScenario({
 
     {id:3, type:'video', title:'Organizing Your Project',
      videoId:'nP6W7zJQs_I',
-     questions:[],
+     questions:[
+       {type:'tf',
+        question:'All of our footage files have been renamed with a clear, consistent system (e.g., Scene-01_Take-02) so that any team member can find what they need without asking.',
+        correct:true},
+       {type:'info',
+        text:'Even a simple folder structure \u2014 RAW / SELECTS / EXPORTS \u2014 will save significant time during editing. Name files before you start cutting, not after.'}
+     ],
      next:4},
 
     {id:4, type:'branch',
