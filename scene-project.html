@@ -56,7 +56,7 @@
     <main class="container">
 
         <!-- Introduction -->
-        <section class="project-section">
+        <section class="project-section" data-scroll>
             <div class="textbook-content">
                 <p class="lead">In this course, you will work in self-selected teams of three to create a 2 to 8-minute
                     short film. At the heart of this project is a deeper appreciation of film and its connection to
@@ -70,23 +70,23 @@
         </section>
 
         <!-- The Options -->
-        <section class="project-section">
+        <section class="project-section" data-scroll>
             <h2>The Assignment: Filming a Scene</h2>
             <p>Your group will recreate, adapt, or design a scene inspired by one of the films analyzed in the course.
                 Use Tokyo&#8217;s rich variety of locations to enrich your visual storytelling.</p>
 
             <div class="option-grid">
-                <article class="option-card">
+                <article class="option-card" data-scroll data-scroll-delay="1">
                     <h3>1. Recreate a Scene</h3>
                     <p>Faithfully recreate an iconic scene from one of the assigned films, focusing on how you can
                         replicate its cinematography, lighting, and mood.</p>
                 </article>
-                <article class="option-card">
+                <article class="option-card" data-scroll data-scroll-delay="2">
                     <h3>2. Adapt a Scene</h3>
                     <p>Take inspiration from a film and modify its setting, characters, or tone to create something
                         fresh while staying true to the original's core themes.</p>
                 </article>
-                <article class="option-card">
+                <article class="option-card" data-scroll data-scroll-delay="3">
                     <h3>3. Create a New Scene</h3>
                     <p>Design a completely new scene inspired by a film&#8217;s style or narrative, showcasing your unique
                         interpretation of the film's mood or visual language.</p>
@@ -95,7 +95,7 @@
         </section>
 
         <!-- Development Stages -->
-        <section class="project-section">
+        <section class="project-section" data-scroll>
             <h2>Project Development Stages</h2>
             <div class="grid-2-col">
                 <div>
@@ -129,7 +129,7 @@
         </section>
 
         <!-- Goals & Evaluation -->
-        <section class="project-section">
+        <section class="project-section" data-scroll>
             <div class="grid-2-col">
                 <div>
                     <h2>Educational Goals</h2>
@@ -161,7 +161,7 @@
         </section>
 
         <!-- Final Submission Requirements -->
-        <section class="project-section">
+        <section class="project-section" data-scroll>
             <h2>Final Submission Requirements</h2>
             <p><strong>Deadline:</strong> The final film is due by 11:59 p.m. on May 26th.</p>
 
@@ -188,7 +188,7 @@
             </div>
         </section>
 
-        <section class="project-section" style="text-align: center;">
+        <section class="project-section" style="text-align: center;" data-scroll>
             <h2>"No Time for Second-Guessing"</h2>
             <p style="max-width: 700px; margin: 0 auto 2rem;">
                 This project is designed to let you experiment and explore the possibilities of filmmaking. Dive into
@@ -208,6 +208,7 @@
         </div>
     </footer>
 
+    <script src="js/scroll-animate.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const mobileMenu = document.getElementById('mobile-menu');

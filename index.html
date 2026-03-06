@@ -14,6 +14,34 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@700;900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css?v=9">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "Course",
+                "name": "Tokyo in Film",
+                "description": "An open courseware textbook for filmmaking students studying abroad in Tokyo. Covers pre-production, production, and post-production through the lens of Japanese cinema.",
+                "url": "https://chauesprinciple.github.io/Tokyo-in-Film/",
+                "provider": {
+                    "@type": "Person",
+                    "name": "Robert Ladd",
+                    "url": "https://chauesprinciple.github.io/ChauesProductions/"
+                },
+                "educationalLevel": "University",
+                "inLanguage": "en",
+                "isAccessibleForFree": true,
+                "license": "https://creativecommons.org/licenses/by-sa/4.0/"
+            },
+            {
+                "@type": "Person",
+                "name": "Robert Ladd",
+                "url": "https://chauesprinciple.github.io/ChauesProductions/",
+                "sameAs": ["https://www.instagram.com/chaues/"]
+            }
+        ]
+    }
+    </script>
 </head>
 
 <body>
@@ -58,7 +86,7 @@
 
     <section id="intro-text" class="container" style="padding-bottom: 2rem;">
         <div class="intro-grid">
-            <div class="intro-main">
+            <div class="intro-main" data-scroll>
                 <h2>Filming a Scene</h2>
                 <div class="textbook-content">
                     <p>Tokyo is one of the most filmed cities in the world. Its streets,
@@ -71,7 +99,7 @@
                         and how
                         meaning is constructed at the scale of a scene rather than an entire film.</p>
 
-                    <div class="infinite-game-box">
+                    <div class="infinite-game-box" data-scroll>
                         <h3>The Infinite Game: Tokyo Stock Footage Project</h3>
                         <p>An ever-expanding library of cinematic Tokyo B-roll and stock footage. Students capture
                             high-quality
@@ -93,7 +121,7 @@
                     </div>
                 </div>
             </div>
-            <aside class="partner-sidebar">
+            <aside class="partner-sidebar" data-scroll>
                 <h3>Local Partners</h3>
                 <a href="https://bonsairacing.com/custom-experiences.html" target="_blank" class="partner-item">
                     <img src="assets/bonsai_racing.png" alt="Bonsai Racing">
@@ -110,28 +138,28 @@
     </section>
 
     <main id="explore" class="container">
-        <div class="intro">
+        <div class="intro" data-scroll>
             <h2>Course Modules</h2>
             <p>Explore the three phases of filmmaking, adapted from Russell Sharman's <em>Moving Pictures</em> and
                 tailored for the Tokyo study abroad experience.</p>
         </div>
 
         <div class="section-grid">
-            <article class="card">
+            <article class="card" data-scroll data-scroll-delay="1">
                 <h3>Pre-Production</h3>
                 <p>The foundation of your film. Learn about screenwriting, storyboarding, and scouting locations in
                     Tokyo's diverse wards.</p>
                 <a href="pre-production/index.html" class="card-link">Enter Phase 1 &rarr;</a>
             </article>
 
-            <article class="card">
+            <article class="card" data-scroll data-scroll-delay="2">
                 <h3>Production</h3>
                 <p>Lights, Camera, Action. Master the art of cinematography, lighting, and directing in the bustling
                     streets of Shibuya and Shinjuku.</p>
                 <a href="production/index.html" class="card-link">Enter Phase 2 &rarr;</a>
             </article>
 
-            <article class="card">
+            <article class="card" data-scroll data-scroll-delay="3">
                 <h3>Post-Production</h3>
                 <p>The final cut. Editing, sound design, and color grading to bring your cinematic vision to life.</p>
                 <a href="post-production/index.html" class="card-link">Enter Phase 3 &rarr;</a>
@@ -144,7 +172,7 @@
     </main>
 
     <section id="map-section" class="container" style="padding: 0 2rem 4rem;">
-        <div style="text-align: center; margin-bottom: 2rem;"><h2>Tokyo in Film Class Map</h2></div>
+        <div style="text-align: center; margin-bottom: 2rem;" data-scroll><h2>Tokyo in Film Class Map</h2></div>
         <div class="map-container"
             style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border: 1px solid var(--accent-neon-cyan); box-shadow: 0 0 20px rgba(0, 243, 255, 0.2);">
             <iframe src="https://www.google.com/maps/d/embed?mid=1V4GApFpOipMmySIyy2loBujui--BV3Y" width="640"
@@ -163,7 +191,7 @@
     </section>
 
     <section id="film-list" class="container">
-        <div style="text-align: center; margin-bottom: 2rem;">
+        <div style="text-align: center; margin-bottom: 2rem;" data-scroll>
             <h2>2026 Film List</h2>
             <p style="color: #bbb;">The films (and anime) we will analyze for this class:</p>
         </div>
@@ -299,6 +327,7 @@
         </div>
     </footer>
 
+    <script src="js/scroll-animate.js"></script>
     <script src="js/glossary.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
