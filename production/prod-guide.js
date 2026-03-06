@@ -19,7 +19,7 @@ initScenario({
      choices:[
        {text:'Yes: The location matches the mood and visual style of our scene.', next:3},
        {text:'No: The location doesn\'t fully match our vision.', next:3,
-        feedback:'<p>That is okay. Identify the core visual elements of the scene — mood, depth, texture, color — and find what your available location <em>does</em> offer. Adapt your framing and shot list to make the most of what you have rather than what you wish you had.</p>'}
+        feedback:'<p><strong>Adapting an Imperfect Location</strong></p><ul><li><strong>Shoot tight.</strong> Close-ups and medium shots hide background elements that break continuity or don\u2019t match the scene. You rarely need to show the full environment.</li><li><strong>Control your frame.</strong> Reposition the camera to exclude problem areas \u2014 a different angle, lower or higher eyeline, or a foreground element can mask what doesn\u2019t work.</li><li><strong>Use lighting to isolate.</strong> A strong key light on your subject draws attention away from the background. Dimming or darkening the background simplifies the visual space.</li><li><strong>Dress what you can.</strong> Move or remove objects, add props, or change what is visible within the frame. Small changes read as larger transformations on camera.</li><li><strong>Revise the shot list.</strong> Some shots from your original list may need to be cut or swapped. Identify which shots are critical to the scene and which can be adapted without losing the story.</li></ul>'}
      ]},
 
     {id:3, type:'video', title:'Everyone has a plan until...',
