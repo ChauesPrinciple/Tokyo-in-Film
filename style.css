@@ -202,6 +202,8 @@ nav ul li a.active {
     align-items: center;
     padding-top: 2px;
     text-decoration: none;
+    position: relative;
+    z-index: 2001;
 }
 
 .ig-icon::before {
@@ -710,6 +712,7 @@ footer {
     /* Hero: enforce min-height and fill with cover on mobile */
     .hero {
         min-height: 220px;
+        margin-top: 60px;
     }
 
     .hero-bg {
