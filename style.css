@@ -604,6 +604,22 @@ footer {
         font-size: 2.2rem;
     }
 
+    nav {
+        height: 60px;
+        padding: 0 1rem;
+    }
+
+    .dropdown-menu {
+        position: fixed;
+        top: 60px;
+        left: 0;
+        right: 0;
+        width: auto;
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+    }
+
     /* Hamburger Menu */
     .menu-toggle {
         display: block;
