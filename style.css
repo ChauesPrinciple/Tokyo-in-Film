@@ -7,6 +7,14 @@
     font-display: swap;
 }
 
+@font-face {
+    font-family: 'SDGlitch';
+    src: url('sdglitchdemo.regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
 :root {
     --bg-color: #050505;
     --text-color: #e0e0e0;
@@ -49,6 +57,7 @@ h6 {
 }
 
 h1 {
+    font-family: 'SDGlitch', sans-serif;
     font-size: 4rem;
     text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
     margin-bottom: 1rem;
