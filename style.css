@@ -64,6 +64,7 @@ h1 {
 }
 
 h2 {
+    font-family: 'Cinzel', serif;
     font-size: 2.5rem;
     border-bottom: 2px solid var(--accent-neon-pink);
     display: inline-block;
@@ -72,15 +73,24 @@ h2 {
 }
 
 h3 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
     font-size: 1.75rem;
     margin-top: 2rem;
     margin-bottom: 1.25rem;
 }
 
 h4 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
     font-size: 1.25rem;
     margin-top: 1.5rem;
     margin-bottom: 1rem;
+}
+
+h5, h6 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
 }
 
 a {
