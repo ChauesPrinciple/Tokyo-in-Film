@@ -44,22 +44,14 @@ body {
 }
 
 /* Typography */
-h1,
-h3,
-h4,
-h5,
-h6 {
-    font-family: var(--font-heading);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: #fff;
-}
-
 h1 {
     font-family: 'SDGlitch', sans-serif;
     font-size: 4rem;
     text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
     margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #fff;
 }
 
 h2 {
@@ -78,6 +70,7 @@ h3 {
     font-size: 1.75rem;
     margin-top: 2rem;
     margin-bottom: 1.25rem;
+    color: #fff;
 }
 
 h4 {
@@ -86,11 +79,13 @@ h4 {
     font-size: 1.25rem;
     margin-top: 1.5rem;
     margin-bottom: 1rem;
+    color: #fff;
 }
 
 h5, h6 {
     font-family: 'Inter', sans-serif;
     font-weight: 600;
+    color: #fff;
 }
 
 a {
