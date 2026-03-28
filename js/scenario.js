@@ -21,8 +21,8 @@
 .tif-opt:hover:not(:disabled){background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.35)}
 .tif-opt.correct{border-color:#00f5ff!important;background:rgba(0,245,255,.14)!important;color:#00f5ff!important}
 .tif-opt.wrong{border-color:#ff2d78!important;background:rgba(255,45,120,.14)!important;color:#ff9ab8!important}
-.tif-check-row{display:flex;align-items:center;gap:.5rem;margin-bottom:.4rem;font-size:.9rem;cursor:pointer}
-.tif-check-row input{accent-color:#00f5ff;width:15px;height:15px}
+.tif-check-row{display:flex;align-items:flex-start;gap:.6rem;margin-bottom:.6rem;font-size:.9rem;cursor:pointer;color:#e0e0ff}
+.tif-check-row input[type="checkbox"]{appearance:auto!important;-webkit-appearance:checkbox!important;display:inline-block!important;width:16px!important;height:16px!important;min-width:16px!important;accent-color:#00f5ff;margin-top:2px;flex-shrink:0;cursor:pointer}
 .tif-info{background:rgba(0,245,255,.07);border-left:3px solid #00f5ff;border-radius:0 4px 4px 0;padding:.7rem 1rem;font-size:.9rem;color:#b0e0e6}
 .tif-reflection-q{font-size:.93rem;margin-bottom:.5rem;color:#e0e0ff}.tif-reflection textarea{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.18);border-radius:6px;color:#e0e0ff;font-family:'Inter',sans-serif;font-size:.88rem;line-height:1.6;padding:.6rem .8rem;resize:vertical;min-height:70px;box-sizing:border-box}.tif-reflection textarea:focus{outline:none;border-color:#00f5ff}
 .tif-branch-q{font-size:1rem;font-weight:600;color:#fff;margin-bottom:1.1rem}
