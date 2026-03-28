@@ -63,11 +63,8 @@ h1 {
 }
 
 h2 {
-    font-family: var(--font-heading);
+    font-family: 'Cinzel', serif;
     font-size: 2.5rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: #fff;
     border-bottom: 2px solid var(--accent-neon-pink);
     display: inline-block;
     padding-bottom: 0.5rem;

@@ -97,10 +97,12 @@ initScenario({
         correct:true},
        {type:'info',
         text:'The rest of the video does get technical, and you\'re more than welcome to attempt it! However, the basics needed are covered in this section.'},
-       {type:'reflection',
-        text:'How can you use our classtime / excursions to create content for your film?'},
-       {type:'reflection',
-        text:'Solutions do not have to be complicated; with a little creativity, we can create incredible effects with the smallest items. What simple items could you use to create effects for your film?'}
+       {type:'check',
+        question:'Reflect on the following creative strategies:',
+        options:[
+          'How can you use our classtime / excursions to create content for your film?',
+          'Solutions do not have to be complicated; with a little creativity, we can create incredible effects with the smallest items.'
+        ]}
      ],
      next:14},
 
