@@ -45,14 +45,14 @@ initScenario({
         feedback:'<p><em>Example</em>: Filming in a classroom, hallway, or apartment to replicate an interior scene.</p><p>A controlled environment gives you maximum flexibility over lighting and sound, but requires careful set dressing to avoid looking generic. Think about what props, lighting, and framing choices will sell the location.</p>'}
      ]},
 
-    {id:4, type:'video', title:'Team Work makes the Dream Work',
+    {id:4, type:'video', title:'Practical Effects',
      videoId:'hFFopPPrGiE',
      videoStart:184,
      questions:[
-       {type:'info',
+       {type:'reflection',
         text:'How can you use our classtime / excursions to create content for your film?'},
-       {type:'info',
-        text:'Solutions do not have to be complicated; with a little creativity, we can create incredible effects with the smallest items.'}
+       {type:'reflection',
+        text:'Solutions do not have to be complicated; with a little creativity, we can create incredible effects with the smallest items. What simple items could you use to create effects for your film?'}
      ],
      next:5},
 

@@ -93,14 +93,14 @@ initScenario({
        {type:'info',
         text:'Feel free to skip to 1:43 to avoid the ad. He is using the free software Blender.'},
        {type:'tf',
-        question:'Do you remember that some models are provided if you don\'t have any &mdash; both Cybercity and Kaiju?',
+        question:'Do you remember that some models are provided if you don\'t have any — both Cybercity and Kaiju?',
         correct:true},
        {type:'info',
         text:'The rest of the video does get technical, and you\'re more than welcome to attempt it! However, the basics needed are covered in this section.'},
-       {type:'info',
+       {type:'reflection',
         text:'How can you use our classtime / excursions to create content for your film?'},
-       {type:'info',
-        text:'Solutions do not have to be complicated; with a little creativity, we can create incredible effects with the smallest items.'}
+       {type:'reflection',
+        text:'Solutions do not have to be complicated; with a little creativity, we can create incredible effects with the smallest items. What simple items could you use to create effects for your film?'}
      ],
      next:14},
 
