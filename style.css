@@ -21,7 +21,6 @@
     --accent-neon-pink: #ff007f;
     --accent-neon-cyan: #00f3ff;
     --accent-dark-blue: #0a0a23;
-    --font-heading: 'Saiba45', sans-serif;
     --font-body: 'Inter', sans-serif;
     --card-bg: rgba(255, 255, 255, 0.03);
     --border-color: rgba(255, 255, 255, 0.1);
@@ -458,7 +457,7 @@ footer {
 }
 
 .film-slide-number {
-    font-family: var(--font-heading);
+    font-family: 'Inter', sans-serif;
     font-size: 0.7rem;
     color: var(--accent-neon-pink);
     letter-spacing: 0.25em;
@@ -467,13 +466,12 @@ footer {
 }
 
 .film-slide-title {
-    font-family: var(--font-heading);
+    font-family: 'Inter', sans-serif;
     font-size: 1.4rem;
     font-weight: 700;
     line-height: 1.3;
     margin-bottom: 0.75rem;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
 }
 
 .film-slide-title a {
@@ -486,7 +484,7 @@ footer {
 }
 
 .film-slide-genre {
-    font-family: var(--font-heading);
+    font-family: 'Inter', sans-serif;
     font-size: 0.65rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
@@ -509,7 +507,7 @@ footer {
     margin: 0;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    font-family: var(--font-heading);
+    font-family: 'Inter', sans-serif;
 }
 
 .film-slider-nav {
@@ -526,7 +524,7 @@ footer {
     color: var(--accent-neon-cyan);
     padding: 0.5rem 1.5rem;
     cursor: pointer;
-    font-family: var(--font-heading);
+    font-family: 'Inter', sans-serif;
     font-size: 0.75rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
@@ -544,7 +542,7 @@ footer {
 }
 
 .slider-counter {
-    font-family: var(--font-heading);
+    font-family: 'Inter', sans-serif;
     font-size: 0.85rem;
     color: #666;
     min-width: 4.5rem;
@@ -594,11 +592,8 @@ footer {
     background: rgba(255, 255, 255, 0.1);
     padding: 10px;
     border-radius: 4px;
-}
-
-.partner-item:hover img {
-    transform: scale(1.05);
-    background: rgba(255, 255, 255, 0.2);
+    margin: 0 auto;
+    /* Center if block */
 }
 
 .partner-message {
@@ -879,7 +874,7 @@ footer {
 }
 
 .box-legend {
-    font-family: var(--font-heading);
+    font-family: 'Inter', sans-serif;
     text-transform: uppercase;
     color: #fff;
     margin-bottom: 1rem;
@@ -1093,7 +1088,7 @@ blockquote {
 
 .glossary-tooltip strong {
     color: var(--accent-neon-cyan);
-    font-family: var(--font-heading);
+    font-family: 'Inter', sans-serif;
     font-size: 1rem;
     display: block;
     margin-bottom: 0.5rem;
@@ -1470,6 +1465,7 @@ blockquote {
     white-space: normal !important;
     /* Allow wrapping */
     line-height: 1.3;
+    font-family: 'Inter', sans-serif;
 }
 
 .textbook-content .infinite-game-box p {
@@ -1508,7 +1504,7 @@ blockquote {
 }
 
 .infinite-game-price {
-    font-family: var(--font-heading) !important;
+    font-family: 'Inter', sans-serif !important;
     font-size: 1rem !important;
     /* Slightly smaller for mobile */
     color: var(--accent-neon-pink) !important;
