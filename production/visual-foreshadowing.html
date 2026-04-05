@@ -21,6 +21,66 @@
         .video-fallback-link:hover {
             color: var(--accent-neon-cyan);
         }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .meta-grid label {
+            color: #aaa;
+            font-size: 0.9rem;
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .meta-input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 4px;
+            color: #fff;
+            padding: 0.5rem;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .worksheet-response-label {
+            color: #aaa;
+            font-size: 0.85rem;
+            margin-top: 1rem;
+            display: block;
+        }
+
+        .download-section {
+            background: rgba(0, 243, 255, 0.05);
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        @media print {
+            nav, footer, .download-section {
+                display: none;
+            }
+            body { background: #fff; color: #000; }
+            .worksheet-textarea {
+                border: 1px solid #ccc;
+                background: #fff;
+                color: #000;
+                min-height: 80px;
+            }
+            .meta-input {
+                border: 1px solid #ccc;
+                background: #fff;
+                color: #000;
+            }
+            h1, h2, h3, h4, p, li, label, strong { color: #000 !important; }
+            .box-exercise { border: 1px solid #ccc; background: transparent; }
+        }
     </style>
 </head>
 
@@ -108,10 +168,26 @@
             <p><em>Note: These films rely heavily on visual metaphors to communicate what characters cannot say.</em>
             </p>
 
-            <div class="print-btn-container" style="margin-top: 2rem; display: none;">
-            </div>
-
             <h2>Prompts</h2>
+
+            <div class="meta-grid" style="margin-top: 1.5rem;">
+                <div>
+                    <label>Name</label>
+                    <input type="text" class="meta-input">
+                </div>
+                <div>
+                    <label>Course / Section</label>
+                    <input type="text" class="meta-input">
+                </div>
+                <div>
+                    <label>Film Title</label>
+                    <input type="text" class="meta-input">
+                </div>
+                <div>
+                    <label>Scene / Timestamp</label>
+                    <input type="text" class="meta-input">
+                </div>
+            </div>
 
             <div class="box-exercise">
                 <span class="box-legend">Prompt 1: The Seed (The Clue)</span>
@@ -123,6 +199,8 @@
                     <li>How does the lighting tell you this situation is unsafe or temporary?</li>
                 </ul>
                 <p><strong>Example:</strong> In <em>Bullet Train</em>, the poisoned water bottle is shown in the background of multiple shots before its significance is revealed. The camera plants it without drawing attention to it.</p>
+                <label class="worksheet-response-label">Your Response:</label>
+                <textarea class="worksheet-textarea" style="min-height: 120px;" placeholder="Describe the visual seed you identified..."></textarea>
             </div>
 
             <div class="box-exercise">
@@ -135,6 +213,8 @@
                     <li>How does the director use repetition to train your eye?</li>
                 </ul>
                 <p><strong>Example:</strong> Lemon's Thomas character labels recur throughout the film. Each time he assigns one, the audience dismisses it as a joke. The pattern proves to be a precise prediction of fate.</p>
+                <label class="worksheet-response-label">Your Response:</label>
+                <textarea class="worksheet-textarea" style="min-height: 120px;" placeholder="Track how the motif recurs and changes..."></textarea>
             </div>
 
             <div class="box-exercise">
@@ -147,6 +227,8 @@
                     <li>How does the visual language shift to confirm the change?</li>
                 </ul>
                 <p><strong>Example:</strong> The White Death's full reveal reframes every scene before it. The briefcase, the train's route, and each passenger's presence were never random. The foreshadowing was always structural, not incidental.</p>
+                <label class="worksheet-response-label">Your Response:</label>
+                <textarea class="worksheet-textarea" style="min-height: 120px;" placeholder="Analyze the moment of reveal and what it re-contextualizes..."></textarea>
             </div>
 
             <h2>Textbook Contribution</h2>
@@ -172,6 +254,11 @@
                 <li><strong>Evidence:</strong> Is your description of the shot accurate?</li>
                 <li><strong>Polish:</strong> Is it professional?</li>
             </ul>
+
+            <div class="download-section">
+                <p>Complete the prompts above, then save your worksheet.</p>
+                <button class="btn" onclick="window.print()">Print / Save as PDF</button>
+            </div>
 
         </div>
 
