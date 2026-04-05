@@ -22,30 +22,6 @@
             color: var(--accent-neon-cyan);
         }
 
-        .meta-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .meta-grid label {
-            color: #aaa;
-            font-size: 0.9rem;
-            display: block;
-            margin-bottom: 0.25rem;
-        }
-
-        .meta-input {
-            width: 100%;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 4px;
-            color: #fff;
-            padding: 0.5rem;
-            font-family: 'Inter', sans-serif;
-        }
-
         .download-section {
             background: rgba(0, 243, 255, 0.05);
             border: 1px solid rgba(0, 243, 255, 0.2);
@@ -65,11 +41,6 @@
                 background: #fff;
                 color: #000;
                 min-height: 80px;
-            }
-            .meta-input {
-                border: 1px solid #ccc;
-                background: #fff;
-                color: #000;
             }
             h1, h2, h3, h4, p, li, label, strong { color: #000 !important; }
             .card { border: 1px solid #ccc; background: transparent; }
@@ -157,25 +128,6 @@
             </ul>
 
             <h2>Prompts</h2>
-
-            <div class="meta-grid" style="margin-top: 1.5rem;">
-                <div>
-                    <label>Name</label>
-                    <input type="text" class="meta-input">
-                </div>
-                <div>
-                    <label>Course / Section</label>
-                    <input type="text" class="meta-input">
-                </div>
-                <div>
-                    <label>Film Title</label>
-                    <input type="text" class="meta-input">
-                </div>
-                <div>
-                    <label>Director / Year</label>
-                    <input type="text" class="meta-input">
-                </div>
-            </div>
 
             <div class="section-grid three-col" style="margin-top: 2rem;">
                 <article class="card">
