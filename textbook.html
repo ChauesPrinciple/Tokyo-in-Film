@@ -20,7 +20,15 @@
 
     <nav>
         <div class="nav-brand" style="display: flex; align-items: center; gap: 1rem;">
-<div class="logo">Tokyo in Film</div>
+<div class="logo">
+            Tokyo in Film
+            <div class="dropdown-menu">
+                <a href="https://chauesprinciple.github.io/Tokyo-in-Film/" class="dropdown-item current">Tokyo in
+                    Film</a>
+                <a href="https://chauesprinciple.github.io/Ancient-literature/" class="dropdown-item">Ancient
+                    Literature</a>
+            </div>
+        </div>
             <a href="https://www.instagram.com/chaues/" target="_blank" class="ig-icon" aria-label="Instagram"></a>
         </div>
         <div class="menu-toggle" id="mobile-menu">
@@ -30,6 +38,7 @@
         </div>
         <ul class="nav-list">
             <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="scene-project.html">The Scene Project</a></li>
             <li><a href="pre-production/index.html">Pre-Production</a></li>
             <li><a href="production/index.html">Production</a></li>
             <li><a href="post-production/index.html">Post-Production</a></li>
@@ -281,6 +290,10 @@
 
     <footer>
         <p>&copy; 2026 Tokyo in Film.</p>
+        <div class="attribution-text">
+            <p><a href="https://chauesprinciple.github.io/Tokyo-in-Film/">Tokyo in Film</a> &copy; 2023 by <a href="https://chauesprinciple.github.io/ChauesProductions/">Robert Ladd</a> is licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International</a>.</p>
+            <p><strong>Originally adapted from:</strong> <em>Moving Pictures: An Introduction to Cinema</em> by Russell Sharman.</p>
+        </div>
     </footer>
 
     <script src="js/glossary.js"></script>
@@ -334,6 +347,7 @@
             }
         });
     </script>
+    <script src="js/mobile-nav.js"></script>
 </body>
 
 </html>

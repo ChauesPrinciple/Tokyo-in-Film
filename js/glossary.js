@@ -25,6 +25,10 @@ const glossaryTerms = [
         definition: "The art of bringing static objects or drawings to life through frame-by-frame manipulation and photography."
     },
     {
+        term: "Animatic",
+        definition: "A rough sequence of storyboard images edited together with timing and often a scratch audio track, used to previsualize pacing and shot flow before production begins."
+    },
+    {
         term: "Antagonist",
         definition: "The primary force or character that stands in opposition to the protagonist's goals."
     },
@@ -67,6 +71,10 @@ const glossaryTerms = [
         definition: "The second-in-command to the Gaffer or Key Grip, handling equipment inventory, personnel management, and electrical logistics."
     },
     {
+        term: "Beta Movement",
+        definition: "A perceptual phenomenon where the brain interprets a rapid sequence of discrete images as continuous motion. Distinct from persistence of vision, beta movement is the cognitive mechanism that makes cinema and animation possible."
+    },
+    {
         term: "Blocking",
         definition: "The choreographed physical movement and positioning of actors within the frame during a scene."
     },
@@ -85,6 +93,10 @@ const glossaryTerms = [
     {
         term: "Call Sheet",
         definition: "The daily production schedule distributed to cast and crew, detailing call times, scenes to be filmed, and locations."
+    },
+    {
+        term: "Catharsis",
+        definition: "The emotional release experienced by the audience at the climax of a narrative, built through accumulated tension, empathy, and stakes. In Aristotle's formulation, it is the purging of pity and fear through dramatic action."
     },
     {
         term: "CGI",
@@ -300,6 +312,14 @@ const glossaryTerms = [
         definition: "Everyday sound effects recreated in a studio to replace or enhance the original production audio."
     },
     {
+        term: "Forced Perspective",
+        definition: "A practical in-camera technique that uses the spatial relationship between subjects and the lens to create the illusion of objects being larger, smaller, closer, or farther than they actually are."
+    },
+    {
+        term: "Foreshadowing",
+        definition: "A narrative and visual technique where early details, images, or events hint at developments later in the story. Effective foreshadowing is invisible on first viewing and revelatory on the second."
+    },
+    {
         term: "Fourth Wall",
         definition: "The imaginary barrier separating the fictional world of the characters from the real world of the audience."
     },
@@ -358,6 +378,10 @@ const glossaryTerms = [
     {
         term: "Implicit Meaning",
         definition: "The subtle, underlying significance or association in a film, requiring viewer interpretation."
+    },
+    {
+        term: "Inciting Incident",
+        definition: "The event that disrupts the protagonist's status quo and sets the central conflict in motion, typically occurring near the end of Act One."
     },
     {
         term: "Insert Shot",
@@ -461,6 +485,11 @@ const glossaryTerms = [
         definition: "A plot device that drives the characters' actions and the story forward, though its specific nature may be unimportant (e.g., the briefcase in Pulp Fiction)."
     },
     {
+        term: "Ma (\u9593)",
+        matchTerm: "Ma",
+        definition: "A Japanese aesthetic concept referring to the intentional use of negative space, silence, or pause. In film, ma shapes how viewers perceive rhythm and emotional weight, allowing moments of reflection between action."
+    },
+    {
         term: "Magic Hour",
         definition: "The brief window of soft, warm, diffuse light just after sunset or before sunrise."
     },
@@ -533,6 +562,15 @@ const glossaryTerms = [
         definition: "Cutting between two concurrent storylines to build tension or draw comparisons (Cross-Cutting)."
     },
     {
+        term: "Persistence of Vision",
+        definition: "The historical theory that the retina briefly retains an image after it disappears, allowing successive still images to blend into perceived motion. Modern research attributes this illusion primarily to brain processing (see Beta Movement)."
+    },
+    {
+        term: "Pilgrimage Shot (Seichi Junrei)",
+        matchTerm: "Pilgrimage",
+        definition: "In anime fan culture (\u8056\u5730\u5de1\u793c, seichi junrei), the practice of visiting real-world locations depicted in anime or film. In production, a pilgrimage shot recreates the original framing and composition at the actual location."
+    },
+    {
         term: "Pick-ups",
         definition: "Minor shots or small portions of scenes recorded after principal photography to correct errors or fill gaps."
     },
@@ -594,6 +632,10 @@ const glossaryTerms = [
         definition: "A visual effect where the action is played backward."
     },
     {
+        term: "Room Tone",
+        definition: "The ambient sound of a location recorded with no dialogue or deliberate noise. Captured on set as a reference track, it is used in post-production to fill gaps and maintain sonic continuity between edits."
+    },
+    {
         term: "Rule of Thirds",
         definition: "A compositional guideline dividing the frame into a 3x3 grid, placing key elements along the lines or intersections."
     },
@@ -644,6 +686,10 @@ const glossaryTerms = [
     {
         term: "Shot List",
         definition: "The director's itemized document detailing every shot needed for the day's filming."
+    },
+    {
+        term: "Shooting Ratio",
+        definition: "The relationship between the total amount of footage shot and the final running time of the film. A 10:1 ratio means ten minutes of raw footage for every one minute in the finished cut."
     },
     {
         term: "Showrunner",
@@ -744,6 +790,10 @@ const glossaryTerms = [
     {
         term: "Time Lapse",
         definition: "A technique where slow events (like a blooming flower) are played back at high speed."
+    },
+    {
+        term: "Tokusatsu",
+        definition: "A Japanese genre of live-action film and television relying heavily on practical special effects, miniatures, and suit acting. Godzilla (1954) is the most iconic example, and the tradition continues to influence modern Japanese filmmaking."
     },
     {
         term: "Tracking Shot",
