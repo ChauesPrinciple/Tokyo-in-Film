@@ -164,7 +164,7 @@
     mount.innerHTML = `
         <div class="fc-container">
             <div class="fc-messages" id="fc-messages">
-                <div class="fc-msg fc-system">I help you improve your scripts, shot lists, and storyboards. I will not write them for you — but I will help you see what is working and what is not.<br><br>What are you working on?</div>
+                <div class="fc-msg fc-system">I help you improve your scripts, shot lists, and storyboards. I will not write them for you, but I will help you see what is working and what is not.<br><br>What are you working on?</div>
             </div>
             <div class="fc-typing" id="fc-typing">Thinking...</div>
             <div class="fc-input-area">
