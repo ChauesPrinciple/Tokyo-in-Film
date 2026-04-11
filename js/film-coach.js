@@ -11,7 +11,7 @@
     const WORKER_URL = 'https://filmcoach.factum-est-illud.workers.dev';
 
     const MAX_HISTORY = 30;
-    const MAX_INPUT = 2000;
+    const MAX_INPUT = 8000;
 
     // ── Find mount point ─────────────────────────────────────────────
     const mount = document.getElementById('film-coach-mount');
