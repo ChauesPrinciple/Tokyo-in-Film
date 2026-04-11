@@ -235,7 +235,14 @@
             });
 
             if (!response.ok) {
-                throw new Error('Server returned ' + response.status);
+                const errBody = await response.text();
+                addBubble('fc-system', 'Error ' + response.status + ' from server. Check Cloudflare Worker logs.');
+                console.error('[Film Coach] HTTP ' + response.status, errBody);
+                streaming = false;
+                sendBtn.disabled = false;
+                typingEl.classList.remove('fc-visible');
+                inputEl.focus();
+                return;
             }
 
             var bubble = addBubble('fc-assistant', '');
