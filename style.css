@@ -1,4 +1,4 @@
-/* Tokyo in Film - Cinematic Theme */
+﻿/* Tokyo in Film - Cinematic Theme */
 @font-face {
     font-family: 'Saiba45';
     src: url('saiba-45.regular.otf') format('opentype');
@@ -935,7 +935,7 @@ blockquote {
 
 /* User Provided Art Banner Styling */
 .art-banner-wrap {
-    background: #000 url('https://human.libretexts.org/@api/deki/files/162671/ArtCornerbanner-ezgif.com-resize.gif') no-repeat center center;
+    background: #000 url('assets/images/libretexts/art-corner-banner.gif') no-repeat center center;
     background-size: contain;
     /* Prevent cropping */
     height: auto;

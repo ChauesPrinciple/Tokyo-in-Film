@@ -12,11 +12,26 @@ This directory contains 5 production modules covering:
 - On-set problem-solving
 
 ## Available Skills
+
+### Pedagogical Skills
 - `design-practical-effects` - Create low-budget effects exercises
 - `design-worksheets` - Build production technique worksheets
 - `write-film-critiques` - Analyze films for production techniques
 - `maintain-writing-voice` - Ensure consistent pedagogical tone
 - `update-module-content` - Edit existing module pages
+
+### Filmmaking Production Skills
+These provide deep technical knowledge for production content. Use them as reference when creating module content, or invoke directly for production tasks.
+
+- `@visual-grammar` - Shot sizes (ELS→ECU), composition rules, Sharman cinematography theory
+- `@optics-psychology` - Focal length selection, DOF strategy, lens distortion as narrative tool
+- `@lighting-architecture` - Three-point lighting, key-to-fill ratios, motivated sources, gels
+- `@acoustic-design` - Mic selection, boom placement, room tone, L-cut/J-cut, ADR/Foley
+- `@staging-blocking` - 180° line, coverage strategy, spike marks, floor plans
+- `@production-protocol` - Command chain, role hierarchy, call sheets, safety
+- `/coverage-strategy` - Plan master + story shots + cut-ins + cut-aways with 180° tracking
+- `/location-lighting-plan` - Create lighting plot with ratios, positions, gels
+- `/production-package` - Compile all outputs into production-ready package
 
 ## Production Philosophy
 
@@ -133,6 +148,9 @@ All production techniques must account for:
 - Consistent lighting and color
 - Organized file naming
 - Backup and media management
+
+### Using the Film Producer Agent
+For complete production planning from a screenplay scene, invoke `@film-producer-agent [scene]`. This orchestrates all filmmaking skills (narrative → visual → lighting → sound → staging → editorial) into a single production package. The production-phase skills (`@visual-grammar`, `@lighting-architecture`, `@acoustic-design`, `@staging-blocking`) are the core of the agent's workflow. See `.windsurf/FILMMAKING_NETWORK_COMPLETE.md` for details.
 
 ## Assessment Criteria
 

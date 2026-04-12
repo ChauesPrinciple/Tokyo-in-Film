@@ -12,11 +12,21 @@ This directory contains 5 post-production modules covering:
 - Export and distribution
 
 ## Available Skills
+
+### Pedagogical Skills
 - `design-worksheets` - Build post-production technique worksheets
 - `write-film-critiques` - Analyze films for editing and post techniques
 - `maintain-writing-voice` - Ensure consistent pedagogical tone
 - `update-module-content` - Edit existing module pages
 - `add-glossary-terms` - Add post-production terminology
+
+### Filmmaking Production Skills
+These provide deep technical knowledge for post-production content. Use them as reference when creating module content, or invoke directly for editorial tasks.
+
+- `@editorial-grammar` - Cut types, Kuleshov effect, pacing, rhythm variations, Sharman editing theory
+- `@acoustic-design` - L-cut/J-cut grammar, sound bridge theory, ADR, Foley, sound libraries
+- `/editorial-assembly` - Plan cut sequence with transitions, Kuleshov moments, pacing notes
+- `/advanced-editorial-theory` - Academic editorial analysis (Murch, Zettl, Burch, Bordwell, Bazin, Tarkovsky, Deren)
 
 ## Post-Production Philosophy
 
@@ -156,6 +166,9 @@ Students learn to:
 - Clean audio mix
 - Color-corrected footage
 - Distribution-ready file
+
+### Using the Film Producer Agent
+For complete editorial pre-visualization from a screenplay scene, invoke `@film-producer-agent [scene]`. The post-production phase of the agent's workflow uses `@editorial-grammar` to determine cut points, identify Kuleshov opportunities, and plan transitions. For deeper theoretical analysis, use `/advanced-editorial-theory` directly. See `.windsurf/FILMMAKING_NETWORK_COMPLETE.md` for details.
 
 ## Assessment Criteria
 
