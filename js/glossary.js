@@ -79,6 +79,10 @@ const glossaryTerms = [
         definition: "The choreographed physical movement and positioning of actors within the frame during a scene."
     },
     {
+        term: "Bullet Time",
+        definition: "A visual effect in which the camera appears to orbit a subject frozen or moving in extreme slow motion, achieved by firing a ring of still cameras in rapid sequence. Popularized by The Matrix (1999)."
+    },
+    {
         term: "Bokeh",
         definition: "The aesthetic quality of the out-of-focus areas in an image, often appearing as soft, circular shapes. Derived from the Japanese word for 'blur' (暈け), it is a hallmark of shallow depth of field cinematography."
     },
@@ -146,6 +150,10 @@ const glossaryTerms = [
     {
         term: "Composition",
         definition: "The artistic arrangement of visual elements within the frame to guide the viewer's eye."
+    },
+    {
+        term: "Content Curve",
+        definition: "The amount of time a viewer needs to register and absorb the visual information in a shot. Simple images have a short content curve; complex, information-dense images have a longer one. Editors balance the content curve against narrative pacing."
     },
     {
         term: "Continuity Editing",
@@ -278,6 +286,10 @@ const glossaryTerms = [
     {
         term: "Fill Light",
         definition: "A secondary light source used to soften the shadows created by the key light."
+    },
+    {
+        term: "Flap Sync",
+        definition: "A method of lip-syncing animation dialogue by matching mouth movements to pre-recorded speech. In Japanese anime, voice performances are often recorded after animation (post-scoring), requiring actors to match their delivery to existing mouth flaps."
     },
     {
         term: "Film Gauge",
@@ -562,6 +574,10 @@ const glossaryTerms = [
         definition: "Cutting between two concurrent storylines to build tension or draw comparisons (Cross-Cutting)."
     },
     {
+        term: "Overcranking",
+        definition: "Running the camera at a frame rate higher than the standard playback rate, producing slow motion when projected at normal speed. The term originates from hand-cranked cameras."
+    },
+    {
         term: "Persistence of Vision",
         definition: "The historical theory that the retina briefly retains an image after it disappears, allowing successive still images to blend into perceived motion. Modern research attributes this illusion primarily to brain processing (see Beta Movement)."
     },
@@ -582,6 +598,10 @@ const glossaryTerms = [
     {
         term: "Practical Light",
         definition: "Working light sources visible within the scene, such as desk lamps or car headlights."
+    },
+    {
+        term: "Prescoring",
+        definition: "Recording the voice performances before the animation is drawn, allowing animators to match lip movements and expressions to the recorded dialogue. Standard practice in Western animation; Japanese anime typically uses post-scoring instead."
     },
     {
         term: "Prime Lens",
@@ -810,6 +830,10 @@ const glossaryTerms = [
     {
         term: "Two Shot",
         definition: "A medium shot framing two characters, typically interacting."
+    },
+    {
+        term: "Undercranking",
+        definition: "Running the camera at a frame rate lower than the standard playback rate, producing fast motion when projected at normal speed. Used to create comedic effects, heightened action, or time-lapse sequences."
     },
     {
         term: "Video Village",

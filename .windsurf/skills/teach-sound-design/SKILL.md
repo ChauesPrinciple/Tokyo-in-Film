@@ -176,6 +176,157 @@ Create pedagogical content that teaches students practical sound recording and d
 - Glue mix together
 - Avoid over-compression
 
+## DECISION PROTOCOL
+
+This section defines the reasoning framework for every sound decision — before recording, during production, and in post.
+
+### Diagnostic: Is This Audio Salvageable? (Source: `@audio-post-production`; Skillshare VTT 15)
+
+Before spending time on post-production audio work, diagnose whether the problem is fixable. Some problems are not fixable in post — they must be prevented in production or replaced.
+
+```
+LISTEN TO THE RAW AUDIO. ANSWER IN ORDER:
+
+1. Can you understand the dialogue?
+     → NO: Is the problem noise (traffic, HVAC, crowd)?
+          → YES: EQ/compression CANNOT fix competing noise sources. 
+                 Options: ADR, reshoot, or abandon the clip.
+          → NO: Is the problem tonal (muffled, hollow, thin)?
+               → YES: EQ can fix this. Proceed to EQ diagnosis.
+
+2. Is the volume jumping between loud and quiet?
+     → YES: Compression will fix this. Apply before mixing.
+     → NO: Go to 3.
+
+3. Does the audio have unwanted low rumble or hiss?
+     → RUMBLE: High-pass filter (cut below 80–100 Hz). Always the first EQ move.
+     → HISS: Low-pass filter (cut above 12–14 kHz).
+     → Both fixable with EQ.
+
+4. Is the room echo severe (heavy reverb)?
+     → MODERATE: EQ cut at 500–800 Hz reduces it slightly.
+     → SEVERE: EQ cannot fix severe reverb. ADR required.
+     → RULE: If you can hear the room more than the person, ADR.
+
+5. Does the audio match other clips in the same scene?
+     → NO: Level match first (volume), then EQ match (tone).
+     → YES: Ready for the mix.
+
+THE RULE: Production problems require production solutions. Post-production fixes tonal and
+dynamic problems. It cannot fix bad location choices, wrong mic placement, or competing sounds.
+```
+
+---
+
+### Decision Tree: Which Recording Approach?
+
+```
+WHERE AND WHAT ARE YOU RECORDING?
+
+→ Interior, controlled environment (classroom, room, quiet space)
+     → Smartphone close-mic: Hold phone 20–30cm from subject's mouth
+     → If available: External mic attachment for smartphone (lavalier preferred)
+     → Record room tone: 30–60 seconds of silence before recording dialogue
+
+→ Exterior, moderate noise (park, quieter street)
+     → Close-mic still works; keep phone/mic within 30cm of subject
+     → Shoot in early morning or late evening for lowest ambient noise
+     → Prioritize direction: put noise source behind subject, mic aimed away from it
+     → Multiple takes for safety — one clean take is all you need
+
+→ Exterior, high noise (Shibuya crossing, train station, markets)
+     → You cannot fix this environment in post
+     → Three options: (1) record dialogue wild (not on set) and sync later; 
+       (2) use the location for visuals only and record sound elsewhere; 
+       (3) embrace the ambient noise as design (must be intentional)
+     → Record the ambient noise as a sound design asset (use it, don't fight it)
+
+→ Moving subject (walking, running)
+     → Smartphone on a boom (improvised: phone taped to a pole or stick)
+     → Or: record close-up static shot, use ambient track from location underneath
+     → Avoid: holding the phone while walking (handling noise)
+
+→ Group scene, multiple people talking
+     → Record each person separately when possible (coverage-style audio)
+     → Or: boom positioned to capture group, accept some distance
+     → Always: record room tone to cover edits
+```
+
+---
+
+### Decision Tree: When Does Silence Work as Sound Design?
+
+```
+SILENCE IS A TOOL. USE IT WHEN:
+
+→ Something terrible just happened
+     → Hard cut to silence after impact. Do not fill it immediately.
+     → Silence after violence or shock = the world has stopped. It holds the audience.
+
+→ Building dread before an event
+     → Gradually reduce ambient sound before a threat arrives
+     → Per @acoustic-design: Entity-adjacent scenes use gradual frequency subtraction
+     → The ABSENCE of expected sound is more threatening than added sound
+
+→ A character is isolated
+     → Strip away all sound except their breathing and immediate foley
+     → The absence of the outside world = the inside world has consumed them
+
+→ A moment of clarity or decision
+     → Remove music; let the silence make the decision feel real
+     → Music tells the audience what to feel. Silence forces them to decide.
+
+WHEN NOT TO USE SILENCE:
+→ To save time on sound design: Audiences notice
+→ Under dialogue that has usable room tone: Flat silence under dialogue = unnatural
+→ RULE: Silent sections need room tone underneath. Pure silence is a sound effect, not absence.
+```
+
+---
+
+### Decision Tree: ADR vs. Fix in Post?
+
+```
+THE AUDIO PROBLEM IS:
+
+→ Wrong tone (muffled, thin, boomy) but dialogue is clear
+     → FIX IN POST: EQ first. Target specific frequency. 
+       (Source: Skillshare VTT 15 — EQ adjusts frequency spectrum to shape sound)
+
+→ Inconsistent volume (loud lines, quiet lines in same clip)
+     → FIX IN POST: Compression. 
+       (Source: Skillshare VTT 15 — compression reduces dynamic range)
+
+→ Noise underneath dialogue (constant HVAC, wind, rumble)
+     → CONSTANT NOISE: High-pass filter + noise reduction plugin (Audacity noise removal)
+       May work. Test first.
+     → VARIABLE NOISE (traffic, crowd): ADR required.
+
+→ Dialogue is present but performance needs to be re-recorded
+     → ADR: EQ and compression cannot fix performance. Only ADR fixes performance.
+
+→ Dialogue is completely unusable (clipping, severe distortion)
+     → ADR: Clipping is the one audio problem that cannot be fixed in post.
+
+→ Room reverb is heavy throughout the clip
+     → ADR: EQ can reduce moderate reverb; it cannot remove heavy reverb.
+       Better to record clean in a controlled space.
+
+PRIORITY ORDER: Try fix-in-post first. If three minutes of work doesn't solve it, plan ADR.
+ADR adds time but is always cleaner than over-processed location sound.
+```
+
+---
+
+### Integration with Other Skills
+
+- `@audio-post-production` — full EQ/compression diagnosis protocol and dialogue polish workflow
+- `@acoustic-design` — microphone types, boom placement, room tone protocol, L-cut/J-cut editorial strategy
+- `teach-editing-principles` — L-cuts and J-cuts require coordinated decisions between picture and sound
+- `@color-grading` — audio mix happens after picture lock; color grade and audio mix are parallel workflows
+
+---
+
 ## Pedagogical Approach
 
 ### Teaching Progression

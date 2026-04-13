@@ -155,6 +155,167 @@ Create pedagogical content that teaches students practical cinematography techni
 - By actor availability
 - Continuity considerations
 
+## DECISION PROTOCOL
+
+This section defines HOW to make cinematography decisions, not just what the options are.
+
+### Decision Tree: Which Shot Size? (Source: Storyboarding course VTT 18; `@visual-grammar`)
+
+Shot size is a psychological choice, not a stylistic one. It determines the audience's emotional distance from the subject. Ask: What does the audience need to feel about this person or place right now?
+
+```
+WHAT IS THE AUDIENCE'S RELATIONSHIP TO THIS SUBJECT?
+
+→ The subject is small against an indifferent world
+     → ELS (Extreme Long Shot): Scale and isolation. Person is dwarfed by environment.
+     → Tokyo use: Shibuya crossing, Shinjuku towers, ocean from Yuigahama Beach
+
+→ Geography matters — we need to understand where they are
+     → LS (Long Shot): Establishes space and subject simultaneously.
+     → Tokyo use: Shrine entrance, a specific street, interior of train car
+
+→ Two or more people interacting; relationship is the subject
+     → MS (Medium Shot) or Two-Shot: Conversation, confrontation, negotiation.
+     → Default for dialogue scenes. Shows body language.
+
+→ One person's internal state is what we need to see
+     → CU (Close-Up): Emotion, decision, recognition, intimacy.
+     → Rule (VTT 18): Close-ups create emotional intensity and audience identification.
+       Place CU where you need the audience to feel what the character feels.
+
+→ A detail carries the weight of the story
+     → ECU (Extreme Close-Up): Fragmentation. Symbols. The shot that cannot be misread.
+     → Use: hands on a weapon, tears forming, a text message, a ring.
+     → Caution: ECU loses context entirely. The audience sees only what you give them.
+
+SEQUENCE PRINCIPLE: Progress shot size inward as intimacy increases.
+ELS → LS → MS → CU → ECU maps the audience's journey from observer to participant.
+Violating this progression should be intentional — starting in ECU disorients by design.
+```
+
+---
+
+### Decision Tree: Centered vs. Rule of Thirds? (Source: Storyboarding course VTT 19)
+
+Rule of thirds is NOT primarily about aesthetics — it is a tool for expressing narrative conflict and power dynamics.
+
+```
+WHAT IS THE POWER DYNAMIC IN THIS SCENE?
+
+→ Character is in control, stable, authoritative
+     → CENTER FRAME: Stability, symmetry, authority. (Wes Anderson uses this extensively.)
+     → Use for: characters who are at peace, in power, or delivering a definitive statement.
+
+→ Character is under pressure, in conflict, off-balance
+     → RULE OF THIRDS: Off-center placement creates visual tension.
+     → Place the character in the power position (strong side) or the weak position
+       depending on their narrative role in this moment.
+
+→ Two characters in conflict
+     → Each takes one third — the tension of the empty space between them IS the tension of the scene.
+
+→ Character is trapped by their environment
+     → Place subject in a corner of the frame; let the environment occupy the dominant portion.
+       The image literally shows what the story is saying.
+
+PRINCIPLE: The frame is an argument about power. Where you place subjects tells the audience
+who controls this scene, even if the dialogue hasn't said it yet.
+```
+
+---
+
+### Decision Tree: Static vs. Moving Camera?
+
+```
+SHOULD THE CAMERA MOVE IN THIS SHOT?
+
+First ask: Is there a REASON to move? If no reason, stay still.
+A moving camera with no motivation is visual noise.
+
+→ Subject is moving through space
+     → YES, move: Track with subject (follow shot, push in, pull out)
+     → Camera movement = audience is with the character
+
+→ Revelation of new information (character, location, relationship)
+     → YES, move: Reveal shot — camera movement as discovery
+     → The audience learns something as the camera moves
+
+→ Character's internal state is unstable, chaotic, frightened
+     → YES, move: Handheld — subjective instability
+     → The shaking communicates anxiety (Source: `@visual-grammar`)
+     → Rule: Handheld is a deliberate choice, not a fallback for missing equipment.
+
+→ The moment is still; contemplative; emotional
+     → NO, stay still: Static frame = the world holds for this moment
+     → Moving the camera during stillness undercuts the scene's weight
+
+→ Two people in conversation
+     → Static: Let the performances move; don't compete with camera movement
+     → Exception: If the conversation is escalating, motivated push-in as tension increases
+```
+
+---
+
+### Decision Tree: Which Lighting Approach?
+
+```
+WHAT IS THE AVAILABLE LIGHT AND WHAT DOES THE SCENE REQUIRE?
+
+→ Exterior, daytime, overcast sky
+     → USE AS-IS: Overcast = giant soft box. Even, flattering, no harsh shadows.
+     → Add: white reflector (foam board) to lift shadows under faces
+
+→ Exterior, direct sun (harsh shadows)
+     → BACKLIGHT the subject (sun behind them), use reflector or fill card to light face
+     → Avoid: sun directly on face = squinting, harsh shadows, unflattering
+
+→ Interior, window available
+     → Window light = key light. Place subject facing window, not back to it.
+     → Add reflector opposite window for fill. No other equipment needed.
+     → Ratio is controlled by distance of reflector: closer = 2:1 (soft); further = 4:1 (dramatic)
+
+→ Interior, no usable natural light
+     → Use practical sources: desk lamps, phone flashlights, candles
+     → Position by three-point logic: key (brightest), fill (softer, opposite side), back (separation)
+
+→ Scene requires a specific emotional register
+     → 2:1 ratio = natural, stable, safe (Source: `@lighting-architecture`)
+     → 4:1 ratio = dramatic tension, conflict, decision-making
+     → 8:1+ = horror, isolation, breakdown
+     → RULE: Lighting ratio is not a style choice — it is a statement about the scene's emotional register.
+
+→ Tokyo neon/available environment at night
+     → USE IT: Neon, signage, and street light are characters in the frame.
+       Let the city light the scene. Mixed color temperature = unease, energy, Tokyo-specific aesthetic.
+```
+
+---
+
+### Diagnostic: Why Does the Footage Look Flat?
+
+```
+PROBLEM                             → CAUSE                         → FIX
+
+Image has no depth                  → No foreground element         → Add foreground interest (railing, leaves, person)
+Subjects look washed out            → Key light too flat (front-on) → Move light to 45° angle; add key-to-fill separation
+Frame looks like a snapshot         → Central framing, no conflict  → Apply thirds; reposition subject
+Camera movement feels random        → No motivation for movement    → Cut movement or give it a narrative purpose
+Shot size feels wrong for emotion   → Generic MS for everything     → Per VTT 18: match shot size to emotional intensity
+Day scene looks dull                → Shooting in flat midday sun   → Seek shade, backlight, or overcast; reframe for shadows
+```
+
+---
+
+### Integration with Other Skills
+
+- `@visual-grammar` — shot size definitions and the ON THE EDGE shot-size/stage matrix
+- `@optics-psychology` — focal length decisions (separate from shot size)
+- `@lighting-architecture` — full lighting ratio system and motivated sources
+- `@staging-blocking` — where the camera goes relative to actors (180° line)
+- `/script-to-shotlist` — translate scene intentions into specific shot numbers
+
+---
+
 ## Pedagogical Approach
 
 ### Teaching Principles

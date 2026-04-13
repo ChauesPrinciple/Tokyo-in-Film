@@ -1,0 +1,449 @@
+{
+  "tokyo_ghoul": [
+    {
+      "name": "Rikkyo University (Tokyo Ghoul)",
+      "lat": 35.7305152,
+      "lng": 139.702509,
+      "film": "Tokyo Ghoul"
+    },
+    {
+      "name": "Shinjuku Station East Exit Smoking Area (Tokyo Ghoul)",
+      "lat": 35.6922643,
+      "lng": 139.7007164,
+      "film": "Tokyo Ghoul"
+    },
+    {
+      "name": "Kabukichō (Tokyo Ghoul)",
+      "lat": 35.6936049,
+      "lng": 139.7019065,
+      "film": "Tokyo Ghoul"
+    }
+  ],
+  "chainsaw_man": [],
+  "jjk": [
+    {
+      "name": "Takeshita Street Entrance Arch (JJK and Tokyo Drift)",
+      "lat": 35.6715743,
+      "lng": 139.7032327,
+      "film": "JJK and Tokyo Drift"
+    },
+    {
+      "name": "Edo-Tokyo Open Air Architectural Museum (JJK) (Samurai)",
+      "lat": 35.7155722,
+      "lng": 139.5125434,
+      "film": "JJK"
+    },
+    {
+      "name": "Tokyo Metropolitan Government Building (JJK)",
+      "lat": 35.6894807,
+      "lng": 139.6916863,
+      "film": "JJK"
+    },
+    {
+      "name": "Aoyama Cemetery (JJK)",
+      "lat": 35.6656277,
+      "lng": 139.7220659,
+      "film": "JJK"
+    },
+    {
+      "name": "Yoyogi National Gymnasium (JJK)",
+      "lat": 35.6676472,
+      "lng": 139.7001458,
+      "film": "JJK"
+    }
+  ],
+  "shared": [
+    {
+      "name": "Imperial Palace Main Gate Ishibashi Ornamental Lamp (13 Assassins, Kubi)",
+      "lat": 35.7158495,
+      "lng": 139.5141002,
+      "film": "13 Assassins, Kubi"
+    },
+    {
+      "name": "Roppongi Hills Mori Tower (Tokyo Drift)",
+      "lat": 35.6607345,
+      "lng": 139.7292066,
+      "film": "Tokyo Drift"
+    },
+    {
+      "name": "Tokyo Tower (Godzilla and others)",
+      "lat": 35.6585696,
+      "lng": 139.745484,
+      "film": "Godzilla and others"
+    },
+    {
+      "name": "Yotsuya Station (Your Name)",
+      "lat": 35.6861525,
+      "lng": 139.7302183,
+      "film": "Your Name"
+    },
+    {
+      "name": "Suga Shrine (Your Name)",
+      "lat": 35.6852851,
+      "lng": 139.7224783,
+      "film": "Your Name"
+    },
+    {
+      "name": "Shinanomachi Station (Your Name)",
+      "lat": 35.6800602,
+      "lng": 139.7203199,
+      "film": "Your Name"
+    },
+    {
+      "name": "Rainbow Bridge (Weathering With You)",
+      "lat": 35.6365639,
+      "lng": 139.7631443,
+      "film": "Weathering With You"
+    },
+    {
+      "name": "Fujiwara Tofu Shop (Initial D)",
+      "lat": 35.6910119,
+      "lng": 139.7922582,
+      "film": "Initial D"
+    },
+    {
+      "name": "Fujiwara Tofu Shop (Initial D)",
+      "lat": 36.4634982,
+      "lng": 138.9698489,
+      "film": "Initial D"
+    },
+    {
+      "name": "National Diet Building (Shin Godzilla)",
+      "lat": 35.675888,
+      "lng": 139.744858,
+      "film": "Shin Godzilla"
+    },
+    {
+      "name": "Wako Namiki-Dori Building (Godzilla Minus One)",
+      "lat": 35.6723536,
+      "lng": 139.7644293,
+      "film": "Godzilla Minus One"
+    },
+    {
+      "name": "Chuo-dori Avenue (Suzume, Tokyo Drift)",
+      "lat": 35.6863768,
+      "lng": 139.7739215,
+      "film": "Suzume, Tokyo Drift"
+    },
+    {
+      "name": "Yokohama Red Brick Warehouse (Godzilla Minus One)",
+      "lat": 35.4526321,
+      "lng": 139.6428944,
+      "film": "Godzilla Minus One"
+    },
+    {
+      "name": "DevilCraft Kanda (Godzilla)",
+      "lat": 35.6895898,
+      "lng": 139.7711529,
+      "film": "Godzilla"
+    },
+    {
+      "name": "Hijiri Bridge (Suzume)",
+      "lat": 35.699817,
+      "lng": 139.7655156,
+      "film": "Suzume"
+    },
+    {
+      "name": "Ochanomizu Station (Suzume)",
+      "lat": 35.6997175,
+      "lng": 139.7644404,
+      "film": "Suzume"
+    },
+    {
+      "name": "Sensō-ji (Suzume)",
+      "lat": 35.7147651,
+      "lng": 139.7966553,
+      "film": "Suzume"
+    },
+    {
+      "name": "Maneki-neko Hall (Kubi, 13 Assassins)",
+      "lat": 35.6483005,
+      "lng": 139.6469949,
+      "film": "Kubi, 13 Assassins"
+    },
+    {
+      "name": "Kurazukuri no Machinami / Warehouse District (Kubi, 13 Assasssins)",
+      "lat": 35.923527,
+      "lng": 139.4829325,
+      "film": "Kubi, 13 Assasssins"
+    },
+    {
+      "name": "Edo Wonderland Nikko Edomura (Kubi, 13 Assassins).",
+      "lat": 36.7908146,
+      "lng": 139.6973346,
+      "film": "Kubi, 13 Assassins"
+    },
+    {
+      "name": "Azabujuban (Tokyo Drift)",
+      "lat": 35.6546541,
+      "lng": 139.7351855,
+      "film": "Tokyo Drift"
+    },
+    {
+      "name": "4-chōme-5-1 Azabujūban (Tokyo Drift)",
+      "lat": 35.6538817,
+      "lng": 139.7375452,
+      "film": "Tokyo Drift"
+    }
+  ],
+  "other": [
+    {
+      "name": "Tama River Area (Adrift in Tokyo)",
+      "lat": 35.6191748,
+      "lng": 139.6311827,
+      "film": "Adrift in Tokyo"
+    },
+    {
+      "name": "Godzilla Square!",
+      "lat": 35.6730915,
+      "lng": 139.7599204,
+      "film": "Various"
+    },
+    {
+      "name": "Adachi City (Shoplifters)",
+      "lat": 35.775017,
+      "lng": 139.8044129,
+      "film": "Shoplifters"
+    },
+    {
+      "name": "Tokyo Station (First Ward)",
+      "lat": 35.6812362,
+      "lng": 139.7671248,
+      "film": "First Ward"
+    },
+    {
+      "name": "Roppongi (3rd Ward)",
+      "lat": 35.6618586,
+      "lng": 139.7345469,
+      "film": "3rd Ward"
+    },
+    {
+      "name": "Tokyo Skytree (6th Ward)",
+      "lat": 35.7100627,
+      "lng": 139.8107004,
+      "film": "6th Ward"
+    },
+    {
+      "name": "Hotel Gajoen Tokyo (Sprited Away)",
+      "lat": 35.6317881,
+      "lng": 139.7137936,
+      "film": "Sprited Away"
+    },
+    {
+      "name": "NTV Big Clock designed by Hayao Miyazaki",
+      "lat": 35.6641255,
+      "lng": 139.7599544,
+      "film": "Various"
+    },
+    {
+      "name": "Asukayama Park (Spirited Away)",
+      "lat": 35.7504718,
+      "lng": 139.7388228,
+      "film": "Spirited Away"
+    },
+    {
+      "name": "Tamagawa Aqueduct Greenway (Garden of Words)",
+      "lat": 35.67116,
+      "lng": 139.6631049,
+      "film": "Garden of Words"
+    },
+    {
+      "name": "Unknown",
+      "lat": 36.50077,
+      "lng": 138.959498,
+      "film": "Various"
+    },
+    {
+      "name": "Kawagoe Kumano Shrine",
+      "lat": 35.9191372,
+      "lng": 139.4831082,
+      "film": "Various"
+    },
+    {
+      "name": "Kawagoe Hikawa Shrine",
+      "lat": 35.9275498,
+      "lng": 139.4885588,
+      "film": "Various"
+    },
+    {
+      "name": "Takazawa bridge",
+      "lat": 35.9252289,
+      "lng": 139.4802685,
+      "film": "Various"
+    },
+    {
+      "name": "Kenryuji",
+      "lat": 35.9245981,
+      "lng": 139.4801863,
+      "film": "Various"
+    },
+    {
+      "name": "Japan Post",
+      "lat": 35.9184603,
+      "lng": 139.4857031,
+      "film": "Various"
+    },
+    {
+      "name": "Tower Records Shibuya",
+      "lat": 35.6619049,
+      "lng": 139.7010906,
+      "film": "Various"
+    },
+    {
+      "name": "35.693700, 139.70089",
+      "lat": 35.6937,
+      "lng": 139.70089,
+      "film": "Various"
+    },
+    {
+      "name": "Unknown",
+      "lat": 35.68025,
+      "lng": 139.719083333333,
+      "film": "Various"
+    },
+    {
+      "name": "新都心歩道橋",
+      "lat": 35.6930965,
+      "lng": 139.697292,
+      "film": "Various"
+    },
+    {
+      "name": "Cafe La Boheme Shinjuku Gyoen",
+      "lat": 35.6875891,
+      "lng": 139.7128716,
+      "film": "Various"
+    },
+    {
+      "name": "Shinanomachi Sta. Minamiguchi (South Exit)",
+      "lat": 35.679376,
+      "lng": 139.719922,
+      "film": "South Exit"
+    },
+    {
+      "name": "Shuto Expressway",
+      "lat": 35.7481626,
+      "lng": 139.7082283,
+      "film": "Various"
+    },
+    {
+      "name": "Higashi-Nakano Station",
+      "lat": 35.7062478,
+      "lng": 139.6837613,
+      "film": "Various"
+    },
+    {
+      "name": "Ueno Zoological Gardens",
+      "lat": 35.7160153,
+      "lng": 139.772882,
+      "film": "Various"
+    },
+    {
+      "name": "The National Art Center",
+      "lat": 35.665289,
+      "lng": 139.726374,
+      "film": "Various"
+    },
+    {
+      "name": "Sukiyabashi Jiro",
+      "lat": 35.6727404,
+      "lng": 139.7639378,
+      "film": "Various"
+    },
+    {
+      "name": "Sugoi Niboshi Rāmen Nagi Shinjuku Golden Gai",
+      "lat": 35.6937641,
+      "lng": 139.7045255,
+      "film": "Various"
+    },
+    {
+      "name": "Ramen Emoto Masahiro",
+      "lat": 35.6553945,
+      "lng": 139.694185,
+      "film": "Various"
+    },
+    {
+      "name": "Shuuichi (Ramen)",
+      "lat": 35.6472153,
+      "lng": 139.7083209,
+      "film": "Ramen"
+    },
+    {
+      "name": "Tokyo Ramen Street",
+      "lat": 35.6802935,
+      "lng": 139.7679568,
+      "film": "Various"
+    },
+    {
+      "name": "Nerima Station",
+      "lat": 35.7377965,
+      "lng": 139.6539158,
+      "film": "Various"
+    },
+    {
+      "name": "Pitat House - Nerimanishiguchi",
+      "lat": 35.7380606,
+      "lng": 139.6526821,
+      "film": "Various"
+    },
+    {
+      "name": "Takushoku University Bunkyo Campus",
+      "lat": 35.7154678,
+      "lng": 139.7362701,
+      "film": "Various"
+    },
+    {
+      "name": "Shimazaki Book Binding Works",
+      "lat": 35.6976832,
+      "lng": 139.7594378,
+      "film": "Various"
+    },
+    {
+      "name": "Trois Bagues",
+      "lat": 35.6962996,
+      "lng": 139.7582493,
+      "film": "Various"
+    },
+    {
+      "name": "Onnazaka",
+      "lat": 35.7003177,
+      "lng": 139.7585312,
+      "film": "Various"
+    },
+    {
+      "name": "Catholic Kanda Church",
+      "lat": 35.6994677,
+      "lng": 139.7574744,
+      "film": "Various"
+    },
+    {
+      "name": "Don Quijote Ginza Honkan",
+      "lat": 35.667122,
+      "lng": 139.7618936,
+      "film": "Various"
+    },
+    {
+      "name": "Kukyo Hall",
+      "lat": 35.7013743,
+      "lng": 139.7441467,
+      "film": "Various"
+    },
+    {
+      "name": "Courtyard by Marriott Tokyo Ginza Hotel",
+      "lat": 35.668321,
+      "lng": 139.764925,
+      "film": "Various"
+    },
+    {
+      "name": "Kabuki-za",
+      "lat": 35.6694253,
+      "lng": 139.7677446,
+      "film": "Various"
+    },
+    {
+      "name": "KFC Nishi-Shinjuku",
+      "lat": 35.6929591,
+      "lng": 139.6994212,
+      "film": "Various"
+    }
+  ]
+}

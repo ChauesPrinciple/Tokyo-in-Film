@@ -139,6 +139,157 @@ Create pedagogical content that teaches students how to choreograph, stage, and 
 - Rhythm and musicality
 - Breathing room for audience
 
+## DECISION PROTOCOL
+
+This section defines the reasoning framework for choreography, coverage, and editing of action sequences.
+
+### Gate 0: Safety Clearance (Non-Negotiable)
+
+Before any other decision is made about an action sequence, answer all of the following. If any answer is NO, stop and resolve before proceeding.
+
+```
+SAFETY GATE — must pass before any action filming begins
+
+□ Is every action unit choreographed and notated in advance?
+     → NO: Do not proceed. Improvised action on camera is how people get hurt.
+
+□ Have actors rehearsed at slow speed (50% of full speed) until every beat is muscle memory?
+     → NO: Do not proceed. Full-speed rehearsal before slow-speed mastery = unpredictable execution.
+
+□ Are there any actual points of contact in the choreography?
+     → YES: Redesign. No actual contact. All impact is created by camera angle + sound + editing.
+     → The camera creates the hit. The actors must always miss.
+
+□ Does every actor know the stop signal and have the right to call it without argument?
+     → NO: Establish this before rehearsal begins.
+
+□ Are prop weapons clearly non-functional (foam, cardboard, rubber)?
+     → NO: Replace with safe materials. No real weapons, no exceptions.
+```
+
+---
+
+### Decision Tree: How to Design the Choreography
+
+```
+WHAT TYPE OF ACTION SEQUENCE IS THIS?
+
+→ Two-person confrontation (fight, struggle, argument-turned-physical)
+     → START WITH THE STORY: Who has the power at the beginning? Who has it at the end?
+     → The power shift IS the fight structure: dominant → contested → resolved
+     → Design unit by unit: each exchange of power is one unit
+     → Rule: The fight must mean something. If removing it from the script doesn't change anything,
+       you don't need the fight — you need a better scene.
+
+→ Chase sequence
+     → The chased character's goal = escape. Their goal drives the geography.
+     → Design the route first (real or scripted locations), then fit action to the route.
+     → Each obstacle encountered is an action unit. Treat it as a mini-scene.
+
+→ Group action (multiple combatants)
+     → The camera can only follow one story at a time. Identify which combatant is the POV character.
+     → Design the hero's journey through the chaos. The others are environmental.
+     → One rule: Never lose the audience spatially. Wide master at start + after each major beat.
+
+→ Environmental/action integration (using Tokyo architecture)
+     → The environment is a character. What can THIS location do that no other location can?
+     → Stairways create height differentials. Alleys create compression. Trains create time pressure.
+     → Design the fight around what the location gives you, not despite it.
+```
+
+---
+
+### Decision Tree: Camera Coverage for Action
+
+```
+FOR EACH ACTION UNIT, DECIDE:
+
+→ What does the audience need to understand clearly?
+     → Wide shot (LS/MS): geography, who is where, how close they are
+     → Use when: beginning of sequence, after major positional change, audience is lost
+
+→ What does the audience need to FEEL?
+     → Close-up + sound design: the impact, the reaction, the consequence
+     → Rule: You do not need to SHOW the hit. You need the audience to FEEL it.
+     → The cut from punch-beginning to reaction shot IS the hit.
+
+→ How do I create the illusion of impact without actual contact?
+     → CAMERA ANGLE: Position camera so the miss is invisible from this angle
+     → TIMING: Actor A swings; cut before contact; cut to Actor B reacting
+     → SOUND DESIGN: The hit sound + Actor B's reaction = audience fills in the gap
+     → This is the Kuleshov Effect applied to action (VTT 18)
+
+→ How much handheld vs. static?
+     → STATIC: Clarity. Use when the audience needs to read exactly what is happening.
+       Start and end sequences with a static establishing shot.
+     → HANDHELD: Energy, chaos, subjective experience. Use during the most intense exchanges.
+     → RULE: Handheld is not a substitute for choreography. If the action is confusing,
+       adding camera shake makes it more confusing, not more exciting.
+
+→ When do I need multiple angles?
+     → EVERY TIME: Coverage for action means shooting each unit from at least 2 angles.
+     → Primary angle: the one that reads the action most clearly
+     → Secondary angle: the one that sells the impact or reaction
+     → Safety angle: wide shot, full action, for editorial insurance
+```
+
+---
+
+### Decision Tree: Editing Action
+
+```
+WHEN DO I CUT?
+
+→ On movement (per Dmytryk — cut on action): Cut during the action, not after it.
+     → Punch begins in Shot A; cut mid-swing; punch "lands" against Actor B's reaction in Shot B.
+     → The edit IS the impact.
+
+→ For rhythm: Cut to the emotional beat, not the technical beat.
+     → Fast cuts build intensity — but only if each cut is motivated. Meaningless fast cuts = confusion.
+     → Per Murch (P1): does each cut make the audience feel the intensity? If no, it's wrong.
+
+→ For reactions: The reaction IS the scene.
+     → An action sequence that never shows the human cost of each hit is a stunt reel, not a story.
+     → After every significant hit, hold on the reactor. That face is why we care.
+
+→ When to hold?
+     → After a decisive moment (someone goes down, something breaks, a weapon drops)
+     → Let the consequence land. The stillness after action = the emotional weight of what just happened.
+
+EDITING RULE: Action should ESCALATE. If each cut is no more intense than the last,
+the sequence is not building — it is cycling. Map the intensity curve before editing.
+```
+
+---
+
+### Diagnostic: Why Does the Action Look Fake?
+
+```
+PROBLEM                                    → CAUSE                          → FIX
+
+Punches look like they're missing          → Camera angle exposes the miss  → Change angle; position camera so miss = hit
+Hits look slow and unconvincing            → Full speed not reached in      → More rehearsal at slow speed;
+                                             rehearsal                       sound design carries the impact
+Sequence feels random, no arc             → No power-shift structure        → Redesign: who starts dominant? Who ends it?
+Camera movement obscures the action       → Unmotivated handheld            → Cut to static for key moments; handheld for chaos
+Sequence is technically complete          → No reaction shots               → Add CU reactions after every significant hit
+but emotionally flat
+Audience is lost (don't know who's        → No master shot to re-establish  → Insert LS after every major positional change
+winning or where anyone is)
+```
+
+---
+
+### Integration with Other Skills
+
+- `@staging-blocking` — floor plans, spike marks, and 180° line apply to action (intentional violation for chaos)
+- `@editorial-grammar` — cut on action is the primary editorial principle for action sequences
+- `@acoustic-design` — sound design creates impact that camera cannot show
+- `@visual-grammar` — shot size progression for escalation mirrors emotional intensity rule
+- `teach-editing-principles` — Murch's Hierarchy applies: emotion first, even in action
+
+---
+
 ## Pedagogical Approach
 
 ### Teaching Progression

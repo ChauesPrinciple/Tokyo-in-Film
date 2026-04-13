@@ -5,3 +5,45 @@ node_modules
 dist
 *.log
 .chatledger/
+
+# Private files — do not deploy to GitHub Pages
+*.docx
+*.pdf
+*.py
+*.ps1
+
+# Screenplay drafts and extracts
+KURASAWA_*.txt
+ON_THE_EDGE_*.txt
+_*.txt
+
+# Book directories
+Deep Learning with Python*/
+Python Programming And Maching Learning*/
+The Secrets Of Jujitsu*/
+
+# Working/temp directories
+temp_*/
+kmz_extracted/
+kurasawa_extracted/
+scripts/
+Student Work/
+class_resources/
+
+# Audit and strategy docs
+WEBSITE_AUDIT_REPORT.md
+FORMS_STRATEGY.md
+GOOGLE_FORM_SETUP.md
+DEPLOY.md
+Film checking content.*
+
+# Old GIF files (replaced by MP4)
+mindtouch.gif
+preproductionheader.gif
+productionheader.gif
+posproductionheader.gif
+assets/scene-project.gif
+assets/images/libretexts/mise-en-scene-banner.gif
+assets/images/libretexts/sound-design-banner.gif
+assets/images/libretexts/animation-editing-banner.gif
+assets/images/libretexts/art-corner-banner.gif

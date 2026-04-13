@@ -186,6 +186,159 @@ Create pedagogical content that teaches students fundamental editing techniques 
 - Export for final post
 - Archive project
 
+## DECISION PROTOCOL
+
+This section defines the reasoning framework. Use it before and during any editorial decision. It is not theory — it is the process.
+
+### The Hierarchy of Cutting (Source: Murch, *In the Blink of an Eye*; Frierson, *Film and Video Editing Theory*)
+
+When you are deciding whether and where to cut, apply Murch's criteria in this priority order. If a cut serves the top criterion, make it. If it doesn't, consider whether the criteria below justify it.
+
+```
+PRIORITY 1 — EMOTION (51%)
+Does this cut make the audience feel what the scene intends?
+→ YES: Make the cut, even if it violates rules 3–6
+→ NO: Do NOT make this cut regardless of technical correctness
+
+PRIORITY 2 — STORY (23%)
+Does this cut advance what we need to know or feel right now?
+→ YES: Make it, if emotion also works
+→ NO: Reconsider — a cut that doesn't serve the story is delay
+
+PRIORITY 3 — RHYTHM (10%)
+Does this cut land on the right beat?
+→ YES if the scene has a tempo and this cut is on it
+→ If rhythm conflicts with emotion, choose emotion
+
+PRIORITY 4 — EYE-TRACE (7%)
+Are we cutting to where the audience is already looking?
+→ Cut to center of attention in next shot, not to a jump across the frame
+
+PRIORITY 5 — 2D CONTINUITY (5%)
+Does this cut maintain screen direction and the 180° rule?
+→ The LEAST important criterion. Violate it if emotion (P1) demands it.
+
+PRIORITY 6 — 3D SPACE (4%)
+Does this cut maintain spatial coherence between shots?
+→ Lowest priority. Spatial discontinuity is recoverable. Emotional wrongness is not.
+```
+
+**The rule teachers must internalize**: Students who cut only for continuity (P5/P6) will always produce lifeless edits. Students who cut for emotion first (P1) discover how to edit. Teach Murch's hierarchy before teaching the 180° rule.
+
+---
+
+### Decision Tree: Which Type of Cut?
+
+```
+WHAT DOES THE SCENE NEED RIGHT NOW?
+
+→ Movement to carry energy forward
+     → CUT ON ACTION: Start action in Shot A, complete in Shot B
+     → Source: Dmytryk, *On Film Editing* — "cut on movement; the eye follows action, not the frame change"
+
+→ Visual or thematic similarity between shots
+     → MATCH CUT: Find a visual echo (shape, movement, color) bridging the two shots
+
+→ Tension through fragmentation (disorientation intentional)
+     → JUMP CUT: Cut on the same subject, slight repositioning — creates urgency or instability
+     → Use: urban energy, chaos, psychological pressure, time compression without coverage
+
+→ Simultaneous action in another location
+     → CROSS CUT (parallel editing): Alternate between two locations happening at the same time
+     → Function: builds tension, comparison, race against time
+
+→ Audience needs a visual beat, context, or breathing room
+     → CUTAWAY: Insert shot related to but outside the main action
+     → Function: time compression, emphasis, reaction
+
+→ Scene needs to breathe; story holds in the moment
+     → HOLD: Do not cut. Duration creates its own emotional weight. (Source: Tarkovsky — time-pressure)
+```
+
+---
+
+### Decision Tree: Which Transition?
+
+```
+WHAT IS THE RELATIONSHIP BETWEEN SCENE A AND SCENE B?
+
+→ Direct continuation, same story momentum
+     → HARD CUT: No transition. The default. 95% of all edits.
+     → Rule: When in doubt, cut.
+
+→ Major time jump or location change
+     → FADE TO/FROM BLACK: Full stop. The scene ended. A new one begins.
+     → Use: Act breaks, significant time passage, finality
+
+→ Emotional continuity across time (memory, dream, reminiscence)
+     → DISSOLVE: Images overlap. The past and present share the same frame.
+     → Use: Flashback entrances, montage sequences, subjective states
+     → Caution: Do not use dissolves to disguise bad cuts.
+
+→ Stylized, comedic, or heavily produced content
+     → WIPE: Only if the film's aesthetic already warrants it. Never in realism.
+
+→ The scene exists in the character's mind
+     → L-CUT / J-CUT: Audio from next scene begins before picture changes (J-cut = anticipation/dread);
+       audio from last scene continues into next picture (L-cut = continuity/inevitability)
+     → Source: @acoustic-design — split edits as editorial grammar
+```
+
+---
+
+### Decision Tree: Which Type of Montage?
+
+```
+WHAT DOES THE SEQUENCE NEED TO ACCOMPLISH?
+
+→ Convey the passage of time or a process
+     → METRIC/RHYTHMIC MONTAGE: Shots cut at regular intervals. Mathematical.
+     → Use: Training sequences, daily routines, seasons passing
+
+→ Build emotional intensity without dialogue
+     → TONAL MONTAGE: Shots chosen for their emotional register, not their content
+     → Use: Music videos, emotional climaxes, mood sequences
+
+→ Create a new meaning that does not exist in either image alone
+     → INTELLECTUAL MONTAGE (Eisenstein): Juxtaposition generates concept
+     → Example: CU of man's face + CU of bowl of soup = man is hungry (Kuleshov Effect, VTT 18)
+     → Use: Commentary, irony, theme statements, propaganda, political critique
+
+→ Parallel actions happening simultaneously
+     → PARALLEL EDITING (Griffith): Cross-cut to establish simultaneous threat or comparison
+     → Use: Chase scenes, "too late" sequences, moral contrasts
+```
+
+---
+
+### Diagnostic: Why Does the Edit Feel Wrong?
+
+```
+PROBLEM                              → CAUSE                          → FIX
+
+Edit feels choppy/jarring            → No motivation to cut           → Per Murch P1: does each cut serve emotion?
+Scenes feel too long                 → No gap/conflict in the scene   → Per McKee: find the gap or cut the scene
+Transitions feel cheap               → Dissolves hiding bad cuts      → Replace all dissolves with hard cuts; fix the cuts
+Audience is lost spatially           → 180° line violated without      → Add a cutaway to reset; or motivate the
+                                       motivation                       crossing with z-axis movement (Zettl)
+Audio is jarring at cuts             → Hard cuts on audio             → Replace with L-cuts or J-cuts at scene breaks
+Montage feels random                 → No montage type selected       → Choose one principle (time/emotion/meaning)
+                                                                       and commit to it for the whole sequence
+Edit feels technically correct       → Cut only for continuity (P5)   → Re-edit for emotion (P1); throw out the 180° 
+but emotionally dead                   not for emotion (P1)            compliance and find the feeling
+```
+
+---
+
+### Integration with Other Skills
+
+- `@editorial-grammar` — technical vocabulary and cut type reference
+- `/advanced-editorial-theory` — Frierson, Murch, Zettl, Burch, Bordwell, Bazin, Tarkovsky, Deren (use when standard approach isn't working)
+- `@acoustic-design` — L-cut/J-cut strategy always involves sound decisions
+- `@color-grading` — Picture lock must be confirmed before grading begins
+
+---
+
 ## Pedagogical Approach
 
 ### Teaching Progression
