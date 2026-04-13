@@ -193,23 +193,66 @@
     </main>
 
     <section id="map-section" class="container" style="padding: 0 2rem 4rem;">
-        <div style="text-align: center; margin-bottom: 2rem;" data-scroll><h2>Tokyo in Film Class Map</h2></div>
-        <div class="map-container"
-            style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border: 1px solid var(--accent-neon-cyan); box-shadow: 0 0 20px rgba(0, 243, 255, 0.2);">
-            <iframe src="https://www.google.com/maps/d/embed?mid=1V4GApFpOipMmySIyy2loBujui--BV3Y" width="640"
-                height="480" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
-                allowfullscreen title="Interactive Map of Tokyo Film Locations"></iframe>
+        <div style="text-align: center; margin-bottom: 1.5rem;" data-scroll><h2>Tokyo Maps</h2></div>
+        <div class="map-tabs" style="display:flex;justify-content:center;gap:0;margin-bottom:0;">
+            <button class="map-tab active" data-tab="class-map" style="padding:0.6rem 1.5rem;font-size:0.85rem;text-transform:uppercase;letter-spacing:0.08em;background:rgba(0,243,255,0.12);color:var(--accent-neon-cyan);border:1px solid var(--accent-neon-cyan);border-bottom:none;border-radius:6px 6px 0 0;cursor:pointer;font-family:Inter,sans-serif;font-weight:600;transition:all 0.2s;">Class Map</button>
+            <button class="map-tab" data-tab="anime-map" style="padding:0.6rem 1.5rem;font-size:0.85rem;text-transform:uppercase;letter-spacing:0.08em;background:transparent;color:#888;border:1px solid rgba(255,255,255,0.15);border-bottom:none;border-radius:6px 6px 0 0;cursor:pointer;font-family:Inter,sans-serif;font-weight:600;transition:all 0.2s;">Anime Maps</button>
         </div>
-        <ul class="map-key-list">
-            <li><span>⭐</span> Class-Specific Excursions</li>
-            <li><span>🎥</span> Class-Specific Filming Locations</li>
-            <li><span>🍴</span> Special Food Recommendations</li>
-            <li><span>🌲</span> Greenery and Parks</li>
-            <li><span>⛩️</span> Special Shrines</li>
-            <li><span>🛍️</span> Otaku and Thrift Shopping</li>
-            <li><span class="icon-silver" style="color: silver;">🎵</span> Arcades and Music</li>
-        </ul>
+        <!-- Class Map Panel -->
+        <div class="map-panel active" id="panel-class-map">
+            <div class="map-container"
+                style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border: 1px solid var(--accent-neon-cyan); border-top: none; box-shadow: 0 0 20px rgba(0, 243, 255, 0.2);">
+                <iframe src="https://www.google.com/maps/d/embed?mid=1V4GApFpOipMmySIyy2loBujui--BV3Y" width="640"
+                    height="480" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
+                    allowfullscreen title="Interactive Map of Tokyo Film Locations"></iframe>
+            </div>
+            <ul class="map-key-list">
+                <li><span>⭐</span> Class-Specific Excursions</li>
+                <li><span>🎥</span> Class-Specific Filming Locations</li>
+                <li><span>🍴</span> Special Food Recommendations</li>
+                <li><span>🌲</span> Greenery and Parks</li>
+                <li><span>⛩️</span> Special Shrines</li>
+                <li><span>🛍️</span> Otaku and Thrift Shopping</li>
+                <li><span class="icon-silver" style="color: silver;">🎵</span> Arcades and Music</li>
+            </ul>
+        </div>
+        <!-- Anime Map Panel -->
+        <div class="map-panel" id="panel-anime-map" style="display:none;">
+            <div class="map-container"
+                style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border: 1px solid var(--accent-neon-cyan); border-top: none; box-shadow: 0 0 20px rgba(0, 243, 255, 0.2);">
+                <iframe id="anime-map-iframe" data-src="anime-map.html" width="960" height="760"
+                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
+                    allowfullscreen title="Interactive Anime Maps of Tokyo"></iframe>
+            </div>
+            <p style="text-align:center;margin-top:1rem;color:#999;font-size:0.85rem;">
+                Switch between Tokyo Ghoul, Chainsaw Man, and Jujutsu Kaisen using the tabs inside the map.
+                <a href="anime-map.html" target="_blank" style="color:var(--accent-neon-cyan);margin-left:0.5rem;">Open fullscreen &rarr;</a>
+            </p>
+        </div>
     </section>
+    <script>
+    document.querySelectorAll('.map-tab').forEach(function(tab) {
+        tab.addEventListener('click', function() {
+            document.querySelectorAll('.map-tab').forEach(function(t) {
+                t.classList.remove('active');
+                t.style.background = 'transparent';
+                t.style.color = '#888';
+                t.style.borderColor = 'rgba(255,255,255,0.15)';
+            });
+            this.classList.add('active');
+            this.style.background = 'rgba(0,243,255,0.12)';
+            this.style.color = 'var(--accent-neon-cyan)';
+            this.style.borderColor = 'var(--accent-neon-cyan)';
+            document.querySelectorAll('.map-panel').forEach(function(p) { p.style.display = 'none'; p.classList.remove('active'); });
+            var panel = document.getElementById('panel-' + this.dataset.tab);
+            panel.style.display = 'block';
+            panel.classList.add('active');
+            // Lazy-load anime map iframe on first tab click
+            var iframe = document.getElementById('anime-map-iframe');
+            if (iframe && !iframe.src && iframe.dataset.src) { iframe.src = iframe.dataset.src; }
+        });
+    });
+    </script>
 
     <section id="film-list" class="container">
         <div style="text-align: center; margin-bottom: 2rem;" data-scroll>
@@ -505,7 +548,7 @@
                     { label: 'Editing & Animation', url: 'post-production/editing-and-animation.html' }
                 ],
                 locations: [],
-                map: { label: 'Tokyo Devil Hunter Map', url: 'chainsaw-man-map.html' }
+                map: { label: 'Chainsaw Man — Tokyo Devil Hunter Map', url: 'anime-map.html?anime=chainsaw_man' }
             },
             'exit-8': {
                 title: 'Exit 8', director: 'Genki Kawamura', year: 2025,
@@ -642,7 +685,7 @@
                     { label: 'Shot List Assignment', url: 'pre-production/shot-list.html' }
                 ],
                 locations: ['Rikkyo University', 'Shinjuku Station East Exit', 'Kabukich\u014d'],
-                map: { label: 'Tokyo Ghoul Ward Map', url: 'tokyo-ghoul-map.html' }
+                map: { label: 'Tokyo Ghoul — CCG Ward Map', url: 'anime-map.html?anime=tokyo_ghoul' }
             },
             'tsukigakirei': {
                 title: 'Tsukigakirei', director: 'Seiji Kishi', year: 2017,
@@ -682,7 +725,7 @@
                 { label: 'Animated Films', url: 'post-production/animated-films.html' }
             ],
             locations: ['Takeshita Street Entrance Arch', 'Edo-Tokyo Open Air Architectural Museum', 'Tokyo Metropolitan Government Building', 'Aoyama Cemetery', 'Yoyogi National Gymnasium'],
-            map: { label: 'JJK Culling Game Map', url: 'jjk-culling-game-map.html' }
+            map: { label: 'Jujutsu Kaisen — Cursed Territory Map', url: 'anime-map.html?anime=jjk' }
         };
 
         function openFilmModal(filmId) {
