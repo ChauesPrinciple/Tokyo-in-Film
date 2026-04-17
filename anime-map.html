@@ -38,6 +38,8 @@
     .legend-item{border-radius:2px;padding:2px 4px;margin:-2px -4px .5rem -4px;}
     .legend-item.active-filter{background:rgba(255,255,255,0.08);outline:1px solid var(--accent-bright);}
     .ward-path.filtered-out{fill-opacity:0.1 !important;pointer-events:none;}
+    .ward-path.not-featured{cursor:help;}
+    .ward-path.not-featured:hover{stroke:rgba(255,255,255,0.3);stroke-width:1;}
     .barrier-dome{pointer-events:none;}
     .subway-line{pointer-events:none;fill:none;stroke-linecap:round;stroke-linejoin:round;}
 
@@ -193,9 +195,9 @@
 
   <!-- Anime Switcher -->
   <div id="anime-switcher" role="tablist" aria-label="Select anime series">
-    <button class="anime-tab active" data-anime="tokyo_ghoul" role="tab" aria-selected="true">Tokyo Ghoul</button>
+    <button class="anime-tab active" data-anime="jjk" role="tab" aria-selected="true">Jujutsu Kaisen</button>
     <button class="anime-tab" data-anime="chainsaw_man" role="tab" aria-selected="false">Chainsaw Man</button>
-    <button class="anime-tab" data-anime="jjk" role="tab" aria-selected="false">Jujutsu Kaisen</button>
+    <button class="anime-tab" data-anime="tokyo_ghoul" role="tab" aria-selected="false">Tokyo Ghoul</button>
   </div>
 
   <!-- Search -->
@@ -206,9 +208,9 @@
 
   <!-- Header -->
   <div id="hdr">
-    <div class="eyebrow" id="hdr-eyebrow">Chaues Productions</div>
-    <h1 id="hdr-title">Tokyo Ghoul</h1>
-    <div class="subtitle" id="hdr-subtitle">CCG Ward Map · Ghoul Activity Zones</div>
+    <div class="eyebrow" id="hdr-eyebrow">Shibuya Incident · Culling Game</div>
+    <h1 id="hdr-title">Jujutsu Kaisen</h1>
+    <div class="subtitle" id="hdr-subtitle">Cursed Territory Map · Barrier Zones</div>
     <a href="index.html" class="back-link">← Back to Tokyo in Film</a>
   </div>
 
@@ -380,7 +382,7 @@ function loadTiles(svg){
 // ══════════════════════════════════════════════════════════
 // STATE
 // ══════════════════════════════════════════════════════════
-let currentAnime = 'tokyo_ghoul';
+let currentAnime = 'jjk';
 let currentScale = 1, panX = 0, panY = 0;
 let selectedPath = null;
 let wardPaths = {}; // jp name → SVG path element
@@ -590,7 +592,42 @@ function switchAnime(key){
   updateUrl();
 }
 
-// Applies the currently-active legend filter to ward fills and the legend item visual state.
+// Popup shown when the user clicks a ward that isn't featured in the current anime.
+// Lists which other series DO include it, with one-click switch links.
+function showNotFeaturedPopup(jpName){
+  const featuredIn=['jjk','chainsaw_man','tokyo_ghoul'].filter(k=>ANIME[k].wards[jpName]);
+  const wAny=featuredIn.length ? ANIME[featuredIn[0]].wards[jpName] : null;
+  poiPopup.textContent='';
+  const head=document.createElement('strong');
+  head.style.color='var(--muted)';
+  head.textContent = wAny ? `${wAny.name} — not featured` : 'Not featured';
+  poiPopup.appendChild(head);
+  const sub=document.createElement('div');
+  sub.style.cssText='font-size:.75rem;color:var(--prose);margin:.25rem 0 .4rem;font-style:italic;';
+  sub.textContent = featuredIn.length
+    ? `This ward doesn't appear in ${ANIME[currentAnime].title}. See it in:`
+    : `This ward isn't featured in any of the three series.`;
+  poiPopup.appendChild(sub);
+  featuredIn.forEach(key=>{
+    const a=document.createElement('a');
+    a.href='#';
+    a.style.cssText=`display:block;color:${ANIME[key].theme.accentBright};text-decoration:none;padding:2px 0;cursor:pointer;font-size:.85rem;font-weight:600;`;
+    a.textContent='→ '+ANIME[key].title;
+    a.addEventListener('click',ev=>{
+      ev.preventDefault(); ev.stopPropagation();
+      switchAnime(key);
+      setTimeout(()=>selectWard(jpName), 50);
+    });
+    poiPopup.appendChild(a);
+  });
+  poiPopup.style.display='block';
+  const path=wardPaths[jpName];
+  if(path){
+    const r=path.getBoundingClientRect();
+    positionPopup(r.left+r.width/2, r.top+r.height/2);
+  }
+}
+
 function applyLegendFilter(){
   const anime=ANIME[currentAnime];
   // Legend items highlighted
@@ -630,7 +667,7 @@ function applyAnimeTheme(){
   const legend=document.getElementById('legend');
   legend.style.borderColor=anime.theme.border;
 
-  // Ward colors
+  // Ward colors + featured/not-featured state
   Object.entries(wardPaths).forEach(([jp,path])=>{
     const w=anime.wards[jp];
     if(w){
@@ -638,9 +675,13 @@ function applyAnimeTheme(){
       path.setAttribute('fill',status?status.color:'#333');
       path.setAttribute('fill-opacity','0.55');
       path.style.display='';
+      path.classList.remove('not-featured');
+      path.setAttribute('aria-label',`${w.name} ward`);
     } else {
       path.setAttribute('fill','#1a1a1a');
-      path.setAttribute('fill-opacity','0.3');
+      path.setAttribute('fill-opacity','0.25');
+      path.classList.add('not-featured');
+      path.setAttribute('aria-label','Ward not featured in this series');
     }
   });
 
@@ -694,7 +735,12 @@ function applyAnimeTheme(){
 function selectWard(jpName){
   const anime=ANIME[currentAnime];
   const ward=anime.wards[jpName];
-  if(!ward) return;
+  if(!ward){
+    // Ward exists in map geometry but not in the current anime's story.
+    // Show an informative popup listing which series DO feature it, with one-click switch links.
+    showNotFeaturedPopup(jpName);
+    return;
+  }
 
   if(selectedPath) selectedPath.classList.remove('selected');
   const path=wardPaths[jpName];
