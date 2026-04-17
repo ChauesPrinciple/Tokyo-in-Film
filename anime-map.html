@@ -41,8 +41,7 @@
     .legend-item{border-radius:2px;padding:2px 4px;margin:-2px -4px .5rem -4px;}
     .legend-item.active-filter{background:rgba(255,255,255,0.08);outline:1px solid var(--accent-bright);}
     .ward-path.filtered-out{fill-opacity:0.1 !important;pointer-events:none;}
-    .ward-path.not-featured{cursor:help;}
-    .ward-path.not-featured:hover{stroke:rgba(255,255,255,0.3);stroke-width:1;}
+    .ward-path.not-featured{pointer-events:none;fill:none !important;stroke:none !important;}
     .barrier-dome{pointer-events:none;}
     .subway-line{pointer-events:none;fill:none;stroke-linecap:round;stroke-linejoin:round;}
 
@@ -725,10 +724,9 @@ function applyAnimeTheme(){
       path.classList.remove('not-featured');
       path.setAttribute('aria-label',`${w.name} ward`);
     } else {
-      path.setAttribute('fill','#1a1a1a');
-      path.setAttribute('fill-opacity','0.25');
+      // Ward isn't in this anime — hide it completely. No fill, no stroke, not clickable.
       path.classList.add('not-featured');
-      path.setAttribute('aria-label','Ward not featured in this series');
+      path.removeAttribute('aria-label');
     }
   });
 
@@ -787,12 +785,7 @@ function applyAnimeTheme(){
 function selectWard(jpName){
   const anime=ANIME[currentAnime];
   const ward=anime.wards[jpName];
-  if(!ward){
-    // Ward exists in map geometry but not in the current anime's story.
-    // Show an informative popup listing which series DO feature it, with one-click switch links.
-    showNotFeaturedPopup(jpName);
-    return;
-  }
+  if(!ward) return; // ward isn't in this anime — already invisible + non-clickable
 
   if(selectedPath) selectedPath.classList.remove('selected');
   const path=wardPaths[jpName];
