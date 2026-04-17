@@ -30,6 +30,13 @@ scripts/
 Student Work/
 class_resources/
 
+# Debug, test, and backup HTML files
+debug_*.html
+test_*.html
+temp_*.html
+scratch.html
+*_new_content.html
+
 # Audit and strategy docs
 WEBSITE_AUDIT_REPORT.md
 FORMS_STRATEGY.md
