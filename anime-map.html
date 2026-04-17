@@ -761,19 +761,23 @@ function applyAnimeTheme(){
     if(ov.type==='circle'){
       const[cx,cy]=project(ov.lng,ov.lat);
       const r=metersToSvg(ov.r);
-      // Outer dashed dome
+      // Outer dashed dome — assertive so it reads over the colored ward fills
       const outer=document.createElementNS('http://www.w3.org/2000/svg','circle');
       outer.setAttribute('cx',cx);outer.setAttribute('cy',cy);outer.setAttribute('r',r);
-      outer.setAttribute('fill',ov.color);outer.setAttribute('fill-opacity','0.12');
-      outer.setAttribute('stroke',ov.color);outer.setAttribute('stroke-width','1.5');
-      outer.setAttribute('stroke-opacity','0.4');outer.setAttribute('stroke-dasharray','6 4');
+      outer.setAttribute('fill',ov.color);outer.setAttribute('fill-opacity','0.18');
+      outer.setAttribute('stroke',ov.color);outer.setAttribute('stroke-width','2.5');
+      outer.setAttribute('stroke-opacity','0.9');outer.setAttribute('stroke-dasharray','8 5');
+      outer.setAttribute('vector-effect','non-scaling-stroke');
       outer.classList.add('barrier-dome');
       overlayGroup.appendChild(outer);
       // Inner core
       const inner=document.createElementNS('http://www.w3.org/2000/svg','circle');
       inner.setAttribute('cx',cx);inner.setAttribute('cy',cy);inner.setAttribute('r',r*0.3);
-      inner.setAttribute('fill',ov.color);inner.setAttribute('fill-opacity','0.25');
-      inner.setAttribute('stroke','none');inner.classList.add('barrier-dome');
+      inner.setAttribute('fill',ov.color);inner.setAttribute('fill-opacity','0.45');
+      inner.setAttribute('stroke',ov.color);inner.setAttribute('stroke-width','1');
+      inner.setAttribute('stroke-opacity','0.8');
+      inner.setAttribute('vector-effect','non-scaling-stroke');
+      inner.classList.add('barrier-dome');
       overlayGroup.appendChild(inner);
     }
   });
