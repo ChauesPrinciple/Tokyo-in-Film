@@ -705,9 +705,18 @@ function applyAnimeTheme(){
   legend.style.borderColor=anime.theme.border;
 
   // Ward colors + featured/not-featured state
+  // When disableWardInfo is set (Shinkai), skip the colored territory overlay entirely —
+  // wards render as transparent shapes with faint outlines. Just boundary lines, no fill.
+  const skipWardFills = !!anime.disableWardInfo;
   Object.entries(wardPaths).forEach(([jp,path])=>{
     const w=anime.wards[jp];
-    if(w){
+    if(skipWardFills){
+      path.setAttribute('fill','none');
+      path.setAttribute('fill-opacity','1');
+      path.style.display='';
+      path.classList.remove('not-featured');
+      path.setAttribute('aria-label', w ? `${w.name} ward` : 'Ward');
+    } else if(w){
       const status=anime.statuses[w.status];
       path.setAttribute('fill',status?status.color:'#333');
       path.setAttribute('fill-opacity','0.55');
@@ -722,21 +731,26 @@ function applyAnimeTheme(){
     }
   });
 
-  // Legend
+  // Legend: hide when ward fills are disabled (nothing to legend)
+  const legendEl=document.getElementById('legend');
   const legendItems=document.getElementById('legend-items');
   legendItems.innerHTML='';
-  Object.entries(anime.statuses).forEach(([key,{color,label}])=>{
-    const item=document.createElement('div');item.className='legend-item';item.dataset.status=key;
-    item.innerHTML=`<div class="legend-swatch" style="background:${color}"></div><span>${label}</span>`;
-    // Legend-as-filter: click status to dim all non-matching wards; click again to clear
-    item.addEventListener('click',()=>{
-      activeFilter = (activeFilter===key) ? null : key;
-      applyLegendFilter();
+  if(skipWardFills){
+    legendEl.style.display='none';
+  } else {
+    legendEl.style.display='';
+    Object.entries(anime.statuses).forEach(([key,{color,label}])=>{
+      const item=document.createElement('div');item.className='legend-item';item.dataset.status=key;
+      item.innerHTML=`<div class="legend-swatch" style="background:${color}"></div><span>${label}</span>`;
+      // Legend-as-filter: click status to dim all non-matching wards; click again to clear
+      item.addEventListener('click',()=>{
+        activeFilter = (activeFilter===key) ? null : key;
+        applyLegendFilter();
+      });
+      legendItems.appendChild(item);
     });
-    legendItems.appendChild(item);
-  });
-  // Re-apply any existing filter after rebuilding legend (e.g. anime switch keeps filter ON state visually)
-  applyLegendFilter();
+    applyLegendFilter();
+  }
 
   // POIs — rendered via renderPOIs() which handles clustering
   renderPOIs();
