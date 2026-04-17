@@ -10,24 +10,25 @@ initScenario({
     {id:1, type:'branch',
      question:'<p>Is your film group recreating an existing scene, creating a new scene inspired by one of the analyzed films, or creating a new creative short film (e.g., a documentary)?</p>',
      choices:[
-       {text:'Recreate a Scene', next:2},
-       {text:'Create a New Scene (Inspired)', next:2},
-       {text:'Create a New Scene (Creative)', next:2}
+       {text:'Recreate a Scene', next:2,
+        feedback:'<p>When recreating an existing scene, your benchmark is the original. Match its framing, pacing, lighting, and tone as closely as your resources allow, and bring a reference image or clip to every pre-production discussion so the team stays aligned.</p>'},
+       {text:'Create a New Scene (Inspired)', next:2,
+        feedback:'<p>Borrow the source film\'s visual language, but write fresh action and dialogue that fits the characters you can actually cast. Pick two or three specific visual choices from the source you want to honor, and let everything else be yours.</p>'},
+       {text:'Create a New Scene (Creative)', next:2,
+        feedback:'<p>With no source to match against, your pre-production burden is higher. Your script, storyboard, and shot list are the only place the film exists until you shoot it. Spend extra time on the script, and gather reference films with a similar tone for visual inspiration.</p>'}
      ]},
 
     {id:2, type:'video', title:'Thinking about filming; Plan ahead!',
      videoId:'9tpJkxUW6tI',
      questions:[
-       {type:'mc',
-        question:'Have you considered the kind of lighting you want, or, at the very least, what you can produce? What about the time of day?',
-        options:['Yes.','No.'],
-        correct:0},
-       {type:'mc',
-        question:'While this video is a pretty good representation of what your experience may be like, and what you should plan ahead for \u2014 likewise, we plan for the kind of shot we want to create before we get there via a shot list, storyboarding, etc. Have you considered these details with your team?',
-        options:['Yes.','No.'],
-        correct:0},
+       {type:'tf',
+        question:'We have discussed the lighting we want for our scene (or what we can realistically achieve with what we own or can borrow) and the time of day we plan to shoot.',
+        correct:true},
+       {type:'tf',
+        question:'We have started a shot list and storyboard with our team, not just discussed the scene in general terms.',
+        correct:true},
        {type:'info',
-        text:'When we have limited resources, or availability, sometimes we have to be more creative with how we create or recreate a shot.'}
+        text:'When we have limited resources or availability, we sometimes have to be more creative with how we create or recreate a shot. The video demonstrates how far an iPhone and a single light can go when the planning is solid.'}
      ],
      next:3},
 
@@ -50,10 +51,11 @@ initScenario({
      videoStart:184,
      questions:[
        {type:'check',
-        question:'Reflect on the following creative strategies:',
+        question:'This team won an Oscar with five people and mostly simple techniques. Consider how to apply that approach to your own project:',
         options:[
-          'How can you use our classtime / excursions to create content for your film?',
-          'Solutions do not have to be complicated; with a little creativity, we can create incredible effects with the smallest items.'
+          'What effects or transitions in your scene could be achieved with props, lighting, costume, or framing changes instead of digital VFX?',
+          'Which shots absolutely need production value, and which can stay simple? Budget your effort for the moments that matter most.',
+          'Can class time or excursions double as production time? Scouting, B-roll, and establishing shots captured during regular activities cost nothing extra.'
         ]}
      ],
      next:5},
@@ -62,8 +64,8 @@ initScenario({
      question:'<h3>Have you clearly established and agreed upon the responsibilities for the following roles?</h3><p><strong>Screenwriter:</strong> Drafts the script, focusing on creating strong dialogue and a clear narrative. The script should give everyone a roadmap for the story, characters, and tone.</p><p><strong>Director:</strong> Guides the team to align with the film\u2019s vision. Develops storyboards, leads discussions on style, and ensures each team member\u2019s work aligns with the intended mood.</p><p><strong>Cinematographer:</strong> Collaborates with the director to create a shot list that specifies lighting, framing, and camera movement. Each shot should visually communicate the story\u2019s mood and style.</p><p><strong>Production Designer:</strong> Creates the look and feel of the setting, selecting props, costumes, and locations that bring the story\u2019s world to life.</p><p><strong>Editor:</strong> Plans a post-production workflow, organizes file naming conventions, and prepares templates for later editing stages.</p><hr><p><strong>Suggested Team Breakdown (minimum 3 people)</strong></p><p><strong>3-Person Team:</strong> Director/Screenwriter &mdash; Cinematographer/Production Designer &mdash; Editor</p><p><strong>4-Person Team:</strong> Director &mdash; Screenwriter/Production Designer &mdash; Cinematographer &mdash; Editor</p><p><strong>5-Person Team:</strong> Director &mdash; Screenwriter &mdash; Cinematographer &mdash; Production Designer &mdash; Editor</p><p><strong>Auxiliary roles</strong> (shared as needed): Actor/Cast, Location Scout, Production Assistant, Continuity.</p>',
      choices:[
        {text:'Yes.', next:6},
-       {text:'No.', next:5,
-        feedback:'<p><strong>Develop Roles</strong> \u2014 Please take time to consider aspects of making your project. Having clearly defined roles, with clearly defined responsibilities, will help everyone succeed.</p><p>Please consider that this pre-production will produce:</p><ul><li><strong>Group Deliverables:</strong> Complete storyboards, shot lists, and a script. These materials will provide a shared vision for each scene.</li><li><strong>Individual Deliverables:</strong> Submit a short reflection on your role in the pre-production process and any insights gained from supporting another team.</li></ul><p>Please proceed to see and distribute / agree to the roles each of you will take in pre-production.</p>'}
+       {text:'No.', next:6,
+        feedback:'<p><strong>Develop Roles Before Submitting the Form</strong> \u2014 Please take time to discuss and agree on responsibilities before filling out the form below. Clearly defined roles with clearly defined responsibilities will help everyone succeed.</p><p>This pre-production will produce:</p><ul><li><strong>Group Deliverables:</strong> Complete storyboards, shot lists, and a script. These materials provide a shared vision for each scene.</li><li><strong>Individual Deliverables:</strong> A short reflection on your role in the pre-production process and any insights gained from supporting another team.</li></ul><p>Record your agreed roles on the Pre-Production Form on the next step.</p>'}
      ]},
 
     {id:6, type:'text', title:'Pre-Production Form',

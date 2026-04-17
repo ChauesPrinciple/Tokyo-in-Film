@@ -11,7 +11,7 @@ initScenario({
      question:'<p>Have you chosen (looked up, found on a map, got directions, or viewed the place\'s webpage/excursion information) your proposed filming locations and thought through how you intend to create camera angles, shot order, lighting setup, and sound checks?</p>',
      choices:[
        {text:'Yes. The location is secured, and you\'ve verified it meets your needs.', next:2},
-       {text:'No. The location is not secured yet.', next:0, feedback:'<p>Assign a team member to confirm access and prepare an alternative location as a backup.</p>'}
+       {text:'No. The location is not secured yet.', next:1, feedback:'<p><strong>Secure the location first.</strong> Assign one team member to confirm access (permit, hours, group-size limits, any entry fees) and identify a backup location in case of weather or access issues. Come back to this step once confirmed.</p>'}
      ]},
 
     {id:2, type:'branch',
@@ -27,7 +27,7 @@ initScenario({
      questions:[
        {type:'mc',
         question:'How can planning before visiting a location improve your shoot?',
-        options:['It ensures you capture only what is needed.','It allows for impromptu creativity.','It guarantees high-quality footage.','It eliminates the need for a variety of shots.'],
+        options:['It frees you to focus on performance and creativity on set because the logistics are already resolved.','It guarantees high-quality footage regardless of the conditions on the day.','It eliminates the need to capture a variety of shots.','It removes the need to rehearse with your cast beforehand.'],
         correct:0},
        {type:'check',
         question:'The video provides four basic choices for adding variety to your shots. Select any or all that you think you will be able to use in your project to craft a better narrative with the camera:',
@@ -36,7 +36,7 @@ initScenario({
         question:'The video demonstrates that adding foreground elements can improve depth in your shots, such as using props or natural objects to enhance movements like the push forward or slider reveal.',
         correct:true},
        {type:'tf',
-        question:'<p>I have given thought to how / what I can use as cutaway scenes to add narrative depth to my film.</p><p><em>Common Motifs in Japanese Film and Animation Cutaways: Train Tracks &mdash; transitions, journeys; Train Stations &mdash; departure and connection; Rain &mdash; renewal and melancholy; Rain on Glass &mdash; introspection; Urban Neon Lights &mdash; modernity and isolation; Shoji Screens &mdash; traditional settings and separation; Mountains and Nature &mdash; timeless elements; Seasonal Changes (Cherry Blossoms, Snow) &mdash; impermanence; Cityscapes at Night &mdash; alienation or beauty; Reflections in Water &mdash; duality; Flying Birds &mdash; freedom or transitions; Close-ups of Everyday Objects &mdash; tea cups, shoes, books.</em></p>',
+        question:'<p><strong>Separate reflection (not from the video above):</strong> I have given thought to what I can use as cutaway scenes to add narrative depth specifically to a film set in Japan.</p><p><em>Common Motifs in Japanese Film and Animation Cutaways: Train Tracks &mdash; transitions, journeys; Train Stations &mdash; departure and connection; Rain &mdash; renewal and melancholy; Rain on Glass &mdash; introspection; Urban Neon Lights &mdash; modernity and isolation; Shoji Screens &mdash; traditional settings and separation; Mountains and Nature &mdash; timeless elements; Seasonal Changes (Cherry Blossoms, Snow) &mdash; impermanence; Cityscapes at Night &mdash; alienation or beauty; Reflections in Water &mdash; duality; Flying Birds &mdash; freedom or transitions; Close-ups of Everyday Objects &mdash; tea cups, shoes, books.</em></p>',
         correct:true},
        {type:'info',
         text:'Even though we are recreating a short scene from an established film, our creation is something new, and we also need to punctuate it with a clear beginning, middle, and end. We want to think of this in the shots we take, and not when we are trying to put them together in post production.'}
@@ -58,7 +58,8 @@ initScenario({
      question:'<p>Do your planned shots consider environmental factors (e.g., noise, lighting)?</p>',
      choices:[
        {text:'Yes: External factors are accounted for in the plan.', next:8},
-       {text:'No: You haven\'t addressed environmental challenges.', next:6}
+       {text:'No: You haven\'t addressed environmental challenges.', next:5,
+        feedback:'<p><strong>Re-examine your shot list with the environment in mind.</strong> Weather, ambient noise, and available light can force changes to angles, timing, or equipment. Revisit your shot list with those constraints, then return to this step.</p>'}
      ]},
 
     {id:7, type:'branch',
@@ -75,21 +76,21 @@ initScenario({
        {text:'No: Some equipment is unavailable or untested.', next:-1, endMessage:'Please secure all required equipment before beginning production. Speak with your professor if needed.'}
      ]},
 
-    {id:9, type:'video', title:'When and What to Cut',
+    {id:9, type:'video', title:'Troubleshooting Your Scene',
      videoId:'3sXXlFsD1ow',
      questions:[
        {type:'tf',
-        question:'If you are struggling with the complexity of your scene / being able to recreate specific aspects of the scene, there may be ways to create a similar effect in a simpler way.',
+        question:'If we are struggling with the complexity of a shot or scene, there is almost always a simpler way to achieve a similar effect.',
         correct:true},
        {type:'tf',
-        question:'We have considered which &ldquo;scene&rdquo; of our short film is the &ldquo;core&rdquo; of the project, and by identifying the scene with the most meaning have identified the scenes that can be changed or adapted without detracting from the overall film or theme.',
+        question:'We have identified the single scene that is the core of our short film, and treat all other scenes as adaptable if resources or time force changes.',
         correct:true},
        {type:'check',
-        question:'Reflect on the following creative strategies:',
+        question:'If a shot or scene on your list is not working, consider these adjustments before the shoot:',
         options:[
-          'Consider using expressions and body language to convey meaning, or shortening unnecessary information, especially if your actors are nervous or having a difficult time.',
-          'How can you use our classtime / excursions to create content for your film?',
-          'Solutions do not have to be complicated; with a little creativity, we can create incredible effects with the smallest items.'
+          'Replace dialogue-heavy moments with action or reaction shots. Expression and body language often communicate more than a line read by a nervous actor.',
+          'Simplify the most technically ambitious shot. A hand-held version of a planned dolly, or a static version of a planned crane, usually reads fine on a 30-second short.',
+          'Cut what does not serve the core scene. Runtime is not the goal; every shot should earn its place.'
         ]}
      ],
      next:10},

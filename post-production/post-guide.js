@@ -107,10 +107,11 @@ initScenario({
        {type:'info',
         text:'The rest of the video does get technical, and you\'re more than welcome to attempt it! However, the basics needed are covered in this section.'},
        {type:'check',
-        question:'Reflect on the following creative strategies:',
+        question:'Before committing to VFX, plan for them:',
         options:[
-          'How can you use our classtime / excursions to create content for your film?',
-          'Solutions do not have to be complicated; with a little creativity, we can create incredible effects with the smallest items.'
+          'Identify which shots genuinely need VFX and which could be achieved practically on set. Practical effects are almost always faster and cheaper than digital.',
+          'If you are using Blender, keep render times and export settings in mind. A complex shot can take hours to render on a laptop, so build render time into your post-production schedule.',
+          'Build a fallback version of each VFX shot (practical or simplified digital) in case your render does not finish in time for submission.'
         ]}
      ],
      next:14},
