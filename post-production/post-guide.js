@@ -43,7 +43,16 @@ initScenario({
      videoId:'Xtj0nvAGeMw',
      questions:[
        {type:'info',
-        text:'This is not asking you to use this site or any other &mdash; it is an example of using B-Roll footage to create movement and to fill in story gaps.'}
+        text:'This is not asking you to use this site or any other &mdash; it is an example of using B-Roll footage to create movement and to fill in story gaps.'},
+       {type:'tf',
+        question:'After watching, I can identify at least one moment in our cut where B-roll or an establishing shot would bridge a gap or smooth an abrupt transition.',
+        correct:true},
+       {type:'check',
+        question:'Before proceeding, consider where your B-roll will come from:',
+        options:[
+          'Re-visit your raw footage \u2014 are there cutaways, textures, or establishing shots you did not originally plan to use but could repurpose here?',
+          'If you need new coverage, plan to capture it during class excursions rather than scheduling a separate shoot day.'
+        ]}
      ],
      next:6},
 
