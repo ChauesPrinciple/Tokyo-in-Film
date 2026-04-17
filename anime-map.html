@@ -198,6 +198,7 @@
     <button class="anime-tab active" data-anime="jjk" role="tab" aria-selected="true">Jujutsu Kaisen</button>
     <button class="anime-tab" data-anime="chainsaw_man" role="tab" aria-selected="false">Chainsaw Man</button>
     <button class="anime-tab" data-anime="tokyo_ghoul" role="tab" aria-selected="false">Tokyo Ghoul</button>
+    <button class="anime-tab" data-anime="shinkai" role="tab" aria-selected="false">Suzume × Your Name</button>
   </div>
 
   <!-- Search -->
@@ -448,7 +449,7 @@ async function loadMap(){
   data.features.forEach(feature=>{
     const jpName=feature.properties.ward_ja||feature.properties.N03_004||'';
     // Must exist in at least one anime
-    if(!ANIME.tokyo_ghoul.wards[jpName]&&!ANIME.chainsaw_man.wards[jpName]&&!ANIME.jjk.wards[jpName]) return;
+    if(!Object.keys(ANIME).some(k=>ANIME[k].wards[jpName])) return;
 
     const geom=feature.geometry;
     let rings=[];
@@ -475,7 +476,7 @@ async function loadMap(){
     // Label uses the initial Tokyo Ghoul name (same English across anime); updated on anime switch.
     path.setAttribute('tabindex','0');
     path.setAttribute('role','button');
-    const initialLabelWard=ANIME.tokyo_ghoul.wards[jpName]||ANIME.chainsaw_man.wards[jpName]||ANIME.jjk.wards[jpName];
+    const initialLabelWard=Object.keys(ANIME).map(k=>ANIME[k].wards[jpName]).find(Boolean);
     if(initialLabelWard) path.setAttribute('aria-label',`${initialLabelWard.name} ward`);
     path.addEventListener('keydown',e=>{
       if(e.key==='Enter'||e.key===' '){e.preventDefault();selectWard(jpName);}
@@ -503,8 +504,8 @@ async function loadMap(){
     const cy=allY.reduce((a,b)=>a+b,0)/allY.length;
     const lbl=document.createElementNS('http://www.w3.org/2000/svg','text');
     lbl.setAttribute('x',cx);lbl.setAttribute('y',cy);lbl.classList.add('ward-label');
-    // Use TG name as default label (all wards have same English name)
-    const wAny=ANIME.tokyo_ghoul.wards[jpName]||ANIME.chainsaw_man.wards[jpName]||ANIME.jjk.wards[jpName];
+    // Use first-found anime entry for the static ward label (English name is consistent across series)
+    const wAny=Object.keys(ANIME).map(k=>ANIME[k].wards[jpName]).find(Boolean);
     lbl.textContent=wAny?wAny.name:'';
     labelGroup.appendChild(lbl);
   });
@@ -595,7 +596,7 @@ function switchAnime(key){
 // Popup shown when the user clicks a ward that isn't featured in the current anime.
 // Lists which other series DO include it, with one-click switch links.
 function showNotFeaturedPopup(jpName){
-  const featuredIn=['jjk','chainsaw_man','tokyo_ghoul'].filter(k=>ANIME[k].wards[jpName]);
+  const featuredIn=Object.keys(ANIME).filter(k=>ANIME[k].wards[jpName]);
   const wAny=featuredIn.length ? ANIME[featuredIn[0]].wards[jpName] : null;
   poiPopup.textContent='';
   const head=document.createElement('strong');

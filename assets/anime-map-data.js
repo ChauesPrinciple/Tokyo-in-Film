@@ -190,5 +190,46 @@ jjk: {
     {type:'circle',lat:35.6595,lng:139.7004,r:2000,color:'#8b0000',label:'Shibuya Incident Curtain'},
     {type:'circle',lat:35.7081,lng:139.7549,r:2000,color:'#059669',label:'Jujutsu High Territory'}
   ]
+},
+
+// ── SHINKAI (Suzume × Your Name) ──────────────────────────
+shinkai: {
+  title: "Suzume × Your Name",
+  eyebrow: "Shinkai's Tokyo",
+  subtitle: "Sacred Sites · Door-scapes · Cityscape Poetry",
+  theme: { accent:'#7c3aed', accentBright:'#a855f7', border:'rgba(168,85,247,0.4)', glow:'rgba(168,85,247,0.3)' },
+  statuses: {
+    both:       { color:'#a855f7', label:'Both Films' },
+    your_name:  { color:'#3b82f6', label:'Your Name (2016)' },
+    suzume:     { color:'#ef4444', label:'Suzume (2022)' },
+    background: { color:'#6b7280', label:'Cityscape / Background' }
+  },
+  wards: {
+    "千代田区":{n:1,name:"Chiyoda",status:"suzume",title:"Hijiri Bridge · Ochanomizu Door",characters:["Suzume Iwato","Sōta Munakata"],locations:["Hijiri Bridge (聖橋)","Ochanomizu Station","Kanda River"],prose:"The Tokyo act of Suzume climaxes here. Above Hijiri Bridge — the iconic arch where three rail lines converge over the Kanda River — the Tokyo Keystone's door opens and the sky-spanning Worm emerges. Suzume and Sōta fight to close the door before the Worm falls on central Tokyo."},
+    "中央区":{n:2,name:"Chūō",status:"background",title:"Aerial Cityscape",locations:["Ginza","Nihonbashi"],prose:"Central Tokyo appears in both films as part of Shinkai's signature aerial-cityscape montages — the city photographed from above at dawn, dusk, and night, lit with painterly precision."},
+    "港区":{n:3,name:"Minato",status:"both",title:"Tokyo Tower · National Art Center",characters:["Taki Tachibana","Miki Okudera"],locations:["National Art Center Tokyo","Tokyo Tower","Roppongi"],prose:"Taki's first date with Okudera-senpai takes him to the National Art Center in Roppongi — Kisho Kurokawa's curving glass façade, rendered nearly frame-for-frame in Shinkai's hand-painted style. Tokyo Tower punctuates the aerial cityscape sequences of both films."},
+    "新宿区":{n:4,name:"Shinjuku",status:"both",title:"Taki's Tokyo · Suga Shrine",characters:["Taki Tachibana","Sōta Munakata"],locations:["Suga Shrine","Shinanomachi Station","Yotsuya Station"],prose:"The emotional core of Your Name sits in Shinjuku. Taki lives and attends high school somewhere in this ward; the red staircase at Suga Shrine in Yotsuya — where he and Mitsuha finally ask each other's names — is a ten-minute walk from Yotsuya Station. Sōta's Tokyo apartment in Suzume is also located in this ward."},
+    "文京区":{n:5,name:"Bunkyō",status:"suzume",title:"North of Hijiri Bridge",locations:["Hijiri Bridge (north approach)","Yushima / Hongō"],prose:"The opposite bank of the Kanda River from Ochanomizu. Establishing shots of the Tokyo door sequence look across into this ward; red-brick architecture, sloping streets, and the silhouettes of Yushima and Hongō fill Shinkai's backgrounds."},
+    "墨田区":{n:7,name:"Sumida",status:"background",title:"Skytree Horizon",locations:["Tokyo Skytree (visible)"],prose:"The Skytree anchors the eastern horizon in wide Tokyo shots across both films — most dramatically during Suzume's Worm emergence, when the creature's bulk is framed against its silhouette."},
+    "渋谷区":{n:13,name:"Shibuya",status:"your_name",title:"Scramble · Yoyogi Clock Tower",locations:["Shibuya Scramble Crossing","NTT Docomo Yoyogi Building","Sendagaya"],prose:"Shinkai's Tokyo is essentially Shibuya-Tokyo. The NTT Docomo Yoyogi tower — the art-deco clock building that haunts Your Name's skyline — stands in Sendagaya. The Scramble Crossing features in the film's kinetic Tokyo montage."}
+  },
+  pois: [
+    // ── Your Name ──
+    {name:"Suga Shrine Stairs",lat:35.6869,lng:139.7199,label:"The red staircase at Suga Shrine, Yotsuya — the final scene of Your Name, where Taki and Mitsuha finally meet and ask each other's names. A ten-minute walk from Yotsuya Station.",color:"#3b82f6"},
+    {name:"NTT Docomo Yoyogi Building",lat:35.6839,lng:139.7020,label:"The art-deco clock tower that anchors Your Name's Tokyo skyline. Not open to the public, but visible from all around Sendagaya and Yoyogi.",color:"#3b82f6"},
+    {name:"National Art Center Tokyo",lat:35.6654,lng:139.7263,label:"Taki's date with Okudera-senpai. Kurokawa's curving glass façade — the shots of them walking through the lobby and café are nearly frame-accurate to the real building.",color:"#3b82f6"},
+    {name:"Shinanomachi Station",lat:35.6797,lng:139.7196,label:"Taki commutes through this JR Chūō-Sōbu line station. Featured in Your Name's Tokyo montage.",color:"#3b82f6"},
+    {name:"Yotsuya Station Pedestrian Bridge",lat:35.6858,lng:139.7301,label:"The overhead bridge at Yotsuya where Taki and Mitsuha almost pass each other on parallel trains — the near-miss moment before the film's final act.",color:"#3b82f6"},
+    {name:"Meiji Kinenkan",lat:35.6785,lng:139.7199,label:"The wedding hall and restaurant where Taki and Okudera-senpai eat lunch, near Gaien-mae.",color:"#3b82f6"},
+    // ── Suzume ──
+    {name:"Hijiri Bridge (聖橋)",lat:35.6993,lng:139.7649,label:"The Tokyo climax. The door above this bridge opens and the Worm emerges — Suzume and Sōta fight to close it before it falls on the city. The real bridge's stone arch and the crossing JR Chūō line are rendered nearly frame-for-frame.",color:"#ef4444"},
+    {name:"Ochanomizu Station",lat:35.6994,lng:139.7651,label:"The JR Chūō / Marunouchi subway interchange Suzume emerges from on her Tokyo arrival. The platform view of Hijiri Bridge is the film's establishing shot for the entire Tokyo sequence.",color:"#ef4444"},
+    // ── Both ──
+    {name:"Tokyo Tower",lat:35.6586,lng:139.7454,label:"A fixed point in Shinkai's Tokyo. Appears throughout the aerial cityscape sequences of both Your Name and Suzume.",color:"#a855f7"},
+    {name:"Shibuya Scramble Crossing",lat:35.6595,lng:139.7005,label:"The world's busiest intersection. Featured in both films' Tokyo montage sequences.",color:"#a855f7"}
+  ],
+  overlays: [
+    {type:'circle',lat:35.6993,lng:139.7649,r:1800,color:'#ef4444',label:'Tokyo Worm Emergence Zone (Suzume)'}
+  ]
 }
 };
