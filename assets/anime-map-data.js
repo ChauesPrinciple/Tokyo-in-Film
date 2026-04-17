@@ -123,38 +123,17 @@ jjk: {
   theme: { accent:'#6b21a8', accentBright:'#8b5cf6', border:'rgba(124,58,237,0.4)', glow:'rgba(124,58,237,0.3)' },
   statuses: {
     shibuya_incident: { color:'#8b0000', label:'Shibuya Incident Zone' },
-    shibuya_aftermath: { color:'#4a0000', label:'Post-Shibuya Chaos' },
     colony_tokyo_1: { color:'#6b21a8', label:'Colony — Tokyo No.1' },
     colony_tokyo_2: { color:'#2563eb', label:'Colony — Tokyo No.2' },
-    sendai_colony: { color:'#7c3aed', label:'Sendai Colony Territory' },
-    cursed_zone: { color:'#ea580c', label:'Cursed Spirit Outbreak' },
-    jujutsu_high: { color:'#059669', label:'Jujutsu High Territory' },
-    neutral: { color:'#1e3a8a', label:'Neutral Zone' }
+    jujutsu_high: { color:'#059669', label:'Jujutsu High Territory' }
   },
+  // Only wards with actual story weight. Other wards fall through to 'not featured'
+  // treatment (dimmed, click shows switch links to the other anime).
   wards: {
     "渋谷区":{n:13,name:"Shibuya",status:"shibuya_incident",title:"Shibuya Incident — October 31",factions:["Cursed Spirits","Jujutsu Sorcerers"],characters:["Gojo Satoru","Sukuna","Itadori Yuji","Nanami Kento","Mahito"],locations:["Shibuya Station","Scramble Crossing","Hikarie"],prose:"The Shibuya Incident. Curtain barrier traps civilians. Gojo Satoru sealed in Prison Realm. Sukuna unleashed. Thousands dead. The event that changed everything."},
-    "千代田区":{n:1,name:"Chiyoda",status:"shibuya_aftermath",title:"Post-Shibuya Chaos",factions:["Government"],characters:[],locations:["Imperial Palace District"],prose:"Imperial Palace district. Jujutsu society in disarray after Gojo's sealing. Emergency protocols activated."},
     "新宿区":{n:4,name:"Shinjuku",status:"colony_tokyo_1",title:"Culling Game Colony — Tokyo No.1",factions:["Culling Game Players"],characters:["Megumi Fushiguro","Reggie Star"],locations:["TMG Building","Colony Barrier"],prose:"BARRIER ACTIVE. Culling Game colony established. Players forced to earn points or die. TMG Building serves as landmark."},
     "港区":{n:3,name:"Minato",status:"colony_tokyo_2",title:"Culling Game Colony — Tokyo No.2",factions:["Culling Game Players"],characters:["Hakari Kinji","Charles Bernard"],locations:["Roppongi","Colony Barrier"],prose:"BARRIER ACTIVE. Second Tokyo colony. High concentration of awakened sorcerers. Deadly game rules in effect."},
-    "豊島区":{n:16,name:"Toshima",status:"sendai_colony",title:"Sendai Colony Territory",factions:["Colony Transit"],characters:[],locations:["Ikebukuro"],prose:"Northern colony influence. Ikebukuro area. Players from Sendai colony occasionally spotted during transit."},
-    "中央区":{n:2,name:"Chūō",status:"cursed_zone",title:"High Cursed Spirit Activity",factions:["Cursed Spirits"],characters:[],locations:["Tokyo Station"],prose:"Post-Shibuya cursed spirit outbreak. Tokyo Station area overrun. Jujutsu High struggling to contain."},
-    "文京区":{n:5,name:"Bunkyō",status:"jujutsu_high",title:"Tokyo Jujutsu High Territory",factions:["Jujutsu High"],characters:["Yaga Masamichi"],locations:["Jujutsu High Campus"],prose:"Tokyo Jujutsu High school grounds. Heavily protected. Students mobilized for Culling Game intervention."},
-    "台東区":{n:6,name:"Taitō",status:"cursed_zone",title:"Asakusa Cursed Outbreak",factions:["Cursed Spirits"],characters:[],locations:["Sensō-ji Temple"],prose:"Traditional district now plagued by cursed spirits. Sensō-ji temple area particularly dangerous."},
-    "墨田区":{n:7,name:"Sumida",status:"neutral",title:"Neutral Zone",factions:[],characters:[],locations:["Skytree District"],prose:"Skytree district. Outside colony barriers. Cursed spirit activity present but manageable."},
-    "江東区":{n:8,name:"Kōtō",status:"neutral",title:"Eastern Industrial Zone",factions:[],characters:[],locations:["Waterfront"],prose:"Industrial waterfront. Low population density. Some cursed spirit activity."},
-    "品川区":{n:9,name:"Shinagawa",status:"neutral",title:"Southern Gateway",factions:[],characters:[],locations:["Transport Hub"],prose:"Transport hub. Refugees fleeing Tokyo pass through here."},
-    "目黒区":{n:10,name:"Meguro",status:"neutral",title:"Residential District",factions:[],characters:[],locations:["Residential Areas"],prose:"Relatively quiet residential area. Citizens evacuating."},
-    "大田区":{n:11,name:"Ōta",status:"neutral",title:"Haneda Airport Zone",factions:[],characters:[],locations:["Haneda Airport"],prose:"Airport district. Military and jujutsu society monitoring cursed activity."},
-    "世田谷区":{n:12,name:"Setagaya",status:"neutral",title:"Western Residential",factions:[],characters:[],locations:["Residential Areas"],prose:"Large residential ward. Civilian evacuation ongoing."},
-    "中野区":{n:14,name:"Nakano",status:"neutral",title:"Western District",factions:[],characters:[],locations:["Residential Area"],prose:"Residential area west of Shinjuku colony barrier."},
-    "杉並区":{n:15,name:"Suginami",status:"neutral",title:"Outer Western Ward",factions:[],characters:[],locations:["Outer Ward"],prose:"Outer ward. Less affected by central Tokyo chaos."},
-    "北区":{n:17,name:"Kita",status:"neutral",title:"Northern District",factions:[],characters:[],locations:["Northern Residential"],prose:"Northern residential area. Monitoring for colony expansion."},
-    "荒川区":{n:18,name:"Arakawa",status:"neutral",title:"Arakawa River Zone",factions:[],characters:[],locations:["Arakawa River"],prose:"River district. Natural barrier against cursed spirit spread."},
-    "板橋区":{n:19,name:"Itabashi",status:"neutral",title:"Northwestern Zone",factions:[],characters:[],locations:["Northwestern Residential"],prose:"Northwestern residential area. Relatively stable."},
-    "練馬区":{n:20,name:"Nerima",status:"neutral",title:"Westernmost Ward",factions:[],characters:[],locations:["Outer Ward"],prose:"Furthest from Shibuya incident. Safest ward in Tokyo."},
-    "足立区":{n:21,name:"Adachi",status:"cursed_zone",title:"Northern Cursed Activity",factions:["Cursed Spirits"],characters:[],locations:["Warehouse Districts"],prose:"Northern ward experiencing cursed spirit outbreaks."},
-    "葛飾区":{n:22,name:"Katsushika",status:"neutral",title:"Eastern Residential",factions:[],characters:[],locations:["Residential Ward"],prose:"Eastern residential area. Moderate cursed activity."},
-    "江戸川区":{n:23,name:"Edogawa",status:"neutral",title:"Easternmost Ward",factions:[],characters:[],locations:["Eastern Edge"],prose:"Eastern edge of Tokyo. Border monitoring active."}
+    "文京区":{n:5,name:"Bunkyō",status:"jujutsu_high",title:"Tokyo Jujutsu High Territory",factions:["Jujutsu High"],characters:["Yaga Masamichi"],locations:["Jujutsu High Campus"],prose:"Tokyo Jujutsu High school grounds. Heavily protected. Students mobilized for Culling Game intervention."}
   },
   pois: [
     // ── Shibuya Incident (Oct 31) ──
