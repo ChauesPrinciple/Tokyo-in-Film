@@ -678,6 +678,9 @@ function applyAnimeTheme(){
   // tileBase === <url> -> swap to that tile source
   const tb = anime.theme.tileBase === undefined ? CONFIG.TILE_BASE : anime.theme.tileBase;
   applyTileBase(tb);
+  // Optional tile opacity override (Shinkai uses 0.55 so the sky gradient shows through)
+  const tileGroup=document.getElementById('tile-group');
+  if(tileGroup) tileGroup.style.opacity = anime.theme.tileOpacity != null ? anime.theme.tileOpacity : '';
   // Background: custom gradient if provided, otherwise the default dark color from CSS.
   wrap.style.background = anime.theme.background || '';
   // 'bright-theme' class flips ward labels to dark text so they stay readable on sky/light backgrounds.
@@ -781,7 +784,9 @@ function selectWard(jpName){
   if(path){path.classList.add('selected');selectedPath=path;}
 
   poiPopup.style.display='none';
-  updateInfoPanel(ward);
+  // Some anime (Shinkai) don't want a ward info panel — wards are admin boundaries, not story units.
+  if(!anime.disableWardInfo) updateInfoPanel(ward);
+  else document.getElementById('info-panel').classList.remove('active');
 
   // Zoom/pan to frame the ward (unless a caller is already moving the camera)
   if(!suppressZoomOnSelect){
