@@ -197,7 +197,7 @@ shinkai: {
   title: "Suzume × Your Name",
   eyebrow: "Shinkai's Tokyo",
   subtitle: "Sacred Sites · Door-scapes · Cityscape Poetry",
-  theme: { accent:'#7c3aed', accentBright:'#a855f7', border:'rgba(168,85,247,0.4)', glow:'rgba(168,85,247,0.3)' },
+  theme: { accent:'#7c3aed', accentBright:'#a855f7', border:'rgba(168,85,247,0.4)', glow:'rgba(168,85,247,0.3)', tileBase:'https://a.basemaps.cartocdn.com/rastertiles/voyager' },
   statuses: {
     both:       { color:'#a855f7', label:'Both Films' },
     your_name:  { color:'#3b82f6', label:'Your Name (2016)' },
@@ -228,8 +228,6 @@ shinkai: {
     {name:"Tokyo Tower",lat:35.6586,lng:139.7454,label:"A fixed point in Shinkai's Tokyo. Appears throughout the aerial cityscape sequences of both Your Name and Suzume.",color:"#a855f7"},
     {name:"Shibuya Scramble Crossing",lat:35.6595,lng:139.7005,label:"The world's busiest intersection. Featured in both films' Tokyo montage sequences.",color:"#a855f7"}
   ],
-  overlays: [
-    {type:'circle',lat:35.6993,lng:139.7649,r:1800,color:'#ef4444',label:'Tokyo Worm Emergence Zone (Suzume)'}
-  ]
+  overlays: []
 }
 };

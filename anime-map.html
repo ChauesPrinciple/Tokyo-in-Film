@@ -32,6 +32,8 @@
     .ward-path:hover{fill-opacity:0.85;stroke:var(--accent-bright);stroke-width:1.5;}
     .ward-path.selected{stroke:#fff;stroke-width:2;fill-opacity:0.9;}
     .ward-label{font-family:'Raleway',sans-serif;font-size:9px;fill:rgba(255,255,255,0.55);pointer-events:none;text-anchor:middle;dominant-baseline:central;font-weight:600;}
+    body.light-basemap .ward-label{fill:rgba(30,30,40,0.75);}
+    body.light-basemap .ward-path{stroke:rgba(60,60,70,0.5);}
     .poi-dot{cursor:pointer;transition:r .2s;outline:none;} .poi-dot:hover{r:6;}
     .ward-path:focus-visible,.poi-dot:focus-visible,.legend-item:focus-visible{outline:2px solid var(--accent-bright);outline-offset:1px;}
     .anime-tab:focus-visible,.custom-zoom button:focus-visible,.close-btn:focus-visible,.legend-toggle:focus-visible{outline:2px solid var(--accent-bright);outline-offset:2px;}
@@ -362,6 +364,7 @@ async function loadSubwayLines(svg){
 
 function loadTiles(svg){
   const g=document.createElementNS('http://www.w3.org/2000/svg','g');g.id='tile-group';
+  g.dataset.base=TILE_BASE;
   const z=TILE_Z;
   const xMin=lng2tile(BOUNDS.minLng,z),xMax=lng2tile(BOUNDS.maxLng,z);
   const yMin=lat2tile(BOUNDS.maxLat,z),yMax=lat2tile(BOUNDS.minLat,z);
@@ -370,6 +373,7 @@ function loadTiles(svg){
       const[x1,y1]=project(tile2lng(tx,z),tile2lat(ty,z));
       const[x2,y2]=project(tile2lng(tx+1,z),tile2lat(ty+1,z));
       const img=document.createElementNS('http://www.w3.org/2000/svg','image');
+      img.dataset.tx=tx; img.dataset.ty=ty; img.dataset.z=z;
       img.setAttribute('href',`${TILE_BASE}/${z}/${tx}/${ty}@2x.png`);
       img.setAttribute('x',x1);img.setAttribute('y',y1);
       img.setAttribute('width',x2-x1);img.setAttribute('height',y2-y1);
@@ -378,6 +382,16 @@ function loadTiles(svg){
     }
   }
   svg.insertBefore(g,svg.firstChild);
+}
+// Swap the tile basemap (e.g. dark -> voyager for Shinkai). No-op if already set.
+function applyTileBase(base){
+  const g=document.getElementById('tile-group');
+  if(!g || g.dataset.base===base) return;
+  g.dataset.base=base;
+  g.querySelectorAll('image').forEach(img=>{
+    const tx=img.dataset.tx, ty=img.dataset.ty, z=img.dataset.z;
+    img.setAttribute('href',`${base}/${z}/${tx}/${ty}@2x.png`);
+  });
 }
 
 // ══════════════════════════════════════════════════════════
@@ -649,6 +663,10 @@ function applyLegendFilter(){
 function applyAnimeTheme(){
   const anime=ANIME[currentAnime];
   const root=document.documentElement;
+
+  // Swap basemap tiles per anime (Shinkai uses a light Voyager basemap; others default to dark).
+  applyTileBase(anime.theme.tileBase || CONFIG.TILE_BASE);
+  document.body.classList.toggle('light-basemap', !!anime.theme.tileBase);
 
   // Header
   document.getElementById('hdr-eyebrow').textContent=anime.eyebrow;
