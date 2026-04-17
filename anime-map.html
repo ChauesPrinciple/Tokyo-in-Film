@@ -36,6 +36,8 @@
     .ward-path:focus-visible,.poi-dot:focus-visible,.legend-item:focus-visible{outline:2px solid var(--accent-bright);outline-offset:1px;}
     .anime-tab:focus-visible,.custom-zoom button:focus-visible,.close-btn:focus-visible,.legend-toggle:focus-visible{outline:2px solid var(--accent-bright);outline-offset:2px;}
     .legend-item{border-radius:2px;padding:2px 4px;margin:-2px -4px .5rem -4px;}
+    .legend-item.active-filter{background:rgba(255,255,255,0.08);outline:1px solid var(--accent-bright);}
+    .ward-path.filtered-out{fill-opacity:0.1 !important;pointer-events:none;}
     .barrier-dome{pointer-events:none;}
     .subway-line{pointer-events:none;fill:none;stroke-linecap:round;stroke-linejoin:round;}
 
@@ -98,6 +100,23 @@
     .custom-zoom button{width:36px;height:36px;background:transparent;border:none;color:var(--accent-bright);font-size:20px;font-weight:bold;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s;}
     .custom-zoom button:hover{background:var(--card);}
     .custom-zoom button:first-child{border-bottom:1px solid var(--border);}
+    .custom-zoom button:not(:last-child){border-bottom:1px solid var(--border);}
+
+    /* ── Search ── */
+    #search-box{position:absolute;top:20px;right:260px;z-index:600;width:220px;}
+    @media(max-width:900px){#search-box{top:58px;right:auto;left:50%;transform:translateX(-50%);width:calc(100vw - 40px);max-width:280px;}}
+    #search-input{width:100%;padding:8px 12px;font-family:'Raleway',sans-serif;font-size:.78rem;background:rgba(10,10,10,0.95);border:1px solid rgba(255,255,255,0.15);border-radius:4px;color:var(--text);outline:none;backdrop-filter:blur(6px);transition:border-color .2s;}
+    #search-input:focus{border-color:var(--accent-bright);}
+    #search-input::placeholder{color:var(--muted);}
+    #search-results{margin-top:4px;background:rgba(10,10,10,0.98);border:1px solid rgba(255,255,255,0.12);border-radius:4px;max-height:320px;overflow-y:auto;display:none;box-shadow:0 8px 24px rgba(0,0,0,0.6);}
+    #search-results.active{display:block;}
+    .search-result{padding:8px 12px;cursor:pointer;border-bottom:1px solid rgba(255,255,255,0.05);transition:background .15s;}
+    .search-result:last-child{border-bottom:none;}
+    .search-result:hover,.search-result.keyboard-focused{background:rgba(255,255,255,0.06);}
+    .search-result-label{font-size:.8rem;color:var(--text);font-weight:600;}
+    .search-result-sub{font-size:.68rem;color:var(--muted);margin-top:1px;line-height:1.3;}
+    .search-result-type{display:inline-block;font-size:.58rem;text-transform:uppercase;letter-spacing:.1em;color:var(--accent-bright);font-weight:700;margin-right:.4rem;}
+    .search-empty{padding:10px 12px;font-size:.75rem;color:var(--muted);font-style:italic;}
 
     /* ── Click Hint ── */
     #click-hint{position:absolute;bottom:20px;left:20px;z-index:400;background:rgba(14,14,14,0.95);border:1px solid var(--border);padding:10px 14px;border-radius:4px;font-size:.78rem;color:var(--muted);pointer-events:none;transition:opacity .5s;}
@@ -179,6 +198,12 @@
     <button class="anime-tab" data-anime="jjk" role="tab" aria-selected="false">Jujutsu Kaisen</button>
   </div>
 
+  <!-- Search -->
+  <div id="search-box">
+    <input type="text" id="search-input" placeholder="Search wards & locations…" aria-label="Search wards and points of interest" autocomplete="off" spellcheck="false" />
+    <div id="search-results" role="listbox" aria-label="Search results"></div>
+  </div>
+
   <!-- Header -->
   <div id="hdr">
     <div class="eyebrow" id="hdr-eyebrow">Chaues Productions</div>
@@ -199,8 +224,9 @@
   <div id="map-svg-wrap"></div>
 
   <div class="custom-zoom">
-    <button id="btn-zoom-in" aria-label="Zoom In">+</button>
-    <button id="btn-zoom-out" aria-label="Zoom Out">−</button>
+    <button id="btn-zoom-in" aria-label="Zoom In" title="Zoom In (+)">+</button>
+    <button id="btn-zoom-out" aria-label="Zoom Out" title="Zoom Out (-)">−</button>
+    <button id="btn-zoom-reset" aria-label="Reset view to fit map" title="Reset view" style="font-size:15px;">□</button>
   </div>
 
   <div id="tooltip"></div>
@@ -358,10 +384,43 @@ let currentAnime = 'tokyo_ghoul';
 let currentScale = 1, panX = 0, panY = 0;
 let selectedPath = null;
 let wardPaths = {}; // jp name → SVG path element
+let wardBounds = {}; // jp name → {minX, maxX, minY, maxY} in SVG units (for zoom-to-ward)
+let activeFilter = null; // current legend status filter (null = show all)
+let suppressZoomOnSelect = false; // true when selection is triggered by camera-moving caller
 
 const wrap = document.getElementById('map-svg-wrap');
 const tooltip = document.getElementById('tooltip');
 const poiPopup = document.getElementById('poi-popup');
+
+// Slug helper for URL params and POI lookup
+function poiSlug(name){
+  return String(name).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+}
+// Edge-aware popup positioning — keeps the popup inside the viewport
+function positionPopup(clientX, clientY){
+  // Force layout so we can measure
+  poiPopup.style.left='0px'; poiPopup.style.top='0px';
+  const w=poiPopup.offsetWidth||260, h=poiPopup.offsetHeight||80;
+  const vw=window.innerWidth, vh=window.innerHeight, pad=10;
+  let left=clientX+14, top=clientY-10;
+  if(left+w>vw-pad) left=Math.max(pad, clientX-w-14);
+  if(top+h>vh-pad) top=Math.max(pad, vh-h-pad);
+  if(top<pad) top=pad;
+  if(left<pad) left=pad;
+  poiPopup.style.left=left+'px';
+  poiPopup.style.top=top+'px';
+}
+// Deep-link URL sync. Uses replaceState so browser history isn't polluted.
+function updateUrl(){
+  const params=new URLSearchParams();
+  params.set('anime', currentAnime);
+  if(selectedPath){
+    const jp=selectedPath.dataset.jp;
+    const w=ANIME[currentAnime].wards[jp];
+    if(w) params.set('ward', w.n);
+  }
+  try{ history.replaceState(null,'','?'+params.toString()); }catch(e){/* file:// */}
+}
 
 // ══════════════════════════════════════════════════════════
 // LOAD & RENDER
@@ -431,6 +490,12 @@ async function loadMap(){
     wardGroup.appendChild(path);
     wardPaths[jpName]=path;
 
+    // Save bounding box (for zoom-to-ward)
+    wardBounds[jpName]={
+      minX: Math.min.apply(null,allX), maxX: Math.max.apply(null,allX),
+      minY: Math.min.apply(null,allY), maxY: Math.max.apply(null,allY)
+    };
+
     // Label
     const cx=allX.reduce((a,b)=>a+b,0)/allX.length;
     const cy=allY.reduce((a,b)=>a+b,0)/allY.length;
@@ -467,12 +532,34 @@ async function loadMap(){
     if(!e.target.closest('.poi-dot')) poiPopup.style.display='none';
   });
 
-  // Read URL param to auto-select anime (e.g. ?anime=chainsaw_man)
-  const urlAnime=new URLSearchParams(window.location.search).get('anime');
+  // Deep-link params: ?anime=<key>&ward=<n>&poi=<slug>
+  const urlParams=new URLSearchParams(window.location.search);
+  const urlAnime=urlParams.get('anime');
+  const urlWard=urlParams.get('ward');
+  const urlPoi=urlParams.get('poi');
   if(urlAnime&&ANIME[urlAnime]) currentAnime=urlAnime;
 
   // Apply initial anime theme
   applyAnimeTheme();
+
+  // After theme is applied, honor ward/poi deep links (next tick so POI layer exists)
+  if(urlWard){
+    const anime=ANIME[currentAnime];
+    const match=Object.entries(anime.wards).find(([_,w])=>String(w.n)===urlWard);
+    if(match) setTimeout(()=>selectWard(match[0]), 0);
+  } else if(urlPoi){
+    const anime=ANIME[currentAnime];
+    const poi=anime.pois.find(p=>poiSlug(p.name)===urlPoi);
+    if(poi){
+      const [sx,sy]=project(poi.lng,poi.lat);
+      const ww=wrap.clientWidth, wh=wrap.clientHeight;
+      currentScale=Math.min(CONFIG.ZOOM_MAX, 5);
+      panX=ww/2 - sx*currentScale;
+      panY=wh/2 - sy*currentScale;
+      applyTransform();
+      setTimeout(()=>showPoiDetail(ww/2, wh/2, poi, anime.theme.accentBright), 120);
+    }
+  }
 
   // Load subway lines asynchronously (appears when ready)
   loadSubwayLines(svg);
@@ -493,12 +580,32 @@ function switchAnime(key){
     t.setAttribute('aria-selected', on ? 'true' : 'false');
   });
 
-  // Close info panel
+  // Close info panel and clear any active legend filter (status keys differ per anime)
   document.getElementById('info-panel').classList.remove('active');
   if(selectedPath){selectedPath.classList.remove('selected');selectedPath=null;}
   poiPopup.style.display='none';
+  activeFilter=null;
 
   applyAnimeTheme();
+  updateUrl();
+}
+
+// Applies the currently-active legend filter to ward fills and the legend item visual state.
+function applyLegendFilter(){
+  const anime=ANIME[currentAnime];
+  // Legend items highlighted
+  document.querySelectorAll('.legend-item').forEach(el=>{
+    el.classList.toggle('active-filter', el.dataset.status===activeFilter);
+  });
+  // Ward fills dimmed when they don't match the active filter
+  Object.entries(wardPaths).forEach(([jp,path])=>{
+    const w=anime.wards[jp];
+    if(activeFilter && w && w.status!==activeFilter){
+      path.classList.add('filtered-out');
+    } else {
+      path.classList.remove('filtered-out');
+    }
+  });
 }
 
 function applyAnimeTheme(){
@@ -543,12 +650,15 @@ function applyAnimeTheme(){
   Object.entries(anime.statuses).forEach(([key,{color,label}])=>{
     const item=document.createElement('div');item.className='legend-item';item.dataset.status=key;
     item.innerHTML=`<div class="legend-swatch" style="background:${color}"></div><span>${label}</span>`;
+    // Legend-as-filter: click status to dim all non-matching wards; click again to clear
     item.addEventListener('click',()=>{
-      const entry=Object.entries(anime.wards).find(([_,w])=>w.status===key);
-      if(entry) selectWard(entry[0]);
+      activeFilter = (activeFilter===key) ? null : key;
+      applyLegendFilter();
     });
     legendItems.appendChild(item);
   });
+  // Re-apply any existing filter after rebuilding legend (e.g. anime switch keeps filter ON state visually)
+  applyLegendFilter();
 
   // POIs — rendered via renderPOIs() which handles clustering
   renderPOIs();
@@ -592,6 +702,23 @@ function selectWard(jpName){
 
   poiPopup.style.display='none';
   updateInfoPanel(ward);
+
+  // Zoom/pan to frame the ward (unless a caller is already moving the camera)
+  if(!suppressZoomOnSelect){
+    const b=wardBounds[jpName];
+    if(b){
+      const ww=wrap.clientWidth, wh=wrap.clientHeight;
+      const bw=Math.max(1,b.maxX-b.minX), bh=Math.max(1,b.maxY-b.minY);
+      const padding=1.6; // keep the ward comfortably inside the viewport
+      const targetScale=Math.min(ww/(bw*padding), wh/(bh*padding));
+      currentScale=Math.max(CONFIG.ZOOM_MIN, Math.min(CONFIG.ZOOM_MAX, targetScale));
+      const cx=(b.minX+b.maxX)/2, cy=(b.minY+b.maxY)/2;
+      panX=ww/2 - cx*currentScale;
+      panY=wh/2 - cy*currentScale;
+      applyTransform();
+    }
+  }
+  updateUrl();
 }
 
 function updateInfoPanel(ward){
@@ -668,8 +795,7 @@ function showPoiDetail(clientX, clientY, poi, poiColor){
   body.textContent=poi.label;
   poiPopup.appendChild(body);
   poiPopup.style.display='block';
-  poiPopup.style.left=(clientX+14)+'px';
-  poiPopup.style.top=(clientY-10)+'px';
+  positionPopup(clientX,clientY);
 }
 function showClusterList(clientX, clientY, grp, poiColor){
   poiPopup.textContent='';
@@ -696,8 +822,7 @@ function showClusterList(clientX, clientY, grp, poiColor){
     poiPopup.appendChild(row);
   });
   poiPopup.style.display='block';
-  poiPopup.style.left=(clientX+14)+'px';
-  poiPopup.style.top=(clientY-10)+'px';
+  positionPopup(clientX, clientY);
 }
 // Returns true if any pair in the cluster would still be within clustering range at targetScale.
 // Used to decide whether zoom-in is useful or we should show the list popup instead.
@@ -847,6 +972,15 @@ window.addEventListener('mouseup',()=>{isDragging=false;wrap.classList.remove('d
 
 wrap.addEventListener('wheel',e=>{e.preventDefault();zoomAt(e.deltaY>0?-1:1,e.clientX,e.clientY);},{passive:false});
 
+// Double-click to zoom in toward the cursor
+wrap.addEventListener('dblclick',e=>{
+  if(e.target.closest('.poi-dot')) return; // let POI handle its own clicks
+  e.preventDefault();
+  // Two-step zoom for a bit more movement per dblclick
+  zoomAt(1, e.clientX, e.clientY);
+  zoomAt(1, e.clientX, e.clientY);
+});
+
 let touchDist=0;
 wrap.addEventListener('touchstart',e=>{
   if(e.touches.length===1){isDragging=true;dragStartX=e.touches[0].clientX;dragStartY=e.touches[0].clientY;panStartX=panX;panStartY=panY;}
@@ -855,10 +989,18 @@ wrap.addEventListener('touchstart',e=>{
 wrap.addEventListener('touchmove',e=>{
   e.preventDefault();
   if(e.touches.length===1&&isDragging){panX=panStartX+(e.touches[0].clientX-dragStartX);panY=panStartY+(e.touches[0].clientY-dragStartY);applyTransform();}
-  else if(e.touches.length===2){
+  else if(e.touches.length===2 && touchDist>0){
+    // Continuous pinch-to-zoom: scale proportional to finger-distance ratio
     const nd=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);
     const cx=(e.touches[0].clientX+e.touches[1].clientX)/2,cy=(e.touches[0].clientY+e.touches[1].clientY)/2;
-    if(nd>touchDist+5){zoomAt(1,cx,cy);touchDist=nd;}else if(nd<touchDist-5){zoomAt(-1,cx,cy);touchDist=nd;}
+    const ratio=nd/touchDist;
+    const old=currentScale;
+    currentScale=Math.max(CONFIG.ZOOM_MIN, Math.min(CONFIG.ZOOM_MAX, currentScale*ratio));
+    const r=currentScale/old;
+    panX=cx-(cx-panX)*r;
+    panY=cy-(cy-panY)*r;
+    touchDist=nd;
+    applyTransform();
   }
 },{passive:false});
 wrap.addEventListener('touchend',()=>{isDragging=false;});
@@ -886,8 +1028,105 @@ legendToggle.addEventListener('click',()=>{
 
 document.getElementById('btn-zoom-in').addEventListener('click',()=>zoomMap(1));
 document.getElementById('btn-zoom-out').addEventListener('click',()=>zoomMap(-1));
+document.getElementById('btn-zoom-reset').addEventListener('click',()=>{
+  // Clear selection + filter so reset is "start over"
+  if(selectedPath){selectedPath.classList.remove('selected');selectedPath=null;}
+  document.getElementById('info-panel').classList.remove('active');
+  poiPopup.style.display='none';
+  activeFilter=null; applyLegendFilter();
+  centerMap();
+  updateUrl();
+});
 document.getElementById('btn-info-close').addEventListener('click',()=>{
   document.getElementById('info-panel').classList.remove('active');
+});
+
+// ══════════════════════════════════════════════════════════
+// SEARCH (wards + POIs, substring match, keyboard navigable)
+// ══════════════════════════════════════════════════════════
+const searchInput=document.getElementById('search-input');
+const searchResults=document.getElementById('search-results');
+let searchFocusIdx=-1;
+function runSearch(){
+  const q=searchInput.value.trim().toLowerCase();
+  searchResults.textContent='';
+  searchFocusIdx=-1;
+  if(!q){ searchResults.classList.remove('active'); return; }
+  const anime=ANIME[currentAnime];
+  const hits=[];
+  // Wards: match name, title, or Japanese key
+  Object.entries(anime.wards).forEach(([jp,w])=>{
+    const hay=(w.name+' '+w.title+' '+jp).toLowerCase();
+    if(hay.includes(q)) hits.push({type:'ward', jp, w});
+  });
+  // POIs
+  anime.pois.forEach(p=>{
+    if(p.name.toLowerCase().includes(q)) hits.push({type:'poi', poi:p});
+  });
+  if(!hits.length){
+    const empty=document.createElement('div'); empty.className='search-empty';
+    empty.textContent='No matches. Try a different series?';
+    searchResults.appendChild(empty);
+    searchResults.classList.add('active');
+    return;
+  }
+  hits.slice(0,14).forEach((h,idx)=>{
+    const row=document.createElement('div');
+    row.className='search-result'; row.setAttribute('role','option'); row.dataset.idx=idx;
+    const type=document.createElement('span'); type.className='search-result-type';
+    type.textContent = h.type==='ward' ? 'Ward' : 'POI';
+    const label=document.createElement('div'); label.className='search-result-label';
+    label.appendChild(type);
+    label.appendChild(document.createTextNode(h.type==='ward' ? `${h.w.name} (Ward ${h.w.n})` : h.poi.name));
+    const sub=document.createElement('div'); sub.className='search-result-sub';
+    sub.textContent = h.type==='ward' ? h.w.title : (h.poi.label.length>90 ? h.poi.label.slice(0,90)+'…' : h.poi.label);
+    row.appendChild(label); row.appendChild(sub);
+    row.addEventListener('click',()=>selectSearchHit(h));
+    searchResults.appendChild(row);
+  });
+  searchResults.classList.add('active');
+}
+function selectSearchHit(h){
+  searchInput.value='';
+  searchResults.classList.remove('active');
+  searchResults.textContent='';
+  if(h.type==='ward'){
+    selectWard(h.jp);
+  } else {
+    const anime=ANIME[currentAnime];
+    const [sx,sy]=project(h.poi.lng,h.poi.lat);
+    const ww=wrap.clientWidth, wh=wrap.clientHeight;
+    currentScale=Math.min(CONFIG.ZOOM_MAX, 5);
+    panX=ww/2 - sx*currentScale;
+    panY=wh/2 - sy*currentScale;
+    applyTransform();
+    setTimeout(()=>showPoiDetail(ww/2, wh/2, h.poi, anime.theme.accentBright), 80);
+  }
+}
+searchInput.addEventListener('input', runSearch);
+searchInput.addEventListener('focus', runSearch);
+searchInput.addEventListener('keydown', e=>{
+  const rows=searchResults.querySelectorAll('.search-result');
+  if(e.key==='ArrowDown'){
+    e.preventDefault();
+    if(rows.length){ searchFocusIdx=Math.min(rows.length-1, searchFocusIdx+1); highlightSearchRow(rows); }
+  } else if(e.key==='ArrowUp'){
+    e.preventDefault();
+    if(rows.length){ searchFocusIdx=Math.max(0, searchFocusIdx-1); highlightSearchRow(rows); }
+  } else if(e.key==='Enter'){
+    if(searchFocusIdx>=0 && rows[searchFocusIdx]) rows[searchFocusIdx].click();
+    else if(rows.length) rows[0].click();
+  } else if(e.key==='Escape'){
+    searchInput.value=''; runSearch(); searchInput.blur();
+  }
+});
+function highlightSearchRow(rows){
+  rows.forEach((r,i)=>r.classList.toggle('keyboard-focused', i===searchFocusIdx));
+  if(rows[searchFocusIdx]) rows[searchFocusIdx].scrollIntoView({block:'nearest'});
+}
+// Close search results when clicking elsewhere
+document.addEventListener('click', e=>{
+  if(!e.target.closest('#search-box')) searchResults.classList.remove('active');
 });
 
 // ══════════════════════════════════════════════════════════
