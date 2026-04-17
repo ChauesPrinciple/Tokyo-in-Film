@@ -197,7 +197,11 @@ shinkai: {
   title: "Suzume × Your Name",
   eyebrow: "Shinkai's Tokyo",
   subtitle: "Sacred Sites · Door-scapes · Cityscape Poetry",
-  theme: { accent:'#7c3aed', accentBright:'#a855f7', border:'rgba(168,85,247,0.4)', glow:'rgba(168,85,247,0.3)', tileBase:'https://a.basemaps.cartocdn.com/rastertiles/voyager' },
+  theme: {
+    accent:'#7c3aed', accentBright:'#a855f7', border:'rgba(168,85,247,0.4)', glow:'rgba(168,85,247,0.3)',
+    tileBase:null, // no basemap — Shinkai's Tokyo is sky, not streets
+    background:'linear-gradient(180deg,#1e3a5f 0%,#5a4a7a 35%,#d4698c 70%,#f4a988 100%)'
+  },
   statuses: {
     both:       { color:'#a855f7', label:'Both Films' },
     your_name:  { color:'#3b82f6', label:'Your Name (2016)' },

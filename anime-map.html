@@ -32,8 +32,8 @@
     .ward-path:hover{fill-opacity:0.85;stroke:var(--accent-bright);stroke-width:1.5;}
     .ward-path.selected{stroke:#fff;stroke-width:2;fill-opacity:0.9;}
     .ward-label{font-family:'Raleway',sans-serif;font-size:9px;fill:rgba(255,255,255,0.55);pointer-events:none;text-anchor:middle;dominant-baseline:central;font-weight:600;}
-    body.light-basemap .ward-label{fill:rgba(30,30,40,0.75);}
-    body.light-basemap .ward-path{stroke:rgba(60,60,70,0.5);}
+    body.bright-theme .ward-label{fill:rgba(20,20,30,0.85);text-shadow:0 1px 2px rgba(255,255,255,0.5);}
+    body.bright-theme .ward-path{stroke:rgba(30,30,50,0.45);}
     .poi-dot{cursor:pointer;transition:r .2s;outline:none;} .poi-dot:hover{r:6;}
     .ward-path:focus-visible,.poi-dot:focus-visible,.legend-item:focus-visible{outline:2px solid var(--accent-bright);outline-offset:1px;}
     .anime-tab:focus-visible,.custom-zoom button:focus-visible,.close-btn:focus-visible,.legend-toggle:focus-visible{outline:2px solid var(--accent-bright);outline-offset:2px;}
@@ -383,10 +383,18 @@ function loadTiles(svg){
   }
   svg.insertBefore(g,svg.firstChild);
 }
-// Swap the tile basemap (e.g. dark -> voyager for Shinkai). No-op if already set.
+// Swap the tile basemap. If base is null/empty, hide the tile layer entirely
+// (Shinkai: the map becomes a sky with wards floating on it).
 function applyTileBase(base){
   const g=document.getElementById('tile-group');
-  if(!g || g.dataset.base===base) return;
+  if(!g) return;
+  if(!base){
+    g.style.display='none';
+    g.dataset.base='';
+    return;
+  }
+  g.style.display='';
+  if(g.dataset.base===base) return;
   g.dataset.base=base;
   g.querySelectorAll('image').forEach(img=>{
     const tx=img.dataset.tx, ty=img.dataset.ty, z=img.dataset.z;
@@ -664,9 +672,16 @@ function applyAnimeTheme(){
   const anime=ANIME[currentAnime];
   const root=document.documentElement;
 
-  // Swap basemap tiles per anime (Shinkai uses a light Voyager basemap; others default to dark).
-  applyTileBase(anime.theme.tileBase || CONFIG.TILE_BASE);
-  document.body.classList.toggle('light-basemap', !!anime.theme.tileBase);
+  // Basemap per anime: dark tiles by default; Shinkai uses no tiles + a sky gradient background.
+  // tileBase === null  -> hide tiles
+  // tileBase === undefined -> use default dark tiles
+  // tileBase === <url> -> swap to that tile source
+  const tb = anime.theme.tileBase === undefined ? CONFIG.TILE_BASE : anime.theme.tileBase;
+  applyTileBase(tb);
+  // Background: custom gradient if provided, otherwise the default dark color from CSS.
+  wrap.style.background = anime.theme.background || '';
+  // 'bright-theme' class flips ward labels to dark text so they stay readable on sky/light backgrounds.
+  document.body.classList.toggle('bright-theme', !!anime.theme.background || !!anime.theme.tileBase);
 
   // Header
   document.getElementById('hdr-eyebrow').textContent=anime.eyebrow;
