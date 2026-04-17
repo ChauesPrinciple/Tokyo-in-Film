@@ -656,7 +656,64 @@ function preserveOnResize(){
 }
 let lastClusteredScale=0;
 
-// ── POI CLUSTERING ──────────────────────────────────────
+// ── POI POPUP HELPERS (use DOM methods, no innerHTML with data) ─────────────────
+function showPoiDetail(clientX, clientY, poi, poiColor){
+  poiPopup.textContent=''; // clear
+  const title=document.createElement('strong');
+  title.style.color=poiColor;
+  title.textContent=poi.name;
+  poiPopup.appendChild(title);
+  poiPopup.appendChild(document.createElement('br'));
+  const body=document.createElement('small');
+  body.textContent=poi.label;
+  poiPopup.appendChild(body);
+  poiPopup.style.display='block';
+  poiPopup.style.left=(clientX+14)+'px';
+  poiPopup.style.top=(clientY-10)+'px';
+}
+function showClusterList(clientX, clientY, grp, poiColor){
+  poiPopup.textContent='';
+  const header=document.createElement('strong');
+  header.style.color=poiColor;
+  header.textContent=`${grp.length} locations here`;
+  poiPopup.appendChild(header);
+  const hint=document.createElement('div');
+  hint.style.cssText='font-size:.7rem;opacity:.65;margin:.15rem 0 .35rem;';
+  hint.textContent='Click a name to see details:';
+  poiPopup.appendChild(hint);
+  grp.forEach(g=>{
+    const row=document.createElement('a');
+    row.href='#';
+    row.style.cssText=`display:block;color:${poiColor};text-decoration:none;padding:2px 0;cursor:pointer;font-size:.85rem;`;
+    row.textContent='→ '+g.poi.name;
+    row.addEventListener('click',ev=>{
+      ev.preventDefault();
+      ev.stopPropagation();
+      // Swap popup to show this POI's full detail; keep the popup at the same on-screen position
+      const rect=poiPopup.getBoundingClientRect();
+      showPoiDetail(rect.left-14, rect.top+10, g.poi, poiColor);
+    });
+    poiPopup.appendChild(row);
+  });
+  poiPopup.style.display='block';
+  poiPopup.style.left=(clientX+14)+'px';
+  poiPopup.style.top=(clientY-10)+'px';
+}
+// Returns true if any pair in the cluster would still be within clustering range at targetScale.
+// Used to decide whether zoom-in is useful or we should show the list popup instead.
+function clusterWouldStayClustered(grp, targetScale){
+  const threshold=CONFIG.CLUSTER_SCREEN_PX/targetScale; // in SVG units
+  const th2=threshold*threshold;
+  for(let i=0;i<grp.length;i++){
+    for(let j=i+1;j<grp.length;j++){
+      const dx=grp[i].sx-grp[j].sx, dy=grp[i].sy-grp[j].sy;
+      if(dx*dx+dy*dy<th2) return true;
+    }
+  }
+  return false;
+}
+
+// ── POI CLUSTERING ──────────────────────────
 function renderPOIs(){
   const anime=ANIME[currentAnime];
   const poiGroup=document.getElementById('poi-group');
@@ -713,17 +770,12 @@ function renderPOIs(){
       c.setAttribute('tabindex','0');
       c.setAttribute('role','button');
       c.setAttribute('aria-label',`Point of interest: ${poi.name}`);
-      const openPopup=(clientX,clientY)=>{
-        poiPopup.innerHTML=`<strong style="color:${poiColor}">${poi.name}</strong><br><small>${poi.label}</small>`;
-        poiPopup.style.display='block';
-        poiPopup.style.left=(clientX+14)+'px';poiPopup.style.top=(clientY-10)+'px';
-      };
-      c.addEventListener('click',e=>{e.stopPropagation();openPopup(e.clientX,e.clientY);});
+      c.addEventListener('click',e=>{e.stopPropagation();showPoiDetail(e.clientX,e.clientY,poi,poiColor);});
       c.addEventListener('keydown',e=>{
         if(e.key==='Enter'||e.key===' '){
           e.preventDefault();
           const r=c.getBoundingClientRect();
-          openPopup(r.left+r.width/2, r.top+r.height/2);
+          showPoiDetail(r.left+r.width/2, r.top+r.height/2, poi, poiColor);
         }
       });
       poiGroup.appendChild(c);
@@ -732,29 +784,43 @@ function renderPOIs(){
       const c=document.createElementNS('http://www.w3.org/2000/svg','circle');
       c.setAttribute('cx',ax);c.setAttribute('cy',ay);c.setAttribute('r',R);
       c.setAttribute('fill','rgba(0,0,0,0.82)');c.setAttribute('stroke',poiColor);
-      c.setAttribute('stroke-width',2.5*inv);c.classList.add('poi-dot','poi-cluster');c.style.cursor='zoom-in';
+      c.setAttribute('stroke-width',2.5*inv);c.classList.add('poi-dot','poi-cluster');c.style.cursor='pointer';
       c.setAttribute('tabindex','0');
       c.setAttribute('role','button');
-      c.setAttribute('aria-label',`Cluster of ${grp.length} points of interest. Activate to zoom in.`);
+      c.setAttribute('aria-label',`Cluster of ${grp.length} points of interest. Activate to expand.`);
       const txt=document.createElementNS('http://www.w3.org/2000/svg','text');
       txt.setAttribute('x',ax);txt.setAttribute('y',ay);
       txt.setAttribute('text-anchor','middle');txt.setAttribute('dominant-baseline','central');
       txt.setAttribute('fill',poiColor);txt.setAttribute('font-size',11*inv);
       txt.setAttribute('font-weight','700');txt.setAttribute('font-family','Inter,sans-serif');
       txt.textContent=grp.length;txt.style.pointerEvents='none';
-      const zoomIn=e=>{
+      // On cluster click, decide between zoom-in and list-popup based on whether
+      // zooming in would actually separate any pair. Some clusters (e.g. the six
+      // JJK Shibuya POIs within ~60m of each other, or the five CM Jinbocho POIs)
+      // are tighter than the max-zoom resolution — zooming in would just re-cluster
+      // and the POIs would never be reachable. For those we skip the zoom and show
+      // a clickable list of everything in the cluster.
+      const expand=e=>{
         e.stopPropagation();
         const newScale=Math.min(CONFIG.ZOOM_MAX,currentScale*CONFIG.CLUSTER_ZOOM_IN_RATIO);
-        const actualRatio=newScale/currentScale;
-        panX=panX+ax*currentScale*(1-actualRatio);
-        panY=panY+ay*currentScale*(1-actualRatio);
-        currentScale=newScale;
-        applyTransform();
+        if(clusterWouldStayClustered(grp,newScale)){
+          // Zoom wouldn't help. Show the list directly at the cluster location.
+          const r=c.getBoundingClientRect();
+          const x=(e.clientX!=null)?e.clientX:r.left+r.width/2;
+          const y=(e.clientY!=null)?e.clientY:r.top+r.height/2;
+          showClusterList(x,y,grp,poiColor);
+        }else{
+          const actualRatio=newScale/currentScale;
+          panX=panX+ax*currentScale*(1-actualRatio);
+          panY=panY+ay*currentScale*(1-actualRatio);
+          currentScale=newScale;
+          applyTransform();
+        }
       };
-      c.addEventListener('click',zoomIn);
-      txt.addEventListener('click',zoomIn);
+      c.addEventListener('click',expand);
+      txt.addEventListener('click',expand);
       c.addEventListener('keydown',e=>{
-        if(e.key==='Enter'||e.key===' '){e.preventDefault();zoomIn(e);}
+        if(e.key==='Enter'||e.key===' '){e.preventDefault();expand(e);}
       });
       poiGroup.appendChild(c);poiGroup.appendChild(txt);
     }
