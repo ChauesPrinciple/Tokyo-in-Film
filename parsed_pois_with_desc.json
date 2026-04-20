@@ -1,0 +1,1280 @@
+[
+  {
+    "name": "Tokyo Ueno Youth Hostel (HOME)",
+    "lat": 35.7064224,
+    "lng": 139.7702777,
+    "description": ""
+  },
+  {
+    "name": "Senbonto Shrine",
+    "lat": 35.7196347,
+    "lng": 139.7605557,
+    "description": ""
+  },
+  {
+    "name": "DAWN | Avatar Robot Cafe ver.β",
+    "lat": 35.6893781,
+    "lng": 139.7760205,
+    "description": ""
+  },
+  {
+    "name": "Hotel Gajoen Tokyo",
+    "lat": 35.6317881,
+    "lng": 139.7137936,
+    "description": ""
+  },
+  {
+    "name": "Caretta Shiodome",
+    "lat": 35.6644594,
+    "lng": 139.7625223,
+    "description": ""
+  },
+  {
+    "name": "Shinjuku Golden-Gai",
+    "lat": 35.6941118,
+    "lng": 139.7047611,
+    "description": ""
+  },
+  {
+    "name": "Suga Shrine Onnazaka",
+    "lat": 35.6853043,
+    "lng": 139.7229453,
+    "description": ""
+  },
+  {
+    "name": "Godzilla Head",
+    "lat": 35.6950521,
+    "lng": 139.7019117,
+    "description": ""
+  },
+  {
+    "name": "The National Art Center",
+    "lat": 35.665289,
+    "lng": 139.726374,
+    "description": ""
+  },
+  {
+    "name": "RED° TOKYO TOWER",
+    "lat": 35.6585696,
+    "lng": 139.745484,
+    "description": ""
+  },
+  {
+    "name": "ART AQUARIUM MUSEUM",
+    "lat": 35.6713698,
+    "lng": 139.7657375,
+    "description": ""
+  },
+  {
+    "name": "Ginza Six Rooftop Garden",
+    "lat": 35.6699047,
+    "lng": 139.7641037,
+    "description": ""
+  },
+  {
+    "name": "Toranomon Kotohiragu",
+    "lat": 35.6696344,
+    "lng": 139.7480255,
+    "description": ""
+  },
+  {
+    "name": "TOKYO BUNBUN(東京文聞)",
+    "lat": 35.7257206,
+    "lng": 139.781992,
+    "description": "Optional Fight Choreography experience."
+  },
+  {
+    "name": "Setagaya Literary Museum",
+    "lat": 35.6669245,
+    "lng": 139.6086785,
+    "description": ""
+  },
+  {
+    "name": "Toho Studios",
+    "lat": 35.6348426,
+    "lng": 139.6044637,
+    "description": ""
+  },
+  {
+    "name": "Animate Annex",
+    "lat": 35.7300233,
+    "lng": 139.7176268,
+    "description": ""
+  },
+  {
+    "name": "teamLab Borderless: MORI Building DIGITAL ART MUSEUM",
+    "lat": 35.6620689,
+    "lng": 139.7432671,
+    "description": ""
+  },
+  {
+    "name": "The Japanese Sword Museum",
+    "lat": 35.6989606,
+    "lng": 139.7936629,
+    "description": ""
+  },
+  {
+    "name": "The Sumida Hokusai Museum",
+    "lat": 35.6963313,
+    "lng": 139.800414,
+    "description": ""
+  },
+  {
+    "name": "Edo-Tokyo Museum",
+    "lat": 35.6965972,
+    "lng": 139.7957336,
+    "description": ""
+  },
+  {
+    "name": "Kameido Tenjin Shrine",
+    "lat": 35.7030288,
+    "lng": 139.8206618,
+    "description": ""
+  },
+  {
+    "name": "Kameido Tenjin Wisteria Frames",
+    "lat": 35.7022776,
+    "lng": 139.8207747,
+    "description": ""
+  },
+  {
+    "name": "Tokyo Skytree",
+    "lat": 35.7100627,
+    "lng": 139.8107004,
+    "description": ""
+  },
+  {
+    "name": "Imperial Palace Main Gate Ishibashi Ornamental Lamp (13 Assassins, Kubi)",
+    "lat": 35.7158495,
+    "lng": 139.5141002,
+    "description": ""
+  },
+  {
+    "name": "Tama River Area (Adrift in Tokyo)",
+    "lat": 35.6191748,
+    "lng": 139.6311827,
+    "description": "Adrift in Tokyo (Satoshi Miki) Popular location for walking scenes in the film."
+  },
+  {
+    "name": "Roppongi Hills Mori Tower (Tokyo Drift)",
+    "lat": 35.6607345,
+    "lng": 139.7292066,
+    "description": "Fast and Furious: Tokyo Drift (Justin Lin)"
+  },
+  {
+    "name": "Tokyo Tower (Godzilla and others)",
+    "lat": 35.6585696,
+    "lng": 139.745484,
+    "description": "Godzilla Minus One (2023, Takashi Yamazaki) And Godzilla Statue!"
+  },
+  {
+    "name": "Godzilla Square!",
+    "lat": 35.6730915,
+    "lng": 139.7599204,
+    "description": ""
+  },
+  {
+    "name": "Rikkyo University (Tokyo Ghoul)",
+    "lat": 35.7305152,
+    "lng": 139.702509,
+    "description": "Rikkyo University (Kamii University) The real-life inspiration for Kamii University, where Kaneki and Hide attend."
+  },
+  {
+    "name": "Shinjuku Station East Exit Smoking Area (Tokyo Ghoul)",
+    "lat": 35.6922643,
+    "lng": 139.7007164,
+    "description": "Shinjuku Station East Exit This busy hub features in a key scene when Kaneki goes to meet Touka."
+  },
+  {
+    "name": "Kabukichō (Tokyo Ghoul)",
+    "lat": 35.6936049,
+    "lng": 139.7019065,
+    "description": "Kabukicho Crossing Known as the nightlife district of Shinjuku, Kabukicho features in multiple scenes of Tokyo Ghoul."
+  },
+  {
+    "name": "Yotsuya Station (Your Name)",
+    "lat": 35.6861525,
+    "lng": 139.7302183,
+    "description": "Featured multiple times in the film, this station is near many key locations."
+  },
+  {
+    "name": "Takeshita Street Entrance Arch (JJK and Tokyo Drift)",
+    "lat": 35.6715743,
+    "lng": 139.7032327,
+    "description": "Another key spot in Jujutsu Kaisen, where the trio meets Nobara. Also seen in Tokyo Drift."
+  },
+  {
+    "name": "Edo-Tokyo Open Air Architectural Museum (JJK) (Samurai)",
+    "lat": 35.7155722,
+    "lng": 139.5125434,
+    "description": "JJK: Culling Game; the Zenin clan house"
+  },
+  {
+    "name": "Adachi City (Shoplifters)",
+    "lat": 35.775017,
+    "lng": 139.8044129,
+    "description": "The film captures the quieter, more suburban neighborhoods of Tokyo."
+  },
+  {
+    "name": "Tokyo Station (First Ward)",
+    "lat": 35.6812362,
+    "lng": 139.7671248,
+    "description": "The 1st Ward is where the CCG Main Office is located, and it serves as the headquarters for anti-Ghoul operations. It’s based on Chiyoda, home to major governmental buildings and Tokyo Station. Notable Spot: Tokyo Station, a historic station with modern vibes, representing the CCG's power and influence."
+  },
+  {
+    "name": "Roppongi (3rd Ward)",
+    "lat": 35.6618586,
+    "lng": 139.7345469,
+    "description": "Description: The 3rd Ward features Roppongi, a famous nightlife district and key location in Tokyo Ghoul where Kaneki and Rize go on their fateful date. Notable Spot: Roppongi Hills, known for its luxury shopping and skyline views, including a perfect view of Tokyo Tower at night."
+  },
+  {
+    "name": "Tokyo Skytree (6th Ward)",
+    "lat": 35.7100627,
+    "lng": 139.8107004,
+    "description": "Description: In Tokyo Ghoul, the 6th Ward is known for its high-tech vibe, which is mirrored by Taitō’s Tokyo Skytree, the tallest tower in Japan, representing a modern and futuristic Tokyo. Notable Spot: Tokyo Skytree — a great spot for viewing Tokyo’s cityscape and tying in the \"Neo-Tokyo\" feel."
+  },
+  {
+    "name": "Tokyo Metropolitan Government Building (JJK)",
+    "lat": 35.6894807,
+    "lng": 139.6916863,
+    "description": "Description: This towering building, located in Shinjuku, appears in Jujutsu Kaisen and is an iconic structure in Tokyo. It’s featured when major city-wide incidents unfold in the series."
+  },
+  {
+    "name": "Aoyama Cemetery (JJK)",
+    "lat": 35.6656277,
+    "lng": 139.7220659,
+    "description": "Description: This location serves as the setting for darker moments in Jujutsu Kaisen. Aoyama Cemetery, known for its peaceful setting amidst the city, provides the backdrop for eerie scenes in the show."
+  },
+  {
+    "name": "Yoyogi National Gymnasium (JJK)",
+    "lat": 35.6676472,
+    "lng": 139.7001458,
+    "description": "Description: This landmark appears during the events of the series, representing a key battle arena."
+  },
+  {
+    "name": "Hotel Gajoen Tokyo (Sprited Away)",
+    "lat": 35.6317881,
+    "lng": 139.7137936,
+    "description": "Hotel Gajoen in Tokyo is believed to have inspired the design of the bathhouse in Spirited Away. Known as one of Tokyo's \"Museum Hotels,\" the hotel features stunning, traditional Japanese architecture with lavish interior designs, ornate rooms, and unique artistic displays, closely resembling the detailed design of the bathhouse in the film."
+  },
+  {
+    "name": "NTV Big Clock designed by Hayao Miyazaki",
+    "lat": 35.6641255,
+    "lng": 139.7599544,
+    "description": "Description: A giant mechanical clock designed by Hayao Miyazaki himself, this Ghibli-themed clock is located outside Nippon Television Tower in Shiodome. Every hour, the clock comes alive with a whimsical performance."
+  },
+  {
+    "name": "Suga Shrine (Your Name)",
+    "lat": 35.6852851,
+    "lng": 139.7224783,
+    "description": "The staircase where the characters meet in Your Name is located near Suga Shrine in Yotsuya, Tokyo. This spot has become a pilgrimage site for fans of the movie."
+  },
+  {
+    "name": "Asukayama Park (Spirited Away)",
+    "lat": 35.7504718,
+    "lng": 139.7388228,
+    "description": "Old anime style yellow bus that can be used for scene recreations."
+  },
+  {
+    "name": "Tamagawa Aqueduct Greenway (Garden of Words)",
+    "lat": 35.67116,
+    "lng": 139.6631049,
+    "description": "Scene: The shaded pathways of the Tamagawa Aqueduct serve as the setting for reflective walks in The Garden of Words."
+  },
+  {
+    "name": "Shinanomachi Station (Your Name)",
+    "lat": 35.6800602,
+    "lng": 139.7203199,
+    "description": ""
+  },
+  {
+    "name": "Rainbow Bridge (Weathering With You)",
+    "lat": 35.6365639,
+    "lng": 139.7631443,
+    "description": ""
+  },
+  {
+    "name": "Fujiwara Tofu Shop (Initial D)",
+    "lat": 35.6910119,
+    "lng": 139.7922582,
+    "description": "The Tofu Ship from Initial D."
+  },
+  {
+    "name": "National Diet Building (Shin Godzilla)",
+    "lat": 35.675888,
+    "lng": 139.744858,
+    "description": "Shin Godzilla."
+  },
+  {
+    "name": "Wako Namiki-Dori Building (Godzilla Minus One)",
+    "lat": 35.6723536,
+    "lng": 139.7644293,
+    "description": "Godzilla Minus One."
+  },
+  {
+    "name": "Chuo-dori Avenue (Suzume, Tokyo Drift)",
+    "lat": 35.6863768,
+    "lng": 139.7739215,
+    "description": "Seen briefly, especially for night traffic B-roll; actual street footage used in Tokyo Drift."
+  },
+  {
+    "name": "DevilCraft Kanda (Godzilla)",
+    "lat": 35.6895898,
+    "lng": 139.7711529,
+    "description": "Technically, a filming site, but also a fun pizza place. Located in the Kanda area, Devil’s Craft is a popular American-style craft beer bar known for its pizzas."
+  },
+  {
+    "name": "Hijiri Bridge (Suzume)",
+    "lat": 35.699817,
+    "lng": 139.7655156,
+    "description": ""
+  },
+  {
+    "name": "Ochanomizu Station (Suzume)",
+    "lat": 35.6997175,
+    "lng": 139.7644404,
+    "description": ""
+  },
+  {
+    "name": "Sensō-ji (Suzume)",
+    "lat": 35.7147651,
+    "lng": 139.7966553,
+    "description": ""
+  },
+  {
+    "name": "Maneki-neko Hall (Kubi, 13 Assassins)",
+    "lat": 35.6483005,
+    "lng": 139.6469949,
+    "description": "Known as the “Lucky Cat Temple,” Gotokuji also has historical significance, with architecture and grounds that mirror the serene look of traditional samurai settings. Its quieter ambiance is ideal for contemplative scenes in a historical context."
+  },
+  {
+    "name": "Azabujuban (Tokyo Drift)",
+    "lat": 35.6546541,
+    "lng": 139.7351855,
+    "description": "Exterior of Sean’s dad’s house; demolished, but real location at Mita 1-chome block 10"
+  },
+  {
+    "name": "Tower Records Shibuya",
+    "lat": 35.6619049,
+    "lng": 139.7010906,
+    "description": "Taki is seen walking in front of this building at the opening. Movie time: 00h 02m 22s"
+  },
+  {
+    "name": "4-chōme-5-1 Azabujūban (Tokyo Drift)",
+    "lat": 35.6538817,
+    "lng": 139.7375452,
+    "description": "Seen during early scenes at Sean’s new home—visible from the bridge area"
+  },
+  {
+    "name": "35.693700, 139.70089",
+    "lat": 35.6937,
+    "lng": 139.70089,
+    "description": "Place of the \"Yukina-Vision\" building, shown in one of the time lapses. Also Taki is seen standing there and stretching his arm towards Mitsuha in the opening. Movie time: 00h 00m 35s and 00h 32m 00s"
+  },
+  {
+    "name": "Unknown",
+    "lat": 35.68025,
+    "lng": 139.719083333333,
+    "description": "Mitsuha is seen running in the pedestrian walk over the train line, looking for Taki, at the end of the movie. Movie time: 1h39m38s"
+  },
+  {
+    "name": "新都心歩道橋",
+    "lat": 35.6930965,
+    "lng": 139.697292,
+    "description": "Pedestrian bridge in Shinjuku where Taki and Mitsuha walk cross each other without recognizing, and looking back at the wrong timing. Movie time: 1h 37m 05s"
+  },
+  {
+    "name": "Cafe La Boheme Shinjuku Gyoen",
+    "lat": 35.6875891,
+    "lng": 139.7128716,
+    "description": "Cafe La Boheme. Real place that inspires the restaurant \"Il Giardino delle Parole\", where Taki and Okudera worked. Movie time: 22m 57s."
+  },
+  {
+    "name": "Shinanomachi Sta. Minamiguchi (South Exit)",
+    "lat": 35.679376,
+    "lng": 139.719922,
+    "description": "Shinanomachi Station pedestrian bridge. Taki and Okudera-sempai dismiss their date; Taki tried to comunicate with Mitsuha by phone in October 3rd, 2016. Movie time: 48m 31s Mitsuha tried to locate Taki, October 3rd. 2016. Movie time: 1h 13m 49s."
+  },
+  {
+    "name": "Shuto Expressway",
+    "lat": 35.7481626,
+    "lng": 139.7082283,
+    "description": "Akira: Inner Circular Route (used as a basis for Neo-Tokyo motorbike scenes"
+  },
+  {
+    "name": "Higashi-Nakano Station",
+    "lat": 35.7062478,
+    "lng": 139.6837613,
+    "description": "Shoplifters: Residential scenes filmed near here"
+  },
+  {
+    "name": "Ueno Zoological Gardens",
+    "lat": 35.7160153,
+    "lng": 139.772882,
+    "description": "Tokyo Ghoul: some scenes set here (especially related to Kaneki’s early trauma)"
+  },
+  {
+    "name": "The National Art Center",
+    "lat": 35.665289,
+    "lng": 139.726374,
+    "description": "(Suzume) – Scene with Tamaki"
+  },
+  {
+    "name": "Sukiyabashi Jiro",
+    "lat": 35.6727404,
+    "lng": 139.7639378,
+    "description": "Jiro Dreams of Sushi."
+  },
+  {
+    "name": "Sugoi Niboshi Rāmen Nagi Shinjuku Golden Gai",
+    "lat": 35.6937641,
+    "lng": 139.7045255,
+    "description": "A restaurant featured in Ramen Heads."
+  },
+  {
+    "name": "Ramen Emoto Masahiro",
+    "lat": 35.6553945,
+    "lng": 139.694185,
+    "description": "Dried fish ramen shop from Ramen Heads."
+  },
+  {
+    "name": "Shuuichi (Ramen)",
+    "lat": 35.6472153,
+    "lng": 139.7083209,
+    "description": "Curry ramen shop from Ramen Heads. A personal favorite."
+  },
+  {
+    "name": "Tokyo Ramen Street",
+    "lat": 35.6802935,
+    "lng": 139.7679568,
+    "description": ""
+  },
+  {
+    "name": "Nerima Station",
+    "lat": 35.7377965,
+    "lng": 139.6539158,
+    "description": "Chainsaw Man, Episode 2. Sea Cucumber Devil sequence"
+  },
+  {
+    "name": "Pitat House - Nerimanishiguchi",
+    "lat": 35.7380606,
+    "lng": 139.6526821,
+    "description": "Chainsaw Man; Ep.2 city-street intercut in the same Nerima sequence."
+  },
+  {
+    "name": "Takushoku University Bunkyo Campus",
+    "lat": 35.7154678,
+    "lng": 139.7362701,
+    "description": "DandaDan; model for “Kami High”"
+  },
+  {
+    "name": "Shimazaki Book Binding Works",
+    "lat": 35.6976832,
+    "lng": 139.7594378,
+    "description": "The alleyway from Chainsaw Man Reze."
+  },
+  {
+    "name": "Trois Bagues",
+    "lat": 35.6962996,
+    "lng": 139.7582493,
+    "description": ""
+  },
+  {
+    "name": "Onnazaka",
+    "lat": 35.7003177,
+    "lng": 139.7585312,
+    "description": "Since the Edo period, this area, which forms the border between Sarugakucho and Surugadai, has been a cliff, and originally there was no path. This is the staircase from Chainsaw Man Reze."
+  },
+  {
+    "name": "Catholic Kanda Church",
+    "lat": 35.6994677,
+    "lng": 139.7574744,
+    "description": "In front of the church is the phone booth from Chainsaw Man Reze."
+  },
+  {
+    "name": "Don Quijote Ginza Honkan",
+    "lat": 35.667122,
+    "lng": 139.7618936,
+    "description": "JJK: Culling Game"
+  },
+  {
+    "name": "Kukyo Hall",
+    "lat": 35.7013743,
+    "lng": 139.7441467,
+    "description": "JJK: Culling Game"
+  },
+  {
+    "name": "Courtyard by Marriott Tokyo Ginza Hotel",
+    "lat": 35.668321,
+    "lng": 139.764925,
+    "description": "JJK: Culling Game; Yuta Okkotsu's return"
+  },
+  {
+    "name": "Kabuki-za",
+    "lat": 35.6694253,
+    "lng": 139.7677446,
+    "description": "JJK: Culling Game; Yuta vs. Yuji confrontation"
+  },
+  {
+    "name": "KFC Nishi-Shinjuku",
+    "lat": 35.6929591,
+    "lng": 139.6994212,
+    "description": "JJK: Culling Game; KFC Breakup."
+  },
+  {
+    "name": "Park Hyatt Tokyo",
+    "lat": 35.685583,
+    "lng": 139.69062,
+    "description": "'LOST IN TRANSLATION' (2003) - Bob & Charlotte's hotel"
+  },
+  {
+    "name": "Air Nightclub",
+    "lat": 35.6533,
+    "lng": 139.7045,
+    "description": "'LOST IN TRANSLATION' (2003) - Bob, Charlotte & friends party here"
+  },
+  {
+    "name": "Shibuya Crossing",
+    "lat": 35.659058,
+    "lng": 139.700593,
+    "description": "'LOST IN TRANSLATION' (2003), BABEL (2004), THE FAST & THE FURIOUS: TOKYO DRIFT (2006)"
+  },
+  {
+    "name": "Karaoke-kan",
+    "lat": 35.660831,
+    "lng": 139.698139,
+    "description": "'LOST IN TRANSLATION' (2003) - Bob sings 'More Than This' by Roxy Music in rooms 601 and 602"
+  },
+  {
+    "name": "Shabuzen",
+    "lat": 35.663315,
+    "lng": 139.694702,
+    "description": "'LOST IN TRANSLATION' (2003) - Bob & Charlotte go for yaki-niku"
+  },
+  {
+    "name": "Rainbow Bridge",
+    "lat": 35.636564,
+    "lng": 139.763144,
+    "description": "'LOST IN TRANSLATION' (2003) & Kill Bill: Volume I (2004)"
+  },
+  {
+    "name": "Ichikan Sushi Restaurant",
+    "lat": 35.651465,
+    "lng": 139.704787,
+    "description": "'LOST IN TRANSLATION' (2003) - Bob & Charlotte have lunch"
+  },
+  {
+    "name": "Ramen Museum",
+    "lat": 35.509896,
+    "lng": 139.614572,
+    "description": "'THE RAMEN GIRL' (2008) - date place"
+  },
+  {
+    "name": "Gonpachi",
+    "lat": 35.66012,
+    "lng": 139.723509,
+    "description": "'KILL BILL: VOLUME I' (2003) - The inspiration for the 'House of Blue Leaves'"
+  },
+  {
+    "name": "Shinagawa Station",
+    "lat": 35.630152,
+    "lng": 139.74044,
+    "description": "'GODZILLA' (1956) - destroyed by Godzilla"
+  },
+  {
+    "name": "A.P.C. Underground clothing store",
+    "lat": 35.669713,
+    "lng": 139.707544,
+    "description": "'LOST IN TRANSLATION' (2003)"
+  },
+  {
+    "name": "Yasukuni Dori",
+    "lat": 35.693436,
+    "lng": 139.702032,
+    "description": "'KILL BILL: VOLUME I' (2003), 'INTO THE SUN' (2005), 'THE WOLVERINE' (2013) - the classic neon Tokyo scenes whilst driving along this road"
+  },
+  {
+    "name": "Matsuzakaya Department store",
+    "lat": 35.669881,
+    "lng": 139.764095,
+    "description": "'GODZILLA' (1956) - Godzilla destroys it"
+  },
+  {
+    "name": "Wako Department store",
+    "lat": 35.671613,
+    "lng": 139.765022,
+    "description": "'GODZILLA' (1956) & 'WASABI' (2000) - Godzilla destroys it"
+  },
+  {
+    "name": "National Diet Building",
+    "lat": 35.675888,
+    "lng": 139.744858,
+    "description": "'GODZILLA' (1956) - Godzilla destroys it"
+  },
+  {
+    "name": "New Marion Building",
+    "lat": 35.687146,
+    "lng": 139.697597,
+    "description": "'GODZILLA' (1956) - Godzilla destroys it"
+  },
+  {
+    "name": "Kachidoki Bridge",
+    "lat": 35.657299,
+    "lng": 139.775053,
+    "description": "'GODZILLA' (1956) Details at http://tokyofox.wordpress.com/2011/12/04/tokyo-filming-locations-pt-v-godzilla-updated/"
+  },
+  {
+    "name": "Zōjō-ji Temple",
+    "lat": 35.657424,
+    "lng": 139.748208,
+    "description": "'THE WOLVERINE' (2013) & 'INTO THE SUN' (2005) - funeral scene & meeting with bad guys!"
+  },
+  {
+    "name": "1 Chome-2-2 Yanagibashi",
+    "lat": 35.695581,
+    "lng": 139.787199,
+    "description": "'THE GRUDGE' (2004)"
+  },
+  {
+    "name": "Minamishinjuku Station",
+    "lat": 35.683469,
+    "lng": 139.698517,
+    "description": "'THE GRUDGE' (2004) - the road to the Grudge house"
+  },
+  {
+    "name": "Yoyogi Cemetry",
+    "lat": 35.684149,
+    "lng": 139.691565,
+    "description": "'THE GRUDGE' (2004)"
+  },
+  {
+    "name": "Nishishinjuku 1-9-2",
+    "lat": 35.688416,
+    "lng": 139.69762,
+    "description": "'THE GRUDGE' (2004) - Karen & Doug cross the road here"
+  },
+  {
+    "name": "1-12-1 Takaido-nishi",
+    "lat": 35.680386,
+    "lng": 139.609905,
+    "description": "'THE GRUDGE' (2004) - The \"University of Tokyo\" where Doug studies"
+  },
+  {
+    "name": "Fungo Dining Nishishinjuku",
+    "lat": 35.691462,
+    "lng": 139.687706,
+    "description": "'THE GRUDGE' (2004) - Doug's workplace"
+  },
+  {
+    "name": "Jougan-ji Temple",
+    "lat": 35.693756,
+    "lng": 139.681643,
+    "description": "'LOST IN TRANSLATION' (2003) - Charlotte visits here in the rain"
+  },
+  {
+    "name": "Nakagin Capsule Tower",
+    "lat": 35.667955,
+    "lng": 139.762562,
+    "description": "'THE WOLVERINE' (2013) - The \"Hiroshima Love Hotel\""
+  },
+  {
+    "name": "Unknown",
+    "lat": 35.697444,
+    "lng": 139.771454,
+    "description": "'THE WOLVERINE' (2013) - Pachinko Parlour where Logan & Mariko hide out"
+  },
+  {
+    "name": "Ueno Station",
+    "lat": 35.713768,
+    "lng": 139.777254,
+    "description": "'THE WOLVERINE' (2013) - Logan & Mariko take a bullet train"
+  },
+  {
+    "name": "Adidas Futsal Park Shibuya",
+    "lat": 35.658708,
+    "lng": 139.70086,
+    "description": "'THE FAST & THE FURIOUS: TOKYO DRIFT (2006)"
+  },
+  {
+    "name": "Takadanobaba Station",
+    "lat": 35.712285,
+    "lng": 139.703782,
+    "description": "'THE SHINJUKU INCIDENT' (2009) & 'THE WOLVERINE' (2013)"
+  },
+  {
+    "name": "Omotesando Hills",
+    "lat": 35.6672869,
+    "lng": 139.7086162,
+    "description": ""
+  },
+  {
+    "name": "Shinjuku Omoide Yokocho (Midnight Diner)",
+    "lat": 35.6930273,
+    "lng": 139.69709,
+    "description": "The alleyways in Midnight Diner are very similar to the ones found in Omoide Yokocho, a small, narrow street filled with small restaurants serving classic Japanese dishes. This is a common setting for intimate late-night meals, reflecting the tone of the series."
+  },
+  {
+    "name": "Senkaku Junction (JJK)",
+    "lat": 35.6916719,
+    "lng": 139.6963802,
+    "description": "Description: The multi-level highway junction is used for intense fight sequences in Jujutsu Kaisen. Its twisting roads provide a unique urban battle setting."
+  },
+  {
+    "name": "Kabukicho, Shinjuku",
+    "lat": 35.6947405,
+    "lng": 139.7007103,
+    "description": "First Love (Takashi Miike) A significant portion of the film takes place in this entertainment district."
+  },
+  {
+    "name": "Harajuku Station (JJK)",
+    "lat": 35.671599,
+    "lng": 139.7029143,
+    "description": "A prominent location in Jujutsu Kaisen, where Itadori, Fushiguro, and Gojo meet."
+  },
+  {
+    "name": "Benitsuru",
+    "lat": 35.7119914,
+    "lng": 139.7918882,
+    "description": "FLUFFY Pancakes—a pancake shop that perfectly balances salt and sweetness in its pancakes, making it a representative sweets store for those sightseeing in Asakusa."
+  },
+  {
+    "name": "Kanda Yabu Soba",
+    "lat": 35.6970004,
+    "lng": 139.7686863,
+    "description": "a favorite of mine; a soba restaurant renowned for its traditional Edo-style noodles. The restaurant, rebuilt following a fire, continues to serve various soba dishes, including the Kamo-san ban soba featuring thick slices of duck and the ten-seiro soba paired with crispy shrimp."
+  },
+  {
+    "name": "Unknown",
+    "lat": 35.7013398,
+    "lng": 139.7734777,
+    "description": "A coffee shop within walking distance in Akihabara with wifi and good group seating. Open early and is a good place to study."
+  },
+  {
+    "name": "Unknown",
+    "lat": 35.7087031,
+    "lng": 139.7729243,
+    "description": "This nearby coffee shop is open early, offers good breakfast deals, and has spacious booths for group work or studying. It is a great place to get out of the hostel in the morning."
+  },
+  {
+    "name": "Karashibi Miso Ramen Kikanbō Kanda Honten",
+    "lat": 35.6936985,
+    "lng": 139.7724063,
+    "description": "—(Prepare to wait) popular for its intensely spicy Karashibi Miso Ramen. The interior, characterized by its black paint, taiko music, and festival-style devil masks, adds to the immersive dining experience. You can customize their spice level on a scale of five for both \"kara\" (chili heat) and \"Shibi\" (numbing spice from sansho pepper mix), catering to varying spice tolerances. 1. Feel free to challenge my “Oni” title; we can sit side by side if you live that spicy life. 😉"
+  },
+  {
+    "name": "Himuka Shokudo",
+    "lat": 35.7023996,
+    "lng": 139.7713926,
+    "description": "Shokudo (食堂, shokudō) are casual restaurants or cafeterias that serve a variety of inexpensive Japanese dishes. Many of them are mom-and-pop, hole-in-the-wall type restaurants where the locals eat. They are numerous across Japan in urban centers and on the countryside. A meal at a shokudo usually cost around 800 to 1500 yen."
+  },
+  {
+    "name": "SUSHIRO Ueno",
+    "lat": 35.7100577,
+    "lng": 139.7751464,
+    "description": "Many sushi plates at Sushiro are priced at just ¥100, making It an affordable and popular option for conveyor belt sushi in Tokyo."
+  },
+  {
+    "name": "Suzukien Asakusa",
+    "lat": 35.7163436,
+    "lng": 139.7969391,
+    "description": "the world's richest matcha gelato with seven intensity levels, catering to matcha newcomers and aficionados. Established through a collaboration between Suzukien, a historic tea shop from 1853, and Nanaya, a matcha sweets factory, this venue is a must-visit for its unique range of matcha gelato flavors."
+  },
+  {
+    "name": "Syabu-Yō",
+    "lat": 35.6983481,
+    "lng": 139.7747373,
+    "description": "An all-you-can-eat shabu-shabu haven starting from 1,539 Yen for weekday lunch, located on the 4th floor of Atre Akihabara 2, directly accessible from Akihabara Station's Showa-Dori Gate. The restaurant utilizes a touchscreen ordering system in English, Chinese, or Korean, catering efficiently to tourists."
+  },
+  {
+    "name": "Tesshin",
+    "lat": 35.6913441,
+    "lng": 139.7067632,
+    "description": "teppanyaki, particularly featuring premium Kuroge Wagyu beef. Their signature dish is the Kuroge Wagyu Steak, priced at 1,380 JPY plus tax, seasoned with salt, kombu, and wasabi, offering a quintessential Japanese flavor profile."
+  },
+  {
+    "name": "Yakiniku King",
+    "lat": 35.7123703,
+    "lng": 139.7929484,
+    "description": "A top-rated all-you-can-eat Yakiniku restaurant in Tokyo, Yakiniku King specializes in Japanese BBQ and offers a wide selection of meats for grilling. It's known for its quality, variety, and value, making it a must-visit for meat lovers. In 2022, it beat other well-known chains like Gyu-Kaku to rank as the number one Yakiniku spot. The restaurant also caters to tourists with English touchscreen menus."
+  },
+  {
+    "name": "Fruits Parlor Gotō",
+    "lat": 35.7157529,
+    "lng": 139.7938062,
+    "description": "—café with sweet fruit parfaits near the old Hanayashiki amusement park. The menu, which changes seasonally, features delights such as grape and melon parfaits during summer, alongside other sweets like pancakes, kakigori shaved ice, and ice cream. It's a perfect spot for those seeking seasonal fruit desserts."
+  },
+  {
+    "name": "Buta-Daigaku Shimbashi",
+    "lat": 35.6663124,
+    "lng": 139.7569785,
+    "description": "—Known for its pork bowls, which cost approximately 600 Yen for a small size, this is a must-visit for savory pork bowl lovers. It is located near Shibuya."
+  },
+  {
+    "name": "Ginza Kagari - Soba",
+    "lat": 35.6712211,
+    "lng": 139.7613736,
+    "description": "— (Prepare to wait) famous for its sophisticated take on chicken ramen. The restaurant's signature dish, tori-paitan, features a creamy, rich broth derived from chicken, which provides a velvety texture and deep flavor."
+  },
+  {
+    "name": "Hobo Shinjuku Norengai",
+    "lat": 35.6830213,
+    "lng": 139.7033933,
+    "description": "located a short 6-minute walk from Odakyu Shinjuku Station or Minami-Shinjuku Station, offers a collection of restaurants housed in traditional Japanese houses. This area provides a more classic and atmospheric dining experience compared to the modern establishments around Shinjuku Station. The term \"Noren-gai\" translates to \"shop curtain town close to Shinjuku,\" referring to the traditional curtain (noren) that signifies an open shop. These 8 renovated old folk houses host a variety of dining options, not limited to Japanese cuisine."
+  },
+  {
+    "name": "Soba House Konjiki-Hototogisu",
+    "lat": 35.6887843,
+    "lng": 139.7082917,
+    "description": "—(Prepare to wait) a ramen restaurant in Shinjuku, Tokyo, celebrated for its unique and sophisticated flavors. Awarded a Michelin star in 2018, this ramen establishment is renowned for its shoyu soba."
+  },
+  {
+    "name": "Ramen Sugimoto",
+    "lat": 35.5502952,
+    "lng": 139.5153279,
+    "description": "—(Prepare to wait) ramen shop located in Nakano, Tokyo. This shop offers a unique ramen experience that both locals and visitors highly praise. The restaurant is known for its special shio (salt) ramen, which includes a generous topping of chashu pork, a perfectly cooked egg, and homemade wontons."
+  },
+  {
+    "name": "Shiro-Hige’s Cream Puff Factory",
+    "lat": 35.6589542,
+    "lng": 139.6627485,
+    "description": "Nestled in Setagaya, this unique spot Offers Totoro-shaped cream puffs starting at 400 Yen. It is also a spot for Studio Ghibli fans and sweet tooth indulgers."
+  },
+  {
+    "name": "Yakumo Saryō",
+    "lat": 35.6189739,
+    "lng": 139.6675385,
+    "description": "This serene and minimalist setting for a traditional Japanese breakfast was designed by the renowned architect Shinichiro Ogata. It provides a genuine cultural experience through its dining, highlighting Japanese cuisine as an art form involving various cultural elements, from the dishware to the chef’s etiquette. Yakumo Saryo offers a traditional Japanese breakfast called \"Asacha,\" focusing on tea, priced at ¥4,000 (around $37)."
+  },
+  {
+    "name": "Hakushū Teppanyaki",
+    "lat": 35.6562855,
+    "lng": 139.7009933,
+    "description": "This establishment shines with its premium Japanese Wagyu Beef prepared teppanyaki-style in Shibuya. It is celebrated for top-notch Kobe beef."
+  },
+  {
+    "name": "Summit",
+    "lat": 35.7058865,
+    "lng": 139.7677747,
+    "description": "A local grocery story with fresh takeaway choices and sales."
+  },
+  {
+    "name": "Unknown",
+    "lat": 35.7060035,
+    "lng": 139.7689344,
+    "description": "A great local place to get a burger."
+  },
+  {
+    "name": "Yatai Hamachan",
+    "lat": 35.7103399,
+    "lng": 139.7750618,
+    "description": "Affordable seafood and izakaya-style dining, famous for its fresh fish and sashimi. Sashimi three kinds at 950 YEN (about $7.10)"
+  },
+  {
+    "name": "Niku no Ohyama",
+    "lat": 35.7103925,
+    "lng": 139.7752423,
+    "description": "Known for its deep-fried delights, including beef and seafood, with varying prices based on ingredients."
+  },
+  {
+    "name": "Sanzoku Kaizoku",
+    "lat": 35.7094748,
+    "lng": 139.7746436,
+    "description": "known for Takoyaki and Kaisendon, the latter being exceptionally good with various fish trimmings on rice."
+  },
+  {
+    "name": "YAKITORI Nonotori Nihonbashi",
+    "lat": 35.6904647,
+    "lng": 139.7725862,
+    "description": "Yakitori Nonotori in Nihonbashi offers an exceptional dining experience, particularly through its Premium Omakase Course, which features seasonal, expertly grilled skewers and side dishes. The restaurant is praised for its use of binchotan charcoal, which imparts a unique flavor to the yakitori, and its signature tamago kake gohan (rice with eggs cooked in an earthenware pot)."
+  },
+  {
+    "name": "Hinoya Curry Akihabara",
+    "lat": 35.6991165,
+    "lng": 139.7703452,
+    "description": "A good introduction to Japanese curry; it is a little spicy."
+  },
+  {
+    "name": "da GIORGIO",
+    "lat": 35.7075507,
+    "lng": 139.7715123,
+    "description": "Brick oven style pizza."
+  },
+  {
+    "name": "HIGUMA Doughnuts",
+    "lat": 35.7050848,
+    "lng": 139.7543806,
+    "description": "HIGUMA Doughnuts in Tokyo Dome City offers fluffy, delicious donuts that are highly praised for their light texture and gentle sweetness."
+  },
+  {
+    "name": "LATTE ART MANIA TOKYO",
+    "lat": 35.6711984,
+    "lng": 139.7164832,
+    "description": "If you're looking for a cool, creative coffee spot, Latte Art Mania is definitely worth a visit. I appreciated the attention to detail in their intricate latte designs. The space is small, but the energy is inviting, and the charcoal latte offers something unique—both in flavor and presentation."
+  },
+  {
+    "name": "Kantan-na Yume",
+    "lat": 35.6654512,
+    "lng": 139.6922418,
+    "description": "Kantan-na Yume feels like a hidden gem tucked away in a quiet part of the city. When I visited, the peaceful atmosphere struck me right away—a nice change from the buzz of Shibuya just minutes away. The wagashi I tried were exquisite, beautifully made, and paired perfectly with a cup of matcha."
+  },
+  {
+    "name": "Homemade Ramen 麦苗",
+    "lat": 35.5907765,
+    "lng": 139.7328034,
+    "description": "f you're looking for an outstanding ramen experience, I highly recommend Homemade Ramen 麦苗. I visited recently, and despite not typically favoring shoyu broths, their version completely won me over with its depth and rich umami flavor. The noodles and toppings were exceptional—the steak in the deluxe toppings was some of the best I've had. Do note that you'll need to arrive early, around 9 or 10 AM, to put your name on the list due to its popularity. But trust me, the wait is worth it."
+  },
+  {
+    "name": "Udatsu Sushi",
+    "lat": 35.641992,
+    "lng": 139.6952875,
+    "description": "Some of the best Sushi I have ever experienced. Check the prices first."
+  },
+  {
+    "name": "Menya Nishikawa",
+    "lat": 35.6920712,
+    "lng": 139.7211026,
+    "description": "Beef ramen that might change your life."
+  },
+  {
+    "name": "tonkatsu.jp Omotesando",
+    "lat": 35.6644248,
+    "lng": 139.709991,
+    "description": "Pork that is on a entirely different level."
+  },
+  {
+    "name": "Torisawa 22",
+    "lat": 35.6581628,
+    "lng": 139.7187211,
+    "description": "Yakitori on another level; huge wait lsit."
+  },
+  {
+    "name": "Men Mitsui",
+    "lat": 35.709534,
+    "lng": 139.790322,
+    "description": "If you're in Asakusa and craving top-tier ramen, Men Mitsui is a must-visit! This renowned spot near Tawaramachi Station offers an incredible soy sauce ramen with medium-thick, hand-kneaded noodles, which soak up the rich yet elegantly balanced chicken and seafood broth. The char siu is exceptional, with both thick and seared belly cuts that deliver juicy, flavorful bites, and the side options like the char siu rice bowl and homemade sauce katsudon add an extra touch of indulgence. With its relaxed, traditional atmosphere, flexible ticketing system, and thoughtful service, Men Mitsui truly earns its place as one of Tokyo's standout ramen destinations."
+  },
+  {
+    "name": "Ramenya Shima",
+    "lat": 35.6883441,
+    "lng": 139.6808875,
+    "description": "Ramen-ya Shima in Nishi-Shinjuku delivers an extraordinary ramen experience that’s worth every bit of effort to secure a reservation. The rich soy sauce broth has a sharpness and depth that’s perfectly complemented by tender, thin noodles, while the toppings—from soft char siu to runny-yolk eggs—add layers of texture and flavor. Both the soy sauce and salt ramen options are outstanding, with the salt version bringing a subtle, savory punch that lingers beautifully. Paired with the grilled char siu rice, this bowl of ramen stands among Japan's best, making each visit a blissful culinary highlight."
+  },
+  {
+    "name": "Kibun Sushi",
+    "lat": 35.7115897,
+    "lng": 139.795463,
+    "description": "If you’re looking for top-quality Edomae sushi in Asakusa, Kibun-zushi is a classic spot with over a century of history and a well-earned reputation. Reservations are essential; on my visit, every seat at the counter was filled, mostly with regulars. The atmosphere inside is dim and quiet, with no curtain on the entrance, creating a low-key vibe."
+  },
+  {
+    "name": "Karashibi Miso Ramen Kikanbō Kanda Honten",
+    "lat": 35.6936985,
+    "lng": 139.7724063,
+    "description": "Its spicy, and you're gonna wait. One of the best ramen dishes in Tokyo. Come for my Oni level, if you dare. ;)"
+  },
+  {
+    "name": "Arakawa Akabane Park",
+    "lat": 35.7895865,
+    "lng": 139.7193141,
+    "description": ""
+  },
+  {
+    "name": "Imado Shrine",
+    "lat": 35.7193219,
+    "lng": 139.8035323,
+    "description": ""
+  },
+  {
+    "name": "Ueno Park",
+    "lat": 35.7147557,
+    "lng": 139.7734312,
+    "description": ""
+  },
+  {
+    "name": "Yushima Shrine",
+    "lat": 35.7077406,
+    "lng": 139.7682193,
+    "description": ""
+  },
+  {
+    "name": "Kanda Myoujin Shrine",
+    "lat": 35.7020186,
+    "lng": 139.7678943,
+    "description": ""
+  },
+  {
+    "name": "Higo-Hosokawa Garden",
+    "lat": 35.7130452,
+    "lng": 139.7226236,
+    "description": ""
+  },
+  {
+    "name": "Main Garden",
+    "lat": 35.679427,
+    "lng": 139.7286238,
+    "description": ""
+  },
+  {
+    "name": "Hie Shrine",
+    "lat": 35.6746656,
+    "lng": 139.7399379,
+    "description": ""
+  },
+  {
+    "name": "Meiji Jingu",
+    "lat": 35.6763976,
+    "lng": 139.6993259,
+    "description": ""
+  },
+  {
+    "name": "Fukagawa Fudou-dō (Naritasan Tokyo branch temple)",
+    "lat": 35.6728891,
+    "lng": 139.7983222,
+    "description": ""
+  },
+  {
+    "name": "Tomioka Hachiman Shrine",
+    "lat": 35.6717809,
+    "lng": 139.799519,
+    "description": ""
+  },
+  {
+    "name": "Yoyogi Park",
+    "lat": 35.6700649,
+    "lng": 139.6949656,
+    "description": ""
+  },
+  {
+    "name": "Gōtokuji Temple",
+    "lat": 35.6488124,
+    "lng": 139.647481,
+    "description": ""
+  },
+  {
+    "name": "Kasai Rinkai Park",
+    "lat": 35.6419847,
+    "lng": 139.8603206,
+    "description": ""
+  },
+  {
+    "name": "Kinuta Park",
+    "lat": 35.6305007,
+    "lng": 139.6202039,
+    "description": ""
+  },
+  {
+    "name": "Anamori Inari Shrine",
+    "lat": 35.5505165,
+    "lng": 139.7496877,
+    "description": ""
+  },
+  {
+    "name": "Inokashira Park",
+    "lat": 35.6997476,
+    "lng": 139.5737018,
+    "description": ""
+  },
+  {
+    "name": "Mandarake Shibuya",
+    "lat": 35.661535,
+    "lng": 139.6977247,
+    "description": "Excellent Otaku shop; manga, collectibles, figures, etc."
+  },
+  {
+    "name": "Mandarake Complex",
+    "lat": 35.7003733,
+    "lng": 139.7705031,
+    "description": ""
+  },
+  {
+    "name": "DAIKANYAMA T-SITE",
+    "lat": 35.649059,
+    "lng": 139.6996224,
+    "description": "One of the best stores for English language Manga, and amazing collections for animated films, i.e., full storyboards of Akira, etc."
+  },
+  {
+    "name": "TAMASHII NATIONS STORE TOKYO",
+    "lat": 35.6991106,
+    "lng": 139.7729878,
+    "description": ""
+  },
+  {
+    "name": "Akihabara Radio Kaikan",
+    "lat": 35.6979149,
+    "lng": 139.7719571,
+    "description": "One of the better towers."
+  },
+  {
+    "name": "Unknown",
+    "lat": 35.7289056,
+    "lng": 139.7193245,
+    "description": "This is the Pokémon store; absolutely the best one."
+  },
+  {
+    "name": "animate Ikebukuro main store",
+    "lat": 35.7311443,
+    "lng": 139.7154592,
+    "description": ""
+  },
+  {
+    "name": "AKIHABARA KOTOBUKIYA",
+    "lat": 35.6992291,
+    "lng": 139.7704606,
+    "description": ""
+  },
+  {
+    "name": "Evangelion Store Ikebukuro",
+    "lat": 35.7307756,
+    "lng": 139.7124392,
+    "description": ""
+  },
+  {
+    "name": "VenusFort",
+    "lat": 35.6250547,
+    "lng": 139.7801649,
+    "description": "Specializes in Studio Ghibli goods, with a fancy Roman-themed interior that enhances the shopping experience."
+  },
+  {
+    "name": "Shibuya Parco",
+    "lat": 35.6620484,
+    "lng": 139.6987767,
+    "description": "Nintendo Tokyo (Shibuya PARCO) Capcom Store Tokyo (Shibuya PARCO)"
+  },
+  {
+    "name": "Godzilla Store Tokyo",
+    "lat": 35.6901656,
+    "lng": 139.7060582,
+    "description": ""
+  },
+  {
+    "name": "Tokyo Character Street",
+    "lat": 35.6820335,
+    "lng": 139.7686549,
+    "description": "A corridor of small shops dedicated to popular anime franchises, including Pokemon, Gundam, Ultraman, and Studio Ghibli."
+  },
+  {
+    "name": "Toy Sapiens",
+    "lat": 35.6655919,
+    "lng": 139.702665,
+    "description": "Come get your toys."
+  },
+  {
+    "name": "Kinji Used Clothing Harajuku Branch",
+    "lat": 35.6690562,
+    "lng": 139.7060816,
+    "description": "One of the better thrift shops in Shibuya."
+  },
+  {
+    "name": "Cat Street",
+    "lat": 35.6705418,
+    "lng": 139.7088757,
+    "description": "A full street of high end thrift shops; it is still expensive, but there is the occasional find."
+  },
+  {
+    "name": "CAT STREET. END",
+    "lat": 35.663074,
+    "lng": 139.7026128,
+    "description": ""
+  },
+  {
+    "name": "Takeshita Street Entrance Arch (Meiji Street)",
+    "lat": 35.6703002,
+    "lng": 139.7065865,
+    "description": "You've probably seen this already."
+  },
+  {
+    "name": "RAGTAG",
+    "lat": 35.6657568,
+    "lng": 139.7052181,
+    "description": ""
+  },
+  {
+    "name": "BRAND COLLECT OMOTESANDO 2",
+    "lat": 35.6672463,
+    "lng": 139.711114,
+    "description": ""
+  },
+  {
+    "name": "GINZA TSUTAYA BOOKS",
+    "lat": 35.6694161,
+    "lng": 139.7642674,
+    "description": ""
+  },
+  {
+    "name": "Gashapon Ikebukuro Main Store",
+    "lat": 35.7284675,
+    "lng": 139.7197951,
+    "description": "The largest small capsule store in the world. Over 3000 machines."
+  },
+  {
+    "name": "Takadanobaba Mikado Game Center",
+    "lat": 35.7127351,
+    "lng": 139.7034548,
+    "description": "Legendary spot. You’ll find Street Fighter II, Aliens vs. Predator, Virtual On, and even Daytona USA."
+  },
+  {
+    "name": "Natsuge Museum",
+    "lat": 35.7136765,
+    "lng": 139.7035486,
+    "description": "70s–80s games, pure nostalgia"
+  },
+  {
+    "name": "HEY (Hirose Entertainment Yard) Taito",
+    "lat": 35.699072,
+    "lng": 139.770917,
+    "description": "Bullet hell shmups, fighting games"
+  },
+  {
+    "name": "GiGO Akihabara Building 3",
+    "lat": 35.6992461,
+    "lng": 139.7709387,
+    "description": "RETRO:G Top floor of a GiGO building—hidden gem; Sega arcade titles."
+  },
+  {
+    "name": "D.D.R AKIBA本店",
+    "lat": 35.7005413,
+    "lng": 139.7705523,
+    "description": "VR and racing sims"
+  },
+  {
+    "name": "Dagashiya Game Museum",
+    "lat": 35.7639965,
+    "lng": 139.7026355,
+    "description": "Pre-electronic & medal arcade games; Cheapest and weirdest arcade fun you’ll find."
+  },
+  {
+    "name": "Unknown",
+    "lat": 35.6712082,
+    "lng": 139.7607358,
+    "description": ""
+  },
+  {
+    "name": "NARU Jazz Livehouse",
+    "lat": 35.6995469,
+    "lng": 139.7630305,
+    "description": ""
+  },
+  {
+    "name": "Blue Note Tokyo",
+    "lat": 35.6612139,
+    "lng": 139.7162296,
+    "description": ""
+  },
+  {
+    "name": "Tokyo Joypolis",
+    "lat": 35.62866,
+    "lng": 139.775364,
+    "description": ""
+  },
+  {
+    "name": "COFFEE JAZZ GENIUS (コーヒージャズ ジニアス)",
+    "lat": 35.6932411,
+    "lng": 139.6760405,
+    "description": ""
+  },
+  {
+    "name": "RED° TOKYO TOWER",
+    "lat": 35.6585696,
+    "lng": 139.745484,
+    "description": "Next Gen VR gaming and horror; also a robot fighting game, with an actual robot."
+  }
+]
