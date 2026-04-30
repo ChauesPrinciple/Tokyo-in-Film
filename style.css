@@ -1138,6 +1138,31 @@ blockquote {
     font-size: 0.95rem;
 }
 
+.card-form .card-meta {
+    font-size: 0.75rem;
+    color: var(--accent-neon-pink);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+.card-form .card-prereqs {
+    text-align: left;
+    font-size: 0.84rem;
+    color: #888;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 0.85rem;
+    margin-bottom: 1.25rem;
+    line-height: 1.8;
+}
+
+.card-form .card-prereqs strong {
+    color: #bbb;
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
 /* Responsive Iframe Container */
 .card-form .form-embed-container {
     position: relative;
