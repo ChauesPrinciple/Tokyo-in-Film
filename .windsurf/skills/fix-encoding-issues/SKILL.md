@@ -103,3 +103,10 @@ grep -n "渋谷区\|新宿区\|港区" jjk-culling-game-map.html
 ```
 
 Expected output should show clean Japanese characters, not corrupted bytes.
+
+
+---
+
+## Sources
+
+This skill is **procedural** — it does not make film-craft claims. Per `CITATION_PROTOCOL.md` the citation discipline does not apply to procedural workflows (deployment, formatting, encoding, file management). If this skill is later extended with craft-level reasoning, replace this block with citations to the relevant entries in `SOURCE_INDEX.md`.

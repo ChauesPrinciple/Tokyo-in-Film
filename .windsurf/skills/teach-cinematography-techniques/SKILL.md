@@ -581,3 +581,22 @@ When teaching cinematography:
 5. **Variations** - Different approaches
 6. **Reflection Questions** - Critical thinking
 7. **Submission Requirements** - What to turn in
+
+
+---
+
+## Sources
+
+This is a **pedagogical wrapper** around the production-craft skills. The film-craft claims it teaches are grounded in:
+
+- `visual-grammar` skill (which cites `[Frierson:EditingTheory]`, `[Filmmaking:MakingAFilm]`, `[FilmCheckingContent]`)
+- `optics-psychology` skill
+- `lighting-architecture` skill
+- `staging-blocking` skill
+
+When this skill emits a craft claim, defer to the specialist skill's citations for the underlying source. This skill's *pedagogical* moves (scaffolding, exercise design, learning-objective sequencing) are agent-craft and not bound by the citation discipline.
+
+**Direct primary references for teaching method:**
+
+- `[FilmCheckingContent]` — Sharman's textbook is the primary student-facing source; defer to it for definitions.
+- `[JCam:InstructorGuide]` — educator-supplied teaching framework.

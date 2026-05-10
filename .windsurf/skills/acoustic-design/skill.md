@@ -183,3 +183,27 @@ ADR may be required for scenes where room tone is missing and dialogue has been 
 - **Boom operator absolute requirement (headphones)**: Production sound standard practice
 - **Entity audio rule (sound as subtraction)**: ON THE EDGE production design; `@direct-digital-film`
 - **Horror application of J-cut**: `@editorial-grammar` split edit strategy
+
+
+---
+
+## Sources
+
+**Primary:**
+
+- `[Filmmaking:MakingAFilm]` — production sound, microphone choice, boom technique chapters.
+- `[DigitalFilmmaking]` — beginner-level treatment of recording and room tone.
+- `[FilmCheckingContent]` — Sharman on sound for cinema students.
+
+**External (un-grounded locally):**
+
+- `[external-source: Sonnenschein, Sound Design]` — canonical sound-design reference; not in local corpus.
+- `[external-source: Holman, Sound for Film and Television]` — canonical production-sound reference; not in local corpus.
+
+**General knowledge** `[general-knowledge]`:
+
+- Shotgun-primary / lavalier-backup / room-tone-mandatory hierarchy is widely-taught across filmmaking pedagogy.
+
+**Pending verification:**
+
+- The ON THE EDGE claim ("silence is threatening, not neutral") and the "Entity has no sound" principle are agent-synthesis applied to original screenplays — tag `[agent-synthesis]` in next deep edit.

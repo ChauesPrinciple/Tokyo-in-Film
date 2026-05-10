@@ -212,3 +212,25 @@ Students can apply these principles in the Action Units Worksheet by...
 - **update-module-content** - Integrating critiques into course modules
 - **add-glossary-terms** - Adding film terminology from critiques
 - **manage-google-forms** - Creating discussion/analysis assignments
+
+
+---
+
+## Sources
+
+This skill produces analytical writing about films. The **analytical frameworks** it applies are grounded in:
+
+- `[Frierson:EditingTheory]` — for editorial analysis (Burch matrix, Murch criteria summary, intensified continuity).
+- `[McKee:Story]` — for narrative analysis (controlling idea, scene turning points, archplot diagnosis).
+- `[Walley:TurnAndBurn]` and `[Tomlinson:PlotBasics]` — for protagonist arc and structural analysis.
+- `[FilmCheckingContent]` — Sharman's textbook is the student-facing primary for terminology.
+
+**External (canonical critical-analysis references not in local corpus):**
+
+- `[external-source: Bordwell & Thompson, Film Art]` — the dominant introductory critical-analysis text.
+- `[external-source: Bordwell, Narration in the Fiction Film]` — referenced inside Frierson but not standalone.
+- `[external-source: Eisenstein, Film Form / Film Sense]` — montage theory; referenced inside Frierson, not standalone.
+
+**Note on Japanese cinema:**
+
+- Specific claims about Japanese film history, directors, or cultural context are largely `[general-knowledge]` from film studies; when a specific historical assertion is made (a date, a director's stated philosophy, a movement's start year), it requires its own citation per the protocol.

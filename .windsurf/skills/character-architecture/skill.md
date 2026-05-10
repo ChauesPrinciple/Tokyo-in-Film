@@ -250,3 +250,24 @@ When diagnosing an existing character in a draft (used during `/script-diagnosis
 - `@dialogue-craft` — Voice architecture (flows from character design), subtext translation
 - `/script-diagnosis` — Invokes this skill at Pass 3 (cast polarization) and Pass 5 (voice differentiation)
 - `/write-short-film` — Invokes this skill at Phase 2, Days 4-5
+
+
+---
+
+## Sources
+
+**Primary (text-readable):**
+
+- `[McKee:Story]` — character flaw, polarization, and arc-design framework. See `narrative-structure` for verified locators (`split_010`, `split_033`, `split_053`).
+- `[Walley:TurnAndBurn]` — Yearn/Turn/Burn/Learn/Earn five-stage protagonist arc at `chapter0022`; Heroes-vs-Villains framing in ch. 3.
+- `[Trottier:ScreenwritersBible]` — character-design checklist throughout.
+- `[Tomlinson:PlotBasics]` — character-driven plot construction; Desire/Danger/Decision triad (attributed to Swain) at `text00007`.
+
+**External (real works not in local corpus):**
+
+- `[external-source: Egri, The Art of Dramatic Writing]` — canonical character-construction reference; not in local corpus.
+- `[external-source: Truby, The Anatomy of Story]` — character-network design; not in local corpus.
+
+**Cross-reference:**
+
+- This skill overlaps heavily with `narrative-structure`. Claims about flaw-as-antithesis, polarization, and arc-as-thesis-proof are anchored there. Avoid duplicating citations — defer to `narrative-structure` when in doubt.

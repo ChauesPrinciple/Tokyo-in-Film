@@ -255,3 +255,24 @@ SCENE WORKS IN SILENCE?
 - `@character-architecture` — Flaw, arc, polarization (voice flows from character design)
 - `/script-diagnosis` — Invokes this skill at Pass 5
 - `/write-short-film` — Invokes this skill at Phase 4 (Days 9-10)
+
+
+---
+
+## Sources
+
+**Primary (text-readable):**
+
+- `[McKee:Story]` — subtext mechanics and scene-design diagnostic at `split_010`; voice/character architecture distributed across the book.
+- `[Trottier:ScreenwritersBible]` — dialogue rules including avoid-talking-heads at `part0015` and revision checklist at `part0025`.
+- `[Walley:TurnAndBurn]` — dialogue as conflict-bearing; the "Emotion = Entertainment" framing at `chapter0045`.
+- `[Thomas:BestAmericanScreenplays]` — primary source for produced dialogue across decades of American screenwriting; use for format and rhythm reference.
+
+**External (un-grounded locally):**
+
+- `[external-source: Mamet, On Directing Film]` — the canonical "no-unfilmables" dialogue discipline; not in local corpus.
+- `[external-source: Iglesias, Writing for Emotional Impact]` — referenced inside `[Walley:TurnAndBurn chapter0045]` but not in local corpus standalone.
+
+**Cross-reference:**
+
+- "Unfilmables" and density-testing rules trace to the ACTION LINE PROSE DISCIPLINE in `AGENT.md`, which is enforced at the screenplay level by all writing skills.

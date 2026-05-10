@@ -254,3 +254,24 @@ Students analyze their work:
 - **update-module-content** - Embedding worksheets in modules
 - **manage-google-forms** - Digital worksheet submission
 - **add-glossary-terms** - Defining worksheet terminology
+
+
+---
+
+## Sources
+
+Pedagogical methodology wrapper. Worksheet **structure** is educational design (`[general-knowledge]` from instructional design); worksheet **content** is grounded in the specialist craft skills.
+
+When this skill emits worksheet content that asserts a film-craft principle, defer to:
+
+- `narrative-structure` skill for story/scene worksheets
+- `visual-grammar` skill for cinematography worksheets
+- `editorial-grammar` skill for editing worksheets
+- `acoustic-design` skill for sound worksheets
+
+Each carries the underlying source citations.
+
+**Direct primary:**
+
+- `[FilmCheckingContent]` — Sharman's textbook is the student-facing primary; worksheet activities should align with its definitions.
+- `[JCam:InstructorGuide]` — supplies a worksheet pattern library.

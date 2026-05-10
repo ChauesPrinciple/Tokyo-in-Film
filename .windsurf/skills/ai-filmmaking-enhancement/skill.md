@@ -177,3 +177,19 @@ Every action line in the screenplay must contain, in 3-5 lines maximum:
 If a line can be cut without losing any of those five elements, it belongs on the cutting room floor.
 
 **Test**: Read the action line aloud. Ask: "What does the camera see?" If the answer requires interpretation or inference about internal state, the line is not visual enough. Make it visual.
+
+
+---
+
+## Sources
+
+**Primary craft references** (the underlying film-craft this skill amplifies via AI):
+
+- `[McKee:Story]` — show-don't-tell and dialogue-naturalization principles trace to McKee's scene-design framework (see `narrative-structure` skill for verified locators).
+- `[Trottier:ScreenwritersBible]` — the action-line prose discipline this skill enforces (see AGENT.md `ACTION LINE PROSE DISCIPLINE`).
+
+**External (AI-tooling references, not film-craft):**
+
+- `[external-source: model-specific prompt engineering documentation]` — Midjourney, DALL-E, ChatGPT, and Claude prompt-engineering best practices change rapidly and are not corpus-grounded; treat all AI-tool-specific claims as time-of-writing knowledge.
+
+**Note:** This skill's *craft* claims (about story, dialogue, visual storytelling) must follow the citation discipline. This skill's *tooling* claims (about which AI model to use, how to prompt it) are exempt — they are technical operations, not film-craft.

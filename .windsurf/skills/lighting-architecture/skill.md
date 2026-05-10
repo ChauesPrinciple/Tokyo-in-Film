@@ -182,3 +182,27 @@ ASK: Can the audience see or infer the source of this light?
 - **Motivated/unmotivated sources**: Standard cinematography theory; Malkiewicz, *Cinematography*
 - **ON THE EDGE stage lighting map**: ON THE EDGE Production Design; `@direct-digital-film`
 - **Entity light rule**: ON THE EDGE production design document
+
+
+---
+
+## Sources
+
+**Primary:**
+
+- `[Filmmaking:MakingAFilm]` — three-point lighting, key-to-fill ratios, motivated source treatment.
+- `[DigitalFilmmaking]` — practical lighting setup and color-temperature instruction for beginners.
+- `[FilmCheckingContent]` — Sharman's lighting introduction.
+
+**External (un-grounded locally):**
+
+- `[external-source: Brown, Cinematography: Theory and Practice]` — the canonical reference for lighting architecture; not in local corpus.
+- `[external-source: Alton, Painting With Light]` — the canonical aesthetic treatment of lighting; not in local corpus.
+
+**General knowledge** `[general-knowledge]`:
+
+- Tungsten ≈ 3200K, daylight ≈ 5600K; key-to-fill ratio numerics (2:1 / 4:1 / 8:1) are widely-taught and used across filmmaking textbooks.
+
+**Pending verification:**
+
+- Specific ratio-to-emotional-register mappings (e.g., 8:1 = horror) on next deep edit, pin to a corpus locator (likely `[Filmmaking:MakingAFilm]` lighting chapters) or downgrade to `[general-knowledge]`.

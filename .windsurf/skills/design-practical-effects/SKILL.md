@@ -373,3 +373,25 @@ Students learn to:
 - **write-film-critiques** - Analyzing effects in course films
 - **develop-screenwriting-exercises** - Writing for practical effects
 - **update-module-content** - Integrating effects lessons into modules
+
+
+---
+
+## Sources
+
+**Primary:**
+
+- `[Filmmaking:MakingAFilm]` — practical effects chapters (low-budget approaches).
+- `[DigitalFilmmaking]` — beginner-level effects.
+
+**External (un-grounded locally):**
+
+- `[external-source: Rickitt, Special Effects: The History and Technique]` — canonical reference; not in local corpus.
+
+**General knowledge** `[general-knowledge]`:
+
+- Most household-item practical-effects techniques (flour for dust, Karo syrup for blood, etc.) are folk-knowledge across the no-budget filmmaking community and not single-sourced.
+
+**Pending verification:**
+
+- Specific safety claims (especially around fire, fall, weapon work) should be tagged `[safety-critical]` and verified against authoritative production safety standards before student-facing emission.

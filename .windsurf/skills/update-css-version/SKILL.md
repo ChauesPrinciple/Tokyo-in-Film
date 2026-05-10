@@ -75,3 +75,10 @@ grep -n "style.css?v=" index.html pre-production/guide.html
 
 ### Encoding corruption
 If Japanese characters appear as gibberish after update, the file was saved with wrong encoding. Revert and use UTF-8 encoding method above.
+
+
+---
+
+## Sources
+
+This skill is **procedural** — it does not make film-craft claims. Per `CITATION_PROTOCOL.md` the citation discipline does not apply to procedural workflows (deployment, formatting, encoding, file management). If this skill is later extended with craft-level reasoning, replace this block with citations to the relevant entries in `SOURCE_INDEX.md`.

@@ -347,3 +347,26 @@ MIX LEVELS:
 SPECIAL:
 [Entity frequency subtraction? Character-specific compression note?]
 ```
+
+
+---
+
+## Sources
+
+**Primary:**
+
+- `[Filmmaking:MakingAFilm]` — post-production audio chapters.
+- `[DigitalFilmmaking]` — beginner-level audio post-production instruction.
+
+**External (un-grounded locally):**
+
+- `[external-source: Yewdall, Practical Art of Motion Picture Sound]` — canonical post-audio reference; not in local corpus.
+- `[external-source: Sonnenschein, Sound Design]` — sound-design framing for post; not in local corpus.
+
+**General knowledge** `[general-knowledge]`:
+
+- Standard EQ frequencies, dialogue compression ratios (e.g., 3:1–4:1), and broadcast loudness targets (-23 LUFS for European broadcast, -16 LUFS for streaming) are widely-published technical standards.
+
+**Pending verification:**
+
+- Foley technique claims and specific dialogue-polish workflows on next deep edit, pin to `[Filmmaking:MakingAFilm]` post-production chapters.

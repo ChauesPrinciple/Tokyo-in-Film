@@ -181,3 +181,10 @@ This allows easy rollback if needed.
 - **update-css-version** - If you modify styles
 - **fix-encoding-issues** - If Japanese text gets corrupted
 - **add-glossary-terms** - If adding new technical terms
+
+
+---
+
+## Sources
+
+This skill is **procedural** — it does not make film-craft claims. Per `CITATION_PROTOCOL.md` the citation discipline does not apply to procedural workflows (deployment, formatting, encoding, file management). If this skill is later extended with craft-level reasoning, replace this block with citations to the relevant entries in `SOURCE_INDEX.md`.

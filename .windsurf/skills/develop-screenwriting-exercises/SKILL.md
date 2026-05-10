@@ -318,3 +318,20 @@ She dodges a SALARYMAN, nearly drops her portfolio.
 - **design-worksheets** - Creating script development exercises
 - **update-module-content** - Integrating writing assignments
 - **manage-google-forms** - Script submission and feedback forms
+
+
+---
+
+## Sources
+
+Pedagogical wrapper for screenwriting exercise design. Craft claims trace to `narrative-structure`, `character-architecture`, `dialogue-craft`, and `write-short-film-scripts` (each carries its own source citations).
+
+**Direct primary references:**
+
+- `[McKee:Story]` — the deepest theoretical anchor for any screenwriting exercise.
+- `[Trottier:ScreenwritersBible]` — practical exercise patterns.
+- `[Walley:TurnAndBurn]` — modern fast-feedback screenwriting exercises (Walley's whole book is built around them).
+- `[Tomlinson:PlotBasics]` — eight-sequence exercises.
+- `[Thomas:BestAmericanScreenplays]` — produced-screenplay reading is itself an exercise; use for analysis prompts.
+
+When this skill writes an exercise that asserts a craft principle, the principle must carry its own citation per the underlying skill.

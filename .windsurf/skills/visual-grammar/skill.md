@@ -145,3 +145,26 @@ In a thirds-dominant film, a centered character reads as completely trapped.
 - **Cut-off rule**: Hughes (cited in standard visual grammar literature)
 - **Shot size × Stage Matrix**: ON THE EDGE Production Design; `@direct-digital-film`
 - **Psychological reads by shot**: `@direct-digital-film` (visual grammar section)
+
+
+---
+
+## Sources
+
+This skill grounds its theoretical claims in the following entries from `.windsurf/SOURCE_INDEX.md`. All citations follow the three-tier system in `.windsurf/CITATION_PROTOCOL.md`.
+
+**Primary (text-readable in local corpus):**
+
+- `[Frierson:EditingTheory]` — shot composition and frame-as-2D-screen-space (gestalt / Arnheim) discussed at `p.20`; vector theory (Zettl summarized inside Frierson) at `p.20–p.50`.
+- `[Filmmaking:MakingAFilm]` — practical shot-size and composition guidance throughout; index entry for the 180° rule at `p.435` points to `p.271`.
+- `[FilmCheckingContent]` — Sharman's *Moving Pictures* introductory treatment of cinematography (the textbook this website is adapted from).
+- `[DigitalFilmmaking]` — beginner-level treatment of frame, composition, and shot grammar.
+
+**External (real works frequently invoked but not in local corpus):**
+
+- `[external-source: Zettl, Sight Sound Motion]` — vector theory in its standalone form; in our corpus it is summarized inside `[Frierson:EditingTheory]`.
+- `[external-source: Arnheim, Film as Art]` — the gestalt / two-dimensional-screen-space framing; summarized inside `[Frierson:EditingTheory p.20–p.21]`.
+
+**Pending verification:**
+
+- Specific claims about the Kuleshov effect, rule of thirds, and POV motivation are widely-attributable; on next deep edit, verify against `[Frierson:EditingTheory]` (Kuleshov ch. summarized at `p.149`) and `[FilmCheckingContent p.10]`.

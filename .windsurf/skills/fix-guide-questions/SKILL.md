@@ -72,3 +72,10 @@ After fixing, check the live guide pages:
 - `/post-production/guide.html`
 
 The "Reflection Questions" section should show interactive checkboxes, not static cyan info boxes.
+
+
+---
+
+## Sources
+
+This skill is **procedural** — it does not make film-craft claims. Per `CITATION_PROTOCOL.md` the citation discipline does not apply to procedural workflows (deployment, formatting, encoding, file management). If this skill is later extended with craft-level reasoning, replace this block with citations to the relevant entries in `SOURCE_INDEX.md`.

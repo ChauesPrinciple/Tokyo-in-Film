@@ -475,3 +475,17 @@ Design clear, fair, and pedagogically sound assessment rubrics for student filmm
 - Compare self-assessment to grade
 - Identify growth areas
 - Set goals for next assignment
+
+
+---
+
+## Sources
+
+This skill is **pedagogical methodology**, not film-craft. The film-craft *content* of any rubric is grounded in the specialist craft skill (`visual-grammar`, `editorial-grammar`, etc.) — but the *rubric design* is educational-design craft, which is largely `[general-knowledge]` from instructional design (rubric levels, descriptors, alignment with learning objectives).
+
+**Primary references for educational design** `[general-knowledge]`:
+
+- Bloom's revised taxonomy, Wiggins/McTighe Backward Design — widely-published educational design conventions, not contested.
+- `[JCam:InstructorGuide]` — educator-supplied rubric examples (note: 18% scanned pages may need OCR).
+
+When this skill emits a *film-craft* assessment criterion, the criterion itself must defer to the specialist craft skill's citation. The skill is exempt from the citation discipline only at the rubric-structure level, not at the content level.

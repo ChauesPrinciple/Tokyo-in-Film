@@ -82,3 +82,14 @@ Entity protocol: Never CU. Telephoto only. Silhouetted, backlit. No color temper
 - [ ] Coverage: master + story shots + inserts
 - [ ] Editorial transitions specified
 - [ ] Production timeline realistic
+
+
+---
+
+## Sources
+
+This skill is the **orchestrator**. It does not itself make film-craft claims — it sequences calls to other craft skills (`visual-grammar`, `optics-psychology`, `lighting-architecture`, `acoustic-design`, `staging-blocking`, `editorial-grammar`, `production-protocol`).
+
+Each of those skills carries its own `## Sources` block. The citation discipline defined in `CITATION_PROTOCOL.md` is enforced *within* the called skills, not at the orchestrator layer.
+
+The orchestration logic itself (which skill to call when, why this order) is documented in `AGENT.md` `MODE A: PRODUCTION REASONING CHAIN` and is grounded in the production-pipeline conventions described in `[Filmmaking:MakingAFilm]` and `[DigitalFilmmaking]`.

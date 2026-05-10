@@ -242,3 +242,28 @@ Before locking the final draft, answer all four:
 - **develop-screenwriting-exercises** — Build exercises from these principles
 - **design-worksheets** — Turn any module of this skill into a student worksheet
 - **write-film-critiques** — Apply structural analysis to existing films
+
+
+---
+
+## Sources
+
+This skill applies the full screenwriting craft corpus to short-form output. It synthesizes:
+
+**Primary (text-readable):**
+
+- `[McKee:Story]` — Five-Part Story Design at `split_053`; Premise vs. Controlling Idea at `split_033`; Scene definition at `split_010`. (See `narrative-structure` for the deeper retrofit.)
+- `[Walley:TurnAndBurn]` — Yearn/Turn/Burn/Learn/Earn at `chapter0022`; PASTO at `chapter0047`; Emotion = Entertainment at `chapter0045`.
+- `[Tomlinson:PlotBasics]` — Eight-sequence structure (the spine of this skill); Desire/Danger/Decision (citing Swain) at `text00007`.
+- `[Trottier:ScreenwritersBible]` — formatting, scene craft, and the avoid-talking-heads rule at `part0015`.
+- `[Thomas:BestAmericanScreenplays]` — produced-screenplay format reference (552 pp).
+
+**External (real works invoked in this skill but not in local corpus):**
+
+- `[external-source: Burnett, How to Write a Short Film]` — the "Burnett" of the Burnett+Garland+UCA methodology this skill names.
+- `[external-source: Garland, Short Film Story Structure]` — the "Garland" component; sources unclear, may be a workshop tradition rather than published text.
+- `[external-source: UCA short-film methodology]` — the "UCA" component; likely the University for the Creative Arts curriculum.
+
+**Pending verification:**
+
+- The Burnett + Garland + UCA labels in this skill's title are not corpus-verifiable. On next deep edit, locate the original sources or rephrase to `[external-source]` tags.

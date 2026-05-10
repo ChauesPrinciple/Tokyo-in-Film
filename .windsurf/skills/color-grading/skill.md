@@ -268,3 +268,26 @@ CINEMATIC ELEMENTS:
 SPECIAL:
 [Entity adjacent desaturation? Character-specific grade variation?]
 ```
+
+
+---
+
+## Sources
+
+**Primary:**
+
+- `[Filmmaking:MakingAFilm]` — color and post-production chapters.
+- `[DigitalFilmmaking]` — beginner-level color-correction guidance.
+
+**External (un-grounded locally):**
+
+- `[external-source: Hullfish, The Art and Technique of Digital Color Correction]` — canonical color-grading reference; not in local corpus.
+- `[external-source: Van Hurkman, Color Correction Handbook]` — canonical technical reference; not in local corpus.
+
+**General knowledge** `[general-knowledge]`:
+
+- LUT mechanics, color-wheel terminology, and stage-driven grading conventions (cool-for-night, warm-for-memory, etc.) are widely-taught and not contested at the level this skill operates.
+
+**Pending verification:**
+
+- Specific look references (e.g., "the Fincher teal-and-orange") are `[general-knowledge]` but stylistic claims attributed to specific colorists or films should be verified before assertion.

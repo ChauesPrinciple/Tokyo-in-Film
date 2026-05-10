@@ -107,3 +107,10 @@ Always use UTF-8 encoding when editing HTML files. Japanese characters (kanji) m
 - [ ] Popups show correct info
 - [ ] Barrier domes render (if applicable)
 - [ ] No console errors
+
+
+---
+
+## Sources
+
+This skill is **procedural** — it does not make film-craft claims. Per `CITATION_PROTOCOL.md` the citation discipline does not apply to procedural workflows (deployment, formatting, encoding, file management). If this skill is later extended with craft-level reasoning, replace this block with citations to the relevant entries in `SOURCE_INDEX.md`.

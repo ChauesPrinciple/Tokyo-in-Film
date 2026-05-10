@@ -120,3 +120,23 @@ A simple floor plan sketch for each scene includes:
 **Backing away from camera**: A character backing toward camera = the audience cannot see what is behind the camera. This is the most primal staging position in horror. The threat is where the audience is.
 
 **Looking at camera (violating fourth wall)**: Used once, maximum, at the moment of maximum horror. A character looks directly into the lens. The Entity has arrived in the audience's space.
+
+
+---
+
+## Sources
+
+**Primary (text-readable):**
+
+- `[Frierson:EditingTheory]` — 180° rule treatment at `p.40` (theoretical) and Burch's stage-line discussion `p.74–p.96`.
+- `[Filmmaking:MakingAFilm]` — practical 180° rule and coverage strategy at `p.271` (indexed at `p.435`).
+- `[FilmCheckingContent]` — Sharman on staging for cinema students.
+
+**External (un-grounded locally):**
+
+- `[external-source: Katz, Film Directing Shot by Shot]` — canonical staging reference; not in local corpus.
+- `[external-source: Mascelli, The Five C's of Cinematography]` — canonical coverage reference; not in local corpus.
+
+**Cross-reference:**
+
+- The 180° rule is also Murch's Criterion 5 ("planarity") — see `[Frierson:EditingTheory p.112]` for the editorial-side framing of the same constraint.

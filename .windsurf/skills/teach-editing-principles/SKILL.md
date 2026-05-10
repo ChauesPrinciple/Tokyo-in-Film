@@ -666,3 +666,20 @@ When teaching editing:
 5. **Variations** - Different approaches
 6. **Reflection** - What choices did you make and why?
 7. **Export** - Final delivery specifications
+
+
+---
+
+## Sources
+
+Pedagogical wrapper around `editorial-grammar`. The film-craft claims this skill teaches are grounded in:
+
+- `[Frierson:EditingTheory]` — Murch's Six Criteria at `p.112`; Burch's continuity matrix `p.74–p.96`; Kuleshov chapter at `p.149`.
+- `[Filmmaking:MakingAFilm]` — practical editing chapters.
+- `[external-source: Murch, In the Blink of an Eye]` — frequently invoked but **not in local corpus**; the often-quoted "Emotion 51% / Story 23% / Rhythm 10% / Eye-trace 7% / 2D 5% / 3D 4%" weighting does NOT appear in the local extracted corpus and must be flagged accordingly per AGENT.md citation discipline.
+- `[external-source: Dmytryk, On Film Editing]` — flagged `[pdf-needs-ocr]`; summarized in Frierson.
+
+**Pedagogical primary:**
+
+- `[FilmCheckingContent]` — Sharman's editing chapter is the student-facing source.
+- `[JCam:InstructorGuide]` — educator framework.

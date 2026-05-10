@@ -850,3 +850,25 @@ The difference between the seven clusters (what they learned) and this document 
 **On the Edge** is the test case. Every scene, every shot, every cut is an opportunity to prove the network functions. The Entity uses the crew exactly as they are. The film uses the grammar exactly as it is — to show that use, that consumption, that final refusal.
 
 The network is complete. The application begins.
+
+
+---
+
+## Sources
+
+This skill is comprehensive and synthesizes claims across the full filmmaking corpus. The claims it makes are anchored in the following sources from `.windsurf/SOURCE_INDEX.md`:
+
+**Primary (text-readable):**
+
+- `[Filmmaking:MakingAFilm]` — the practical reference for nearly every production-chain claim in this skill (camera departments, lighting, sound, on-set protocol).
+- `[DigitalFilmmaking]` — beginner-tier complement; useful when this skill needs to scaffold from absolute zero.
+- `[Frierson:EditingTheory]` — when this skill discusses post-production / editorial implications of production decisions.
+- `[FilmCheckingContent]` — Sharman's *Moving Pictures*; the textbook this website is adapted from. Defer to it for student-facing definitions.
+
+**Cross-reference:**
+
+- This skill is wide; it touches every craft. When it makes specific claims, they should harmonize with the corresponding specialist skill (`visual-grammar`, `lighting-architecture`, `acoustic-design`, `editorial-grammar`, `staging-blocking`, `production-protocol`, `optics-psychology`). Each of those carries finer-grained citations.
+
+**Pending verification (deep retrofit needed):**
+
+This is the largest skill file (~40KB). A full inline-citation pass is recommended before treating any specific claim from it as `[grounded]`. Until that pass is complete, claims emitted from this skill should be cross-referenced against the specialist-skill citation in the relevant domain.

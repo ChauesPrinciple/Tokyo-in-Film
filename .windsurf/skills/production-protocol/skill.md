@@ -141,3 +141,26 @@ ON THE EDGE is a 26-minute short with a limited crew. The full hierarchy above w
 - **Room tone must be recorded** at every location, every session. No exceptions.
 - **Continuity notes** must be kept by someone — if no dedicated script supervisor, the PA takes notes on phone, noting costume state, prop positions, last line before cut.
 - **Safety**: Light stands get sandbags. Everyone knows the location's power circuits.
+
+
+---
+
+## Sources
+
+**Primary:**
+
+- `[Filmmaking:MakingAFilm]` — crew hierarchy, call sheets, set protocol; this is the practical reference for production protocol claims.
+- `[DigitalFilmmaking]` — beginner-level production planning instruction.
+- `[JCam:InstructorGuide]` — educator-supplied production guide (note: 18% of pages are scanned and may need OCR for full text-search coverage).
+
+**External (un-grounded locally):**
+
+- `[external-source: Honthaner, The Complete Film Production Handbook]` — canonical production-management reference; not in local corpus.
+
+**General knowledge** `[general-knowledge]`:
+
+- Standard crew-hierarchy roles (1st AD, DP, gaffer, key grip, etc.) and the structure of a call sheet are widely-published and not contested.
+
+**Cross-reference:**
+
+- Production protocol intersects with `staging-blocking` (coverage planning), `acoustic-design` (boom placement timing), and `lighting-architecture` (set order). Citations in those skills should harmonize with this one.

@@ -184,3 +184,23 @@ See Transition Grammar Reference table above. Abbreviated decision rule:
 - **Editorial theory framework**: Michael Frierson, *Film and Video Editing Theory* (2018)
 - **Transition grammar**: Hughes (transition table attribution); Tarkovsky, *Sculpting in Time* (1986) — long take and duration
 - **L-cut/J-cut nomenclature and practice**: Walter Murch (credited with systematizing split edit terminology)
+
+
+---
+
+## Sources
+
+**Primary (text-readable):**
+
+- `[Frierson:EditingTheory]` — the spine of this skill. Burch's PMR/IMR and continuity matrix at `p.74–p.96`; Murch's Six Criteria at `p.112`; Bordwell's narrative functions and intensified continuity in ch. 4; Kuleshov chapter summary at `p.149`.
+- `[external-source: Dmytryk, On Film Editing]` — Six Rules for the Ideal Cut; flagged `[pdf-needs-ocr]` because the local PDF is 100% scanned image-only. Summarized in `[Frierson:EditingTheory p.112]`.
+- `[external-source: Murch, In the Blink of an Eye]` — the source of the Six Criteria; not in local corpus. Frierson summarizes at `p.112`.
+
+**Cross-reference:**
+
+- `[Filmmaking:MakingAFilm]` — practical editing chapters complement Frierson's theory; treats the same problems from the production side.
+- `[GreatCourses:EffectiveEditing]` — note: writing/prose editing, not film editing. Relevant only when this skill discusses pacing-as-rhythm metaphors.
+
+**Pending verification:**
+
+- Specific Kuleshov effect claims should pin to `[Frierson:EditingTheory p.149]` body content; the often-quoted percentages ("Murch 51%/23%/...") do **not** appear in the local corpus and must be flagged `[external-source]` per AGENT.md citation discipline.

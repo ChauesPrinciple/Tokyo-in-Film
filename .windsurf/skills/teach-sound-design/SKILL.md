@@ -624,3 +624,21 @@ When teaching sound design:
 5. **Mix Notes** - Volume and pan decisions
 6. **Technical Specs** - Export settings
 7. **Reflection** - What worked, challenges faced
+
+
+---
+
+## Sources
+
+Pedagogical wrapper around `acoustic-design` and `audio-post-production`. The craft claims trace to:
+
+- `[Filmmaking:MakingAFilm]` — production sound and post-audio chapters.
+- `[DigitalFilmmaking]` — beginner-level treatment.
+- `[FilmCheckingContent]` — Sharman's sound chapter (student-facing primary).
+
+**External (un-grounded locally):**
+
+- `[external-source: Sonnenschein, Sound Design]` — canonical reference; not in local corpus.
+- `[external-source: Yewdall, Practical Art of Motion Picture Sound]` — canonical reference; not in local corpus.
+
+When this skill teaches a specific principle, defer to the underlying `acoustic-design` or `audio-post-production` skill for finer-grained citations.

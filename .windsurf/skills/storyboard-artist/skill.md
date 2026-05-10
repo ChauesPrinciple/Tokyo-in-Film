@@ -129,3 +129,23 @@ The animatic transforms storyboard panels into a timed, sequential video draft o
 **Distribution**: The locked animatic goes to every department head. Animators (if any) match their work to animatic timing. Background artists build environments that match animatic frames. The editor uses the animatic as the guide for final assembly.
 
 **For ON THE EDGE**: An animatic, even a rough one using sketched thumbnails, would allow the director to time every scene, identify pacing problems, and discover coverage gaps before shooting day — when they are cheap to fix, not after.
+
+
+---
+
+## Sources
+
+**Primary:**
+
+- `[Filmmaking:MakingAFilm]` — practical storyboarding and pre-visualization treatment.
+- `[DigitalFilmmaking]` — beginner-level storyboarding.
+- `[StoryboardingCourse]` — partial; the course's own video lessons are not yet text-extracted. PDFs in `class_resources/[1-6]/` provide some written framework.
+
+**External (un-grounded locally):**
+
+- `[external-source: Katz, Film Directing Shot by Shot]` — canonical storyboard-and-coverage reference; not in local corpus.
+- `[external-source: Begleiter, From Word to Image]` — storyboarding-specific canonical reference; not in local corpus.
+
+**Cross-reference:**
+
+- The 180° rule and shot-size grammar in this skill should harmonize with `staging-blocking` and `visual-grammar` (which cite the same `[Frierson:EditingTheory p.40]` and `[Filmmaking:MakingAFilm p.271]`).

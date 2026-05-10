@@ -69,3 +69,22 @@ Every shot makes a claim about the relationship between subject and environment.
 | Viewport / Entity exterior | Telephoto | Variable | The Entity is always at a distance that shouldn't matter |
 | ECU moments, Stage Three | Normal | Shallow | Clean horror — no distortion needed when psychology is already broken |
 | Entity (any shot) | Telephoto maximum | N/A — background | The Entity is observed, never intimate, never here |
+
+
+---
+
+## Sources
+
+**Primary:**
+
+- `[Filmmaking:MakingAFilm]` — focal length and lens choice as narrative tools (practical filmmaking treatment).
+- `[DigitalFilmmaking]` — beginner-level lens/depth-of-field instruction.
+- `[FilmCheckingContent]` — Sharman's introduction to optics for cinema students.
+
+**Cross-reference:**
+
+- Shot size + focal length pairing is tightly coupled with composition (`visual-grammar`) and lighting (`lighting-architecture`); when this skill issues claims about subject-environment relationship, those claims should harmonize with `[Filmmaking:MakingAFilm]` ch. on cinematography.
+
+**Pending verification:**
+
+- Specific focal length thresholds (wide vs. normal vs. telephoto in psychological terms) are partly `[general-knowledge]` and partly attributable to direct-digital-film practice. Run `search_corpus.py "focal length"` on next deep edit and pin the locators.

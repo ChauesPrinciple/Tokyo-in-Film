@@ -321,3 +321,21 @@ Before publishing any content, verify:
 - **design-worksheets** - Maintaining voice in instructional materials
 - **develop-screenwriting-exercises** - Voice in creative assignments
 - **update-module-content** - Ensuring voice consistency across modules
+
+
+---
+
+## Sources
+
+This skill governs **prose voice** across course materials. It is not a film-craft skill — its claims are about pedagogical writing style, not about filmmaking.
+
+**Cross-reference:**
+
+- The ACTION LINE PROSE DISCIPLINE in `AGENT.md` is the single source of truth for screenwriting prose. This skill's claims about screenplay prose must align with that section.
+- The teaching-prose voice (second-person, accessible, scaffolded) is documented in this skill itself and in `AGENT.md` `WRITING VOICE` section.
+
+**General knowledge** `[general-knowledge]`:
+
+- Common style-guide principles (Strunk & White, plain-language conventions) are widely-published and not single-sourced.
+
+**Note:** When this skill makes a claim about *what good filmmaking writing looks like*, it should defer to the specialist craft skill (`write-short-film-scripts`, `write-film-critiques`) for film-specific judgments. This skill governs only the *voice* of the writing, not the *content*.

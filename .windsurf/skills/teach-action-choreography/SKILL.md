@@ -543,3 +543,23 @@ When teaching action choreography:
 5. **Rehearsal Log** - Document practice sessions
 6. **Filming Notes** - On-set observations
 7. **Reflection** - What worked, what didn't
+
+
+---
+
+## Sources
+
+Pedagogical wrapper for action-scene staging. Craft claims trace to:
+
+- `[Filmmaking:MakingAFilm]` — coverage strategy and staging chapters; safety conventions.
+- `staging-blocking` skill — 180° rule, coverage strategy.
+- `editorial-grammar` skill — cut-on-motion principles for action.
+
+**External (un-grounded locally):**
+
+- `[external-source: Mascelli, The Five C's of Cinematography]` — canonical action-coverage reference; not in local corpus.
+- `[external-source: SAG-AFTRA / industry stunt coordination guidelines]` — for safety claims; cite source when a specific safety standard is asserted.
+
+**General knowledge** `[general-knowledge]`:
+
+- Basic safety conventions (rehearse without contact, use breakaway props, designate a safety officer) are widely-published and not single-sourced. Specific procedures should be tagged `[safety-critical]`.
