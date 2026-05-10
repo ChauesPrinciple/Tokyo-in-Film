@@ -53,15 +53,15 @@ A screenplay action line describes what a camera can see or a microphone can hea
 ## McKee Frameworks
 
 ### The Five-Part Story Design
-Every story is a design in five parts: **Inciting Incident → Progressive Complications → Crisis → Climax → Resolution**.
-- The **Inciting Incident** is the primary cause for everything that follows. It radically upsets the balance of forces in the protagonist's life. Locate it first — if you cannot, the story has no engine.
+Every story is a design in five parts: **Inciting Incident → Progressive Complications → Crisis → Climax → Resolution**. `[McKee:Story split_053]`
+- The **Inciting Incident** is the primary cause for everything that follows. It radically upsets the balance of forces in the protagonist's life. Locate it first — if you cannot, the story has no engine. `[McKee:Story split_053]`
 - **Progressive Complications** are not random obstacles. Each one must be more difficult than the last, because the protagonist adapts. The antagonistic forces must also adapt — escalating pressure, not repeating pressure.
 - The **Crisis** is the moment of greatest risk and decision: the protagonist must choose between two irreconcilable goods, or the lesser of two evils. No easy path exists.
 - The **Climax** is the scene of maximum energy, where the crisis decision produces an irreversible change of value.
 - The **Resolution** shows the world remade by that change. It is not an epilogue — it is proof.
 
 ### Controlling Idea
-Every story has one sentence that captures what it says about how and why life changes. Format: VALUE + CAUSE.
+Every story has one sentence that captures what it says about how and why life changes. Format: VALUE + CAUSE. McKee distinguishes Premise (the idea that inspires the writer's desire to create) from Controlling Idea (the story's ultimate meaning expressed through the action and aesthetic emotion of the last act's climax). `[McKee:Story split_033]`
 - Example: "Survival is achieved through the courage to face the unknowable."
 - ON THE EDGE controlling idea: "Humanity's drive to understand the cosmos costs us everything we are."
 
@@ -84,7 +84,9 @@ Nothing a character says directly reveals what they feel. Characters talk around
 
 ## Scene Design — McKee's Core Definition
 
-A scene is *"a story in miniature — an action through conflict in a unity or continuity of time and space that turns the value-charged condition of a character's life."*
+A scene is "an action through conflict in more or less continuous time and space that turns the value-charged condition of a character's life on at least one value with a degree of perceptible significance." `[McKee:Story split_010]`
+
+McKee's diagnostic: "If the answer you write down at the end of the scene is the same note you made at the opening, you now have another important question to ask: Why is this scene in my script? If the value-charged condition of the character's life stays unchanged from one end of a scene to the other, nothing meaningful happens. The scene has activity—talking about this, doing that—but nothing changes in value." `[McKee:Story split_010]`
 
 Four components every scene must contain:
 - **Turning Point** — the moment the value charge shifts (hope → despair, safety → danger, power → powerlessness, or their reversals)
@@ -96,10 +98,10 @@ Four components every scene must contain:
 
 ## Scene Craft Rules — Trottier, *The Screenwriter's Bible*
 
-- Every scene moves the story forward in **both plot AND character**. Plot movement without character revelation is mechanical. Character revelation without plot movement is indulgent.
-- **Start as close to the end of the scene as possible.** Cut the approach, the arrival, the small talk. Enter at the first moment of conflict or its immediate precondition.
-- **Scenes should culminate dramatically** — in a decision, a reversal, a revelation, or a punch line. The final line of a dialogue scene should be its strongest.
-- **Avoid talking heads.** Move dialogue through action and space. The argument at breakfast continues in the car and concludes on the tennis court — each location adds characterization, pacing contrast, and visual interest.
+- Every scene moves the story forward in **both plot AND character**. Plot movement without character revelation is mechanical. Character revelation without plot movement is indulgent. `[Trottier:ScreenwritersBible part0015]`
+- **Start as close to the end of the scene as possible.** Cut the approach, the arrival, the small talk. Enter at the first moment of conflict or its immediate precondition. `[general-knowledge]` (widely-attributed to Trottier and to Mamet; verify exact passage when needed)
+- **Scenes should culminate dramatically** — in a decision, a reversal, a revelation, or a punch line. The final line of a dialogue scene should be its strongest. `[general-knowledge]`
+- **Avoid talking heads.** Move dialogue through action and space. The argument at breakfast continues in the car and concludes on the tennis court — each location adds characterization, pacing contrast, and visual interest. `[Trottier:ScreenwritersBible part0015]` (revision checklist reinforcement at `[Trottier:ScreenwritersBible part0025]`)
 - **Pace via peaks and valleys.** Action scene → dialogue scene. Heavy scene → light scene. The peaks must ascend toward the climax; without valleys, the peaks disappear.
 - **Flashbacks**: ~95% of spec script flashbacks don't work because they interrupt the present rather than motivate it. Use a flashback only if it moves the story forward. Quick flashes are safest. Never enter a flashback until the audience cares about the present.
 
@@ -129,7 +131,7 @@ The release points in horror are crucial. A laugh, a moment of warmth, a small v
 
 ## Scene-Level Structure — PASTO
 
-From Kenneth MacGowan's *Primer of Playwriting* (1951), adapted by CJ Walley for screenwriting. Every scene contains five internal beats:
+From Kenneth MacGowan's *Primer of Playwriting* (1951), adapted by CJ Walley for screenwriting. `[Walley:TurnAndBurn chapter0047]` (`[external-source: MacGowan, Primer of Playwriting, 1951]` for the original). Every scene contains five internal beats:
 
 | Beat | Function |
 |------|----------|
@@ -139,7 +141,7 @@ From Kenneth MacGowan's *Primer of Playwriting* (1951), adapted by CJ Walley for
 | **Turnaround** | Something unexpected shifts the dynamic — new information, new force, reversal |
 | **Outcome** | New state of play; the conditions for the next scene's Preparation |
 
-**The causality rule:** The Outcome of one scene IS the Preparation of the next. A string of scenes without this causal chain is a list of events. A causal chain is a story.
+**The causality rule:** The Outcome of one scene IS the Preparation of the next. A string of scenes without this causal chain is a list of events. A causal chain is a story. `[Walley:TurnAndBurn chapter0047]`
 
 **ON THE EDGE PASTO application** (Sequence 3, Anomaly Confirmed scene):
 - Preparation: crew expects the star's behavior to match existing anomaly models
@@ -154,11 +156,15 @@ The protagonist is a vehicle for the story's thesis, not its origin. Build the a
 
 1. **Identify the thesis** — the life truth the story proves (the Controlling Idea reframed as a question: *does this truth hold?*)
 2. **Build the flaw as antithesis** — the protagonist's misconception about life that the story will destroy
-3. **Map the arc**: **Yearn** (stasis, false comfort + desire for more) → **Turn** (antagonistic force triggered, tipping point) → **Burn** (escalating conflict, point of no return) → **Learn** (revelation, changed understanding) → **Earn** (confrontation with truth, acceptance of the life truth proven)
+3. **Map the arc**: **Yearn** (stasis, false comfort + desire for more) → **Turn** (antagonistic force triggered, tipping point) → **Burn** (escalating conflict, point of no return) → **Learn** (revelation, changed understanding) → **Earn** (confrontation with truth, acceptance of the life truth proven). Walley: "Five simple words to create an endless number of story opportunities." `[Walley:TurnAndBurn chapter0022]`
 
-Heroes do not have to be likeable. They must be relatable. Relatability comes from values, not lifestyle — the audience must recognize the protagonist's *want*, even if they would never share their choices.
+Heroes do not have to be likeable. They must be relatable. Relatability comes from values, not lifestyle — the audience must recognize the protagonist's *want*, even if they would never share their choices. `[general-knowledge]`
 
-## Act I Architecture — Tomlinson, *Plot Basics*
+**Emotion = Entertainment** (Walley's chapter title): conflict at every level — internal (psychological) and external (physical and personal). "Comfort should only ever be fleeting, and scenes where there's no conflict at all should be reserved for the final images of happy endings." `[Walley:TurnAndBurn chapter0045]`
+
+## Act I Architecture — Tomlinson, *Plot Basics* (citing Swain)
+
+Tomlinson explicitly attributes this triad to Dwight Swain: "Desire and danger are two of the key factors in a story. The third, according to Swain, is decision. The hero of a story is someone who makes a decision..." `[Tomlinson:PlotBasics text00007]` (`[external-source: Swain, Techniques of the Selling Writer]` for the original)
 
 The first act must deliver three elements before the Major Dramatic Question is posed:
 
@@ -246,3 +252,32 @@ In ON THE EDGE: The interpersonal tensions between crew members (who trusts whom
 - Seq 3-4: Individual contamination (Tanaka's proof, Reyes's file) → Predictions converge (Costa/Carter) → Tanaka's public turn ("Enjoy the fear")
 - Seq 5-6: Containment fails (Costa) → Reyes's epistemological stand (deletes proof) → Carter's logical extreme (removes eyes) → Costa found (dignity in death)
 - Seq 7-8: Tanaka's redemption (tells Reyes how to close the door) → Marshall's execution (destroys relay with his hands) → The toast (the funniest thing in the film, earned because nothing before it is funny)
+
+---
+
+## Sources
+
+This skill grounds its theoretical claims in the following entries from `.windsurf/SOURCE_INDEX.md`. All citations follow the three-tier system in `.windsurf/CITATION_PROTOCOL.md`.
+
+**Primary (text-readable, locators verified this session):**
+
+- `[McKee:Story]` — Five-Part Story Design and Inciting Incident at `split_053`; Premise vs. Controlling Idea at `split_033`; Scene definition ("value-charged condition") and the diagnostic test at `split_010`.
+- `[Walley:TurnAndBurn]` — Yearn/Turn/Burn/Learn/Earn five-stage arc at `chapter0022`; PASTO and the MacGowan attribution at `chapter0047`; Emotion = Entertainment chapter at `chapter0045`; scene structure framing at `chapter0044`.
+- `[Tomlinson:PlotBasics]` — Desire/Danger/Decision triad (attributed by Tomlinson to Swain) at `text00007`.
+- `[Trottier:ScreenwritersBible]` — Avoid talking heads / move dialogue through action and space at `part0015`; revision checklist reinforcement at `part0025`.
+
+**External (real works not in the local corpus — flagged in claims, not used as primary support):**
+
+- `[external-source: Swain, Techniques of the Selling Writer]` — original source for Desire/Danger/Decision.
+- `[external-source: MacGowan, Primer of Playwriting, 1951]` — original source for PASTO.
+- `[external-source: Murch, In the Blink of an Eye]` — sometimes invoked when this skill cross-references editorial principles; see `editorial-grammar` skill.
+
+**Cross-reference (concepts in this skill that are also addressed in other corpus sources):**
+
+- Continuity / scene-to-scene causality is also discussed in `[Frierson:EditingTheory]` (editorial side of the same problem) and in `[Filmmaking:MakingAFilm]` (production-side framing).
+- The screenplay format that all of this assembles into is exemplified in `[Thomas:BestAmericanScreenplays]` (552 pp of produced screenplays — primary source for format reference).
+
+**Citation hygiene notes for this skill:**
+
+- The McKee "Polarization" cast-design principle (line 73) and the "story in miniature" exact phrasing did not return direct hits in my session search; they are present in McKee's *Story* but my quick verification did not pin a split locator. **Action**: when next editing this skill, run a deeper search (`--max 8`) for both terms and add locators or rephrase to the language that actually appears in `[McKee:Story split_010]`.
+- The two project-specific maps (KURASAWA and ON THE EDGE) are agent-authored synthesis applying the above frameworks to original screenplays. They are tagged implicitly as `[agent-synthesis]` — they are not in the source corpus and should not be cited as if they were.

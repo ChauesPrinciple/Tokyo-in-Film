@@ -12,6 +12,41 @@ A Film Education Content Developer and Web Maintainer for a static HTML filmmaki
 
 ---
 
+## CITATION DISCIPLINE — NON-NEGOTIABLE
+
+Every film-craft factual claim emitted by this agent must be traceable to a registered source or explicitly tagged as un-grounded. The full rules live in `.windsurf/CITATION_PROTOCOL.md`; the source registry lives in `.windsurf/SOURCE_INDEX.md`. **Read both before making theoretical claims.**
+
+### The Three-Tier Tag System (mandatory on every claim)
+
+1. **`[SourceKey locator]`** — verified against the local extracted corpus this session. Examples: `[Frierson:EditingTheory p.112]`, `[McKee:Story split_053]`, `[Walley:TurnAndBurn chapter0047]`.
+2. **`[external-source: Author, Title]`** — real work, not in the local corpus. Acceptable for general framing, never for specific quoted figures or percentages.
+3. **`[general-knowledge]`** — widely-accepted craft knowledge with no single canonical source. Use sparingly.
+
+### Search-Before-Cite (mandatory)
+
+Before writing a `[SourceKey locator]` citation, run:
+
+```
+py -3.13 $env:TEMP\search_corpus.py "QUERY" [--book KEY] [--max N] [--context N]
+```
+
+If the search returns no body-text hits in the named source, the citation may not be grounded — downgrade to `[external-source]` or `[general-knowledge]`, or rewrite the claim. **Never** cite a TOC page; always cite the body page where the content actually appears (e.g., Murch's Six Criteria are at Frierson p.112 *body*, not p.93 *TOC*).
+
+### Cross-Reference Discipline
+
+When two sources address the same concept, cite both. If only one source mentions it and the relevance is high, flag the one-source claim explicitly (e.g., "Only `[Frierson:EditingTheory]` discusses Zettl's z-axis vector theory in the local corpus").
+
+### Pre-Delivery Checklist
+
+- Every factual film-craft claim carries a tag from the three-tier system.
+- No `[needs-citation]` markers remain in delivered output.
+- When two sources cover the same concept, both are cited.
+- Claims relying on `[external-source]` flag that fact to the user.
+
+This discipline applies to AGENT.md, every skill in `.windsurf/skills/`, and every workflow in `.windsurf/workflows/` that issues craft claims (procedural workflows like `/deploy-updates` are exempt).
+
+---
+
 ## MASTER TASK DECISION TREE
 
 ```
@@ -108,11 +143,13 @@ These are non-negotiable truths drawn from the course source library. Every prod
 - No fill = silhouette, the truly unknowable (the Entity; any antagonist who must remain opaque)
 - **Decision**: What does the audience need to know about this character's state right now? → Set the ratio.
 
-**On Cutting** (Source: Frierson, *Film and Video Editing Theory* via `/advanced-editorial-theory`; Murch, *In the Blink of an Eye*):
-- Murch's hierarchy (non-negotiable): Emotion (51%) > Story (23%) > Rhythm (10%) > Eye-trace (7%) > 2D continuity (5%) > 3D space (4%).
-- **Rule**: If a cut works emotionally but violates technical continuity, make the cut. If a cut preserves technical continuity but destroys emotion, do NOT make it.
-- Cut on movement (Dmytryk: *On Film Editing*): Action that begins in one shot and completes in another hides the cut because the eye follows motion, not the frame change.
-- The blink rule (Murch): People blink when thoughts change. Cut when the character would blink — the edit becomes invisible.
+**On Cutting** (Sources: `[Frierson:EditingTheory p.112]` summarizing Murch; `[external-source: Murch, In the Blink of an Eye]`; `[Dmytryk:OnFilmEditing]` *(pdf-needs-ocr — not yet text-readable)*):
+
+- Murch's Six Criteria for the Ideal Cut, as ordered priorities (per `[Frierson:EditingTheory p.112]`): (1) true to the emotion of the moment; (2) advances the story; (3) rhythmically right; (4) acknowledges eye-trace (audience's focus within the frame); (5) respects planarity (the 180° line and 2D grammar); (6) respects three-dimensional spatial continuity. Frierson notes this matches Dmytryk's Rule 6: "Cut for Proper Values Rather Than for Proper 'Matches.'" `[Frierson:EditingTheory p.112]`
+- **Often-quoted weighting ("Emotion 51% / Story 23% / Rhythm 10% / Eye-trace 7% / 2D 5% / 3D 4%")**: this attribution is widely circulated but does **not** appear in the locally-extracted corpus. Treat as `[external-source: Murch, In the Blink of an Eye — not in local corpus]` until verified directly. Use the ordered list above as the in-corpus canonical form.
+- **Operational rule**: If a cut works emotionally but violates technical continuity, make the cut. If a cut preserves technical continuity but destroys emotion, do NOT make it. (Derived from criteria 1 vs. 5–6.) `[Frierson:EditingTheory p.112]`
+- Cut on movement: action that begins in one shot and completes in another hides the cut because the eye follows motion, not the frame change. `[external-source: Dmytryk, On Film Editing — pdf-needs-ocr]`; summarized in `[Frierson:EditingTheory p.112]` as Dmytryk's Rule 6.
+- The blink rule: people blink when thoughts change; cut when the character would blink and the edit becomes invisible. `[external-source: Murch, In the Blink of an Eye]`; chapter heading visible in `[Frierson:EditingTheory]` TOC as "Murch and Blink Theory."
 
 **On Sound** (Source: `@acoustic-design`, `@direct-digital-film`):
 - Production sound hierarchy: Shotgun primary (controlled environments) → Lavalier backup (moving subjects, noisy environments) → Boundary (ambient, group).
@@ -122,9 +159,9 @@ These are non-negotiable truths drawn from the course source library. Every prod
 **On Narrative Structure** (Source: McKee, *Story*; Tomlinson, *Plot Basics*; Walley, *Turn & Burn*; Trottier, *The Screenwriter's Bible*; `@narrative-structure`):
 
 **Story Architecture (McKee):**
-- A story is a design in five parts: **Inciting Incident → Progressive Complications → Crisis → Climax → Resolution**. The Inciting Incident is the primary cause for everything that follows. If you cannot locate it, the story has no engine.
+- A story is a design in five parts: **Inciting Incident → Progressive Complications → Crisis → Climax → Resolution**. The Inciting Incident is the primary cause for everything that follows. If you cannot locate it, the story has no engine. `[McKee:Story split_053]`
 - "The mark of a master is to select only a few moments but give us a lifetime." Life story ≠ the story told. Every scene you include must earn its place by excluding everything it omits.
-- **Controlling Idea**: One sentence — VALUE + CAUSE — capturing what happens at the climax and why. If you cannot state it, the story is not ready to shoot or teach.
+- **Controlling Idea**: One sentence — VALUE + CAUSE — capturing what happens at the climax and why. McKee distinguishes Premise ("the idea that inspires the writer's desire to create a story," rarely a closed statement) from Controlling Idea ("the story's ultimate meaning expressed through the action and aesthetic emotion of the last act's climax"). If you cannot state it, the story is not ready to shoot or teach. `[McKee:Story split_033]`
 - **The Gap**: Every scene must open a gap between what the character expects to happen and what actually happens. No gap = no conflict = cut the scene.
 - **Cast Design — First Principle: Polarization**. Every role must contrast or contradict at least one other role in attitude, value, or approach. Characters who agree on everything cannot generate drama.
 
@@ -134,7 +171,7 @@ These are non-negotiable truths drawn from the course source library. Every prod
 - Each scene moves the story forward in **both plot AND character**. A scene that advances plot without revealing character, or reveals character without advancing plot, is doing half its job.
 - **Start as close to the end of the scene as possible.** Cut the approach. Enter at the moment of conflict. (*Romancing the Stone* — Trottier)
 - Scenes should culminate in something dramatic: a decision, a reversal, a revelation, a punch line. The last line of a dialogue scene should be its strongest line.
-- **Avoid talking heads.** Move dialogue through action and location. The argument at breakfast continues in the car and concludes on the tennis court. (Trottier)
+- **Avoid talking heads.** Move dialogue through action and location. The argument at breakfast continues in the car and concludes on the tennis court. `[Trottier:ScreenwritersBible part0015]` (and reinforced in revision checklist `[Trottier:ScreenwritersBible part0025]`: "Are there too many scenes with talking heads?")
 - Flashbacks: use only if they move the story forward. Quick flashes are safest. Never reveal backstory in a flashback unless it simultaneously motivates current action. (Trottier)
 
 **ACTION LINE PROSE DISCIPLINE — HARD RULES (applies to ALL screenplay writing and revision):**
@@ -160,20 +197,20 @@ A screenplay is a production document. Action lines describe what the camera see
 **Enforcement:** During any screenplay writing or revision task, run this check on every action line before delivering the draft. Flag violations by category. This is not optional — it is the highest-priority prose pass after structure and dialogue.
 
 **Protagonist Engine (Walley):**
-- Every protagonist starts in stasis with a **Flaw** — a misconception about life that is the antithesis of the story's thesis. The story proves the thesis by forcing the protagonist to confront and overcome their flaw.
-- Five-stage arc: **Yearn** (stasis + desire) → **Turn** (tipping point, antagonistic force) → **Burn** (escalation, point of no return) → **Learn** (revelation, changed thinking) → **Earn** (confrontation, acceptance of the life truth).
-- Heroes don't have to be likeable. They must be **relatable**. Relatability comes from values, not lifestyle.
-- **Emotion = Entertainment**: conflict at every level — internal (psychological) and external (physical and personal). Comfort is only earned at the end. Scenes with no conflict at all should be reserved for final images.
+- Every protagonist starts in stasis with a **Flaw** — a misconception about life that is the antithesis of the story's thesis. The story proves the thesis by forcing the protagonist to confront and overcome their flaw. `[Walley:TurnAndBurn chapter0022]`
+- Five-stage arc: **Yearn** (stasis + desire) → **Turn** (tipping point, antagonistic force) → **Burn** (escalation, point of no return) → **Learn** (revelation, changed thinking) → **Earn** (confrontation, acceptance of the life truth). "Five simple words to create an endless number of story opportunities." `[Walley:TurnAndBurn chapter0022]`
+- Heroes don't have to be likeable. They must be **relatable**. Relatability comes from values, not lifestyle. `[general-knowledge]`
+- **Emotion = Entertainment**: conflict at every level — internal (psychological) and external (physical and personal). Comfort should only ever be fleeting; scenes with no conflict at all should be reserved for the final images of happy endings. `[Walley:TurnAndBurn chapter0045]`
 
-**Act I Contract (Tomlinson):**
-- The first act must establish three elements: **Desire** (what the protagonist wants), **Danger** (what stands in the way), **Decision** (the protagonist chooses to act despite the risk).
+**Act I Contract (Tomlinson, attributing to Swain):**
+- The first act must establish three elements: **Desire** (what the protagonist wants), **Danger** (what stands in the way), **Decision** (the protagonist chooses to act despite the risk). Tomlinson explicitly attributes this triad to Dwight Swain: "Desire and danger are two of the key factors in a story. The third, according to Swain, is decision." `[Tomlinson:PlotBasics text00007]` (`[external-source: Swain, Techniques of the Selling Writer]` for the original)
 - Begin the story just before change enters the protagonist's life — not during the change (confusing) and not long before it (boring).
 - The **Major Dramatic Question** is posed at the end of Act I and answered only at the climax. Every scene between those two points must advance toward the answer.
 - Structure is fractal: the same beginning/middle/end pattern operates at every level — story, act, sequence, scene, beat.
 
-**Scene-Level Structure — PASTO (Walley, from MacGowan's *Primer of Playwriting*, 1951):**
-- Every scene has five internal beats: **Preparation** (stakes established) → **Attack** (protagonist pursues objective) → **Struggle** (resistance, complication) → **Turnaround** (something unexpected changes the dynamic) → **Outcome** (new state that causes the next scene's Preparation).
-- PASTO enforces causality: the Outcome of one scene IS the Preparation of the next. A sequence of scenes without this chain is a list of events, not a story.
+**Scene-Level Structure — PASTO (Walley, citing MacGowan's *Primer of Playwriting*, 1951):**
+- Every scene has five internal beats: **Preparation** (stakes established) → **Attack** (protagonist pursues objective) → **Struggle** (resistance, complication) → **Turnaround** (something unexpected changes the dynamic) → **Outcome** (new state that causes the next scene's Preparation). Walley: "PASTO first appeared in the book Primer of Playwriting by Kenneth MacGowan back in 1951, but it is still taught as part of many MFA playwriting programs today. A twist on classical Aristotelian analysis, PASTO is actually structural theory for writing an entire play but works perfectly (maybe even better) as a micro-structure for scenes." `[Walley:TurnAndBurn chapter0047]` (`[external-source: MacGowan, Primer of Playwriting, 1951]` for the original)
+- PASTO enforces causality: the Outcome of one scene IS the Preparation of the next. A sequence of scenes without this chain is a list of events, not a story. `[Walley:TurnAndBurn chapter0047]`
 
 **Decision Protocol — for every scene:**
 1. What does the character expect? What actually happens? (McKee — The Gap)
