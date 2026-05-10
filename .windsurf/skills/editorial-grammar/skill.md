@@ -44,17 +44,11 @@ See @acoustic-design for full detail. Briefly:
 
 ## The Kuleshov Effect
 
-Lev Kuleshov's foundational experiment (Soviet montage, 1910s): A neutral, expressionless close-up of a man's face was intercut with three different images — a bowl of soup, a child in a coffin, a woman on a divan. Audiences saw three different emotions in the man's face: hunger, grief, desire. The face was identical in all three. The meaning was entirely in the juxtaposition.
+Lev Kuleshov's foundational experiment (Soviet montage, 1910s): A neutral, expressionless close-up of a man's face was intercut with three different images — a bowl of soup, a child in a coffin, a woman on a divan. Audiences saw three different emotions in the man's face: hunger, grief, desire. The face was identical in all three. The meaning was entirely in the juxtaposition. `[Frierson:EditingTheory p.149]` (Soviet Montage chapter; Frierson invokes the term in cross-reference at `p.58`: "see the 'Kuleshov effect' in Chapter 5, p. 149")
 
 **The principle**: A shot means what it means IN CONTEXT. The shot before it and the shot after it determine what the audience reads in a given image.
 
 **The tool**: Place a neutral human face immediately after an image. The face "reacts" to whatever the previous image was, even if the face was shot with no expression and no context.
-
-**In ON THE EDGE**: 
-- Neutral crew face → unreadable data → the face reads as confusion
-- Neutral crew face → viewport showing Entity → the face reads as existential dread
-- Neutral crew face → each other → the face reads as distrust
-The same CU of Reyes's face means three different things depending on what precedes it. Schedule close-ups after content shots, not before. Build the Kuleshov setup into the shot list.
 
 ## Pacing: The Rhythm of Meaning
 
@@ -100,7 +94,7 @@ All problems solved. Transitions added. Music, graphics, SFX integrated. Sound m
 | Match cut | Elegant time/space transitions; thematic rhyming | As a gimmick without thematic payoff |
 | Digital wipes/spins/flips | Training videos; light comedy | Never in dramatic/horror work |
 
-**Rule from Hughes**: Gimmick transitions — digital flips, page turns, star wipes — announce the editor's presence. The editor's job is to be invisible. Straight cuts, dissolves, and dips to black are the grammar. Everything else is noise.
+**The invisible-editor rule**: Gimmick transitions — digital flips, page turns, star wipes — announce the editor's presence. The editor's job is to be invisible. Straight cuts, dissolves, and dips to black are the grammar. Everything else is noise. `[general-knowledge]` (a near-universal practitioner consensus; the version of this principle anchored in our corpus is Murch's Criterion 1–2 from `[Frierson:EditingTheory p.112-113]`: emotion and story override technical flourish)
 
 ## Split Edit Strategy for ON THE EDGE
 
@@ -122,32 +116,36 @@ This skill is invoked after shot list and coverage decisions (`@staging-blocking
 
 ### How to Decide Whether to Cut
 
-Source: Walter Murch, *In the Blink of an Eye* (1995/2001); Michael Frierson, *Film and Video Editing Theory* (2018)
+Sources: `[Frierson:EditingTheory p.112-113]` (canonical body summary of Murch); `[external-source: Murch, In the Blink of an Eye 1995/2001]` (original; not in local corpus).
 
-Apply Murch's hierarchy in order. A cut that satisfies criteria 1–2 is correct even if it violates 3–6.
+Apply Murch's Six Criteria as **ordered priorities**. A cut that satisfies criteria 1–2 is correct even if it violates 3–6. Frierson `p.113`: "don't give up eye-trace before planarity, and don't give up planarity before spatial continuity."
 
 ```
-1. EMOTION (51%) — Does this cut make the audience feel what this scene requires?
+1. EMOTION — Is this cut true to the emotion of the moment?
      → NO: Do not cut. Full stop. No other criterion overrides this.
 
-2. STORY (23%) — Does this cut advance what the audience needs to know now?
+2. STORY — Does this cut advance the story?
      → NO: Delay is not neutral. A cut that delays story without emotional payoff is wrong.
 
-3. RHYTHM (10%) — Does this cut land on the right beat?
+3. RHYTHM — Is the cut rhythmically right?
      → Rhythm serves emotion; it never overrides it.
 
-4. EYE-TRACE (7%) — Are we cutting toward where the audience is already looking?
+4. EYE-TRACE — Does the cut acknowledge where the audience is already looking?
 
-5. 2D CONTINUITY (5%) — Does screen direction and the 180° line hold?
-     → Lowest substantive criterion. Violate if 1 demands it.
+5. PLANARITY (2D continuity / 180° line) — Does screen direction and the stage line hold?
+     → Lowest substantive technical criterion. Violate if 1 demands it.
 
-6. 3D SPACE (4%) — Does spatial coherence hold?
-     → Can be broken intentionally. Always the last priority.
+6. SPATIAL CONTINUITY (3D space) — Does the geography hold?
+     → Always the last priority. Can be broken intentionally.
 ```
+
+`[Frierson:EditingTheory p.112-113]`. Frierson explicitly notes that Murch's hierarchy aligns with Dmytryk's Rule 6: "Cut for Proper Values Rather Than for Proper 'Matches.'" `[Frierson:EditingTheory p.112]`
+
+**On the often-quoted percentage weighting** ("Emotion 51% / Story 23% / Rhythm 10% / Eye-trace 7% / 2D 5% / 3D 4%"): this attribution is widely circulated online and in lectures but does **not** appear in the locally-extracted corpus. Treat as `[external-source: Murch, In the Blink of an Eye — not in local corpus]` until verified directly against the original. The ordered list above is the in-corpus canonical form.
 
 ### How to Choose Cut Type
 
-Source: Edward Dmytryk, *On Film Editing* (1984) — cut on action principle
+Sources: `[Frierson:EditingTheory p.86-92]` (Hollywood Theorists chapter; canonical body summary of Dmytryk's Seven Rules); `[external-source: Dmytryk, On Film Editing 1984]` — flagged `[pdf-needs-ocr]` because the local PDF is 100% scanned image-only.
 
 ```
 → Movement carries the story forward → CUT ON ACTION
@@ -161,7 +159,7 @@ Source: Edward Dmytryk, *On Film Editing* (1984) — cut on action principle
 → Two simultaneous actions → CROSS-CUT (parallel editing)
 
 → Audience needs space, context, or a beat → CUTAWAY / HOLD
-  (per Tarkovsky: duration creates its own emotional weight)
+  (the long-take-as-duration argument is `[external-source: Tarkovsky, Sculpting in Time 1986]`; not in local corpus, but the underlying idea — that holding a shot creates emotional weight — maps to Murch's Criterion 1 emotion-over-rhythm at `[Frierson:EditingTheory p.112]`)
 ```
 
 ### How to Choose Transition
@@ -176,15 +174,15 @@ See Transition Grammar Reference table above. Abbreviated decision rule:
 → Everything else → do not use
 ```
 
-### Source Index
+### Source Index (legacy — see also formal `## Sources` block below)
 
-- **Murch's 6-criteria hierarchy**: Walter Murch, *In the Blink of an Eye* (revised ed. 2001)
-- **Cut on action principle**: Edward Dmytryk, *On Film Editing* (1984)
-- **Intellectual montage / Kuleshov effect**: Lev Kuleshov (Soviet montage, 1910s); Sergei Eisenstein, *Film Form* (1949)
-- **Editorial theory framework**: Michael Frierson, *Film and Video Editing Theory* (2018)
-- **Transition grammar**: Hughes (transition table attribution); Tarkovsky, *Sculpting in Time* (1986) — long take and duration
-- **L-cut/J-cut nomenclature and practice**: Walter Murch (credited with systematizing split edit terminology)
-
+- **Murch's Six Criteria** — Body summary at `[Frierson:EditingTheory p.112-113]`. Original: `[external-source: Murch, In the Blink of an Eye, revised ed. 2001 — not in local corpus]`. The often-quoted percentage weighting (51/23/10/7/5/4) is NOT in the local corpus; use the ordered list above as canonical.
+- **Dmytryk's Seven Rules for the Ideal Cut** — Body summary at `[Frierson:EditingTheory p.86-92]`. Original: `[external-source: Dmytryk, On Film Editing 1984 — pdf-needs-ocr]`.
+- **Burch's PMR vs IMR and 5×3 continuity matrix** — `[Frierson:EditingTheory p.45-82]` (chapter 2). Spatial axis / 180° line treatment at `p.74-82`.
+- **Bordwell's narrative functions and Intensified Continuity** — `[Frierson:EditingTheory p.99+]` (chapter 4).
+- **Kuleshov effect / Soviet montage** — `[Frierson:EditingTheory p.149]` (chapter 5; Eisenstein and Montage). Cross-reference using the term "Kuleshov effect" at `p.58`. Original: `[external-source: Eisenstein, Film Form 1949 — not in local corpus]`.
+- **Long-take / duration grammar** — `[external-source: Tarkovsky, Sculpting in Time 1986 — not in local corpus]`. Mappable to Murch Criterion 1 at `[Frierson:EditingTheory p.112]`.
+- **L-cut / J-cut nomenclature** — `[general-knowledge]`; widely-attributed to Walter Murch's editorial practice (sound-design split edits) but not anchored to a specific page in the local corpus.
 
 ---
 

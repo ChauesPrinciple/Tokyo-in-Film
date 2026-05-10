@@ -20,13 +20,15 @@ Every shot size carries a psychological contract with the audience. Choosing a s
 ### The Progression Rule
 Shots should progress with intention, not habit. MS → CU = increasing intimacy. CU → MS = emotional withdrawal. ECU → MS = psychological stabilization (or forced normality). Any reversal carries meaning.
 
-### Cut-Off Rule (Hughes)
+### Cut-Off Rule (often attributed to Hughes) `[general-knowledge]`
+
+"Hughes" appears as the attribution across multiple skills (cut-off rule, simple-sequence formula, transition grammar). My session search did not surface a single canonical "Hughes" reference in the local corpus; the attribution is plausibly to a textbook (e.g., *Cinematography for Directors* by Jacqueline Frost or a Hughes-authored craft guide) but is **un-verified locally**. Treat as `[general-knowledge]` (the underlying rule about not cutting at natural joints is universal in cinematography pedagogy and is repeated in `[Filmmaking:MakingAFilm]` and `[FilmCheckingContent]`) until the original Hughes source is identified.
+
 Never cut a human body at a natural joint. The joints — ankles, knees, waist, elbows, wrists, neck — are where the eye naturally goes. Cutting there amputates. Safe cut lines:
 - Below ankle (full foot in frame) or mid-shin
 - Mid-thigh or above knee
 - Mid-torso (never at belt/waistband)
 - Mid-chest or above
-- Never at the neck (the "head in a box" problem)
 
 ## Compositional Rules
 
@@ -87,7 +89,9 @@ This skill is invoked **first** in Mode A (production filmmaking). No lighting, 
 
 ### How to Choose Shot Size
 
-Source: Storyboarding course VTT 18 (visual language module — ECU "can create an uncomfortable or an intense effect... and heighten the intensity of any scene"); VTT 9 (shot types module — close-up "helps with audience identification"); Kuleshov effect (Soviet montage, 1910s)
+Sources: `[external-source: Storyboarding course VTT 18 — video, not yet text-extracted]` (visual language module: ECU "can create an uncomfortable or an intense effect... and heighten the intensity of any scene"); `[external-source: Storyboarding course VTT 9 — video, not yet text-extracted]` (shot types module: close-up "helps with audience identification"); `[Frierson:EditingTheory p.149]` (Kuleshov chapter; see also `editorial-grammar` skill).
+
+**Note**: VTT citations refer to the video lecture corpus listed in `SOURCE_INDEX.md` under the Storyboarding course; transcripts are not yet text-extracted, so these citations cannot be verified by `search_corpus.py`. They are tagged `[external-source]` until transcripts exist.
 
 ```
 ASK: What does the audience need to feel about this subject at this moment?
@@ -115,7 +119,7 @@ Violating it without intent produces incoherence.
 
 ### How to Choose Composition
 
-Source: Storyboarding course VTT 19 (composition principles module — centered frame conveys "stability... normality"; off-center/thirds conveys "uneasiness, a dynamic quality... conflict"; composition used to "underscore that story point")
+Source: `[external-source: Storyboarding course VTT 19 — video, not yet text-extracted]` (composition principles module — centered frame conveys "stability... normality"; off-center/thirds conveys "uneasiness, a dynamic quality... conflict"; composition used to "underscore that story point"). Cross-reference: the gestalt / two-dimensional-screen-space framing of composition is anchored at `[Frierson:EditingTheory p.20]` (Arnheim and the Zettl chapter).
 
 ```
 ASK: Who holds power in this scene?
@@ -139,13 +143,12 @@ In a thirds-dominant film, a centered character reads as completely trapped.
 
 ### Source Index
 
-- **Shot size psychology**: Storyboarding course VTT 18 (ECU for intensity); VTT 9 (six core shot types; close-up for audience identification); Kuleshov, Soviet montage experiments, 1910s
-- **Composition as narrative conflict tool**: Storyboarding course VTT 19 (composition principles module — centered = stability; thirds = conflict and power dynamics)
-- **POV shot / hero identification**: Storyboarding course VTT 20 (storytelling shots module — POV shot and close-up as the two shots that drive "hero identification"; must "motivate the cut" by showing character looking off-screen first)
-- **Cut-off rule**: Hughes (cited in standard visual grammar literature)
-- **Shot size × Stage Matrix**: ON THE EDGE Production Design; `@direct-digital-film`
-- **Psychological reads by shot**: `@direct-digital-film` (visual grammar section)
-
+- **Shot size psychology** — `[external-source: Storyboarding course VTT 18, VTT 9 — video, not yet text-extracted]`; Kuleshov experiment at `[Frierson:EditingTheory p.149]`.
+- **Composition as narrative conflict tool** — `[external-source: Storyboarding course VTT 19 — video, not yet text-extracted]`. Theoretical anchor: gestalt / two-dimensional screen space at `[Frierson:EditingTheory p.20]` (Arnheim, gestalt psychology, *Film as Art* 1933).
+- **Vector theory** (graphic vectors / index vectors / continuity at the production stage) — `[Frierson:EditingTheory p.20]` (Chapter 1: Herbert Zettl, Approaches to Building Screen Space and Vectors). Original: `[external-source: Zettl, Sight Sound Motion — not in local corpus]`.
+- **POV shot / hero identification** — `[external-source: Storyboarding course VTT 20 — video, not yet text-extracted]`.
+- **Cut-off rule** — attributed to "Hughes" but not verified in local corpus; treat as `[general-knowledge]`.
+- **Shot size × Stage Matrix** and **Psychological reads** — `[agent-synthesis]` for ON THE EDGE; not in source corpus.
 
 ---
 

@@ -7,7 +7,7 @@ tags: [filmmaking, screenwriting, character, arc, design]
 
 Characters are not people. They are machines built to prove or disprove a thesis. Every design decision — flaw, arc, telling detail, speech pattern, relationship — flows from the story's Controlling Idea. Build backward from the thesis. Build forward only once the architecture is sound.
 
-**Sources:** McKee, *Story*; Walley, *Turn & Burn*; Garland/UCA character engineering; Trottier, *The Screenwriter's Bible*.
+**Sources:** `[McKee:Story]` (polarization at `split_053`; Inciting Incident at `split_053`; Premise vs. Controlling Idea at `split_033`; scene definition at `split_010`); `[Walley:TurnAndBurn]` (five-stage arc at `chapter0022`; Heroes-vs-Villains framing visible in TOC at `chapter0001`); `[external-source: Garland/UCA character engineering — workshop tradition, not corpus-grounded]`; `[Trottier:ScreenwritersBible]`.
 
 ---
 
@@ -61,8 +61,9 @@ The flaw is not a character weakness (shy, clumsy, impatient). It is a **misconc
 2. Build the flaw as its antithesis: *"The protagonist believes documentation is the same as presence — that witnessing something through a lens counts as being there."*
 3. The story must test this belief in the most difficult possible situation. Whatever you choose as the story's pressure — that is what cracks the flaw open.
 
-### Walley's Five-Stage Arc
-Map the protagonist's movement from flaw through to resolution:
+### Walley's Five-Stage Arc `[Walley:TurnAndBurn chapter0022]`
+
+Map the protagonist's movement from flaw through to resolution. Walley: "Five simple words to create an endless number of story opportunities." `[Walley:TurnAndBurn chapter0022]`
 
 | Stage | Function | Story Question |
 |-------|----------|----------------|
@@ -92,7 +93,10 @@ Before writing a single scene, know which type of arc you are writing. The arc t
 ## Step 4 — Polarization: Cast as Network
 
 ### The McKee Principle
-"The first principle of cast design is polarization." Between roles, devise a network of contrasting or contradictory attitudes, values, and approaches. Characters who agree cannot generate drama. They can debate, but they cannot conflict.
+
+McKee, verbatim: "Each role must fit a purpose, and the first principle of cast design is polarization. Between the various roles we devise a network of contrasting or contradictory attitudes." `[McKee:Story split_053]` (same chapter as Inciting Incident).
+
+Between roles, devise a network of contrasting or contradictory attitudes, values, and approaches. Characters who agree cannot generate drama. They can debate, but they cannot conflict.
 
 ### The Polarization Map
 For every script, build this map before assigning scenes:
@@ -110,7 +114,7 @@ Every character must occupy a **different position** on the conflict axis. If tw
 - **Exposition-only characters:** Exist to tell the audience something. Cut them. Move the information to the environment, a prop, or an action.
 - **Agreement pairs:** Two characters who share a worldview with no meaningful distinction. Merge them or polarize them.
 - **Undefined antagonism:** The antagonist has no coherent worldview. An antagonist who is simply evil is not an antagonist — they are a plot device. The antagonist must be *right from their own perspective.*
-- **Satellite characters:** Support the protagonist without any independent desire of their own. Every character must want something, even if it's only a glass of water. (Mamet)
+- **Satellite characters:** Support the protagonist without any independent desire of their own. Every character must want something, even if it's only a glass of water. `[external-source: Mamet — the "glass of water" formulation is widely-attributed to David Mamet but my session search did not pin a specific Mamet text in the local corpus]`
 
 ### 空の美 Cast Polarization Map — Definitive Edition
 
@@ -165,7 +169,9 @@ Visual shorthand that replaces exposition. A telling detail is a physical behavi
 
 ---
 
-## Step 6 — World of the Story (McKee, Ch. 8)
+## Step 6 — World of the Story (McKee) `[needs-citation]`
+
+The AGENT.md cross-reference says "McKee, Ch. 8" but McKee's Chapter 8 in our extraction is "The Inciting Incident" (`[McKee:Story split_053]`), not "World of the Story." The five conflict levels (inner / personal / social / environmental / cosmic) appear in McKee but the specific chapter and locator need verification on next deep edit. Run `search_corpus.py "levels of conflict" --book McKee:Story` to pin.
 
 Characters cannot be designed in isolation. They are products of their world. Before finalizing any character, answer these questions about the world they inhabit:
 

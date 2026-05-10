@@ -7,6 +7,8 @@ tags: [filmmaking, directing, staging, blocking, continuity]
 
 ## The 180° Rule (Action Axis / Line of Action)
 
+Sources: `[Frierson:EditingTheory]` Chapter 1 (Zettl) treats the 180° rule as "Continuity at the Production Stage" — TOC entry at `p.8` points into Ch.1 body content beginning at `p.20`. Burch's stage-line discussion is at `[Frierson:EditingTheory p.74-82]` ("Spatial Axis: Spatial Relations between Outgoing Shot A and Incoming Shot B"). The 180° rule is also Murch's Criterion 5 ("planarity") at `[Frierson:EditingTheory p.112-113]`. Practical production-side treatment is in `[Filmmaking:MakingAFilm]` (index points to `p.271` per `p.435`).
+
 The most important continuity rule in filmmaking. Violating it invisibly destroys spatial coherence. Violating it intentionally, visibly, destroys spatial coherence as a narrative tool.
 
 **The Rule**: Draw an imaginary line through the primary action or between the primary subjects. The camera must stay on ONE SIDE of that line for all shots in a continuous scene. If the camera crosses to the other side between cuts, subjects appear to reverse position and screen direction. The audience experiences confusion they cannot name — the scene "feels wrong."
@@ -35,7 +37,9 @@ The rule can be broken only if the audience sees it happen:
 
 Coverage = the set of shots acquired for a scene that will give the editor enough material to cut a complete, working sequence.
 
-### Simple Sequence Formula (Hughes)
+### Simple Sequence Formula (often attributed to Hughes) `[general-knowledge]`
+
+The "Hughes" attribution recurs across multiple skills (cut-off rule, transition grammar, this formula). My session search did not surface a single canonical Hughes reference in the local corpus; the formula itself is widely-published across filmmaking pedagogy (e.g., `[Filmmaking:MakingAFilm]` covers all four elements). Treat as `[general-knowledge]` until the original Hughes source is identified.
 
 The minimum viable coverage for any scene:
 1. **Wide establishing shot** — show where and who

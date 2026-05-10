@@ -7,7 +7,7 @@ tags: [filmmaking, screenwriting, dialogue, subtext, voice]
 
 Dialogue is the last layer applied to a scene, never the first. A scene must work in silence before a single line is written. This skill governs the craft of converting silence into the minimum necessary words — and making those words carry more than their surface meaning.
 
-**Sources:** Walley, *Turn & Burn*; Trottier, *The Screenwriter's Bible*; McKee, *Story*; Burnett/Garland/UCA integrated methodology.
+**Sources:** `[Walley:TurnAndBurn]` (CHAPTER 5: DIALOGUE — see verified locators in `## Sources` block below); `[Trottier:ScreenwritersBible]`; `[McKee:Story]`; `[external-source: Burnett / Garland / UCA integrated methodology — not corpus-grounded; treat as workshop/curriculum tradition]`.
 
 ---
 
@@ -58,7 +58,7 @@ Characters almost never say what they mean. They talk around the truth because:
 
 Only at moments of extreme crisis — the Breaking Point — does a character say exactly what they mean. This is why those moments land: they're the exception.
 
-### The Subtext Translation Method (Walley)
+### The Subtext Translation Method (Walley) `[Walley:TurnAndBurn]` ch. 5 — "Subtext" subsection (TOC ref at `chapter0001`). On next deep edit, run `search_corpus.py "subtext" --book Walley:TurnAndBurn` to pin the body chapter locator.
 
 For every line of dialogue, write two versions:
 
@@ -83,7 +83,7 @@ Direct dialogue earns its place only when:
 
 If none of these conditions apply, translate to subtext.
 
-### The Chess Analogy (Walley)
+### The Chess Analogy (Walley) `[needs-citation]` — the chess metaphor for dialogue (move/reveal/trap) is consistent with Walley's framing but my session search did not find this specific analogy in `[Walley:TurnAndBurn]`. May be agent-paraphrase. Verify or downgrade to `[general-knowledge]` on next deep edit.
 Subtext-rich dialogue operates like chess. Each line is simultaneously:
 - A **move** (advances the speaker's objective)
 - A **reveal** (shows the audience something the characters may not see)
@@ -109,7 +109,7 @@ Every character must sound like only themselves. Voice is not accent or slang �
 | **Confrontation style** | How they fight | One attacks with questions. Another with statements. Another by leaving. |
 | **Information control** | How much they reveal and when | One character over-explains. Another withholds. |
 
-### The Isolation Test (Walley)
+### The Isolation Test (Walley) `[needs-citation]` — my session search for "isolation test" in `[Walley:TurnAndBurn]` returned zero hits. The technique itself is widely-taught dialogue craft but the attribution to Walley is unverified. May be `[general-knowledge]` or attributable to another author. Resolve on next deep edit.
 Extract all of Character A's lines and read them in sequence, stripped of context. Then do the same for Character B.
 
 Ask:
@@ -118,7 +118,7 @@ Ask:
 - Do A's lines, read alone, sound like a consistent person with a recognizable pattern?
 - If no → A's voice is not yet built.
 
-### The Voice Mimicry Method (Walley)
+### The Voice Mimicry Method (Walley) `[needs-citation]` — "Trust the Voice in Your Head" is a section in `[Walley:TurnAndBurn]` ch. 5 (visible in TOC at `chapter0001`), so this attribution is plausible; pin to body chapter on next deep edit.
 When building a character's voice for the first time, cast a known voice in your head. Not for their personality — for their *speech pattern*:
 - Samuel L. Jackson: declarative, rhythmic, builds to emphasis
 - Sandra Bullock: conversational, self-deprecating, overlaps thoughts
@@ -191,7 +191,7 @@ For every line, answer YES or NO:
 
 **The hack (Walley):** If *"Jane's worried he's about to fire her"* feels too internal, change it to *"Jane looks worried he's about to fire her."* Same information, visual context. Nobody with production experience will reject this.
 
-**The Bourne Identity example (Walley):** *"Those words. The way he said it. She's grabbing her purse, clearing out of the room. Slamming the door behind her. Click. It's locked."* — Tony Gilroy, Academy Award nominee. This is unfilmable prose that is also extraordinary screenwriting. Good prose is good prose.
+**The Bourne Identity example (Walley):** *"Those words. The way he said it. She's grabbing her purse, clearing out of the room. Slamming the door behind her. Click. It's locked."* — Tony Gilroy, Academy Award nominee. This is unfilmable prose that is also extraordinary screenwriting. Good prose is good prose. `[Walley:TurnAndBurn chapter0073]` (Walley's defense of unfilmables using this Bourne Identity example is direct: "this is, in fact, a line from the screenplay The Bourne Identity (2002) penned by Edgar Award winner and Academy Award nominee Tony Gilroy"); broader context on Walley's appreciation of Gilroy's prose voice at `chapter0076`.
 
 ---
 
@@ -216,7 +216,7 @@ For every scene with dialogue, identify the final line. Is it the strongest? If 
 ### Step 4: Density Sweep
 Run the Density Test on every line. Produce a cut list: lines that fail all criteria, ranked by scene.
 
-### Step 5: Talking Heads Check (Trottier)
+### Step 5: Talking Heads Check (Trottier) `[Trottier:ScreenwritersBible part0015]` (initial rule); reinforced in revision checklist at `[Trottier:ScreenwritersBible part0025]` ("Are there too many scenes with talking heads?")
 Flag any scene where two or more characters are stationary and talking without action, movement, environmental interaction, or visual business. For each flagged scene, suggest:
 - A location change mid-scene
 - Physical action that complements the dialogue
