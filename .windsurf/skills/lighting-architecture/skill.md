@@ -7,20 +7,22 @@ tags: [filmmaking, lighting, cinematography, DOP]
 
 ## The Three-Point System
 
+Sources: `[DigitalFilmmaking p.73]` (Hughes — the verbatim 2:1 ratio with foot-candle examples this skill cites: "Back light (2) (Example: 300 foot candles) Fill light (1) (Example: 150 foot candles) Key light (2) (Example: 300 foot candles)"); `[JCam:InstructorGuide p.28-29]` (key/fill/back step-by-step setup); `[FilmCheckingContent p.59]` (Sharman: "This lighting set-up is known as three-point lighting, and it's the most basic starting point for lighting a scene").
+
 Every lighting setup derives from three-point lighting. These are not three specific lights — they are three functions that may be served by any number of sources.
 
 ### Key Light
 The primary light source. Defines the subject. Casts the main shadow.
 - **Position**: Off-camera axis, approximately 45° to one side and 45° above eye level
 - **Quality**: Harsh (hard-edged shadows) for drama; softened (diffused) for naturalism
-- **Intensity**: 300 foot-candles is the standard reference
+- **Intensity**: 300 foot-candles is the standard reference `[DigitalFilmmaking p.73]`
 - **In practice**: Motivated by the strongest light source visible or implied in the scene (sun through porthole, console glow, overhead fluorescent)
 
 ### Fill Light
 The shadow management light. Fills in what the key creates.
 - **Position**: Opposite side from key, at or near camera axis
 - **Quality**: Always soft/diffused — diffusion material, bounce card, or soft box
-- **Intensity**: Half of key = 150 foot-candles at 2:1 ratio
+- **Intensity**: Half of key = 150 foot-candles at 2:1 ratio `[DigitalFilmmaking p.73]` (Hughes states this exactly: "The intensity of the lights is a 2 to 1 ratio")
 - **In practice**: Motivated by ambient light, reflected surfaces, secondary practicals
 
 ### Back Light (Rim Light)
@@ -114,7 +116,7 @@ After `@visual-grammar` (shot size/composition) and `@optics-psychology` (focal 
 
 ### How to Set the Key-to-Fill Ratio
 
-Source: Herbert Zettl, *Sight, Sound, Motion* (5th ed.) — lighting as aesthetic field; `@direct-digital-film`
+Sources: `[DigitalFilmmaking p.73]` (Hughes, 2:1 base ratio); `[external-source: Zettl, Sight Sound Motion 5th ed. — not in local corpus]` (key-to-fill ratio as aesthetic field). The progression beyond 2:1 (4:1, 8:1, 16:1) toward higher contrast for drama/horror is `[general-knowledge]` widely-taught across cinematography pedagogy; the specific Stage One/Two/Three mapping is `[agent-synthesis]` for ON THE EDGE.
 
 ```
 ASK: What is the emotional register of this scene?
@@ -138,7 +140,7 @@ ASK: What is the emotional register of this scene?
 
 ### How to Choose Color Temperature
 
-Source: Zettl, *Sight, Sound, Motion* — color temperature as expressive tool
+Sources: `[external-source: Zettl, Sight Sound Motion — not in local corpus]` (color temperature as expressive tool); the numeric Kelvin values for tungsten (~3200K), daylight (~5600K), fluorescent (~4000-4500K) are `[general-knowledge]` standard physics widely-published across cinematography references.
 
 ```
 ASK: Is the world in this scene coherent?
@@ -176,13 +178,11 @@ ASK: Can the audience see or infer the source of this light?
 
 ### Source Index
 
-- **Key-to-fill ratio as emotional dial**: Herbert Zettl, *Sight, Sound, Motion* (5th ed., 2010); `@direct-digital-film`
-- **Three-point lighting system**: Kris Malkiewicz, *Cinematography* (1989); standard cinematography theory
-- **Color temperature and expressive use**: Zettl, *Sight, Sound, Motion* — color as aesthetic field
-- **Motivated/unmotivated sources**: Standard cinematography theory; Malkiewicz, *Cinematography*
-- **ON THE EDGE stage lighting map**: ON THE EDGE Production Design; `@direct-digital-film`
-- **Entity light rule**: ON THE EDGE production design document
-
+- **Three-point lighting system** — `[DigitalFilmmaking p.73]` (Hughes, body content with verbatim 2:1 ratio and foot-candle examples). Cross-references: `[JCam:InstructorGuide p.28-29]` (step-by-step setup); `[FilmCheckingContent p.59]` (Sharman). Original canonical: `[external-source: Malkiewicz, Cinematography 1989 — not in local corpus]`.
+- **Key-to-fill base ratio (2:1)** — `[DigitalFilmmaking p.73]` (verbatim). Higher dramatic ratios (4:1, 8:1, 16:1) are `[general-knowledge]` widely-taught.
+- **Color temperature** — numeric Kelvin values are `[general-knowledge]`. Aesthetic-field framing: `[external-source: Zettl, Sight Sound Motion — not in local corpus]`.
+- **Motivated/unmotivated sources** — `[general-knowledge]` standard cinematography pedagogy.
+- **ON THE EDGE stage lighting map and Entity light rule** — `[agent-synthesis]` for ON THE EDGE production design; not in source corpus.
 
 ---
 

@@ -5,6 +5,8 @@ tags: [filmmaking, production, set, crew, protocol]
 
 # PRODUCTION PROTOCOL
 
+Sources: `[Filmmaking:MakingAFilm]` is the spine of this skill (crew hierarchy throughout; 2nd AD and call sheets at `p.130`; sandbag/light stand safety at `p.224`); `[JCam:InstructorGuide p.14]` (call sheet glossary entry) and `[p.19]` (AD/AC/DP roles glossary); `[DigitalFilmmaking p.88]` (Hughes safety tips with verbatim sandbag protocol).
+
 ## Crew Hierarchy
 
 ### The Director
@@ -12,11 +14,11 @@ Envisions the program. Controls crew activities. Works with actors to achieve co
 
 ### Assistant Directors (ADs)
 
-**1st AD**: The director's operational voice. Runs the set. Calls the command chain. Ensures lighting and sound are staged, cast and crew are ready, and the set is quiet before the shot rolls. If the director is the brain, the 1st AD is the nervous system.
+**1st AD**: The director's operational voice. Runs the set. Calls the command chain. Ensures lighting and sound are staged, cast and crew are ready, and the set is quiet before the shot rolls. If the director is the brain, the 1st AD is the nervous system. `[JCam:InstructorGuide p.19]` (AD glossary).
 
-**2nd AD**: Positions technical personnel and actors. Ensures people are where they need to be. Manages two-way radio communications. Choreographs extras and background. Calls "Lock it up for picture!" over radio to the 3rd AD.
+**2nd AD**: Positions technical personnel and actors. Ensures people are where they need to be. Manages two-way radio communications. Choreographs extras and background. Calls "Lock it up for picture!" over radio to the 3rd AD. `[Filmmaking:MakingAFilm p.130]` ("I liken a second A.D. to an executive assistant... Some of the second A.D.'s paperwork includes handling call sheets, collecting from the camera department the camera reports... collecting talent releases for background players").
 
-**3rd AD**: Works off-set. Controls public traffic and noise outside the shooting area. When "Lock it up" comes over radio, the 3rd AD ensures no external noise contaminates the take. Escorts actors on/off set, to/from makeup and costume.
+**3rd AD**: Works off-set. Controls public traffic and noise outside the shooting area. When "Lock it up" comes over radio, the 3rd AD ensures no external noise contaminates the take. Escorts actors on/off set, to/from makeup and costume. `[JCam:InstructorGuide p.19]` ("Depending on the size of the crew, there may even be a 3rd AD").
 
 ### Director of Photography (DOP) / Cinematographer
 Head of camera department. Designs ALL lighting for the set — but does not place the lights. Decides camera, lens, framing, movement for each shot (in agreement with the director). The DOP's relationship with the director is the most important creative relationship on set.
@@ -107,14 +109,16 @@ The set is a professional environment with near-military precision. These are no
 - No offensive language unless the director has explicitly set a different tone.
 - If in doubt, ask your supervisor.
 
-## Safety Protocol (from Hughes)
+## Safety Protocol (Hughes) `[DigitalFilmmaking p.88]`
+
+Source: `[DigitalFilmmaking p.88]` (Hughes verbatim: "When first setting up light stands, use a double-sided sandbag to hold the stand upright. Some lighting stands and fixtures are very lightweight and could easily be knocked over"). Cross-reference: `[Filmmaking:MakingAFilm p.224]` ("A standard sandbag weighs about 15 pounds and resembles a cowboy's saddlebag").
 
 **Lighting fixtures and electrical**:
-- Sandbags on all light stands — a falling light stand is lethal
+- Sandbags on all light stands — a falling light stand is lethal `[DigitalFilmmaking p.88]`
 - Switch fixtures off before plugging or unplugging
 - Wear gloves when handling hot fixtures
 - NEVER touch bulbs with bare fingers — skin oil causes uneven heating = bulb explosion
-- Total wattage ÷ voltage = amperage draw; never exceed 15A per circuit
+- Total wattage ÷ voltage = amperage draw; never exceed 15A per circuit `[general-knowledge]` (standard electrical code; also reflected in `[DigitalFilmmaking]` electrical safety chapter)
 
 **General set safety**:
 - Know where all power switches are
@@ -130,7 +134,7 @@ The set is a professional environment with near-military precision. These are no
 
 **Field monitor**: Set a monitor near the camera so the director can view the shot during takes without looking through the camera's LCD. Essential for performance direction.
 
-**Call sheet**: Time-blocked daily document showing: scene number, INT/EXT, day/night, shot descriptions, location, characters required, special equipment needed. Distributed to all departments the night before each shooting day.
+**Call sheet**: Time-blocked daily document showing: scene number, INT/EXT, day/night, shot descriptions, location, characters required, special equipment needed. Distributed to all departments the night before each shooting day. `[Filmmaking:MakingAFilm p.130]` ("call sheets (lists of which cast members work the next day and any special equipment or elements needed for the shooting). On bigger productions this is usually handed off by the first assistant director"); `[JCam:InstructorGuide p.14]` (glossary entry: "A call sheet contains important details of a production, like the filming location...").
 
 ## Smaller Shoot Adaptations (for ON THE EDGE scale)
 

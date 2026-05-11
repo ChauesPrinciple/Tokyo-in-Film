@@ -7,6 +7,8 @@ tags: [filmmaking, cinematography, lenses, optics]
 
 ## Focal Length Fundamentals
 
+Sources: `[Filmmaking:MakingAFilm p.199]` ("A telephoto lens is often used for close-up shots... helping to throw the background out of focus... An out-of-focus background lets the audience concentrate on an actor or object in the frame"); `[FilmCheckingContent p.60]` (Sharman: "it's the lens that determines the clarity, framing, depth of field and exposure of the image"). The specific 6.5mm normal-lens threshold for 1/3" CCD sensors is `[general-knowledge]` standard videography spec.
+
 Focal length = distance from the lens's optical center to the CCD image plane, expressed in millimeters. For a 1/3" CCD sensor (standard consumer/prosumer video camera), the **normal lens** is approximately **6.5mm**. Normal = what the human eye perceives as natural perspective.
 
 | Lens Type | Focal Length (1/3" CCD) | Perspective Effect | Psychological Register |
@@ -19,6 +21,8 @@ Focal length = distance from the lens's optical center to the CCD image plane, e
 **Critical insight**: Wide lenses feel participatory — the camera is IN the space. Telephoto lenses feel observational — the camera watches from distance. A subject shot telephoto feels watched, not accompanied.
 
 ## Depth of Field
+
+Sources: `[Filmmaking:MakingAFilm p.206]` (Sharman-style body content: "Depth of field deals with the depth of focus in your shot. In other words, what distance in front of and behind your subject are in acceptable focus?"); `[FilmCheckingContent p.58, p.61, p.63]` (Sharman: "depth of field, the range of distance in front of the camera in which subjects are in sharp focus"); `[Frierson:EditingTheory p.245-253]` (Bazin's theoretical treatment of staging in depth: "depth of field is not just a stock in trade of the cameraman... it is a capital gain in the field of direction — a dialectical step forward").
 
 Depth of field (DOF) = the range of distances that appear acceptably sharp in the image.
 
@@ -85,6 +89,10 @@ Every shot makes a claim about the relationship between subject and environment.
 
 - Shot size + focal length pairing is tightly coupled with composition (`visual-grammar`) and lighting (`lighting-architecture`); when this skill issues claims about subject-environment relationship, those claims should harmonize with `[Filmmaking:MakingAFilm]` ch. on cinematography.
 
-**Pending verification:**
+**Verified primary anchors:**
 
-- Specific focal length thresholds (wide vs. normal vs. telephoto in psychological terms) are partly `[general-knowledge]` and partly attributable to direct-digital-film practice. Run `search_corpus.py "focal length"` on next deep edit and pin the locators.
+- **Focal length and lens choice** — `[Filmmaking:MakingAFilm p.199]` (telephoto + DOF interaction); `[FilmCheckingContent p.60]` (lens determines clarity, framing, DOF, exposure).
+- **Depth of field body content** — `[Filmmaking:MakingAFilm p.206]` (Sharman's working definition); `[FilmCheckingContent p.58, p.61, p.63]` (Sharman with example images).
+- **Depth of field as theoretical/expressive tool** — `[Frierson:EditingTheory p.245-253]` (Bazin on staging in depth).
+- **6.5mm normal lens for 1/3" CCD** — `[general-knowledge]` standard videography spec.
+- **Wide-distorts-edges / telephoto-compresses-planes psychological framing** — `[general-knowledge]` standard cinematography pedagogy; the Stage One/Two/Three lens protocol below is `[agent-synthesis]` for ON THE EDGE.

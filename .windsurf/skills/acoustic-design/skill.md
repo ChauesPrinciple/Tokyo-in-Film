@@ -60,18 +60,13 @@ For multi-mic setups (multiple lavs + boom), a field mixer combines signals with
 
 ## Room Tone
 
+Sources: `[FilmCheckingContent p.92-93]` (Sharman's full body treatment: "Hold for room tone!" protocol; "Every space, interior or exterior, has its own unique, underlying ambient sound. What we sometimes call a sound floor"); `[Filmmaking:MakingAFilm p.242]` ("Room tone (recording outside ambience is called a presence track). An omni-directional microphone... works well for recording ambient sounds"); `[Filmmaking:MakingAFilm p.229, p.296, p.314]` (room tone protocol cross-references); `[DigitalFilmmaking p.99]` (Hughes: "before leaving a setting (location or set), or when background sound changes... the sound technician should request a room tone recording").
+
 **Definition**: The ambient sound of a space with no deliberate sound being made — no dialogue, no action, no music. The "silence" of a location.
 
 **Why it's mandatory**: When dialog is cut, edited, or ADR'd in post, the transitions between audio clips create audible silence. Pure silence sounds wrong — it's a gap, an edit scar. Room tone fills those gaps seamlessly. The edit becomes inaudible.
 
-**How to record**: At the END of every shooting session at every location — before moving to a new set or striking the location — the director calls for quiet. Everyone freezes. The boom op records 30 seconds to 1 minute of the room's ambient sound. No one speaks. No one moves. No one leaves.
-
-**For ON THE EDGE**: The ship's room tone is the most important audio element in the film. It is:
-- Stage One: Low hum of life support, almost subliminal, neutral and mechanical
-- Stage Two: Same hum but with an added frequency — very low, almost below hearing, that the audience feels rather than hears
-- Stage Three: The hum has changed register. Something is resonating in the hull that has no mechanical source.
-
-Room tone in a horror film is not neutral — it is a character.
+**How to record**: At the END of every shooting session at every location — before moving to a new set or striking the location — the director calls for quiet. Everyone freezes. The boom op records 30 seconds to 1 minute of the room's ambient sound. No one speaks. No one moves. No one leaves. `[FilmCheckingContent p.92]` (Sharman describes this exact ritual: "the 1st AD will call out: 'Hold for room tone!' And then everyone stops in their tracks and holds still, remaining completely silent for at least 60 seconds").
 
 ## ADR (Automatic Dialogue Replacement)
 
@@ -107,7 +102,7 @@ During pre-production (microphone selection and location sound strategy) AND in 
 
 ### How to Choose Microphone
 
-Source: `@direct-digital-film`; Tomlinson Holman, *Sound for Film and Television* (2010)
+Sources: `[Filmmaking:MakingAFilm]` ch. on production audio (boom/lavalier/wireless treatment indexed at `p.15`, body content `p.220-242`); `[DigitalFilmmaking]` (Hughes ch. 5 "Production Audio" per TOC at `p.7` indexing to `p.77+`); `[external-source: Holman, Sound for Film and Television 2010 — not in local corpus]` (canonical reference).
 
 ```
 ASK: What is the environment and how is the subject moving?
@@ -132,7 +127,7 @@ ASK: What is the environment and how is the subject moving?
 
 ### When to Use L-Cut vs. J-Cut
 
-Source: Walter Murch (credited with systematizing split edit practice); `@editorial-grammar`
+Sources: see `@editorial-grammar` skill for verified locators. The Murch attribution for L/J-cut nomenclature is `[general-knowledge]` widely-attributed to Walter Murch's editorial practice (sound-design split edits) but not anchored to a specific page in the local corpus. The horror-application principle below is `[agent-synthesis]` extending standard split-edit practice.
 
 ```
 ASK: Does the next scene arrive before or after we expect it?
@@ -177,13 +172,12 @@ ADR may be required for scenes where room tone is missing and dialogue has been 
 
 ### Source Index
 
-- **Microphone types and polar patterns**: `@direct-digital-film`; Tomlinson Holman, *Sound for Film and Television* (3rd ed., 2010)
-- **L-cut/J-cut as editorial grammar**: Walter Murch (split edit terminology and practice)
-- **Room tone as acoustic fingerprint**: Standard production sound protocol; Holman, *Sound for Film and Television*
-- **Boom operator absolute requirement (headphones)**: Production sound standard practice
-- **Entity audio rule (sound as subtraction)**: ON THE EDGE production design; `@direct-digital-film`
-- **Horror application of J-cut**: `@editorial-grammar` split edit strategy
-
+- **Microphone types and polar patterns** — `[Filmmaking:MakingAFilm]` ch. on production audio; `[DigitalFilmmaking]` ch. 5 ("Production Audio"). Original canonical: `[external-source: Holman, Sound for Film and Television 2010 — not in local corpus]`.
+- **Room tone** — `[FilmCheckingContent p.92-93]` (Sharman, body content); `[Filmmaking:MakingAFilm p.242]` ("presence track" terminology); `[DigitalFilmmaking p.99]` (Hughes, recording protocol).
+- **L-cut / J-cut nomenclature** — `[general-knowledge]`; widely-attributed to Walter Murch's editorial practice but not pinned to a specific corpus locator. See `@editorial-grammar` for the Murch Six Criteria anchored at `[Frierson:EditingTheory p.112-113]`.
+- **Boom operator headphones requirement** — `[general-knowledge]` standard production sound practice; treated practically in `[Filmmaking:MakingAFilm]` and `[DigitalFilmmaking]` audio chapters.
+- **Entity audio rule (sound as subtraction)** — `[agent-synthesis]` for ON THE EDGE production design; not in source corpus.
+- **Horror application of J-cut** — `[agent-synthesis]` extending standard split-edit practice; cross-reference to `@editorial-grammar`.
 
 ---
 

@@ -5,6 +5,8 @@ tags: [filmmaking, storyboard, pre-production, visual planning]
 
 # STORYBOARD ARTIST
 
+Sources: `[Filmmaking:MakingAFilm p.145-151]` — Chapter 9 "Storyboarding Your Movie" (basics/benefits `p.146`; script breakdown `p.148`; framing panels and angles `p.149-151`); `[JCam:InstructorGuide p.17]` (glossary: "A visual outline of a film or animation"); `[JCam:InstructorGuide p.47-51]` (Cameron / Terminator storyboard workflow).
+
 ## The Storyboard's Purpose
 
 A storyboard is not art. It is a communication tool. It tells the entire production team — director, DOP, gaffer, grips, actors, editors — what each shot looks like before a single light is placed or camera rolled. Time spent storyboarding saves three times that time on set.
@@ -12,6 +14,8 @@ A storyboard is not art. It is a communication tool. It tells the entire product
 A storyboard answers: What is in the frame? How is the camera positioned? What movement happens? In what order do shots occur?
 
 ## Script Breakdown (Beat Identification)
+
+Source: `[Filmmaking:MakingAFilm p.148]` ("Breaking down your script" — TOC at `p.11`; body treatment at `p.148`). The step-by-step beat-numbering protocol below is `[agent-synthesis]` extending that foundational step.
 
 Before drawing a single frame, break the script into beats.
 
@@ -29,6 +33,8 @@ A beat is: a moment that changes something. The character's emotional state chan
 **Story point focus**: Every beat must serve the narrative. If you cannot explain in one sentence what the beat accomplishes for the story, the beat (and its shots) may be expendable.
 
 ## The Six Core Shots
+
+Sources: `[Filmmaking:MakingAFilm p.149-151]` ("Deciding What to Include in Each Panel"; shot sizes and angles); `[DigitalFilmmaking p.134]` (Hughes simple sequence: establishing → story shots → cut-ins). Individual shot-size names (ES/WS/LS/MS/CU/ECU) are `[general-knowledge]` standard cinematography vocabulary; the six-category taxonomy is `[agent-synthesis]`.
 
 Every storyboard draws from six fundamental shot types, applied according to narrative function:
 
@@ -72,9 +78,9 @@ Angle communicates power and psychological state:
 
 The audience bonds with a character through specific shots. These must appear early and be maintained:
 
-**Close-up**: Creates intimacy and empathy. The audience is inside this character's experience. The first CU of each crew member in ON THE EDGE establishes who the audience is watching.
+**Close-up**: Creates intimacy and empathy. The audience is inside this character's experience. The first CU of each crew member in ON THE EDGE establishes who the audience is watching. `[Filmmaking:MakingAFilm p.149-151]` (CU as identification/empathy shot).
 
-**Point of View (POV)**: The audience sees exactly what the character sees. Two types:
+**Point of View (POV)**: The audience sees exactly what the character sees. `[Tomlinson:PlotBasics text00008]` (subjective POV principle: "stories must be told subjectively, from the point of view of the hero, so that we can identify with them and have access to their emotions"). Camera vocabulary for executing POV is `[general-knowledge]`. Two types:
 - **Direct POV**: Camera placed exactly at character's eye level and position. The frame IS the character's eyes.
 - **Over-the-shoulder (OTS)**: Character at edge of frame, occupying approximately 1/3 of the frame, with the subject of their attention in the remaining 2/3.
 
