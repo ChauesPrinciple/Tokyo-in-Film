@@ -20,9 +20,11 @@ Every shot size carries a psychological contract with the audience. Choosing a s
 ### The Progression Rule
 Shots should progress with intention, not habit. MS → CU = increasing intimacy. CU → MS = emotional withdrawal. ECU → MS = psychological stabilization (or forced normality). Any reversal carries meaning.
 
-### Cut-Off Rule (often attributed to Hughes) `[general-knowledge]`
+### Cut-Off Rule (Hughes) `[DigitalFilmmaking]`
 
-"Hughes" appears as the attribution across multiple skills (cut-off rule, simple-sequence formula, transition grammar). My session search did not surface a single canonical "Hughes" reference in the local corpus; the attribution is plausibly to a textbook (e.g., *Cinematography for Directors* by Jacqueline Frost or a Hughes-authored craft guide) but is **un-verified locally**. Treat as `[general-knowledge]` (the underlying rule about not cutting at natural joints is universal in cinematography pedagogy and is repeated in `[Filmmaking:MakingAFilm]` and `[FilmCheckingContent]`) until the original Hughes source is identified.
+**Resolved**: "Hughes" is the author of `[DigitalFilmmaking]` (full title: *Virtual/Digital Filmmaking for Beginners: A Practical Guide to Video Production* / Hughes / 136-1, per the corpus header at `[DigitalFilmmaking p.9]`). All "Hughes" attributions across these skills resolve to this textbook.
+
+For the cut-off rule specifically: my session search of `[DigitalFilmmaking]` did not surface the exact joint-by-joint cut-off list at a single locator (the index covers Centering at `p.38`, Screen Direction at `p.54`, Head Room at `p.42` per the TOC at `[DigitalFilmmaking p.7]`). The body content at `[DigitalFilmmaking p.38-54]` covers framing fundamentals; the specific natural-joint enumeration may be elaborated in subsequent sections or is `[agent-synthesis]` extending Hughes's framing principles. Treat the joint-list itself as `[general-knowledge]` widely-taught in cinematography pedagogy.
 
 Never cut a human body at a natural joint. The joints — ankles, knees, waist, elbows, wrists, neck — are where the eye naturally goes. Cutting there amputates. Safe cut lines:
 - Below ankle (full foot in frame) or mid-shin
@@ -144,10 +146,11 @@ In a thirds-dominant film, a centered character reads as completely trapped.
 ### Source Index
 
 - **Shot size psychology** — `[external-source: Storyboarding course VTT 18, VTT 9 — video, not yet text-extracted]`; Kuleshov experiment at `[Frierson:EditingTheory p.149]`.
-- **Composition as narrative conflict tool** — `[external-source: Storyboarding course VTT 19 — video, not yet text-extracted]`. Theoretical anchor: gestalt / two-dimensional screen space at `[Frierson:EditingTheory p.20]` (Arnheim, gestalt psychology, *Film as Art* 1933).
+- **Composition as narrative conflict tool** — `[external-source: Storyboarding course VTT 19 — video, not yet text-extracted]`. Theoretical anchor: gestalt / two-dimensional screen space at `[Frierson:EditingTheory p.20]` (Arnheim, gestalt psychology, *Film as Art* 1933). Practical anchor: `[DigitalFilmmaking p.38-54]` (Centering, Screen Direction).
 - **Vector theory** (graphic vectors / index vectors / continuity at the production stage) — `[Frierson:EditingTheory p.20]` (Chapter 1: Herbert Zettl, Approaches to Building Screen Space and Vectors). Original: `[external-source: Zettl, Sight Sound Motion — not in local corpus]`.
 - **POV shot / hero identification** — `[external-source: Storyboarding course VTT 20 — video, not yet text-extracted]`.
-- **Cut-off rule** — attributed to "Hughes" but not verified in local corpus; treat as `[general-knowledge]`.
+- **Cut-off rule (Hughes)** — Hughes, *Virtual/Digital Filmmaking for Beginners*. Framing fundamentals at `[DigitalFilmmaking p.38-54]`; the specific joint-by-joint cut-off list is `[general-knowledge]` widely-taught in cinematography pedagogy.
+- **Screen direction** — `[DigitalFilmmaking p.54]` ("Screen Direction" section): "the direction that objects, animals, or people appear to be facing".
 - **Shot size × Stage Matrix** and **Psychological reads** — `[agent-synthesis]` for ON THE EDGE; not in source corpus.
 
 ---

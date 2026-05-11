@@ -37,9 +37,9 @@ The rule can be broken only if the audience sees it happen:
 
 Coverage = the set of shots acquired for a scene that will give the editor enough material to cut a complete, working sequence.
 
-### Simple Sequence Formula (often attributed to Hughes) `[general-knowledge]`
+### Simple Sequence Formula (Hughes) `[DigitalFilmmaking p.134]`
 
-The "Hughes" attribution recurs across multiple skills (cut-off rule, transition grammar, this formula). My session search did not surface a single canonical Hughes reference in the local corpus; the formula itself is widely-published across filmmaking pedagogy (e.g., `[Filmmaking:MakingAFilm]` covers all four elements). Treat as `[general-knowledge]` until the original Hughes source is identified.
+**Resolved**: "Hughes" is the author of `[DigitalFilmmaking]` (*Virtual/Digital Filmmaking for Beginners* / Hughes / 136-1, per the corpus header at `[DigitalFilmmaking p.9]`). The formula is verbatim at `p.134`: "It's called the simple sequence and it works like this: 1. First, start with a wide shot that shows the audience the setting. This is called an establishing shot because it establishes the setting and characters... 2. Next, tell your story with any types of shot distances that seem right to you. 3. Along the way..." Index entries also point to `simple sequence, 121–122` and `re-establishing shot, 122` at `[DigitalFilmmaking p.198]`.
 
 The minimum viable coverage for any scene:
 1. **Wide establishing shot** — show where and who

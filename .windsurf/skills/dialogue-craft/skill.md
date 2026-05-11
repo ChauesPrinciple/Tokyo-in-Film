@@ -83,7 +83,9 @@ Direct dialogue earns its place only when:
 
 If none of these conditions apply, translate to subtext.
 
-### The Chess Analogy (Walley) `[needs-citation]` — the chess metaphor for dialogue (move/reveal/trap) is consistent with Walley's framing but my session search did not find this specific analogy in `[Walley:TurnAndBurn]`. May be agent-paraphrase. Verify or downgrade to `[general-knowledge]` on next deep edit.
+### The Chess Analogy (Walley) `[Walley:TurnAndBurn chapter0062]`
+
+Walley, verbatim: "Our characters need to be navigating scenes with a chess-like strategy. Once we know every beat of the scene, every little play and reaction, then we know what the characters are trying to do." `[Walley:TurnAndBurn chapter0062]` (Subtext section).
 Subtext-rich dialogue operates like chess. Each line is simultaneously:
 - A **move** (advances the speaker's objective)
 - A **reveal** (shows the audience something the characters may not see)
@@ -109,7 +111,9 @@ Every character must sound like only themselves. Voice is not accent or slang �
 | **Confrontation style** | How they fight | One attacks with questions. Another with statements. Another by leaving. |
 | **Information control** | How much they reveal and when | One character over-explains. Another withholds. |
 
-### The Isolation Test (Walley) `[needs-citation]` — my session search for "isolation test" in `[Walley:TurnAndBurn]` returned zero hits. The technique itself is widely-taught dialogue craft but the attribution to Walley is unverified. May be `[general-knowledge]` or attributable to another author. Resolve on next deep edit.
+### The Voice Differentiation Test
+
+**Honest attribution note**: The label "Isolation Test" is `[agent-synthesis]` — not a Walley term (zero hits in `[Walley:TurnAndBurn]`). The underlying methodology of testing character voices by reading them in isolation is `[general-knowledge]` in screenwriting pedagogy; the closest in-corpus anchor is Walley's "Finding Those Missing Voices" section at `[Walley:TurnAndBurn chapter0058]`, which addresses voice differentiation though not via this specific test.
 Extract all of Character A's lines and read them in sequence, stripped of context. Then do the same for Character B.
 
 Ask:
@@ -118,7 +122,9 @@ Ask:
 - Do A's lines, read alone, sound like a consistent person with a recognizable pattern?
 - If no → A's voice is not yet built.
 
-### The Voice Mimicry Method (Walley) `[needs-citation]` — "Trust the Voice in Your Head" is a section in `[Walley:TurnAndBurn]` ch. 5 (visible in TOC at `chapter0001`), so this attribution is plausible; pin to body chapter on next deep edit.
+### The Voice Mimicry Method (Walley) `[Walley:TurnAndBurn chapter0059]`
+
+Walley, verbatim: "Something I've come to learn from watching actors perform my writing is to trust the voice in your head over the one in your throat." `[Walley:TurnAndBurn chapter0059]` ("Trust the Voice in Your Head" section). The casting-known-voices technique below is `[agent-synthesis]` extending Walley's principle.
 When building a character's voice for the first time, cast a known voice in your head. Not for their personality — for their *speech pattern*:
 - Samuel L. Jackson: declarative, rhythmic, builds to emphasis
 - Sandra Bullock: conversational, self-deprecating, overlaps thoughts

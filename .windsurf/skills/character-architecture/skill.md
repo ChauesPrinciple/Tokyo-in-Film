@@ -114,7 +114,7 @@ Every character must occupy a **different position** on the conflict axis. If tw
 - **Exposition-only characters:** Exist to tell the audience something. Cut them. Move the information to the environment, a prop, or an action.
 - **Agreement pairs:** Two characters who share a worldview with no meaningful distinction. Merge them or polarize them.
 - **Undefined antagonism:** The antagonist has no coherent worldview. An antagonist who is simply evil is not an antagonist — they are a plot device. The antagonist must be *right from their own perspective.*
-- **Satellite characters:** Support the protagonist without any independent desire of their own. Every character must want something, even if it's only a glass of water. `[external-source: Mamet — the "glass of water" formulation is widely-attributed to David Mamet but my session search did not pin a specific Mamet text in the local corpus]`
+- **Satellite characters:** Support the protagonist without any independent desire of their own. Every character must want something. The principle that every character must have an active desire is anchored in `[McKee:Story split_023]` (the SETTING / cast section). The "glass of water" formulation is widely-attributed to David Mamet but my session search returned zero hits across the local corpus; the attribution is therefore `[external-source: Mamet — not in local corpus]` and the principle itself stands on its McKee anchor.
 
 ### 空の美 Cast Polarization Map — Definitive Edition
 
@@ -169,9 +169,11 @@ Visual shorthand that replaces exposition. A telling detail is a physical behavi
 
 ---
 
-## Step 6 — World of the Story (McKee) `[needs-citation]`
+## Step 6 — World of the Story (McKee) `[McKee:Story split_023]`
 
-The AGENT.md cross-reference says "McKee, Ch. 8" but McKee's Chapter 8 in our extraction is "The Inciting Incident" (`[McKee:Story split_053]`), not "World of the Story." The five conflict levels (inner / personal / social / environmental / cosmic) appear in McKee but the specific chapter and locator need verification on next deep edit. Run `search_corpus.py "levels of conflict" --book McKee:Story` to pin.
+**Resolved**: McKee's "world of the story" is at `[McKee:Story split_023]`. McKee, verbatim: "Knowledge of and insight into the world of your story is fundamental to the achievement of originality and excellence. SETTING A story's SETTING is four-dimensional— Period, Duration, Location, Level of Conflict." `[McKee:Story split_023]`
+
+**Note on the four-dimensional vs. five-question framing**: McKee names FOUR setting dimensions (Period, Duration, Location, Level of Conflict). The Moral field and Genre questions below are `[agent-synthesis]` extending McKee's framework with adjacent concerns from his other chapters; they are not part of the canonical four-dimensional Setting list at `split_023`.
 
 Characters cannot be designed in isolation. They are products of their world. Before finalizing any character, answer these questions about the world they inhabit:
 
@@ -181,7 +183,12 @@ Characters cannot be designed in isolation. They are products of their world. Be
 
 **Location:** Where precisely — country, city, district, building? What are the physical rules of this space?
 
-**Conflict level:** Where does this story sit on McKee's five levels?
+**Conflict level:** Where does this story sit on McKee's concentric levels of conflict? `[McKee:Story split_023, split_043]`
+
+McKee at `split_023` lays out the levels as concentric circles outward from the protagonist: "Does your story focus on the inner, even unconscious conflicts within your characters? Or coming up a level, on personal conflicts? Or higher and wider, on battles with institutions in society? Wider still, on struggle..." `split_043` elaborates: "A character's world can be imagined as a series of concentric circles surrounding a core of raw identity or awareness, circles that mark the levels of conflict in a character's life."
+
+The five-level enumeration below is `[agent-synthesis]` mapping McKee's concentric model to a discrete list. McKee's own counts vary across the book; treat the labels as stable but the count as agent-imposed.
+
 1. Inner conflict (psychomachia — the conflict within)
 2. Personal conflict (between individuals, intimate)
 3. Social conflict (between individual and institution)
