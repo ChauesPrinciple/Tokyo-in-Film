@@ -5,6 +5,8 @@ tags: [filmmaking, sound, post-production, audio, EQ, compression, mix]
 
 # AUDIO POST-PRODUCTION
 
+Sources: `[Filmmaking:MakingAFilm p.294, p.308-309]` — Ch. 16 "Getting to know Jack Foley" at `p.294` (TOC p.15); foley definition and categories at `p.308` ("footsteps, falls, fight sounds, hand props, and so on matched perfectly to the actor's on-screen actions"); dialogue equalization at `p.308-309` ("the sound mixer can control each actor's dialogue in terms of audio level and equalization individually"); ADR/looping process at `p.309`; `[DigitalFilmmaking p.110]` (foley etymology: "called foley effects, after Jack Foley, a pioneering sound effects editor at Universal Studios in the 1930s"); `[FilmCheckingContent p.93-94]` (Sharman on foley artists). EQ frequency values, dialogue compression ratios, and broadcast loudness targets (-14 LUFS) are `[general-knowledge]` widely-published audio engineering standards.
+
 ## THE FUNDAMENTAL DECISION: WHAT DOES THIS AUDIO NEED?
 
 Before applying any tool, diagnose the track. Listen to the raw audio and answer:
@@ -226,11 +228,13 @@ For each dialogue track, process in this order:
 
 ## FOLEY
 
-Foley = the recreation of everyday sound effects in post-production, performed by foley artists in a studio in sync with picture.
+Foley = the recreation of everyday sound effects in post-production, performed by foley artists in a studio in sync with picture. `[DigitalFilmmaking p.110]` (etymology: "called foley effects, after Jack Foley, a pioneering sound effects editor at Universal Studios in the 1930s"); `[FilmCheckingContent p.93-94]` (Sharman: "Foley artists are a special breed of technician, part sound recordist and part performance artist. Their job is to fill in the missing sounds in a given scene").
 
-**Why foley is necessary**: Production sound captures dialogue. It rarely captures footsteps, clothing movement, prop handling, or environmental contact sounds with usable clarity. These are recreated.
+**Why foley is necessary**: Production sound captures dialogue. It rarely captures footsteps, clothing movement, prop handling, or environmental contact sounds with usable clarity. These are recreated. `[Filmmaking:MakingAFilm p.240]` ("Actor's footsteps are added in post-production, when you do foley").
 
 ### Foley Categories
+
+Sources: `[Filmmaking:MakingAFilm p.308]` (verbatim categories: "footsteps, falls, fight sounds, hand props, and so on that are matched perfectly to the actor's on-screen actions by Foley artists").
 
 | Category | Examples |
 |----------|---------|
@@ -355,8 +359,11 @@ SPECIAL:
 
 **Primary:**
 
-- `[Filmmaking:MakingAFilm]` — post-production audio chapters.
-- `[DigitalFilmmaking]` — beginner-level audio post-production instruction.
+- `[Filmmaking:MakingAFilm p.294]` — "Getting to know Jack Foley" (TOC reference at `p.15`); foley section body.
+- `[Filmmaking:MakingAFilm p.308-309]` — foley categories (verbatim); dialogue equalization workflow ("the sound mixer can control each actor's dialogue in terms of audio level and equalization individually"); ADR/looping process.
+- `[Filmmaking:MakingAFilm p.240]` — footsteps added in post-production via foley (verbatim).
+- `[DigitalFilmmaking p.110]` — foley etymology: Jack Foley, Universal Studios, 1930s (verbatim).
+- `[FilmCheckingContent p.93-94]` — Sharman on foley artists (verbatim definition).
 
 **External (un-grounded locally):**
 
@@ -365,8 +372,5 @@ SPECIAL:
 
 **General knowledge** `[general-knowledge]`:
 
-- Standard EQ frequencies, dialogue compression ratios (e.g., 3:1–4:1), and broadcast loudness targets (-23 LUFS for European broadcast, -16 LUFS for streaming) are widely-published technical standards.
-
-**Pending verification:**
-
-- Foley technique claims and specific dialogue-polish workflows on next deep edit, pin to `[Filmmaking:MakingAFilm]` post-production chapters.
+- Standard EQ frequency ranges, dialogue compression ratios (e.g., 3:1–4:1), HPF at 80–100 Hz, and broadcast loudness targets (-14 LUFS streaming, -23 LUFS European broadcast) are widely-published audio engineering standards.
+- Entity audio subtraction strategy and stage-specific EQ profiles are `[agent-synthesis]` for ON THE EDGE.

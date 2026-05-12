@@ -5,6 +5,8 @@ tags: [filmmaking, AI, prompts, creative, enhancement]
 
 # AI FILMMAKING ENHANCEMENT
 
+Sources: Craft principles in this skill (show-don't-tell, action-line discipline, character voice) are grounded in the same corpus as the underlying craft skills — see inline anchors below. AI tooling claims (prompt engineering, model behaviour) are `[general-knowledge / time-of-writing]` and explicitly exempt from the citation protocol per the Sources note at the end of this skill.
+
 ## Role
 
 This skill activates when generating or refining any screenplay content, shot list, or production document. It applies AI-specific augmentation to traditional filmmaking knowledge — not replacing craft, but adding generative layers that expand creative options and maintain consistency across a long project.
@@ -79,6 +81,8 @@ What they always almost say: [the subtext they never surface]
 - Almost says: "I should stop filming this"
 
 ## 3. Show-Don't-Tell Enforcement
+
+Source: The principle that internal states must be rendered as visible behavior is grounded in `[McKee:Story]` scene-design framework (see `@narrative-structure` for verified locators) and `[Walley:TurnAndBurn]` (show-not-tell as the core dialogue discipline — see `@dialogue-craft` for verified locators). The Conversion Protocol below is `[agent-synthesis]` operationalizing that principle.
 
 Before any dialogue or action line is finalized, scan for "telling" language and convert to visual/behavioral equivalents.
 
@@ -166,6 +170,8 @@ For each act/stage of ON THE EDGE, maintain a living mood board specification:
 - **Sound reference**: Silence. Then sub-bass that isn't sound, it's pressure.
 
 ## 6. Visual-First Action Lines
+
+Source: `[Trottier:ScreenwritersBible]` — action-line format discipline (see AGENT.md `ACTION LINE PROSE DISCIPLINE` for the seven banned violations, anchored to Trottier). The five-element visual test below is `[agent-synthesis]` integrating Trottier's format rules with McKee's scene-design principle that every shot earns its place by serving the story (`[McKee:Story]` — see `@narrative-structure` for locators).
 
 Every action line in the screenplay must contain, in 3-5 lines maximum:
 1. **Subject** — who or what

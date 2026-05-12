@@ -5,6 +5,8 @@ tags: [filmmaking, color, post-production, grading, DI]
 
 # COLOR GRADING
 
+Sources: `[JCam:InstructorGuide p.20]` (colorist role: "performs both color correction and color grading to give the film a professional, artistic veneer"); `[Filmmaking:MakingAFilm p.202]` (white balance, in-camera correction, and post color-correction stage — "In the post-production stage, you can do additional color-correction tweaking right on your computer"); `[Filmmaking:MakingAFilm p.302]` (color analyzer / hazeltine, deliberate desaturation for mood). EQ controls, color-wheel mechanics, teal-orange convention, LUT mechanics, and broadcast loudness targets are `[general-knowledge]` widely-published technical standards.
+
 ## THE FUNDAMENTAL DECISION
 
 Before touching any color control, answer two questions:
@@ -64,11 +66,11 @@ Compare this clip against the clip before it and after it.
 
 Color work in post-production is always two steps. They must not be confused.
 
-**Color Correction** = making the image look natural. Fixing what the camera got wrong. The goal is neutral, accurate, consistent.
+**Color Correction** = making the image look natural. Fixing what the camera got wrong. The goal is neutral, accurate, consistent. `[JCam:InstructorGuide p.20]` (colorist "performs both color correction and color grading").
 
 **Color Grading** = applying a mood to corrected footage through deliberate color choices. The goal is emotional. Color grading is never done before color correction.
 
-Sequence is always: Shoot → Color Correct → Color Grade. Never grade uncorrected footage.
+Sequence is always: Shoot → Color Correct → Color Grade. Never grade uncorrected footage. `[Filmmaking:MakingAFilm p.202]` (post color-correction stage as final step after in-camera correction).
 
 ---
 
@@ -276,8 +278,10 @@ SPECIAL:
 
 **Primary:**
 
-- `[Filmmaking:MakingAFilm]` — color and post-production chapters.
-- `[DigitalFilmmaking]` — beginner-level color-correction guidance.
+- `[JCam:InstructorGuide p.20]` — colorist role: performs both color correction and color grading (verbatim).
+- `[Filmmaking:MakingAFilm p.202]` — white balance, in-camera correction, and post-production color-correction stage; white balance dropper workflow.
+- `[Filmmaking:MakingAFilm p.302]` — deliberate desaturation for mood ("grainy, drained-of-color look"); hazeltine/color analyzer for color correction.
+- `[Frierson:EditingTheory p.280]` — "color correction" in the context of graphic match and shot consistency.
 
 **External (un-grounded locally):**
 
@@ -286,8 +290,5 @@ SPECIAL:
 
 **General knowledge** `[general-knowledge]`:
 
-- LUT mechanics, color-wheel terminology, and stage-driven grading conventions (cool-for-night, warm-for-memory, etc.) are widely-taught and not contested at the level this skill operates.
-
-**Pending verification:**
-
-- Specific look references (e.g., "the Fincher teal-and-orange") are `[general-knowledge]` but stylistic claims attributed to specific colorists or films should be verified before assertion.
+- LUT mechanics, color-wheel terminology, correction-order protocol, teal-orange convention, and stage-driven grading conventions (cool-for-night, warm-for-memory, etc.) are widely-taught technical standards not contested at the level this skill operates.
+- Specific cinematic look references ("the Fincher teal-and-orange") are `[general-knowledge]` industry observation; do not attribute to specific colorists without verification.
