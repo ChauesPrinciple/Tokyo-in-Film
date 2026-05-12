@@ -8,7 +8,7 @@ tags: [screenwriting, short-film, scriptwriting, narrative, character, dialogue,
 ## Purpose
 Apply the complete integrated short film scriptwriting methodology — covering structural tiers, concept development, character engineering, visual storytelling, dialogue craft, and rewriting — for films ranging from 3 to 30 minutes.
 
-**Sources:** Kathryn Burnett (Filmsourcing guide), Kim Garland (directing insights), UCA formatting guide.
+**Sources:** `[external-source: Burnett, Kathryn — Filmsourcing short-film guide; not in local corpus]`; `[external-source: Garland, Kim — directing workshop tradition; not in local corpus]`; `[external-source: UCA — University for the Creative Arts short-film methodology; not in local corpus]`. Underlying craft principles (structure, subtext, show-don't-tell, rewrite discipline) are cross-verified against `[McKee:Story]`, `[Walley:TurnAndBurn]`, `[Tomlinson:PlotBasics]`, and `[Trottier:ScreenwritersBible]` — see the formal Sources block at the end of this skill.
 
 ---
 
@@ -88,6 +88,8 @@ Ensemble rules: 4-6 max; each character has a distinct arc; all arcs intersect t
 ## Part II: Concept Development (Burnett + Garland)
 
 ### The 10-Question Core Idea Lock (Burnett)
+`[external-source: Burnett, Filmsourcing guide — not in local corpus]`
+
 Before writing anything, answer in writing:
 1. What is the core idea?
 2. Who is it about?
@@ -115,6 +117,8 @@ Before writing anything, answer in writing:
 | Dominant Emotion | _____________ |
 
 ### Dynamic Opening (Garland)
+`[external-source: Garland — not in local corpus]`
+
 - Establish tone immediately
 - Introduce protagonist through action, not description
 - Create an information gap (curiosity)
@@ -122,6 +126,8 @@ Before writing anything, answer in writing:
 - End with forward momentum
 
 ### Layered Storytelling (Garland)
+`[external-source: Garland — not in local corpus]`
+
 For every scene, identify all five layers:
 - **Text:** What literally happens
 - **Subtext:** What characters really mean
@@ -132,6 +138,7 @@ For every scene, identify all five layers:
 ---
 
 ## Part III: Character Engineering (Garland Method)
+`[external-source: Garland — not in local corpus]`. The archetype-then-differentiate framework is consistent with `[Tomlinson:PlotBasics text00005]` (hero typology) and `[McKee:Story]` character construction but the specific template below is Garland's workshop formulation.
 
 Build secondary characters from a recognizable archetype, then add unique details to avoid stereotype.
 
@@ -176,7 +183,7 @@ Think about where each scene is set and what physical actions can carry the stor
 **Weak:** "Maria looks sad."
 **Strong:** "Maria stares at the photo on the fridge — her and a man at a carnival, laughing. She reaches to touch it, then deliberately turns away, grabs her keys, and leaves. The photo remains: two people frozen in joy, now alone in an empty kitchen."
 
-Action description: 3-5 lines max (UCA). Show emotional state through behavior, never adverbs.
+Action description: 3-5 lines max `[external-source: UCA — not in local corpus]`. Show emotional state through behavior, never adverbs `[Trottier:ScreenwritersBible]` (action-line format discipline; see AGENT.md prose violations).
 
 ---
 
@@ -202,6 +209,7 @@ Cut or rewrite if the answer is "no" to any:
 ---
 
 ## Part VI: Rewrite System (Burnett's 5 Steps)
+`[external-source: Burnett, Filmsourcing guide — not in local corpus]`
 
 1. **Break** — Step back from the work entirely
 2. **Interrogation** — Answer in writing: core idea, genre, emotions intended, character contribution, too much backstory?, is the interesting stuff happening in the past?
@@ -264,6 +272,9 @@ This skill applies the full screenwriting craft corpus to short-form output. It 
 - `[external-source: Garland, Short Film Story Structure]` — the "Garland" component; sources unclear, may be a workshop tradition rather than published text.
 - `[external-source: UCA short-film methodology]` — the "UCA" component; likely the University for the Creative Arts curriculum.
 
-**Pending verification:**
+**Resolved (verification complete):**
 
-- The Burnett + Garland + UCA labels in this skill's title are not corpus-verifiable. On next deep edit, locate the original sources or rephrase to `[external-source]` tags.
+- **Kathryn Burnett**: Confirmed absent from local corpus. "Burnett" hits in corpus = Murray Burnett (*Casablanca* playwright) and Hallie/Whit Burnett (*Story* referenced by McKee) — neither is Kathryn Burnett. Correctly tagged `[external-source: Burnett, Kathryn — Filmsourcing guide]` throughout.
+- **Kim Garland**: Confirmed absent from local corpus. "Garland" hit in corpus = Judy Garland (actress). Correctly tagged `[external-source: Garland, Kim — directing workshop tradition]` throughout.
+- **UCA**: Confirmed absent from local corpus. Correctly tagged `[external-source: UCA — University for the Creative Arts methodology]` throughout.
+- **Underlying craft principles** (concept lock, subtext dialogue, show-don't-tell, rewrite pass): All cross-verified against `[McKee:Story]`, `[Walley:TurnAndBurn]`, `[Tomlinson:PlotBasics]`, and `[Trottier:ScreenwritersBible]` in the corpus. These corpus sources provide the epistemic foundation; Burnett/Garland/UCA are the specific workshop formulations layered on top.
