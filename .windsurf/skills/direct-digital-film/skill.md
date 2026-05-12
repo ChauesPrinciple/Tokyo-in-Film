@@ -1,6 +1,17 @@
 # DIGITAL FILMMAKING PRODUCTION SYSTEM
 ## Complete Neural Network for Professional Film Direction
 
+**Citation note:** This is the integrative master skill. Every domain it covers has a corresponding specialist skill that carries fully verified inline citations. When this skill makes a specific claim, the canonical source is in the specialist skill:
+- Visual grammar → `@visual-grammar` (verified: `[DigitalFilmmaking p.134]`, `[FilmCheckingContent p.59-67]`)
+- Optics/DOF → `@optics-psychology` (verified: `[Filmmaking:MakingAFilm p.199, p.206]`, `[FilmCheckingContent p.58-63]`)
+- Lighting → `@lighting-architecture` (verified: `[DigitalFilmmaking p.73]` — 300fc/2:1 numerics verbatim)
+- Sound/Room tone → `@acoustic-design` (verified: `[FilmCheckingContent p.92-93]`, `[DigitalFilmmaking p.99]`)
+- Staging/180° → `@staging-blocking` (verified: `[Frierson:EditingTheory p.76-77]`, `[Filmmaking:MakingAFilm p.108]`)
+- Editorial → `@editorial-grammar` (verified: `[Frierson:EditingTheory p.112-113]` — Murch Six Criteria)
+- Production/Safety → `@production-protocol` (verified: `[DigitalFilmmaking p.88]`, `[Filmmaking:MakingAFilm p.130]`)
+
+Key numeric claims from the lighting and audio sections below are individually anchored. All other specific claims should be verified via the specialist skill before citation.
+
 ---
 
 ## PART I: VISUAL GRAMMAR — THE SHOT VOCABULARY
@@ -122,8 +133,10 @@
 
 ### Three-Point Lighting (The Baseline System)
 
+`[DigitalFilmmaking p.73]` (Hughes — verbatim: "Back light (2) (Example: 300 foot candles) Fill light (1) (Example: 150 foot candles) Key light (2) (Example: 300 foot candles)"; "The intensity of the lights is a 2 to 1 ratio"). See also `@lighting-architecture` for full verification chain.
+
 **Key Light (Primary Source)**
-- Intensity: 300 foot-candles (baseline for proper exposure)
+- Intensity: 300 foot-candles (baseline for proper exposure) `[DigitalFilmmaking p.73]`
 - Position: 30–45° off camera axis, 30–45° above subject
 - Function: Defines form, creates shadows, establishes mood
 - Hard key (undiffused) = dramatic, high-contrast
@@ -234,6 +247,8 @@
 - Marks floor positions for repeatable placement across takes
 
 ### Room Tone (The Acoustic Fingerprint)
+
+`[FilmCheckingContent p.92-93]` (Sharman: "Hold for room tone!" — 60-second protocol); `[DigitalFilmmaking p.99]` (Hughes: "before leaving a setting... the sound technician should request a room tone recording"). See also `@acoustic-design` for full verification chain.
 
 **What It Is**
 - 30–60 seconds of "silence" recorded at each location
@@ -869,6 +884,11 @@ This skill is comprehensive and synthesizes claims across the full filmmaking co
 
 - This skill is wide; it touches every craft. When it makes specific claims, they should harmonize with the corresponding specialist skill (`visual-grammar`, `lighting-architecture`, `acoustic-design`, `editorial-grammar`, `staging-blocking`, `production-protocol`, `optics-psychology`). Each of those carries finer-grained citations.
 
-**Pending verification (deep retrofit needed):**
+**Citation status (partially resolved):**
 
-This is the largest skill file (~40KB). A full inline-citation pass is recommended before treating any specific claim from it as `[grounded]`. Until that pass is complete, claims emitted from this skill should be cross-referenced against the specialist-skill citation in the relevant domain.
+This is the largest skill file (~40KB). A full line-by-line inline pass has not been completed. Instead:
+- The **top-level citation note** (opening block) maps every domain to its specialist skill, which now carries fully verified locators.
+- **Three-point lighting numerics** (300fc/2:1 ratio) are individually anchored to `[DigitalFilmmaking p.73]`.
+- **Room tone protocol** is individually anchored to `[FilmCheckingContent p.92-93]` and `[DigitalFilmmaking p.99]`.
+- All other domain claims should be treated as cross-referenced via the specialist-skill index; they are not independently grounded at the line level in this file.
+- When emitting claims from this skill, prefer the specialist-skill citation chain; do not cite this file as the primary source for specific locator-level claims.
