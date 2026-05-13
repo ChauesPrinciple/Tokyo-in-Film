@@ -325,11 +325,11 @@ For each gap identified in Part 2 that fits as a sidebar / callout (not a chapte
 **Concrete sidebar candidates:**
 
 - `pre-production/cinematography.html` — Cut-off rule + lead-room ratios callout (`visual-grammar` gap).
-- `pre-production/cinematography.html` — Three-point lighting emotional-dial table 2:1 / 4:1 / 8:1 (`lighting-architecture` gap).
+- ✅ `pre-production/cinematography.html` — Three-point lighting emotional-dial table 2:1 / 4:1 / 8:1 (`lighting-architecture` gap). **Shipped** May 2026 (commit after `002e5ff`). Anchored to `[DigitalFilmmaking p.73]`. Pairings: `Jiro Dreams of Sushi` (2:1), `Exit 8` (8:1).
 - `production/cinematography.html` — Crew hierarchy org chart (`production-protocol` gap).
 - `production/cinematography.html` — Focal-length-as-psychology paragraph (`optics-psychology` gap).
 - `production/sound-design.html` — Verify room-tone protocol callout exists (`acoustic-design`).
-- `post-production/editing-and-animation.html` — Murch's Six Criteria subsection §3.3.x (`editorial-grammar` gap, the largest single addition).
+- ✅ `post-production/editing-and-animation.html` — Murch's Six Criteria as new §3.3.5; existing Discontinuity renumbered to §3.3.6 (`editorial-grammar` gap, the largest single addition). **Shipped** May 2026. Anchored to `[Frierson:EditingTheory p.112-113]`. Percentage-weighting myth flagged in prose, not propagated.
 
 **Effort:** one sidebar per session, written in Sharman voice (per `VOICE.md §1`). Six sidebars ≈ six sessions.
 
