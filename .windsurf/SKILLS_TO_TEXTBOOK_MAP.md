@@ -324,12 +324,14 @@ For each gap identified in Part 2 that fits as a sidebar / callout (not a chapte
 
 **Concrete sidebar candidates:**
 
-- `pre-production/cinematography.html` — Cut-off rule + lead-room ratios callout (`visual-grammar` gap).
+- ✅ `pre-production/cinematography.html` — Cut-off rule + lead-room ratios callout (`visual-grammar` gap). **Shipped** May 2026. Inserted after the existing lead-room paragraph (which raised the concept without quantifying it). Covers: 60/40-to-70/30 lead-room split, ~10% headroom, never-cut-at-joints rule. Anchored to `[DigitalFilmmaking p.134]` (ratios) + `[FilmCheckingContent p.59-67]` (Sharman's existing composition treatment).
 - ✅ `pre-production/cinematography.html` — Three-point lighting emotional-dial table 2:1 / 4:1 / 8:1 (`lighting-architecture` gap). **Shipped** May 2026 (commit after `002e5ff`). Anchored to `[DigitalFilmmaking p.73]`. Pairings: `Jiro Dreams of Sushi` (2:1), `Exit 8` (8:1).
-- `production/cinematography.html` — Crew hierarchy org chart (`production-protocol` gap).
-- `production/cinematography.html` — Focal-length-as-psychology paragraph (`optics-psychology` gap).
-- `production/sound-design.html` — Verify room-tone protocol callout exists (`acoustic-design`).
+- ❌ `production/cinematography.html` — Crew hierarchy org chart (`production-protocol` gap). **Reclassified** out of Phase 2: the page's "A Collaborative Medium" section is about creative collaboration (director ↔ actor ↔ editor), not crew structure. An org chart there would be a shoehorn. **New target:** Phase 4 as a section in `production/guide.html` (the student phase guide), or Phase 3 as a worksheet `guides/crew-roles-on-a-set.html`. Pick one when the time comes.
+- ✅ `production/cinematography.html` — Focal-length-as-psychology paragraph (`optics-psychology` gap). **Shipped** May 2026. Inserted at the end of the existing Lenses and Perspective section, capping the technical treatment with the emotional read. Covers: wide → exposure/vulnerability, telephoto → surveillance OR intimacy depending on placement, 50mm → "no opinion" neutrality. Anchored to `[Filmmaking:MakingAFilm p.199, p.206]`.
+- ✅ `production/sound-design.html` — Room-tone protocol callout. **No addition needed**, verified May 2026. Sharman already teaches the protocol fully at `@production/sound-design.html:202-243`: names "Hold for room tone!", explains the 60-second hold, defines sound floor, links the awkward-but-beautiful Living in Oblivion clip, closes with a Sharman-voice payoff paragraph. The skill and the page are aligned.
 - ✅ `post-production/editing-and-animation.html` — Murch's Six Criteria as new §3.3.5; existing Discontinuity renumbered to §3.3.6 (`editorial-grammar` gap, the largest single addition). **Shipped** May 2026. Anchored to `[Frierson:EditingTheory p.112-113]`. Percentage-weighting myth flagged in prose, not propagated.
+
+**Phase 2 status:** complete. Four sidebars shipped, one verified already-present, one reclassified out. Move to Phase 3 (worksheets) or Phase 4 (net-new chapter content) next.
 
 **Effort:** one sidebar per session, written in Sharman voice (per `VOICE.md §1`). Six sidebars ≈ six sessions.
 
