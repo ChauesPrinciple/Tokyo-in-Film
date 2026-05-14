@@ -12,25 +12,14 @@ This directory contains 6 pre-production modules covering:
 - Casting and rehearsal
 - Pre-production planning
 
-## Available Skills
+## Skills & Workflows
 
-### Pedagogical Skills
-- `develop-screenwriting-exercises` - Create script development assignments
-- `design-worksheets` - Build pre-production planning worksheets
-- `write-film-critiques` - Analyze films for pre-production techniques
-- `maintain-writing-voice` - Ensure consistent pedagogical tone
-- `update-module-content` - Edit existing module pages
-- `add-glossary-terms` - Add filmmaking terminology
+Authoritative skill/workflow index lives in `.windsurf/AGENT.md`. Theory: `.windsurf/NARRATIVE_REFERENCE.md`.
 
-### Filmmaking Production Skills
-These provide deep technical knowledge for pre-production content. Use them as reference when creating module content, or invoke directly for production tasks.
-
-- `@narrative-structure` - Eight-sequence structure, McKee's principles, tension arcs, beat placement
-- `@storyboard-artist` - Six core shots, 180° rule, thumbnails, camera move notation, animatic workflow
-- `@ai-filmmaking-enhancement` - Multiple concept generation, visual-first action lines, character consistency
-- `/script-to-shotlist` - Transform screenplay scene into numbered shot list with focal lengths
-- `/professional-storyboard` - Complete storyboard pipeline (script breakdown → boards → animatic)
-- `/write-short-film` - 14-day scriptwriting workflow (Burnett + Garland + UCA methodology)
+Most-used for pre-production:
+- Pedagogical: `develop-screenwriting-exercises`, `design-worksheets`, `write-film-critiques`, `maintain-writing-voice`, `update-module-content`, `add-glossary-terms`
+- Filmmaking knowledge: `@narrative-structure`, `@character-architecture`, `@dialogue-craft`, `@storyboard-artist`, `@ai-filmmaking-enhancement`
+- Workflows: `/script-to-shotlist`, `/professional-storyboard`, `/write-short-film`, `/script-diagnosis`
 
 ## Module Philosophy
 
@@ -131,4 +120,4 @@ Pre-production work feeds directly into:
 - **Final project**: All pre-production documents required for scene project
 
 ### Using the Film Producer Agent
-For complete production planning from a screenplay scene, invoke `@film-producer-agent [scene]`. This orchestrates all filmmaking skills (narrative → visual → lighting → sound → staging → editorial) into a single production package. See `.windsurf/FILMMAKING_NETWORK_COMPLETE.md` for details.
+For complete production planning from a screenplay scene, invoke `@film-producer-agent [scene]`. This orchestrates all filmmaking skills (narrative → visual → lighting → sound → staging → editorial) into a single production package. Routing details: `.windsurf/AGENT.md`. Craft theory: `.windsurf/NARRATIVE_REFERENCE.md`.

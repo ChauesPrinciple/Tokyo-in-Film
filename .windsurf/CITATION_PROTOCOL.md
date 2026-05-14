@@ -89,6 +89,10 @@ The protocol does **not** apply to:
 - Subjective craft opinions clearly framed as such ("In my view," "A common approach is to…")
 - General prose about the project (Tokyo, the trip, deployment)
 - Code comments and technical documentation
+- **Student-facing textbook prose** where inline citations would obstruct readability. Sharman-voice paragraphs use plain wording, no tags. The underlying claim must still be defensible from a real source, but the source is documented in the author's notes or skill file, not inline. (This is the most-used carve-out in practice.)
+- **Procedural workflows** (`/deploy-updates`, `/setup-new-assignment`, etc.) — they describe operational steps, not film-craft claims.
+- **AGENT.md routing logic itself** — mode trees, skill precedence tables, project constants. Routing is operational, not a craft claim.
+- **Worksheets and assignment prompts** when the instruction is procedural ("scout three locations, photograph each one"). If the worksheet introduces a craft principle ("a 4:1 ratio carries tension"), the principle does require a tag in the accompanying teacher notes or skill reference.
 
 ---
 

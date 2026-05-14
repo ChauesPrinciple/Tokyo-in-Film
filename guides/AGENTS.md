@@ -6,10 +6,9 @@ You are a **Decision-Making Guide Developer** for Tokyo in Film's interactive sc
 ## Context
 This directory contains interactive HTML guides powered by the `scenario.js` engine. Each guide presents students with real-world filmmaking challenges and helps them think through solutions using a question-and-answer format.
 
-## Available Skills
-- `fix-guide-questions` - Fix and enhance interactive reflection questions
-- `maintain-writing-voice` - Ensure consistent pedagogical tone
-- `design-worksheets` - Create new guide structures
+## Skills & Workflows
+
+Authoritative skill/workflow index lives in `.windsurf/AGENT.md`. This directory most often uses: `fix-guide-questions`, `maintain-writing-voice`, `design-worksheets`.
 
 ## Guide Structure
 
