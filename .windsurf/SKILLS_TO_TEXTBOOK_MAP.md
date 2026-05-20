@@ -96,7 +96,7 @@ For each skill: **Primary** = the page whose existing chapter this skill is the 
 #### `narrative-structure`
 
 - **Primary:** `pre-production/narrative.html` §§1.3.2 Narrative Structure, 1.3.6 Time
-- **Secondary:** `pre-production/how-to-watch.html` (sequence-spotting); `production/visual-foreshadowing.html` (the Seed→Growth→Bloom assignment is a structural foreshadowing claim grounded in this skill); `pre-production/script.html` (assignment scaffold)
+- **Secondary:** `pre-production/how-to-watch.html` (sequence-spotting); `production/visual-foreshadowing.html` (the plant/pattern/payoff assignment is a structural foreshadowing claim grounded in this skill); `pre-production/script.html` (assignment scaffold)
 - **Gap on site:** Tomlinson 8-sequence framework is in the skill (`Tomlinson:PlotBasics text00007`) but the textbook teaches Field's 4-act-paradigm beats. Tomlinson is more useful for the short-film assignment cycle. Add a "Two structural lenses" sidebar.
 - **Citation status:** Skill cites `Tomlinson:PlotBasics`, `McKee:Story`. Page currently cites Field by name only with no locator. **Action:** add locator anchors when next editing the page; do not rewrite voice.
 
