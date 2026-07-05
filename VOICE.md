@@ -43,19 +43,19 @@ This is a personal style choice of the course owner. Follow it without debate.
 
 The course rotates films each year. **When citing films in examples, use only films on the current year's list.** As of April 2026:
 
-**In canon:**
+**In canon (the 16-slide 2026 studied-film list, authoritative source is `textbook.html`):**
 
+- *13 Assassins* (2010)
 - *Akira* (1988)
-- *Bullet Train* (2022) — *pending swap, not yet executed*
+- *Bullet Train* (2022)
 - *Chainsaw Man: Reze Arc*
-- *Exit 8*
+- *Exit 8* (2025)
 - *Godzilla Minus One* (2023)
-- *Howl's Moving Castle* (2004) — *pending swap, not yet executed*
+- *Howl's Moving Castle* (2004)
 - *Initial D* (2005, live-action)
 - *Jiro Dreams of Sushi* (2011)
 - *Kubi* (2023)
-- *Shoplifters* (2018) — *swap pending, still cited for now*
-- *Spirited Away* (2001) — *swap pending, still cited for now*
+- *Ramen Heads* (2017)
 - *Suzume* (2022)
 - *The Seven Samurai* (1954)
 - *Tokyo Drift* (2006)
@@ -63,12 +63,9 @@ The course rotates films each year. **When citing films in examples, use only fi
 - *Tsukigakirei*
 - *Your Name* (2016)
 
-**Pending swaps (approved, not yet executed across the site):**
+The *Spirited Away* → *Howl's Moving Castle* and *Shoplifters* → *Bullet Train* swaps are **executed** on the studied-film list, assignment pages, and free-guides cards.
 
-- *Spirited Away* → *Howl's Moving Castle*
-- *Shoplifters* → *Bullet Train*
-
-Do not cite films outside this list in new examples (e.g., *Weathering With You* was recently swapped out — it is NOT canon).
+**Textbook vs assignment (critical):** This studied-film list governs **assignment/journal pages and their "Films to Choose From" lists only** (`catharsis.html`, `visual-foreshadowing.html`, `rhythm-of-process.html`, `shot-list.html`, `storyboard.html`, `script.html`, `animatic.html`, `pilgrimage-shots.html`). **Textbook/teaching pages may cite ANY film** for teaching purposes (e.g., *Shoplifters*, *Spirited Away*, *Drive My Car*, *My Neighbor Totoro*, *Castle in the Sky* are valid teaching examples and must NOT be swapped out or replaced with invented details).
 
 **Pairing discipline:** examples that pair a technique with a film must actually contain that technique in that film. No lazy pairings. *The Seven Samurai* has no empty station corridors. *Initial D* has no severed heads. Verify before writing.
 
@@ -126,7 +123,7 @@ As of April 2026:
 - **Push:** `git push origin main`
 - **Live site:** https://chauesprinciple.github.io/Tokyo-in-Film/ — served from `origin/main`, rebuild takes ~1 minute.
 - `.nojekyll` at repo root is required; do not delete it.
-- **Current CSS version cache-bust:** `style.css?v=20`
+- **Current CSS version cache-bust:** `style.css?v=21`
 
 ---
 
