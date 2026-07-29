@@ -51,12 +51,9 @@
         }).observe(modal, { attributes: true, attributeFilter: ['class'] });
     }
 
-    /* ---------- 2. Hand-off from scroll-animate.js ---------- */
-    // GSAP owns [data-scroll] now; neutralize the CSS-transition fade-ins
-    // so elements are never animated twice.
-    document.querySelectorAll('[data-scroll]').forEach(function (el) {
-        el.classList.add('is-visible');
-    });
+    /* ---------- 2. [data-scroll] elements stay with scroll-animate.js ---------- */
+    // Their CSS transitions (style.css ~1329) fight GSAP inline styles frame by
+    // frame, which broke the index layout. GSAP must not touch them.
 
     /* ---------- 3. Hero: parallax video + content receding into depth ---------- */
     var hero = document.querySelector('.hero');
@@ -160,26 +157,23 @@
         }
     }
 
-    /* ---------- 6. Generic 3D tilt-in for remaining content blocks ---------- */
-    var blockSelector = showcaseBuilt
-        ? '[data-scroll], .film-slider, .film-slider-nav'
-        : '[data-scroll], .toc-grid .toc-item, .film-slider, .film-slider-nav';
-    var blocks = gsap.utils.toArray(blockSelector);
-    blocks.forEach(function (el) {
-        if (el.parentNode) { gsap.set(el.parentNode, { perspective: 900 }); }
-        var siblings = el.parentNode ? Array.prototype.slice.call(el.parentNode.children) : [el];
-        var indexInParent = siblings.indexOf(el);
-        gsap.from(el, {
-            rotateX: 28,
-            y: 90,
-            z: -120,
-            opacity: 0,
-            duration: 1.1,
-            delay: (indexInParent % 4) * 0.12,
-            ease: 'power3.out',
-            scrollTrigger: { trigger: el, start: 'top 92%', toggleActions: 'play none none none' }
+    /* ---------- 6. 3D tilt-in for toc tiles only when no fly-through ---------- */
+    // Narrow, safe target set: no [data-scroll] elements (see section 2).
+    if (!showcaseBuilt) {
+        gsap.utils.toArray('.toc-grid .toc-item').forEach(function (el, i) {
+            if (el.parentNode) { gsap.set(el.parentNode, { perspective: 900 }); }
+            gsap.from(el, {
+                rotateX: 22,
+                y: 70,
+                z: -100,
+                opacity: 0,
+                duration: 1,
+                delay: (i % 3) * 0.12,
+                ease: 'power3.out',
+                scrollTrigger: { trigger: el, start: 'top 92%', toggleActions: 'play none none none' }
+            });
         });
-    });
+    }
 
     /* ---------- 7. Interactive hover tilt on cards (pointer devices only) ---------- */
     var hoverSelector = showcaseBuilt ? '.section-grid .card' : '.section-grid .card, .toc-grid .toc-item';
@@ -187,6 +181,9 @@
         gsap.utils.toArray(hoverSelector).forEach(function (card) {
             var setX = gsap.quickTo(card, 'rotationY', { duration: 0.4, ease: 'power2.out' });
             var setY = gsap.quickTo(card, 'rotationX', { duration: 0.4, ease: 'power2.out' });
+            // Kill the [data-scroll] CSS transition once the entrance fade is done,
+            // otherwise it re-eases every GSAP frame and the tilt stutters.
+            card.addEventListener('mouseenter', function () { card.style.transition = 'none'; });
             card.addEventListener('mousemove', function (e) {
                 var r = card.getBoundingClientRect();
                 setX(((e.clientX - r.left) / r.width - 0.5) * 10);
@@ -199,5 +196,5 @@
     /* ---------- 8. Keep ScrollTrigger honest after layout shifts ---------- */
     window.addEventListener('load', function () { ScrollTrigger.refresh(); });
 
-    console.info('[scroll-fx] 3D scroll effects active on ' + blocks.length + ' elements');
+    console.info('[scroll-fx] active (hero parallax' + (showcaseBuilt ? ' + tile fly-through' : '') + ')');
 })();
