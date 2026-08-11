@@ -1,16 +1,16 @@
-# PLAN — Scene Project → "Your Documentary" Rebuild
+# PLAN — Scene Project → "The Documentary Project" Rebuild
 
 **Status:** IMPLEMENTED Aug 11, 2026 (all 10 steps of §6 executed; deadlines intentionally omitted).
 **Drafted:** Aug 11, 2026.
 
-**LOCKED DECISIONS:** teams of 3 (freedom); **7 recreated shots** (not 3); NO deadlines on the page (irrelevant right now); reuse `assets/scene-project.mp4` hero video; nav label "Your Documentary"; infinite game framing used BOTH student-facing and internally.
+**LOCKED DECISIONS:** teams of 3 (freedom); **7 recreated shots** (not 3); NO deadlines on the page (irrelevant right now); reuse `assets/scene-project.mp4` hero video; nav label "The Documentary Project" (renamed from "Your Documentary" same day, owner correction: match old "The X Project" convention); infinite game framing used BOTH student-facing and internally.
 
 ---
 
 ## 1. Concept (what changes pedagogically)
 
 The Scene Project (recreate/adapt/create a fiction scene, teams of 3, 2–8 min) is retired.
-It is replaced by **Your Documentary**, the capstone for the "infinite game" project slot
+It is replaced by **The Documentary Project**, the capstone for the "infinite game" project slot
 (previous year's submissions were weak — see §7 for the structural fixes that address why).
 
 **The assignment:** Each student (or team — see Open Q1) makes a short documentary about
@@ -37,8 +37,8 @@ real editorial decision-making instead of a single bloated timeline.
 
 | Item | Decision |
 |---|---|
-| New page | `your-documentary.html` at repo root |
-| Old page | `scene-project.html` becomes a meta-refresh redirect stub → `your-documentary.html` (GitHub Pages has no server redirects; external links/bookmarks must not 404) |
+| New page | `documentary-project.html` at repo root |
+| Old page | `scene-project.html` becomes a meta-refresh redirect stub → `documentary-project.html` (GitHub Pages has no server redirects; external links/bookmarks must not 404) |
 | Hero video | Reuse `assets/scene-project.mp4` initially; rename/replace later if owner supplies doc-flavored footage (Open Q4) |
 | New guide page | `guides/editing-basics-guide.html` — houses the owner-supplied "Basics of Editing" text (§5). `guides/` is the right home: standalone craft worksheet, no film-canon obligations per SITE_MAP §1 |
 
@@ -47,7 +47,7 @@ real editorial decision-making instead of a single bloated timeline.
 The nav item `<li><a href="scene-project.html">The Scene Project</a></li>` exists in
 **~46 HTML files** (all root pages, all pre/production/post pages, all 15 guides pages).
 
-- Change to: `<li><a href="your-documentary.html">Your Documentary</a></li>`
+- Change to: `<li><a href="documentary-project.html">The Documentary Project</a></li>`
   (relative prefix `../` on subdirectory pages — match each file's existing pattern).
 - Mechanical find/replace via `[System.IO.File]::ReadAllText/WriteAllText` UTF8 no-BOM
   script in `$env:TEMP` (per encoding rule — never plain `Get-Content`).
@@ -57,13 +57,13 @@ The nav item `<li><a href="scene-project.html">The Scene Project</a></li>` exist
 
 ---
 
-## 4. New page structure — `your-documentary.html`
+## 4. New page structure — `documentary-project.html`
 
 Same visual system as current page (hero + `project-section` blocks + `option-card` grid
 + `grid-2-col` stages). Sharman voice: 2nd person, parenthetical asides, no em dashes.
 
 ### §A Hero
-- H1: "Your Documentary"
+- H1: "The Documentary Project"
 - Tagline: "One place. One craft. Two cuts." (draft — owner may reword)
 
 ### §B Introduction
@@ -169,7 +169,7 @@ voice pass, no em dashes). Content blocks:
 ## 6. Cross-file sync checklist (implementation order)
 
 1. Create `guides/editing-basics-guide.html` (no dependencies)
-2. Create `your-documentary.html` (links to #1)
+2. Create `documentary-project.html` (links to #1)
 3. Convert `scene-project.html` to redirect stub
 4. Site-wide nav find/replace (~46 files, UTF8 no-BOM script)
 5. Update `index.html` + `textbook.html` capstone cards (if any)
@@ -203,5 +203,5 @@ voice pass, no em dashes). Content blocks:
 2. **Recreation quota:** is 3 shots (1 establishing + 1 B-roll minimum mix) the right floor?
 3. **Deadlines:** confirm dates against the May itinerary (free days 5/19–21, 5/25–28; Yokohama Ramen Museum excursion pairs naturally with food-strand docs).
 4. **Hero video:** keep `scene-project.mp4` or supply new footage?
-5. **Name lock:** "Your Documentary" as the nav label, or something shorter/punchier?
+5. **Name lock:** "The Documentary Project" as the nav label, or something shorter/punchier?
 6. **Infinite game framing:** should the page explicitly use the "infinite game" language, or keep it internal?

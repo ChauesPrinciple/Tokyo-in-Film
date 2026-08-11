@@ -5,6 +5,8 @@ tags: [practical-effects, vfx, low-budget, creativity, problem-solving]
 
 # Design Practical Effects Skill
 
+Sources: Most household-item practical-effects techniques (corn syrup for blood, flour/cornstarch for dust, dry ice for fog) are `[general-knowledge]` folk-knowledge across the no-budget filmmaking community — widely documented in workshop guides and maker culture but not single-sourced to the local corpus. Safety rules (fire extinguisher on set, test before filming, etc.) are `[general-knowledge]` standard production safety practice; the specific claims below tagged `[safety-critical]` should be verified against authoritative production safety standards before student-facing use. The Core Philosophy quote is `[agent-synthesis]` — the framing principle of this skill; it is not cited to a specific corpus page.
+
 ## Purpose
 Create exercises that teach students to achieve cinematic effects using minimal resources, emphasizing creativity and problem-solving over expensive equipment.
 
@@ -130,11 +132,14 @@ Students learn to:
 5. **Follow Tokyo location rules**
 
 ### Specific Hazards
-- **Fire:** Extinguisher on set, clear area
+
+`[safety-critical]` — All items below should be verified against authoritative production safety standards before student-facing use.
+
+- **Fire:** Extinguisher on set, clear area `[safety-critical]`
 - **Liquids:** Protect equipment, non-slip surfaces
-- **Chemicals:** Ventilation, skin protection
-- **Glass:** Safety glass only, protective gear
-- **Electricity:** Proper grounding, dry conditions
+- **Chemicals:** Ventilation, skin protection `[safety-critical]`
+- **Glass:** Safety glass only, protective gear `[safety-critical]`
+- **Electricity:** Proper grounding, dry conditions `[safety-critical]`
 
 ## Materials List
 

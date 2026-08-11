@@ -27,8 +27,8 @@
 | `textbook.html` | Canon list | Near-duplicate of index's course-module + film-list sections (slides only, no JS filmData). |
 | `glossary.html` | Utility | Terms rendered by `js/glossary.js`. |
 | `free-guides.html` | Utility | "Filmmakers Toolkit" cards → `guides/` pages + Catharsis (Seven Samurai) + Visual Foreshadowing (Bullet Train & Howl's) cards + The Basics of Editing (`guides/editing-basics-guide.html`, added Aug 11 2026). |
-| `your-documentary.html` | Assignment (course capstone) | "Your Documentary" (replaced Scene Project, Aug 11 2026): Tokyo place/craft doc, teams of 3; 7 recreated establishing/B-roll shots from canon w/ Shot-Match Sheets; 90-sec + 3:00 cuts from one footage pool; weighted rubric; no deadlines published yet. Plan: `.devin/PLAN_YOUR_DOCUMENTARY.md`. |
-| `scene-project.html` | Redirect stub | Meta-refresh + JS redirect → `your-documentary.html`. Keep for old links/bookmarks. |
+| `documentary-project.html` | Assignment (course capstone) | "The Documentary Project" (replaced Scene Project, Aug 11 2026): Tokyo place/craft doc, teams of 3; 7 recreated establishing/B-roll shots from canon w/ Shot-Match Sheets; 90-sec + 3:00 cuts from one footage pool; weighted rubric; no deadlines published yet. Plan: `.devin/PLAN_YOUR_DOCUMENTARY.md`. |
+| `scene-project.html` | Redirect stub | Meta-refresh + JS redirect → `documentary-project.html`. Keep for old links/bookmarks. |
 | `anime-map.html` | Utility | Interactive ward map (`?anime=` param: chainsaw_man, tokyo_ghoul, etc.). |
 
 **SYNC RULE (critical):** Any film-list change must land in **three** places: `index.html` slides, `index.html` JS `filmData`, and `textbook.html` slides.
