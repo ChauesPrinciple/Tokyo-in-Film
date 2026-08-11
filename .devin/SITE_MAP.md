@@ -10,7 +10,7 @@
 
 | Type | Rule |
 |---|---|
-| **Canon list pages** | Carry the 16-slide 2026 studied-film list. Must match canon in `VOICE.md` §3 exactly. |
+| **Canon list pages** | Carry the 16-slide 2026 studied-film list (revised Aug 11, 2026). Must match canon in `VOICE.md` §3 exactly. |
 | **Textbook chapters** | Teaching prose (Sharman-adapted). May cite ANY film. Never swap films here. |
 | **Assignment / journal pages** | "Films to Choose From" lists must contain ONLY 2026 canon films. |
 | **Assignment scaffolds** | Non-live per VOICE.md §6. Do not fish here unless asked. |
@@ -23,14 +23,17 @@
 
 | Page | Type | Notes |
 |---|---|---|
-| `index.html` | Home + Canon list | H1 "CINEMA IN CONTEXT". Carries film list in **two places**: HTML slides (~line 260–390) AND JS `filmData` object (~line 514–715, with loglines, IMDb links, pages, locations, maps). |
+| `index.html` | Home + Canon list | H1 "CINEMA IN CONTEXT". Carries film list in **two places**: HTML slides (~line 260–390) AND JS `filmData` object (~line 500–700, with loglines, IMDb links, pages, locations, maps). |
 | `textbook.html` | Canon list | Near-duplicate of index's course-module + film-list sections (slides only, no JS filmData). |
 | `glossary.html` | Utility | Terms rendered by `js/glossary.js`. |
-| `free-guides.html` | Utility | "Filmmakers Toolkit" cards → `guides/` pages + Catharsis (Seven Samurai) + Visual Foreshadowing (Bullet Train & Howl's) cards. |
-| `scene-project.html` | Assignment (course capstone) | Recreate / Adapt / Create a scene; Film Coach; submission requirements. |
+| `free-guides.html` | Utility | "Filmmakers Toolkit" cards → `guides/` pages + Catharsis (Seven Samurai) + Visual Foreshadowing (Bullet Train & Howl's) cards + The Basics of Editing (`guides/editing-basics-guide.html`, added Aug 11 2026). |
+| `your-documentary.html` | Assignment (course capstone) | "Your Documentary" (replaced Scene Project, Aug 11 2026): Tokyo place/craft doc, teams of 3; 7 recreated establishing/B-roll shots from canon w/ Shot-Match Sheets; 90-sec + 3:00 cuts from one footage pool; weighted rubric; no deadlines published yet. Plan: `.devin/PLAN_YOUR_DOCUMENTARY.md`. |
+| `scene-project.html` | Redirect stub | Meta-refresh + JS redirect → `your-documentary.html`. Keep for old links/bookmarks. |
 | `anime-map.html` | Utility | Interactive ward map (`?anime=` param: chainsaw_man, tokyo_ghoul, etc.). |
 
 **SYNC RULE (critical):** Any film-list change must land in **three** places: `index.html` slides, `index.html` JS `filmData`, and `textbook.html` slides.
+
+**CANON REVISION (Aug 11, 2026):** Film list expanded to 16 films (see `VOICE.md` §3): 13 Assassins, Akira, Bullet Train, Chainsaw Man: Reze Arc, Exit 8, Initial D, Jiro Dreams of Sushi, Ju-On: The Grudge, Jujutsu Kaisen, Outrage, Ramen Heads, Rashomon, Rental Family, Rurouni Kenshin: Final Chapter Part II - The Beginning, Tampopo, Your Name. All three sync locations updated. **Assignment/journal pages still cite the OLD canon** (Seven Samurai, Kubi, Howl's, Tokyo Ghoul, Tsukigakirei, Tokyo Drift, Godzilla Minus One, Suzume) and are pending a full overhaul; the ✅ canon marks in the tables below are stale until that overhaul lands.
 
 ---
 

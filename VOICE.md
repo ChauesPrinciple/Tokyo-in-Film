@@ -41,29 +41,28 @@ This is a personal style choice of the course owner. Follow it without debate.
 
 ## 3. 2026 Film Canon
 
-The course rotates films each year. **When citing films in examples, use only films on the current year's list.** As of April 2026:
+The course rotates films each year. **When citing films in examples, use only films on the current year's list.** As of August 2026:
 
 **In canon (the 16-slide 2026 studied-film list, authoritative source is `textbook.html`):**
 
 - *13 Assassins* (2010)
 - *Akira* (1988)
 - *Bullet Train* (2022)
-- *Chainsaw Man: Reze Arc*
+- *Chainsaw Man: Reze Arc* (2025)
 - *Exit 8* (2025)
-- *Godzilla Minus One* (2023)
-- *Howl's Moving Castle* (2004)
 - *Initial D* (2005, live-action)
 - *Jiro Dreams of Sushi* (2011)
-- *Kubi* (2023)
+- *Ju-On: The Grudge* (2002)
+- *Jujutsu Kaisen* (2020, anime)
+- *Outrage* (2010)
 - *Ramen Heads* (2017)
-- *Suzume* (2022)
-- *The Seven Samurai* (1954)
-- *Tokyo Drift* (2006)
-- *Tokyo Ghoul*
-- *Tsukigakirei*
+- *Rashomon* (1950)
+- *Rental Family* (2025)
+- *Rurouni Kenshin: Final Chapter Part II - The Beginning* (2021)
+- *Tampopo* (1985)
 - *Your Name* (2016)
 
-The *Spirited Away* → *Howl's Moving Castle* and *Shoplifters* → *Bullet Train* swaps are **executed** on the studied-film list, assignment pages, and free-guides cards.
+**August 2026 revision:** removed *Godzilla Minus One*, *Howl's Moving Castle*, *Kubi*, *Suzume*, *The Seven Samurai*, *Tokyo Drift*, *Tokyo Ghoul*, *Tsukigakirei*; added *Ju-On: The Grudge*, *Jujutsu Kaisen*, *Outrage*, *Rashomon*, *Rental Family*, *Rurouni Kenshin: Final Chapter Part II - The Beginning*, *Tampopo*. The list is synced in all three places (`index.html` slides, `index.html` JS `filmData`, `textbook.html` slides). **Assignment/journal pages have NOT yet been updated to this list.** They still cite the previous canon and are scheduled for a full overhaul; do not treat their "Films to Choose From" lists as current.
 
 **Textbook vs assignment (critical):** This studied-film list governs **assignment/journal pages and their "Films to Choose From" lists only** (`catharsis.html`, `visual-foreshadowing.html`, `rhythm-of-process.html`, `shot-list.html`, `storyboard.html`, `script.html`, `animatic.html`, `pilgrimage-shots.html`). **Textbook/teaching pages may cite ANY film** for teaching purposes (e.g., *Shoplifters*, *Spirited Away*, *Drive My Car*, *My Neighbor Totoro*, *Castle in the Sky* are valid teaching examples and must NOT be swapped out or replaced with invented details).
 

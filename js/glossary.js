@@ -59,6 +59,10 @@ const glossaryTerms = [
         definition: "The invisible boundary line that dictates spatial continuity in a scene; crossing it reverses the relative positions of the characters."
     },
     {
+        term: "B-Roll",
+        definition: "Supplemental footage cut in over the main action or audio: establishing shots, cutaways, detail inserts. In documentary work, B-roll carries the visual storytelling while interviews or voiceover carry the narrative."
+    },
+    {
         term: "Backlight",
         definition: "A light positioned behind the subject, used to create a glowing rim or separate them from the background."
     },
@@ -306,6 +310,10 @@ const glossaryTerms = [
     {
         term: "Flashforward",
         definition: "A narrative jump that glimpses a future event."
+    },
+    {
+        term: "Flash Frame",
+        definition: "A stray frame (or few frames) of leftover video accidentally left between clips in an edit, appearing as a brief flash. A continuity error to hunt down before export."
     },
     {
         term: "Flat Lighting",
