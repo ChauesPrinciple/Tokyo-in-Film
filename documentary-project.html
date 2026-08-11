@@ -4,14 +4,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Documentary Project - Tokyo in Film</title>
+    <title>Documentary Project - Tokyo in Film</title>
     <meta name="description"
-        content="The Documentary Project: document a Tokyo place or craft you love, rebuilt shot by shot from the films you studied. Two cuts, one footage pool.">
+        content="Documentary Project: document a Tokyo place or craft you love, rebuilt shot by shot from the films you studied. Two cuts, one footage pool.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;600&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css?v=21">
+    <style>
+        .edit-type {
+            background: rgba(255, 255, 255, 0.03);
+            border-left: 3px solid var(--accent-neon-cyan);
+            border-radius: 0 8px 8px 0;
+            padding: 1rem 1.25rem;
+            margin: 1rem 0;
+        }
+        .edit-type h3 { margin: 0 0 0.5rem 0; }
+        .edit-type p { margin: 0.25rem 0; line-height: 1.6; }
+        .watch-out {
+            background: rgba(255, 0, 127, 0.06);
+            border-left: 3px solid var(--accent-neon-pink);
+            border-radius: 0 8px 8px 0;
+            padding: 1rem 1.25rem;
+            margin: 1rem 0;
+        }
+        .watch-out strong { color: var(--accent-neon-pink); }
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0 2rem 0;
+        }
+        .spec-table th, .spec-table td {
+            text-align: left;
+            padding: 0.6rem 0.75rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .spec-table th { color: var(--accent-neon-cyan); font-weight: 600; }
+    </style>
 </head>
 
 <body>
@@ -36,7 +66,7 @@
         </div>
         <ul class="nav-list">
             <li><a href="index.html">Home</a></li>
-            <li><a href="documentary-project.html" class="active">The Documentary Project</a></li>
+            <li><a href="documentary-project.html" class="active">Documentary Project</a></li>
             <li><a href="pre-production/index.html">Pre-Production</a></li>
             <li><a href="production/index.html">Production</a></li>
             <li><a href="post-production/index.html">Post-Production</a></li>
@@ -48,7 +78,7 @@
     <header class="hero" style="min-height: 50vh;">
         <video src="assets/scene-project.mp4" class="hero-bg" autoplay muted loop playsinline style="opacity: 0.4;"></video>
         <div class="hero-content">
-            <h1>The Documentary Project</h1>
+            <h1>Documentary Project</h1>
             <p>One place. One craft. Two cuts.<br>Tokyo through your own lens.</p>
         </div>
     </header>
@@ -164,25 +194,102 @@
             </div>
         </section>
 
-        <!-- Editing Requirements -->
+        <!-- Editing Requirements (inline, formerly separate guide) -->
         <section class="project-section" data-scroll>
-            <h2>Editing Requirements</h2>
+            <h2>The Basics of Editing</h2>
             <div class="textbook-content">
-                <p>A story is made three times: writing, filming, editing. Your two cuts must demonstrably use, and
-                    your reflection must name:</p>
+                <p class="lead">A story is made three times: once during writing, again during filming, and finally
+                    during editing. Editing lets you manipulate the time and telling of the story. It is the final
+                    piece of the filmmaking process (and the one where all your earlier decisions come home to
+                    roost).</p>
+
+                <h3>Setting Up a Project</h3>
+                <p>To begin, you will likely have to choose the project's quality and frame rate. This can change
+                    depending on what quality and frame rate you filmed in. More often than not, you will want to
+                    choose the standard:</p>
+                <table class="spec-table">
+                    <tr><th>Setting</th><th>Standard</th></tr>
+                    <tr><td>Resolution</td><td>1920 x 1080 (1080p)</td></tr>
+                    <tr><td>Frame rate</td><td>23.98 fps (frames per second)</td></tr>
+                </table>
+
+                <h3>Basic Types of Edits</h3>
+                <div class="edit-type">
+                    <h4>J Cuts and L Cuts</h4>
+                    <p>A <strong>J cut</strong> happens when the audio for a clip begins before the video does. You
+                        hear the next scene before you see it.</p>
+                    <p>An <strong>L cut</strong> happens when the video for a clip begins before the audio does. You
+                        see the next scene while still hearing the last one.</p>
+                    <p>(The names come from the shapes the clips make on your timeline. Look for them.)</p>
+                </div>
+                <div class="edit-type">
+                    <h4>Jump Cuts</h4>
+                    <p>A sudden jump from one clip to another, used to show fast-paced or heavy action. In
+                        documentary, jump cuts are also the standard tool for compressing an interview down to its
+                        best moments.</p>
+                </div>
+                <div class="edit-type">
+                    <h4>Cutaways</h4>
+                    <p>When a video clip is spliced in over another clip's audio, kind of like interrupting the main
+                        action to show something the person is talking about. Your subject says "I make the broth
+                        every morning," and we cut away to the broth.</p>
+                </div>
+                <div class="edit-type">
+                    <h4>Parallel Editing</h4>
+                    <p>Alternating between two scenes that are happening at different locations or times. Also
+                        called cross-cutting.</p>
+                </div>
+
+                <h3>Transitions</h3>
+                <div class="edit-type">
+                    <p><strong>Dissolves</strong> fade from one clip to another.</p>
+                    <p><strong>Fade to black</strong> starts on a clip and fades into a black screen.</p>
+                    <p><strong>Fade from black</strong> starts on a black screen and fades into a clip.</p>
+                    <p><strong>Wipes</strong> happen when a clip comes on screen from any direction and replaces the
+                        previous one.</p>
+                </div>
+                <p>During your process, look at the types of edits your film uses, and think about why. What is the
+                    scene trying to convey by using these? This is the same analysis habit you built with your
+                    Shot-Match Sheets: first understand what the technique is doing, then use it on purpose.</p>
+
+                <h3>Color and Lighting</h3>
+                <p>A large part of continuity is color. Watch the way scenes are colored and how bright they are. If
+                    the lighting or the color of lighting changes too much within the same setting in a scene, it can
+                    break the immersion and flow of the story. Ways to fix this are to adjust a clip's contrast, or
+                    add color filters to try and make clips match. Note: not every clip needs this, just those shot
+                    within the same setting.</p>
+
+                <h3>Audio</h3>
+                <p>Audio is also a very important part of continuity. You want viewers to be able to hear the audio,
+                    but not so loud it can cause hearing damage or just makes it hard to listen to. The fix is your
+                    audio mixer tool: use it to adjust the volume levels across clips so nothing spikes and nothing
+                    disappears.</p>
+
+                <h3>Things to Watch Out For</h3>
+                <div class="watch-out">
+                    <p><strong>Black holes:</strong> random black frames or gaps around clips.</p>
+                </div>
+                <div class="watch-out">
+                    <p><strong>Flash frames:</strong> random frames of leftover video around clips.</p>
+                </div>
+                <div class="watch-out">
+                    <p><strong>Sync:</strong> make sure video and audio tracks line up properly.</p>
+                </div>
+                <div class="watch-out">
+                    <p><strong>Continuity:</strong> make sure things line up from one clip to another (aka avoiding
+                        visual jumps).</p>
+                </div>
+
+                <h3>Free Editing Software</h3>
                 <ul>
-                    <li>At least one <strong>J cut</strong> and one <strong>L cut</strong> (interview and voiceover
-                        docs make these natural).</li>
-                    <li>At least one <strong>cutaway</strong> over continuous audio.</li>
-                    <li>Transitions used on purpose: if you dissolve or fade, be ready to explain the choice in one
-                        line.</li>
-                    <li>Continuity hygiene: no black holes, no flash frames, sync verified, color and brightness
-                        matched within scenes, audio levels mixed.</li>
+                    <li><strong>CapCut</strong></li>
+                    <li><strong>DaVinci Resolve</strong></li>
+                    <li><strong>ClipChamp</strong></li>
                 </ul>
-                <p>Optional but encouraged: jump cuts for interview compression, and parallel editing if your doc
-                    weaves a place strand and a craft strand together.</p>
-                <p>Project settings: 1920x1080 at 23.98 fps. Free software: CapCut, DaVinci Resolve, ClipChamp. The
-                    full walkthrough lives in <a href="guides/editing-basics-guide.html">The Basics of Editing</a>.</p>
+
+                <p style="margin-top: 2rem;">Remember the order of operations: build your (00:03:00) cut first, then
+                    compress it into the 90-second cut. The second pass is where you learn what your story actually
+                    needs.</p>
             </div>
         </section>
 
@@ -255,7 +362,6 @@
                 what your story is. Your final product is a record of that game.
             </p>
             <a href="pre-production/index.html" class="btn">Start Pre-Production &rarr;</a>
-            <a href="guides/editing-basics-guide.html" class="btn" style="margin-left: 1rem;">The Basics of Editing &rarr;</a>
         </section>
 
     </main>
