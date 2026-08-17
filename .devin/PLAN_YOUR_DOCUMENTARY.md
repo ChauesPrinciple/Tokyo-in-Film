@@ -27,7 +27,7 @@ focal length estimate, time of day/light direction) proving the student understo
 frame before recreating it.
 
 **The editing thesis — two cuts from one footage pool:** Students deliver BOTH a
-**90-second cut** and a **3:00 cut** of the same documentary. Same footage, two tellings.
+**(00:01:30) cut** and a **(00:03:00) cut** of the same documentary. Same footage, two tellings.
 This operationalizes "a story is made 3 times — writing, filming, editing" and forces
 real editorial decision-making instead of a single bloated timeline.
 
@@ -102,7 +102,7 @@ Same visual system as current page (hero + `project-section` blocks + `option-ca
   question list if using VO/interviews.
 - **II. Production:** shoot the doc footage AND the recreations; 10x footage rule
   carried over; audio discipline (room tone, clean interview sound).
-- **III. Post-Production:** assembly → 3:00 cut → compress to 90-second cut (order
+- **III. Post-Production:** assembly → (00:03:00) cut → compress to (00:01:30) cut (order
   matters: long cut first, then the kill-your-darlings pass). Editing vocabulary
   requirements per §E.
 
@@ -114,7 +114,7 @@ The two cuts must demonstrably use, and the student must name in their reflectio
 - Transitions used intentionally (dissolve/fade choices explained in one line each)
 - Continuity checks: no black holes, no flash frames, sync verified, color/brightness
   matched within scenes, audio levels mixed
-- Project settings guidance: 1920x1080, 23.98 fps
+- Project settings guidance: match the timeline to the footage. Do NOT prescribe a resolution or a frame rate. Frame rate is a camera decision bound to shutter speed and does not belong in post-production guidance.
 - Free software: CapCut, DaVinci Resolve, ClipChamp
 → All of this lives in full on `guides/editing-basics-guide.html`; the project page
   summarizes and links.
@@ -122,8 +122,8 @@ The two cuts must demonstrably use, and the student must name in their reflectio
 ### §F Deliverables + deadlines
 | Deliverable | Spec |
 |---|---|
-| 3:00 cut | 2:45–3:15 tolerance, 1080p MP4, titles + credits |
-| 90-second cut | 1:20–1:40 tolerance, same footage pool, standalone-watchable |
+| (00:03:00) cut | ends at (00:03:00) exactly, NO tolerance range, MP4 at highest exportable quality, titles + credits |
+| (00:01:30) cut | ends at (00:01:30) exactly, NO tolerance range, same footage pool, standalone-watchable |
 | Shot-Match Sheets | min 7, PDF or images |
 | Pre-production pack | pitch, shot list (recreations flagged), interview questions |
 | Self-evaluation | written/oral/video, includes the editing-vocabulary reflection (§E) |
@@ -150,7 +150,7 @@ Weighted, published on the page:
 Owner-supplied text, adapted to house style (headings, tables where useful, Sharman
 voice pass, no em dashes). Content blocks:
 1. "A story is made 3 times" framing
-2. Setting up a project (1080p / 23.98)
+2. Setting up a project (match the timeline to your footage; no prescribed resolution or frame rate)
 3. Basic edit types: J/L cuts, jump cuts, cutaways, parallel editing
 4. Transitions: dissolve, fade to/from black, wipes
 5. "During your process, look at the types of edits your film uses and ask why" —
