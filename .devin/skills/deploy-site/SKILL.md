@@ -12,8 +12,9 @@ Deploy the Tokyo in Film static website to GitHub Pages after making updates.
 - **Local Path:** `c:\Users\rober\CascadeProjects\tokyo-in-film`
 - **Remote:** `origin → https://github.com/ChauesPrinciple/Tokyo-in-Film.git`
 - **Live Site:** `https://chauesprinciple.github.io/Tokyo-in-Film/`
-- **Local Branch:** `tokyo-main`
+- **Local Branch:** `main`
 - **Remote Branch:** `main`
+- `tokyo-main` is a stale local branch (over 100 commits behind). Do not deploy from it.
 
 ## Deployment Steps
 
@@ -35,9 +36,8 @@ git commit -m "Description of changes"
 
 ### 4. Push to GitHub Pages
 ```bash
-git push origin tokyo-main:main
+git push origin main
 ```
-This pushes the local `tokyo-main` branch to the remote `main` branch.
 
 ### 5. Verify deployment
 Visit `https://chauesprinciple.github.io/Tokyo-in-Film/` after 1-2 minutes.
