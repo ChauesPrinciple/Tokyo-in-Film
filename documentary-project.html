@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;600&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=21">
+    <link rel="stylesheet" href="style.css?v=22">
     <style>
         .edit-type {
             background: rgba(255, 255, 255, 0.03);
@@ -57,14 +57,14 @@
                     Literature</a>
             </div>
         </div>
-            <a href="https://www.instagram.com/chaues/" target="_blank" class="ig-icon" aria-label="Instagram"></a>
+            <a href="https://www.instagram.com/chaues/" target="_blank" rel="noopener" class="ig-icon" aria-label="Instagram"></a>
         </div>
-        <div class="menu-toggle" id="mobile-menu">
+        <button type="button" class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-nav">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
-        </div>
-        <ul class="nav-list">
+        </button>
+        <ul class="nav-list" id="primary-nav">
             <li><a href="index.html">Home</a></li>
             <li><a href="documentary-project.html" class="active">Documentary Project</a></li>
             <li><a href="pre-production/index.html">Pre-Production</a></li>
@@ -76,7 +76,7 @@
     </nav>
 
     <header class="hero" style="min-height: 50vh;">
-        <video src="assets/scene-project.mp4" class="hero-bg" autoplay muted loop playsinline style="opacity: 0.4;"></video>
+        <video aria-hidden="true" src="assets/scene-project.mp4" class="hero-bg" autoplay muted loop playsinline style="opacity: 0.4;"></video>
         <div class="hero-content">
             <h1>Documentary Project</h1>
             <p>One place. One craft. Two cuts.<br>Tokyo through your own lens.</p>
@@ -152,7 +152,7 @@
                     <li><em>Rental Family</em>: observational Tokyo street style.</li>
                     <li><em>Outrage</em>: Kitano's locked-off, symmetrical wide shots. Study how a static frame makes
                         a room feel charged before anything happens in it.</li>
-                    <li><em>Ju-On: The Grudge</em>: domestic interiors framed through doorways, hallways, and
+                    <li><em>Ringu</em>: domestic interiors framed through doorways, hallways, and
                         staircases. Useful any time your documentary steps inside a home or a shop.</li>
                 </ul>
             </div>
@@ -386,8 +386,9 @@
 
             if (mobileMenu) {
                 mobileMenu.addEventListener('click', () => {
-                    navList.classList.toggle('active');
+                    const isOpen = navList.classList.toggle('active');
                     mobileMenu.classList.toggle('is-active');
+                    mobileMenu.setAttribute('aria-expanded', String(isOpen));
                 });
             }
 

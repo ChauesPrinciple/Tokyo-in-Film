@@ -7,7 +7,7 @@
     <title>3.2 Sound Design - Tokyo in Film</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;600&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="../style.css?v=21">
+    <link rel="stylesheet" href="../style.css?v=22">
     <style>
         .video-fallback-link {
             display: block;
@@ -36,14 +36,14 @@
                     Literature</a>
             </div>
         </div>
-            <a href="https://www.instagram.com/chaues/" target="_blank" class="ig-icon" aria-label="Instagram"></a>
+            <a href="https://www.instagram.com/chaues/" target="_blank" rel="noopener" class="ig-icon" aria-label="Instagram"></a>
         </div>
-        <div class="menu-toggle" id="mobile-menu">
+        <button type="button" class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-nav">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
-        </div>
-        <ul class="nav-list">
+        </button>
+        <ul class="nav-list" id="primary-nav">
             <li><a href="../index.html">Home</a></li>
             <li><a href="../documentary-project.html">Documentary Project</a></li>
             <li><a href="../pre-production/index.html">Pre-Production</a></li>
@@ -60,7 +60,7 @@
 
         <div class="textbook-content">
 
-            <video src="../assets/images/libretexts/sound-design-banner.mp4" class="chapter-banner" autoplay muted loop playsinline></video>
+            <video aria-hidden="true" src="../assets/images/libretexts/sound-design-banner.mp4" class="chapter-banner" autoplay muted loop playsinline></video>
 
             <p>Sound design is where the magic happens in post-production. Raw audio gets crafted into an
                 immersive soundscape that shapes the audience's experience. Sounds are not just cleaned up; they are
@@ -151,12 +151,12 @@
                 Their job is to fill in the missing sounds in a given scene. By any means necessary:</p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 100%; height: 325px;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" enablejsapi="true" height="325" id="widget120"
                         src="https://www.youtube.com/embed/WnozP8OWeik" title="Foley Artists" width="100%"
                         frameborder="0" referrerpolicy="strict-origin-when-cross-origin"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=WnozP8OWeik" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=WnozP8OWeik" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
             </div>
 
@@ -192,12 +192,12 @@
             </p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 100%; height: 325px;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" enablejsapi="true" height="325" id="widget122"
                         src="https://www.youtube.com/embed/eyH-a964kAs" title="Sound Bridges: J-Cuts & L-Cuts"
                         width="100%" frameborder="0" referrerpolicy="strict-origin-when-cross-origin"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=eyH-a964kAs" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=eyH-a964kAs" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
             </div>
 
@@ -209,13 +209,13 @@
             </p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 100%; height: 325px;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" enablejsapi="true" height="325" id="widget124"
                         src="https://www.youtube.com/embed/ilhh5bXwDv0"
                         title="The 39 Steps (1935) - Train Whistle Scream" width="100%" frameborder="0"
                         referrerpolicy="strict-origin-when-cross-origin"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=ilhh5bXwDv0" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=ilhh5bXwDv0" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
             </div>
 
@@ -228,13 +228,13 @@
                 these elements of sound design to embrace the idea of sound as co-expressive with the moving image:</p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 100%; height: 325px;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" enablejsapi="true" height="325" id="widget126"
                         src="https://www.youtube.com/embed/as2Rk4WcljA"
                         title="David Fincher - And the Other Way is Wrong" width="100%" frameborder="0"
                         referrerpolicy="strict-origin-when-cross-origin"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=as2Rk4WcljA" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=as2Rk4WcljA" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
             </div>
 
@@ -260,21 +260,21 @@
                     Identity </em>(2002):</p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 100%; height: 325px;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" enablejsapi="true" height="325" id="widget128"
                         src="https://www.youtube.com/embed/yBFferOQeVI"
                         title="Car chase sound design in The Bourne Identity" width="100%" frameborder="0"
                         referrerpolicy="strict-origin-when-cross-origin"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=yBFferOQeVI" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=yBFferOQeVI" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
             </div>
 
             <p>Sound mixing is one of those technical aspects of filmmaking that has evolved over the decades,
                 especially as the technology for sound recording and reproduction has changed in more recent years.
                 Starting with the birth of cinema sound in 1927, and the release of Walt Disney's <em>Steamboat
-                    Willie</em> (1928), movie houses had to be rigged for sound reproduction.
-                Which usually meant a couple of massive, low-quality speakers. But by 1940, sound mixers were already
+                    Willie</em> (1928), movie houses had to be rigged for sound reproduction,
+                which usually meant a couple of massive, low-quality speakers. But by 1940, sound mixers were already
                 experimenting with the concept of <strong>surround sound</strong> and the ability to move the various
                 channels of sound around a theater through multiple speakers to match the action on screen.</p>
 
@@ -290,13 +290,13 @@
                 how complex the process was for the sound mixers on <em>Ford v Ferrari </em>(2019):</p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 100%; height: 325px;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" enablejsapi="true" height="325" id="widget130"
                         src="https://www.youtube.com/embed/1GyqrRu492Q" title="Ford v Ferrari Sound Editors Explain
                         Mixing Sound for Film | Vanity Fair" width="100%" frameborder="0"
                         referrerpolicy="strict-origin-when-cross-origin"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=1GyqrRu492Q" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=1GyqrRu492Q" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
             </div>
 
@@ -309,12 +309,12 @@
             <p>Check out how skillfully Martin Scorsese uses silence throughout his films:</p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 100%; height: 325px;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" enablejsapi="true" height="325" id="widget132"
                         src="https://www.youtube.com/embed/NUrTRjEXjSM" title="Martin Scorsese - The Art of Silence"
                         width="100%" frameborder="0" referrerpolicy="strict-origin-when-cross-origin"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=NUrTRjEXjSM" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=NUrTRjEXjSM" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
             </div>
 
@@ -336,27 +336,27 @@
                 in <em>Bande &agrave; part</em> (1964):</p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 100%; height: 325px;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" enablejsapi="true" height="325" id="widget134"
                         src="https://www.youtube.com/embed/7nTvuUDvHh4" title="Bande &agrave; part - One Minute of Silence"
                         width="100%" frameborder="0" referrerpolicy="strict-origin-when-cross-origin"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=7nTvuUDvHh4" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=7nTvuUDvHh4" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
             </div>
 
-            <p>It is not actually a full minute of dead air, it is more like 36 seconds, but it feels like an hour.</p>
+            <p>It is not actually a full minute of dead air; it is more like 36 seconds, but it feels like an hour.</p>
 
             <p>Compare that to this scene from the more recent film <em>Gravity </em>(2013):</p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 100%; height: 325px;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" enablejsapi="true" height="325" id="widget136"
                         src="https://www.youtube.com/embed/EThczHxvjKo"
                         title="Gravity - Clip (7/11): Ryans Hallucination" width="100%" frameborder="0"
                         referrerpolicy="strict-origin-when-cross-origin"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=EThczHxvjKo" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=EThczHxvjKo" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
             </div>
 
@@ -400,13 +400,13 @@
                 be eaten alive!</p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 100%; height: 325px;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" enablejsapi="true" height="325" id="widget138"
                         src="https://www.youtube.com/embed/rW23RsUTb2Y"
                         title="Jaws (1975) - Get out of the Water Scene (2/10) | Movieclips" width="100%"
                         frameborder="0" referrerpolicy="strict-origin-when-cross-origin"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=rW23RsUTb2Y" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=rW23RsUTb2Y" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
             </div>
 
@@ -427,7 +427,7 @@
                 internal experience in Japanese becomes external atmosphere in English.</p>
 
             <p>And this concept applies to more than just music. Titles, for example, are a non-diegetic element of
-                mise-en-scene. The audience can see them, but the characters cannot.</p>
+                mise-en-sc&egrave;ne. The audience can see them, but the characters cannot.</p>
 
             <p>Second, we need to distinguish between a <strong>score </strong>written by a <strong>composer</strong>
                 and what we could call a <strong>soundtrack </strong>of popular music used throughout that same motion
@@ -436,7 +436,7 @@
                 have a <strong>music supervisor </strong>who is responsible for identifying and acquiring the rights for
                 any popular or pre-existing music the filmmakers want to use in the final edit. Sometimes, those songs
                 are diegetic, that is, they are played on screen for the characters to hear and respond to, or they
-                are non-diegetic, that is, they are just for the audience to put us in a certain mood or frame of mind.
+                are non-diegetic, that is, they are just for the audience, to put them in a certain mood or frame of mind.
                 Either way, they are almost <em>always</em> added in post-production after complete filming. Even if
                 they are meant to be diegetic, playing the actual song during filming would make editing between
                 dialogue takes impossible. The actors have just to pretend they are listening to the song in the scene,
@@ -456,7 +456,7 @@
                 image, working in concert to tell the story (pun intended, see what I did there). The most forgettable
                 scores simply mirror the action on screen. Instead of adding another dimension, what we see is what we
                 hear. Far worse is a score that does little more than tell us what to feel and when to feel it. The
-                musical equivalent of a big APPLAUSE sign.</p>
+                musical equivalent of a big applause sign.</p>
 
             <p>These tendencies in cinematic music are what led philosopher and music critic Theodor Adorno to complain
                 that the standard approach to film scores was simply to "interpret the meaning of the action of the less
@@ -469,18 +469,18 @@
             </p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 100%; height: 325px;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" enablejsapi="true" height="325" id="widget140"
                         src="https://www.youtube.com/embed/7vfqkvwW2fs" title="The Marvel Symphonic Universe"
                         width="100%" frameborder="0" referrerpolicy="strict-origin-when-cross-origin"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=7vfqkvwW2fs" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=7vfqkvwW2fs" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
             </div>
 
             <p>The best cinema scores can do so much more than simply mirror the action or tell us how to feel. They can
                 set a tone, play with tempo, and subvert expectations. Music designed for cinema with the same care and
-                thematic awareness as cinematography, mise-en-scene, or editing can transform our experience without us
+                thematic awareness as cinematography, mise-en-sc&egrave;ne, or editing can transform our experience without us
                 even realizing how and why it is happening.</p>
 
             <p>Take composer Hans Zimmer, for example. Zimmer has composed scores for over 150 films, working with
@@ -489,15 +489,15 @@
                 </em>(2010), and <em>Interstellar</em> (2014), his compositions explore the recurring theme of time:</p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 100%; height: 325px;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" height="325" src="https://player.vimeo.com/video/193995233" width="100%" frameborder="0"
                         allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
                 </div>
-                <a href="https://vimeo.com/193995233" target="_blank" class="video-fallback-link">Watch on Vimeo</a>
+                <a href="https://vimeo.com/193995233" target="_blank" rel="noopener" class="video-fallback-link">Watch on Vimeo</a>
             </div>
 
             <p>Musical scores can also emphasize a moment or signal an important character. Composers use recurring
-                themes, or <strong>motifs</strong>, as a kind of signature (or even a brand) for a film or tv series.
+                themes, or <strong>motifs</strong>, as a kind of signature (or even a brand) for a film or TV series.
                 The most famous of these are the ones you can probably hum to yourself right now, again like <em>Star
                     Wars</em>, <em>Raiders of the Lost Ark</em>, maybe even <em>Harry Potter</em>. Composers can use
                 this same concept for a specific character as well, known as a <strong>leitmotif</strong>. Think of
@@ -508,13 +508,13 @@
                 Williams. And he is a legend:</p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 100%; height: 325px;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" enablejsapi="true" height="325" id="widget142"
                         src="https://www.youtube.com/embed/rLWgnJxapYA"
                         title="John Williams and the universal language of film music" width="100%" frameborder="0"
                         referrerpolicy="strict-origin-when-cross-origin"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=rLWgnJxapYA" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=rLWgnJxapYA" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
             </div>
 
@@ -528,8 +528,8 @@
                 artistry and vision, Hisaishi's emotive compositions, and uniquely Japanese sentiment that creates
                 Ghibli's magic.</p>
 
-            <p>For instance, Shantanu Singh over at <u><a
-                        href="https://medium.com/@shantanusighs/studio-ghibli-the-mechanics-behind-miyazakis-melody-of-nostalgia-f77a254b712d">Medium</a></u>
+            <p>For instance, Shantanu Singh over at <a
+                        href="https://medium.com/@shantanusighs/studio-ghibli-the-mechanics-behind-miyazakis-melody-of-nostalgia-f77a254b712d">Medium</a>
                 notes:</p>
 
             <blockquote>
@@ -545,19 +545,19 @@
 
             <p>We do have the option, however, of studying another notable collaborative duo, Shinichiro Watanabe and
                 Yoko Kanno, who created Cowboy Bebop, Space Dandy, and others, whose works are directly
-                inspired by not only a genre of music but are crafted like a (delightfully) self-contained album.</p>
+                inspired by not only a genre of music but crafted like a (delightfully) self-contained album.</p>
 
             <p>GammaRay gives us a nice documentation of Shinichiro's inspirations as well as how Kanno inspired
                 Watanabe in real-time:</p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 100%; height: 360px;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowfullscreen="" enablejsapi="true" frameborder="0" height="360" id="widget144"
                         referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/bIVFXsimy0Y"
                         title="COWBOY BEBOP: The Art of Music Scoring  Anime" width="100%"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=bIVFXsimy0Y" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=bIVFXsimy0Y" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
                 <figcaption class="mt-align-center">COWBOY BEBOP: The Art of Music Scoring Anime</figcaption>
             </div>

@@ -629,7 +629,7 @@ function showNotFeaturedPopup(jpName){
   sub.style.cssText='font-size:.75rem;color:var(--prose);margin:.25rem 0 .4rem;font-style:italic;';
   sub.textContent = featuredIn.length
     ? `This ward doesn't appear in ${ANIME[currentAnime].title}. See it in:`
-    : `This ward isn't featured in any of the three series.`;
+    : `This ward isn't featured in any of the four series.`;
   poiPopup.appendChild(sub);
   featuredIn.forEach(key=>{
     const a=document.createElement('a');

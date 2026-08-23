@@ -52,7 +52,7 @@ The course rotates films each year. **When citing films in examples, use only fi
 - *Exit 8* (2025)
 - *Initial D* (2005, live-action)
 - *Jiro Dreams of Sushi* (2011)
-- *Ju-On: The Grudge* (2002)
+- *Ringu* (1998)
 - *Jujutsu Kaisen* (2020, anime)
 - *Outrage* (2010)
 - *Ramen Heads* (2017)
@@ -62,9 +62,9 @@ The course rotates films each year. **When citing films in examples, use only fi
 - *Tampopo* (1985)
 - *Your Name* (2016)
 
-**August 2026 revision:** removed *Godzilla Minus One*, *Howl's Moving Castle*, *Kubi*, *Suzume*, *The Seven Samurai*, *Tokyo Drift*, *Tokyo Ghoul*, *Tsukigakirei*; added *Ju-On: The Grudge*, *Jujutsu Kaisen*, *Outrage*, *Rashomon*, *Rental Family*, *Rurouni Kenshin: Final Chapter Part II - The Beginning*, *Tampopo*. The list is synced in all three places (`index.html` slides, `index.html` JS `filmData`, `textbook.html` slides). **Assignment/journal pages have NOT yet been updated to this list.** They still cite the previous canon and are scheduled for a full overhaul; do not treat their "Films to Choose From" lists as current.
+**August 2026 revision:** removed *Godzilla Minus One*, *Howl's Moving Castle*, *Kubi*, *Suzume*, *The Seven Samurai*, *Tokyo Drift*, *Tokyo Ghoul*, *Tsukigakirei*; added *Ringu*, *Jujutsu Kaisen*, *Outrage*, *Rashomon*, *Rental Family*, *Rurouni Kenshin: Final Chapter Part II - The Beginning*, *Tampopo*. The list is synced in all three places (`index.html` slides, `index.html` JS `filmData`, `textbook.html` slides). **Assignment/journal pages have NOT yet been updated to this list.** They still cite the previous canon and are scheduled for a full overhaul; do not treat their "Films to Choose From" lists as current.
 
-**Textbook vs assignment (critical):** This studied-film list governs **assignment/journal pages and their "Films to Choose From" lists only** (`catharsis.html`, `visual-foreshadowing.html`, `rhythm-of-process.html`, `shot-list.html`, `storyboard.html`, `script.html`, `animatic.html`, `pilgrimage-shots.html`). **Textbook/teaching pages may cite ANY film** for teaching purposes (e.g., *Shoplifters*, *Spirited Away*, *Drive My Car*, *My Neighbor Totoro*, *Castle in the Sky* are valid teaching examples and must NOT be swapped out or replaced with invented details).
+**Textbook vs assignment (critical):** This studied-film list governs **assignment/journal pages and their "Films to Choose From" lists only** (`pre-production/juxtaposition.html`, `production/composition.html`, `post-production/audiovisual-juxtaposition.html`, `shot-list.html`, `storyboard.html`, `script.html`, `animatic.html`, `pilgrimage-shots.html`). **Textbook/teaching pages may cite ANY film** for teaching purposes (e.g., *Shoplifters*, *Spirited Away*, *Drive My Car*, *My Neighbor Totoro*, *Castle in the Sky* are valid teaching examples and must NOT be swapped out or replaced with invented details).
 
 **Pairing discipline:** examples that pair a technique with a film must actually contain that technique in that film. No lazy pairings. *The Seven Samurai* has no empty station corridors. *Initial D* has no severed heads. Verify before writing.
 
@@ -122,7 +122,7 @@ As of April 2026:
 - **Push:** `git push origin main`
 - **Live site:** https://chauesprinciple.github.io/Tokyo-in-Film/ — served from `origin/main`, rebuild takes ~1 minute.
 - `.nojekyll` at repo root is required; do not delete it.
-- **Current CSS version cache-bust:** `style.css?v=21`
+- **Current CSS version cache-bust:** `style.css?v=22`
 
 ---
 

@@ -7,7 +7,7 @@
     <title>1.5 Cinematography - Tokyo in Film</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;600&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="../style.css?v=21">
+    <link rel="stylesheet" href="../style.css?v=22">
     <style>
         .video-fallback-link {
             display: block;
@@ -36,14 +36,14 @@
                     Literature</a>
             </div>
         </div>
-            <a href="https://www.instagram.com/chaues/" target="_blank" class="ig-icon" aria-label="Instagram"></a>
+            <a href="https://www.instagram.com/chaues/" target="_blank" rel="noopener" class="ig-icon" aria-label="Instagram"></a>
         </div>
-        <div class="menu-toggle" id="mobile-menu">
+        <button type="button" class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-nav">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
-        </div>
-        <ul class="nav-list">
+        </button>
+        <ul class="nav-list" id="primary-nav">
             <li><a href="../index.html">Home</a></li>
             <li><a href="../documentary-project.html">Documentary Project</a></li>
             <li><a href="index.html" class="active">Pre-Production</a></li>
@@ -90,13 +90,13 @@
             </p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 640px; height: 360px; margin: auto;">
-                    <iframe loading="lazy" src="https://www.youtube.com/embed/bCkr1APSp0w" title="YouTube video player" frameborder="0"
+                <div class="video-wrapper">
+                    <iframe loading="lazy" src="https://www.youtube.com/embed/bCkr1APSp0w" title="What does a cinematographer do?" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         referrerpolicy="strict-origin-when-cross-origin" allowfullscreen
                         style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=bCkr1APSp0w" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=bCkr1APSp0w" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
             </div>
 
@@ -144,9 +144,9 @@
                 the
                 shoot moving quickly and efficiently. From <strong>apple boxes </strong>to <strong>barn doors</strong>
                 to <strong>C-stands</strong>, the lingo can get downright bizarre. Clothespins are not clothespins;
-                they are <strong>C-47s </strong>(and yes, <u><a href="http://www.scoutingny.com/its-called-a-c-47-dummy/"
-                        target="_blank">they use a lot of
-                        clothespins on a film set</a></u>), and breakfast is not the
+                they are <strong>C-47s </strong>(and yes, <a href="http://www.scoutingny.com/its-called-a-c-47-dummy/"
+                        target="_blank" rel="noopener">they use a lot of
+                        clothespins on a film set</a>), and breakfast is not the
                 morning meal; it is the first meal on set, which could be 6 o&#8217;clock in the evening. And if someone is
                 in
                 the bathroom, they are <strong>10-100 </strong>(or <strong>10-200</strong> as the case may be), but
@@ -263,8 +263,8 @@
                 <strong>frame rate</strong> to render super-sharp imagery. For decades, the standard frame rate for
                 cinema has been 24 frames per second. That produces a familiar, cinematic "look" to the finished
                 film in
-                part because of <strong><u><a href="https://frames-per-second.appspot.com/" target="_blank">motion
-                            blur</a></u></strong>, the subtle blurring that occurs between still images passing at 24
+                part because of <strong><a href="https://frames-per-second.appspot.com/" target="_blank" rel="noopener">motion
+                            blur</a></strong>, the subtle blurring that occurs between still images passing at 24
                 fps. But film shot and projected at 48, 96, or even 120 frames per second renders an ultra-sharp image
                 with almost no motion blur as our brains process far more detail between each individual frame. To be
                 fair, this is possible with analog film stock, but it is impractical to shoot that much film stock at
@@ -302,13 +302,13 @@
             <p>Maybe this will convince you:</p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 640px; height: 360px; margin: auto;">
-                    <iframe loading="lazy" src="https://www.youtube.com/embed/B13r456NUy0" title="YouTube video player" frameborder="0"
+                <div class="video-wrapper">
+                    <iframe loading="lazy" src="https://www.youtube.com/embed/B13r456NUy0" title="Why black and white films still matter" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         referrerpolicy="strict-origin-when-cross-origin" allowfullscreen
                         style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=B13r456NUy0" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=B13r456NUy0" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
             </div>
 
@@ -361,13 +361,13 @@
             <p>Check out this short clip:</p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 640px; height: 360px; margin: auto;">
-                    <iframe loading="lazy" src="https://www.youtube.com/embed/LG6zGiUb46c" title="YouTube video player" frameborder="0"
+                <div class="video-wrapper">
+                    <iframe loading="lazy" src="https://www.youtube.com/embed/LG6zGiUb46c" title="Motivating light sources in cinematography" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         referrerpolicy="strict-origin-when-cross-origin" allowfullscreen
                         style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=LG6zGiUb46c" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=LG6zGiUb46c" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
             </div>
 
@@ -395,13 +395,13 @@
                 the closer to the subject, the harder the light:</p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 640px; height: 360px; margin: auto;">
-                    <iframe loading="lazy" src="https://www.youtube.com/embed/Jw066PBZe60" title="YouTube video player" frameborder="0"
+                <div class="video-wrapper">
+                    <iframe loading="lazy" src="https://www.youtube.com/embed/Jw066PBZe60" title="Hard vs soft lighting — controlling light quality" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         referrerpolicy="strict-origin-when-cross-origin" allowfullscreen
                         style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=Jw066PBZe60" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=Jw066PBZe60" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
             </div>
 
@@ -428,13 +428,13 @@
                 starting point for lighting a scene:</p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 640px; height: 360px; margin: auto;">
-                    <iframe loading="lazy" src="https://www.youtube.com/embed/pBt8qdO03-k" title="YouTube video player" frameborder="0"
+                <div class="video-wrapper">
+                    <iframe loading="lazy" src="https://www.youtube.com/embed/pBt8qdO03-k" title="Three-point lighting setup tutorial" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         referrerpolicy="strict-origin-when-cross-origin" allowfullscreen
                         style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=pBt8qdO03-k" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=pBt8qdO03-k" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
             </div>
 
@@ -495,13 +495,13 @@
                 temperature and how we use it in cinema:</p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 640px; height: 360px; margin: auto;">
-                    <iframe loading="lazy" src="https://www.youtube.com/embed/3HnhIRPLWsM" title="YouTube video player" frameborder="0"
+                <div class="video-wrapper">
+                    <iframe loading="lazy" src="https://www.youtube.com/embed/3HnhIRPLWsM" title="Color temperature explained — degrees Kelvin in cinema" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         referrerpolicy="strict-origin-when-cross-origin" allowfullscreen
                         style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=3HnhIRPLWsM" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=3HnhIRPLWsM" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
             </div>
 
@@ -535,13 +535,13 @@
                 he approaches lighting style in his work:</p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 640px; height: 360px; margin: auto;">
-                    <iframe loading="lazy" src="https://www.youtube.com/embed/1XzOqWs3XUI" title="YouTube video player" frameborder="0"
+                <div class="video-wrapper">
+                    <iframe loading="lazy" src="https://www.youtube.com/embed/1XzOqWs3XUI" title="Roger Deakins — lighting style video essay" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         referrerpolicy="strict-origin-when-cross-origin" allowfullscreen
                         style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=1XzOqWs3XUI" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=1XzOqWs3XUI" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
             </div>
 
@@ -600,26 +600,26 @@
             <p>Confused yet? Maybe this will help:</p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 640px; height: 360px; margin: auto;">
-                    <iframe loading="lazy" src="https://www.youtube.com/embed/DGujsKb2e10" title="YouTube video player" frameborder="0"
+                <div class="video-wrapper">
+                    <iframe loading="lazy" src="https://www.youtube.com/embed/DGujsKb2e10" title="Focal length and lens choice explained" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         referrerpolicy="strict-origin-when-cross-origin" allowfullscreen
                         style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=DGujsKb2e10" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=DGujsKb2e10" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
             </div>
 
             <p>Still confused? Here is an explanation in just 23 seconds:</p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 640px; height: 360px; margin: auto;">
-                    <iframe loading="lazy" src="https://www.youtube.com/embed/kbrwcevUcAg" title="YouTube video player" frameborder="0"
+                <div class="video-wrapper">
+                    <iframe loading="lazy" src="https://www.youtube.com/embed/kbrwcevUcAg" title="Focal length explained in 23 seconds" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         referrerpolicy="strict-origin-when-cross-origin" allowfullscreen
                         style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=kbrwcevUcAg" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=kbrwcevUcAg" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
             </div>
 
@@ -659,13 +659,13 @@
                 subject to another. This is called a <strong>rack focus </strong>or <strong>pull focus:</strong></p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 640px; height: 360px; margin: auto;">
-                    <iframe loading="lazy" src="https://www.youtube.com/embed/tT_qv9ptauU" title="YouTube video player" frameborder="0"
+                <div class="video-wrapper">
+                    <iframe loading="lazy" src="https://www.youtube.com/embed/tT_qv9ptauU" title="Rack focus / pull focus technique demonstration" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         referrerpolicy="strict-origin-when-cross-origin" allowfullscreen
                         style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=tT_qv9ptauU" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=tT_qv9ptauU" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
             </div>
 
@@ -834,7 +834,7 @@
                 there: railway tracks, temple paths, neon-lit corridors, bridges, power lines. The environment
                 is full of them. You just have to notice.</p>
 
-            <p>The Photographic Aspects of the shot have much to do with the <b>tonal range</b>, the contrast range
+            <p>The Photographic Aspects of the shot have much to do with the <strong>tonal range</strong>, the contrast range
                 between the lightest and darkest areas within the image. One of the reasons film was preferred over
                 video until the recent development of 4K and 6K cameras (like the RED cameras) was the ability of film
                 to record a much greater contrast range than video. Still, these recent developments in the digital
@@ -860,7 +860,7 @@
                 pixels in the frame. Most of you have wide-screen televisions with either 720 or 1080 vertical lines of
                 resolution. 6K packs more than five times as many lines into the frame. The older, more square format
                 televisions and older camcorders typically only had 300-400 lines of resolution, so you can see how much
-                this quality has improved in recent years. The ASPECT RATIO (the width vs the height) also changed with
+                this quality has improved in recent years. The <strong>aspect ratio</strong> (the width vs the height) also changed with
                 the newer flat screens, from 4:3 to 16:9, which is much closer to what we have always seen in movie
                 theaters. We thus no longer have to cut off the side parts of the images to make a film viewable on
                 television.</p>
@@ -894,7 +894,7 @@
                 technical choice; it is a storytelling one.</p>
 
 
-            <p><b>ZOOM Lenses</b> (lenses that can change the focal length in the middle of a shot) were a dramatic
+            <p><strong>ZOOM Lenses</strong> (lenses that can change the focal length in the middle of a shot) were a dramatic
                 addition to the art of filmmaking. The history of the zoom lens dates back to the telescope's
                 development, but the modern zoom lens was developed by Pierre Angenieux in the 1950s and was first used
                 in the late 1950s. This zoom lens allowed for precise focusing while physically zooming in or out from a
@@ -904,7 +904,7 @@
                     style="display: block; margin: 2rem auto; max-width: 450px;" alt="Zoom Lens"></p>
 
             <p>Keeping a camera in focus used to be done manually in the many years before we had cameras with
-                <b>automatic focus</b>; in fact, on some of the more complicated shots, this was the job of the Focus
+                <strong>automatic focus</strong>; in fact, on some of the more complicated shots, this was the job of the Focus
                 Puller, whose name you would see in the film credits. Consider this famous shot from
                 <i>Psycho</i> (1960), which was incredibly ambitious for its time. The camera was on a dolly; it had to be
                 pushed from the bathroom into the bedroom, and the camera person had to pan first to get the
@@ -912,13 +912,13 @@
                 After practicing, the focus puller had to change the setting on the fly.</p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 640px; height: 360px; margin: auto;">
-                    <iframe loading="lazy" src="https://www.youtube.com/embed/8VP5jEAP3K4" title="YouTube video player" frameborder="0"
+                <div class="video-wrapper">
+                    <iframe loading="lazy" src="https://www.youtube.com/embed/8VP5jEAP3K4" title="Psycho (1960) — focus puller dolly shot" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         referrerpolicy="strict-origin-when-cross-origin" allowfullscreen
                         style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=8VP5jEAP3K4" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=8VP5jEAP3K4" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
             </div>
 
@@ -928,11 +928,11 @@
             <div class="mt-video-widget mt-video-width-55">
                 <div class="video-wrapper">
                     <iframe loading="lazy" src="https://www.youtube.com/embed/EqYiSlkvRuw?start=57&amp;wmode=opaque&amp;rel=0"
-                        title="YouTube video player" frameborder="0"
+                        title="Pan's Labyrinth — rack focus scene" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen></iframe>
                 </div>
-                        <a href="https://www.youtube.com/watch?v=EqYiSlkvRuw" target="_blank" class="video-fallback-link">Watch on YouTube</a>
+                        <a href="https://www.youtube.com/watch?v=EqYiSlkvRuw" target="_blank" rel="noopener" class="video-fallback-link">Watch on YouTube</a>
             </div>
 
             <h2>Types of Shots</h2>
@@ -940,60 +940,60 @@
                 communicates something different to the audience, and the sequence of shots you plan determines how
                 they will experience your scene.</p>
 
-            <p><b>Extreme Wide Shot (EWS)</b>: shows a vast environment, often making human figures look tiny in
+            <p><strong>Extreme Wide Shot (EWS)</strong>: shows a vast environment, often making human figures look tiny in
                 comparison. Used to communicate scale, isolation, or the grandeur of a location.</p>
 
-            <p><b>Long Shot or Establishing Shot</b>: this shows all of the space and people in a particular scene. This
+            <p><strong>Long Shot or Establishing Shot</strong>: this shows all of the space and people in a particular scene. This
                 "establishes" the location and gives the audience a sense of grounding.</p>
 
-            <p><b>Full Shot</b>: captures the entire body of a character from head to toe. Useful when body language
+            <p><strong>Full Shot</strong>: captures the entire body of a character from head to toe. Useful when body language
                 and physical action are important to the scene.</p>
 
-            <p><b>Medium Long Shots:</b> This shot is from the knees up; suitable for conversations between three people
+            <p><strong>Medium Long Shots:</strong> This shot is from the knees up; suitable for conversations between three people
                 where there may be some action going on in the background.</p>
 
-            <p><b>Medium Shot (MS)</b>: from the waist up. Probably the most common shot in filmmaking; it gives
+            <p><strong>Medium Shot (MS)</strong>: from the waist up. Probably the most common shot in filmmaking; it gives
                 you enough of the person to read their body language while still being close enough to see their
                 facial expressions. Most dialogue scenes rely heavily on medium shots.</p>
 
-            <p><b>Two-Shots</b>: show the relationship of the characters. These are usually done in parallel and over
+            <p><strong>Two-Shots</strong>: show the relationship of the characters. These are usually done in parallel and over
                 the shoulder of each of the characters; combined with close-ups and cutaways, this can give the editor
                 enough footage to put together the scene.</p>
 
-            <p><b>Over-the-Shoulder Shot (OTS)</b>: the camera is positioned behind one character, looking over their
+            <p><strong>Over-the-Shoulder Shot (OTS)</strong>: the camera is positioned behind one character, looking over their
                 shoulder at the other. One of the most common setups in dialogue scenes because it keeps the audience
                 oriented in the spatial relationship between two characters.</p>
 
-            <p><b>Medium Close-Ups, Close-Ups, Extreme Close-Ups</b>: the closer you get, the more emotions can be
+            <p><strong>Medium Close-Ups, Close-Ups, Extreme Close-Ups</strong>: the closer you get, the more emotions can be
                 conveyed by the actors. I have always thought that this was a significant advantage that film has over
                 traditional theater, where it is very difficult to see the actors and actresses close up. MCUs are from
                 the chest up, CUs are just the face, and ECUs are of aspects like the eyes or the mouth.</p>
 
-            <p><b>Point-of-View Shot (POV)</b>: shows us what a character is seeing from their perspective. It puts
+            <p><strong>Point-of-View Shot (POV)</strong>: shows us what a character is seeing from their perspective. It puts
                 the audience directly in the character's shoes and can be very effective when used sparingly.</p>
 
-            <p><b>Insert Shot</b>: a close-up of an object or detail within a scene, like a letter being read, a clock
+            <p><strong>Insert Shot</strong>: a close-up of an object or detail within a scene, like a letter being read, a clock
                 on the wall, or a hand reaching for a weapon. Inserts draw attention to important story details and
                 give editors critical cutaway material.</p>
 
-            <p><b>Cutaway</b>: a shot that cuts away from the main action to show something else, like a bystander's
+            <p><strong>Cutaway</strong>: a shot that cuts away from the main action to show something else, like a bystander's
                 reaction or the surrounding environment. One of the most important tools an editor has for controlling
                 the pacing of a scene.</p>
 
-            <p><b>Master Shot</b>: the entire scene played out in a single wide angle. On set, you typically shoot
+            <p><strong>Master Shot</strong>: the entire scene played out in a single wide angle. On set, you typically shoot
                 the master first as your safety net, then go in for closer coverage (medium shots, close-ups, OTS).
                 When planning your shot list, the master is typically shot number one.</p>
 
             <p>Here is a comprehensive visual overview of all the standard shot sizes used in filmmaking:</p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 640px; height: 360px; margin: auto;">
-                    <iframe loading="lazy" src="https://www.youtube.com/embed/AyML8xuKfoc" title="YouTube video player" frameborder="0"
+                <div class="video-wrapper">
+                    <iframe loading="lazy" src="https://www.youtube.com/embed/AyML8xuKfoc" title="Standard shot sizes in filmmaking — visual overview" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         referrerpolicy="strict-origin-when-cross-origin" allowfullscreen
                         style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=AyML8xuKfoc" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=AyML8xuKfoc" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
             </div>
 
@@ -1009,7 +1009,7 @@
         <div
             style="display: flex; justify-content: space-between; align-items: center; margin-top: 4rem; margin-bottom: 2rem; gap: 1rem; flex-wrap: wrap;">
             <a href="mise-en-scene.html" class="btn">&larr; Previous: Mise-en-Sc&egrave;ne</a>
-            <a href="catharsis.html" class="btn">Next: Catharsis in Film &rarr;</a>
+            <a href="juxtaposition.html" class="btn">Next: Juxtaposition in Mise-en-Sc&egrave;ne &rarr;</a>
         </div>
     </main>
     <footer>

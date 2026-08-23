@@ -7,7 +7,7 @@
     <title>2.3 Cinematography (On Set) - Tokyo in Film</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;600&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="../style.css?v=21">
+    <link rel="stylesheet" href="../style.css?v=22">
     <style>
         .video-fallback-link {
             display: block;
@@ -36,14 +36,14 @@
                     Literature</a>
             </div>
         </div>
-            <a href="https://www.instagram.com/chaues/" target="_blank" class="ig-icon" aria-label="Instagram"></a>
+            <a href="https://www.instagram.com/chaues/" target="_blank" rel="noopener" class="ig-icon" aria-label="Instagram"></a>
         </div>
-        <div class="menu-toggle" id="mobile-menu">
+        <button type="button" class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-nav">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
-        </div>
-        <ul class="nav-list">
+        </button>
+        <ul class="nav-list" id="primary-nav">
             <li><a href="../index.html">Home</a></li>
             <li><a href="../documentary-project.html">Documentary Project</a></li>
             <li><a href="../pre-production/index.html">Pre-Production</a></li>
@@ -68,7 +68,7 @@
                 about shaping how we see it. Through careful decisions about framing, movement, and lighting,
                 cinematography transforms a static design into something dynamic and alive, guiding our emotions and our
                 attention across the screen.</p>
-            <p>Consider Junta Yamaguchi's <em>Beyond the Two Infinite Minutes</em>. A film that plays with the concept
+            <p>Consider Junta Yamaguchi's <em>Beyond the Infinite Two Minutes</em>. A film that plays with the concept
                 of time travel within a single confined space could easily feel visually repetitive, but Yamaguchi's
                 cinematography keeps it fresh and engaging. Shot to look like one continuous take, the film's
                 carefully
@@ -118,8 +118,14 @@
                 unique
                 rhythm and texture of the city itself.</p>
 
-            <p>This use of <em>Ma</em> is not limited to quiet films. Even the frantic time-loop of <em>Beyond the Two
-                    Infinite Minutes</em> relies on these moments of stillness, lingering on an empty monitor to let the
+            <p>This approach reflects the Japanese aesthetic concept of <em>Ma</em> (&#x9593;), which translates
+                roughly as "negative space" or "meaningful pause." It is the intentional use of stillness, silence,
+                or emptiness to create rhythm and emotional resonance. Just as a musician relies on the rests
+                between notes, a cinematographer can use <em>Ma</em> to let a moment breathe, giving the audience
+                space to feel rather than simply watch.</p>
+
+            <p>This use of <em>Ma</em> is not limited to quiet films. Even the frantic time-loop of <em>Beyond the Infinite Two
+                    Minutes</em> relies on these moments of stillness, lingering on an empty monitor to let the
                 disorientation sink in.</p>
             <p>Now that we have laid the foundation for visual storytelling, let us dive deeper into the
                 tools of
@@ -136,7 +142,7 @@
                 composes the image, how they <em>design </em>each shot, is one of the most important elements in
                 cinematic storytelling. How those people, objects, and settings are arranged within the border of the
                 image can bring balance or imbalance, reveal or hide information, indicate power or weakness, all
-                without a word of dialog, an edit, or even a character on the screen.</p>
+                without a word of dialogue, an edit, or even a character on the screen.</p>
 
 
             <p>But before a cinematographer can start to think about how to properly compose a shot, they have one more
@@ -150,11 +156,11 @@
                 aspect ratio a filmmaker chooses will affect the choices they make regarding composition. Check out this
                 quick comparison:</p>
 
-            <p class="mt-align-center"><u><a
+            <p class="mt-align-center"><a
                         href="https://uark.pressbooks.pub/app/uploads/sites/17/2020/01/aspect-ratio.jpg"><img
                             alt="aspect ratio"
                             src="../assets/images/libretexts/aspect-ratio.jpg"
-                            style="max-width: 100%; height: auto;" /></a></u></p>
+                            style="max-width: 100%; height: auto;" /></a></p>
 
             <p>Once a filmmaker has chosen their aspect ratio, the most basic starting point for composition, one we all
                 intuitively understand from our own experience snapping photos with our phones, is balance. Images that
@@ -215,13 +221,13 @@
                 supercut of Wes Anderson&#8217;s apparent obsession with symmetry in his films:</p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 640px; height: 360px; margin: auto;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen=""
                         src="https://player.vimeo.com/video/89302848"
                         style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;"
                         title="Vimeo video player"></iframe>
                 </div>
-                <a href="https://vimeo.com/89302848" target="_blank" class="video-fallback-link">Watch on
+                <a href="https://vimeo.com/89302848" target="_blank" rel="noopener" class="video-fallback-link">Watch on
                     YouTube/Vimeo</a>
             </div>
 
@@ -248,7 +254,7 @@
                 direct our attention in a given shot or sequence:</p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 640px; height: 360px; margin: auto;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowfullscreen="" enablejsapi="true" id="widget54"
                         src="https://www.youtube.com/embed/wsI8UES59TM"
@@ -256,7 +262,7 @@
                         title="Drive (2011) - The Quadrant System"
                         referrerpolicy="strict-origin-when-cross-origin"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=wsI8UES59TM" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=wsI8UES59TM" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
             </div>
 
@@ -264,7 +270,7 @@
                 relationships and motivations using simple geometry:</p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 640px; height: 360px; margin: auto;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowfullscreen="" enablejsapi="true" id="widget56"
                         src="https://www.youtube.com/embed/jGc-K7giqKM"
@@ -272,11 +278,11 @@
                         title="The Bad Sleep Well (1960) - The Geometry of a Scene"
                         referrerpolicy="strict-origin-when-cross-origin"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=jGc-K7giqKM" target="_blank" class="video-fallback-link">Watch on YouTube</a>
+                <a href="https://www.youtube.com/watch?v=jGc-K7giqKM" target="_blank" rel="noopener" class="video-fallback-link">Watch on YouTube</a>
             </div>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 640px; height: 360px; margin: auto;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowfullscreen="" enablejsapi="true" id="widget70"
                         src="https://www.youtube.com/embed/3Sr-vxVaY_M"
@@ -284,7 +290,7 @@
                         title="Goodfellas - Steadicam Shot"
                         referrerpolicy="strict-origin-when-cross-origin"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=3Sr-vxVaY_M" target="_blank" class="video-fallback-link">Watch on YouTube</a>
+                <a href="https://www.youtube.com/watch?v=3Sr-vxVaY_M" target="_blank" rel="noopener" class="video-fallback-link">Watch on YouTube</a>
             </div>
 
             <p>Try following those two actors through all of that with a camera on wheels!</p>
@@ -293,8 +299,8 @@
                 <strong>motivated</strong>? In the case of Scorsese's Steadicam shot above, we are following the main
                 characters into a nightclub. Motivation enough to move with them. Or that crane shot from <em>High Noon</em>; the move reveals something important about the character. Again, solid motivation. But what
                 happens when a camera move is <em>un</em>motivated? If the camera moves simply because the filmmaker
-                thinks it "looks cool" (I am looking at you, <u><a
-                        href="https://www.youtube.com/watch?v=DPtHPgZmZdA">Michael Bay</a></u>). Most often, an
+                thinks it "looks cool" (I am looking at you, <a
+                        href="https://www.youtube.com/watch?v=DPtHPgZmZdA">Michael Bay</a>). Most often, an
                 unmotivated camera move that is not serving the story reminds the viewer they are watching a movie. The
                 move becomes <em>visible</em> instead of <em>invisible</em>, and usually, that is the last thing a
                 filmmaker wants. All of this is supposed to be <em>invisible</em>, remember?
@@ -342,17 +348,17 @@
                 no dolly, no crane, no Steadicam. Just the lens.</p>
 
             <h2>2.3.1 Camera Angles and Their Meanings</h2>
-            <p><b>High Angle</b> shots imply smallness or submissiveness; if you are shooting from the perspective of a
+            <p><strong>High Angle</strong> shots imply smallness or submissiveness; if you are shooting from the perspective of a
                 tall building down on your subject at street level, you make your subject look smaller and less
                 significant.</p>
-            <p><b>Low Angle</b> shots imply superiority or dominance; looking up at someone makes them appear to tower
+            <p><strong>Low Angle</strong> shots imply superiority or dominance; looking up at someone makes them appear to tower
                 over you and gives them more power.</p>
             <p>Think of our courts; typically, the Judge is on a platform looking down at all of the participants. A
                 King or Queen similarly sits on a throne and looks down at the people, while they look up at him or her.
                 Looking up at a tall mountain or imposing building can give the feeling of taking on a big challenge.
             </p>
-            <p><b>Eye-level</b> shots often can indicate confidence, comfort, and normalcy.</p>
-            <p>The <b>Canted Angle</b> or <b>Dutch Angle</b> shot is when the camera is intentionally held on its side
+            <p><strong>Eye-level</strong> shots often can indicate confidence, comfort, and normalcy.</p>
+            <p>The <strong>Canted Angle</strong> or <strong>Dutch Angle</strong> shot is when the camera is intentionally held on its side
                 to accent some kind of drama, like when a panicked person is running away from someone trying to kill
                 them.</p>
 
@@ -361,25 +367,25 @@
 
             <p>The comparative height of people in a frame influences how we perceive them; the comedian Jon Stewart is,
                 in reality, a short man, but on his talk show, when seated, he always appears to be of an equal height
-                to his guests, because he understandably wants to be seen as being on an equal footing with the guest.
+                to his guests, because he understandably wants to be seen as being on an equal footing with them.
             </p>
 
             <h2>2.3.2 Lenses and Perspective</h2>
-            <p><b>Lenses</b> change the scale and depth of an image, and they can distort images, flatten space, and
+            <p><strong>Lenses</strong> change the scale and depth of an image, and they can distort images, flatten space, and
                 exaggerate depth. The cinematographer has the ability to change lenses, which gives them the power to
                 dictate the perspective of the viewer.</p>
 
             <p>The distance from the center of the lens to the camera sensor is what we call the focal length. For 35mm
-                cinematography, a 50mm lens is considered to be "normal", since it essentially duplicates what our eyes
+                cinematography, a 50mm lens is considered to be "normal," since it essentially duplicates what our eyes
                 can see without either reducing or enlarging the image. Wide Angle Lenses vary between 20mm and 35mm,
                 and Telephoto Lenses range from 80mm-300mm.</p>
 
             <p><img src="../assets/images/cinematography/focal-length-diagram.png"
                     style="display: block; margin: 2rem auto; max-width: 100%;" alt="Focal length diagram"></p>
 
-            <p>The image below, left, is an example of wide-angle focus, and the image on the right is an example of a
+            <p>The image on the left below is an example of wide-angle focus, and the image on the right is an example of a
                 close-up with a telephoto lens. Note the clear background and sense of depth the wide-angle lens gives.
-                Typical of a close-up with a telephoto lens, the background is blurred out, and the depth is flat.</p>
+                As is typical of a close-up with a telephoto lens, the background is blurred out, and the depth is flat.</p>
 
             <section style="background: rgba(255,255,255,0.03); border-left: 3px solid var(--accent-neon-cyan); padding: 1.25rem 1.5rem; margin: 2rem 0; border-radius: 4px;">
                 <h3 style="color: var(--accent-neon-cyan); font-size: 1rem; letter-spacing: 0.1em; text-transform: uppercase; margin: 0 0 0.75rem 0;">Going Deeper: The Focal Length Is Also An Emotional Choice</h3>
@@ -425,14 +431,14 @@
                 in focus even as the camera moves backward:</p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 640px; height: 360px; margin: auto;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" src="https://www.youtube.com/embed/HAHaRDlUrLw?wmode=opaque&amp;rel=0"
-                        title="YouTube video player" frameborder="0"
+                        title="Citizen Kane — deep focus scene" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen
                         style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=HAHaRDlUrLw" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=HAHaRDlUrLw" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
             </div>
 
@@ -454,7 +460,7 @@
                 lateral tracking shot can be:</p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 640px; height: 360px; margin: auto;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowfullscreen="" enablejsapi="true" id="widget72"
                         src="https://www.youtube.com/embed/pdSKot0psNg"
@@ -462,7 +468,7 @@
                         title="Wolf Children (2012) - The Lateral Tracking Shot"
                         referrerpolicy="strict-origin-when-cross-origin"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=pdSKot0psNg" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=pdSKot0psNg" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
             </div>
 
@@ -476,14 +482,14 @@
                 viewer into the psychology of the character:</p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 640px; height: 360px; margin: auto;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowfullscreen="" enablejsapi="true" id="widget74"
                         src="https://www.youtube.com/embed/Cu9-UymSApM"
                         style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;"
                         title="Spike Lee - The Dolly Shot" referrerpolicy="strict-origin-when-cross-origin"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=Cu9-UymSApM" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=Cu9-UymSApM" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
             </div>
 
@@ -493,8 +499,8 @@
                 flashy. It could just be a subtle shift in perspective. A slight pan or a minute push in on a dolly. But
                 it can change everything:</p>
 
-            <figure class="mt-video-widget mt-video-width-55" style="width: 640px; margin: auto;">
-                <div style="position: relative; width: 100%; height: 360px;">
+            <figure class="mt-video-widget mt-video-width-55">
+                <div class="video-wrapper">
                     <iframe loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowfullscreen="" enablejsapi="true" id="widget76"
                         src="https://www.youtube.com/embed/-7bJwW2NYyc"
@@ -502,7 +508,7 @@
                         title="Amazing Shots of QUENTIN TARANTINO"
                         referrerpolicy="strict-origin-when-cross-origin"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=-7bJwW2NYyc" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=-7bJwW2NYyc" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
                 <figcaption class="mt-align-center">Amazing Shots of QUENTIN TARANTINO</figcaption>
             </figure>
@@ -525,7 +531,7 @@
                 (1958). Seriously, check this out:</p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 640px; height: 360px; margin: auto;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowfullscreen="" enablejsapi="true" id="widget78"
                         src="https://www.youtube.com/embed/EhmYY5ZMXOY"
@@ -533,7 +539,7 @@
                         title="Touch of Evil (1958) — The Opening Sequence (Welles original)"
                         referrerpolicy="strict-origin-when-cross-origin"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=EhmYY5ZMXOY" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=EhmYY5ZMXOY" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
             </div>
 
@@ -549,7 +555,7 @@
             </p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 640px; height: 360px; margin: auto;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowfullscreen="" enablejsapi="true" id="widget80"
                         src="https://www.youtube.com/embed/cbqv1kbsNUY"
@@ -557,7 +563,7 @@
                         title="Spectre - Opening Tracking Shot in 1080p"
                         referrerpolicy="strict-origin-when-cross-origin"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=cbqv1kbsNUY" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=cbqv1kbsNUY" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
             </div>
 
@@ -566,14 +572,14 @@
                 take to serve the story:</p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 640px; height: 360px; margin: auto;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowfullscreen="" enablejsapi="true" id="widget82"
                         src="https://www.youtube.com/embed/8q4X2vDRfRk"
                         style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;"
                         title="The Spielberg Oner" referrerpolicy="strict-origin-when-cross-origin"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=8q4X2vDRfRk" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=8q4X2vDRfRk" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
             </div>
 
@@ -586,24 +592,24 @@
             <p><img src="../assets/images/cinematography/arriflex-camera.jpg"
                     style="display: block; margin: 2rem auto; max-width: 300px; width: 100%;" alt="Arriflex Camera"></p>
 
-            <p><strong>MOB</strong>: ways of moving the camera during the shot</p>
-            <p><b>Panning</b>: moving the camera on a tripod from right to left or left to right.</p>
-            <p><b>Tilting</b>: moving the camera on a tripod up or down</p>
-            <p><b>Tracking</b>: moving the camera on a rolling dolly or on a set of railroad tracks to follow two people
+            <p><strong>Camera Movement</strong>: ways of moving the camera during the shot</p>
+            <p><strong>Panning</strong>: moving the camera on a tripod from right to left or left to right.</p>
+            <p><strong>Tilting</strong>: moving the camera on a tripod up or down</p>
+            <p><strong>Tracking</strong>: moving the camera on a rolling dolly or on a set of railroad tracks to follow two people
                 down the street who are talking to each other. On some of my shoots, we used a "poor man&#8217;s dolly", a
                 shopping cart (!) to achieve the same idea, by sticking the cameraperson in the cart and having someone
                 else push it.</p>
-            <p><b>Crane</b> <b>Shots:</b> have been around since the days of DW Griffith. The last shot in Citizen Kane
+            <p><strong>Crane</strong> <strong>Shots:</strong> have been around since the days of DW Griffith. The last shot in Citizen Kane
                 is a great example of a crane shot:</p>
 
             <div class="mt-video-widget mt-video-width-55">
                 <div class="video-wrapper">
                     <iframe loading="lazy" src="https://www.youtube.com/embed/eP0O1BKu3zk?wmode=opaque&amp;rel=0"
-                        title="YouTube video player" frameborder="0"
+                        title="Citizen Kane — crane shot (final scene)" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen></iframe>
                 </div>
-                        <a href="https://www.youtube.com/watch?v=eP0O1BKu3zk" target="_blank" class="video-fallback-link">Watch on YouTube</a>
+                        <a href="https://www.youtube.com/watch?v=eP0O1BKu3zk" target="_blank" rel="noopener" class="video-fallback-link">Watch on YouTube</a>
             </div>
 
             <h3>Steadicams</h3>
@@ -617,11 +623,11 @@
             <div class="mt-video-widget mt-video-width-55">
                 <div class="video-wrapper">
                     <iframe loading="lazy" src="https://www.youtube.com/embed/6UjWsy7oGqs?wmode=opaque&amp;rel=0"
-                        title="YouTube video player" frameborder="0"
+                        title="Steadicam demo" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen></iframe>
                 </div>
-                        <a href="https://www.youtube.com/watch?v=6UjWsy7oGqs" target="_blank" class="video-fallback-link">Watch on YouTube</a>
+                        <a href="https://www.youtube.com/watch?v=6UjWsy7oGqs" target="_blank" rel="noopener" class="video-fallback-link">Watch on YouTube</a>
                 <p class="mt-align-center">Steadicam Demo</p>
             </div>
 
@@ -632,11 +638,11 @@
             <div class="mt-video-widget mt-video-width-55">
                 <div class="video-wrapper">
                     <iframe loading="lazy" src="https://www.youtube.com/embed/Vnoz5uBEWOA?wmode=opaque&amp;rel=0"
-                        title="YouTube video player" frameborder="0"
+                        title="Kiesza — Hideaway (one-take Steadicam music video)" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen></iframe>
                 </div>
-                        <a href="https://www.youtube.com/watch?v=Vnoz5uBEWOA" target="_blank" class="video-fallback-link">Watch on YouTube</a>
+                        <a href="https://www.youtube.com/watch?v=Vnoz5uBEWOA" target="_blank" rel="noopener" class="video-fallback-link">Watch on YouTube</a>
                 <p class="mt-align-center">Kiesza&#8217;s &#8220;Hideaway&#8221;</p>
             </div>
 
@@ -660,7 +666,7 @@
             <h2>2.3.4 Shutter Speed and Motion Blur</h2>
             <p>Here is something nobody mentions until after you have already ruined a day of footage. Your camera does
                 not record movement. It records a fast series of still images, and every one of those images is exposed
-                for a specific length of time. The <b>shutter</b> is what decides that length. Not how much light gets
+                for a specific length of time. The <strong>shutter</strong> is what decides that length. Not how much light gets
                 in, which is mostly the aperture's business, but how long each individual frame sits there drinking it
                 in.</p>
 
@@ -668,8 +674,8 @@
                 the whole of this section. Everything below is just consequences.</p>
 
             <p>You will run into two different vocabularies for this one setting, which is unhelpful of us.
-                <b>Shutter speed</b> measures the exposure in fractions of a second. 1/50, 1/250, 1/1000. That language
-                comes from still photography, where it works perfectly well. <b>Shutter angle</b> measures the same thing
+                <strong>Shutter speed</strong> measures the exposure in fractions of a second. 1/50, 1/250, 1/1000. That language
+                comes from still photography, where it works perfectly well. <strong>Shutter angle</strong> measures the same thing
                 in degrees, and those degrees are not a metaphor. Inside a film camera sits a disc that spins once per
                 frame with a wedge cut out of it. Light reaches the film while the gap is passing, and the size of that
                 gap is measured in degrees. Cut half the disc away and you have a 180 degree shutter.</p>
@@ -689,19 +695,19 @@
                 rule is short. Double your frame rate, and that is your shutter.</p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 640px; height: 360px; margin: auto;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" src="https://www.youtube.com/embed/X4vg1Qmb0Eg?wmode=opaque&amp;rel=0"
-                        title="YouTube video player" frameborder="0"
+                        title="Shutter angle and the 180-degree rule explained" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen
                         style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=X4vg1Qmb0Eg" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=X4vg1Qmb0Eg" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
                 <p class="mt-align-center">Shutter Angle vs Shutter Speed</p>
             </div>
 
-            <p>That doubling has a name. The <b>180 degree shutter rule</b> says keep the shutter open for half of each
+            <p>That doubling has a name. The <strong>180 degree shutter rule</strong> says keep the shutter open for half of each
                 frame's duration. At 24 frames per second that is 1/48 of a second. Most cameras do not offer 1/48, so
                 you dial 1/50 and get on with your life, because no human being has ever detected the difference.</p>
 
@@ -715,8 +721,8 @@
             <p>Now the part most explanations skip, and it is the part worth actually understanding. A short shutter and
                 a long shutter do not give you more and less of the same thing. They give you two different problems.</p>
 
-            <p><b>Motion blur</b> comes from a long exposure. The subject keeps moving while the frame is still being
-                exposed, so it smears. <b>Strobing</b> comes from a short one, and its cause is the opposite: the gaps.
+            <p><strong>Motion blur</strong> comes from a long exposure. The subject keeps moving while the frame is still being
+                exposed, so it smears. <strong>Strobing</strong> comes from a short one, and its cause is the opposite: the gaps.
                 If the shutter is only open for a sliver of each frame, the camera is not looking for most of every
                 frame, and fast movement arrives on screen as a run of sharp, disconnected positions. It stutters. It
                 skips. Widen the shutter, at a given frame rate, and you get more blur and less stutter. Narrow it and
@@ -764,7 +770,7 @@
             <p>Do not. You have just changed how motion looks in your film in order to solve a brightness problem, and
                 you will see it in the edit, and you will not be able to take it back.</p>
 
-            <p>Which is the other half of something you already did in pre-production. You packed an <b>ND filter</b> to
+            <p>Which is the other half of something you already did in pre-production. You packed an <strong>ND filter</strong> to
                 protect your aperture, so you could hold a shallow depth of field on a bright day without blowing out
                 the sky. It protects your shutter for precisely the same reason. An ND filter is sunglasses for your
                 lens. It cuts the light going in without demanding you surrender either of the two settings that are
@@ -810,14 +816,14 @@
                     to an actual equation, if you would rather see the machinery than trust the rule of thumb.</p>
 
                 <div class="mt-video-widget mt-video-width-55">
-                    <div style="position: relative; width: 640px; height: 360px; margin: auto;">
+                    <div class="video-wrapper">
                         <iframe loading="lazy" src="https://www.youtube.com/embed/up2Y4YYgyfY?wmode=opaque&amp;rel=0"
-                            title="YouTube video player" frameborder="0"
+                            title="Exposure triangle — aperture, shutter, and ISO explained" frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen
                             style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;"></iframe>
                     </div>
-                    <a href="https://www.youtube.com/watch?v=up2Y4YYgyfY" target="_blank" class="video-fallback-link">Watch
+                    <a href="https://www.youtube.com/watch?v=up2Y4YYgyfY" target="_blank" rel="noopener" class="video-fallback-link">Watch
                         on YouTube</a>
                     <p class="mt-align-center">The Exposure Formula</p>
                 </div>
@@ -831,12 +837,12 @@
                 about the slowest you could drag an optical soundtrack past a lamp and still have it sound like music.)
                 A century of "cinematic" rests on a rounded average and a sound engineer's compromise.</p>
 
-            <p><b>Speed of motion</b> also has a significant impact on how we perceive a shot. Many of the earliest film
+            <p><strong>Speed of motion</strong> also has a significant impact on how we perceive a shot. Many of the earliest film
                 cameras
                 were hand-cranked to move the film past the shutter. A camera person could intentionally
-                <b>overcrank</b>
+                <strong>overcrank</strong>
                 the film when recording it; when it was played back at normal speed, it created the first "slow"
-                motion effects. Similarly, they could <b>undercrank</b> the film when recording, creating the comic
+                motion effects. Similarly, they could <strong>undercrank</strong> the film when recording, creating the comic
                 effect of speeding up time, like in the Keystone Cop movies.
             </p>
 
@@ -849,14 +855,14 @@
             </div>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 640px; height: 360px; margin: auto;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" src="https://www.youtube.com/embed/mZBdxvego1E?wmode=opaque&amp;rel=0"
-                        title="YouTube video player" frameborder="0"
+                        title="Overcranking and slow motion — frame rate demonstration" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen
                         style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=mZBdxvego1E" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=mZBdxvego1E" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
                 <p class="mt-align-center">The "Keystone Kops"</p>
             </div>
@@ -864,7 +870,7 @@
             <p>"Slow" motion often is used for fantasy or dream-like sequences, to showcase special powers, or to
                 express a lyrical quality (think of the shots of butterflies or birds in flight). These types of effects
                 look better if created "in-camera" rather than in post-production because of what we call the
-                <b>"rasterized"</b> look in digital, which involves duplicating the frames to create slow motion, which
+                <strong>"rasterized"</strong> look in digital, which involves duplicating the frames to create slow motion, which
                 does not look as clean as a slow-motion shot created "in-camera." Newer cameras can shift into recording
                 at higher or lower frame rates on the fly (in the middle of recording), and this is what brought what is
                 called "bullet time" into defined cinematic terms today because of the famous scenes in <i>The
@@ -872,14 +878,14 @@
             </p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 640px; height: 360px; margin: auto;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" src="https://www.youtube.com/embed/ZQaBYT4MxWU?wmode=opaque&amp;rel=0"
-                        title="YouTube video player" frameborder="0"
+                        title="The Matrix — lobby shootout (bullet time)" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen
                         style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=ZQaBYT4MxWU" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=ZQaBYT4MxWU" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
                 <p class="mt-align-center">The Lobby Shootout from <i>The Matrix</i></p>
             </div>
@@ -890,11 +896,11 @@
             <div class="mt-video-widget mt-video-width-55">
                 <div class="video-wrapper">
                     <iframe loading="lazy" src="https://www.youtube.com/embed/p8TUWilKb6M?wmode=opaque&amp;rel=0"
-                        title="YouTube video player" frameborder="0"
+                        title="10 (1979) — Bo Derek slow-motion beach scene" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen></iframe>
                 </div>
-                        <a href="https://www.youtube.com/watch?v=p8TUWilKb6M" target="_blank" class="video-fallback-link">Watch on YouTube</a>
+                        <a href="https://www.youtube.com/watch?v=p8TUWilKb6M" target="_blank" rel="noopener" class="video-fallback-link">Watch on YouTube</a>
                 <p class="mt-align-center">Running on the Beach scene</p>
             </div>
 
@@ -973,12 +979,12 @@
                 them is, "Oh yeah, he is that guy from that thing."</p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 640px; height: 360px; margin: auto;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" src="https://www.youtube.com/embed/QTCHzcsxrdg" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen style="position:absolute; top:0; left:0; width:100%; height:100%;" title="YouTube video player"></iframe>
+                        allowfullscreen style="position:absolute; top:0; left:0; width:100%; height:100%;" title="Character actors have a message for Hollywood"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=QTCHzcsxrdg" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=QTCHzcsxrdg" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
                 <figcaption class="mt-align-center">Character Actors Have A Message For Hollywood</figcaption>
             </div>
@@ -1053,12 +1059,12 @@
                 about indie filmmaking, <em>Living in Oblivion</em> (1995):</p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 640px; height: 360px; margin: auto;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" src="https://www.youtube.com/embed/5yl5rghmUvc" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen style="position:absolute; top:0; left:0; width:100%; height:100%;" title="YouTube video player"></iframe>
+                        allowfullscreen style="position:absolute; top:0; left:0; width:100%; height:100%;" title="Living in Oblivion (1995) — indie filmmaking scene"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=5yl5rghmUvc" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=5yl5rghmUvc" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
             </div>
 
@@ -1076,12 +1082,12 @@
             <p>Check out this scene from David Fincher's <em>The Social Network</em> (2010):</p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 640px; height: 360px; margin: auto;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" src="https://www.youtube.com/embed/yfe2fe4aovY" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen style="position:absolute; top:0; left:0; width:100%; height:100%;" title="YouTube video player"></iframe>
+                        allowfullscreen style="position:absolute; top:0; left:0; width:100%; height:100%;" title="The Social Network (2010) — takes and performance consistency"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=yfe2fe4aovY" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=yfe2fe4aovY" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
             </div>
 
@@ -1120,12 +1126,12 @@
                 microphone was hiding:</p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 640px; height: 360px; margin: auto;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" src="https://www.youtube.com/embed/OTFCctdiS04" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen style="position:absolute; top:0; left:0; width:100%; height:100%;" title="YouTube video player"></iframe>
+                        allowfullscreen style="position:absolute; top:0; left:0; width:100%; height:100%;" title="Hidden microphones — body mics and sound recording on set"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=OTFCctdiS04" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=OTFCctdiS04" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
             </div>
 
@@ -1145,12 +1151,12 @@
                 Cumberbatch had to go through to play Smaug, a talking dragon in <em>The Hobbit</em> trilogy:</p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 640px; height: 360px; margin: auto;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" src="https://www.youtube.com/embed/9uNcu8zYixg" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen style="position:absolute; top:0; left:0; width:100%; height:100%;" title="YouTube video player"></iframe>
+                        allowfullscreen style="position:absolute; top:0; left:0; width:100%; height:100%;" title="Benedict Cumberbatch — motion capture for Smaug in The Hobbit"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=9uNcu8zYixg" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=9uNcu8zYixg" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
             </div>
 
@@ -1165,12 +1171,12 @@
                 utters, "Alright, Mr. DeMille, I am ready for my close-up."</p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 640px; height: 360px; margin: auto;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" src="https://www.youtube.com/embed/zIcC8YJrevQ" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen style="position:absolute; top:0; left:0; width:100%; height:100%;" title="YouTube video player"></iframe>
+                        allowfullscreen style="position:absolute; top:0; left:0; width:100%; height:100%;" title="Sunset Boulevard (1950) — 'I am ready for my close-up'"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=zIcC8YJrevQ" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=zIcC8YJrevQ" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
             </div>
 
@@ -1201,12 +1207,12 @@
                 Just two solid minutes on Kidman's face as she processes this impossible news:</p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 640px; height: 360px; margin: auto;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" src="https://www.youtube.com/embed/z35z63sAg5Y" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen style="position:absolute; top:0; left:0; width:100%; height:100%;" title="YouTube video player"></iframe>
+                        allowfullscreen style="position:absolute; top:0; left:0; width:100%; height:100%;" title="Birth (2004) — Nicole Kidman close-up scene"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=z35z63sAg5Y" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=z35z63sAg5Y" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
             </div>
 
@@ -1243,12 +1249,12 @@
             </p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 640px; height: 360px; margin: auto;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" src="https://www.youtube.com/embed/IszWRnZ5XGo" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen style="position:absolute; top:0; left:0; width:100%; height:100%;" title="YouTube video player"></iframe>
+                        allowfullscreen style="position:absolute; top:0; left:0; width:100%; height:100%;" title="Satyajit Ray — The Big City (1963) eye contact and character arc"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=IszWRnZ5XGo" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=IszWRnZ5XGo" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
             </div>
 
@@ -1267,12 +1273,12 @@
                 Campion tends to isolate and feature human touch throughout her films and tv series:</p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 640px; height: 360px; margin: auto;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" src="https://www.youtube.com/embed/Q_L_X8AoUZI" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen style="position:absolute; top:0; left:0; width:100%; height:100%;" title="YouTube video player"></iframe>
+                        allowfullscreen style="position:absolute; top:0; left:0; width:100%; height:100%;" title="Jane Campion — human touch as visual signature"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=Q_L_X8AoUZI" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=Q_L_X8AoUZI" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
             </div>
 
@@ -1293,12 +1299,12 @@
             <p>It is a fascinating process, and it can radically alter the raw performances in any given scene:</p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 640px; height: 360px; margin: auto;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" src="https://www.youtube.com/embed/FxKkzb5gJEw" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen style="position:absolute; top:0; left:0; width:100%; height:100%;" title="YouTube video player"></iframe>
+                        allowfullscreen style="position:absolute; top:0; left:0; width:100%; height:100%;" title="The collaborative art of filmmaking — director, editor, and performance"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=FxKkzb5gJEw" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=FxKkzb5gJEw" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
             </div>
 

@@ -194,6 +194,19 @@ nav .logo:hover .dropdown-menu {
 
 .menu-toggle {
     display: none;
+    background: none;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.menu-toggle:focus-visible {
+    outline: 2px solid var(--accent-neon-cyan);
+    outline-offset: 4px;
 }
 
 .nav-list {

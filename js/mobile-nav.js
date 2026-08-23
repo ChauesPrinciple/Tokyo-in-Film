@@ -3,8 +3,9 @@ const navList = document.querySelector('.nav-list');
 
 if (mobileMenu) {
     mobileMenu.addEventListener('click', () => {
-        navList.classList.toggle('active');
+        const isOpen = navList.classList.toggle('active');
         mobileMenu.classList.toggle('is-active');
+        mobileMenu.setAttribute('aria-expanded', String(isOpen));
     });
 }
 

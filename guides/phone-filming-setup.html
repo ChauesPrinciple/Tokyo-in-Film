@@ -7,7 +7,7 @@
     <title>Phone Filming Setup — Tokyo in Film</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;600&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="../style.css?v=21">
+    <link rel="stylesheet" href="../style.css?v=22">
     <style>
         .setup-section { margin: 2.5rem 0; }
         .setup-section h2 { color: var(--accent-neon-pink); border-bottom: 1px solid rgba(255,0,127,0.25); padding-bottom: 0.5rem; }
@@ -54,14 +54,14 @@
                         Literature</a>
                 </div>
             </div>
-            <a href="https://www.instagram.com/chaues/" target="_blank" class="ig-icon" aria-label="Instagram"></a>
+            <a href="https://www.instagram.com/chaues/" target="_blank" rel="noopener" class="ig-icon" aria-label="Instagram"></a>
         </div>
-        <div class="menu-toggle" id="mobile-menu">
+        <button type="button" class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-nav">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
-        </div>
-        <ul class="nav-list">
+        </button>
+        <ul class="nav-list" id="primary-nav">
             <li><a href="../index.html">Home</a></li>
             <li><a href="../documentary-project.html">Documentary Project</a></li>
             <li><a href="../pre-production/index.html">Pre-Production</a></li>

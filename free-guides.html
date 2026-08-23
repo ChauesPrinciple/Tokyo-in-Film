@@ -9,7 +9,7 @@
         content="Download free filmmaking guides, forms, and templates from the Tokyo in Film course.">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;600&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=21">
+    <link rel="stylesheet" href="style.css?v=22">
     <style>
         .resource-grid {
             display: grid;
@@ -93,14 +93,14 @@
                     Literature</a>
             </div>
         </div>
-            <a href="https://www.instagram.com/chaues/" target="_blank" class="ig-icon" aria-label="Instagram"></a>
+            <a href="https://www.instagram.com/chaues/" target="_blank" rel="noopener" class="ig-icon" aria-label="Instagram"></a>
         </div>
-        <div class="menu-toggle" id="mobile-menu">
+        <button type="button" class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-nav">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
-        </div>
-        <ul class="nav-list">
+        </button>
+        <ul class="nav-list" id="primary-nav">
             <li><a href="index.html">Home</a></li>
             <li><a href="documentary-project.html">Documentary Project</a></li>
             <li><a href="pre-production/index.html">Pre-Production</a></li>
@@ -121,7 +121,7 @@
             consider supporting future development:
         </p>
         <div style="margin-top: 1rem;">
-            <a href="https://venmo.com/robert-ladd-9" target="_blank" class="btn">Support on Venmo</a>
+            <a href="https://venmo.com/robert-ladd-9" target="_blank" rel="noopener" class="btn">Support on Venmo</a>
         </div>
 
         <!-- Pre-Production / Planning -->
@@ -215,14 +215,19 @@
             </div>
 
             <div class="resource-card">
-                <h3 class="resource-title">Catharsis (Seven Samurai)</h3>
-                <p class="resource-desc">Analyze emotional catharsis using Kurosawa's masterpiece.</p>
-                <a href="pre-production/catharsis.html" class="download-btn">View Resource</a>
+                <h3 class="resource-title">Juxtaposition in Mise-en-Sc&egrave;ne</h3>
+                <p class="resource-desc">Analyze visual contrast, wardrobe, and props as subtext without dialogue.</p>
+                <a href="pre-production/juxtaposition.html" class="download-btn">View Resource</a>
             </div>
             <div class="resource-card">
-                <h3 class="resource-title">Visual Foreshadowing (Bullet Train &amp; Howl's Moving Castle)</h3>
-                <p class="resource-desc">Study visual foreshadowing through karmic setup/payoff and time-loop structure.</p>
-                <a href="production/visual-foreshadowing.html" class="download-btn">View Resource</a>
+                <h3 class="resource-title">Cinematic Composition &amp; Visual Grammar</h3>
+                <p class="resource-desc">Study leading lines, frame within a frame, and three planes of depth.</p>
+                <a href="production/composition.html" class="download-btn">View Resource</a>
+            </div>
+            <div class="resource-card">
+                <h3 class="resource-title">Audiovisual Juxtaposition</h3>
+                <p class="resource-desc">Analyze contrapuntal sound, acoustic contrast, and the third meaning.</p>
+                <a href="post-production/audiovisual-juxtaposition.html" class="download-btn">View Resource</a>
             </div>
         </div>
     </main>
@@ -243,8 +248,9 @@
 
             if (mobileMenu) {
                 mobileMenu.addEventListener('click', () => {
-                    navList.classList.toggle('active');
+                    const isOpen = navList.classList.toggle('active');
                     mobileMenu.classList.toggle('is-active');
+                    mobileMenu.setAttribute('aria-expanded', String(isOpen));
                 });
             }
 

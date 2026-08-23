@@ -26,14 +26,14 @@
 | `index.html` | Home + Canon list | H1 "CINEMA IN CONTEXT". Carries film list in **two places**: HTML slides (~line 260–390) AND JS `filmData` object (~line 500–700, with loglines, IMDb links, pages, locations, maps). |
 | `textbook.html` | Canon list | Near-duplicate of index's course-module + film-list sections (slides only, no JS filmData). |
 | `glossary.html` | Utility | Terms rendered by `js/glossary.js`. |
-| `free-guides.html` | Utility | "Filmmakers Toolkit" cards → `guides/` pages + Catharsis (Seven Samurai) + Visual Foreshadowing (Bullet Train & Howl's) cards + The Basics of Editing (`guides/editing-basics-guide.html`, added Aug 11 2026). |
+| `free-guides.html` | Utility | "Filmmakers Toolkit" cards → `guides/` pages + the three journal-assignment cards (Juxtaposition in Mise-en-Scène, Cinematic Composition, Audiovisual Juxtaposition) + The Basics of Editing (`guides/editing-basics-guide.html`, added Aug 11 2026). |
 | `documentary-project.html` | Assignment (course capstone) | "The Documentary Project" (replaced Scene Project, Aug 11 2026): Tokyo place/craft doc, teams of 3; 7 recreated establishing/B-roll shots from canon w/ Shot-Match Sheets; 90-sec + 3:00 cuts from one footage pool; weighted rubric; no deadlines published yet. Plan: `.devin/PLAN_YOUR_DOCUMENTARY.md`. |
 | `scene-project.html` | Redirect stub | Meta-refresh + JS redirect → `documentary-project.html`. Keep for old links/bookmarks. |
 | `anime-map.html` | Utility | Interactive ward map (`?anime=` param: chainsaw_man, tokyo_ghoul, etc.). |
 
 **SYNC RULE (critical):** Any film-list change must land in **three** places: `index.html` slides, `index.html` JS `filmData`, and `textbook.html` slides.
 
-**CANON REVISION (Aug 11, 2026):** Film list expanded to 16 films (see `VOICE.md` §3): 13 Assassins, Akira, Bullet Train, Chainsaw Man: Reze Arc, Exit 8, Initial D, Jiro Dreams of Sushi, Ju-On: The Grudge, Jujutsu Kaisen, Outrage, Ramen Heads, Rashomon, Rental Family, Rurouni Kenshin: Final Chapter Part II - The Beginning, Tampopo, Your Name. All three sync locations updated. **Assignment/journal pages still cite the OLD canon** (Seven Samurai, Kubi, Howl's, Tokyo Ghoul, Tsukigakirei, Tokyo Drift, Godzilla Minus One, Suzume) and are pending a full overhaul; the ✅ canon marks in the tables below are stale until that overhaul lands.
+**CANON REVISION (Aug 11, 2026):** Film list expanded to 16 films (see `VOICE.md` §3): 13 Assassins, Akira, Bullet Train, Chainsaw Man: Reze Arc, Exit 8, Initial D, Jiro Dreams of Sushi, Ringu, Jujutsu Kaisen, Outrage, Ramen Heads, Rashomon, Rental Family, Rurouni Kenshin: Final Chapter Part II - The Beginning, Tampopo, Your Name. All three sync locations updated. **Assignment/journal pages still cite the OLD canon** (Seven Samurai, Kubi, Howl's, Tokyo Ghoul, Tsukigakirei, Tokyo Drift, Godzilla Minus One, Suzume) and are pending a full overhaul; the ✅ canon marks in the tables below are stale until that overhaul lands.
 
 ---
 
@@ -47,7 +47,8 @@
 | `narrative.html` | 1.3 | Textbook | 1.3.1 Screenplay → 1.3.7 Genre; Quiz 1. Heaviest teaching-film page (Rashomon, Perfect Blue, Joker, Pulp Fiction, etc. — allowed). 34 em-dashes (original Sharman prose; leave). |
 | `mise-en-scene.html` | 1.4 | Textbook | 1.4.1 Setting / 1.4.2 Character / 1.4.3 Lighting / 1.4.4 Composition. |
 | `cinematography.html` | 1.5 | Textbook | DP role, Types of Shots, lighting-ratio "Going Deeper"; Quiz 2. Understand-before-you-shoot half of the cinematography split. |
-| `catharsis.html` | 1.6 | Assignment/journal | Anchor: *Seven Samurai*. Choose-from: 13 Assassins, Kubi, Godzilla Minus One, Chainsaw Man: Reze Arc. ✅ canon. |
+| `juxtaposition.html` | 1.6 | Assignment/journal | Juxtaposition in mise-en-scène (wardrobe, character vs. environment, props). Choose-from: Rental Family, Outrage, Tampopo, Rashomon. ✅ 2026 canon. Replaced `catharsis.html` (Aug 2026). |
+| `catharsis.html` | — | **Retired** | Superseded by `juxtaposition.html`. File retained, no longer linked from anywhere. Do not edit. |
 | `script.html` | 1.1.1 | Scaffold (non-live) | Screenplay-format beat exercise. |
 | `storyboard.html` | 1.1.2 | Scaffold (non-live) | Movement-driven scene boards. Cites 13 Assassins, Bullet Train, Your Name. ✅ canon. |
 | `animatic.html` | 1.1.3 | Scaffold (non-live) | Timed sequence, advanced option. |
@@ -65,7 +66,8 @@
 | `mise-en-scene.html` | 2.2 | Textbook | 2.2.1 Setting → 2.2.5 Cinematic Style; acting schools; voice acting in Japanese animation (seiyu). Teaching cites incl. Drive My Car, Shoplifters, Spirited Away, Castle in the Sky, Totoro (allowed). |
 | `cinematography.html` | 2.3 | Textbook | On-set half of split: camera angles, lenses, DOF, tripod/handheld/Steadicam, speed of motion, acting for camera, close-ups; Quiz 3. |
 | `sound-design.html` | 2.4 | Textbook | 2.4.1 Production Sound (single numbered section); Quiz 4. *The Jazz Singer* claim verified. |
-| `visual-foreshadowing.html` | 2.5 | Assignment/journal | Dual anchors: *Bullet Train* (karmic setup/payoff, water-bottle chain, Thomas labels) + *Howl's Moving Castle* (time-loop, grey hair). Choose-from: Howl's, Tokyo Ghoul (**Shuhei Morita** — 2014 anime, per July 2026 decision), Your Name/Suzume, Tsukigakirei. ✅ canon. |
+| `composition.html` | 2.5 | Assignment/journal | Cinematic composition and visual grammar (leading lines, frame within a frame, headroom/looking room, three planes of depth). Choose-from: Exit 8, Bullet Train, Ringu, Your Name. ✅ 2026 canon. Replaced `visual-foreshadowing.html` (Aug 2026). |
+| `visual-foreshadowing.html` | — | **Retired** | Superseded by `composition.html`. File retained, no longer linked from anywhere. Do not edit. |
 
 ---
 
@@ -78,7 +80,8 @@
 | `sound-design.html` | 3.2 | Textbook | 3.2.1 Sound Editing / 3.2.2 Mixing / 3.2.3 Music; Quiz 5. |
 | `editing-and-animation.html` | 3.3 | Textbook | 3.3.1 Kuleshov → 3.3.6 Discontinuity; Murch's Six Criteria (3.3.5). Kuleshov 1917/age-18 facts verified. |
 | `animated-films.html` | 3.4 | Textbook | 3.4.1 History → 3.4.5 History of Special Effects; Quiz 6. **Afureko vs prescoring framing is corrected — do not regress** (anime = afureko/after-recording; Disney = prescoring; Akira broke convention by prescoring). Spirited Away Oscar claim verified. |
-| `rhythm-of-process.html` | 3.5 | Assignment/journal | Anchor: *Jiro Dreams of Sushi*. Choose-from: Tokyo Drift, Initial D, Exit 8, Ramen Heads. ✅ canon. |
+| `audiovisual-juxtaposition.html` | 3.5 | Assignment/journal | Contrapuntal music, dialogue vs. visual reality, acoustic scale contrast, the third meaning. Choose-from: Chainsaw Man: Reze Arc, Your Name, Jiro Dreams of Sushi, Rurouni Kenshin: The Beginning. ✅ 2026 canon. Replaced `rhythm-of-process.html` (Aug 2026). |
+| `rhythm-of-process.html` | — | **Retired** | Superseded by `audiovisual-juxtaposition.html`. File retained, no longer linked from anywhere. Do not edit. |
 
 ---
 

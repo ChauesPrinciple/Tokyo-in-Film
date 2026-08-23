@@ -7,7 +7,7 @@
     <title>1.2 How to Watch a Movie - Tokyo in Film</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;600&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="../style.css?v=21">
+    <link rel="stylesheet" href="../style.css?v=22">
 </head>
 
 <body>
@@ -22,14 +22,14 @@
                     Literature</a>
             </div>
         </div>
-            <a href="https://www.instagram.com/chaues/" target="_blank" class="ig-icon" aria-label="Instagram"></a>
+            <a href="https://www.instagram.com/chaues/" target="_blank" rel="noopener" class="ig-icon" aria-label="Instagram"></a>
         </div>
-        <div class="menu-toggle" id="mobile-menu">
+        <button type="button" class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-nav">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
-        </div>
-        <ul class="nav-list">
+        </button>
+        <ul class="nav-list" id="primary-nav">
             <li><a href="../index.html">Home</a></li>
             <li><a href="../documentary-project.html">Documentary Project</a></li>
             <li><a href="index.html" class="active">Pre-Production</a></li>
@@ -96,7 +96,7 @@
                 imagination.</p>
 
             <div class="mt-video-widget">
-                <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" src="https://player.vimeo.com/video/115404270?title=0&byline=0&portrait=0"
                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
                         allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
@@ -121,8 +121,6 @@
             <p>Like any language, we can break cinematic language down to its most fundamental elements. Before grammar
                 and syntax can shape meaning by arranging words or phrases in a particular order, the words themselves
                 must be built up from shots.</p>
-
-            <!-- Content continues -->
 
             <p>A <strong>shot</strong> is one continuous capture of a span of action by a motion picture camera. It
                 could last minutes or less than a second. Basically, a shot is everything that happens within the
@@ -165,9 +163,11 @@
 
             <p>This progression aligns with the internal shifts and external conflicts that build the story&#8217;s implicit
                 meaning as each stage draws out deeper aspects of the character's arc and theme. By guiding the
-                protagonist through cycles of conflict, growth, and resolution, screenwriters use the Story Circle to
+                protagonist through cycles of conflict, growth, and resolution, screenwriters use Dan Harmon's
+                <strong>Story Circle</strong>, a simplified version of Joseph Campbell's Hero's Journey, to
                 ensure that every beat in the story supports the protagonist&#8217;s transformation and aligns with the theme,
-                creating a cohesive, character-driven experience.</p>
+                creating a cohesive, character-driven experience. (We will walk through the Story Circle's eight steps
+                in the next chapter.)</p>
 
             <p>Another way to think about that deeper, implicit meaning is as a <strong>theme</strong>, an idea that
                 unifies every element of the work, gives it coherence and communicates what the work is really about.

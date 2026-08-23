@@ -7,7 +7,7 @@
     <title>1.4 Mise-en-Sc&egrave;ne - Tokyo in Film</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;600&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="../style.css?v=21">
+    <link rel="stylesheet" href="../style.css?v=22">
 </head>
 
 <body>
@@ -22,14 +22,14 @@
                     Literature</a>
             </div>
         </div>
-            <a href="https://www.instagram.com/chaues/" target="_blank" class="ig-icon" aria-label="Instagram"></a>
+            <a href="https://www.instagram.com/chaues/" target="_blank" rel="noopener" class="ig-icon" aria-label="Instagram"></a>
         </div>
-        <div class="menu-toggle" id="mobile-menu">
+        <button type="button" class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-nav">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
-        </div>
-        <ul class="nav-list">
+        </button>
+        <ul class="nav-list" id="primary-nav">
             <li><a href="../index.html">Home</a></li>
             <li><a href="../documentary-project.html">Documentary Project</a></li>
             <li><a href="index.html" class="active">Pre-Production</a></li>
@@ -46,7 +46,7 @@
 
 
 
-            <video src="../assets/images/libretexts/mise-en-scene-banner.mp4" class="chapter-banner" autoplay muted loop playsinline></video>
+            <video aria-hidden="true" src="../assets/images/libretexts/mise-en-scene-banner.mp4" class="chapter-banner" autoplay muted loop playsinline></video>
 
             <p>Allow me to introduce a word destined to impress your friends and family when you trot it out at the next
                 cocktail party: <strong>Mise-en-Sc&egrave;ne</strong>. And even if you do not frequent erudite cocktail
@@ -90,7 +90,7 @@
             </p>
 
             <p>This talent for shaping Mise-en-Sc&egrave;ne is one reason we can readily identify great directors' work. Think
-                about the films of Alfred Hitchcock, Agnes Varda, Wes Anderson, Yasujiro Ozu, Claire Denis, or Steven
+                about the films of Alfred Hitchcock, Agn&egrave;s Varda, Wes Anderson, Yasujir&#333; Ozu, Claire Denis, or Steven
                 Spielberg (and if some of those names are unfamiliar, seek them out!). If we know their work at all,
                 most of us could pick out one of their films after just a few minutes, even if we had never seen it
                 before. This is not just because of some signature flourish or idiosyncratic visual habit (though
@@ -101,13 +101,13 @@
             <p>Take the films of Claire Denis, for example:</p>
 
             <div class="mt-video-widget">
-                <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" src="https://www.youtube.com/embed/AmKsEaURJog"
                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen title="YouTube video player"></iframe>
+                        allowfullscreen title="Claire Denis — Mise-en-Scène examples"></iframe>
                 </div>
-                        <a href="https://www.youtube.com/watch?v=AmKsEaURJog" target="_blank" class="video-fallback-link">Watch on YouTube</a>
+                        <a href="https://www.youtube.com/watch?v=AmKsEaURJog" target="_blank" rel="noopener" class="video-fallback-link">Watch on YouTube</a>
             </div>
 
             <p>Denis's films generate an enveloping atmosphere that you can almost taste and feel, and all of that is
@@ -116,7 +116,7 @@
             <p>Or how about the films of Wes Anderson:</p>
 
             <div class="mt-video-widget">
-                <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" src="https://player.vimeo.com/video/113976887"
                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
                         allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
@@ -163,18 +163,18 @@
             </p>
 
             <div class="mt-video-widget">
-                <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" src="https://www.youtube.com/embed/AfmH7WyWXg8"
                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen title="YouTube video player"></iframe>
+                        allowfullscreen title="Georges Méliès — The Kingdom of the Fairies (1903)"></iframe>
                 </div>
-                        <a href="https://www.youtube.com/watch?v=AfmH7WyWXg8" target="_blank" class="video-fallback-link">Watch on YouTube</a>
+                        <a href="https://www.youtube.com/watch?v=AfmH7WyWXg8" target="_blank" rel="noopener" class="video-fallback-link">Watch on YouTube</a>
             </div>
 
             <p>M&eacute;li&egrave;s's use of elaborate sets, along with equally elaborate costumes, hairstyles, make-up, and even
                 the
-                hand-tinting of the film itself, all contribute to the fantastical look and feel of the film. He brought
+                hand-tinting of the film itself, all contributes to the fantastical look and feel of the film. He brought
                 a similar design sensibility to all of his films, including the ground-breaking 1902 film <em>A Trip to
                     the Moon</em>.</p>
 
@@ -186,33 +186,32 @@
             <p>Check out this scene again from D. W. Griffith's <em>Intolerance</em> (1916):</p>
 
             <div class="mt-video-widget">
-                <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" src="https://www.youtube.com/embed/Lg9REHb9en8"
                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen title="YouTube video player"></iframe>
+                        allowfullscreen title="D. W. Griffith — Intolerance (1916) scene"></iframe>
                 </div>
-                        <a href="https://www.youtube.com/watch?v=Lg9REHb9en8" target="_blank" class="video-fallback-link">Watch on YouTube</a>
+                        <a href="https://www.youtube.com/watch?v=Lg9REHb9en8" target="_blank" rel="noopener" class="video-fallback-link">Watch on YouTube</a>
             </div>
 
-            <p>The set design alone is staggering. Built in the middle of Los Angeles, it took four years to dismantle
-                it.</p>
+            <p>The set design alone is staggering. Built in the middle of Los Angeles, the set took four years to
+                dismantle.</p>
 
             <p>Or consider the opening of Fritz Lang's <em>Metropolis</em> (1927):</p>
 
             <div class="mt-video-widget">
-                <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" src="https://www.youtube.com/embed/0mK46KprASM"
                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen title="YouTube video player"></iframe>
+                        allowfullscreen title="Fritz Lang — Metropolis (1927) opening"></iframe>
                 </div>
-                        <a href="https://www.youtube.com/watch?v=0mK46KprASM" target="_blank" class="video-fallback-link">Watch on YouTube</a>
+                        <a href="https://www.youtube.com/watch?v=0mK46KprASM" target="_blank" rel="noopener" class="video-fallback-link">Watch on YouTube</a>
             </div>
 
             <p>The film draws us into a mechanized, dystopian future, one of the first science-fiction films in
-                history
-               , and its success lies in its careful design of the setting to serve that narrative purpose.</p>
+                history, and its success lies in its careful design of the setting to serve that narrative purpose.</p>
 
             <p>Once filmmakers realized the importance of setting as an element of design and what it contributed to the
                 overall look of their films, it was not long before a position was created to oversee it all: the
@@ -240,13 +239,13 @@
                     Ragnarok</em> (Taika Waititi, 2017):</p>
 
             <div class="mt-video-widget">
-                <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" src="https://www.youtube.com/embed/0PWn3Lu_Q78"
                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen title="YouTube video player"></iframe>
+                        allowfullscreen title="Thor: Ragnarok (2017) — set design behind the scenes"></iframe>
                 </div>
-                        <a href="https://www.youtube.com/watch?v=0PWn3Lu_Q78" target="_blank" class="video-fallback-link">Watch on YouTube</a>
+                        <a href="https://www.youtube.com/watch?v=0PWn3Lu_Q78" target="_blank" rel="noopener" class="video-fallback-link">Watch on YouTube</a>
             </div>
 
             <p>D. W. Griffith can take a seat.</p>
@@ -281,13 +280,13 @@
                 is no longer the limit to what designers can offer up for the screen.</p>
 
             <div class="mt-video-widget">
-                <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" src="https://www.youtube.com/embed/7rk0279i7vM"
                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen title="YouTube video player"></iframe>
+                        allowfullscreen title="Green screen and keying — compositing techniques"></iframe>
                 </div>
-                        <a href="https://www.youtube.com/watch?v=7rk0279i7vM" target="_blank" class="video-fallback-link">Watch on YouTube</a>
+                        <a href="https://www.youtube.com/watch?v=7rk0279i7vM" target="_blank" rel="noopener" class="video-fallback-link">Watch on YouTube</a>
             </div>
 
             <p>Whether the production designer is building the set from the ground up on a soundstage or simply using an
@@ -317,13 +316,13 @@
                 existing locations into a Buckingham Palace throne room or the Queen's private apartment:</p>
 
             <div class="mt-video-widget">
-                <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" src="https://www.youtube.com/embed/OiIxePlKZ1A"
                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen title="YouTube video player"></iframe>
+                        allowfullscreen title="The Crown — production design and set decoration"></iframe>
                 </div>
-                        <a href="https://www.youtube.com/watch?v=OiIxePlKZ1A" target="_blank" class="video-fallback-link">Watch on YouTube</a>
+                        <a href="https://www.youtube.com/watch?v=OiIxePlKZ1A" target="_blank" rel="noopener" class="video-fallback-link">Watch on YouTube</a>
             </div>
 
             <p>This is where storytelling through the physical environment, the setting, can really come alive.
@@ -370,7 +369,7 @@
                 design, their approach to inhabiting that character, the wardrobe, hair, and make-up departments must
                 also <em>design</em> how that character is going to look on screen. This design element is, of course,
                 more obvious the less familiar the world of the character might be. The clothing, hair, and make-up of
-                characters inhabiting worlds in a distant time period or even more distant galaxy will inevitably draw
+                characters inhabiting worlds in a distant time period or an even more distant galaxy will inevitably draw
                 our attention. (Though even there, the intention is to add to the Mise-en-Sc&egrave;ne without distracting us
                 from the story.) But even when the context is closer to home, a story set in our time, in our culture,
                 maybe even our own hometown, every element of the clothes, the hair, and the make-up is carefully
@@ -399,13 +398,13 @@
             </blockquote>
 
             <div class="mt-video-widget">
-                <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" src="https://www.youtube.com/embed/gRAmIaSlm80"
                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen title="YouTube video player"></iframe>
+                        allowfullscreen title="Godzilla Minus One — costume and color design analysis"></iframe>
                 </div>
-                        <a href="https://www.youtube.com/watch?v=gRAmIaSlm80" target="_blank" class="video-fallback-link">Watch on YouTube</a>
+                        <a href="https://www.youtube.com/watch?v=gRAmIaSlm80" target="_blank" rel="noopener" class="video-fallback-link">Watch on YouTube</a>
             </div>
 
             <p>What is important to note is that costume design in film is not about fashion or what looks "good" on
@@ -426,13 +425,13 @@
                 connected to the character:</p>
 
             <div class="mt-video-widget">
-                <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" src="https://www.youtube.com/embed/UYOcJf9PLq4"
                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen title="YouTube video player"></iframe>
+                        allowfullscreen title="Hair and make-up in film — character design through appearance"></iframe>
                 </div>
-                        <a href="https://www.youtube.com/watch?v=UYOcJf9PLq4" target="_blank" class="video-fallback-link">Watch on YouTube</a>
+                        <a href="https://www.youtube.com/watch?v=UYOcJf9PLq4" target="_blank" rel="noopener" class="video-fallback-link">Watch on YouTube</a>
             </div>
 
             <p>And while all of this is tremendously important for the audience, it is even more important for the actor
@@ -534,26 +533,26 @@
                 filmmaker Akira Kurosawa approaches the composition of movement in designing his shots:</p>
 
             <div class="mt-video-widget">
-                <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" src="https://www.youtube.com/embed/doaQC-S8de8"
                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen title="YouTube video player"></iframe>
+                        allowfullscreen title="Akira Kurosawa — composition of movement"></iframe>
                 </div>
-                        <a href="https://www.youtube.com/watch?v=doaQC-S8de8" target="_blank" class="video-fallback-link">Watch on YouTube</a>
+                        <a href="https://www.youtube.com/watch?v=doaQC-S8de8" target="_blank" rel="noopener" class="video-fallback-link">Watch on YouTube</a>
             </div>
 
             <p>Or how Andrea Arnold uses framing and composition to communicate isolation, captivity, or a deep
                 connection to the earth:</p>
 
             <div class="mt-video-widget">
-                <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" src="https://www.youtube.com/embed/aG4jUVsSzXw"
                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen title="YouTube video player"></iframe>
+                        allowfullscreen title="Andrea Arnold — framing and composition for emotional storytelling"></iframe>
                 </div>
-                        <a href="https://www.youtube.com/watch?v=aG4jUVsSzXw" target="_blank" class="video-fallback-link">Watch on YouTube</a>
+                        <a href="https://www.youtube.com/watch?v=aG4jUVsSzXw" target="_blank" rel="noopener" class="video-fallback-link">Watch on YouTube</a>
             </div>
 
             <p>A thoughtfully composed frame does more than create a pleasing image. It can isolate characters, focus

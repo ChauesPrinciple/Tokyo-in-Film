@@ -94,7 +94,7 @@ Same visual system as current page (hero + `project-section` blocks + `option-ca
   - *13 Assassins* / *Rurouni Kenshin: The Beginning* — for tate/skill-strand docs: how
     action is covered, not the fight itself
   - *Rental Family* — observational Tokyo street style
-  - *Outrage* / *Ju-On* — static dread framing, domestic interiors (use sparingly)
+  - *Outrage* / *Ringu* — static dread framing, domestic interiors (use sparingly)
 
 ### §D Development Stages (three columns mirroring course arc)
 - **I. Pre-Production:** subject pitch + greenlight (instructor as producer); shot list

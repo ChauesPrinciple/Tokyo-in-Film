@@ -7,7 +7,7 @@
     <title>3.3 Editing - Tokyo in Film</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;600&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="../style.css?v=21">
+    <link rel="stylesheet" href="../style.css?v=22">
     <style>
         .video-fallback-link {
             display: block;
@@ -36,14 +36,14 @@
                     Literature</a>
             </div>
         </div>
-            <a href="https://www.instagram.com/chaues/" target="_blank" class="ig-icon" aria-label="Instagram"></a>
+            <a href="https://www.instagram.com/chaues/" target="_blank" rel="noopener" class="ig-icon" aria-label="Instagram"></a>
         </div>
-        <div class="menu-toggle" id="mobile-menu">
+        <button type="button" class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-nav">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
-        </div>
-        <ul class="nav-list">
+        </button>
+        <ul class="nav-list" id="primary-nav">
             <li><a href="../index.html">Home</a></li>
             <li><a href="../documentary-project.html">Documentary Project</a></li>
             <li><a href="../pre-production/index.html">Pre-Production</a></li>
@@ -61,7 +61,7 @@
         <div class="textbook-content">
 
 
-            <video src="../assets/images/libretexts/animation-editing-banner.mp4" class="chapter-banner" autoplay muted loop playsinline></video>
+            <video aria-hidden="true" src="../assets/images/libretexts/animation-editing-banner.mp4" class="chapter-banner" autoplay muted loop playsinline></video>
 
             <p>They say a film is made three times. The first is by the screenwriter. The second is by the director and
                 crew. The third is done by the <strong>editor</strong> in <strong>post-production</strong>.</p>
@@ -143,12 +143,12 @@
             </p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 100%; height: 325px;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" enablejsapi="true" height="325" id="widget84"
                         src="https://www.youtube.com/embed/Um-ybncJ4eo" title="Lev Kuleshov - The Kuleshov Effect"
                         width="100%" frameborder="0" referrerpolicy="strict-origin-when-cross-origin"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=Um-ybncJ4eo" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=Um-ybncJ4eo" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
             </div>
 
@@ -180,12 +180,12 @@
                     Steps Sequence</strong>. You may remember it from Chapter One. Let us take another look:</p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 100%; height: 325px;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" enablejsapi="true" height="325" id="widget86"
                         src="https://www.youtube.com/embed/Ps-v-kZzfec" title="Battleship Potemkin - Odessa Steps"
                         width="100%" frameborder="0" referrerpolicy="strict-origin-when-cross-origin"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=Ps-v-kZzfec" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=Ps-v-kZzfec" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
             </div>
 
@@ -231,7 +231,7 @@
                 proper context without any prompts. Think of films like Quentin Tarantino's <em>Pulp Fiction
                 </em>(1994), which plays with time throughout, rearranging the sequence of events in the plot for
                 dramatic effect and forcing the viewer to keep up. Or a more recent film like Greta Gerwig's adaptation
-                of <em>Little Women</em> (2019), which also moves backward and forwards in time, hinting at the shift
+                of <em>Little Women</em> (2019), which also moves backward and forward in time, hinting at the shift
                 through Mise-en-Sc&egrave;ne and subtle changes in performance.
             </p>
 
@@ -246,12 +246,12 @@
                 she creates a specific rhythm that echoes the time and space of her characters:</p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 100%; height: 325px;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" enablejsapi="true" height="325" id="widget88"
                         src="https://www.youtube.com/embed/avlWhOxnlMU" title="Kelly Reichardt: Elaborated Time"
                         width="100%" frameborder="0" referrerpolicy="strict-origin-when-cross-origin"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=avlWhOxnlMU" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=avlWhOxnlMU" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
             </div>
 
@@ -262,7 +262,7 @@
 
                 Or they might cut from image to image quickly, letting each flash across the
                 screen for mere moments, creating a fast-paced, edge-of-your-seat rhythm. In either case, the editor has
-                to consider how long do we <em>need</em> to see each shot. In fact, there is a scientific term for how
+                to consider how long we <em>need</em> to see each shot. In fact, there is a scientific term for how
                 long it takes us to register visual information: the <strong>content curve</strong>. A relatively simple
                 shot of a child's smile might have a very short content curve. A more complex shot with multiple planes
                 of view and maybe even text to read would have a much longer content curve. Editing is all about
@@ -275,12 +275,12 @@
             </p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 100%; height: 325px;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" enablejsapi="true" height="325" id="widget90"
                         src="https://www.youtube.com/embed/3Q3eITC01Fg" title="How Does an Editor Think and Feel"
                         width="100%" frameborder="0" referrerpolicy="strict-origin-when-cross-origin"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=3Q3eITC01Fg" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=3Q3eITC01Fg" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
             </div>
 
@@ -314,12 +314,12 @@
                 edit disappears as we track the movement of the character. Here is a quick example:</p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 100%; height: 325px;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" enablejsapi="true" height="325" id="widget92"
                         src="https://www.youtube.com/embed/7EcOCh2lKIU" title="Cut on Action" width="100%"
                         frameborder="0" referrerpolicy="strict-origin-when-cross-origin"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=7EcOCh2lKIU" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=7EcOCh2lKIU" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
             </div>
 
@@ -328,7 +328,7 @@
                 like one continuous moment. Of course, we notice the cut, but it does not distract us from the scene or
                 call attention to itself.</p>
 
-            <p>And now that you know what to look for, you will see this technique used in just about every film or tv
+            <p>And now that you know what to look for, you will see this technique used in just about every film or TV
                 show, over and over, <em>all the time</em>.</p>
 
             <h3>Match Cuts</h3>
@@ -350,23 +350,24 @@
                 of these as conjunctions in grammar, words meant to connect ideas seamlessly. The more obvious examples,
                 like <strong>fade-ins</strong> and <strong>fade-outs</strong> or long <strong>dissolves</strong>, are
                 drawn from our own experience. A slow fade-out, where the screen drifts into blackness, reflects our
-                experience of falling asleep and drifting out of consciousness. And dissolves, where one shot blends
-                into the next, reflecting how one moment bleeds into and overlaps with another in our memory. But some
+                experience of falling asleep and drifting out of consciousness.</p>
+
+            <p>And dissolves, where one shot blends
+                into the next, reflect how one moment bleeds into and overlaps with another in our memory. But some
                 transitions, like <strong>wipes </strong>and <strong>iris outs</strong>, are peculiar to motion pictures
                 and have no relation to how we normally see the world. Sure, they might "call attention to themselves,"
                 but somehow, they still do the trick, moving the viewer from one shot or scene to the next without
                 distracting from the story itself.</p>
-
             <p>Wondering what some of these match cuts and transitions look like? Check out several examples of each
                 (along with some not-so-invisible edits like <strong>jump </strong>cuts) here:</p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 100%; height: 325px;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" enablejsapi="true" height="325" id="widget94"
                         src="https://www.youtube.com/embed/OAH0MoAv2CI" title="Cuts & Transitions 101" width="100%"
                         frameborder="0" referrerpolicy="strict-origin-when-cross-origin"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=OAH0MoAv2CI" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=OAH0MoAv2CI" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
             </div>
 
@@ -376,12 +377,12 @@
                 focused on the story and keep their work invisible. Take a look at this scene from Casablanca:</p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 100%; height: 325px;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" enablejsapi="true" height="325" id="widget96"
                         src="https://www.youtube.com/embed/RbDv7XXrPqE" title="Casablanca - Entering Ricks Cafe"
                         width="100%" frameborder="0" referrerpolicy="strict-origin-when-cross-origin"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=RbDv7XXrPqE" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=RbDv7XXrPqE" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
             </div>
 
@@ -402,12 +403,12 @@
             </p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 100%; height: 325px;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" enablejsapi="true" height="325" id="widget98"
                         src="https://www.youtube.com/embed/X05TDsoSg2Y?start=105" title="Snowpiercer - Left or Right"
                         width="100%" frameborder="0" referrerpolicy="strict-origin-when-cross-origin"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=X05TDsoSg2Y" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=X05TDsoSg2Y" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
             </div>
 
@@ -441,12 +442,12 @@
                 classic master shot and coverage technique:</p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 100%; height: 325px;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" enablejsapi="true" height="325" id="widget100"
                         src="https://www.youtube.com/embed/4ywqo9IiGBE" title="Whiplash - First Date Scene" width="100%"
                         frameborder="0" referrerpolicy="strict-origin-when-cross-origin"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=4ywqo9IiGBE" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=4ywqo9IiGBE" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
             </div>
 
@@ -473,7 +474,7 @@
             <p>Basically, the 180-degree rule defines an <strong>axis of action</strong>, an imaginary line that runs
                 through the characters in a scene that the camera <em>cannot</em> cross:</p>
 
-            <div style="position: relative; width: 640px; height: auto; margin: auto; text-align: center;"><a
+            <div style="position: relative; max-width: 640px; width: 100%; margin: auto; text-align: center;"><a
                     href="../assets/images/libretexts/180-degree-rule.jpg"><img
                         alt="180 degree rule diagram"
                         src="../assets/images/libretexts/180-degree-rule.jpg"
@@ -489,7 +490,7 @@
                 Andrew would appear to be looking in the opposite direction, confusing the viewer and breaking
                 continuity.</p>
 
-            <p>Now, I know I just wrote that this is not one of those artistic rules that was meant to be broken. But
+            <p>Now, I know I just wrote that this is not one of those artistic rules that were meant to be broken. But
                 the fact is, editors <em>can </em>break the rule if they actually <em>want </em>to disorient the viewer,
                 to put them into the psychology of a character or scene. Or if they need to jump the line to keep the
                 narrative going, they can use a new master shot to reorient the axis of action.</p>
@@ -516,17 +517,17 @@
                 Here is the scene:</p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 100%; height: 325px;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" enablejsapi="true" height="325" id="widget102"
                         src="https://www.youtube.com/embed/GBl1UxwEpHI" title="Way Down East - Waterfall Rescue"
                         width="100%" frameborder="0" referrerpolicy="strict-origin-when-cross-origin"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=GBl1UxwEpHI" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=GBl1UxwEpHI" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
             </div>
 
             <p>By cross-cutting in a regular pattern, man, woman, man, waterfall, woman, man, woman, waterfall, the
-                audience is not only drawn into the action, they are also no longer paying attention to the editing
+                audience is not only drawn into the action; they are also no longer paying attention to the editing
                 itself, thus maintaining continuity.</p>
 
             <p>This technique has become so common, so integral to our shared cinematic language, that editors can use
@@ -534,12 +535,12 @@
                 disturbing) clip from Jonathan Demme's <em>The Silence of the Lambs</em> (1991):</p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 100%; height: 325px;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" enablejsapi="true" height="325" id="widget104"
                         src="https://www.youtube.com/embed/Ts1x6uADFtM" title="Silence of the Lambs - FBI Raid"
                         width="100%" frameborder="0" referrerpolicy="strict-origin-when-cross-origin"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=Ts1x6uADFtM" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=Ts1x6uADFtM" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
             </div>
 
@@ -602,7 +603,7 @@
 
             <h2>3.3.6 Discontinuity Editing</h2>
 
-            <p>Continuity, or "invisible" editing is all about hiding the techniques of filmmaking, allowing an audience
+            <p>Continuity, or "invisible" editing, is all about hiding the techniques of filmmaking, allowing an audience
                 to be carried away by the cinematic experience and never reminding them they are watching a motion
                 picture. But what if that is exactly what you want to do? What if you want to break the usual continuity
                 of cinema? Maybe you want to dramatize the fractured mind of a character. Or maybe you want to comment
@@ -620,12 +621,12 @@
                 the same subject with little or no variation in framing. Here is a quick example:</p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 100%; height: 325px;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" enablejsapi="true" height="325" id="widget106"
                         src="https://www.youtube.com/embed/BHm9Pqylu7o" title="Neighbors Clip - Discontinuity"
                         width="100%" frameborder="0" referrerpolicy="strict-origin-when-cross-origin"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=BHm9Pqylu7o" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=BHm9Pqylu7o" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
             </div>
 
@@ -634,12 +635,12 @@
                 from Jean-Luc Godard's <em>Breathless</em> (1960), especially the last 30 seconds or so:</p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 100%; height: 325px;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" enablejsapi="true" height="325" id="widget108"
                         src="https://www.youtube.com/embed/rsKkFIsus1I?start=120" title="Breathless - Final Chase"
                         width="100%" frameborder="0" referrerpolicy="strict-origin-when-cross-origin"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=rsKkFIsus1I" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=rsKkFIsus1I" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
             </div>
 
@@ -657,18 +658,18 @@
                 editing in Soderbergh's film:</p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 100%; height: 325px;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" enablejsapi="true" height="325" id="widget110"
                         src="https://www.youtube.com/embed/Uxeqt6dIziQ" title="The Limey - Crash Course Film Criticism"
                         width="100%" frameborder="0" referrerpolicy="strict-origin-when-cross-origin"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=Uxeqt6dIziQ" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=Uxeqt6dIziQ" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
             </div>
 
             <p>Ultimately, Flack's editing choices in <em>The Limey</em>, despite the disorientation and discontinuity,
                 serve the thematic intent of the film. And that is the editor's job: to piece together the shots,
-                scenes, and sequences into a coherent &mdash; if not always continuous &mdash; order, a syntax built
+                scenes, and sequences into a coherent, if not always continuous, order, a syntax built
                 from our shared cinematic language.</p>
 
         </div>

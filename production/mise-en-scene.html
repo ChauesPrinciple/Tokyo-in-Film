@@ -7,7 +7,7 @@
     <title>2.2 Mise-en-Sc&egrave;ne (On Set) - Tokyo in Film</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;600&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="../style.css?v=21">
+    <link rel="stylesheet" href="../style.css?v=22">
     <style>
         .video-fallback-link {
             display: block;
@@ -36,14 +36,14 @@
                     Literature</a>
             </div>
         </div>
-            <a href="https://www.instagram.com/chaues/" target="_blank" class="ig-icon" aria-label="Instagram"></a>
+            <a href="https://www.instagram.com/chaues/" target="_blank" rel="noopener" class="ig-icon" aria-label="Instagram"></a>
         </div>
-        <div class="menu-toggle" id="mobile-menu">
+        <button type="button" class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-nav">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
-        </div>
-        <ul class="nav-list">
+        </button>
+        <ul class="nav-list" id="primary-nav">
             <li><a href="../index.html">Home</a></li>
             <li><a href="../documentary-project.html">Documentary Project</a></li>
             <li><a href="../pre-production/index.html">Pre-Production</a></li>
@@ -61,7 +61,7 @@
         <div class="textbook-content">
 
 
-            <video src="../assets/images/libretexts/mise-en-scene-banner.mp4" class="chapter-banner" autoplay muted loop playsinline></video>
+            <video aria-hidden="true" src="../assets/images/libretexts/mise-en-scene-banner.mp4" class="chapter-banner" autoplay muted loop playsinline></video>
 
             <p>Now that we have explored the design phase of <em>Mise-en-Sc&egrave;ne</em>, the careful planning of setting,
                 character, and the aesthetic choices that form the foundation of a film, it is time to see how all of
@@ -205,7 +205,7 @@
                 a quick glance, could communicate as much as a dramatic monologue.</p>
             <p>In Japanese cinema, we see this shift in films like <em>Tokyo Chorus</em> (1931), where early
                 performances still carry the weight of theater, with broad, expressive acting that connects to the
-                stage. But as filmmakers like Yasujiro Ozu refined their style, actors began to lean into subtlety,
+                stage. But as filmmakers like Yasujir&#333; Ozu refined their style, actors began to lean into subtlety,
                 creating a new form of acting for the screen that was quieter, more natural, and more attuned to the
                 camera's intimacy.</p>
 
@@ -216,14 +216,14 @@
                 one of the earliest screen performances that feels unmistakably cinematic rather than theatrical.</p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 640px; height: 360px; margin: auto;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowfullscreen src="https://www.youtube.com/embed/C4_KDf4xhU8"
                         style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;"
                         title="The Passion of Joan of Arc - Has God Made You Promises?"
                         referrerpolicy="strict-origin-when-cross-origin"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=C4_KDf4xhU8" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=C4_KDf4xhU8" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
             </div>
 
@@ -234,14 +234,14 @@
                 1919 to be mistaken for a real breakdown tells us how much screen performance still had to learn.</p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 640px; height: 360px; margin: auto;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowfullscreen src="https://www.youtube.com/embed/KpQNpUCM7U4"
                         style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;"
                         title="Lillian Gish in BROKEN BLOSSOMS - The Closet Scene"
                         referrerpolicy="strict-origin-when-cross-origin"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=KpQNpUCM7U4" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=KpQNpUCM7U4" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
             </div>
 
@@ -264,13 +264,13 @@
             <p>But maybe you want a more up-to-date example of the classical approach. How about this:</p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 640px; height: 360px; margin: auto;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowfullscreen src="https://www.youtube.com/embed/25Lb1YpSEic"
                         style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;"
-                        title="YouTube video player" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                        title="Classical acting approach — contemporary example" referrerpolicy="strict-origin-when-cross-origin"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=25Lb1YpSEic" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=25Lb1YpSEic" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
             </div>
 
@@ -363,13 +363,13 @@
                 performance, blending humor, tension, and vulnerability in their characters:</p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 640px; height: 360px; margin: auto;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowfullscreen src="https://www.youtube.com/embed/uyzQw8-8k9U"
                         style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;"
-                        title="YouTube video player" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                        title="Inside Out 2 — voice cast and vocal performance" referrerpolicy="strict-origin-when-cross-origin"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=uyzQw8-8k9U" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=uyzQw8-8k9U" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
             </div>
 
@@ -393,13 +393,13 @@
             </p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 640px; height: 360px; margin: auto;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowfullscreen src="https://www.youtube.com/embed/Rdx8OZJ12-g"
                         style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;"
-                        title="YouTube video player" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                        title="Voice acting intensity — Spirited Away and Castle in the Sky" referrerpolicy="strict-origin-when-cross-origin"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=Rdx8OZJ12-g" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=Rdx8OZJ12-g" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
             </div>
 
@@ -458,7 +458,7 @@
                 mark at a specific beat in the dialogue. Every frame the audience eventually sees is the result of a
                 small negotiation among director, cinematographer, actors, and the physical space.</p>
 
-            <p>Few directors have been as formally committed to on-set composition as Yasujiro Ozu. In <em>Tokyo
+            <p>Few directors have been as formally committed to on-set composition as Yasujir&#333; Ozu. In <em>Tokyo
                     Story</em> (1953) and across his mature work, Ozu placed his camera at roughly the height of a
                 person kneeling on a tatami mat, framed straight on, and then refused to move it. Actors enter the
                 frame, sit, deliver a scene, stand, and leave; the frame itself stays still. That rigor is not a
@@ -514,14 +514,14 @@
                 and the idea of national Mise-en-Sc&egrave;ne stops being abstract:</p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 640px; height: 360px; margin: auto;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowfullscreen src="https://www.youtube.com/embed/-lfEp5t2FlE"
                         style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;"
                         title="The Cabinet of Dr. Caligari (1920) 1080p Restoration"
                         referrerpolicy="strict-origin-when-cross-origin"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=-lfEp5t2FlE" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=-lfEp5t2FlE" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
             </div>
 
@@ -543,7 +543,7 @@
             <p>One powerful example of a national cinematic style can be found in Japanese cinema.</p>
             <p>According to the Center for Japanese Studies, Japanese filmmaking is often characterized by long average
                 shot lengths (ASL), slow or static camera movement, and the expression of emotions through natural
-                elements. This minimalist visual style, seen in the works of directors like Yasujiro Ozu and Kenji
+                elements. This minimalist visual style, seen in the works of directors like Yasujir&#333; Ozu and Kenji
                 Mizoguchi, often emphasizes deep focus shots, flat lighting, and scenes that linger on details that may
                 not directly connect to the narrative but build the emotional and thematic depth of the story.</p>
             <p>Akira Kurosawa, one of Japan's most celebrated filmmakers, used <em>Mise-en-Sc&egrave;ne</em> masterfully to
@@ -553,14 +553,14 @@
                 style through his use of setting, character placement, and color:</p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 640px; height: 360px; margin: auto;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowfullscreen src="https://www.youtube.com/embed/jupxGK-XNk4"
                         style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;"
                         title="RAN - 35 Scenes in 35 Seconds - Directed by Akira Kurosawa"
                         referrerpolicy="strict-origin-when-cross-origin"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=jupxGK-XNk4" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=jupxGK-XNk4" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
             </div>
 
@@ -586,13 +586,13 @@
                 in <em>Akira</em> to shape the atmosphere of its animated world:</p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 640px; height: 360px; margin: auto;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowfullscreen src="https://www.youtube.com/embed/xf0WjeE6eyM"
                         style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;"
                         title="AKIRA: How To Animate Light" referrerpolicy="strict-origin-when-cross-origin"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=xf0WjeE6eyM" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=xf0WjeE6eyM" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
             </div>
 
@@ -640,14 +640,14 @@
                 those intimate, reflective "slice of life" moments that define his storytelling style:</p>
 
             <div class="mt-video-widget mt-video-width-55">
-                <div style="position: relative; width: 640px; height: 360px; margin: auto;">
+                <div class="video-wrapper">
                     <iframe loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowfullscreen src="https://www.youtube.com/embed/FRnKY-5TqOM"
                         style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;"
                         title="Why Studio Ghibli movies CANT be made with AI."
                         referrerpolicy="strict-origin-when-cross-origin"></iframe>
                 </div>
-                <a href="https://www.youtube.com/watch?v=FRnKY-5TqOM" target="_blank" class="video-fallback-link">Watch
+                <a href="https://www.youtube.com/watch?v=FRnKY-5TqOM" target="_blank" rel="noopener" class="video-fallback-link">Watch
                     on YouTube</a>
             </div>
 

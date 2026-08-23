@@ -7,7 +7,7 @@
     <title>3.1 Post-Production Stage - Tokyo in Film</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;600&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="../style.css?v=21">
+    <link rel="stylesheet" href="../style.css?v=22">
     <style>
         .assign-tabs { display: flex; flex-wrap: nowrap; gap: 0.5rem; margin: 2rem 0 0; overflow-x: auto; }
         .assign-tab { padding: 0.5rem 1.1rem; border: 1px solid rgba(255,255,255,0.2); border-radius: 4px 4px 0 0; cursor: pointer; font-size: 0.9rem; color: #bbb; background: rgba(0,0,0,0.2); border-bottom: none; transition: all 0.2s; }
@@ -41,14 +41,14 @@
                         Literature</a>
                 </div>
             </div>
-            <a href="https://www.instagram.com/chaues/" target="_blank" class="ig-icon" aria-label="Instagram"></a>
+            <a href="https://www.instagram.com/chaues/" target="_blank" rel="noopener" class="ig-icon" aria-label="Instagram"></a>
         </div>
-        <div class="menu-toggle" id="mobile-menu">
+        <button type="button" class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-nav">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
-        </div>
-        <ul class="nav-list">
+        </button>
+        <ul class="nav-list" id="primary-nav">
             <li><a href="../index.html">Home</a></li>
             <li><a href="../documentary-project.html">Documentary Project</a></li>
             <li><a href="../pre-production/index.html">Pre-Production</a></li>
@@ -62,7 +62,7 @@
         <span class="toc-number">3.1</span>
         <h1>Post-Production Stage</h1>
         <div class="textbook-content">
-            <video src="../posproductionheader.mp4" class="chapter-banner" autoplay muted loop playsinline></video>
+            <video aria-hidden="true" src="../posproductionheader.mp4" class="chapter-banner" autoplay muted loop playsinline></video>
             <p>This stage is all about refining and enhancing the footage you captured. You will edit the scenes, add
                 transitions, and integrate sound and visual effects to shape your film's final look and feel. Whether
                 you are focusing on creating a cohesive narrative or experimenting with advanced techniques like sound
@@ -337,7 +337,7 @@
                         &bull; Decide ahead of time whether your format is vertical (social) or horizontal (standard)<br>
                         &bull; This is a video plan, not a written reflection &mdash; you will be shooting and editing a mini-doc
                     </div>
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdFan9NcmhHkkoo9gCbfEr2dAy_ww_OHZUxpgGeA-4RDTW8VQ/viewform" target="_blank" class="btn">Complete Worksheet &rarr;</a>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdFan9NcmhHkkoo9gCbfEr2dAy_ww_OHZUxpgGeA-4RDTW8VQ/viewform" target="_blank" rel="noopener" class="btn">Complete Worksheet &rarr;</a>
                 </div>
 
                 <div class="card-form">
@@ -350,14 +350,14 @@
                         &bull; Confirm your footage reframes cleanly to 9:16 before you open the form<br>
                         &bull; Know your editing software and whether you are cutting to music (you will need to clear it)
                     </div>
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdAkeGIUaRQP5_9E9MVDxE7iNgnLllly8Cnr96ewifkn3vcrA/viewform" target="_blank" class="btn">Complete Worksheet &rarr;</a>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdAkeGIUaRQP5_9E9MVDxE7iNgnLllly8Cnr96ewifkn3vcrA/viewform" target="_blank" rel="noopener" class="btn">Complete Worksheet &rarr;</a>
                 </div>
             </div>
         </div>
 
         <div
             style="display: flex; justify-content: space-between; align-items: center; margin-top: 4rem; margin-bottom: 2rem; gap: 1rem; flex-wrap: wrap;">
-            <a href="../production/visual-foreshadowing.html" class="btn">&larr; Previous: Visual Foreshadowing</a>
+            <a href="../production/composition.html" class="btn">&larr; Previous: Cinematic Composition</a>
             <a href="sound-design.html" class="btn">Next: Sound Design &rarr;</a>
         </div>
     </main>

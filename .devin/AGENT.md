@@ -271,7 +271,7 @@ Course/content:
 - **Branch**: `main`
 - **Deploy**: `git push origin main`
 - **Live site**: `https://chauesprinciple.github.io/Tokyo-in-Film/` (served from `origin/main`, `.nojekyll` at repo root)
-- **CSS version**: `style.css?v=21` (increment on style changes)
+- **CSS version**: `style.css?v=22` (increment on style changes)
 - **Encoding**: UTF-8 no BOM. Japanese text → `[System.IO.File]` API, not `Get-Content`.
 
 ---
