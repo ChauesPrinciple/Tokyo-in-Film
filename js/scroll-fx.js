@@ -85,77 +85,15 @@
     var pageH1 = document.querySelector('main > h1, .container > h1');
     if (pageH1 && !hero) {
         gsap.set(pageH1.parentNode, { perspective: 900 });
-        gsap.from(pageH1, { y: 40, z: -120, rotateX: 8, opacity: 0, duration: 0.9, ease: 'power3.out' });
+        gsap.from(pageH1, { y: 40, z: -120, rotateX: 8, duration: 0.9, ease: 'power3.out' });
         var lead = document.querySelector('p.lead');
         if (lead) {
-            gsap.from(lead, { y: 30, opacity: 0, duration: 0.9, delay: 0.15, ease: 'power3.out' });
+            gsap.from(lead, { y: 30, duration: 0.9, delay: 0.15, ease: 'power3.out' });
         }
     }
 
-    /* ---------- 5. Tile-to-tile 3D fly-through (phase landing pages) ---------- */
-    // Pins the chapter grid and scrubs each tile from deep space, to front
-    // and center, then past the camera as you scroll.
+    /* ---------- 5. Chapter grids are left alone ---------- */
     var showcaseBuilt = false;
-    var tocGrid = document.querySelector('.toc-grid');
-    if (tocGrid && window.innerWidth >= 768) {
-        var tiles = gsap.utils.toArray(tocGrid.querySelectorAll('.toc-item'));
-        if (tiles.length >= 3) {
-            var stage = document.createElement('div');
-            stage.className = 'tile-stage';
-            tocGrid.parentNode.insertBefore(stage, tocGrid);
-            stage.appendChild(tocGrid);
-
-            gsap.set(stage, { height: '82vh', position: 'relative', perspective: 1100 });
-            gsap.set(tocGrid, { position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, display: 'block', transformStyle: 'preserve-3d' });
-            tiles.forEach(function (t) {
-                gsap.set(t, {
-                    position: 'absolute', top: '50%', left: '50%',
-                    xPercent: -50, yPercent: -50,
-                    width: 'min(640px, 86vw)',
-                    transformStyle: 'preserve-3d',
-                    margin: 0
-                });
-            });
-
-            // Progress hint so students know to keep scrolling.
-            var hint = document.createElement('div');
-            hint.textContent = '1 / ' + tiles.length + '  \u2014  scroll';
-            hint.style.cssText = 'position:absolute;bottom:1.2rem;left:50%;transform:translateX(-50%);font-family:Inter,sans-serif;font-size:0.75rem;letter-spacing:0.25em;text-transform:uppercase;color:rgba(0,243,255,0.7);pointer-events:none;';
-            stage.appendChild(hint);
-
-            var tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: stage,
-                    start: 'top top+=70',
-                    end: '+=' + (tiles.length * 85) + '%',
-                    scrub: 0.6,
-                    pin: true,
-                    anticipatePin: 1,
-                    onUpdate: function (self) {
-                        var idx = Math.min(tiles.length, Math.floor(self.progress * tiles.length) + 1);
-                        hint.textContent = idx + ' / ' + tiles.length + '  \u2014  scroll';
-                    }
-                }
-            });
-
-            tiles.forEach(function (t, i) {
-                if (i === 0) {
-                    gsap.set(t, { z: 0, opacity: 1 });
-                } else {
-                    gsap.set(t, { z: -1400, opacity: 0, rotateX: -22, yPercent: -30 });
-                    tl.to(t, { z: 0, opacity: 1, rotateX: 0, yPercent: -50, duration: 0.9, ease: 'power2.out' }, i);
-                }
-                if (i < tiles.length - 1) {
-                    tl.to(t, { z: 800, opacity: 0, rotateX: 18, yPercent: -75, duration: 0.9, ease: 'power2.in' }, i + 0.1);
-                }
-            });
-            // Hold the last tile briefly at the end of the pin.
-            tl.to({}, { duration: 0.4 });
-
-            showcaseBuilt = true;
-            console.info('[scroll-fx] tile fly-through active: ' + tiles.length + ' tiles');
-        }
-    }
 
     /* ---------- 6. 3D tilt-in for toc tiles only when no fly-through ---------- */
     // Narrow, safe target set: no [data-scroll] elements (see section 2).
@@ -166,7 +104,6 @@
                 rotateX: 22,
                 y: 70,
                 z: -100,
-                opacity: 0,
                 duration: 1,
                 delay: (i % 3) * 0.12,
                 ease: 'power3.out',
