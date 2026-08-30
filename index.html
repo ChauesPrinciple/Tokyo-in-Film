@@ -41,7 +41,8 @@
         #map-section > *:not(.seigaiha) { position: relative; z-index: 1; }
         .map-tabs { display:flex; justify-content:center; gap:0; margin-bottom:0; }
         .map-tab { padding:0.6rem 1.5rem; font-size:0.85rem; text-transform:uppercase; letter-spacing:0.08em; background:transparent; color:#888; border:1px solid rgba(255,255,255,0.15); border-bottom:none; border-radius:6px 6px 0 0; cursor:pointer; font-family:Inter,sans-serif; font-weight:600; transition:all 0.2s; }
-        .map-tab.active { background:rgba(0,243,255,0.12); color:var(--accent-neon-cyan); border:1px solid var(--accent-neon-cyan); border-bottom:none; }
+        .map-tab + .map-tab { margin-left:-1px; }
+        .map-tab.active { background:rgba(0,243,255,0.12); color:var(--accent-neon-cyan); border:1px solid var(--accent-neon-cyan); border-bottom:none; position:relative; z-index:1; }
         .map-panel { display:none; }
         .map-panel.active { display:block; }
     </style>
@@ -212,16 +213,16 @@
             <rect width="100%" height="100%" fill="url(#seigaiha-pattern)"/>
         </svg>
         <div style="text-align: center; margin-bottom: 1.5rem;" data-scroll><h2>Tokyo Maps</h2></div>
-        <div class="map-tabs">
-            <button type="button" class="map-tab active" data-tab="class-map">Class Map</button>
-            <button type="button" class="map-tab" data-tab="anime-map">Anime Maps</button>
+        <div class="map-tabs" role="tablist" aria-label="Tokyo Maps">
+            <button type="button" class="map-tab active" role="tab" id="tab-class-map" data-tab="class-map" aria-controls="panel-class-map" aria-selected="true">Class Map</button>
+            <button type="button" class="map-tab" role="tab" id="tab-anime-map" data-tab="anime-map" aria-controls="panel-anime-map" aria-selected="false">Anime Maps</button>
         </div>
         <!-- Class Map Panel -->
-        <div class="map-panel active" id="panel-class-map">
+        <div class="map-panel active" id="panel-class-map" role="tabpanel" aria-labelledby="tab-class-map">
             <div class="map-container"
                 style="position: relative; padding-bottom: 79.17%; height: 0; overflow: hidden; border: 1px solid var(--accent-neon-cyan); border-top: none; box-shadow: 0 0 20px rgba(0, 243, 255, 0.2);">
                 <iframe id="class-map-iframe" class="map-frame" loading="lazy"
-                    data-src="anime-map.html?anime=class_locations"
+                    src="anime-map.html?anime=class_locations"
                     style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
                     allowfullscreen title="Interactive Map of Tokyo Class Locations"></iframe>
             </div>
@@ -240,7 +241,7 @@
             </p>
         </div>
         <!-- Anime Map Panel -->
-        <div class="map-panel" id="panel-anime-map">
+        <div class="map-panel" id="panel-anime-map" role="tabpanel" aria-labelledby="tab-anime-map">
             <div class="map-container"
                 style="position: relative; padding-bottom: 79.17%; height: 0; overflow: hidden; border: 1px solid var(--accent-neon-cyan); border-top: none; box-shadow: 0 0 20px rgba(0, 243, 255, 0.2);">
                 <iframe id="anime-map-iframe" class="map-frame" loading="lazy"
@@ -261,16 +262,17 @@
 
         function show(name) {
             for (var i = 0; i < tabs.length; i++) {
-                tabs[i].classList.toggle('active', tabs[i].getAttribute('data-tab') === name);
+                var isTabMatch = tabs[i].getAttribute('data-tab') === name;
+                tabs[i].classList.toggle('active', isTabMatch);
+                tabs[i].setAttribute('aria-selected', isTabMatch ? 'true' : 'false');
             }
             for (var j = 0; j < panels.length; j++) {
                 var isMatch = panels[j].id === 'panel-' + name;
                 panels[j].classList.toggle('active', isMatch);
-                panels[j].style.display = isMatch ? '' : 'none';
-            }
-            var frame = document.querySelector('#' + name + '-iframe');
-            if (frame && frame.getAttribute('data-src') && !frame.src) {
-                frame.src = frame.getAttribute('data-src');
+                if (isMatch) {
+                    var frame = panels[j].querySelector('iframe[data-src]');
+                    if (frame && !frame.src) frame.src = frame.getAttribute('data-src');
+                }
             }
         }
 
