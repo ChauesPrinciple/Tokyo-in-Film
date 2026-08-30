@@ -1,1 +1,415 @@
-<!DOCTYPE html><html lang="en"><head>    <meta charset="UTF-8">    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <title>1.1 Pre-Production Stage - Tokyo in Film</title>    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;600&display=swap"        rel="stylesheet">    <link rel="stylesheet" href="../style.css?v=23">    <style>        .assign-tabs { display: flex; flex-wrap: nowrap; gap: 0.5rem; margin: 2rem 0 0; overflow-x: auto; }        .assign-tab { padding: 0.5rem 1.1rem; border: 1px solid rgba(255,255,255,0.2); border-radius: 4px 4px 0 0; cursor: pointer; font-size: 0.9rem; color: #bbb; background: rgba(0,0,0,0.2); border-bottom: none; transition: all 0.2s; }        .assign-tab:hover { color: #fff; border-color: rgba(255,255,255,0.4); }        .assign-tab.active { background: rgba(255,0,127,0.12); border-color: var(--accent-neon-pink); color: var(--accent-neon-pink); font-weight: 600; }        .assign-panels { border: 1px solid rgba(255,0,127,0.25); border-radius: 0 8px 8px 8px; padding: 2rem; background: rgba(0,0,0,0.15); margin-bottom: 2.5rem; }        .assign-panel { display: none; }        .assign-panel.active { display: block; }        .assign-panel h3 { color: var(--accent-neon-cyan); margin-top: 1.75rem; margin-bottom: 0.5rem; }        .assign-panel h3:first-child { margin-top: 0; }        .step-row { display: flex; align-items: flex-start; gap: 0.85rem; margin: 1.5rem 0 0.5rem; }        .step-num { display: inline-flex; align-items: center; justify-content: center; min-width: 2rem; height: 2rem; background: var(--accent-neon-pink); color: #000; font-weight: 700; border-radius: 50%; font-size: 0.95rem; }        .step-row h4 { margin: 0; line-height: 2rem; }        .assign-eg { background: rgba(0,243,255,0.06); border-left: 4px solid var(--accent-neon-cyan); padding: 0.85rem 1.25rem; margin: 1rem 0; border-radius: 0 6px 6px 0; }        .assign-eg .bad { color: #ff7b7b; }        .assign-eg .good { color: #7bffa8; }        .assign-del { background: rgba(255,0,127,0.06); border: 1px solid rgba(255,0,127,0.28); border-radius: 8px; padding: 1.25rem 1.5rem; margin: 1.5rem 0; }        .assign-del h4 { margin: 0 0 0.6rem; }        .final-note { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1.25rem; margin-top: 1.5rem; font-style: italic; color: #bbb; }        .loc-table { width:100%; border-collapse:collapse; margin:1rem 0; font-size:0.88rem; }        .loc-table th { background:rgba(255,0,127,0.13); color:var(--accent-neon-pink); padding:0.5rem 0.75rem; text-align:left; border:1px solid rgba(255,255,255,0.1); }        .loc-table td { padding:0.5rem 0.75rem; border:1px solid rgba(255,255,255,0.08); color:#ccc; vertical-align:top; }        .loc-table tr:nth-child(even) td { background:rgba(255,255,255,0.02); }        .loc-box { background:rgba(0,0,0,0.2); border:1px solid rgba(255,255,255,0.08); border-radius:6px; padding:1rem 1.25rem; margin:0.75rem 0; }        .loc-box h5 { margin:0 0 0.4rem; color:var(--accent-neon-cyan); font-size:0.95rem; }        .shot-table { width:100%; border-collapse:collapse; margin:1rem 0; font-size:0.88rem; }        .shot-table th { background:rgba(255,0,127,0.13); color:var(--accent-neon-pink); padding:0.5rem 0.6rem; text-align:left; border:1px solid rgba(255,255,255,0.1); white-space:nowrap; }        .shot-table td { padding:0.4rem 0.6rem; border:1px solid rgba(255,255,255,0.08); color:#ccc; }        .shot-table tr.empty td { height:2rem; }        .role-tag { display: inline-block; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #000; background: var(--accent-neon-cyan); border-radius: 4px; padding: 0.2rem 0.7rem; margin-bottom: 1rem; }        @media(max-width:600px){ .assign-tab{ font-size:0.78rem; padding:0.4rem 0.7rem; } .assign-panels{ padding:1.25rem; } }    </style></head><body>    <nav>        <div class="nav-brand" style="display: flex; align-items: center; gap: 1rem;">            <div class="logo">                Tokyo in Film                <div class="dropdown-menu">                    <a href="https://chauesprinciple.github.io/Tokyo-in-Film/" class="dropdown-item current">Tokyo in                        Film</a>                    <a href="https://chauesprinciple.github.io/Ancient-literature/" class="dropdown-item">Ancient                        Literature</a>                </div>            </div>            <a href="https://www.instagram.com/chaues/" target="_blank" rel="noopener" class="ig-icon" aria-label="Instagram"></a>        </div>        <button type="button" class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-nav">            <span class="bar"></span>            <span class="bar"></span>            <span class="bar"></span>        </button>        <ul class="nav-list" id="primary-nav">            <li><a href="../index.html">Home</a></li>            <li><a href="../documentary-project.html">Documentary Project</a></li>            <li><a href="index.html" class="active">Pre-Production</a></li>            <li><a href="../production/index.html">Production</a></li>            <li><a href="../post-production/index.html">Post-Production</a></li>            <li><a href="../glossary.html">Glossary</a></li>            <li><a href="../free-guides.html">Free Guides</a></li>        </ul>    </nav>    <main class="container" style="padding-top: 100px;">        <span class="toc-number">1.1</span>        <h1>Pre-Production Stage</h1>        <div class="textbook-content">            <video aria-hidden="true" src="../preproductionheader.mp4" class="chapter-banner" autoplay muted loop playsinline></video>            <p>This stage is all about planning, brainstorming, and developing pre-production materials for both your                chosen assignment and your own film. By the end of this stage, you will have created storyboards, shot                lists, scripts, and a clear vision for shooting the scenes in production. Choose one assignment to                complete and apply the techniques you learn to a corresponding scene in your own film.</p>            <div id="scenario-pre" style="max-width:800px;margin:2.5rem auto 0;"></div>            <script src="../js/scenario.js"></script>            <script src="pre-guide.js"></script>            <h2 style="margin-top: 3rem;">In-Class Assignments</h2>            <p>These practice assignments help you experiment with different creative roles and make informed decisions for your final Documentary Project. Each group member selects one assignment, using footage from either your documentary or the Infinite Game shared archive. You may explore roles beyond your primary assignment to build versatile production skills.</p>            <h3 style="margin-bottom: 1rem; color: var(--accent-neon-pink); text-align: center; margin-top: 2rem;">Choose Your Role</h3>            <div class="assign-tabs">                <div class="assign-tab active" onclick="showAssign('script')">Script</div>                <div class="assign-tab" onclick="showAssign('storyboard')">Storyboard</div>                <div class="assign-tab" onclick="showAssign('shotlist')">Shot List</div>                <div class="assign-tab" onclick="showAssign('animatic')">Animatic <span style="font-size:0.75rem; color:var(--accent-neon-cyan); font-weight:400;">(Advanced)</span></div>            </div>            <div class="assign-panels">                <!-- SCRIPT -->                <div class="assign-panel active" id="assign-script">                    <span class="role-tag">Role: Writer</span>                    <p><em>Writing the Cinematic Beat</em></p>                    <p>This assignment challenges you to script a short, movement-based moment that conveys emotion or                        escalation through precise action, physical rhythm, and camera-conscious direction. You are not                        writing a play. You are writing for the screen, where motion, silence, and framing matter as                        much as words, often more.</p>                    <p>Whether it is a glance held too long, a character pacing before a confession, or the slow draw of                        a weapon, your script must guide the reader to see the film in their head. This is about                        controlling time, space, and tone on the page, before you touch a storyboard or camera.</p>                    <h3>Task</h3>                    <p>Write a brief, formatted screenplay (30 to 45 seconds) for a pivotal visual moment in your                        project. The scene should revolve around movement, blocking, and tension-building, not extended                        dialogue. Think:</p>                    <ul>                        <li>A confrontation where no one says what they mean</li>                        <li>A private breakdown in a public space</li>                        <li>A chase that reveals character, not just momentum</li>                    </ul>                    <p>Your writing must be readable as cinema, not as prose, not as exposition. This is a director's                        draft, not a novelist's.</p>                    <h3>Steps</h3>                    <div class="step-row"><span class="step-num">1</span><h4>Choose a Visual Moment</h4></div>                    <p>Select a 30 to 45 second moment from your project that contains a physical action or behavioral                        shift, minimal or purposeful dialogue, and an emotional or narrative turning point. Example                        beats:</p>                    <ul>                        <li>A character hesitates before walking through a door</li>                        <li>Two people almost speak, but one leaves first</li>                        <li>Someone prepares a space for something that never happens</li>                    </ul>                    <div class="step-row"><span class="step-num">2</span><h4>Write the Scene in Screenplay Format</h4></div>                    <p>Use standard screenplay formatting. Tools like Celtx, Arc Studio, or WriterDuet (free versions)                        will help. Include: sluglines (INT./EXT., time of day), action lines (short, visual, cinematic),                        minimal dialogue only when essential, character behavior (physical choices, posture, glance,                        pacing), and sound cues when relevant (e.g., distant train horn, flickering lights).</p>                    <div class="assign-eg">                        <p class="bad"><strong>Weak:</strong> &ldquo;She is nervous and sad.&rdquo;</p>                        <p class="good"><strong>Strong:</strong> &ldquo;She adjusts her jacket again. A third time. Does not move.&rdquo;</p>                    </div>                    <p>Your job is to suggest the film, not describe it.</p>                    <div class="assign-del">                        <h4>Deliverables</h4>                        <ul>                            <li>PDF or formatted script, one scene (30 to 45 seconds)</li>                            <li>Optional: 100-word reflection on how movement and silence carry the storytelling</li>                        </ul>                        <p style="margin-bottom:0;"><strong>File Naming:</strong> <code>2026_Script_(SceneTitle)_(YourName).pdf</code><br>Example: <code>2026_Script_ConfessionScene_AlexTanaka.pdf</code></p>                    </div>                    <h3>Purpose</h3>                    <p>Before you shoot a scene, you must write it clearly enough that others can see it and feel it                        before it is real. This assignment builds spatial writing discipline, cinematic tempo, and visual                        emotional control. If your script can be sketched, scored, or cut, it is working.</p>                    <div class="final-note">A great scene does not begin with dialogue. It begins with a choice, a                        movement, a pause. Film it first in the reader's mind. That is the script's job.</div>                </div>                <!-- STORYBOARD -->                <div class="assign-panel" id="assign-storyboard">                    <span class="role-tag">Role: Storyboard Artist</span>                    <p><em>Visualizing a Movement-Driven Scene</em></p>                    <p>This assignment challenges you to develop a cinematic visual blueprint for one of your film's key                        sequences. Using storyboarding techniques, you will translate your scene into a series of visual                        beats, emphasizing framing, character motion, and camera movement. The goal is to pre-visualize                        how the story unfolds on screen, beat by beat, before the camera ever rolls.</p>                    <p>In animation, storyboards provide the skeleton. In live-action, they serve as a visual contract                        between director, DP, and crew. Your frames are not sketches for sketching's sake; they are                        instructions, decisions, and cinematic intentions.</p>                    <h3>Task</h3>                    <p>Select a 20 to 30 second movement-based scene from your short film project. Break it into 6 to 8                        storyboard frames, clearly visualizing how the camera frames the action and why the movement                        matters. You are not illustrating the script; you are designing the film.</p>                    <h3>Steps</h3>                    <div class="step-row"><span class="step-num">1</span><h4>Choose Your Scene</h4></div>                    <p>Pick a 20 to 30 second section that revolves around motion or physical behavior. Avoid                        dialogue-heavy static scenes. Prioritize sequences where blocking, pacing, and framing carry                        meaning. Examples from course films:</p>                    <ul>                        <li>A character moves through a crowded market, present but invisible to those around them (<em>Bullet Train</em>)</li>                        <li>A confrontation escalates without words (<em>13 Assassins</em>)</li>                        <li>A character throws open a door and runs into the night (<em>Your Name</em>)</li>                    </ul>                    <div class="step-row"><span class="step-num">2</span><h4>Break Down the Sequence</h4></div>                    <p>Identify key action beats and camera perspectives. Ask: Where does the character start and end?                        What does the camera need to see, and when? Where should we cut, or hold? When do we go wide to                        show space? When do we go tight to show emotion?</p>                    <div class="step-row"><span class="step-num">3</span><h4>Create Your Storyboard</h4></div>                    <p>Produce 6 to 8 sequential frames with the following annotated for each:</p>                    <ul>                        <li>Shot type and camera angle</li>                        <li>Camera movement (dolly, pan, static)</li>                        <li>Subject movement</li>                        <li>Environmental or lighting cues (if relevant)</li>                        <li>One action note per frame</li>                    </ul>                    <div class="assign-del">                        <h4>Deliverables</h4>                        <ul>                            <li>PDF or scanned storyboard images with annotations (6 to 8 frames)</li>                            <li>Director's note (100 to 150 words): why this scene, and what visual and emotional rhythm                                you are aiming for</li>                        </ul>                        <p style="margin-bottom:0;"><strong>File Naming:</strong> <code>2026_Storyboard_(SceneTitle)_(YourName).pdf</code> or <code>.png</code><br>Example: <code>2026_Storyboard_ChaseSequence_JordanLee.pdf</code></p>                    </div>                    <h3>Purpose</h3>                    <p>Storyboarding teaches clarity of visual intention. Frames make your film communicable to                        collaborators and executable on set. Visual planning separates reactive shooting from deliberate                        directing. A film that exists only in your head is not yet a film.</p>                    <div class="final-note">Motion is only cinematic if it is seen with intention. A glance. A step. A                        slide. A pause. Frame it. Anchor it. Decide it.</div>                </div>                <!-- SHOT LIST -->                <div class="assign-panel" id="assign-shotlist">                    <span class="role-tag">Role: Script Supervisor</span>                    <p><em>Structuring a Scene Through Visual Logic</em></p>                    <p>A film is not made in the moment of inspiration; it is built, brick by brick, shot by shot. This                        assignment challenges you to create a detailed shot list for one of your scene's key moments,                        transforming your ideas into an executable visual sequence.</p>                    <p>A great shot list is more than a checklist; it is a structural score. It defines rhythm, frames                        emotional tone, and ensures that your coverage is purposeful, not reactive. Every shot is a                        decision about what the audience sees, when, and how.</p>                    <h3>Task</h3>                    <p>Select a 20 to 30 second segment where visual coverage shapes mood or momentum. Build a                        professional shot list that breaks this moment into discrete, carefully chosen camera setups                        accounting for: framing and angle, camera movement (or stillness), duration and pacing, and                        action and performance cues. Make the scene cuttable before it is shot.</p>                    <h3>Steps</h3>                    <div class="step-row"><span class="step-num">1</span><h4>Choose Your Sequence</h4></div>                    <p>Select a scene with meaningful movement, gesture, or emotional progression. Options:</p>                    <ul>                        <li>A walk through an emotionally charged space (<em>Bullet Train</em>, <em>Tsukigakirei</em>)</li>                        <li>A tense face-off (<em>Kubi</em>, <em>13 Assassins</em>)</li>                        <li>A moment of urban disorientation (<em>Howl's Moving Castle</em>, <em>Tokyo Ghoul</em>)</li>                        <li>A craftsperson working in silence, revealed through close-ups (<em>Jiro Dreams of Sushi</em>, <em>Ramen Heads</em>)</li>                    </ul>                    <p>Avoid scenes that rely only on static two-shots or dialogue coverage.</p>                    <div class="step-row"><span class="step-num">2</span><h4>Build Your Shot List Table</h4></div>                    <p>Include at least 8 to 10 shots. Use these five columns:</p>                    <div style="overflow-x:auto;">                        <table class="shot-table">                            <thead>                                <tr>                                    <th>Shot #</th><th>Shot Type / Framing</th><th>Camera Movement</th><th>Duration</th><th>Action / Notes</th>                                </tr>                            </thead>                            <tbody>                                <tr><td>1</td><td>Medium Close-Up</td><td>Static</td><td>4 sec</td><td>Character wipes blood from lip, looks offscreen</td></tr>                                <tr><td>2</td><td>Over-the-Shoulder</td><td>Dolly in</td><td>3 sec</td><td>Subject approaches slowly, eyes fixed</td></tr>                                <tr class="empty"><td>3</td><td></td><td></td><td></td><td></td></tr>                                <tr class="empty"><td>4</td><td></td><td></td><td></td><td></td></tr>                                <tr class="empty"><td>5</td><td></td><td></td><td></td><td></td></tr>                                <tr class="empty"><td>6</td><td></td><td></td><td></td><td></td></tr>                                <tr class="empty"><td>7</td><td></td><td></td><td></td><td></td></tr>                                <tr class="empty"><td>8</td><td></td><td></td><td></td><td></td></tr>                            </tbody>                        </table>                    </div>                    <p>Pay attention to: axis of action (keep or cross it?), cut rhythm (when do you linger, when do you                        shift?), and foreground vs. background activation.</p>                    <div class="step-row"><span class="step-num">3</span><h4>Consider Spatial and Emotional Progression</h4></div>                    <p>What begins wide and tightens? When does the camera mirror or oppose the character's psychology?                        Are transitions clean, or deliberately jarring?</p>                    <div class="assign-del">                        <h4>Deliverables</h4>                        <ul>                            <li>Shot list table, PDF or doc format, at least 8 shots, all five columns complete</li>                            <li>Optional: 100-word note on your coverage strategy</li>                        </ul>                        <p style="margin-bottom:0;"><strong>File Naming:</strong> <code>2026_ShotList_(SceneTitle)_(YourName).pdf</code><br>Example: <code>2026_ShotList_TempleConfrontation_SamChen.pdf</code></p>                    </div>                    <h3>Purpose</h3>                    <p>A well-structured shot list directs the energy. It defines whether a moment stutters or flows,                        isolates or entangles. If your film cannot be broken down into shots, it cannot yet be shot.</p>                    <div class="final-note">Every shot is a verb. It asks: What do we show? Who sees it? When do we                        cut, and why? If you can answer that, you are thinking like a director.</div>                </div>                <!-- ANIMATIC (ADVANCED) -->                <div class="assign-panel" id="assign-animatic">                    <span class="role-tag">Role: Animator</span>                    <p><em>Timing the Visual Beat (Advanced Option)</em></p>                    <p>An animatic is the next step beyond a storyboard. Where a storyboard defines what the camera                        sees, an animatic defines <em>when</em> it sees it, and for how long. You are building a rough,                        timed version of your film before a single frame is shot. Used in animation, commercials, and                        complex live-action pre-production, the animatic trains you to make decisions about pacing,                        rhythm, and image duration before the edit room. If a storyboard is a score, the animatic is the                        first rehearsal.</p>                    <h3>Task</h3>                    <p>Select a 20 to 30 second movement-based scene. Using your storyboard frames (or new rough                        images), assemble a timed sequence that communicates how the scene will feel in motion. The                        question is not just what the audience sees; it is how long they live inside each image, and                        what that duration does to the emotion of the scene.</p>                    <h3>Steps</h3>                    <div class="step-row"><span class="step-num">1</span><h4>Gather or Create Your Frames</h4></div>                    <p>Use your storyboard panels or create new rough images. Scan or photograph them if working on                        paper. Minimum 6 frames for a 20 to 30 second sequence. Each frame should clearly indicate shot                        type, subject position, movement direction, and approximate screen duration.</p>                    <div class="step-row"><span class="step-num">2</span><h4>Assemble the Timed Sequence</h4></div>                    <p>Import your frames into a video editing tool (DaVinci Resolve, iMovie, CapCut, or similar) and                        set the duration of each frame to match your intended screen time. Ask: Does this shot breathe,                        or does it rush? Where does a longer hold create tension? Where does a quick cut create urgency?</p>                    <div class="assign-eg">A 4-second hold on a character's face before they speak changes the meaning                        of their words. A half-second cut between two locations suggests panic. Decide every duration on                        purpose.</div>                    <div class="step-row"><span class="step-num">3</span><h4>Add Temporary Audio (Optional but Recommended)</h4></div>                    <p>Even rough audio helps enormously. Consider: voiceover narration for dialogue or internal thought,                        temporary music or ambient sound to establish tone, and sound effect placeholders (e.g., a clap                        to mark a door slam). This does not need to be your final audio; it is a scaffold to test                        whether the scene's rhythm holds when image and sound combine.</p>                    <div class="step-row"><span class="step-num">4</span><h4>Review and Refine</h4></div>                    <p>Watch your animatic at least three times. Ask: Does the scene communicate its emotional intention                        without spoken explanation? Are there moments that drag, or cut too soon? Does the pacing fit                        the genre and tone? Adjust durations, reorder frames if needed.</p>                    <div class="assign-del">                        <h4>Deliverables</h4>                        <ul>                            <li>Exported video file or shareable link (10 to 30 seconds)</li>                            <li>Director's note (100 to 150 words) on pacing choices and emotional rhythm</li>                            <li>Optional: frame-by-frame breakdown listing each shot's duration and intended effect</li>                        </ul>                        <p style="margin-bottom:0;"><strong>File Naming:</strong> <code>2026_Animatic_(SceneTitle)_(YourName).mp4</code><br>Example: <code>2026_Animatic_OpeningSequence_MikaYamada.mp4</code></p>                    </div>                    <h3>Purpose</h3>                    <p>Animatics train temporal thinking: how motion and image create rhythm. They reveal pacing                        problems before the edit room, when changes are cheap, and make your creative vision                        communicable to a crew. A film that exists only in your head is not yet a film. An animatic is                        your first proof that the film is real.</p>                </div>            </div><!-- end assign-panels -->            <script>                function showAssign(id) {                    document.querySelectorAll('.assign-tab').forEach(function(t){ t.classList.remove('active'); });                    document.querySelectorAll('.assign-panel').forEach(function(p){ p.classList.remove('active'); });                    event.currentTarget.classList.add('active');                    document.getElementById('assign-' + id).classList.add('active');                }            </script>            <h3 style="margin-bottom: 1rem; color: var(--accent-neon-pink); text-align: center; margin-top: 3rem;">Choose Your Add On</h3>            <div class="forms-grid">                <div class="card-form">                    <h3>Add On: Location Mini-Doc</h3>                    <p class="card-meta">12 sections &nbsp;&middot;&nbsp; Deliverable: 1&ndash;3 min location documentary</p>                    <p style="margin-bottom: 0.75rem;">Plan a short documentary around one specific Tokyo location. The form walks you through location anchors, story spine, time and access planning, a full shot list (establishing, geography, texture, human rhythm), sound plan, and editing intent.</p>                    <div class="card-prereqs">                        <strong>Before you start:</strong>                        &bull; Pick one specific place, not a neighborhood &mdash; a precise spot (arcade, shrine approach, alley, station area)<br>                        &bull; Know what makes it distinct and what you expect to hear there<br>                        &bull; Have a rough sense of when you&rsquo;ll shoot and whether any areas are restricted                    </div>                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdQra-w-W3l-lCrAea_ySONV_pFQDorE_v1s76WkrMorxo08g/viewform" target="_blank" rel="noopener" class="btn">Complete Worksheet &rarr;</a>                </div>                <div class="card-form">                    <h3>Add On: Pilgrimage Shots Location Plan</h3>                    <p class="card-meta">11 sections &nbsp;&middot;&nbsp; Deliverable: Recreated film frame(s) at the real Tokyo location</p>                    <p style="margin-bottom: 0.75rem;">Research, locate, and plan to recreate one specific frame from a course film at its real-world Tokyo shooting spot. The form requires a confirmed location with a Google Maps pin, a camera position and framing plan, timing and crowd strategy, required support shots, and a 300&ndash;400 word location analysis.</p>                    <div class="card-prereqs">                        <strong>Before you start:</strong>                        &bull; Choose your source film and find the exact frame &mdash; you need the film timestamp before you open this form<br>                        &bull; Confirm the real-world location first; you will need a Google Maps link to submit<br>                        &bull; This is research-heavy &mdash; plan 30&ndash;45 minutes to complete it thoroughly                    </div>                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfZ7S9ZfOiqrDkX9QqxTNU9YgQbLdd7eUwOh8g55ptUwFRSag/viewform" target="_blank" rel="noopener" class="btn">Complete Worksheet &rarr;</a>                </div>            </div>            <div                style="display: flex; justify-content: space-between; align-items: center; margin-top: 4rem; margin-bottom: 2rem; gap: 1rem; flex-wrap: wrap;">                <a href="../index.html" class="btn">&larr; Previous: Home</a>                <a href="how-to-watch.html" class="btn">Next: How to Watch a Movie &rarr;</a>            </div>        </div>    </main>    <footer>        <p>&copy; 2026 Tokyo in Film.</p>        <div class="attribution-text">            <p><a href="https://chauesprinciple.github.io/Tokyo-in-Film/">Tokyo in Film</a> &copy; 2023 by <a href="https://chauesprinciple.github.io/ChauesProductions/">Robert Ladd</a> is licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International</a>.</p>            <p><strong>Originally adapted from:</strong> <em>Moving Pictures: An Introduction to Cinema</em> by Russell Sharman.</p>        </div>    </footer>    <script src="../js/glossary.js"></script>    <script src="../js/mobile-nav.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1.1 Pre-Production Stage - Tokyo in Film</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../style.css?v=22">
+    <style>
+        .assign-tabs { display: flex; flex-wrap: nowrap; gap: 0.5rem; margin: 2rem 0 0; overflow-x: auto; }
+        .assign-tab { padding: 0.5rem 1.1rem; border: 1px solid rgba(255,255,255,0.2); border-radius: 4px 4px 0 0; cursor: pointer; font-size: 0.9rem; color: #bbb; background: rgba(0,0,0,0.2); border-bottom: none; transition: all 0.2s; }
+        .assign-tab:hover { color: #fff; border-color: rgba(255,255,255,0.4); }
+        .assign-tab.active { background: rgba(255,0,127,0.12); border-color: var(--accent-neon-pink); color: var(--accent-neon-pink); font-weight: 600; }
+        .assign-panels { border: 1px solid rgba(255,0,127,0.25); border-radius: 0 8px 8px 8px; padding: 2rem; background: rgba(0,0,0,0.15); margin-bottom: 2.5rem; }
+        .assign-panel { display: none; }
+        .assign-panel.active { display: block; }
+        .assign-panel h3 { color: var(--accent-neon-cyan); margin-top: 1.75rem; margin-bottom: 0.5rem; }
+        .assign-panel h3:first-child { margin-top: 0; }
+        .step-row { display: flex; align-items: flex-start; gap: 0.85rem; margin: 1.5rem 0 0.5rem; }
+        .step-num { display: inline-flex; align-items: center; justify-content: center; min-width: 2rem; height: 2rem; background: var(--accent-neon-pink); color: #000; font-weight: 700; border-radius: 50%; font-size: 0.95rem; }
+        .step-row h4 { margin: 0; line-height: 2rem; }
+        .assign-eg { background: rgba(0,243,255,0.06); border-left: 4px solid var(--accent-neon-cyan); padding: 0.85rem 1.25rem; margin: 1rem 0; border-radius: 0 6px 6px 0; }
+        .assign-eg .bad { color: #ff7b7b; }
+        .assign-eg .good { color: #7bffa8; }
+        .assign-del { background: rgba(255,0,127,0.06); border: 1px solid rgba(255,0,127,0.28); border-radius: 8px; padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+        .assign-del h4 { margin: 0 0 0.6rem; }
+        .final-note { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1.25rem; margin-top: 1.5rem; font-style: italic; color: #bbb; }
+        .loc-table { width:100%; border-collapse:collapse; margin:1rem 0; font-size:0.88rem; }
+        .loc-table th { background:rgba(255,0,127,0.13); color:var(--accent-neon-pink); padding:0.5rem 0.75rem; text-align:left; border:1px solid rgba(255,255,255,0.1); }
+        .loc-table td { padding:0.5rem 0.75rem; border:1px solid rgba(255,255,255,0.08); color:#ccc; vertical-align:top; }
+        .loc-table tr:nth-child(even) td { background:rgba(255,255,255,0.02); }
+        .loc-box { background:rgba(0,0,0,0.2); border:1px solid rgba(255,255,255,0.08); border-radius:6px; padding:1rem 1.25rem; margin:0.75rem 0; }
+        .loc-box h5 { margin:0 0 0.4rem; color:var(--accent-neon-cyan); font-size:0.95rem; }
+        .shot-table { width:100%; border-collapse:collapse; margin:1rem 0; font-size:0.88rem; }
+        .shot-table th { background:rgba(255,0,127,0.13); color:var(--accent-neon-pink); padding:0.5rem 0.6rem; text-align:left; border:1px solid rgba(255,255,255,0.1); white-space:nowrap; }
+        .shot-table td { padding:0.4rem 0.6rem; border:1px solid rgba(255,255,255,0.08); color:#ccc; }
+        .shot-table tr.empty td { height:2rem; }
+        .role-tag { display: inline-block; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #000; background: var(--accent-neon-cyan); border-radius: 4px; padding: 0.2rem 0.7rem; margin-bottom: 1rem; }
+        @media(max-width:600px){ .assign-tab{ font-size:0.78rem; padding:0.4rem 0.7rem; } .assign-panels{ padding:1.25rem; } }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="nav-brand" style="display: flex; align-items: center; gap: 1rem;">
+            <div class="logo">
+                Tokyo in Film
+                <div class="dropdown-menu">
+                    <a href="https://chauesprinciple.github.io/Tokyo-in-Film/" class="dropdown-item current">Tokyo in
+                        Film</a>
+                    <a href="https://chauesprinciple.github.io/Ancient-literature/" class="dropdown-item">Ancient
+                        Literature</a>
+                </div>
+            </div>
+            <a href="https://www.instagram.com/chaues/" target="_blank" rel="noopener" class="ig-icon" aria-label="Instagram"></a>
+        </div>
+        <button type="button" class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-nav">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+        <ul class="nav-list" id="primary-nav">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../documentary-project.html">Documentary Project</a></li>
+            <li><a href="index.html" class="active">Pre-Production</a></li>
+            <li><a href="../production/index.html">Production</a></li>
+            <li><a href="../post-production/index.html">Post-Production</a></li>
+            <li><a href="../glossary.html">Glossary</a></li>
+            <li><a href="../free-guides.html">Free Guides</a></li>
+        </ul>
+    </nav>
+    <main class="container" style="padding-top: 100px;">
+        <span class="toc-number">1.1</span>
+        <h1>Pre-Production Stage</h1>
+        <div class="textbook-content">
+            <video aria-hidden="true" src="../preproductionheader.mp4" class="chapter-banner" autoplay muted loop playsinline></video>
+            <p>This stage is all about planning, brainstorming, and developing pre-production materials for both your
+                chosen assignment and your own film. By the end of this stage, you will have created storyboards, shot
+                lists, scripts, and a clear vision for shooting the scenes in production. Choose one assignment to
+                complete and apply the techniques you learn to a corresponding scene in your own film.</p>
+
+
+            <div id="scenario-pre" style="max-width:800px;margin:2.5rem auto 0;"></div>
+            <script src="../js/scenario.js"></script>
+            <script src="pre-guide.js"></script>
+
+            <h2 style="margin-top: 3rem;">In-Class Assignments</h2>
+            <p>These practice assignments help you experiment with different creative roles and make informed decisions for your final Documentary Project. Each group member selects one assignment, using footage from either your documentary or the Infinite Game shared archive. You may explore roles beyond your primary assignment to build versatile production skills.</p>
+
+            <h3 style="margin-bottom: 1rem; color: var(--accent-neon-pink); text-align: center; margin-top: 2rem;">Choose Your Role</h3>
+            <div class="assign-tabs">
+                <div class="assign-tab active" onclick="showAssign('script')">Script</div>
+                <div class="assign-tab" onclick="showAssign('storyboard')">Storyboard</div>
+                <div class="assign-tab" onclick="showAssign('shotlist')">Shot List</div>
+                <div class="assign-tab" onclick="showAssign('animatic')">Animatic <span style="font-size:0.75rem; color:var(--accent-neon-cyan); font-weight:400;">(Advanced)</span></div>
+            </div>
+
+            <div class="assign-panels">
+
+                <!-- SCRIPT -->
+                <div class="assign-panel active" id="assign-script">
+                    <span class="role-tag">Role: Writer</span>
+                    <p><em>Writing the Cinematic Beat</em></p>
+                    <p>This assignment challenges you to script a short, movement-based moment that conveys emotion or
+                        escalation through precise action, physical rhythm, and camera-conscious direction. You are not
+                        writing a play. You are writing for the screen, where motion, silence, and framing matter as
+                        much as words, often more.</p>
+                    <p>Whether it is a glance held too long, a character pacing before a confession, or the slow draw of
+                        a weapon, your script must guide the reader to see the film in their head. This is about
+                        controlling time, space, and tone on the page, before you touch a storyboard or camera.</p>
+
+                    <h3>Task</h3>
+                    <p>Write a brief, formatted screenplay (30 to 45 seconds) for a pivotal visual moment in your
+                        project. The scene should revolve around movement, blocking, and tension-building, not extended
+                        dialogue. Think:</p>
+                    <ul>
+                        <li>A confrontation where no one says what they mean</li>
+                        <li>A private breakdown in a public space</li>
+                        <li>A chase that reveals character, not just momentum</li>
+                    </ul>
+                    <p>Your writing must be readable as cinema, not as prose, not as exposition. This is a director's
+                        draft, not a novelist's.</p>
+
+                    <h3>Steps</h3>
+                    <div class="step-row"><span class="step-num">1</span><h4>Choose a Visual Moment</h4></div>
+                    <p>Select a 30 to 45 second moment from your project that contains a physical action or behavioral
+                        shift, minimal or purposeful dialogue, and an emotional or narrative turning point. Example
+                        beats:</p>
+                    <ul>
+                        <li>A character hesitates before walking through a door</li>
+                        <li>Two people almost speak, but one leaves first</li>
+                        <li>Someone prepares a space for something that never happens</li>
+                    </ul>
+
+                    <div class="step-row"><span class="step-num">2</span><h4>Write the Scene in Screenplay Format</h4></div>
+                    <p>Use standard screenplay formatting. Tools like Celtx, Arc Studio, or WriterDuet (free versions)
+                        will help. Include: sluglines (INT./EXT., time of day), action lines (short, visual, cinematic),
+                        minimal dialogue only when essential, character behavior (physical choices, posture, glance,
+                        pacing), and sound cues when relevant (e.g., distant train horn, flickering lights).</p>
+                    <div class="assign-eg">
+                        <p class="bad"><strong>Weak:</strong> &ldquo;She is nervous and sad.&rdquo;</p>
+                        <p class="good"><strong>Strong:</strong> &ldquo;She adjusts her jacket again. A third time. Does not move.&rdquo;</p>
+                    </div>
+                    <p>Your job is to suggest the film, not describe it.</p>
+
+                    <div class="assign-del">
+                        <h4>Deliverables</h4>
+                        <ul>
+                            <li>PDF or formatted script, one scene (30 to 45 seconds)</li>
+                            <li>Optional: 100-word reflection on how movement and silence carry the storytelling</li>
+                        </ul>
+                        <p style="margin-bottom:0;"><strong>File Naming:</strong> <code>2026_Script_(SceneTitle)_(YourName).pdf</code><br>Example: <code>2026_Script_ConfessionScene_AlexTanaka.pdf</code></p>
+                    </div>
+
+                    <h3>Purpose</h3>
+                    <p>Before you shoot a scene, you must write it clearly enough that others can see it and feel it
+                        before it is real. This assignment builds spatial writing discipline, cinematic tempo, and visual
+                        emotional control. If your script can be sketched, scored, or cut, it is working.</p>
+                    <div class="final-note">A great scene does not begin with dialogue. It begins with a choice, a
+                        movement, a pause. Film it first in the reader's mind. That is the script's job.</div>
+                </div>
+
+                <!-- STORYBOARD -->
+                <div class="assign-panel" id="assign-storyboard">
+                    <span class="role-tag">Role: Storyboard Artist</span>
+                    <p><em>Visualizing a Movement-Driven Scene</em></p>
+                    <p>This assignment challenges you to develop a cinematic visual blueprint for one of your film's key
+                        sequences. Using storyboarding techniques, you will translate your scene into a series of visual
+                        beats, emphasizing framing, character motion, and camera movement. The goal is to pre-visualize
+                        how the story unfolds on screen, beat by beat, before the camera ever rolls.</p>
+                    <p>In animation, storyboards provide the skeleton. In live-action, they serve as a visual contract
+                        between director, DP, and crew. Your frames are not sketches for sketching's sake; they are
+                        instructions, decisions, and cinematic intentions.</p>
+
+                    <h3>Task</h3>
+                    <p>Select a 20 to 30 second movement-based scene from your short film project. Break it into 6 to 8
+                        storyboard frames, clearly visualizing how the camera frames the action and why the movement
+                        matters. You are not illustrating the script; you are designing the film.</p>
+
+                    <h3>Steps</h3>
+                    <div class="step-row"><span class="step-num">1</span><h4>Choose Your Scene</h4></div>
+                    <p>Pick a 20 to 30 second section that revolves around motion or physical behavior. Avoid
+                        dialogue-heavy static scenes. Prioritize sequences where blocking, pacing, and framing carry
+                        meaning. Examples from course films:</p>
+                    <ul>
+                        <li>A character moves through a crowded market, present but invisible to those around them (<em>Bullet Train</em>)</li>
+                        <li>A confrontation escalates without words (<em>13 Assassins</em>)</li>
+                        <li>A character throws open a door and runs into the night (<em>Your Name</em>)</li>
+                    </ul>
+
+                    <div class="step-row"><span class="step-num">2</span><h4>Break Down the Sequence</h4></div>
+                    <p>Identify key action beats and camera perspectives. Ask: Where does the character start and end?
+                        What does the camera need to see, and when? Where should we cut, or hold? When do we go wide to
+                        show space? When do we go tight to show emotion?</p>
+
+                    <div class="step-row"><span class="step-num">3</span><h4>Create Your Storyboard</h4></div>
+                    <p>Produce 6 to 8 sequential frames with the following annotated for each:</p>
+                    <ul>
+                        <li>Shot type and camera angle</li>
+                        <li>Camera movement (dolly, pan, static)</li>
+                        <li>Subject movement</li>
+                        <li>Environmental or lighting cues (if relevant)</li>
+                        <li>One action note per frame</li>
+                    </ul>
+
+                    <div class="assign-del">
+                        <h4>Deliverables</h4>
+                        <ul>
+                            <li>PDF or scanned storyboard images with annotations (6 to 8 frames)</li>
+                            <li>Director's note (100 to 150 words): why this scene, and what visual and emotional rhythm
+                                you are aiming for</li>
+                        </ul>
+                        <p style="margin-bottom:0;"><strong>File Naming:</strong> <code>2026_Storyboard_(SceneTitle)_(YourName).pdf</code> or <code>.png</code><br>Example: <code>2026_Storyboard_ChaseSequence_JordanLee.pdf</code></p>
+                    </div>
+
+                    <h3>Purpose</h3>
+                    <p>Storyboarding teaches clarity of visual intention. Frames make your film communicable to
+                        collaborators and executable on set. Visual planning separates reactive shooting from deliberate
+                        directing. A film that exists only in your head is not yet a film.</p>
+                    <div class="final-note">Motion is only cinematic if it is seen with intention. A glance. A step. A
+                        slide. A pause. Frame it. Anchor it. Decide it.</div>
+                </div>
+
+                <!-- SHOT LIST -->
+                <div class="assign-panel" id="assign-shotlist">
+                    <span class="role-tag">Role: Script Supervisor</span>
+                    <p><em>Structuring a Scene Through Visual Logic</em></p>
+                    <p>A film is not made in the moment of inspiration; it is built, brick by brick, shot by shot. This
+                        assignment challenges you to create a detailed shot list for one of your scene's key moments,
+                        transforming your ideas into an executable visual sequence.</p>
+                    <p>A great shot list is more than a checklist; it is a structural score. It defines rhythm, frames
+                        emotional tone, and ensures that your coverage is purposeful, not reactive. Every shot is a
+                        decision about what the audience sees, when, and how.</p>
+
+                    <h3>Task</h3>
+                    <p>Select a 20 to 30 second segment where visual coverage shapes mood or momentum. Build a
+                        professional shot list that breaks this moment into discrete, carefully chosen camera setups
+                        accounting for: framing and angle, camera movement (or stillness), duration and pacing, and
+                        action and performance cues. Make the scene cuttable before it is shot.</p>
+
+                    <h3>Steps</h3>
+                    <div class="step-row"><span class="step-num">1</span><h4>Choose Your Sequence</h4></div>
+                    <p>Select a scene with meaningful movement, gesture, or emotional progression. Options:</p>
+                    <ul>
+                        <li>A walk through an emotionally charged space (<em>Bullet Train</em>, <em>Tsukigakirei</em>)</li>
+                        <li>A tense face-off (<em>Kubi</em>, <em>13 Assassins</em>)</li>
+                        <li>A moment of urban disorientation (<em>Howl's Moving Castle</em>, <em>Tokyo Ghoul</em>)</li>
+                        <li>A craftsperson working in silence, revealed through close-ups (<em>Jiro Dreams of Sushi</em>, <em>Ramen Heads</em>)</li>
+                    </ul>
+                    <p>Avoid scenes that rely only on static two-shots or dialogue coverage.</p>
+
+                    <div class="step-row"><span class="step-num">2</span><h4>Build Your Shot List Table</h4></div>
+                    <p>Include at least 8 to 10 shots. Use these five columns:</p>
+                    <div style="overflow-x:auto;">
+                        <table class="shot-table">
+                            <thead>
+                                <tr>
+                                    <th>Shot #</th><th>Shot Type / Framing</th><th>Camera Movement</th><th>Duration</th><th>Action / Notes</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>1</td><td>Medium Close-Up</td><td>Static</td><td>4 sec</td><td>Character wipes blood from lip, looks offscreen</td></tr>
+                                <tr><td>2</td><td>Over-the-Shoulder</td><td>Dolly in</td><td>3 sec</td><td>Subject approaches slowly, eyes fixed</td></tr>
+                                <tr class="empty"><td>3</td><td></td><td></td><td></td><td></td></tr>
+                                <tr class="empty"><td>4</td><td></td><td></td><td></td><td></td></tr>
+                                <tr class="empty"><td>5</td><td></td><td></td><td></td><td></td></tr>
+                                <tr class="empty"><td>6</td><td></td><td></td><td></td><td></td></tr>
+                                <tr class="empty"><td>7</td><td></td><td></td><td></td><td></td></tr>
+                                <tr class="empty"><td>8</td><td></td><td></td><td></td><td></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>Pay attention to: axis of action (keep or cross it?), cut rhythm (when do you linger, when do you
+                        shift?), and foreground vs. background activation.</p>
+
+                    <div class="step-row"><span class="step-num">3</span><h4>Consider Spatial and Emotional Progression</h4></div>
+                    <p>What begins wide and tightens? When does the camera mirror or oppose the character's psychology?
+                        Are transitions clean, or deliberately jarring?</p>
+
+                    <div class="assign-del">
+                        <h4>Deliverables</h4>
+                        <ul>
+                            <li>Shot list table, PDF or doc format, at least 8 shots, all five columns complete</li>
+                            <li>Optional: 100-word note on your coverage strategy</li>
+                        </ul>
+                        <p style="margin-bottom:0;"><strong>File Naming:</strong> <code>2026_ShotList_(SceneTitle)_(YourName).pdf</code><br>Example: <code>2026_ShotList_TempleConfrontation_SamChen.pdf</code></p>
+                    </div>
+
+                    <h3>Purpose</h3>
+                    <p>A well-structured shot list directs the energy. It defines whether a moment stutters or flows,
+                        isolates or entangles. If your film cannot be broken down into shots, it cannot yet be shot.</p>
+                    <div class="final-note">Every shot is a verb. It asks: What do we show? Who sees it? When do we
+                        cut, and why? If you can answer that, you are thinking like a director.</div>
+                </div>
+
+                <!-- ANIMATIC (ADVANCED) -->
+                <div class="assign-panel" id="assign-animatic">
+                    <span class="role-tag">Role: Animator</span>
+                    <p><em>Timing the Visual Beat (Advanced Option)</em></p>
+                    <p>An animatic is the next step beyond a storyboard. Where a storyboard defines what the camera
+                        sees, an animatic defines <em>when</em> it sees it, and for how long. You are building a rough,
+                        timed version of your film before a single frame is shot. Used in animation, commercials, and
+                        complex live-action pre-production, the animatic trains you to make decisions about pacing,
+                        rhythm, and image duration before the edit room. If a storyboard is a score, the animatic is the
+                        first rehearsal.</p>
+
+                    <h3>Task</h3>
+                    <p>Select a 20 to 30 second movement-based scene. Using your storyboard frames (or new rough
+                        images), assemble a timed sequence that communicates how the scene will feel in motion. The
+                        question is not just what the audience sees; it is how long they live inside each image, and
+                        what that duration does to the emotion of the scene.</p>
+
+                    <h3>Steps</h3>
+                    <div class="step-row"><span class="step-num">1</span><h4>Gather or Create Your Frames</h4></div>
+                    <p>Use your storyboard panels or create new rough images. Scan or photograph them if working on
+                        paper. Minimum 6 frames for a 20 to 30 second sequence. Each frame should clearly indicate shot
+                        type, subject position, movement direction, and approximate screen duration.</p>
+
+                    <div class="step-row"><span class="step-num">2</span><h4>Assemble the Timed Sequence</h4></div>
+                    <p>Import your frames into a video editing tool (DaVinci Resolve, iMovie, CapCut, or similar) and
+                        set the duration of each frame to match your intended screen time. Ask: Does this shot breathe,
+                        or does it rush? Where does a longer hold create tension? Where does a quick cut create urgency?</p>
+                    <div class="assign-eg">A 4-second hold on a character's face before they speak changes the meaning
+                        of their words. A half-second cut between two locations suggests panic. Decide every duration on
+                        purpose.</div>
+
+                    <div class="step-row"><span class="step-num">3</span><h4>Add Temporary Audio (Optional but Recommended)</h4></div>
+                    <p>Even rough audio helps enormously. Consider: voiceover narration for dialogue or internal thought,
+                        temporary music or ambient sound to establish tone, and sound effect placeholders (e.g., a clap
+                        to mark a door slam). This does not need to be your final audio; it is a scaffold to test
+                        whether the scene's rhythm holds when image and sound combine.</p>
+
+                    <div class="step-row"><span class="step-num">4</span><h4>Review and Refine</h4></div>
+                    <p>Watch your animatic at least three times. Ask: Does the scene communicate its emotional intention
+                        without spoken explanation? Are there moments that drag, or cut too soon? Does the pacing fit
+                        the genre and tone? Adjust durations, reorder frames if needed.</p>
+
+                    <div class="assign-del">
+                        <h4>Deliverables</h4>
+                        <ul>
+                            <li>Exported video file or shareable link (10 to 30 seconds)</li>
+                            <li>Director's note (100 to 150 words) on pacing choices and emotional rhythm</li>
+                            <li>Optional: frame-by-frame breakdown listing each shot's duration and intended effect</li>
+                        </ul>
+                        <p style="margin-bottom:0;"><strong>File Naming:</strong> <code>2026_Animatic_(SceneTitle)_(YourName).mp4</code><br>Example: <code>2026_Animatic_OpeningSequence_MikaYamada.mp4</code></p>
+                    </div>
+
+                    <h3>Purpose</h3>
+                    <p>Animatics train temporal thinking: how motion and image create rhythm. They reveal pacing
+                        problems before the edit room, when changes are cheap, and make your creative vision
+                        communicable to a crew. A film that exists only in your head is not yet a film. An animatic is
+                        your first proof that the film is real.</p>
+                </div>
+
+
+            </div><!-- end assign-panels -->
+
+            <script>
+                function showAssign(id) {
+                    document.querySelectorAll('.assign-tab').forEach(function(t){ t.classList.remove('active'); });
+                    document.querySelectorAll('.assign-panel').forEach(function(p){ p.classList.remove('active'); });
+                    event.currentTarget.classList.add('active');
+                    document.getElementById('assign-' + id).classList.add('active');
+                }
+            </script>
+
+            <h3 style="margin-bottom: 1rem; color: var(--accent-neon-pink); text-align: center; margin-top: 3rem;">Choose Your Add On</h3>
+            <div class="forms-grid">
+                <div class="card-form">
+                    <h3>Add On: Location Mini-Doc</h3>
+                    <p class="card-meta">12 sections &nbsp;&middot;&nbsp; Deliverable: 1&ndash;3 min location documentary</p>
+                    <p style="margin-bottom: 0.75rem;">Plan a short documentary around one specific Tokyo location. The form walks you through location anchors, story spine, time and access planning, a full shot list (establishing, geography, texture, human rhythm), sound plan, and editing intent.</p>
+                    <div class="card-prereqs">
+                        <strong>Before you start:</strong>
+                        &bull; Pick one specific place, not a neighborhood &mdash; a precise spot (arcade, shrine approach, alley, station area)<br>
+                        &bull; Know what makes it distinct and what you expect to hear there<br>
+                        &bull; Have a rough sense of when you&rsquo;ll shoot and whether any areas are restricted
+                    </div>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdQra-w-W3l-lCrAea_ySONV_pFQDorE_v1s76WkrMorxo08g/viewform" target="_blank" rel="noopener" class="btn">Complete Worksheet &rarr;</a>
+                </div>
+
+                <div class="card-form">
+                    <h3>Add On: Pilgrimage Shots Location Plan</h3>
+                    <p class="card-meta">11 sections &nbsp;&middot;&nbsp; Deliverable: Recreated film frame(s) at the real Tokyo location</p>
+                    <p style="margin-bottom: 0.75rem;">Research, locate, and plan to recreate one specific frame from a course film at its real-world Tokyo shooting spot. The form requires a confirmed location with a Google Maps pin, a camera position and framing plan, timing and crowd strategy, required support shots, and a 300&ndash;400 word location analysis.</p>
+                    <div class="card-prereqs">
+                        <strong>Before you start:</strong>
+                        &bull; Choose your source film and find the exact frame &mdash; you need the film timestamp before you open this form<br>
+                        &bull; Confirm the real-world location first; you will need a Google Maps link to submit<br>
+                        &bull; This is research-heavy &mdash; plan 30&ndash;45 minutes to complete it thoroughly
+                    </div>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfZ7S9ZfOiqrDkX9QqxTNU9YgQbLdd7eUwOh8g55ptUwFRSag/viewform" target="_blank" rel="noopener" class="btn">Complete Worksheet &rarr;</a>
+                </div>
+            </div>
+            <div
+                style="display: flex; justify-content: space-between; align-items: center; margin-top: 4rem; margin-bottom: 2rem; gap: 1rem; flex-wrap: wrap;">
+                <a href="../index.html" class="btn">&larr; Previous: Home</a>
+                <a href="how-to-watch.html" class="btn">Next: How to Watch a Movie &rarr;</a>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2026 Tokyo in Film.</p>
+        <div class="attribution-text">
+            <p><a href="https://chauesprinciple.github.io/Tokyo-in-Film/">Tokyo in Film</a> &copy; 2023 by <a href="https://chauesprinciple.github.io/ChauesProductions/">Robert Ladd</a> is licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International</a>.</p>
+            <p><strong>Originally adapted from:</strong> <em>Moving Pictures: An Introduction to Cinema</em> by Russell Sharman.</p>
+        </div>
+    </footer>
+    <script src="../js/glossary.js"></script>
+    <script src="../js/mobile-nav.js"></script>
+</body>
+
+</html>

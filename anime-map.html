@@ -1,1 +1,1377 @@
-<!DOCTYPE html><html lang="en"><head>  <meta charset="UTF-8">  <meta name="viewport" content="width=device-width, initial-scale=1.0">  <title>Anime Ward Map — Tokyo in Film</title>  <meta name="description" content="Interactive map of Tokyo's 23 wards through the lens of Tokyo Ghoul, Chainsaw Man, and Jujutsu Kaisen. Explore every ward's story.">  <link rel="icon" href="https://chauesprinciple.github.io/Tokyo-in-Film/assets/images/image07.png">  <link rel="preconnect" href="https://fonts.googleapis.com">  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">  <style>    @font-face { font-family:'Material Theories'; src:url('MATERIAL THEORIES DEMO.otf') format('opentype'); }    *{box-sizing:border-box;margin:0;padding:0;}    :root{      --bg:#0a0a0a;--panel:#0f0f0f;--card:#141414;      --border:rgba(139,0,0,0.4);      --accent:#8b0000;--accent-bright:#dc143c;      --text:#e8e8e8;--muted:#666;--prose:#a0a0a0;    }    html,body{font-family:"Raleway",sans-serif;background:var(--bg);color:var(--text);overflow:hidden;width:100%;height:100%;}    /* ── Container ── */    #map-container{position:relative;width:100vw;height:100vh;overflow:hidden;}    /* ── SVG Wrap ── */    #map-svg-wrap{position:absolute;inset:0;overflow:hidden;cursor:grab;}    #map-svg-wrap.dragging{cursor:grabbing;}    #map-svg-wrap svg{position:absolute;transform-origin:0 0;}    .ward-path{stroke:#2d2d2d;stroke-width:0.8;cursor:pointer;transition:fill-opacity .2s,stroke .2s;}    .ward-path:hover{fill-opacity:0.85;stroke:var(--accent-bright);stroke-width:1.5;}    .ward-path.selected{stroke:#fff;stroke-width:2;fill-opacity:0.9;}    .ward-label{font-family:'Raleway',sans-serif;font-size:9px;fill:rgba(255,255,255,0.55);pointer-events:none;text-anchor:middle;dominant-baseline:central;font-weight:600;}    body.bright-theme .ward-label{fill:rgba(20,20,30,0.85);text-shadow:0 1px 2px rgba(255,255,255,0.5);}    body.bright-theme .ward-path{stroke:transparent;}    body.bright-theme #subway-group{opacity:0.35;}    .poi-dot{cursor:pointer;transition:r .2s;outline:none;} .poi-dot:hover{r:6;}    /* Selected POI: the popup alone didn't indicate WHICH dot was open. */    .poi-dot.poi-selected{stroke:#fff;stroke-width:3;stroke-opacity:1;}    .poi-ping{pointer-events:none;fill:none;stroke-width:1.5;opacity:0;}    @media (prefers-reduced-motion: no-preference){      .poi-ping{animation:poi-ping-kf 2.4s cubic-bezier(0,.5,.5,1) infinite;}    }    @keyframes poi-ping-kf{0%{transform:scale(1);opacity:.55;}100%{transform:scale(2.6);opacity:0;}}    .poi-dot.poi-dimmed{opacity:0.12;pointer-events:none;}    .ward-path:focus-visible,.poi-dot:focus-visible,.legend-item:focus-visible{outline:2px solid var(--accent-bright);outline-offset:1px;}    .anime-tab:focus-visible,.custom-zoom button:focus-visible,.close-btn:focus-visible,.legend-toggle:focus-visible{outline:2px solid var(--accent-bright);outline-offset:2px;}    .legend-item{border-radius:2px;padding:2px 4px;margin:-2px -4px .5rem -4px;}    .legend-item.active-filter{background:rgba(255,255,255,0.08);outline:1px solid var(--accent-bright);}    .ward-path.filtered-out{fill-opacity:0.1 !important;pointer-events:none;}    .ward-path.not-featured{pointer-events:none;fill:none !important;stroke:none !important;}    .barrier-dome{pointer-events:none;}    .subway-line{pointer-events:none;fill:none;stroke-linecap:round;stroke-linejoin:round;}    /* ── Anime Switcher ── */    #anime-switcher{      position:absolute;top:20px;left:50%;transform:translateX(-50%);z-index:600;      display:flex;gap:4px;      background:rgba(10,10,10,0.95);border:1px solid rgba(255,255,255,0.1);      padding:4px;border-radius:6px;backdrop-filter:blur(6px);      box-shadow:0 4px 20px rgba(0,0,0,0.7);    }    .anime-tab{      padding:8px 18px;border-radius:4px;font-size:0.78rem;font-weight:600;      cursor:pointer;transition:all .25s;color:var(--muted);background:transparent;      border:none;font-family:'Raleway',sans-serif;letter-spacing:.03em;white-space:nowrap;    }    .anime-tab:hover{color:var(--text);}    .anime-tab.active{color:#fff;}    .anime-tab[data-anime="tokyo_ghoul"].active{background:rgba(139,0,0,0.5);text-shadow:0 0 8px rgba(220,20,60,.5);}    .anime-tab[data-anime="chainsaw_man"].active{background:rgba(234,88,12,0.4);text-shadow:0 0 8px rgba(249,115,22,.5);}    .anime-tab[data-anime="jjk"].active{background:rgba(124,58,237,0.4);text-shadow:0 0 8px rgba(139,92,246,.5);}    .anime-tab[data-anime="shinkai"].active{background:rgba(168,85,247,0.35);text-shadow:0 0 8px rgba(168,85,247,.5);}    .anime-tab[data-anime="class_locations"].active{background:rgba(0,243,255,0.22);text-shadow:0 0 8px rgba(0,243,255,.55);}    /* ── Header ── */    #hdr{      position:absolute;top:70px;left:20px;z-index:500;      background:rgba(10,10,10,0.95);border:1px solid var(--border);      padding:18px 22px;border-radius:2px;max-width:310px;      box-shadow:0 0 30px rgba(139,0,0,0.2),0 4px 20px rgba(0,0,0,0.8);      backdrop-filter:blur(4px);transition:border-color .4s,box-shadow .4s;    }    .eyebrow{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent-bright);font-weight:500;margin-bottom:.4rem;transition:color .4s;}    #hdr h1{font-family:'Material Theories','Cinzel',serif;font-size:1.9rem;font-weight:700;margin:0 0 .4rem;line-height:1.1;color:#e8e8e8;letter-spacing:.05em;transition:text-shadow .4s;}    .subtitle{font-size:.82rem;color:var(--prose);font-weight:300;line-height:1.5;}    .back-link{display:inline-block;margin-top:.6rem;font-size:.72rem;color:var(--muted);text-decoration:none;transition:color .2s;}    .back-link:hover{color:var(--accent-bright);}    /* ── Legend ── */    #legend{      position:absolute;top:70px;right:20px;z-index:500;      background:rgba(10,10,10,0.95);border:1px solid var(--border);      padding:14px 18px;border-radius:2px;max-width:200px;      box-shadow:0 0 20px rgba(0,0,0,0.6);backdrop-filter:blur(4px);      transition:transform .3s,opacity .3s,border-color .4s;    }    #legend.collapsed{transform:translateY(-120%);opacity:0;pointer-events:none;}    .legend-title{font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:.8rem;font-weight:600;}    .legend-item{display:flex;align-items:center;margin-bottom:.5rem;font-size:.78rem;cursor:pointer;color:var(--text);transition:color .2s;}    .legend-item:hover{color:var(--accent-bright);}    .legend-swatch{width:13px;height:13px;border-radius:2px;margin-right:9px;flex-shrink:0;border:1px solid rgba(255,255,255,0.08);}    .legend-toggle{      display:none;position:absolute;top:70px;right:20px;z-index:501;      width:40px;height:40px;background:rgba(14,14,14,0.98);border:1px solid var(--border);      border-radius:4px;color:var(--accent-bright);font-size:18px;cursor:pointer;      align-items:center;justify-content:center;    }    /* ── Zoom ── */    .custom-zoom{position:absolute;bottom:20px;right:20px;z-index:400;display:flex;flex-direction:column;gap:2px;background:rgba(14,14,14,0.98);border:1px solid var(--border);border-radius:4px;overflow:hidden;}    .custom-zoom button{width:36px;height:36px;background:transparent;border:none;color:var(--accent-bright);font-size:20px;font-weight:bold;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s;}    .custom-zoom button:hover{background:var(--card);}    .custom-zoom button:first-child{border-bottom:1px solid var(--border);}    .custom-zoom button:not(:last-child){border-bottom:1px solid var(--border);}    /* ── Search (top-left, above the header panel which starts at top:70px) ── */    #search-box{position:absolute;top:20px;left:20px;z-index:600;width:220px;}    @media(max-width:1024px){#search-box{top:168px;left:20px;right:auto;width:calc(100vw - 96px);max-width:260px;}}    #search-input{width:100%;padding:8px 12px;font-family:'Raleway',sans-serif;font-size:.78rem;background:rgba(10,10,10,0.95);border:1px solid rgba(255,255,255,0.15);border-radius:4px;color:var(--text);outline:none;backdrop-filter:blur(6px);transition:border-color .2s;}    #search-input:focus{border-color:var(--accent-bright);}    #search-input::placeholder{color:var(--muted);}    #search-results{margin-top:4px;background:rgba(10,10,10,0.98);border:1px solid rgba(255,255,255,0.12);border-radius:4px;max-height:320px;overflow-y:auto;display:none;box-shadow:0 8px 24px rgba(0,0,0,0.6);}    #search-results.active{display:block;}    .search-result{padding:8px 12px;cursor:pointer;border-bottom:1px solid rgba(255,255,255,0.05);transition:background .15s;}    .search-result:last-child{border-bottom:none;}    .search-result:hover,.search-result.keyboard-focused{background:rgba(255,255,255,0.06);}    .search-result-label{font-size:.8rem;color:var(--text);font-weight:600;}    .search-result-sub{font-size:.68rem;color:var(--muted);margin-top:1px;line-height:1.3;}    .search-result-type{display:inline-block;font-size:.58rem;text-transform:uppercase;letter-spacing:.1em;color:var(--accent-bright);font-weight:700;margin-right:.4rem;}    .search-empty{padding:10px 12px;font-size:.75rem;color:var(--muted);font-style:italic;}    /* ── Click Hint ── */    #click-hint{position:absolute;bottom:20px;left:20px;z-index:400;background:rgba(14,14,14,0.95);border:1px solid var(--border);padding:10px 14px;border-radius:4px;font-size:.78rem;color:var(--muted);pointer-events:none;transition:opacity .5s;}    /* ── Tooltip ── */    #tooltip{position:fixed;z-index:700;background:rgba(20,20,20,0.95);border:1px solid var(--border);color:#e8e8e8;font-weight:600;padding:5px 9px;border-radius:2px;font-size:.78rem;pointer-events:none;display:none;white-space:nowrap;}    /* ── POI Popup ── */    #poi-popup{position:fixed;z-index:700;background:rgba(15,15,15,0.95);border:2px solid var(--border);color:#e8e8e8;padding:10px 14px;border-radius:2px;font-size:.82rem;line-height:1.5;max-width:280px;display:none;box-shadow:0 0 20px rgba(0,0,0,0.5);}    /* ── Info Panel ── */    #info-panel{      position:absolute;bottom:20px;right:70px;width:340px;max-height:60vh;      background:rgba(22,22,22,0.98);border:1px solid var(--border);border-left:3px solid var(--accent);      padding:20px;overflow-y:auto;z-index:600;border-radius:4px;      box-shadow:0 4px 20px rgba(0,0,0,0.5);display:none;transition:border-color .4s;    }    #info-panel.active{display:block;}    .close-btn{position:absolute;top:8px;right:12px;background:none;border:none;color:var(--muted);font-size:1.4rem;cursor:pointer;transition:color .2s;}    .close-btn:hover{color:var(--accent-bright);}    .info-ward-number{font-size:.68rem;text-transform:uppercase;letter-spacing:.15em;color:var(--muted);margin-bottom:.2rem;}    .info-ward-name{font-family:'Cinzel',serif;font-size:1.3rem;font-weight:700;margin-bottom:.4rem;}    .info-status-badge{display:inline-block;padding:.35rem .6rem;border-radius:3px;font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;font-weight:600;margin-bottom:.8rem;}    .info-title{font-size:1rem;font-weight:600;color:var(--accent-bright);margin-bottom:.8rem;transition:color .4s;}    .info-section{margin-bottom:1rem;}    .info-label{font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:600;margin-bottom:.35rem;}    .info-list{list-style:none;padding:0;font-size:.82rem;color:var(--prose);line-height:1.6;}    .info-list li::before{content:"›";color:var(--accent-bright);margin-right:.4rem;}    .info-prose{font-size:.82rem;line-height:1.7;color:var(--prose);font-style:italic;}    #info-panel::-webkit-scrollbar{width:5px;}    #info-panel::-webkit-scrollbar-track{background:var(--card);}    #info-panel::-webkit-scrollbar-thumb{background:rgba(220,38,38,0.3);border-radius:3px;}    /* Status badges — all three anime */    .status-ccg_stronghold{background:rgba(30,58,95,0.4);color:#6dd5ff;}    .status-low,.status-low_activity{background:rgba(26,48,32,0.4);color:#86d56d;}    .status-moderate{background:rgba(74,45,16,0.4);color:#ffc856;}    .status-high,.status-high_devil{background:rgba(107,31,31,0.4);color:#ff6b6b;}    .status-critical{background:rgba(139,10,10,0.4);color:#ff4444;}    .status-contested{background:rgba(61,26,64,0.4);color:#d99dff;}    .status-division_hq{background:rgba(15,31,15,0.5);color:#86d56d;}    .status-public_safety_active{background:rgba(26,46,26,0.5);color:#86d56d;}    .status-devil_activity{background:rgba(90,26,26,0.5);color:#f97316;}    .status-bomb_conflict{background:rgba(74,32,16,0.5);color:#f97316;}    .status-reze_battle{background:rgba(107,32,16,0.5);color:#ff6b6b;}    .status-shibuya_incident{background:rgba(139,0,0,0.4);color:#ff4444;}    .status-shibuya_aftermath{background:rgba(74,0,0,0.4);color:#ff6b6b;}    .status-colony_tokyo_1{background:rgba(107,33,168,0.4);color:#a78bfa;}    .status-colony_tokyo_2{background:rgba(37,99,235,0.3);color:#60a5fa;}    .status-sendai_colony{background:rgba(124,58,237,0.3);color:#a78bfa;}    .status-cursed_zone{background:rgba(234,88,12,0.3);color:#f97316;}    .status-jujutsu_high{background:rgba(5,150,105,0.3);color:#34d399;}    .status-neutral{background:rgba(30,58,138,0.3);color:#60a5fa;}    /* ── Responsive ── */    @media(max-width:900px){      #anime-switcher{top:10px;padding:3px;gap:2px;}      .anime-tab{padding:6px 10px;font-size:.7rem;}      #hdr{top:58px;max-width:240px;padding:12px 16px;}      #hdr h1{font-size:1.4rem;}      .legend-toggle{display:flex;top:58px;}      #legend{top:108px;}      #info-panel{width:calc(100vw - 40px);left:20px;right:20px;bottom:20px;max-height:50vh;}      #click-hint{display:none;}      .custom-zoom{bottom:auto;top:108px;right:74px;}    }  </style></head><body><div id="map-container" role="application" aria-label="Interactive Tokyo ward map. Use Tab to move focus, Enter or Space to select a ward or POI, arrow keys to pan, plus and minus to zoom.">  <!-- Anime Switcher -->  <div id="anime-switcher" role="tablist" aria-label="Select map dataset">    <button class="anime-tab" data-anime="class_locations" role="tab" aria-selected="false">Class Locations</button>    <button class="anime-tab active" data-anime="jjk" role="tab" aria-selected="true">Jujutsu Kaisen</button>    <button class="anime-tab" data-anime="chainsaw_man" role="tab" aria-selected="false">Chainsaw Man</button>    <button class="anime-tab" data-anime="tokyo_ghoul" role="tab" aria-selected="false">Tokyo Ghoul</button>    <button class="anime-tab" data-anime="shinkai" role="tab" aria-selected="false">Suzume × Your Name</button>  </div>  <!-- Search -->  <div id="search-box">    <input type="text" id="search-input" placeholder="Search wards & locations…" aria-label="Search wards and points of interest" autocomplete="off" spellcheck="false" />    <div id="search-results" role="listbox" aria-label="Search results"></div>  </div>  <!-- Header -->  <div id="hdr">    <div class="eyebrow" id="hdr-eyebrow">Shibuya Incident · Culling Game</div>    <h1 id="hdr-title">Jujutsu Kaisen</h1>    <div class="subtitle" id="hdr-subtitle">Cursed Territory Map · Barrier Zones</div>    <a href="index.html" class="back-link">← Back to Tokyo in Film</a>  </div>  <button class="legend-toggle" id="btn-legend-toggle" aria-label="Toggle Legend" aria-expanded="true" aria-controls="legend">☰</button>  <!-- Legend (dynamic) -->  <div id="legend">    <div class="legend-title" id="legend-title">Ward Status</div>    <div id="legend-items"></div>  </div>  <div id="click-hint">Click any ward to explore</div>  <div id="map-svg-wrap"></div>  <div class="custom-zoom">    <button id="btn-zoom-in" aria-label="Zoom In" title="Zoom In (+)">+</button>    <button id="btn-zoom-out" aria-label="Zoom Out" title="Zoom Out (-)">−</button>    <button id="btn-zoom-reset" aria-label="Reset view to fit map" title="Reset view" style="font-size:15px;">□</button>  </div>  <div id="tooltip"></div>  <div id="poi-popup"></div>  <div id="info-panel" role="region" aria-label="Ward information">    <button class="close-btn" id="btn-info-close" aria-label="Close ward information panel">&times;</button>    <div id="info-content" aria-live="polite"></div>  </div></div><script src="assets/anime-map-data.js"></script><script src="assets/class-map-data.js?v=2"></script><script>(function(){'use strict';// ══════════════════════════════════════════════════════════// CONFIG — grouped constants (tuneable, no magic numbers in body)// ══════════════════════════════════════════════════════════const CONFIG = {  SVG_W: 960, SVG_H: 760,  BOUNDS: {minLng:139.56, maxLng:139.93, minLat:35.51, maxLat:35.83},  TILE_Z: 12,  TILE_BASE: 'https://a.basemaps.cartocdn.com/dark_all',  CLUSTER_SCREEN_PX: 28,          // POIs closer than this (in screen px) cluster  CLUSTER_ZOOM_DELTA: 0.02,       // Re-run clustering only when scale changes by > this  CLUSTER_ZOOM_IN_RATIO: 3.5,     // How far to zoom when a cluster is clicked  ZOOM_MIN: 0.3, ZOOM_MAX: 12,  INITIAL_FIT_PADDING: 0.9,       // Fraction of viewport the map fills on first load  CLICK_HINT_TIMEOUT_MS: 5000,  WARD_SIMPLIFY_MIN_PX_SQ: 4,     // Ward-polygon vertex simplification threshold (px²)  SUBWAY_STROKE_PX: 2.5           // Screen-px stroke width for subway lines};// ══════════════════════════════════════════════════════════// PROJECTION// ══════════════════════════════════════════════════════════const BOUNDS=CONFIG.BOUNDS;const SVG_W=CONFIG.SVG_W,SVG_H=CONFIG.SVG_H;function project(lng,lat){  return[    Math.round(((lng-BOUNDS.minLng)/(BOUNDS.maxLng-BOUNDS.minLng))*SVG_W*10)/10,    Math.round((SVG_H-((lat-BOUNDS.minLat)/(BOUNDS.maxLat-BOUNDS.minLat))*SVG_H)*10)/10  ];}// Convert meters to SVG units (approximate at Tokyo latitude)function metersToSvg(m){return m/((BOUNDS.maxLng-BOUNDS.minLng)*111320/SVG_W);}// ══════════════════════════════════════════════════════════// TILE LAYER — CartoDB dark base map under ward polygons// ══════════════════════════════════════════════════════════const TILE_Z=CONFIG.TILE_Z;const TILE_BASE=CONFIG.TILE_BASE;function lng2tile(lng,z){return Math.floor((lng+180)/360*(1<<z));}function lat2tile(lat,z){const r=lat*Math.PI/180;return Math.floor((1-Math.log(Math.tan(r)+1/Math.cos(r))/Math.PI)/2*(1<<z));}function tile2lng(x,z){return x/(1<<z)*360-180;}function tile2lat(y,z){const n=Math.PI-2*Math.PI*y/(1<<z);return 180/Math.PI*Math.atan(0.5*(Math.exp(n)-Math.exp(-n)));}// ══════════════════════════════════════════════════════════// SUBWAY LINES — real geometry from OpenStreetMap Overpass// ══════════════════════════════════════════════════════════const SUBWAY_FALLBACK_COLORS={  '東京メトロ銀座線':'#F9A11B','Ginza':'#F9A11B',  '東京メトロ丸ノ内線':'#E60012','Marunouchi':'#E60012',  '東京メトロ日比谷線':'#9C9C9C','Hibiya':'#9C9C9C',  '東京メトロ東西線':'#00A7D8','Tozai':'#00A7D8',  '東京メトロ千代田線':'#009944','Chiyoda':'#009944',  '東京メトロ有楽町線':'#C9A600','Yurakucho':'#C9A600',  '東京メトロ半蔵門線':'#6C3281','Hanzomon':'#6C3281',  '東京メトロ南北線':'#00A5A0','Namboku':'#00A5A0',  '東京メトロ副都心線':'#9B4F96','Fukutoshin':'#9B4F96',  '都営浅草線':'#EF5BA1','Asakusa':'#EF5BA1',  '都営三田線':'#006CB4','Mita':'#006CB4',  '都営新宿線':'#6CBB3C','Shinjuku':'#6CBB3C',  '都営大江戸線':'#B01C85','Oedo':'#B01C85'};async function loadSubwayLines(svg){  let data=null;  // Try local cached file first (instant)  try{    const localResp=await fetch('assets/tokyo-subway.json');    if(localResp.ok) data=await localResp.json();  }catch(e){/* local cache miss is expected; fall through to Overpass */}  // Fallback: Overpass API  if(!data||!data.elements){    const query='[out:json][timeout:60];(relation["route"="subway"](35.51,139.56,35.83,139.93););out body;>;out skel qt;';    const endpoints=['https://overpass-api.de/api/interpreter','https://overpass.kumi.systems/api/interpreter'];    for(const ep of endpoints){      try{        const resp=await fetch(ep,{method:'POST',body:'data='+encodeURIComponent(query),headers:{'Content-Type':'application/x-www-form-urlencoded'}});        if(!resp.ok){console.warn('Subway endpoint',ep,'returned HTTP',resp.status);continue;}        data=await resp.json();        break;      }catch(e){console.warn('Subway endpoint',ep,'failed:',e.message);}    }  }  if(!data||!data.elements){console.warn('No subway data available');return;}  try{    const nodes={},ways={};    data.elements.forEach(e=>{      if(e.type==='node') nodes[e.id]=[e.lon,e.lat];      else if(e.type==='way') ways[e.id]=e.nodes;    });    const g=document.createElementNS('http://www.w3.org/2000/svg','g');g.id='subway-group';    data.elements.filter(e=>e.type==='relation').forEach(rel=>{      const name=rel.tags?.name||rel.tags?.['name:en']||'';      let color=rel.tags?.colour||null;      if(!color){for(const[k,v]of Object.entries(SUBWAY_FALLBACK_COLORS)){if(name.includes(k)){color=v;break;}}}      if(!color) color='#888';      rel.members.filter(m=>m.type==='way'&&m.role!=='platform').forEach(member=>{        const wn=ways[member.ref]; if(!wn) return;        const coords=wn.map(nid=>nodes[nid]).filter(Boolean);        if(coords.length<2) return;        const pts=coords.map(([lng,lat])=>project(lng,lat));        let d='M'+pts[0][0]+','+pts[0][1];        for(let i=1;i<pts.length;i++) d+='L'+pts[i][0]+','+pts[i][1];        const path=document.createElementNS('http://www.w3.org/2000/svg','path');        path.setAttribute('d',d);path.setAttribute('stroke',color);        path.setAttribute('stroke-width',CONFIG.SUBWAY_STROKE_PX);        path.setAttribute('vector-effect','non-scaling-stroke');        path.setAttribute('stroke-opacity','0.7');        path.setAttribute('fill','none');        path.classList.add('subway-line');        g.appendChild(path);      });    });    const wardGroup=document.getElementById('ward-group');    svg.insertBefore(g,wardGroup);  }catch(e){console.warn('Subway parse error:',e);}}function loadTiles(svg){  const g=document.createElementNS('http://www.w3.org/2000/svg','g');g.id='tile-group';  g.dataset.base=TILE_BASE;  const z=TILE_Z;  const xMin=lng2tile(BOUNDS.minLng,z),xMax=lng2tile(BOUNDS.maxLng,z);  const yMin=lat2tile(BOUNDS.maxLat,z),yMax=lat2tile(BOUNDS.minLat,z);  for(let tx=xMin;tx<=xMax;tx++){    for(let ty=yMin;ty<=yMax;ty++){      const[x1,y1]=project(tile2lng(tx,z),tile2lat(ty,z));      const[x2,y2]=project(tile2lng(tx+1,z),tile2lat(ty+1,z));      const img=document.createElementNS('http://www.w3.org/2000/svg','image');      img.dataset.tx=tx; img.dataset.ty=ty; img.dataset.z=z;      img.setAttribute('href',`${TILE_BASE}/${z}/${tx}/${ty}@2x.png`);      img.setAttribute('x',x1);img.setAttribute('y',y1);      img.setAttribute('width',x2-x1);img.setAttribute('height',y2-y1);      img.setAttribute('preserveAspectRatio','none');      g.appendChild(img);    }  }  svg.insertBefore(g,svg.firstChild);}// Swap the tile basemap. If base is null/empty, hide the tile layer entirely// (Shinkai: the map becomes a sky with wards floating on it).function applyTileBase(base){  const g=document.getElementById('tile-group');  if(!g) return;  if(!base){    g.style.display='none';    g.dataset.base='';    return;  }  g.style.display='';  if(g.dataset.base===base) return;  g.dataset.base=base;  g.querySelectorAll('image').forEach(img=>{    const tx=img.dataset.tx, ty=img.dataset.ty, z=img.dataset.z;    img.setAttribute('href',`${base}/${z}/${tx}/${ty}@2x.png`);  });}// ══════════════════════════════════════════════════════════// STATE// ══════════════════════════════════════════════════════════let currentAnime = 'jjk';let currentScale = 1, panX = 0, panY = 0;let selectedPath = null;let wardPaths = {}; // jp name → SVG path elementlet wardBounds = {}; // jp name → {minX, maxX, minY, maxY} in SVG units (for zoom-to-ward)let activeFilter = null; // current legend status filter (null = show all)let activePoiFilter = null; // current POI category filter, for poiLegend datasets (null = show all)let selectedPoiName = null; // name of the POI whose popup is open, so its dot can be markedlet suppressZoomOnSelect = false; // true when selection is triggered by camera-moving callerconst wrap = document.getElementById('map-svg-wrap');const tooltip = document.getElementById('tooltip');const poiPopup = document.getElementById('poi-popup');// Slug helper for URL params and POI lookupfunction poiSlug(name){  return String(name).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');}// Edge-aware popup positioning — keeps the popup inside the viewportfunction positionPopup(clientX, clientY){  // Force layout so we can measure  poiPopup.style.left='0px'; poiPopup.style.top='0px';  const w=poiPopup.offsetWidth||260, h=poiPopup.offsetHeight||80;  const vw=window.innerWidth, vh=window.innerHeight, pad=10;  let left=clientX+14, top=clientY-10;  if(left+w>vw-pad) left=Math.max(pad, clientX-w-14);  if(top+h>vh-pad) top=Math.max(pad, vh-h-pad);  if(top<pad) top=pad;  if(left<pad) left=pad;  poiPopup.style.left=left+'px';  poiPopup.style.top=top+'px';}// Deep-link URL sync. Uses replaceState so browser history isn't polluted.function updateUrl(){  const params=new URLSearchParams();  params.set('anime', currentAnime);  if(selectedPath){    const jp=selectedPath.dataset.jp;    const w=ANIME[currentAnime].wards[jp];    if(w) params.set('ward', w.n);  }  try{ history.replaceState(null,'','?'+params.toString()); }catch(e){/* file:// */}}// ══════════════════════════════════════════════════════════// LOAD & RENDER// ══════════════════════════════════════════════════════════async function loadMap(){  let data=null;  for(const src of ['tokyo_23_wards.geojson','assets/tokyo-wards.geojson']){    try{const r=await fetch(src);if(r.ok){data=await r.json();break;}}catch(e){}  }  if(!data){wrap.innerHTML='<p style="color:#dc2626;padding:40px;text-align:center;">Could not load ward boundaries.</p>';return;}  const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');  svg.setAttribute('viewBox',`0 0 ${SVG_W} ${SVG_H}`);  svg.setAttribute('width',SVG_W);svg.setAttribute('height',SVG_H);  svg.id='ward-svg';  // Load base map tiles first (behind everything)  loadTiles(svg);  const wardGroup=document.createElementNS('http://www.w3.org/2000/svg','g');wardGroup.id='ward-group';  const labelGroup=document.createElementNS('http://www.w3.org/2000/svg','g');labelGroup.id='label-group';  data.features.forEach(feature=>{    const jpName=feature.properties.ward_ja||feature.properties.N03_004||'';    // Must exist in at least one anime    if(!Object.keys(ANIME).some(k=>ANIME[k].wards[jpName])) return;    const geom=feature.geometry;    let rings=[];    if(geom.type==='Polygon') rings=geom.coordinates;    else if(geom.type==='MultiPolygon') geom.coordinates.forEach(p=>rings=rings.concat(p));    let allX=[],allY=[],dParts=[];    rings.forEach(ring=>{      const pts=ring.map(([lng,lat])=>project(lng,lat));      pts.forEach(([x,y])=>{allX.push(x);allY.push(y);});      const s=[pts[0]];      for(let i=1;i<pts.length-1;i++){const p=s[s.length-1],dx=pts[i][0]-p[0],dy=pts[i][1]-p[1];if(dx*dx+dy*dy>=CONFIG.WARD_SIMPLIFY_MIN_PX_SQ)s.push(pts[i]);}      s.push(pts[pts.length-1]);      let d=`M${s[0][0]},${s[0][1]}`;for(let i=1;i<s.length;i++)d+=`L${s[i][0]},${s[i][1]}`;d+='Z';      dParts.push(d);    });    const path=document.createElementNS('http://www.w3.org/2000/svg','path');    path.setAttribute('d',dParts.join(' '));    path.setAttribute('fill','#333');path.setAttribute('fill-opacity','0.55');    path.setAttribute('data-jp',jpName);path.classList.add('ward-path');    // Accessibility: make each ward keyboard-focusable with a screen-reader label.    // Label uses the initial Tokyo Ghoul name (same English across anime); updated on anime switch.    path.setAttribute('tabindex','0');    path.setAttribute('role','button');    const initialLabelWard=Object.keys(ANIME).map(k=>ANIME[k].wards[jpName]).find(Boolean);    if(initialLabelWard) path.setAttribute('aria-label',`${initialLabelWard.name} ward`);    path.addEventListener('keydown',e=>{      if(e.key==='Enter'||e.key===' '){e.preventDefault();selectWard(jpName);}    });    path.addEventListener('mouseenter',()=>{      const anime=ANIME[currentAnime];const w=anime.wards[jpName];      tooltip.textContent=w?`${w.name} (${jpName})`:'Unknown';      tooltip.style.display='block';    });    path.addEventListener('mousemove',e=>{tooltip.style.left=(e.clientX+14)+'px';tooltip.style.top=(e.clientY-10)+'px';});    path.addEventListener('mouseleave',()=>{tooltip.style.display='none';});    path.addEventListener('click',()=>selectWard(jpName));    wardGroup.appendChild(path);    wardPaths[jpName]=path;    // Save bounding box (for zoom-to-ward)    wardBounds[jpName]={      minX: Math.min.apply(null,allX), maxX: Math.max.apply(null,allX),      minY: Math.min.apply(null,allY), maxY: Math.max.apply(null,allY)    };    // Label    const cx=allX.reduce((a,b)=>a+b,0)/allX.length;    const cy=allY.reduce((a,b)=>a+b,0)/allY.length;    const lbl=document.createElementNS('http://www.w3.org/2000/svg','text');    lbl.setAttribute('x',cx);lbl.setAttribute('y',cy);lbl.classList.add('ward-label');    // Use first-found anime entry for the static ward label (English name is consistent across series)    const wAny=Object.keys(ANIME).map(k=>ANIME[k].wards[jpName]).find(Boolean);    lbl.textContent=wAny?wAny.name:'';    labelGroup.appendChild(lbl);  });  svg.appendChild(wardGroup);  // Overlay group (barrier domes for JJK)  const overlayGroup=document.createElementNS('http://www.w3.org/2000/svg','g');overlayGroup.id='overlay-group';  svg.appendChild(overlayGroup);  // POI group  const poiGroup=document.createElementNS('http://www.w3.org/2000/svg','g');poiGroup.id='poi-group';  svg.appendChild(poiGroup);  svg.appendChild(labelGroup);  wrap.appendChild(svg);  centerMap();  // On resize, preserve user zoom/pan center. Fallback to full re-center on first load.  window.addEventListener('resize',()=>{    // If the user hasn't zoomed yet (still near initial fit), just re-center; otherwise preserve their view.    preserveOnResize()();  });  // Close POI popup on any click outside a POI dot (wrap, svg, ward, subway, label, etc.)  wrap.addEventListener('click',e=>{    if(!e.target.closest('.poi-dot')) hidePoiPopup();  });  // Deep-link params: ?anime=<key>&ward=<n>&poi=<slug>  const urlParams=new URLSearchParams(window.location.search);  const urlAnime=urlParams.get('anime');  const urlWard=urlParams.get('ward');  const urlPoi=urlParams.get('poi');  if(urlAnime&&!ANIME[urlAnime]) console.error('Unknown map dataset:',urlAnime,'— check that the data script loaded');  if(urlAnime&&ANIME[urlAnime]) currentAnime=urlAnime;  // Sync tab buttons to match the URL-selected dataset (static HTML defaults to JJK active)  document.querySelectorAll('.anime-tab').forEach(t=>{    const on=t.dataset.anime===currentAnime;    t.classList.toggle('active',on);    t.setAttribute('aria-selected',on?'true':'false');  });  // Hide the inner anime switcher when embedded with chrome=0 (e.g. the class map panel on index.html)  if(urlParams.get('chrome')==='0'){    const sw=document.getElementById('anime-switcher');    if(sw) sw.style.display='none';  }  // Apply initial anime theme  applyAnimeTheme();  // After theme is applied, honor ward/poi deep links (next tick so POI layer exists)  if(urlWard){    const anime=ANIME[currentAnime];    const match=Object.entries(anime.wards).find(([_,w])=>String(w.n)===urlWard);    if(match) setTimeout(()=>selectWard(match[0]), 0);  } else if(urlPoi){    const anime=ANIME[currentAnime];    const poi=anime.pois.find(p=>poiSlug(p.name)===urlPoi);    if(poi){      const [sx,sy]=project(poi.lng,poi.lat);      const ww=wrap.clientWidth, wh=wrap.clientHeight;      currentScale=Math.min(CONFIG.ZOOM_MAX, 5);      panX=ww/2 - sx*currentScale;      panY=wh/2 - sy*currentScale;      applyTransform();      setTimeout(()=>showPoiDetail(ww/2, wh/2, poi, anime.theme.accentBright), 120);    }  }  // Load subway lines asynchronously (appears when ready)  loadSubwayLines(svg);  setTimeout(()=>{const h=document.getElementById('click-hint');if(h){h.style.opacity='0';setTimeout(()=>h.remove(),600);}},CONFIG.CLICK_HINT_TIMEOUT_MS);}// ══════════════════════════════════════════════════════════// ANIME SWITCHING// ══════════════════════════════════════════════════════════function switchAnime(key){  currentAnime=key;  // Update tabs  document.querySelectorAll('.anime-tab').forEach(t=>{    const on = t.dataset.anime===key;    t.classList.toggle('active',on);    t.setAttribute('aria-selected', on ? 'true' : 'false');  });  // Close info panel and clear any active legend filter (status keys differ per anime)  document.getElementById('info-panel').classList.remove('active');  if(selectedPath){selectedPath.classList.remove('selected');selectedPath=null;}  // No hidePoiPopup() here: applyAnimeTheme() below re-renders the POIs anyway.  poiPopup.style.display='none';  selectedPoiName=null;  activeFilter=null;  activePoiFilter=null;  applyAnimeTheme();  updateUrl();}// Popup shown when the user clicks a ward that isn't featured in the current anime.// Lists which other series DO include it, with one-click switch links.function showNotFeaturedPopup(jpName){  const featuredIn=Object.keys(ANIME).filter(k=>ANIME[k].wards[jpName]);  const wAny=featuredIn.length ? ANIME[featuredIn[0]].wards[jpName] : null;  poiPopup.textContent='';  const head=document.createElement('strong');  head.style.color='var(--muted)';  head.textContent = wAny ? `${wAny.name} — not featured` : 'Not featured';  poiPopup.appendChild(head);  const sub=document.createElement('div');  sub.style.cssText='font-size:.75rem;color:var(--prose);margin:.25rem 0 .4rem;font-style:italic;';  sub.textContent = featuredIn.length    ? `This ward doesn't appear in ${ANIME[currentAnime].title}. See it in:`    : `This ward isn't featured in any of the four series.`;  poiPopup.appendChild(sub);  featuredIn.forEach(key=>{    const a=document.createElement('a');    a.href='#';    a.style.cssText=`display:block;color:${ANIME[key].theme.accentBright};text-decoration:none;padding:2px 0;cursor:pointer;font-size:.85rem;font-weight:600;`;    a.textContent='→ '+ANIME[key].title;    a.addEventListener('click',ev=>{      ev.preventDefault(); ev.stopPropagation();      switchAnime(key);      setTimeout(()=>selectWard(jpName), 50);    });    poiPopup.appendChild(a);  });  poiPopup.style.display='block';  const path=wardPaths[jpName];  if(path){    const r=path.getBoundingClientRect();    positionPopup(r.left+r.width/2, r.top+r.height/2);  }}function applyLegendFilter(){  const anime=ANIME[currentAnime];  // Legend items highlighted  document.querySelectorAll('.legend-item').forEach(el=>{    el.classList.toggle('active-filter', el.dataset.status===activeFilter);  });  // Ward fills dimmed when they don't match the active filter  Object.entries(wardPaths).forEach(([jp,path])=>{    const w=anime.wards[jp];    if(activeFilter && w && w.status!==activeFilter){      path.classList.add('filtered-out');    } else {      path.classList.remove('filtered-out');    }  });}function applyAnimeTheme(){  const anime=ANIME[currentAnime];  const root=document.documentElement;  // Basemap per anime: dark tiles by default; Shinkai uses no tiles + a sky gradient background.  // tileBase === null  -> hide tiles  // tileBase === undefined -> use default dark tiles  // tileBase === <url> -> swap to that tile source  const tb = anime.theme.tileBase === undefined ? CONFIG.TILE_BASE : anime.theme.tileBase;  applyTileBase(tb);  // Optional tile opacity override (Shinkai uses 0.55 so the sky gradient shows through)  const tileGroup=document.getElementById('tile-group');  if(tileGroup) tileGroup.style.opacity = anime.theme.tileOpacity != null ? anime.theme.tileOpacity : '';  // Background: custom gradient if provided, otherwise the default dark color from CSS.  wrap.style.background = anime.theme.background || '';  // 'bright-theme' class flips ward labels to dark text so they stay readable on sky/light backgrounds.  document.body.classList.toggle('bright-theme', !!anime.theme.background || !!anime.theme.tileBase);  // Header  document.getElementById('hdr-eyebrow').textContent=anime.eyebrow;  document.getElementById('hdr-title').textContent=anime.title;  document.getElementById('hdr-subtitle').textContent=anime.subtitle;  // CSS variables  root.style.setProperty('--accent',anime.theme.accent);  root.style.setProperty('--accent-bright',anime.theme.accentBright);  root.style.setProperty('--border',anime.theme.border);  // Header/legend glow  const hdr=document.getElementById('hdr');  hdr.style.borderColor=anime.theme.border;  hdr.style.boxShadow=`0 0 30px ${anime.theme.glow}, 0 4px 20px rgba(0,0,0,0.8)`;  const legend=document.getElementById('legend');  legend.style.borderColor=anime.theme.border;  // Ward colors + featured/not-featured state  // When disableWardInfo is set (Shinkai), skip the colored territory overlay entirely —  // wards render as transparent shapes with faint outlines. Just boundary lines, no fill.  const skipWardFills = !!anime.disableWardInfo;  Object.entries(wardPaths).forEach(([jp,path])=>{    const w=anime.wards[jp];    if(skipWardFills){      path.setAttribute('fill','none');      path.setAttribute('fill-opacity','1');      path.style.display='';      path.classList.remove('not-featured');      path.setAttribute('aria-label', w ? `${w.name} ward` : 'Ward');    } else if(w){      const status=anime.statuses[w.status];      path.setAttribute('fill',status?status.color:'#333');      path.setAttribute('fill-opacity','0.55');      path.style.display='';      path.classList.remove('not-featured');      path.setAttribute('aria-label',`${w.name} ward`);    } else {      // Ward isn't in this anime — hide it completely. No fill, no stroke, not clickable.      path.classList.add('not-featured');      path.removeAttribute('aria-label');    }  });  // Legend has three modes:  //   poiLegend      -> legend lists POI categories and filters the POIs  //   skipWardFills  -> nothing to legend, hide it  //   default        -> legend lists ward statuses and filters the wards  const legendEl=document.getElementById('legend');  const legendItems=document.getElementById('legend-items');  const legendTitle=document.getElementById('legend-title');  legendItems.innerHTML='';  if(anime.poiLegend){    legendEl.style.display='';    legendTitle.textContent='Location Type';    // Only offer categories that actually occur in this dataset.    const present=new Set(anime.pois.map(p=>p.cat));    Object.entries(anime.statuses).forEach(([key,{color,label}])=>{      if(!present.has(key)) return;      const count=anime.pois.filter(p=>p.cat===key).length;      const item=document.createElement('div');      item.className='legend-item';      item.dataset.status=key;      item.setAttribute('role','button');      item.setAttribute('tabindex','0');      item.setAttribute('aria-pressed', activePoiFilter===key ? 'true' : 'false');      const sw=document.createElement('div');      sw.className='legend-swatch';      sw.style.background=color;      const span=document.createElement('span');      span.textContent=`${label} (${count})`;      item.appendChild(sw);item.appendChild(span);      const toggle=()=>{        activePoiFilter = (activePoiFilter===key) ? null : key;        // Re-render dots and refresh the pressed states.        renderPOIs();        legendItems.querySelectorAll('.legend-item').forEach(el=>{          const on = el.dataset.status===activePoiFilter;          el.classList.toggle('active-filter', on);          el.setAttribute('aria-pressed', on ? 'true' : 'false');        });      };      item.addEventListener('click',toggle);      item.addEventListener('keydown',e=>{        if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle();}      });      item.classList.toggle('active-filter', activePoiFilter===key);      legendItems.appendChild(item);    });  } else if(skipWardFills){    legendEl.style.display='none';  } else {    legendEl.style.display='';    legendTitle.textContent='Ward Status';    Object.entries(anime.statuses).forEach(([key,{color,label}])=>{      const item=document.createElement('div');item.className='legend-item';item.dataset.status=key;      item.innerHTML=`<div class="legend-swatch" style="background:${color}"></div><span>${label}</span>`;      // Legend-as-filter: click status to dim all non-matching wards; click again to clear      item.addEventListener('click',()=>{        activeFilter = (activeFilter===key) ? null : key;        applyLegendFilter();      });      legendItems.appendChild(item);    });    applyLegendFilter();  }  // POIs — rendered via renderPOIs() which handles clustering  renderPOIs();  // Overlays (JJK barrier domes)  const overlayGroup=document.getElementById('overlay-group');  overlayGroup.innerHTML='';  anime.overlays.forEach(ov=>{    if(ov.type==='circle'){      const[cx,cy]=project(ov.lng,ov.lat);      const r=metersToSvg(ov.r);      // Outer dashed dome — assertive so it reads over the colored ward fills      const outer=document.createElementNS('http://www.w3.org/2000/svg','circle');      outer.setAttribute('cx',cx);outer.setAttribute('cy',cy);outer.setAttribute('r',r);      outer.setAttribute('fill',ov.color);outer.setAttribute('fill-opacity','0.18');      outer.setAttribute('stroke',ov.color);outer.setAttribute('stroke-width','2.5');      outer.setAttribute('stroke-opacity','0.9');outer.setAttribute('stroke-dasharray','8 5');      outer.setAttribute('vector-effect','non-scaling-stroke');      outer.classList.add('barrier-dome');      overlayGroup.appendChild(outer);      // Inner core      const inner=document.createElementNS('http://www.w3.org/2000/svg','circle');      inner.setAttribute('cx',cx);inner.setAttribute('cy',cy);inner.setAttribute('r',r*0.3);      inner.setAttribute('fill',ov.color);inner.setAttribute('fill-opacity','0.45');      inner.setAttribute('stroke',ov.color);inner.setAttribute('stroke-width','1');      inner.setAttribute('stroke-opacity','0.8');      inner.setAttribute('vector-effect','non-scaling-stroke');      inner.classList.add('barrier-dome');      overlayGroup.appendChild(inner);    }  });}// ══════════════════════════════════════════════════════════// WARD SELECTION & INFO PANEL// ══════════════════════════════════════════════════════════function selectWard(jpName){  const anime=ANIME[currentAnime];  const ward=anime.wards[jpName];  if(!ward) return; // ward isn't in this anime — already invisible + non-clickable  if(selectedPath) selectedPath.classList.remove('selected');  const path=wardPaths[jpName];  if(path){path.classList.add('selected');selectedPath=path;}  hidePoiPopup();  // Some anime (Shinkai) don't want a ward info panel — wards are admin boundaries, not story units.  if(!anime.disableWardInfo) updateInfoPanel(ward);  else document.getElementById('info-panel').classList.remove('active');  // Zoom/pan to frame the ward (unless a caller is already moving the camera)  if(!suppressZoomOnSelect){    const b=wardBounds[jpName];    if(b){      const ww=wrap.clientWidth, wh=wrap.clientHeight;      const bw=Math.max(1,b.maxX-b.minX), bh=Math.max(1,b.maxY-b.minY);      const padding=1.6; // keep the ward comfortably inside the viewport      const targetScale=Math.min(ww/(bw*padding), wh/(bh*padding));      currentScale=Math.max(CONFIG.ZOOM_MIN, Math.min(CONFIG.ZOOM_MAX, targetScale));      const cx=(b.minX+b.maxX)/2, cy=(b.minY+b.maxY)/2;      panX=ww/2 - cx*currentScale;      panY=wh/2 - cy*currentScale;      applyTransform();    }  }  updateUrl();}function updateInfoPanel(ward){  const anime=ANIME[currentAnime];  const content=document.getElementById('info-content');  const panel=document.getElementById('info-panel');  const statusInfo=anime.statuses[ward.status]||{label:'Unknown'};  // Build sections based on what data exists  let sections='';  // Chainsaw Man specific fields  if(ward.devilThreat){    const tc={'Low':'#22c55e','Moderate':'#f59e0b','Moderate-High':'#f97316','High':'#dc2626','Extreme':'#7c2d12','Low-Moderate':'#a3e635'}[ward.devilThreat]||'#f97316';    sections+=`<div class="info-section"><div class="info-label">Devil Threat</div><div style="color:${tc};font-weight:600;font-size:.85rem;">${ward.devilThreat}</div></div>`;  }  // Generic array fields  const arrayFields=[    {key:'factions',label:'Factions'},{key:'divisions',label:'Division Presence'},    {key:'devils',label:'Devil Activity'},{key:'characters',label:'Key Characters'},    {key:'locations',label:'Notable Locations'}  ];  arrayFields.forEach(({key,label})=>{    if(ward[key]&&ward[key].length>0){      sections+=`<div class="info-section"><div class="info-label">${label}</div><ul class="info-list">${ward[key].map(x=>`<li>${x}</li>`).join('')}</ul></div>`;    }  });  content.innerHTML=`    <div class="info-ward-number">Ward ${ward.n}</div>    <div class="info-ward-name">${ward.name}</div>    <div class="info-status-badge status-${ward.status}">${statusInfo.label}</div>    <div class="info-title">${ward.title}</div>    ${sections}    <div class="info-section"><div class="info-prose">${ward.prose}</div></div>  `;  panel.classList.add('active');}// ══════════════════════════════════════════════════════════// PAN & ZOOM// ══════════════════════════════════════════════════════════function centerMap(){  const ww=wrap.clientWidth,wh=wrap.clientHeight;  currentScale=Math.min(ww/SVG_W,wh/SVG_H)*CONFIG.INITIAL_FIT_PADDING;  panX=(ww-SVG_W*currentScale)/2;panY=(wh-SVG_H*currentScale)/2;  applyTransform();}// On resize, preserve the user's center-point + zoom instead of re-centeringfunction preserveOnResize(){  const ww=wrap.clientWidth,wh=wrap.clientHeight;  const svgCenterX=(ww/2 - panX)/currentScale;  const svgCenterY=(wh/2 - panY)/currentScale;  // Width/height of the wrap may have changed; re-derive pan so the same SVG point stays centered  return ()=>{    const nw=wrap.clientWidth,nh=wrap.clientHeight;    panX=nw/2 - svgCenterX*currentScale;    panY=nh/2 - svgCenterY*currentScale;    applyTransform();  };}let lastClusteredScale=0;// ── POI POPUP HELPERS (use DOM methods, no innerHTML with data) ─────────────────function showPoiDetail(clientX, clientY, poi, poiColor){  poiPopup.textContent=''; // clear  const title=document.createElement('strong');  title.style.color=poiColor;  title.textContent=poi.name;  poiPopup.appendChild(title);  poiPopup.appendChild(document.createElement('br'));  const body=document.createElement('small');  body.textContent=poi.label;  poiPopup.appendChild(body);  poiPopup.style.display='block';  positionPopup(clientX,clientY);  // Mark the originating dot so the map shows which POI is open.  if(selectedPoiName!==poi.name){    selectedPoiName=poi.name;    renderPOIs();  }}// Single exit point for dismissing the POI popup, so the dot's selected// state and the popup visibility can never drift apart.function hidePoiPopup(){  poiPopup.style.display='none';  if(selectedPoiName!==null){    selectedPoiName=null;    renderPOIs();  }}function showClusterList(clientX, clientY, grp, poiColor){  poiPopup.textContent='';  const header=document.createElement('strong');  header.style.color=poiColor;  header.textContent=`${grp.length} locations here`;  poiPopup.appendChild(header);  const hint=document.createElement('div');  hint.style.cssText='font-size:.7rem;opacity:.65;margin:.15rem 0 .35rem;';  hint.textContent='Click a name to see details:';  poiPopup.appendChild(hint);  grp.forEach(g=>{    const row=document.createElement('a');    row.href='#';    row.style.cssText=`display:block;color:${poiColor};text-decoration:none;padding:2px 0;cursor:pointer;font-size:.85rem;`;    row.textContent='→ '+g.poi.name;    row.addEventListener('click',ev=>{      ev.preventDefault();      ev.stopPropagation();      // Swap popup to show this POI's full detail; keep the popup at the same on-screen position      const rect=poiPopup.getBoundingClientRect();      showPoiDetail(rect.left-14, rect.top+10, g.poi, poiColor);    });    poiPopup.appendChild(row);  });  poiPopup.style.display='block';  positionPopup(clientX, clientY);}// Returns true if any pair in the cluster would still be within clustering range at targetScale.// Used to decide whether zoom-in is useful or we should show the list popup instead.function clusterWouldStayClustered(grp, targetScale){  const threshold=CONFIG.CLUSTER_SCREEN_PX/targetScale; // in SVG units  const th2=threshold*threshold;  for(let i=0;i<grp.length;i++){    for(let j=i+1;j<grp.length;j++){      const dx=grp[i].sx-grp[j].sx, dy=grp[i].sy-grp[j].sy;      if(dx*dx+dy*dy<th2) return true;    }  }  return false;}// ── POI CLUSTERING ──────────────────────────function renderPOIs(){  const anime=ANIME[currentAnime];  const poiGroup=document.getElementById('poi-group');  if(!poiGroup||!anime)return;  poiGroup.innerHTML='';  const themeColor=anime.theme.accentBright;  // Datasets may colour individual POIs (category colours on the class map,  // per-film colours on the Shinkai map). Fall back to the theme accent.  const colorOf=poi=>poi.color||themeColor;  const inv=1/currentScale;  const CLUSTER_SVG=CONFIG.CLUSTER_SCREEN_PX*inv; // screen px threshold in SVG units  // A POI-category filter hides non-matching POIs outright, so they don't  // get absorbed into clusters and inflate the cluster counts.  const visiblePois=activePoiFilter    ? anime.pois.filter(p=>p.cat===activePoiFilter)    : anime.pois;  const items=visiblePois.map(poi=>{    const[sx,sy]=project(poi.lng,poi.lat);    return{poi,sx,sy};  });  // Cluster by repeatedly absorbing any remaining POI within CLUSTER_SVG of the  // growing cluster's *centroid*. Using squared distance avoids Math.sqrt in the  // hot loop. Centroid-based growth makes cluster shape independent of iteration order.  const clusterR2=CLUSTER_SVG*CLUSTER_SVG;  const used=new Set();  const clusters=[];  items.forEach((item,i)=>{    if(used.has(i))return;    const grp=[item];used.add(i);    let ax=item.sx,ay=item.sy;    let absorbed=true;    while(absorbed){      absorbed=false;      for(let j=0;j<items.length;j++){        if(used.has(j))continue;        const dx=ax-items[j].sx,dy=ay-items[j].sy;        if(dx*dx+dy*dy<clusterR2){          grp.push(items[j]);used.add(j);          // Recompute centroid          ax=grp.reduce((s,g)=>s+g.sx,0)/grp.length;          ay=grp.reduce((s,g)=>s+g.sy,0)/grp.length;          absorbed=true;        }      }    }    clusters.push(grp);  });  clusters.forEach(grp=>{    const ax=grp.reduce((s,g)=>s+g.sx,0)/grp.length;    const ay=grp.reduce((s,g)=>s+g.sy,0)/grp.length;    if(grp.length===1){      const poi=grp[0].poi;      const dotColor=colorOf(poi);      const isSelected=selectedPoiName===poi.name;      // Expanding ring on the open POI — marks which dot the popup belongs to.      if(isSelected){        const ping=document.createElementNS('http://www.w3.org/2000/svg','circle');        ping.setAttribute('cx',ax);ping.setAttribute('cy',ay);ping.setAttribute('r',7*inv);        ping.setAttribute('stroke',dotColor);        ping.setAttribute('stroke-width',1.5*inv);        ping.classList.add('poi-ping');        ping.style.transformOrigin=`${ax}px ${ay}px`;        poiGroup.appendChild(ping);      }      const c=document.createElementNS('http://www.w3.org/2000/svg','circle');      c.setAttribute('cx',ax);c.setAttribute('cy',ay);c.setAttribute('r',(isSelected?9:7)*inv);      c.setAttribute('fill',dotColor);c.setAttribute('stroke','#fff');      c.setAttribute('stroke-width',(isSelected?3:1.5)*inv);      c.setAttribute('stroke-opacity',isSelected?'1':'0.8');      c.classList.add('poi-dot');c.style.cursor='pointer';      if(isSelected) c.classList.add('poi-selected');      // Accessibility      c.setAttribute('tabindex','0');      c.setAttribute('role','button');      c.setAttribute('aria-pressed',isSelected?'true':'false');      c.setAttribute('aria-label',`Point of interest: ${poi.name}`);      c.addEventListener('click',e=>{e.stopPropagation();showPoiDetail(e.clientX,e.clientY,poi,dotColor);});      c.addEventListener('keydown',e=>{        if(e.key==='Enter'||e.key===' '){          e.preventDefault();          const r=c.getBoundingClientRect();          showPoiDetail(r.left+r.width/2, r.top+r.height/2, poi, dotColor);        }      });      poiGroup.appendChild(c);    } else {      const R=16*inv;      // Clusters can span categories; use the theme accent unless the whole      // group shares one colour, in which case that colour is more informative.      const groupColors=[...new Set(grp.map(g=>colorOf(g.poi)))];      const poiColor=groupColors.length===1?groupColors[0]:themeColor;      const c=document.createElementNS('http://www.w3.org/2000/svg','circle');      c.setAttribute('cx',ax);c.setAttribute('cy',ay);c.setAttribute('r',R);      c.setAttribute('fill','rgba(0,0,0,0.82)');c.setAttribute('stroke',poiColor);      c.setAttribute('stroke-width',2.5*inv);c.classList.add('poi-dot','poi-cluster');c.style.cursor='pointer';      c.setAttribute('tabindex','0');      c.setAttribute('role','button');      c.setAttribute('aria-label',`Cluster of ${grp.length} points of interest. Activate to expand.`);      const txt=document.createElementNS('http://www.w3.org/2000/svg','text');      txt.setAttribute('x',ax);txt.setAttribute('y',ay);      txt.setAttribute('text-anchor','middle');txt.setAttribute('dominant-baseline','central');      txt.setAttribute('fill',poiColor);txt.setAttribute('font-size',11*inv);      txt.setAttribute('font-weight','700');txt.setAttribute('font-family','Inter,sans-serif');      txt.textContent=grp.length;txt.style.pointerEvents='none';      // On cluster click, decide between zoom-in and list-popup based on whether      // zooming in would actually separate any pair. Some clusters (e.g. the six      // JJK Shibuya POIs within ~60m of each other, or the five CM Jinbocho POIs)      // are tighter than the max-zoom resolution — zooming in would just re-cluster      // and the POIs would never be reachable. For those we skip the zoom and show      // a clickable list of everything in the cluster.      const expand=e=>{        e.stopPropagation();        const newScale=Math.min(CONFIG.ZOOM_MAX,currentScale*CONFIG.CLUSTER_ZOOM_IN_RATIO);        if(clusterWouldStayClustered(grp,newScale)){          // Zoom wouldn't help. Show the list directly at the cluster location.          const r=c.getBoundingClientRect();          const x=(e.clientX!=null)?e.clientX:r.left+r.width/2;          const y=(e.clientY!=null)?e.clientY:r.top+r.height/2;          showClusterList(x,y,grp,poiColor);        }else{          const actualRatio=newScale/currentScale;          panX=panX+ax*currentScale*(1-actualRatio);          panY=panY+ay*currentScale*(1-actualRatio);          currentScale=newScale;          applyTransform();        }      };      c.addEventListener('click',expand);      txt.addEventListener('click',expand);      c.addEventListener('keydown',e=>{        if(e.key==='Enter'||e.key===' '){e.preventDefault();expand(e);}      });      poiGroup.appendChild(c);poiGroup.appendChild(txt);    }  });  lastClusteredScale=currentScale;}let cachedSvg=null, cachedWardLabels=null;function applyTransform(){  if(!cachedSvg) cachedSvg=document.getElementById('ward-svg');  if(cachedSvg) cachedSvg.style.transform=`translate(${panX}px,${panY}px) scale(${currentScale})`;  const inv=1/currentScale;  // Counter-scale ward labels only (subway now uses vector-effect:non-scaling-stroke, no per-frame work needed)  if(!cachedWardLabels) cachedWardLabels=document.querySelectorAll('.ward-label');  cachedWardLabels.forEach(t=>t.setAttribute('font-size',10*inv));  // Re-cluster POIs only when zoom level changes meaningfully, not on every pan frame  if(Math.abs(currentScale-lastClusteredScale)>CONFIG.CLUSTER_ZOOM_DELTA) renderPOIs();}let isDragging=false,dragStartX,dragStartY,panStartX,panStartY;wrap.addEventListener('mousedown',e=>{isDragging=true;dragStartX=e.clientX;dragStartY=e.clientY;panStartX=panX;panStartY=panY;wrap.classList.add('dragging');});window.addEventListener('mousemove',e=>{if(!isDragging)return;panX=panStartX+(e.clientX-dragStartX);panY=panStartY+(e.clientY-dragStartY);applyTransform();});window.addEventListener('mouseup',()=>{isDragging=false;wrap.classList.remove('dragging');});wrap.addEventListener('wheel',e=>{e.preventDefault();zoomAt(e.deltaY>0?-1:1,e.clientX,e.clientY);},{passive:false});// Double-click to zoom in toward the cursorwrap.addEventListener('dblclick',e=>{  if(e.target.closest('.poi-dot')) return; // let POI handle its own clicks  e.preventDefault();  // Two-step zoom for a bit more movement per dblclick  zoomAt(1, e.clientX, e.clientY);  zoomAt(1, e.clientX, e.clientY);});let touchDist=0;wrap.addEventListener('touchstart',e=>{  if(e.touches.length===1){isDragging=true;dragStartX=e.touches[0].clientX;dragStartY=e.touches[0].clientY;panStartX=panX;panStartY=panY;}  else if(e.touches.length===2){isDragging=false;touchDist=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);}},{passive:false});wrap.addEventListener('touchmove',e=>{  e.preventDefault();  if(e.touches.length===1&&isDragging){panX=panStartX+(e.touches[0].clientX-dragStartX);panY=panStartY+(e.touches[0].clientY-dragStartY);applyTransform();}  else if(e.touches.length===2 && touchDist>0){    // Continuous pinch-to-zoom: scale proportional to finger-distance ratio    const nd=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);    const cx=(e.touches[0].clientX+e.touches[1].clientX)/2,cy=(e.touches[0].clientY+e.touches[1].clientY)/2;    const ratio=nd/touchDist;    const old=currentScale;    currentScale=Math.max(CONFIG.ZOOM_MIN, Math.min(CONFIG.ZOOM_MAX, currentScale*ratio));    const r=currentScale/old;    panX=cx-(cx-panX)*r;    panY=cy-(cy-panY)*r;    touchDist=nd;    applyTransform();  }},{passive:false});wrap.addEventListener('touchend',()=>{isDragging=false;});function zoomAt(dir,cx,cy){  const old=currentScale;currentScale*=dir>0?1.15:0.87;  currentScale=Math.max(CONFIG.ZOOM_MIN,Math.min(CONFIG.ZOOM_MAX,currentScale));  const r=currentScale/old;panX=cx-(cx-panX)*r;panY=cy-(cy-panY)*r;applyTransform();}function zoomMap(dir){const r=wrap.getBoundingClientRect();zoomAt(dir,r.left+r.width/2,r.top+r.height/2);}// ══════════════════════════════════════════════════════════// EVENT WIRING (replaces the old inline onclick attributes)// ══════════════════════════════════════════════════════════document.querySelectorAll('.anime-tab').forEach(tab=>{  tab.addEventListener('click',()=>switchAnime(tab.dataset.anime));});const legendToggle=document.getElementById('btn-legend-toggle');legendToggle.addEventListener('click',()=>{  const legend=document.getElementById('legend');  legend.classList.toggle('collapsed');  legendToggle.setAttribute('aria-expanded', legend.classList.contains('collapsed') ? 'false' : 'true');});document.getElementById('btn-zoom-in').addEventListener('click',()=>zoomMap(1));document.getElementById('btn-zoom-out').addEventListener('click',()=>zoomMap(-1));document.getElementById('btn-zoom-reset').addEventListener('click',()=>{  // Clear selection + filter so reset is "start over"  if(selectedPath){selectedPath.classList.remove('selected');selectedPath=null;}  document.getElementById('info-panel').classList.remove('active');  hidePoiPopup();  activeFilter=null; applyLegendFilter();  if(activePoiFilter!==null){activePoiFilter=null;applyAnimeTheme();}  centerMap();  updateUrl();});document.getElementById('btn-info-close').addEventListener('click',()=>{  document.getElementById('info-panel').classList.remove('active');});// ══════════════════════════════════════════════════════════// SEARCH (wards + POIs, substring match, keyboard navigable)// ══════════════════════════════════════════════════════════const searchInput=document.getElementById('search-input');const searchResults=document.getElementById('search-results');let searchFocusIdx=-1;function runSearch(){  const q=searchInput.value.trim().toLowerCase();  searchResults.textContent='';  searchFocusIdx=-1;  if(!q){ searchResults.classList.remove('active'); return; }  const anime=ANIME[currentAnime];  const hits=[];  // Wards: match name, title, or Japanese key  Object.entries(anime.wards).forEach(([jp,w])=>{    const hay=(w.name+' '+w.title+' '+jp).toLowerCase();    if(hay.includes(q)) hits.push({type:'ward', jp, w});  });  // POIs  anime.pois.forEach(p=>{    if(p.name.toLowerCase().includes(q)) hits.push({type:'poi', poi:p});  });  if(!hits.length){    const empty=document.createElement('div'); empty.className='search-empty';    empty.textContent='No matches. Try a different series?';    searchResults.appendChild(empty);    searchResults.classList.add('active');    return;  }  hits.slice(0,14).forEach((h,idx)=>{    const row=document.createElement('div');    row.className='search-result'; row.setAttribute('role','option'); row.dataset.idx=idx;    const type=document.createElement('span'); type.className='search-result-type';    type.textContent = h.type==='ward' ? 'Ward' : 'POI';    const label=document.createElement('div'); label.className='search-result-label';    label.appendChild(type);    label.appendChild(document.createTextNode(h.type==='ward' ? `${h.w.name} (Ward ${h.w.n})` : h.poi.name));    const sub=document.createElement('div'); sub.className='search-result-sub';    sub.textContent = h.type==='ward' ? h.w.title : (h.poi.label.length>90 ? h.poi.label.slice(0,90)+'…' : h.poi.label);    row.appendChild(label); row.appendChild(sub);    row.addEventListener('click',()=>selectSearchHit(h));    searchResults.appendChild(row);  });  searchResults.classList.add('active');}function selectSearchHit(h){  searchInput.value='';  searchResults.classList.remove('active');  searchResults.textContent='';  if(h.type==='ward'){    selectWard(h.jp);  } else {    const anime=ANIME[currentAnime];    const [sx,sy]=project(h.poi.lng,h.poi.lat);    const ww=wrap.clientWidth, wh=wrap.clientHeight;    currentScale=Math.min(CONFIG.ZOOM_MAX, 5);    panX=ww/2 - sx*currentScale;    panY=wh/2 - sy*currentScale;    applyTransform();    setTimeout(()=>showPoiDetail(ww/2, wh/2, h.poi, anime.theme.accentBright), 80);  }}searchInput.addEventListener('input', runSearch);searchInput.addEventListener('focus', runSearch);searchInput.addEventListener('keydown', e=>{  const rows=searchResults.querySelectorAll('.search-result');  if(e.key==='ArrowDown'){    e.preventDefault();    if(rows.length){ searchFocusIdx=Math.min(rows.length-1, searchFocusIdx+1); highlightSearchRow(rows); }  } else if(e.key==='ArrowUp'){    e.preventDefault();    if(rows.length){ searchFocusIdx=Math.max(0, searchFocusIdx-1); highlightSearchRow(rows); }  } else if(e.key==='Enter'){    if(searchFocusIdx>=0 && rows[searchFocusIdx]) rows[searchFocusIdx].click();    else if(rows.length) rows[0].click();  } else if(e.key==='Escape'){    searchInput.value=''; runSearch(); searchInput.blur();  }});function highlightSearchRow(rows){  rows.forEach((r,i)=>r.classList.toggle('keyboard-focused', i===searchFocusIdx));  if(rows[searchFocusIdx]) rows[searchFocusIdx].scrollIntoView({block:'nearest'});}// Close search results when clicking elsewheredocument.addEventListener('click', e=>{  if(!e.target.closest('#search-box')) searchResults.classList.remove('active');});// ══════════════════════════════════════════════════════════// KEYBOARD NAVIGATION (P3 accessibility)// Arrow keys pan, +/-/= zoom, Escape closes info panel. Ignored when focus is// inside an editable field (future-proofing for any search inputs).// ══════════════════════════════════════════════════════════const PAN_STEP_PX=60;document.addEventListener('keydown',e=>{  const tag=(e.target.tagName||'').toLowerCase();  if(tag==='input'||tag==='textarea'||e.target.isContentEditable) return;  switch(e.key){    case 'ArrowUp':    panY+=PAN_STEP_PX; applyTransform(); e.preventDefault(); break;    case 'ArrowDown':  panY-=PAN_STEP_PX; applyTransform(); e.preventDefault(); break;    case 'ArrowLeft':  panX+=PAN_STEP_PX; applyTransform(); e.preventDefault(); break;    case 'ArrowRight': panX-=PAN_STEP_PX; applyTransform(); e.preventDefault(); break;    case '+': case '=': zoomMap(1);  e.preventDefault(); break;    case '-': case '_': zoomMap(-1); e.preventDefault(); break;    case 'Escape':      document.getElementById('info-panel').classList.remove('active');      hidePoiPopup();      break;  }});// ══════════════════════════════════════════════════════════// INIT// ══════════════════════════════════════════════════════════loadMap();})();</script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anime Ward Map — Tokyo in Film</title>
+  <meta name="description" content="Interactive map of Tokyo's 23 wards through the lens of Tokyo Ghoul, Chainsaw Man, and Jujutsu Kaisen. Explore every ward's story.">
+  <link rel="icon" href="https://chauesprinciple.github.io/Tokyo-in-Film/assets/images/image07.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  <style>
+    @font-face { font-family:'Material Theories'; src:url('MATERIAL THEORIES DEMO.otf') format('opentype'); }
+    *{box-sizing:border-box;margin:0;padding:0;}
+    :root{
+      --bg:#0a0a0a;--panel:#0f0f0f;--card:#141414;
+      --border:rgba(139,0,0,0.4);
+      --accent:#8b0000;--accent-bright:#dc143c;
+      --text:#e8e8e8;--muted:#666;--prose:#a0a0a0;
+    }
+    html,body{font-family:"Raleway",sans-serif;background:var(--bg);color:var(--text);overflow:hidden;width:100%;height:100%;}
+
+    /* ── Container ── */
+    #map-container{position:relative;width:100vw;height:100vh;overflow:hidden;}
+
+    /* ── SVG Wrap ── */
+    #map-svg-wrap{position:absolute;inset:0;overflow:hidden;cursor:grab;}
+    #map-svg-wrap.dragging{cursor:grabbing;}
+    #map-svg-wrap svg{position:absolute;transform-origin:0 0;}
+
+    .ward-path{stroke:#2d2d2d;stroke-width:0.8;cursor:pointer;transition:fill-opacity .2s,stroke .2s;}
+    .ward-path:hover{fill-opacity:0.85;stroke:var(--accent-bright);stroke-width:1.5;}
+    .ward-path.selected{stroke:#fff;stroke-width:2;fill-opacity:0.9;}
+    .ward-label{font-family:'Raleway',sans-serif;font-size:9px;fill:rgba(255,255,255,0.55);pointer-events:none;text-anchor:middle;dominant-baseline:central;font-weight:600;}
+    body.bright-theme .ward-label{fill:rgba(20,20,30,0.85);text-shadow:0 1px 2px rgba(255,255,255,0.5);}
+    body.bright-theme .ward-path{stroke:transparent;}
+    body.bright-theme #subway-group{opacity:0.35;}
+    .poi-dot{cursor:pointer;transition:r .2s;outline:none;} .poi-dot:hover{r:6;}
+    /* Selected POI: the popup alone didn't indicate WHICH dot was open. */
+    .poi-dot.poi-selected{stroke:#fff;stroke-width:3;stroke-opacity:1;}
+    .poi-ping{pointer-events:none;fill:none;stroke-width:1.5;opacity:0;}
+    @media (prefers-reduced-motion: no-preference){
+      .poi-ping{animation:poi-ping-kf 2.4s cubic-bezier(0,.5,.5,1) infinite;}
+    }
+    @keyframes poi-ping-kf{0%{transform:scale(1);opacity:.55;}100%{transform:scale(2.6);opacity:0;}}
+    .poi-dot.poi-dimmed{opacity:0.12;pointer-events:none;}
+    .ward-path:focus-visible,.poi-dot:focus-visible,.legend-item:focus-visible{outline:2px solid var(--accent-bright);outline-offset:1px;}
+    .anime-tab:focus-visible,.custom-zoom button:focus-visible,.close-btn:focus-visible,.legend-toggle:focus-visible{outline:2px solid var(--accent-bright);outline-offset:2px;}
+    .legend-item{border-radius:2px;padding:2px 4px;margin:-2px -4px .5rem -4px;}
+    .legend-item.active-filter{background:rgba(255,255,255,0.08);outline:1px solid var(--accent-bright);}
+    .ward-path.filtered-out{fill-opacity:0.1 !important;pointer-events:none;}
+    .ward-path.not-featured{pointer-events:none;fill:none !important;stroke:none !important;}
+    .barrier-dome{pointer-events:none;}
+    .subway-line{pointer-events:none;fill:none;stroke-linecap:round;stroke-linejoin:round;}
+
+    /* ── Anime Switcher ── */
+    #anime-switcher{
+      position:absolute;top:20px;left:50%;transform:translateX(-50%);z-index:600;
+      display:flex;gap:4px;
+      background:rgba(10,10,10,0.95);border:1px solid rgba(255,255,255,0.1);
+      padding:4px;border-radius:6px;backdrop-filter:blur(6px);
+      box-shadow:0 4px 20px rgba(0,0,0,0.7);
+    }
+    .anime-tab{
+      padding:8px 18px;border-radius:4px;font-size:0.78rem;font-weight:600;
+      cursor:pointer;transition:all .25s;color:var(--muted);background:transparent;
+      border:none;font-family:'Raleway',sans-serif;letter-spacing:.03em;white-space:nowrap;
+    }
+    .anime-tab:hover{color:var(--text);}
+    .anime-tab.active{color:#fff;}
+    .anime-tab[data-anime="tokyo_ghoul"].active{background:rgba(139,0,0,0.5);text-shadow:0 0 8px rgba(220,20,60,.5);}
+    .anime-tab[data-anime="chainsaw_man"].active{background:rgba(234,88,12,0.4);text-shadow:0 0 8px rgba(249,115,22,.5);}
+    .anime-tab[data-anime="jjk"].active{background:rgba(124,58,237,0.4);text-shadow:0 0 8px rgba(139,92,246,.5);}
+    .anime-tab[data-anime="shinkai"].active{background:rgba(168,85,247,0.35);text-shadow:0 0 8px rgba(168,85,247,.5);}
+    .anime-tab[data-anime="class_locations"].active{background:rgba(0,243,255,0.22);text-shadow:0 0 8px rgba(0,243,255,.55);}
+
+    /* ── Header ── */
+    #hdr{
+      position:absolute;top:70px;left:20px;z-index:500;
+      background:rgba(10,10,10,0.95);border:1px solid var(--border);
+      padding:18px 22px;border-radius:2px;max-width:310px;
+      box-shadow:0 0 30px rgba(139,0,0,0.2),0 4px 20px rgba(0,0,0,0.8);
+      backdrop-filter:blur(4px);transition:border-color .4s,box-shadow .4s;
+    }
+    .eyebrow{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent-bright);font-weight:500;margin-bottom:.4rem;transition:color .4s;}
+    #hdr h1{font-family:'Material Theories','Cinzel',serif;font-size:1.9rem;font-weight:700;margin:0 0 .4rem;line-height:1.1;color:#e8e8e8;letter-spacing:.05em;transition:text-shadow .4s;}
+    .subtitle{font-size:.82rem;color:var(--prose);font-weight:300;line-height:1.5;}
+    .back-link{display:inline-block;margin-top:.6rem;font-size:.72rem;color:var(--muted);text-decoration:none;transition:color .2s;}
+    .back-link:hover{color:var(--accent-bright);}
+
+    /* ── Legend ── */
+    #legend{
+      position:absolute;top:70px;right:20px;z-index:500;
+      background:rgba(10,10,10,0.95);border:1px solid var(--border);
+      padding:14px 18px;border-radius:2px;max-width:200px;
+      box-shadow:0 0 20px rgba(0,0,0,0.6);backdrop-filter:blur(4px);
+      transition:transform .3s,opacity .3s,border-color .4s;
+    }
+    #legend.collapsed{transform:translateY(-120%);opacity:0;pointer-events:none;}
+    .legend-title{font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:.8rem;font-weight:600;}
+    .legend-item{display:flex;align-items:center;margin-bottom:.5rem;font-size:.78rem;cursor:pointer;color:var(--text);transition:color .2s;}
+    .legend-item:hover{color:var(--accent-bright);}
+    .legend-swatch{width:13px;height:13px;border-radius:2px;margin-right:9px;flex-shrink:0;border:1px solid rgba(255,255,255,0.08);}
+
+    .legend-toggle{
+      display:none;position:absolute;top:70px;right:20px;z-index:501;
+      width:40px;height:40px;background:rgba(14,14,14,0.98);border:1px solid var(--border);
+      border-radius:4px;color:var(--accent-bright);font-size:18px;cursor:pointer;
+      align-items:center;justify-content:center;
+    }
+
+    /* ── Zoom ── */
+    .custom-zoom{position:absolute;bottom:20px;right:20px;z-index:400;display:flex;flex-direction:column;gap:2px;background:rgba(14,14,14,0.98);border:1px solid var(--border);border-radius:4px;overflow:hidden;}
+    .custom-zoom button{width:36px;height:36px;background:transparent;border:none;color:var(--accent-bright);font-size:20px;font-weight:bold;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s;}
+    .custom-zoom button:hover{background:var(--card);}
+    .custom-zoom button:first-child{border-bottom:1px solid var(--border);}
+    .custom-zoom button:not(:last-child){border-bottom:1px solid var(--border);}
+
+    /* ── Search (top-left, above the header panel which starts at top:70px) ── */
+    #search-box{position:absolute;top:20px;left:20px;z-index:600;width:220px;}
+    @media(max-width:1024px){#search-box{top:168px;left:20px;right:auto;width:calc(100vw - 96px);max-width:260px;}}
+    #search-input{width:100%;padding:8px 12px;font-family:'Raleway',sans-serif;font-size:.78rem;background:rgba(10,10,10,0.95);border:1px solid rgba(255,255,255,0.15);border-radius:4px;color:var(--text);outline:none;backdrop-filter:blur(6px);transition:border-color .2s;}
+    #search-input:focus{border-color:var(--accent-bright);}
+    #search-input::placeholder{color:var(--muted);}
+    #search-results{margin-top:4px;background:rgba(10,10,10,0.98);border:1px solid rgba(255,255,255,0.12);border-radius:4px;max-height:320px;overflow-y:auto;display:none;box-shadow:0 8px 24px rgba(0,0,0,0.6);}
+    #search-results.active{display:block;}
+    .search-result{padding:8px 12px;cursor:pointer;border-bottom:1px solid rgba(255,255,255,0.05);transition:background .15s;}
+    .search-result:last-child{border-bottom:none;}
+    .search-result:hover,.search-result.keyboard-focused{background:rgba(255,255,255,0.06);}
+    .search-result-label{font-size:.8rem;color:var(--text);font-weight:600;}
+    .search-result-sub{font-size:.68rem;color:var(--muted);margin-top:1px;line-height:1.3;}
+    .search-result-type{display:inline-block;font-size:.58rem;text-transform:uppercase;letter-spacing:.1em;color:var(--accent-bright);font-weight:700;margin-right:.4rem;}
+    .search-empty{padding:10px 12px;font-size:.75rem;color:var(--muted);font-style:italic;}
+
+    /* ── Click Hint ── */
+    #click-hint{position:absolute;bottom:20px;left:20px;z-index:400;background:rgba(14,14,14,0.95);border:1px solid var(--border);padding:10px 14px;border-radius:4px;font-size:.78rem;color:var(--muted);pointer-events:none;transition:opacity .5s;}
+
+    /* ── Tooltip ── */
+    #tooltip{position:fixed;z-index:700;background:rgba(20,20,20,0.95);border:1px solid var(--border);color:#e8e8e8;font-weight:600;padding:5px 9px;border-radius:2px;font-size:.78rem;pointer-events:none;display:none;white-space:nowrap;}
+
+    /* ── POI Popup ── */
+    #poi-popup{position:fixed;z-index:700;background:rgba(15,15,15,0.95);border:2px solid var(--border);color:#e8e8e8;padding:10px 14px;border-radius:2px;font-size:.82rem;line-height:1.5;max-width:280px;display:none;box-shadow:0 0 20px rgba(0,0,0,0.5);}
+
+    /* ── Info Panel ── */
+    #info-panel{
+      position:absolute;bottom:20px;right:70px;width:340px;max-height:60vh;
+      background:rgba(22,22,22,0.98);border:1px solid var(--border);border-left:3px solid var(--accent);
+      padding:20px;overflow-y:auto;z-index:600;border-radius:4px;
+      box-shadow:0 4px 20px rgba(0,0,0,0.5);display:none;transition:border-color .4s;
+    }
+    #info-panel.active{display:block;}
+
+    .close-btn{position:absolute;top:8px;right:12px;background:none;border:none;color:var(--muted);font-size:1.4rem;cursor:pointer;transition:color .2s;}
+    .close-btn:hover{color:var(--accent-bright);}
+
+    .info-ward-number{font-size:.68rem;text-transform:uppercase;letter-spacing:.15em;color:var(--muted);margin-bottom:.2rem;}
+    .info-ward-name{font-family:'Cinzel',serif;font-size:1.3rem;font-weight:700;margin-bottom:.4rem;}
+    .info-status-badge{display:inline-block;padding:.35rem .6rem;border-radius:3px;font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;font-weight:600;margin-bottom:.8rem;}
+    .info-title{font-size:1rem;font-weight:600;color:var(--accent-bright);margin-bottom:.8rem;transition:color .4s;}
+    .info-section{margin-bottom:1rem;}
+    .info-label{font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:600;margin-bottom:.35rem;}
+    .info-list{list-style:none;padding:0;font-size:.82rem;color:var(--prose);line-height:1.6;}
+    .info-list li::before{content:"›";color:var(--accent-bright);margin-right:.4rem;}
+    .info-prose{font-size:.82rem;line-height:1.7;color:var(--prose);font-style:italic;}
+
+    #info-panel::-webkit-scrollbar{width:5px;}
+    #info-panel::-webkit-scrollbar-track{background:var(--card);}
+    #info-panel::-webkit-scrollbar-thumb{background:rgba(220,38,38,0.3);border-radius:3px;}
+
+    /* Status badges — all three anime */
+    .status-ccg_stronghold{background:rgba(30,58,95,0.4);color:#6dd5ff;}
+    .status-low,.status-low_activity{background:rgba(26,48,32,0.4);color:#86d56d;}
+    .status-moderate{background:rgba(74,45,16,0.4);color:#ffc856;}
+    .status-high,.status-high_devil{background:rgba(107,31,31,0.4);color:#ff6b6b;}
+    .status-critical{background:rgba(139,10,10,0.4);color:#ff4444;}
+    .status-contested{background:rgba(61,26,64,0.4);color:#d99dff;}
+    .status-division_hq{background:rgba(15,31,15,0.5);color:#86d56d;}
+    .status-public_safety_active{background:rgba(26,46,26,0.5);color:#86d56d;}
+    .status-devil_activity{background:rgba(90,26,26,0.5);color:#f97316;}
+    .status-bomb_conflict{background:rgba(74,32,16,0.5);color:#f97316;}
+    .status-reze_battle{background:rgba(107,32,16,0.5);color:#ff6b6b;}
+    .status-shibuya_incident{background:rgba(139,0,0,0.4);color:#ff4444;}
+    .status-shibuya_aftermath{background:rgba(74,0,0,0.4);color:#ff6b6b;}
+    .status-colony_tokyo_1{background:rgba(107,33,168,0.4);color:#a78bfa;}
+    .status-colony_tokyo_2{background:rgba(37,99,235,0.3);color:#60a5fa;}
+    .status-sendai_colony{background:rgba(124,58,237,0.3);color:#a78bfa;}
+    .status-cursed_zone{background:rgba(234,88,12,0.3);color:#f97316;}
+    .status-jujutsu_high{background:rgba(5,150,105,0.3);color:#34d399;}
+    .status-neutral{background:rgba(30,58,138,0.3);color:#60a5fa;}
+
+    /* ── Responsive ── */
+    @media(max-width:900px){
+      #anime-switcher{top:10px;padding:3px;gap:2px;}
+      .anime-tab{padding:6px 10px;font-size:.7rem;}
+      #hdr{top:58px;max-width:240px;padding:12px 16px;}
+      #hdr h1{font-size:1.4rem;}
+      .legend-toggle{display:flex;top:58px;}
+      #legend{top:108px;}
+      #info-panel{width:calc(100vw - 40px);left:20px;right:20px;bottom:20px;max-height:50vh;}
+      #click-hint{display:none;}
+      .custom-zoom{bottom:auto;top:108px;right:74px;}
+    }
+  </style>
+</head>
+<body>
+<div id="map-container" role="application" aria-label="Interactive Tokyo ward map. Use Tab to move focus, Enter or Space to select a ward or POI, arrow keys to pan, plus and minus to zoom.">
+
+  <!-- Anime Switcher -->
+  <div id="anime-switcher" role="tablist" aria-label="Select map dataset">
+    <button class="anime-tab" data-anime="class_locations" role="tab" aria-selected="false">Class Locations</button>
+    <button class="anime-tab active" data-anime="jjk" role="tab" aria-selected="true">Jujutsu Kaisen</button>
+    <button class="anime-tab" data-anime="chainsaw_man" role="tab" aria-selected="false">Chainsaw Man</button>
+    <button class="anime-tab" data-anime="tokyo_ghoul" role="tab" aria-selected="false">Tokyo Ghoul</button>
+    <button class="anime-tab" data-anime="shinkai" role="tab" aria-selected="false">Suzume × Your Name</button>
+  </div>
+
+  <!-- Search -->
+  <div id="search-box">
+    <input type="text" id="search-input" placeholder="Search wards & locations…" aria-label="Search wards and points of interest" autocomplete="off" spellcheck="false" />
+    <div id="search-results" role="listbox" aria-label="Search results"></div>
+  </div>
+
+  <!-- Header -->
+  <div id="hdr">
+    <div class="eyebrow" id="hdr-eyebrow">Shibuya Incident · Culling Game</div>
+    <h1 id="hdr-title">Jujutsu Kaisen</h1>
+    <div class="subtitle" id="hdr-subtitle">Cursed Territory Map · Barrier Zones</div>
+    <a href="index.html" class="back-link">← Back to Tokyo in Film</a>
+  </div>
+
+  <button class="legend-toggle" id="btn-legend-toggle" aria-label="Toggle Legend" aria-expanded="true" aria-controls="legend">☰</button>
+
+  <!-- Legend (dynamic) -->
+  <div id="legend">
+    <div class="legend-title" id="legend-title">Ward Status</div>
+    <div id="legend-items"></div>
+  </div>
+
+  <div id="click-hint">Click any ward to explore</div>
+  <div id="map-svg-wrap"></div>
+
+  <div class="custom-zoom">
+    <button id="btn-zoom-in" aria-label="Zoom In" title="Zoom In (+)">+</button>
+    <button id="btn-zoom-out" aria-label="Zoom Out" title="Zoom Out (-)">−</button>
+    <button id="btn-zoom-reset" aria-label="Reset view to fit map" title="Reset view" style="font-size:15px;">□</button>
+  </div>
+
+  <div id="tooltip"></div>
+  <div id="poi-popup"></div>
+
+  <div id="info-panel" role="region" aria-label="Ward information">
+    <button class="close-btn" id="btn-info-close" aria-label="Close ward information panel">&times;</button>
+    <div id="info-content" aria-live="polite"></div>
+  </div>
+</div>
+
+<script src="assets/anime-map-data.js"></script>
+<script src="assets/class-map-data.js?v=2"></script>
+<script>
+(function(){
+'use strict';
+
+// ══════════════════════════════════════════════════════════
+// CONFIG — grouped constants (tuneable, no magic numbers in body)
+// ══════════════════════════════════════════════════════════
+const CONFIG = {
+  SVG_W: 960, SVG_H: 760,
+  BOUNDS: {minLng:139.56, maxLng:139.93, minLat:35.51, maxLat:35.83},
+  TILE_Z: 12,
+  TILE_BASE: 'https://a.basemaps.cartocdn.com/dark_all',
+  CLUSTER_SCREEN_PX: 28,          // POIs closer than this (in screen px) cluster
+  CLUSTER_ZOOM_DELTA: 0.02,       // Re-run clustering only when scale changes by > this
+  CLUSTER_ZOOM_IN_RATIO: 3.5,     // How far to zoom when a cluster is clicked
+  ZOOM_MIN: 0.3, ZOOM_MAX: 12,
+  INITIAL_FIT_PADDING: 0.9,       // Fraction of viewport the map fills on first load
+  CLICK_HINT_TIMEOUT_MS: 5000,
+  WARD_SIMPLIFY_MIN_PX_SQ: 4,     // Ward-polygon vertex simplification threshold (px²)
+  SUBWAY_STROKE_PX: 2.5           // Screen-px stroke width for subway lines
+};
+
+// ══════════════════════════════════════════════════════════
+// PROJECTION
+// ══════════════════════════════════════════════════════════
+const BOUNDS=CONFIG.BOUNDS;
+const SVG_W=CONFIG.SVG_W,SVG_H=CONFIG.SVG_H;
+function project(lng,lat){
+  return[
+    Math.round(((lng-BOUNDS.minLng)/(BOUNDS.maxLng-BOUNDS.minLng))*SVG_W*10)/10,
+    Math.round((SVG_H-((lat-BOUNDS.minLat)/(BOUNDS.maxLat-BOUNDS.minLat))*SVG_H)*10)/10
+  ];
+}
+// Convert meters to SVG units (approximate at Tokyo latitude)
+function metersToSvg(m){return m/((BOUNDS.maxLng-BOUNDS.minLng)*111320/SVG_W);}
+
+// ══════════════════════════════════════════════════════════
+// TILE LAYER — CartoDB dark base map under ward polygons
+// ══════════════════════════════════════════════════════════
+const TILE_Z=CONFIG.TILE_Z;
+const TILE_BASE=CONFIG.TILE_BASE;
+function lng2tile(lng,z){return Math.floor((lng+180)/360*(1<<z));}
+function lat2tile(lat,z){const r=lat*Math.PI/180;return Math.floor((1-Math.log(Math.tan(r)+1/Math.cos(r))/Math.PI)/2*(1<<z));}
+function tile2lng(x,z){return x/(1<<z)*360-180;}
+function tile2lat(y,z){const n=Math.PI-2*Math.PI*y/(1<<z);return 180/Math.PI*Math.atan(0.5*(Math.exp(n)-Math.exp(-n)));}
+// ══════════════════════════════════════════════════════════
+// SUBWAY LINES — real geometry from OpenStreetMap Overpass
+// ══════════════════════════════════════════════════════════
+const SUBWAY_FALLBACK_COLORS={
+  '東京メトロ銀座線':'#F9A11B','Ginza':'#F9A11B',
+  '東京メトロ丸ノ内線':'#E60012','Marunouchi':'#E60012',
+  '東京メトロ日比谷線':'#9C9C9C','Hibiya':'#9C9C9C',
+  '東京メトロ東西線':'#00A7D8','Tozai':'#00A7D8',
+  '東京メトロ千代田線':'#009944','Chiyoda':'#009944',
+  '東京メトロ有楽町線':'#C9A600','Yurakucho':'#C9A600',
+  '東京メトロ半蔵門線':'#6C3281','Hanzomon':'#6C3281',
+  '東京メトロ南北線':'#00A5A0','Namboku':'#00A5A0',
+  '東京メトロ副都心線':'#9B4F96','Fukutoshin':'#9B4F96',
+  '都営浅草線':'#EF5BA1','Asakusa':'#EF5BA1',
+  '都営三田線':'#006CB4','Mita':'#006CB4',
+  '都営新宿線':'#6CBB3C','Shinjuku':'#6CBB3C',
+  '都営大江戸線':'#B01C85','Oedo':'#B01C85'
+};
+async function loadSubwayLines(svg){
+  let data=null;
+  // Try local cached file first (instant)
+  try{
+    const localResp=await fetch('assets/tokyo-subway.json');
+    if(localResp.ok) data=await localResp.json();
+  }catch(e){/* local cache miss is expected; fall through to Overpass */}
+  // Fallback: Overpass API
+  if(!data||!data.elements){
+    const query='[out:json][timeout:60];(relation["route"="subway"](35.51,139.56,35.83,139.93););out body;>;out skel qt;';
+    const endpoints=['https://overpass-api.de/api/interpreter','https://overpass.kumi.systems/api/interpreter'];
+    for(const ep of endpoints){
+      try{
+        const resp=await fetch(ep,{method:'POST',body:'data='+encodeURIComponent(query),headers:{'Content-Type':'application/x-www-form-urlencoded'}});
+        if(!resp.ok){console.warn('Subway endpoint',ep,'returned HTTP',resp.status);continue;}
+        data=await resp.json();
+        break;
+      }catch(e){console.warn('Subway endpoint',ep,'failed:',e.message);}
+    }
+  }
+  if(!data||!data.elements){console.warn('No subway data available');return;}
+  try{
+    const nodes={},ways={};
+    data.elements.forEach(e=>{
+      if(e.type==='node') nodes[e.id]=[e.lon,e.lat];
+      else if(e.type==='way') ways[e.id]=e.nodes;
+    });
+    const g=document.createElementNS('http://www.w3.org/2000/svg','g');g.id='subway-group';
+    data.elements.filter(e=>e.type==='relation').forEach(rel=>{
+      const name=rel.tags?.name||rel.tags?.['name:en']||'';
+      let color=rel.tags?.colour||null;
+      if(!color){for(const[k,v]of Object.entries(SUBWAY_FALLBACK_COLORS)){if(name.includes(k)){color=v;break;}}}
+      if(!color) color='#888';
+      rel.members.filter(m=>m.type==='way'&&m.role!=='platform').forEach(member=>{
+        const wn=ways[member.ref]; if(!wn) return;
+        const coords=wn.map(nid=>nodes[nid]).filter(Boolean);
+        if(coords.length<2) return;
+        const pts=coords.map(([lng,lat])=>project(lng,lat));
+        let d='M'+pts[0][0]+','+pts[0][1];
+        for(let i=1;i<pts.length;i++) d+='L'+pts[i][0]+','+pts[i][1];
+        const path=document.createElementNS('http://www.w3.org/2000/svg','path');
+        path.setAttribute('d',d);path.setAttribute('stroke',color);
+        path.setAttribute('stroke-width',CONFIG.SUBWAY_STROKE_PX);
+        path.setAttribute('vector-effect','non-scaling-stroke');
+        path.setAttribute('stroke-opacity','0.7');
+        path.setAttribute('fill','none');
+        path.classList.add('subway-line');
+        g.appendChild(path);
+      });
+    });
+    const wardGroup=document.getElementById('ward-group');
+    svg.insertBefore(g,wardGroup);
+  }catch(e){console.warn('Subway parse error:',e);}
+}
+
+function loadTiles(svg){
+  const g=document.createElementNS('http://www.w3.org/2000/svg','g');g.id='tile-group';
+  g.dataset.base=TILE_BASE;
+  const z=TILE_Z;
+  const xMin=lng2tile(BOUNDS.minLng,z),xMax=lng2tile(BOUNDS.maxLng,z);
+  const yMin=lat2tile(BOUNDS.maxLat,z),yMax=lat2tile(BOUNDS.minLat,z);
+  for(let tx=xMin;tx<=xMax;tx++){
+    for(let ty=yMin;ty<=yMax;ty++){
+      const[x1,y1]=project(tile2lng(tx,z),tile2lat(ty,z));
+      const[x2,y2]=project(tile2lng(tx+1,z),tile2lat(ty+1,z));
+      const img=document.createElementNS('http://www.w3.org/2000/svg','image');
+      img.dataset.tx=tx; img.dataset.ty=ty; img.dataset.z=z;
+      img.setAttribute('href',`${TILE_BASE}/${z}/${tx}/${ty}@2x.png`);
+      img.setAttribute('x',x1);img.setAttribute('y',y1);
+      img.setAttribute('width',x2-x1);img.setAttribute('height',y2-y1);
+      img.setAttribute('preserveAspectRatio','none');
+      g.appendChild(img);
+    }
+  }
+  svg.insertBefore(g,svg.firstChild);
+}
+// Swap the tile basemap. If base is null/empty, hide the tile layer entirely
+// (Shinkai: the map becomes a sky with wards floating on it).
+function applyTileBase(base){
+  const g=document.getElementById('tile-group');
+  if(!g) return;
+  if(!base){
+    g.style.display='none';
+    g.dataset.base='';
+    return;
+  }
+  g.style.display='';
+  if(g.dataset.base===base) return;
+  g.dataset.base=base;
+  g.querySelectorAll('image').forEach(img=>{
+    const tx=img.dataset.tx, ty=img.dataset.ty, z=img.dataset.z;
+    img.setAttribute('href',`${base}/${z}/${tx}/${ty}@2x.png`);
+  });
+}
+
+// ══════════════════════════════════════════════════════════
+// STATE
+// ══════════════════════════════════════════════════════════
+let currentAnime = 'jjk';
+let currentScale = 1, panX = 0, panY = 0;
+let selectedPath = null;
+let wardPaths = {}; // jp name → SVG path element
+let wardBounds = {}; // jp name → {minX, maxX, minY, maxY} in SVG units (for zoom-to-ward)
+let activeFilter = null; // current legend status filter (null = show all)
+let activePoiFilter = null; // current POI category filter, for poiLegend datasets (null = show all)
+let selectedPoiName = null; // name of the POI whose popup is open, so its dot can be marked
+let suppressZoomOnSelect = false; // true when selection is triggered by camera-moving caller
+
+const wrap = document.getElementById('map-svg-wrap');
+const tooltip = document.getElementById('tooltip');
+const poiPopup = document.getElementById('poi-popup');
+
+// Slug helper for URL params and POI lookup
+function poiSlug(name){
+  return String(name).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+}
+// Edge-aware popup positioning — keeps the popup inside the viewport
+function positionPopup(clientX, clientY){
+  // Force layout so we can measure
+  poiPopup.style.left='0px'; poiPopup.style.top='0px';
+  const w=poiPopup.offsetWidth||260, h=poiPopup.offsetHeight||80;
+  const vw=window.innerWidth, vh=window.innerHeight, pad=10;
+  let left=clientX+14, top=clientY-10;
+  if(left+w>vw-pad) left=Math.max(pad, clientX-w-14);
+  if(top+h>vh-pad) top=Math.max(pad, vh-h-pad);
+  if(top<pad) top=pad;
+  if(left<pad) left=pad;
+  poiPopup.style.left=left+'px';
+  poiPopup.style.top=top+'px';
+}
+// Deep-link URL sync. Uses replaceState so browser history isn't polluted.
+function updateUrl(){
+  const params=new URLSearchParams();
+  params.set('anime', currentAnime);
+  if(selectedPath){
+    const jp=selectedPath.dataset.jp;
+    const w=ANIME[currentAnime].wards[jp];
+    if(w) params.set('ward', w.n);
+  }
+  try{ history.replaceState(null,'','?'+params.toString()); }catch(e){/* file:// */}
+}
+
+// ══════════════════════════════════════════════════════════
+// LOAD & RENDER
+// ══════════════════════════════════════════════════════════
+async function loadMap(){
+  let data=null;
+  for(const src of ['tokyo_23_wards.geojson','assets/tokyo-wards.geojson']){
+    try{const r=await fetch(src);if(r.ok){data=await r.json();break;}}catch(e){}
+  }
+  if(!data){wrap.innerHTML='<p style="color:#dc2626;padding:40px;text-align:center;">Could not load ward boundaries.</p>';return;}
+
+  const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');
+  svg.setAttribute('viewBox',`0 0 ${SVG_W} ${SVG_H}`);
+  svg.setAttribute('width',SVG_W);svg.setAttribute('height',SVG_H);
+  svg.id='ward-svg';
+
+  // Load base map tiles first (behind everything)
+  loadTiles(svg);
+
+  const wardGroup=document.createElementNS('http://www.w3.org/2000/svg','g');wardGroup.id='ward-group';
+  const labelGroup=document.createElementNS('http://www.w3.org/2000/svg','g');labelGroup.id='label-group';
+
+  data.features.forEach(feature=>{
+    const jpName=feature.properties.ward_ja||feature.properties.N03_004||'';
+    // Must exist in at least one anime
+    if(!Object.keys(ANIME).some(k=>ANIME[k].wards[jpName])) return;
+
+    const geom=feature.geometry;
+    let rings=[];
+    if(geom.type==='Polygon') rings=geom.coordinates;
+    else if(geom.type==='MultiPolygon') geom.coordinates.forEach(p=>rings=rings.concat(p));
+
+    let allX=[],allY=[],dParts=[];
+    rings.forEach(ring=>{
+      const pts=ring.map(([lng,lat])=>project(lng,lat));
+      pts.forEach(([x,y])=>{allX.push(x);allY.push(y);});
+      const s=[pts[0]];
+      for(let i=1;i<pts.length-1;i++){const p=s[s.length-1],dx=pts[i][0]-p[0],dy=pts[i][1]-p[1];if(dx*dx+dy*dy>=CONFIG.WARD_SIMPLIFY_MIN_PX_SQ)s.push(pts[i]);}
+      s.push(pts[pts.length-1]);
+      let d=`M${s[0][0]},${s[0][1]}`;for(let i=1;i<s.length;i++)d+=`L${s[i][0]},${s[i][1]}`;d+='Z';
+      dParts.push(d);
+    });
+
+    const path=document.createElementNS('http://www.w3.org/2000/svg','path');
+    path.setAttribute('d',dParts.join(' '));
+    path.setAttribute('fill','#333');path.setAttribute('fill-opacity','0.55');
+    path.setAttribute('data-jp',jpName);path.classList.add('ward-path');
+
+    // Accessibility: make each ward keyboard-focusable with a screen-reader label.
+    // Label uses the initial Tokyo Ghoul name (same English across anime); updated on anime switch.
+    path.setAttribute('tabindex','0');
+    path.setAttribute('role','button');
+    const initialLabelWard=Object.keys(ANIME).map(k=>ANIME[k].wards[jpName]).find(Boolean);
+    if(initialLabelWard) path.setAttribute('aria-label',`${initialLabelWard.name} ward`);
+    path.addEventListener('keydown',e=>{
+      if(e.key==='Enter'||e.key===' '){e.preventDefault();selectWard(jpName);}
+    });
+
+    path.addEventListener('mouseenter',()=>{
+      const anime=ANIME[currentAnime];const w=anime.wards[jpName];
+      tooltip.textContent=w?`${w.name} (${jpName})`:'Unknown';
+      tooltip.style.display='block';
+    });
+    path.addEventListener('mousemove',e=>{tooltip.style.left=(e.clientX+14)+'px';tooltip.style.top=(e.clientY-10)+'px';});
+    path.addEventListener('mouseleave',()=>{tooltip.style.display='none';});
+    path.addEventListener('click',()=>selectWard(jpName));
+    wardGroup.appendChild(path);
+    wardPaths[jpName]=path;
+
+    // Save bounding box (for zoom-to-ward)
+    wardBounds[jpName]={
+      minX: Math.min.apply(null,allX), maxX: Math.max.apply(null,allX),
+      minY: Math.min.apply(null,allY), maxY: Math.max.apply(null,allY)
+    };
+
+    // Label
+    const cx=allX.reduce((a,b)=>a+b,0)/allX.length;
+    const cy=allY.reduce((a,b)=>a+b,0)/allY.length;
+    const lbl=document.createElementNS('http://www.w3.org/2000/svg','text');
+    lbl.setAttribute('x',cx);lbl.setAttribute('y',cy);lbl.classList.add('ward-label');
+    // Use first-found anime entry for the static ward label (English name is consistent across series)
+    const wAny=Object.keys(ANIME).map(k=>ANIME[k].wards[jpName]).find(Boolean);
+    lbl.textContent=wAny?wAny.name:'';
+    labelGroup.appendChild(lbl);
+  });
+
+  svg.appendChild(wardGroup);
+
+  // Overlay group (barrier domes for JJK)
+  const overlayGroup=document.createElementNS('http://www.w3.org/2000/svg','g');overlayGroup.id='overlay-group';
+  svg.appendChild(overlayGroup);
+
+  // POI group
+  const poiGroup=document.createElementNS('http://www.w3.org/2000/svg','g');poiGroup.id='poi-group';
+  svg.appendChild(poiGroup);
+
+  svg.appendChild(labelGroup);
+  wrap.appendChild(svg);
+
+  centerMap();
+  // On resize, preserve user zoom/pan center. Fallback to full re-center on first load.
+  window.addEventListener('resize',()=>{
+    // If the user hasn't zoomed yet (still near initial fit), just re-center; otherwise preserve their view.
+    preserveOnResize()();
+  });
+
+  // Close POI popup on any click outside a POI dot (wrap, svg, ward, subway, label, etc.)
+  wrap.addEventListener('click',e=>{
+    if(!e.target.closest('.poi-dot')) hidePoiPopup();
+  });
+
+  // Deep-link params: ?anime=<key>&ward=<n>&poi=<slug>
+  const urlParams=new URLSearchParams(window.location.search);
+  const urlAnime=urlParams.get('anime');
+  const urlWard=urlParams.get('ward');
+  const urlPoi=urlParams.get('poi');
+  if(urlAnime&&!ANIME[urlAnime]) console.error('Unknown map dataset:',urlAnime,'— check that the data script loaded');
+  if(urlAnime&&ANIME[urlAnime]) currentAnime=urlAnime;
+
+  // Sync tab buttons to match the URL-selected dataset (static HTML defaults to JJK active)
+  document.querySelectorAll('.anime-tab').forEach(t=>{
+    const on=t.dataset.anime===currentAnime;
+    t.classList.toggle('active',on);
+    t.setAttribute('aria-selected',on?'true':'false');
+  });
+
+  // Hide the inner anime switcher when embedded with chrome=0 (e.g. the class map panel on index.html)
+  if(urlParams.get('chrome')==='0'){
+    const sw=document.getElementById('anime-switcher');
+    if(sw) sw.style.display='none';
+  }
+
+  // Apply initial anime theme
+  applyAnimeTheme();
+
+  // After theme is applied, honor ward/poi deep links (next tick so POI layer exists)
+  if(urlWard){
+    const anime=ANIME[currentAnime];
+    const match=Object.entries(anime.wards).find(([_,w])=>String(w.n)===urlWard);
+    if(match) setTimeout(()=>selectWard(match[0]), 0);
+  } else if(urlPoi){
+    const anime=ANIME[currentAnime];
+    const poi=anime.pois.find(p=>poiSlug(p.name)===urlPoi);
+    if(poi){
+      const [sx,sy]=project(poi.lng,poi.lat);
+      const ww=wrap.clientWidth, wh=wrap.clientHeight;
+      currentScale=Math.min(CONFIG.ZOOM_MAX, 5);
+      panX=ww/2 - sx*currentScale;
+      panY=wh/2 - sy*currentScale;
+      applyTransform();
+      setTimeout(()=>showPoiDetail(ww/2, wh/2, poi, anime.theme.accentBright), 120);
+    }
+  }
+
+  // Load subway lines asynchronously (appears when ready)
+  loadSubwayLines(svg);
+
+  setTimeout(()=>{const h=document.getElementById('click-hint');if(h){h.style.opacity='0';setTimeout(()=>h.remove(),600);}},CONFIG.CLICK_HINT_TIMEOUT_MS);
+}
+
+// ══════════════════════════════════════════════════════════
+// ANIME SWITCHING
+// ══════════════════════════════════════════════════════════
+function switchAnime(key){
+  currentAnime=key;
+
+  // Update tabs
+  document.querySelectorAll('.anime-tab').forEach(t=>{
+    const on = t.dataset.anime===key;
+    t.classList.toggle('active',on);
+    t.setAttribute('aria-selected', on ? 'true' : 'false');
+  });
+
+  // Close info panel and clear any active legend filter (status keys differ per anime)
+  document.getElementById('info-panel').classList.remove('active');
+  if(selectedPath){selectedPath.classList.remove('selected');selectedPath=null;}
+  // No hidePoiPopup() here: applyAnimeTheme() below re-renders the POIs anyway.
+  poiPopup.style.display='none';
+  selectedPoiName=null;
+  activeFilter=null;
+  activePoiFilter=null;
+
+  applyAnimeTheme();
+  updateUrl();
+}
+
+// Popup shown when the user clicks a ward that isn't featured in the current anime.
+// Lists which other series DO include it, with one-click switch links.
+function showNotFeaturedPopup(jpName){
+  const featuredIn=Object.keys(ANIME).filter(k=>ANIME[k].wards[jpName]);
+  const wAny=featuredIn.length ? ANIME[featuredIn[0]].wards[jpName] : null;
+  poiPopup.textContent='';
+  const head=document.createElement('strong');
+  head.style.color='var(--muted)';
+  head.textContent = wAny ? `${wAny.name} — not featured` : 'Not featured';
+  poiPopup.appendChild(head);
+  const sub=document.createElement('div');
+  sub.style.cssText='font-size:.75rem;color:var(--prose);margin:.25rem 0 .4rem;font-style:italic;';
+  sub.textContent = featuredIn.length
+    ? `This ward doesn't appear in ${ANIME[currentAnime].title}. See it in:`
+    : `This ward isn't featured in any of the four series.`;
+  poiPopup.appendChild(sub);
+  featuredIn.forEach(key=>{
+    const a=document.createElement('a');
+    a.href='#';
+    a.style.cssText=`display:block;color:${ANIME[key].theme.accentBright};text-decoration:none;padding:2px 0;cursor:pointer;font-size:.85rem;font-weight:600;`;
+    a.textContent='→ '+ANIME[key].title;
+    a.addEventListener('click',ev=>{
+      ev.preventDefault(); ev.stopPropagation();
+      switchAnime(key);
+      setTimeout(()=>selectWard(jpName), 50);
+    });
+    poiPopup.appendChild(a);
+  });
+  poiPopup.style.display='block';
+  const path=wardPaths[jpName];
+  if(path){
+    const r=path.getBoundingClientRect();
+    positionPopup(r.left+r.width/2, r.top+r.height/2);
+  }
+}
+
+function applyLegendFilter(){
+  const anime=ANIME[currentAnime];
+  // Legend items highlighted
+  document.querySelectorAll('.legend-item').forEach(el=>{
+    el.classList.toggle('active-filter', el.dataset.status===activeFilter);
+  });
+  // Ward fills dimmed when they don't match the active filter
+  Object.entries(wardPaths).forEach(([jp,path])=>{
+    const w=anime.wards[jp];
+    if(activeFilter && w && w.status!==activeFilter){
+      path.classList.add('filtered-out');
+    } else {
+      path.classList.remove('filtered-out');
+    }
+  });
+}
+
+function applyAnimeTheme(){
+  const anime=ANIME[currentAnime];
+  const root=document.documentElement;
+
+  // Basemap per anime: dark tiles by default; Shinkai uses no tiles + a sky gradient background.
+  // tileBase === null  -> hide tiles
+  // tileBase === undefined -> use default dark tiles
+  // tileBase === <url> -> swap to that tile source
+  const tb = anime.theme.tileBase === undefined ? CONFIG.TILE_BASE : anime.theme.tileBase;
+  applyTileBase(tb);
+  // Optional tile opacity override (Shinkai uses 0.55 so the sky gradient shows through)
+  const tileGroup=document.getElementById('tile-group');
+  if(tileGroup) tileGroup.style.opacity = anime.theme.tileOpacity != null ? anime.theme.tileOpacity : '';
+  // Background: custom gradient if provided, otherwise the default dark color from CSS.
+  wrap.style.background = anime.theme.background || '';
+  // 'bright-theme' class flips ward labels to dark text so they stay readable on sky/light backgrounds.
+  document.body.classList.toggle('bright-theme', !!anime.theme.background || !!anime.theme.tileBase);
+
+  // Header
+  document.getElementById('hdr-eyebrow').textContent=anime.eyebrow;
+  document.getElementById('hdr-title').textContent=anime.title;
+  document.getElementById('hdr-subtitle').textContent=anime.subtitle;
+
+  // CSS variables
+  root.style.setProperty('--accent',anime.theme.accent);
+  root.style.setProperty('--accent-bright',anime.theme.accentBright);
+  root.style.setProperty('--border',anime.theme.border);
+
+  // Header/legend glow
+  const hdr=document.getElementById('hdr');
+  hdr.style.borderColor=anime.theme.border;
+  hdr.style.boxShadow=`0 0 30px ${anime.theme.glow}, 0 4px 20px rgba(0,0,0,0.8)`;
+
+  const legend=document.getElementById('legend');
+  legend.style.borderColor=anime.theme.border;
+
+  // Ward colors + featured/not-featured state
+  // When disableWardInfo is set (Shinkai), skip the colored territory overlay entirely —
+  // wards render as transparent shapes with faint outlines. Just boundary lines, no fill.
+  const skipWardFills = !!anime.disableWardInfo;
+  Object.entries(wardPaths).forEach(([jp,path])=>{
+    const w=anime.wards[jp];
+    if(skipWardFills){
+      path.setAttribute('fill','none');
+      path.setAttribute('fill-opacity','1');
+      path.style.display='';
+      path.classList.remove('not-featured');
+      path.setAttribute('aria-label', w ? `${w.name} ward` : 'Ward');
+    } else if(w){
+      const status=anime.statuses[w.status];
+      path.setAttribute('fill',status?status.color:'#333');
+      path.setAttribute('fill-opacity','0.55');
+      path.style.display='';
+      path.classList.remove('not-featured');
+      path.setAttribute('aria-label',`${w.name} ward`);
+    } else {
+      // Ward isn't in this anime — hide it completely. No fill, no stroke, not clickable.
+      path.classList.add('not-featured');
+      path.removeAttribute('aria-label');
+    }
+  });
+
+  // Legend has three modes:
+  //   poiLegend      -> legend lists POI categories and filters the POIs
+  //   skipWardFills  -> nothing to legend, hide it
+  //   default        -> legend lists ward statuses and filters the wards
+  const legendEl=document.getElementById('legend');
+  const legendItems=document.getElementById('legend-items');
+  const legendTitle=document.getElementById('legend-title');
+  legendItems.innerHTML='';
+  if(anime.poiLegend){
+    legendEl.style.display='';
+    legendTitle.textContent='Location Type';
+    // Only offer categories that actually occur in this dataset.
+    const present=new Set(anime.pois.map(p=>p.cat));
+    Object.entries(anime.statuses).forEach(([key,{color,label}])=>{
+      if(!present.has(key)) return;
+      const count=anime.pois.filter(p=>p.cat===key).length;
+      const item=document.createElement('div');
+      item.className='legend-item';
+      item.dataset.status=key;
+      item.setAttribute('role','button');
+      item.setAttribute('tabindex','0');
+      item.setAttribute('aria-pressed', activePoiFilter===key ? 'true' : 'false');
+      const sw=document.createElement('div');
+      sw.className='legend-swatch';
+      sw.style.background=color;
+      const span=document.createElement('span');
+      span.textContent=`${label} (${count})`;
+      item.appendChild(sw);item.appendChild(span);
+      const toggle=()=>{
+        activePoiFilter = (activePoiFilter===key) ? null : key;
+        // Re-render dots and refresh the pressed states.
+        renderPOIs();
+        legendItems.querySelectorAll('.legend-item').forEach(el=>{
+          const on = el.dataset.status===activePoiFilter;
+          el.classList.toggle('active-filter', on);
+          el.setAttribute('aria-pressed', on ? 'true' : 'false');
+        });
+      };
+      item.addEventListener('click',toggle);
+      item.addEventListener('keydown',e=>{
+        if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle();}
+      });
+      item.classList.toggle('active-filter', activePoiFilter===key);
+      legendItems.appendChild(item);
+    });
+  } else if(skipWardFills){
+    legendEl.style.display='none';
+  } else {
+    legendEl.style.display='';
+    legendTitle.textContent='Ward Status';
+    Object.entries(anime.statuses).forEach(([key,{color,label}])=>{
+      const item=document.createElement('div');item.className='legend-item';item.dataset.status=key;
+      item.innerHTML=`<div class="legend-swatch" style="background:${color}"></div><span>${label}</span>`;
+      // Legend-as-filter: click status to dim all non-matching wards; click again to clear
+      item.addEventListener('click',()=>{
+        activeFilter = (activeFilter===key) ? null : key;
+        applyLegendFilter();
+      });
+      legendItems.appendChild(item);
+    });
+    applyLegendFilter();
+  }
+
+  // POIs — rendered via renderPOIs() which handles clustering
+  renderPOIs();
+
+  // Overlays (JJK barrier domes)
+  const overlayGroup=document.getElementById('overlay-group');
+  overlayGroup.innerHTML='';
+  anime.overlays.forEach(ov=>{
+    if(ov.type==='circle'){
+      const[cx,cy]=project(ov.lng,ov.lat);
+      const r=metersToSvg(ov.r);
+      // Outer dashed dome — assertive so it reads over the colored ward fills
+      const outer=document.createElementNS('http://www.w3.org/2000/svg','circle');
+      outer.setAttribute('cx',cx);outer.setAttribute('cy',cy);outer.setAttribute('r',r);
+      outer.setAttribute('fill',ov.color);outer.setAttribute('fill-opacity','0.18');
+      outer.setAttribute('stroke',ov.color);outer.setAttribute('stroke-width','2.5');
+      outer.setAttribute('stroke-opacity','0.9');outer.setAttribute('stroke-dasharray','8 5');
+      outer.setAttribute('vector-effect','non-scaling-stroke');
+      outer.classList.add('barrier-dome');
+      overlayGroup.appendChild(outer);
+      // Inner core
+      const inner=document.createElementNS('http://www.w3.org/2000/svg','circle');
+      inner.setAttribute('cx',cx);inner.setAttribute('cy',cy);inner.setAttribute('r',r*0.3);
+      inner.setAttribute('fill',ov.color);inner.setAttribute('fill-opacity','0.45');
+      inner.setAttribute('stroke',ov.color);inner.setAttribute('stroke-width','1');
+      inner.setAttribute('stroke-opacity','0.8');
+      inner.setAttribute('vector-effect','non-scaling-stroke');
+      inner.classList.add('barrier-dome');
+      overlayGroup.appendChild(inner);
+    }
+  });
+}
+
+// ══════════════════════════════════════════════════════════
+// WARD SELECTION & INFO PANEL
+// ══════════════════════════════════════════════════════════
+function selectWard(jpName){
+  const anime=ANIME[currentAnime];
+  const ward=anime.wards[jpName];
+  if(!ward) return; // ward isn't in this anime — already invisible + non-clickable
+
+  if(selectedPath) selectedPath.classList.remove('selected');
+  const path=wardPaths[jpName];
+  if(path){path.classList.add('selected');selectedPath=path;}
+
+  hidePoiPopup();
+  // Some anime (Shinkai) don't want a ward info panel — wards are admin boundaries, not story units.
+  if(!anime.disableWardInfo) updateInfoPanel(ward);
+  else document.getElementById('info-panel').classList.remove('active');
+
+  // Zoom/pan to frame the ward (unless a caller is already moving the camera)
+  if(!suppressZoomOnSelect){
+    const b=wardBounds[jpName];
+    if(b){
+      const ww=wrap.clientWidth, wh=wrap.clientHeight;
+      const bw=Math.max(1,b.maxX-b.minX), bh=Math.max(1,b.maxY-b.minY);
+      const padding=1.6; // keep the ward comfortably inside the viewport
+      const targetScale=Math.min(ww/(bw*padding), wh/(bh*padding));
+      currentScale=Math.max(CONFIG.ZOOM_MIN, Math.min(CONFIG.ZOOM_MAX, targetScale));
+      const cx=(b.minX+b.maxX)/2, cy=(b.minY+b.maxY)/2;
+      panX=ww/2 - cx*currentScale;
+      panY=wh/2 - cy*currentScale;
+      applyTransform();
+    }
+  }
+  updateUrl();
+}
+
+function updateInfoPanel(ward){
+  const anime=ANIME[currentAnime];
+  const content=document.getElementById('info-content');
+  const panel=document.getElementById('info-panel');
+  const statusInfo=anime.statuses[ward.status]||{label:'Unknown'};
+
+  // Build sections based on what data exists
+  let sections='';
+
+  // Chainsaw Man specific fields
+  if(ward.devilThreat){
+    const tc={'Low':'#22c55e','Moderate':'#f59e0b','Moderate-High':'#f97316','High':'#dc2626','Extreme':'#7c2d12','Low-Moderate':'#a3e635'}[ward.devilThreat]||'#f97316';
+    sections+=`<div class="info-section"><div class="info-label">Devil Threat</div><div style="color:${tc};font-weight:600;font-size:.85rem;">${ward.devilThreat}</div></div>`;
+  }
+
+  // Generic array fields
+  const arrayFields=[
+    {key:'factions',label:'Factions'},{key:'divisions',label:'Division Presence'},
+    {key:'devils',label:'Devil Activity'},{key:'characters',label:'Key Characters'},
+    {key:'locations',label:'Notable Locations'}
+  ];
+  arrayFields.forEach(({key,label})=>{
+    if(ward[key]&&ward[key].length>0){
+      sections+=`<div class="info-section"><div class="info-label">${label}</div><ul class="info-list">${ward[key].map(x=>`<li>${x}</li>`).join('')}</ul></div>`;
+    }
+  });
+
+  content.innerHTML=`
+    <div class="info-ward-number">Ward ${ward.n}</div>
+    <div class="info-ward-name">${ward.name}</div>
+    <div class="info-status-badge status-${ward.status}">${statusInfo.label}</div>
+    <div class="info-title">${ward.title}</div>
+    ${sections}
+    <div class="info-section"><div class="info-prose">${ward.prose}</div></div>
+  `;
+  panel.classList.add('active');
+}
+
+// ══════════════════════════════════════════════════════════
+// PAN & ZOOM
+// ══════════════════════════════════════════════════════════
+function centerMap(){
+  const ww=wrap.clientWidth,wh=wrap.clientHeight;
+  currentScale=Math.min(ww/SVG_W,wh/SVG_H)*CONFIG.INITIAL_FIT_PADDING;
+  panX=(ww-SVG_W*currentScale)/2;panY=(wh-SVG_H*currentScale)/2;
+  applyTransform();
+}
+// On resize, preserve the user's center-point + zoom instead of re-centering
+function preserveOnResize(){
+  const ww=wrap.clientWidth,wh=wrap.clientHeight;
+  const svgCenterX=(ww/2 - panX)/currentScale;
+  const svgCenterY=(wh/2 - panY)/currentScale;
+  // Width/height of the wrap may have changed; re-derive pan so the same SVG point stays centered
+  return ()=>{
+    const nw=wrap.clientWidth,nh=wrap.clientHeight;
+    panX=nw/2 - svgCenterX*currentScale;
+    panY=nh/2 - svgCenterY*currentScale;
+    applyTransform();
+  };
+}
+let lastClusteredScale=0;
+
+// ── POI POPUP HELPERS (use DOM methods, no innerHTML with data) ─────────────────
+function showPoiDetail(clientX, clientY, poi, poiColor){
+  poiPopup.textContent=''; // clear
+  const title=document.createElement('strong');
+  title.style.color=poiColor;
+  title.textContent=poi.name;
+  poiPopup.appendChild(title);
+  poiPopup.appendChild(document.createElement('br'));
+  const body=document.createElement('small');
+  body.textContent=poi.label;
+  poiPopup.appendChild(body);
+  poiPopup.style.display='block';
+  positionPopup(clientX,clientY);
+  // Mark the originating dot so the map shows which POI is open.
+  if(selectedPoiName!==poi.name){
+    selectedPoiName=poi.name;
+    renderPOIs();
+  }
+}
+
+// Single exit point for dismissing the POI popup, so the dot's selected
+// state and the popup visibility can never drift apart.
+function hidePoiPopup(){
+  poiPopup.style.display='none';
+  if(selectedPoiName!==null){
+    selectedPoiName=null;
+    renderPOIs();
+  }
+}
+function showClusterList(clientX, clientY, grp, poiColor){
+  poiPopup.textContent='';
+  const header=document.createElement('strong');
+  header.style.color=poiColor;
+  header.textContent=`${grp.length} locations here`;
+  poiPopup.appendChild(header);
+  const hint=document.createElement('div');
+  hint.style.cssText='font-size:.7rem;opacity:.65;margin:.15rem 0 .35rem;';
+  hint.textContent='Click a name to see details:';
+  poiPopup.appendChild(hint);
+  grp.forEach(g=>{
+    const row=document.createElement('a');
+    row.href='#';
+    row.style.cssText=`display:block;color:${poiColor};text-decoration:none;padding:2px 0;cursor:pointer;font-size:.85rem;`;
+    row.textContent='→ '+g.poi.name;
+    row.addEventListener('click',ev=>{
+      ev.preventDefault();
+      ev.stopPropagation();
+      // Swap popup to show this POI's full detail; keep the popup at the same on-screen position
+      const rect=poiPopup.getBoundingClientRect();
+      showPoiDetail(rect.left-14, rect.top+10, g.poi, poiColor);
+    });
+    poiPopup.appendChild(row);
+  });
+  poiPopup.style.display='block';
+  positionPopup(clientX, clientY);
+}
+// Returns true if any pair in the cluster would still be within clustering range at targetScale.
+// Used to decide whether zoom-in is useful or we should show the list popup instead.
+function clusterWouldStayClustered(grp, targetScale){
+  const threshold=CONFIG.CLUSTER_SCREEN_PX/targetScale; // in SVG units
+  const th2=threshold*threshold;
+  for(let i=0;i<grp.length;i++){
+    for(let j=i+1;j<grp.length;j++){
+      const dx=grp[i].sx-grp[j].sx, dy=grp[i].sy-grp[j].sy;
+      if(dx*dx+dy*dy<th2) return true;
+    }
+  }
+  return false;
+}
+
+// ── POI CLUSTERING ──────────────────────────
+function renderPOIs(){
+  const anime=ANIME[currentAnime];
+  const poiGroup=document.getElementById('poi-group');
+  if(!poiGroup||!anime)return;
+  poiGroup.innerHTML='';
+  const themeColor=anime.theme.accentBright;
+  // Datasets may colour individual POIs (category colours on the class map,
+  // per-film colours on the Shinkai map). Fall back to the theme accent.
+  const colorOf=poi=>poi.color||themeColor;
+  const inv=1/currentScale;
+  const CLUSTER_SVG=CONFIG.CLUSTER_SCREEN_PX*inv; // screen px threshold in SVG units
+
+  // A POI-category filter hides non-matching POIs outright, so they don't
+  // get absorbed into clusters and inflate the cluster counts.
+  const visiblePois=activePoiFilter
+    ? anime.pois.filter(p=>p.cat===activePoiFilter)
+    : anime.pois;
+
+  const items=visiblePois.map(poi=>{
+    const[sx,sy]=project(poi.lng,poi.lat);
+    return{poi,sx,sy};
+  });
+
+  // Cluster by repeatedly absorbing any remaining POI within CLUSTER_SVG of the
+  // growing cluster's *centroid*. Using squared distance avoids Math.sqrt in the
+  // hot loop. Centroid-based growth makes cluster shape independent of iteration order.
+  const clusterR2=CLUSTER_SVG*CLUSTER_SVG;
+  const used=new Set();
+  const clusters=[];
+  items.forEach((item,i)=>{
+    if(used.has(i))return;
+    const grp=[item];used.add(i);
+    let ax=item.sx,ay=item.sy;
+    let absorbed=true;
+    while(absorbed){
+      absorbed=false;
+      for(let j=0;j<items.length;j++){
+        if(used.has(j))continue;
+        const dx=ax-items[j].sx,dy=ay-items[j].sy;
+        if(dx*dx+dy*dy<clusterR2){
+          grp.push(items[j]);used.add(j);
+          // Recompute centroid
+          ax=grp.reduce((s,g)=>s+g.sx,0)/grp.length;
+          ay=grp.reduce((s,g)=>s+g.sy,0)/grp.length;
+          absorbed=true;
+        }
+      }
+    }
+    clusters.push(grp);
+  });
+
+  clusters.forEach(grp=>{
+    const ax=grp.reduce((s,g)=>s+g.sx,0)/grp.length;
+    const ay=grp.reduce((s,g)=>s+g.sy,0)/grp.length;
+    if(grp.length===1){
+      const poi=grp[0].poi;
+      const dotColor=colorOf(poi);
+      const isSelected=selectedPoiName===poi.name;
+      // Expanding ring on the open POI — marks which dot the popup belongs to.
+      if(isSelected){
+        const ping=document.createElementNS('http://www.w3.org/2000/svg','circle');
+        ping.setAttribute('cx',ax);ping.setAttribute('cy',ay);ping.setAttribute('r',7*inv);
+        ping.setAttribute('stroke',dotColor);
+        ping.setAttribute('stroke-width',1.5*inv);
+        ping.classList.add('poi-ping');
+        ping.style.transformOrigin=`${ax}px ${ay}px`;
+        poiGroup.appendChild(ping);
+      }
+      const c=document.createElementNS('http://www.w3.org/2000/svg','circle');
+      c.setAttribute('cx',ax);c.setAttribute('cy',ay);c.setAttribute('r',(isSelected?9:7)*inv);
+      c.setAttribute('fill',dotColor);c.setAttribute('stroke','#fff');
+      c.setAttribute('stroke-width',(isSelected?3:1.5)*inv);
+      c.setAttribute('stroke-opacity',isSelected?'1':'0.8');
+      c.classList.add('poi-dot');c.style.cursor='pointer';
+      if(isSelected) c.classList.add('poi-selected');
+      // Accessibility
+      c.setAttribute('tabindex','0');
+      c.setAttribute('role','button');
+      c.setAttribute('aria-pressed',isSelected?'true':'false');
+      c.setAttribute('aria-label',`Point of interest: ${poi.name}`);
+      c.addEventListener('click',e=>{e.stopPropagation();showPoiDetail(e.clientX,e.clientY,poi,dotColor);});
+      c.addEventListener('keydown',e=>{
+        if(e.key==='Enter'||e.key===' '){
+          e.preventDefault();
+          const r=c.getBoundingClientRect();
+          showPoiDetail(r.left+r.width/2, r.top+r.height/2, poi, dotColor);
+        }
+      });
+      poiGroup.appendChild(c);
+    } else {
+      const R=16*inv;
+      // Clusters can span categories; use the theme accent unless the whole
+      // group shares one colour, in which case that colour is more informative.
+      const groupColors=[...new Set(grp.map(g=>colorOf(g.poi)))];
+      const poiColor=groupColors.length===1?groupColors[0]:themeColor;
+      const c=document.createElementNS('http://www.w3.org/2000/svg','circle');
+      c.setAttribute('cx',ax);c.setAttribute('cy',ay);c.setAttribute('r',R);
+      c.setAttribute('fill','rgba(0,0,0,0.82)');c.setAttribute('stroke',poiColor);
+      c.setAttribute('stroke-width',2.5*inv);c.classList.add('poi-dot','poi-cluster');c.style.cursor='pointer';
+      c.setAttribute('tabindex','0');
+      c.setAttribute('role','button');
+      c.setAttribute('aria-label',`Cluster of ${grp.length} points of interest. Activate to expand.`);
+      const txt=document.createElementNS('http://www.w3.org/2000/svg','text');
+      txt.setAttribute('x',ax);txt.setAttribute('y',ay);
+      txt.setAttribute('text-anchor','middle');txt.setAttribute('dominant-baseline','central');
+      txt.setAttribute('fill',poiColor);txt.setAttribute('font-size',11*inv);
+      txt.setAttribute('font-weight','700');txt.setAttribute('font-family','Inter,sans-serif');
+      txt.textContent=grp.length;txt.style.pointerEvents='none';
+      // On cluster click, decide between zoom-in and list-popup based on whether
+      // zooming in would actually separate any pair. Some clusters (e.g. the six
+      // JJK Shibuya POIs within ~60m of each other, or the five CM Jinbocho POIs)
+      // are tighter than the max-zoom resolution — zooming in would just re-cluster
+      // and the POIs would never be reachable. For those we skip the zoom and show
+      // a clickable list of everything in the cluster.
+      const expand=e=>{
+        e.stopPropagation();
+        const newScale=Math.min(CONFIG.ZOOM_MAX,currentScale*CONFIG.CLUSTER_ZOOM_IN_RATIO);
+        if(clusterWouldStayClustered(grp,newScale)){
+          // Zoom wouldn't help. Show the list directly at the cluster location.
+          const r=c.getBoundingClientRect();
+          const x=(e.clientX!=null)?e.clientX:r.left+r.width/2;
+          const y=(e.clientY!=null)?e.clientY:r.top+r.height/2;
+          showClusterList(x,y,grp,poiColor);
+        }else{
+          const actualRatio=newScale/currentScale;
+          panX=panX+ax*currentScale*(1-actualRatio);
+          panY=panY+ay*currentScale*(1-actualRatio);
+          currentScale=newScale;
+          applyTransform();
+        }
+      };
+      c.addEventListener('click',expand);
+      txt.addEventListener('click',expand);
+      c.addEventListener('keydown',e=>{
+        if(e.key==='Enter'||e.key===' '){e.preventDefault();expand(e);}
+      });
+      poiGroup.appendChild(c);poiGroup.appendChild(txt);
+    }
+  });
+  lastClusteredScale=currentScale;
+}
+
+let cachedSvg=null, cachedWardLabels=null;
+function applyTransform(){
+  if(!cachedSvg) cachedSvg=document.getElementById('ward-svg');
+  if(cachedSvg) cachedSvg.style.transform=`translate(${panX}px,${panY}px) scale(${currentScale})`;
+  const inv=1/currentScale;
+  // Counter-scale ward labels only (subway now uses vector-effect:non-scaling-stroke, no per-frame work needed)
+  if(!cachedWardLabels) cachedWardLabels=document.querySelectorAll('.ward-label');
+  cachedWardLabels.forEach(t=>t.setAttribute('font-size',10*inv));
+  // Re-cluster POIs only when zoom level changes meaningfully, not on every pan frame
+  if(Math.abs(currentScale-lastClusteredScale)>CONFIG.CLUSTER_ZOOM_DELTA) renderPOIs();
+}
+
+let isDragging=false,dragStartX,dragStartY,panStartX,panStartY;
+wrap.addEventListener('mousedown',e=>{isDragging=true;dragStartX=e.clientX;dragStartY=e.clientY;panStartX=panX;panStartY=panY;wrap.classList.add('dragging');});
+window.addEventListener('mousemove',e=>{if(!isDragging)return;panX=panStartX+(e.clientX-dragStartX);panY=panStartY+(e.clientY-dragStartY);applyTransform();});
+window.addEventListener('mouseup',()=>{isDragging=false;wrap.classList.remove('dragging');});
+
+wrap.addEventListener('wheel',e=>{e.preventDefault();zoomAt(e.deltaY>0?-1:1,e.clientX,e.clientY);},{passive:false});
+
+// Double-click to zoom in toward the cursor
+wrap.addEventListener('dblclick',e=>{
+  if(e.target.closest('.poi-dot')) return; // let POI handle its own clicks
+  e.preventDefault();
+  // Two-step zoom for a bit more movement per dblclick
+  zoomAt(1, e.clientX, e.clientY);
+  zoomAt(1, e.clientX, e.clientY);
+});
+
+let touchDist=0;
+wrap.addEventListener('touchstart',e=>{
+  if(e.touches.length===1){isDragging=true;dragStartX=e.touches[0].clientX;dragStartY=e.touches[0].clientY;panStartX=panX;panStartY=panY;}
+  else if(e.touches.length===2){isDragging=false;touchDist=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);}
+},{passive:false});
+wrap.addEventListener('touchmove',e=>{
+  e.preventDefault();
+  if(e.touches.length===1&&isDragging){panX=panStartX+(e.touches[0].clientX-dragStartX);panY=panStartY+(e.touches[0].clientY-dragStartY);applyTransform();}
+  else if(e.touches.length===2 && touchDist>0){
+    // Continuous pinch-to-zoom: scale proportional to finger-distance ratio
+    const nd=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);
+    const cx=(e.touches[0].clientX+e.touches[1].clientX)/2,cy=(e.touches[0].clientY+e.touches[1].clientY)/2;
+    const ratio=nd/touchDist;
+    const old=currentScale;
+    currentScale=Math.max(CONFIG.ZOOM_MIN, Math.min(CONFIG.ZOOM_MAX, currentScale*ratio));
+    const r=currentScale/old;
+    panX=cx-(cx-panX)*r;
+    panY=cy-(cy-panY)*r;
+    touchDist=nd;
+    applyTransform();
+  }
+},{passive:false});
+wrap.addEventListener('touchend',()=>{isDragging=false;});
+
+function zoomAt(dir,cx,cy){
+  const old=currentScale;currentScale*=dir>0?1.15:0.87;
+  currentScale=Math.max(CONFIG.ZOOM_MIN,Math.min(CONFIG.ZOOM_MAX,currentScale));
+  const r=currentScale/old;panX=cx-(cx-panX)*r;panY=cy-(cy-panY)*r;applyTransform();
+}
+function zoomMap(dir){const r=wrap.getBoundingClientRect();zoomAt(dir,r.left+r.width/2,r.top+r.height/2);}
+
+// ══════════════════════════════════════════════════════════
+// EVENT WIRING (replaces the old inline onclick attributes)
+// ══════════════════════════════════════════════════════════
+document.querySelectorAll('.anime-tab').forEach(tab=>{
+  tab.addEventListener('click',()=>switchAnime(tab.dataset.anime));
+});
+
+const legendToggle=document.getElementById('btn-legend-toggle');
+legendToggle.addEventListener('click',()=>{
+  const legend=document.getElementById('legend');
+  legend.classList.toggle('collapsed');
+  legendToggle.setAttribute('aria-expanded', legend.classList.contains('collapsed') ? 'false' : 'true');
+});
+
+document.getElementById('btn-zoom-in').addEventListener('click',()=>zoomMap(1));
+document.getElementById('btn-zoom-out').addEventListener('click',()=>zoomMap(-1));
+document.getElementById('btn-zoom-reset').addEventListener('click',()=>{
+  // Clear selection + filter so reset is "start over"
+  if(selectedPath){selectedPath.classList.remove('selected');selectedPath=null;}
+  document.getElementById('info-panel').classList.remove('active');
+  hidePoiPopup();
+  activeFilter=null; applyLegendFilter();
+  if(activePoiFilter!==null){activePoiFilter=null;applyAnimeTheme();}
+  centerMap();
+  updateUrl();
+});
+document.getElementById('btn-info-close').addEventListener('click',()=>{
+  document.getElementById('info-panel').classList.remove('active');
+});
+
+// ══════════════════════════════════════════════════════════
+// SEARCH (wards + POIs, substring match, keyboard navigable)
+// ══════════════════════════════════════════════════════════
+const searchInput=document.getElementById('search-input');
+const searchResults=document.getElementById('search-results');
+let searchFocusIdx=-1;
+function runSearch(){
+  const q=searchInput.value.trim().toLowerCase();
+  searchResults.textContent='';
+  searchFocusIdx=-1;
+  if(!q){ searchResults.classList.remove('active'); return; }
+  const anime=ANIME[currentAnime];
+  const hits=[];
+  // Wards: match name, title, or Japanese key
+  Object.entries(anime.wards).forEach(([jp,w])=>{
+    const hay=(w.name+' '+w.title+' '+jp).toLowerCase();
+    if(hay.includes(q)) hits.push({type:'ward', jp, w});
+  });
+  // POIs
+  anime.pois.forEach(p=>{
+    if(p.name.toLowerCase().includes(q)) hits.push({type:'poi', poi:p});
+  });
+  if(!hits.length){
+    const empty=document.createElement('div'); empty.className='search-empty';
+    empty.textContent='No matches. Try a different series?';
+    searchResults.appendChild(empty);
+    searchResults.classList.add('active');
+    return;
+  }
+  hits.slice(0,14).forEach((h,idx)=>{
+    const row=document.createElement('div');
+    row.className='search-result'; row.setAttribute('role','option'); row.dataset.idx=idx;
+    const type=document.createElement('span'); type.className='search-result-type';
+    type.textContent = h.type==='ward' ? 'Ward' : 'POI';
+    const label=document.createElement('div'); label.className='search-result-label';
+    label.appendChild(type);
+    label.appendChild(document.createTextNode(h.type==='ward' ? `${h.w.name} (Ward ${h.w.n})` : h.poi.name));
+    const sub=document.createElement('div'); sub.className='search-result-sub';
+    sub.textContent = h.type==='ward' ? h.w.title : (h.poi.label.length>90 ? h.poi.label.slice(0,90)+'…' : h.poi.label);
+    row.appendChild(label); row.appendChild(sub);
+    row.addEventListener('click',()=>selectSearchHit(h));
+    searchResults.appendChild(row);
+  });
+  searchResults.classList.add('active');
+}
+function selectSearchHit(h){
+  searchInput.value='';
+  searchResults.classList.remove('active');
+  searchResults.textContent='';
+  if(h.type==='ward'){
+    selectWard(h.jp);
+  } else {
+    const anime=ANIME[currentAnime];
+    const [sx,sy]=project(h.poi.lng,h.poi.lat);
+    const ww=wrap.clientWidth, wh=wrap.clientHeight;
+    currentScale=Math.min(CONFIG.ZOOM_MAX, 5);
+    panX=ww/2 - sx*currentScale;
+    panY=wh/2 - sy*currentScale;
+    applyTransform();
+    setTimeout(()=>showPoiDetail(ww/2, wh/2, h.poi, anime.theme.accentBright), 80);
+  }
+}
+searchInput.addEventListener('input', runSearch);
+searchInput.addEventListener('focus', runSearch);
+searchInput.addEventListener('keydown', e=>{
+  const rows=searchResults.querySelectorAll('.search-result');
+  if(e.key==='ArrowDown'){
+    e.preventDefault();
+    if(rows.length){ searchFocusIdx=Math.min(rows.length-1, searchFocusIdx+1); highlightSearchRow(rows); }
+  } else if(e.key==='ArrowUp'){
+    e.preventDefault();
+    if(rows.length){ searchFocusIdx=Math.max(0, searchFocusIdx-1); highlightSearchRow(rows); }
+  } else if(e.key==='Enter'){
+    if(searchFocusIdx>=0 && rows[searchFocusIdx]) rows[searchFocusIdx].click();
+    else if(rows.length) rows[0].click();
+  } else if(e.key==='Escape'){
+    searchInput.value=''; runSearch(); searchInput.blur();
+  }
+});
+function highlightSearchRow(rows){
+  rows.forEach((r,i)=>r.classList.toggle('keyboard-focused', i===searchFocusIdx));
+  if(rows[searchFocusIdx]) rows[searchFocusIdx].scrollIntoView({block:'nearest'});
+}
+// Close search results when clicking elsewhere
+document.addEventListener('click', e=>{
+  if(!e.target.closest('#search-box')) searchResults.classList.remove('active');
+});
+
+// ══════════════════════════════════════════════════════════
+// KEYBOARD NAVIGATION (P3 accessibility)
+// Arrow keys pan, +/-/= zoom, Escape closes info panel. Ignored when focus is
+// inside an editable field (future-proofing for any search inputs).
+// ══════════════════════════════════════════════════════════
+const PAN_STEP_PX=60;
+document.addEventListener('keydown',e=>{
+  const tag=(e.target.tagName||'').toLowerCase();
+  if(tag==='input'||tag==='textarea'||e.target.isContentEditable) return;
+  switch(e.key){
+    case 'ArrowUp':    panY+=PAN_STEP_PX; applyTransform(); e.preventDefault(); break;
+    case 'ArrowDown':  panY-=PAN_STEP_PX; applyTransform(); e.preventDefault(); break;
+    case 'ArrowLeft':  panX+=PAN_STEP_PX; applyTransform(); e.preventDefault(); break;
+    case 'ArrowRight': panX-=PAN_STEP_PX; applyTransform(); e.preventDefault(); break;
+    case '+': case '=': zoomMap(1);  e.preventDefault(); break;
+    case '-': case '_': zoomMap(-1); e.preventDefault(); break;
+    case 'Escape':
+      document.getElementById('info-panel').classList.remove('active');
+      hidePoiPopup();
+      break;
+  }
+});
+
+// ══════════════════════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════════════════════
+loadMap();
+
+})();
+</script>
+</body>
+</html>

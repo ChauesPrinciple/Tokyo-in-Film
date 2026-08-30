@@ -1,1 +1,803 @@
-<!DOCTYPE html><html lang="en"><head>    <meta charset="UTF-8">    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <title>Tokyo in Film - Open Courseware</title>    <meta name="description"        content="A comprehensive Open Educational Resource (OER) for filmmaking students in Tokyo. Explore Pre-Production, Production, and Post-Production guides through the lens of Japanese cinema.">    <meta name="keywords" content="Filmmaking, Tokyo, OER, Study Abroad, Cinema, Film Production, Japanese Film">    <meta name="author" content="Tokyo in Film">    <link rel="preconnect" href="https://fonts.googleapis.com">    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;600&display=swap"        rel="stylesheet">    <link rel="stylesheet" href="style.css?v=23">    <style>        .film-explore-btn { display: inline-block; margin-top: 0.75rem; padding: 0.4rem 1rem; border: 1px solid var(--accent-neon-cyan); color: var(--accent-neon-cyan); background: transparent; border-radius: 4px; font-size: 0.85rem; cursor: pointer; transition: all 0.2s; text-decoration: none; }        .film-explore-btn:hover { background: var(--accent-neon-cyan); color: #000; }        .film-modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 9999; align-items: center; justify-content: center; padding: 2rem; }        .film-modal-overlay.active { display: flex; }        .film-modal { background: #111; border: 1px solid rgba(0,243,255,0.25); border-radius: 12px; max-width: 640px; width: 100%; max-height: 80vh; overflow-y: auto; padding: 2rem; position: relative; box-shadow: 0 0 40px rgba(0,243,255,0.1); }        .film-modal-close { position: absolute; top: 1rem; right: 1rem; background: none; border: none; color: #888; font-size: 1.5rem; cursor: pointer; line-height: 1; }        .film-modal-close:hover { color: #fff; }        .film-modal h2 { font-family: 'Cinzel', serif; margin: 0 0 0.25rem; font-size: 1.5rem; }        .film-modal .fm-director { color: #888; font-size: 0.9rem; margin-bottom: 1rem; }        .film-modal .fm-logline { color: #ccc; font-size: 0.95rem; line-height: 1.5; margin-bottom: 1.5rem; font-style: italic; }        .fm-section { margin-bottom: 1.25rem; }        .fm-section-title { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-neon-cyan); font-weight: 600; margin-bottom: 0.5rem; }        .fm-links { display: flex; flex-direction: column; gap: 0.4rem; }        .fm-links a { color: #ddd; text-decoration: none; font-size: 0.9rem; padding: 0.3rem 0; transition: color 0.2s; }        .fm-links a:hover { color: var(--accent-neon-cyan); }        .fm-links a::before { content: '\2192\00a0'; color: var(--accent-neon-cyan); }        .fm-locations { display: flex; flex-wrap: wrap; gap: 0.4rem; }        .fm-loc-tag { font-size: 0.8rem; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; padding: 0.25rem 0.6rem; color: #bbb; }        .fm-no-data { color: #666; font-size: 0.85rem; font-style: italic; }        .map-tabs { display:flex; justify-content:center; gap:0; margin-bottom:0; }        .map-tab { padding:0.6rem 1.5rem; font-size:0.85rem; text-transform:uppercase; letter-spacing:0.08em; background:transparent; color:#888; border:1px solid rgba(255,255,255,0.15); border-bottom:none; border-radius:6px 6px 0 0; cursor:pointer; font-family:Inter,sans-serif; font-weight:600; transition:all 0.2s; }        .map-tab + .map-tab { margin-left:-1px; }        .map-tab.active { background:rgba(0,243,255,0.12); color:var(--accent-neon-cyan); border:1px solid var(--accent-neon-cyan); border-bottom:none; position:relative; z-index:1; }        .map-panel { display:none; }        .map-panel.active { display:block; }    </style>    <script type="application/ld+json">    {        "@context": "https://schema.org",        "@graph": [            {                "@type": "Course",                "name": "Tokyo in Film",                "description": "An open courseware textbook for filmmaking students studying abroad in Tokyo. Covers pre-production, production, and post-production through the lens of Japanese cinema.",                "url": "https://chauesprinciple.github.io/Tokyo-in-Film/",                "provider": {                    "@type": "Person",                    "name": "Robert Ladd",                    "url": "https://chauesprinciple.github.io/ChauesProductions/"                },                "educationalLevel": "University",                "inLanguage": "en",                "isAccessibleForFree": true,                "license": "https://creativecommons.org/licenses/by-sa/4.0/"            },            {                "@type": "Person",                "name": "Robert Ladd",                "url": "https://chauesprinciple.github.io/ChauesProductions/",                "sameAs": ["https://www.instagram.com/chaues/"]            }        ]    }    </script></head><body>    <nav>        <div class="nav-brand" style="display: flex; align-items: center; gap: 1rem;"><div class="logo">            Tokyo in Film            <div class="dropdown-menu">                <a href="index.html" class="dropdown-item current">Tokyo in                    Film</a>                <a href="https://chauesprinciple.github.io/Ancient-literature/" class="dropdown-item">Ancient                    Literature</a>            </div>        </div>            <a href="https://www.instagram.com/chaues/" target="_blank" rel="noopener" class="ig-icon" aria-label="Instagram"></a>        </div>        <button type="button" class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-nav">            <span class="bar"></span>            <span class="bar"></span>            <span class="bar"></span>        </button>        <ul class="nav-list" id="primary-nav">            <li><a href="index.html" class="active">Home</a></li>            <li><a href="documentary-project.html">Documentary Project</a></li>            <li><a href="pre-production/index.html">Pre-Production</a></li>            <li><a href="production/index.html">Production</a></li>            <li><a href="post-production/index.html">Post-Production</a></li>            <li><a href="glossary.html">Glossary</a></li>            <li><a href="free-guides.html">Free Guides</a></li>        </ul>    </nav>    <header class="hero">        <video aria-hidden="true" src="mindtouch.mp4" class="hero-bg" autoplay muted loop playsinline></video>        <div class="hero-content">            <h1>CINEMA IN CONTEXT</h1>            <p>A comprehensive guide to filmmaking through the lens of Tokyo.</p>            <a href="#map-section" class="btn">Explore Locations</a>        </div>    </header>    <section id="intro-text" class="container" style="padding-bottom: 2rem;">        <div class="intro-grid">            <div class="intro-main" data-scroll>                <h2>Filming a Scene</h2>                <div class="textbook-content">                    <p>Tokyo is one of the most filmed cities in the world. Its streets,                        interiors, trains, and neighborhoods have been used repeatedly to stage some of cinema's most                        enduring                        moments.</p>                    <p>This course is grounded in the study and filming of individual scenes. We examine how filmmakers                        use                        Tokyo to shape performance, framing, movement, and atmosphere within a single, contained moment,                        and how                        meaning is constructed at the scale of a scene rather than an entire film.</p>                    <div class="infinite-game-box" data-scroll>                        <h3>The Infinite Game: Tokyo Stock Footage Project</h3>                        <p>An ever-expanding library of cinematic Tokyo B-roll and stock footage. Students capture                            high-quality                            raw material of the city's unique atmosphere, creating a sustainable resource for future                            storytellers.</p>                        <ul>                            <li><strong>For Students:</strong> Submit your high-quality raw footage to build our                                sustainable library. Contributors get free access to the entire archive.</li>                            <li><strong>For Creators:</strong> Purchase access to this unique library of cinematic Tokyo                                footage. Your support directly funds equipment and resources for future student                                filming.</li>                        </ul>                        <span class="infinite-game-price">                            Access the Library: $20 for a password with infinite access.<br>                            <a href="mailto:factum.est.illud@gmail.com"                                style="font-size: 0.9rem; text-decoration: underline; color: #fff;">Contact to                                Purchase</a>                        </span>                    </div>                </div>            </div>            <aside class="partner-sidebar" data-scroll>                <h3>Local Partners</h3>                <a href="https://bonsairacing.com/custom-experiences.html" target="_blank" rel="noopener" class="partner-item">                    <img src="assets/bonsai_racing.png" alt="Bonsai Racing">                </a>                <a href="https://en.tokyo-bunbun.jp/" target="_blank" rel="noopener" class="partner-item">                    <img src="assets/tokyo_bunbun.png" alt="Tokyo BunBun">                </a>                <p class="partner-message">                    For local companies, organizations, and community groups that want to partner with me, I welcome                    opportunities to collaborate; please contact me! <br><br>                </p>            </aside>        </div>    </section>    <main id="explore" class="container">        <div class="intro" data-scroll>            <h2>Course Modules</h2>            <p>Explore the three phases of filmmaking, adapted from Russell Sharman's <em>Moving Pictures</em> and                tailored for the Tokyo study abroad experience.</p>        </div>        <div class="section-grid">            <article class="card" data-scroll data-scroll-delay="1">                <h3>Pre-Production</h3>                <p>The foundation of your film. Learn about screenwriting, storyboarding, and scouting locations in                    Tokyo's diverse wards.</p>                <a href="pre-production/index.html" class="card-link">Enter Phase 1 &rarr;</a>            </article>            <article class="card" data-scroll data-scroll-delay="2">                <h3>Production</h3>                <p>Lights, Camera, Action. Master the art of cinematography, lighting, and directing in the bustling                    streets of Shibuya and Shinjuku.</p>                <a href="production/index.html" class="card-link">Enter Phase 2 &rarr;</a>            </article>            <article class="card" data-scroll data-scroll-delay="3">                <h3>Post-Production</h3>                <p>The final cut. Editing, sound design, and color grading to bring your cinematic vision to life.</p>                <a href="post-production/index.html" class="card-link">Enter Phase 3 &rarr;</a>            </article>        </div>        <div style="text-align: center; margin-top: 3rem;">            <a href="https://www.instagram.com/chaues/" target="_blank" rel="noopener" class="btn"> See Student Films & Projects</a>        </div>    </main>    <section id="map-section" class="container" style="padding: 0 2rem 4rem;">        <div style="text-align: center; margin-bottom: 1.5rem;" data-scroll><h2>Tokyo Maps</h2></div>        <div class="map-tabs" role="tablist" aria-label="Tokyo Maps">            <button type="button" class="map-tab active" role="tab" id="tab-class-map" data-tab="class-map" aria-controls="panel-class-map" aria-selected="true">Class Map</button>            <button type="button" class="map-tab" role="tab" id="tab-anime-map" data-tab="anime-map" aria-controls="panel-anime-map" aria-selected="false">Anime Maps</button>        </div>        <!-- Class Map Panel -->        <div class="map-panel active" id="panel-class-map" role="tabpanel" aria-labelledby="tab-class-map">            <div class="map-container"                style="position: relative; padding-bottom: 79.17%; height: 0; overflow: hidden; border: 1px solid var(--accent-neon-cyan); border-top: none; box-shadow: 0 0 20px rgba(0, 243, 255, 0.2);">                <iframe src="https://www.google.com/maps/d/embed?mid=1V4GApFpOipMmySIyy2loBujui--BV3Y" width="640"                    height="480" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"                    allowfullscreen title="Interactive Map of Tokyo Film Locations"></iframe>            </div>            <ul class="map-key-list">                <li><span>⭐</span> Class-Specific Excursions</li>                <li><span>🎥</span> Class-Specific Filming Locations</li>                <li><span>🍴</span> Special Food Recommendations</li>                <li><span>🌲</span> Greenery and Parks</li>                <li><span>⛩️</span> Special Shrines</li>                <li><span>🛍️</span> Otaku and Thrift Shopping</li>                <li><span class="icon-silver" style="color: silver;">🎵</span> Arcades and Music</li>            </ul>        </div>        <!-- Anime Map Panel -->        <div class="map-panel" id="panel-anime-map" role="tabpanel" aria-labelledby="tab-anime-map">            <div class="map-container"                style="position: relative; padding-bottom: 79.17%; height: 0; overflow: hidden; border: 1px solid var(--accent-neon-cyan); border-top: none; box-shadow: 0 0 20px rgba(0, 243, 255, 0.2);">                <iframe id="anime-map-iframe" class="map-frame" loading="lazy"                    data-src="anime-map.html?v=5"                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"                    allowfullscreen title="Interactive Anime Maps of Tokyo"></iframe>            </div>            <p style="text-align:center;margin-top:1rem;color:#999;font-size:0.85rem;">                Switch between Jujutsu Kaisen, Chainsaw Man, Tokyo Ghoul, and Suzume × Your Name using the tabs inside the map.                <a href="anime-map.html" target="_blank" rel="noopener" style="color:var(--accent-neon-cyan);margin-left:0.5rem;">Open fullscreen &rarr;</a>            </p>        </div>    </section>    <script>    (function () {        var tabs = document.querySelectorAll('.map-tab');        var panels = document.querySelectorAll('.map-panel');        function show(name) {            for (var i = 0; i < tabs.length; i++) {                var isTabMatch = tabs[i].getAttribute('data-tab') === name;                tabs[i].classList.toggle('active', isTabMatch);                tabs[i].setAttribute('aria-selected', isTabMatch ? 'true' : 'false');            }            for (var j = 0; j < panels.length; j++) {                var isMatch = panels[j].id === 'panel-' + name;                panels[j].classList.toggle('active', isMatch);                if (isMatch) {                    var frame = panels[j].querySelector('iframe[data-src]');                    if (frame && !frame.src) frame.src = frame.getAttribute('data-src');                }            }        }        var activeTab = document.querySelector('.map-tab.active');        var initial = activeTab ? activeTab.getAttribute('data-tab') : 'class-map';        show(initial);        for (var k = 0; k < tabs.length; k++) {            (function (tab) {                tab.addEventListener('click', function () {                    show(tab.getAttribute('data-tab'));                });            })(tabs[k]);        }    })();    </script>    <section id="film-list" class="container">        <div style="text-align: center; margin-bottom: 2rem;" data-scroll>            <h2>2026 Film List</h2>            <p style="color: #bbb;">The films (and anime) we will analyze for this class:</p>        </div>        <ul class="film-slider" id="filmSlider">            <li class="film-slide">                <p class="film-slide-number">01 / 16</p>                <h3 class="film-slide-title"><a href="https://www.imdb.com/title/tt1433830/" target="_blank" rel="noopener">13 Assassins</a></h3>                <p class="film-slide-genre">Action · Adventure · Drama</p>                <p class="film-slide-logline">Twelve samurai are assembled to assassinate a sadistic lord before he can rise to power in feudal Japan.</p>                <p class="film-slide-director">Takashi Miike</p>                <button class="film-explore-btn" data-film="13-assassins">Explore</button>            </li>            <li class="film-slide">                <p class="film-slide-number">02 / 16</p>                <h3 class="film-slide-title"><a href="https://www.imdb.com/title/tt0094625/" target="_blank" rel="noopener">Akira</a></h3>                <p class="film-slide-genre">Animation · Action · Sci-Fi</p>                <p class="film-slide-logline">A biker's latent psychic powers spiral out of control, threatening to destroy the dystopian future city of Neo-Tokyo.</p>                <p class="film-slide-director">Katsuhiro Otomo</p>                <button class="film-explore-btn" data-film="akira">Explore</button>            </li>            <li class="film-slide">                <p class="film-slide-number">03 / 16</p>                <h3 class="film-slide-title"><a href="https://www.imdb.com/title/tt12593682/" target="_blank" rel="noopener">Bullet Train</a></h3>                <p class="film-slide-genre">Action · Comedy · Thriller</p>                <p class="film-slide-logline">Five assassins aboard a speeding bullet train discover their missions are all connected, and only one of them can get off alive.</p>                <p class="film-slide-director">David Leitch</p>                <button class="film-explore-btn" data-film="bullet-train">Explore</button>            </li>            <li class="film-slide">                <p class="film-slide-number">04 / 16</p>                <h3 class="film-slide-title"><a href="https://www.imdb.com/title/tt30472557/" target="_blank" rel="noopener">Chainsaw Man: Reze Arc</a></h3>                <p class="film-slide-genre">Animation · Action · Horror</p>                <p class="film-slide-logline">Denji falls for a mysterious girl hiding a violent secret, and discovers that love in a world of devils may be the most dangerous thing of all.</p>                <p class="film-slide-director">Tatsuya Yoshihara</p>                <button class="film-explore-btn" data-film="chainsaw-man">Explore</button>            </li>            <li class="film-slide">                <p class="film-slide-number">05 / 16</p>                <h3 class="film-slide-title"><a href="https://www.imdb.com/title/tt35222590/" target="_blank" rel="noopener">Exit 8</a></h3>                <p class="film-slide-genre">Horror · Psychological · Thriller</p>                <p class="film-slide-logline">Trapped in an endlessly looping Tokyo subway corridor, a man must learn to identify anomalies in his surroundings, or be reset to Exit 0.</p>                <p class="film-slide-director">Genki Kawamura</p>                <button class="film-explore-btn" data-film="exit-8">Explore</button>            </li>            <li class="film-slide">                <p class="film-slide-number">06 / 16</p>                <h3 class="film-slide-title"><a href="https://www.imdb.com/title/tt0455546/" target="_blank" rel="noopener">Initial D</a></h3>                <p class="film-slide-genre">Action · Drama · Sport</p>                <p class="film-slide-logline">A teenage tofu delivery driver becomes an underground street racing legend on the mountain passes of Japan.</p>                <p class="film-slide-director">Andrew Lau, Alan Mak</p>                <button class="film-explore-btn" data-film="initial-d">Explore</button>            </li>            <li class="film-slide">                <p class="film-slide-number">07 / 16</p>                <h3 class="film-slide-title"><a href="https://www.imdb.com/title/tt1772925/" target="_blank" rel="noopener">Jiro Dreams of Sushi</a></h3>                <p class="film-slide-genre">Documentary</p>                <p class="film-slide-logline">An 85-year-old sushi master and his sons pursue perfection in a tiny Tokyo basement restaurant that holds three Michelin stars.</p>                <p class="film-slide-director">David Gelb</p>                <button class="film-explore-btn" data-film="jiro-dreams-of-sushi">Explore</button>            </li>            <li class="film-slide">                <p class="film-slide-number">08 / 16</p>                <h3 class="film-slide-title"><a href="https://www.imdb.com/title/tt0178824/" target="_blank" rel="noopener">Ringu</a></h3>                <p class="film-slide-genre">Horror · Mystery · Thriller</p>                <p class="film-slide-logline">A reporter investigates a cursed videotape that kills anyone who watches it seven days later, leading her into a well of dread.</p>                <p class="film-slide-director">Hideo Nakata</p>                <button class="film-explore-btn" data-film="ringu">Explore</button>            </li>            <li class="film-slide">                <p class="film-slide-number">09 / 16</p>                <h3 class="film-slide-title"><a href="https://www.imdb.com/title/tt12343534/" target="_blank" rel="noopener">Jujutsu Kaisen</a></h3>                <p class="film-slide-genre">Animation · Action · Fantasy</p>                <p class="film-slide-logline">A high schooler swallows a cursed finger and enters a secret world of sorcerers fighting malevolent curses across Tokyo.</p>                <p class="film-slide-director">Sunghoo Park</p>                <button class="film-explore-btn" data-film="jujutsu-kaisen">Explore</button>            </li>            <li class="film-slide">                <p class="film-slide-number">10 / 16</p>                <h3 class="film-slide-title"><a href="https://www.imdb.com/title/tt1462667/" target="_blank" rel="noopener">Outrage</a></h3>                <p class="film-slide-genre">Action · Crime · Drama</p>                <p class="film-slide-logline">A loyal yakuza enforcer is drawn into an escalating chain of betrayals where bosses scheme, alliances shift, and loyalty becomes a death sentence.</p>                <p class="film-slide-director">Takeshi Kitano</p>                <button class="film-explore-btn" data-film="outrage">Explore</button>            </li>            <li class="film-slide">                <p class="film-slide-number">11 / 16</p>                <h3 class="film-slide-title"><a href="https://www.imdb.com/title/tt6583944/" target="_blank" rel="noopener">Ramen Heads</a></h3>                <p class="film-slide-genre">Documentary</p>                <p class="film-slide-logline">An obsessive portrait of Japan's ramen culture, following the country's top chefs on their relentless pursuit of the perfect bowl.</p>                <p class="film-slide-director">Koki Shigeno</p>                <button class="film-explore-btn" data-film="ramen-heads">Explore</button>            </li>            <li class="film-slide">                <p class="film-slide-number">12 / 16</p>                <h3 class="film-slide-title"><a href="https://www.imdb.com/title/tt0042876/" target="_blank" rel="noopener">Rashomon</a></h3>                <p class="film-slide-genre">Crime · Drama · Mystery</p>                <p class="film-slide-logline">A samurai's murder and his wife's assault are recounted by four witnesses, each telling a contradictory version of the same story.</p>                <p class="film-slide-director">Akira Kurosawa</p>                <button class="film-explore-btn" data-film="rashomon">Explore</button>            </li>            <li class="film-slide">                <p class="film-slide-number">13 / 16</p>                <h3 class="film-slide-title"><a href="https://www.imdb.com/title/tt14142060/" target="_blank" rel="noopener">Rental Family</a></h3>                <p class="film-slide-genre">Comedy · Drama</p>                <p class="film-slide-logline">A lonely American actor in Tokyo joins a rental family agency, playing stand-in roles for strangers until performance and real connection begin to blur.</p>                <p class="film-slide-director">Hikari</p>                <button class="film-explore-btn" data-film="rental-family">Explore</button>            </li>            <li class="film-slide">                <p class="film-slide-number">14 / 16</p>                <h3 class="film-slide-title"><a href="https://www.imdb.com/title/tt11991748/" target="_blank" rel="noopener">Rurouni Kenshin: Final Chapter Part II - The Beginning</a></h3>                <p class="film-slide-genre">Action · Adventure · Drama</p>                <p class="film-slide-logline">Before becoming a protector, Kenshin is a fearsome assassin known as Battosai, but his story changes when he meets the gentle Tomoe Yukishiro.</p>                <p class="film-slide-director">Keishi Ōtomo</p>                <button class="film-explore-btn" data-film="rurouni-kenshin-the-beginning">Explore</button>            </li>            <li class="film-slide">                <p class="film-slide-number">15 / 16</p>                <h3 class="film-slide-title"><a href="https://www.imdb.com/title/tt0092048/" target="_blank" rel="noopener">Tampopo</a></h3>                <p class="film-slide-genre">Comedy</p>                <p class="film-slide-logline">A pair of truck drivers help a struggling widow turn her noodle shop around in a comic quest for the perfect bowl of ramen.</p>                <p class="film-slide-director">Juzo Itami</p>                <button class="film-explore-btn" data-film="tampopo">Explore</button>            </li>            <li class="film-slide">                <p class="film-slide-number">16 / 16</p>                <h3 class="film-slide-title"><a href="https://www.imdb.com/title/tt5311514/" target="_blank" rel="noopener">Your Name</a></h3>                <p class="film-slide-genre">Animation · Drama · Fantasy</p>                <p class="film-slide-logline">Two teenagers who mysteriously swap bodies must race across distance and time to prevent a catastrophe only they can see coming.</p>                <p class="film-slide-director">Makoto Shinkai</p>                <button class="film-explore-btn" data-film="your-name">Explore</button>            </li>        </ul>        <div class="film-slider-nav">            <button class="slider-btn" id="sliderPrev" disabled>&#8592; Prev</button>            <span class="slider-counter" id="sliderCounter">1 / 16</span>            <button class="slider-btn" id="sliderNext">Next &#8594;</button>        </div>    </section>    <div class="film-modal-overlay" id="filmModal">        <div class="film-modal">            <button class="film-modal-close" id="filmModalClose">&times;</button>            <div id="filmModalContent"></div>        </div>    </div>    <footer>        <p>&copy; 2026 Tokyo in Film.</p>        <div class="attribution-text">            <p><a href="https://chauesprinciple.github.io/Tokyo-in-Film/">Tokyo in Film</a> &copy; 2023 by <a                    href="https://chauesprinciple.github.io/ChauesProductions/">Robert Ladd</a> is licensed under <a                    href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike                    4.0 International</a>.</p>            <p><strong>Originally adapted from:</strong> <em>Moving Pictures: An Introduction to Cinema</em> by Russell Sharman.</p>        </div>    </footer>    <script src="js/scroll-animate.js"></script>    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>    <script src="js/scroll-fx.js?v=5"></script>    <script src="js/glossary.js"></script>    <script>        document.addEventListener('DOMContentLoaded', () => {            // Film slider            const filmSlider = document.getElementById('filmSlider');            if (filmSlider) {                const slides = filmSlider.querySelectorAll('.film-slide');                const prevBtn = document.getElementById('sliderPrev');                const nextBtn = document.getElementById('sliderNext');                const counter = document.getElementById('sliderCounter');                let current = 0;                function updateSlider() {                    prevBtn.disabled = current === 0;                    nextBtn.disabled = current === slides.length - 1;                    counter.textContent = `${current + 1} / ${slides.length}`;                }                function goTo(index) {                    current = Math.max(0, Math.min(index, slides.length - 1));                    filmSlider.scrollTo({ left: current * filmSlider.clientWidth, behavior: 'smooth' });                    updateSlider();                }                prevBtn.addEventListener('click', () => goTo(current - 1));                nextBtn.addEventListener('click', () => goTo(current + 1));                filmSlider.addEventListener('scroll', () => {                    const index = Math.round(filmSlider.scrollLeft / filmSlider.clientWidth);                    if (index !== current) { current = index; updateSlider(); }                });                // Drag-to-scroll                let isDragging = false, dragStartX, dragScrollLeft;                filmSlider.addEventListener('mousedown', (e) => {                    isDragging = true;                    filmSlider.classList.add('is-dragging');                    dragStartX = e.pageX - filmSlider.offsetLeft;                    dragScrollLeft = filmSlider.scrollLeft;                    e.preventDefault();                });                const endDrag = () => {                    if (!isDragging) return;                    isDragging = false;                    filmSlider.classList.remove('is-dragging');                    goTo(Math.round(filmSlider.scrollLeft / filmSlider.clientWidth));                };                filmSlider.addEventListener('mouseup', endDrag);                filmSlider.addEventListener('mouseleave', endDrag);                filmSlider.addEventListener('mousemove', (e) => {                    if (!isDragging) return;                    e.preventDefault();                    filmSlider.scrollLeft = dragScrollLeft - (e.pageX - filmSlider.offsetLeft - dragStartX);                });                // Touch support for mobile                let touchStartX = 0, touchScrollLeft = 0;                filmSlider.addEventListener('touchstart', (e) => {                    touchStartX = e.touches[0].pageX;                    touchScrollLeft = filmSlider.scrollLeft;                }, { passive: true });                filmSlider.addEventListener('touchmove', (e) => {                    const dx = e.touches[0].pageX - touchStartX;                    filmSlider.scrollLeft = touchScrollLeft - dx;                }, { passive: true });                filmSlider.addEventListener('touchend', () => {                    goTo(Math.round(filmSlider.scrollLeft / filmSlider.clientWidth));                });            }            const mobileMenu = document.getElementById('mobile-menu');            const navList = document.querySelector('.nav-list');            if (mobileMenu) {                mobileMenu.addEventListener('click', () => {                    const isOpen = navList.classList.toggle('active');                    mobileMenu.classList.toggle('is-active');                    mobileMenu.setAttribute('aria-expanded', String(isOpen));                });            }            // Dropdown Toggle Logic            const logo = document.querySelector('.logo');            if (logo) {                logo.addEventListener('click', (e) => {                    // Only toggle if the click is on the logo container itself or the text,                     // not if the user is clicking an actual link inside the dropdown                    if (!e.target.closest('.dropdown-item')) {                        logo.classList.toggle('active');                    }                });                // Close dropdown when clicking outside                document.addEventListener('click', (e) => {                    if (!logo.contains(e.target)) {                        logo.classList.remove('active');                    }                });            }        });    </script>    <script>    (function() {        const filmData = {            '13-assassins': {                title: '13 Assassins', director: 'Takashi Miike', year: 2010,                genre: 'Action \u00b7 Adventure \u00b7 Drama',                logline: 'Twelve samurai are assembled to assassinate a sadistic lord before he can rise to power in feudal Japan.',                imdb: 'https://www.imdb.com/title/tt1433830/',                pages: [                    { label: 'Storyboard Assignment', url: 'pre-production/storyboard.html' },                    { label: 'Shot List Assignment', url: 'pre-production/shot-list.html' },                    { label: 'Animated Films (Samurai Legacy)', url: 'post-production/animated-films.html' },                    { label: 'Catharsis in Film', url: 'pre-production/catharsis.html' }                ],                locations: ['Imperial Palace Main Gate Ishibashi Ornamental Lamp', 'Maneki-neko Hall', 'Kurazukuri no Machinami / Warehouse District', 'Edo Wonderland Nikko Edomura'],                map: null            },            'akira': {                title: 'Akira', director: 'Katsuhiro Otomo', year: 1988,                genre: 'Animation \u00b7 Action \u00b7 Sci-Fi',                logline: "A biker's latent psychic powers spiral out of control, threatening to destroy the dystopian future city of Neo-Tokyo.",                imdb: 'https://www.imdb.com/title/tt0094625/',                pages: [                    { label: 'Sound Design (Post)', url: 'post-production/sound-design.html' },                    { label: 'Animated Films', url: 'post-production/animated-films.html' },                    { label: 'How to Watch a Movie', url: 'pre-production/how-to-watch.html' }                ],                locations: [],                map: null            },            'bullet-train': {                title: 'Bullet Train', director: 'David Leitch', year: 2022,                genre: 'Action \u00b7 Comedy \u00b7 Thriller',                logline: 'Five assassins aboard a speeding bullet train discover their missions are all connected, and only one of them can get off alive.',                imdb: 'https://www.imdb.com/title/tt12593682/',                pages: [                    { label: 'Visual Foreshadowing', url: 'production/visual-foreshadowing.html' },                    { label: 'Storyboard Assignment', url: 'pre-production/storyboard.html' },                    { label: 'Shot List Assignment', url: 'pre-production/shot-list.html' },                    { label: 'Production Guide', url: 'production/guide.html' }                ],                locations: [],                map: null            },            'chainsaw-man': {                title: 'Chainsaw Man: Reze Arc', director: 'Tatsuya Yoshihara', year: 2025,                genre: 'Animation \u00b7 Action \u00b7 Horror',                logline: "Denji falls for a mysterious girl hiding a violent secret, and discovers that love in a world of devils may be the most dangerous thing of all.",                imdb: 'https://www.imdb.com/title/tt30472557/',                pages: [                    { label: 'Animated Films', url: 'post-production/animated-films.html' },                    { label: 'Editing & Animation', url: 'post-production/editing-and-animation.html' }                ],                locations: [],                map: { label: 'Chainsaw Man — Tokyo Devil Hunter Map', url: 'anime-map.html?anime=chainsaw_man' }            },            'exit-8': {                title: 'Exit 8', director: 'Genki Kawamura', year: 2025,                genre: 'Horror \u00b7 Psychological \u00b7 Thriller',                logline: 'Trapped in an endlessly looping Tokyo subway corridor, a man must learn to identify anomalies in his surroundings, or be reset to Exit 0.',                imdb: 'https://www.imdb.com/title/tt35222590/',                pages: [                    { label: 'Mise-en-Sc\u00e8ne (Pre)', url: 'pre-production/mise-en-scene.html' }                ],                locations: [],                map: null            },            'initial-d': {                title: 'Initial D', director: 'Andrew Lau, Alan Mak', year: 2005,                genre: 'Action \u00b7 Drama \u00b7 Sport',                logline: 'A teenage tofu delivery driver becomes an underground street racing legend on the mountain passes of Japan.',                imdb: 'https://www.imdb.com/title/tt0455546/',                pages: [                    { label: 'Cinematography (Production)', url: 'production/cinematography.html' }                ],                locations: ['Fujiwara Tofu Shop (Tokyo)', 'Fujiwara Tofu Shop (Gunma)'],                map: null            },            'jiro-dreams-of-sushi': {                title: 'Jiro Dreams of Sushi', director: 'David Gelb', year: 2011,                genre: 'Documentary',                logline: 'An 85-year-old sushi master and his sons pursue perfection in a tiny Tokyo basement restaurant that holds three Michelin stars.',                imdb: 'https://www.imdb.com/title/tt1772925/',                pages: [                    { label: 'Shot List Assignment', url: 'pre-production/shot-list.html' },                    { label: 'Post-Production Guide', url: 'post-production/guide.html' }                ],                locations: ['Sukiyabashi Jiro'],                map: null            },            'ringu': {                title: 'Ringu', director: 'Hideo Nakata', year: 1998,                genre: 'Horror \u00b7 Mystery \u00b7 Thriller',                logline: 'A reporter investigates a cursed videotape that kills anyone who watches it seven days later, leading her into a well of dread.',                imdb: 'https://www.imdb.com/title/tt0178824/',                pages: [],                locations: [],                map: null            },            'jujutsu-kaisen': {                title: 'Jujutsu Kaisen', director: 'Sunghoo Park', year: 2020,                genre: 'Animation \u00b7 Action \u00b7 Fantasy',                logline: 'A high schooler swallows a cursed finger and enters a secret world of sorcerers fighting malevolent curses across Tokyo.',                imdb: 'https://www.imdb.com/title/tt12343534/',                pages: [                    { label: 'Animated Films', url: 'post-production/animated-films.html' }                ],                locations: ['Takeshita Street Entrance Arch', 'Edo-Tokyo Open Air Architectural Museum', 'Tokyo Metropolitan Government Building', 'Aoyama Cemetery', 'Yoyogi National Gymnasium'],                map: { label: 'Jujutsu Kaisen — Cursed Territory Map', url: 'anime-map.html?anime=jjk' }            },            'outrage': {                title: 'Outrage', director: 'Takeshi Kitano', year: 2010,                genre: 'Action \u00b7 Crime \u00b7 Drama',                logline: 'A loyal yakuza enforcer is drawn into an escalating chain of betrayals where bosses scheme, alliances shift, and loyalty becomes a death sentence.',                imdb: 'https://www.imdb.com/title/tt1462667/',                pages: [],                locations: [],                map: null            },            'ramen-heads': {                title: 'Ramen Heads', director: 'Koki Shigeno', year: 2017,                genre: 'Documentary',                logline: "An obsessive portrait of Japan's ramen culture, following the country's top chefs on their relentless pursuit of the perfect bowl.",                imdb: 'https://www.imdb.com/title/tt6583944/',                pages: [                    { label: 'Shot List Assignment', url: 'pre-production/shot-list.html' },                    { label: 'Post-Production Guide', url: 'post-production/guide.html' }                ],                locations: ['Sugoi Niboshi R\u0101men Nagi Shinjuku Golden Gai', 'Ramen Emoto Masahiro', 'Shuuichi (Ramen)', 'Tokyo Ramen Street'],                map: null            },            'rashomon': {                title: 'Rashomon', director: 'Akira Kurosawa', year: 1950,                genre: 'Crime \u00b7 Drama \u00b7 Mystery',                logline: "A samurai's murder and his wife's assault are recounted by four witnesses, each telling a contradictory version of the same story.",                imdb: 'https://www.imdb.com/title/tt0042876/',                pages: [                    { label: 'How to Watch a Movie', url: 'pre-production/how-to-watch.html' },                    { label: 'Editing & Animation', url: 'post-production/editing-and-animation.html' }                ],                locations: ['Daiei Tokyo Studios, Chofu (now Kadokawa Daiei Studio)', 'Imperial Theatre, Marunouchi (1950 premiere)', 'Komyoji Temple forest (Kyoto)', 'Nara primeval forest (Nara)'],                map: null            },            'rental-family': {                title: 'Rental Family', director: 'Hikari', year: 2025,                genre: 'Comedy \u00b7 Drama',                logline: 'A lonely American actor in Tokyo joins a rental family agency, playing stand-in roles for strangers until performance and real connection begin to blur.',                imdb: 'https://www.imdb.com/title/tt14142060/',                pages: [],                locations: [],                map: null            },            'rurouni-kenshin-the-beginning': {                title: 'Rurouni Kenshin: Final Chapter Part II - The Beginning', director: 'Keishi \u014ctomo', year: 2021,                genre: 'Action \u00b7 Adventure \u00b7 Drama',                logline: 'Before becoming a protector, Kenshin is a fearsome assassin known as Battosai, but his story changes when he meets the gentle Tomoe Yukishiro.',                imdb: 'https://www.imdb.com/title/tt11991748/',                pages: [                    { label: 'Storyboard Assignment', url: 'pre-production/storyboard.html' },                    { label: 'Shot List Assignment', url: 'pre-production/shot-list.html' }                ],                locations: ['Zuishin-in Temple, Yamashina (Kyoto)', 'Mizuno Tanrenjo swordsmith workshop, Sakai (Osaka)'],                map: null            },            'tampopo': {                title: 'Tampopo', director: 'Juzo Itami', year: 1985,                genre: 'Comedy',                logline: 'A pair of truck drivers help a struggling widow turn her noodle shop around in a comic quest for the perfect bowl of ramen.',                imdb: 'https://www.imdb.com/title/tt0092048/',                pages: [],                locations: [],                map: null            },            'your-name': {                title: 'Your Name', director: 'Makoto Shinkai', year: 2016,                genre: 'Animation \u00b7 Drama \u00b7 Fantasy',                logline: 'Two teenagers who mysteriously swap bodies must race across distance and time to prevent a catastrophe only they can see coming.',                imdb: 'https://www.imdb.com/title/tt5311514/',                pages: [                    { label: 'Sound Design (Post)', url: 'post-production/sound-design.html' },                    { label: 'Animated Films', url: 'post-production/animated-films.html' },                    { label: 'How to Watch a Movie', url: 'pre-production/how-to-watch.html' },                    { label: 'Storyboard Assignment', url: 'pre-production/storyboard.html' }                ],                locations: ['Yotsuya Station', 'Suga Shrine', 'Shinanomachi Station'],                map: null            }        };        function openFilmModal(filmId) {            const film = filmData[filmId];            if (!film) return;            const modal = document.getElementById('filmModal');            const content = document.getElementById('filmModalContent');            let html = '<h2>' + film.title + '</h2>';            html += '<p class="fm-director">' + film.director + ' \u00b7 ' + film.year + ' \u00b7 ' + film.genre + '</p>';            html += '<p class="fm-logline">' + film.logline + '</p>';            // IMDB            html += '<div class="fm-section"><div class="fm-links"><a href="' + film.imdb + '" target="_blank" rel="noopener">IMDB Page</a></div></div>';            // Anime Map            if (film.map) {                html += '<div class="fm-section"><div class="fm-section-title">Interactive Map</div>';                html += '<div class="fm-links"><a href="' + film.map.url + '">' + film.map.label + '</a></div></div>';            }            // Course Pages            if (film.pages.length > 0) {                html += '<div class="fm-section"><div class="fm-section-title">Referenced In</div><div class="fm-links">';                film.pages.forEach(function(p) {                    html += '<a href="' + p.url + '">' + p.label + '</a>';                });                html += '</div></div>';            }            // Locations            if (film.locations.length > 0) {                html += '<div class="fm-section"><div class="fm-section-title">Tokyo Locations</div><div class="fm-locations">';                film.locations.forEach(function(loc) {                    html += '<span class="fm-loc-tag">' + loc + '</span>';                });                html += '</div></div>';            } else {                html += '<div class="fm-section"><div class="fm-section-title">Tokyo Locations</div><p class="fm-no-data">No pilgrimage locations mapped yet</p></div>';            }            content.innerHTML = html;            modal.classList.add('active');            document.body.style.overflow = 'hidden';        }        function closeFilmModal() {            document.getElementById('filmModal').classList.remove('active');            document.body.style.overflow = '';        }        document.getElementById('filmModalClose').addEventListener('click', closeFilmModal);        document.getElementById('filmModal').addEventListener('click', function(e) {            if (e.target === this) closeFilmModal();        });        document.addEventListener('keydown', function(e) {            if (e.key === 'Escape') closeFilmModal();        });        document.querySelectorAll('.film-explore-btn').forEach(function(btn) {            btn.addEventListener('click', function(e) {                e.stopPropagation();                openFilmModal(this.dataset.film);            });        });    })();    </script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tokyo in Film - Open Courseware</title>
+    <meta name="description"
+        content="A comprehensive Open Educational Resource (OER) for filmmaking students in Tokyo. Explore Pre-Production, Production, and Post-Production guides through the lens of Japanese cinema.">
+    <meta name="keywords" content="Filmmaking, Tokyo, OER, Study Abroad, Cinema, Film Production, Japanese Film">
+    <meta name="author" content="Tokyo in Film">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=22">
+    <style>
+        .film-explore-btn { display: inline-block; margin-top: 0.75rem; padding: 0.4rem 1rem; border: 1px solid var(--accent-neon-cyan); color: var(--accent-neon-cyan); background: transparent; border-radius: 4px; font-size: 0.85rem; cursor: pointer; transition: all 0.2s; text-decoration: none; }
+        .film-explore-btn:hover { background: var(--accent-neon-cyan); color: #000; }
+        .film-modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 9999; align-items: center; justify-content: center; padding: 2rem; }
+        .film-modal-overlay.active { display: flex; }
+        .film-modal { background: #111; border: 1px solid rgba(0,243,255,0.25); border-radius: 12px; max-width: 640px; width: 100%; max-height: 80vh; overflow-y: auto; padding: 2rem; position: relative; box-shadow: 0 0 40px rgba(0,243,255,0.1); }
+        .film-modal-close { position: absolute; top: 1rem; right: 1rem; background: none; border: none; color: #888; font-size: 1.5rem; cursor: pointer; line-height: 1; }
+        .film-modal-close:hover { color: #fff; }
+        .film-modal h2 { font-family: 'Cinzel', serif; margin: 0 0 0.25rem; font-size: 1.5rem; }
+        .film-modal .fm-director { color: #888; font-size: 0.9rem; margin-bottom: 1rem; }
+        .film-modal .fm-logline { color: #ccc; font-size: 0.95rem; line-height: 1.5; margin-bottom: 1.5rem; font-style: italic; }
+        .fm-section { margin-bottom: 1.25rem; }
+        .fm-section-title { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-neon-cyan); font-weight: 600; margin-bottom: 0.5rem; }
+        .fm-links { display: flex; flex-direction: column; gap: 0.4rem; }
+        .fm-links a { color: #ddd; text-decoration: none; font-size: 0.9rem; padding: 0.3rem 0; transition: color 0.2s; }
+        .fm-links a:hover { color: var(--accent-neon-cyan); }
+        .fm-links a::before { content: '\2192\00a0'; color: var(--accent-neon-cyan); }
+        .fm-locations { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+        .fm-loc-tag { font-size: 0.8rem; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; padding: 0.25rem 0.6rem; color: #bbb; }
+        .fm-no-data { color: #666; font-size: 0.85rem; font-style: italic; }
+        /* Seigaiha (青海波) wave texture — traditional Japanese motif, inline SVG
+           pattern so it costs no extra network request. */
+        #map-section { position: relative; }
+        #map-section > .seigaiha { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; opacity: 0.05; pointer-events: none; }
+        #map-section > *:not(.seigaiha) { position: relative; z-index: 1; }
+        .map-tabs { display:flex; justify-content:center; gap:0; margin-bottom:0; }
+        .map-tab { padding:0.6rem 1.5rem; font-size:0.85rem; text-transform:uppercase; letter-spacing:0.08em; background:transparent; color:#888; border:1px solid rgba(255,255,255,0.15); border-bottom:none; border-radius:6px 6px 0 0; cursor:pointer; font-family:Inter,sans-serif; font-weight:600; transition:all 0.2s; }
+        .map-tab + .map-tab { margin-left:-1px; }
+        .map-tab.active { background:rgba(0,243,255,0.12); color:var(--accent-neon-cyan); border:1px solid var(--accent-neon-cyan); border-bottom:none; position:relative; z-index:1; }
+        .map-panel { display:none; }
+        .map-panel.active { display:block; }
+    </style>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "Course",
+                "name": "Tokyo in Film",
+                "description": "An open courseware textbook for filmmaking students studying abroad in Tokyo. Covers pre-production, production, and post-production through the lens of Japanese cinema.",
+                "url": "https://chauesprinciple.github.io/Tokyo-in-Film/",
+                "provider": {
+                    "@type": "Person",
+                    "name": "Robert Ladd",
+                    "url": "https://chauesprinciple.github.io/ChauesProductions/"
+                },
+                "educationalLevel": "University",
+                "inLanguage": "en",
+                "isAccessibleForFree": true,
+                "license": "https://creativecommons.org/licenses/by-sa/4.0/"
+            },
+            {
+                "@type": "Person",
+                "name": "Robert Ladd",
+                "url": "https://chauesprinciple.github.io/ChauesProductions/",
+                "sameAs": ["https://www.instagram.com/chaues/"]
+            }
+        ]
+    }
+    </script>
+</head>
+
+<body>
+
+    <nav>
+        <div class="nav-brand" style="display: flex; align-items: center; gap: 1rem;">
+<div class="logo">
+            Tokyo in Film
+            <div class="dropdown-menu">
+                <a href="index.html" class="dropdown-item current">Tokyo in
+                    Film</a>
+                <a href="https://chauesprinciple.github.io/Ancient-literature/" class="dropdown-item">Ancient
+                    Literature</a>
+            </div>
+        </div>
+            <a href="https://www.instagram.com/chaues/" target="_blank" rel="noopener" class="ig-icon" aria-label="Instagram"></a>
+        </div>
+        <button type="button" class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-nav">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+        <ul class="nav-list" id="primary-nav">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="documentary-project.html">Documentary Project</a></li>
+            <li><a href="pre-production/index.html">Pre-Production</a></li>
+            <li><a href="production/index.html">Production</a></li>
+            <li><a href="post-production/index.html">Post-Production</a></li>
+            <li><a href="glossary.html">Glossary</a></li>
+            <li><a href="free-guides.html">Free Guides</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <video aria-hidden="true" src="mindtouch.mp4" class="hero-bg" autoplay muted loop playsinline></video>
+        <div class="hero-content">
+            <h1>CINEMA IN CONTEXT</h1>
+            <p>A comprehensive guide to filmmaking through the lens of Tokyo.</p>
+            <a href="#map-section" class="btn">Explore Locations</a>
+        </div>
+    </header>
+
+    <section id="intro-text" class="container" style="padding-bottom: 2rem;">
+        <div class="intro-grid">
+            <div class="intro-main" data-scroll>
+                <h2>Filming a Scene</h2>
+                <div class="textbook-content">
+                    <p>Tokyo is one of the most filmed cities in the world. Its streets,
+                        interiors, trains, and neighborhoods have been used repeatedly to stage some of cinema's most
+                        enduring
+                        moments.</p>
+                    <p>This course is grounded in the study and filming of individual scenes. We examine how filmmakers
+                        use
+                        Tokyo to shape performance, framing, movement, and atmosphere within a single, contained moment,
+                        and how
+                        meaning is constructed at the scale of a scene rather than an entire film.</p>
+
+                    <div class="infinite-game-box" data-scroll>
+                        <h3>The Infinite Game: Tokyo Stock Footage Project</h3>
+                        <p>An ever-expanding library of cinematic Tokyo B-roll and stock footage. Students capture
+                            high-quality
+                            raw material of the city's unique atmosphere, creating a sustainable resource for future
+                            storytellers.</p>
+                        <ul>
+                            <li><strong>For Students:</strong> Submit your high-quality raw footage to build our
+                                sustainable library. Contributors get free access to the entire archive.</li>
+                            <li><strong>For Creators:</strong> Purchase access to this unique library of cinematic Tokyo
+                                footage. Your support directly funds equipment and resources for future student
+                                filming.</li>
+                        </ul>
+                        <span class="infinite-game-price">
+                            Access the Library: $20 for a password with infinite access.<br>
+                            <a href="mailto:factum.est.illud@gmail.com"
+                                style="font-size: 0.9rem; text-decoration: underline; color: #fff;">Contact to
+                                Purchase</a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <aside class="partner-sidebar" data-scroll>
+                <h3>Local Partners</h3>
+                <a href="https://bonsairacing.com/custom-experiences.html" target="_blank" rel="noopener" class="partner-item">
+                    <img src="assets/bonsai_racing.png" alt="Bonsai Racing">
+                </a>
+                <a href="https://en.tokyo-bunbun.jp/" target="_blank" rel="noopener" class="partner-item">
+                    <img src="assets/tokyo_bunbun.png" alt="Tokyo BunBun">
+                </a>
+                <p class="partner-message">
+                    For local companies, organizations, and community groups that want to partner with me, I welcome
+                    opportunities to collaborate; please contact me! <br><br>
+                </p>
+            </aside>
+        </div>
+    </section>
+
+    <main id="explore" class="container">
+        <div class="intro" data-scroll>
+            <h2>Course Modules</h2>
+            <p>Explore the three phases of filmmaking, adapted from Russell Sharman's <em>Moving Pictures</em> and
+                tailored for the Tokyo study abroad experience.</p>
+        </div>
+
+        <div class="section-grid">
+            <article class="card" data-scroll data-scroll-delay="1">
+                <h3>Pre-Production</h3>
+                <p>The foundation of your film. Learn about screenwriting, storyboarding, and scouting locations in
+                    Tokyo's diverse wards.</p>
+                <a href="pre-production/index.html" class="card-link">Enter Phase 1 &rarr;</a>
+            </article>
+
+            <article class="card" data-scroll data-scroll-delay="2">
+                <h3>Production</h3>
+                <p>Lights, Camera, Action. Master the art of cinematography, lighting, and directing in the bustling
+                    streets of Shibuya and Shinjuku.</p>
+                <a href="production/index.html" class="card-link">Enter Phase 2 &rarr;</a>
+            </article>
+
+            <article class="card" data-scroll data-scroll-delay="3">
+                <h3>Post-Production</h3>
+                <p>The final cut. Editing, sound design, and color grading to bring your cinematic vision to life.</p>
+                <a href="post-production/index.html" class="card-link">Enter Phase 3 &rarr;</a>
+            </article>
+        </div>
+
+        <div style="text-align: center; margin-top: 3rem;">
+            <a href="https://www.instagram.com/chaues/" target="_blank" rel="noopener" class="btn"> See Student Films & Projects</a>
+        </div>
+    </main>
+
+    <section id="map-section" class="container" style="padding: 0 2rem 4rem;">
+        <svg class="seigaiha" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+                <pattern id="seigaiha-pattern" x="0" y="0" width="36" height="18" patternUnits="userSpaceOnUse">
+                    <path d="M18 0 A18 18 0 0 1 18 36 A18 18 0 0 1 18 0 Z M18 4 A14 14 0 0 1 18 32 A14 14 0 0 1 18 4 Z" fill="none" stroke="currentColor" stroke-width="1"/>
+                </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#seigaiha-pattern)"/>
+        </svg>
+        <div style="text-align: center; margin-bottom: 1.5rem;" data-scroll><h2>Tokyo Maps</h2></div>
+        <div class="map-tabs" role="tablist" aria-label="Tokyo Maps">
+            <button type="button" class="map-tab active" role="tab" id="tab-class-map" data-tab="class-map" aria-controls="panel-class-map" aria-selected="true">Class Map</button>
+            <button type="button" class="map-tab" role="tab" id="tab-anime-map" data-tab="anime-map" aria-controls="panel-anime-map" aria-selected="false">Anime Maps</button>
+        </div>
+        <!-- Class Map Panel -->
+        <div class="map-panel active" id="panel-class-map" role="tabpanel" aria-labelledby="tab-class-map">
+            <div class="map-container"
+                style="position: relative; padding-bottom: 79.17%; height: 0; overflow: hidden; border: 1px solid var(--accent-neon-cyan); border-top: none; box-shadow: 0 0 20px rgba(0, 243, 255, 0.2);">
+                <iframe src="https://www.google.com/maps/d/embed?mid=1V4GApFpOipMmySIyy2loBujui--BV3Y" width="640"
+                    height="480" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
+                    allowfullscreen title="Interactive Map of Tokyo Film Locations"></iframe>
+            </div>
+            <ul class="map-key-list">
+                <li><span>⭐</span> Class-Specific Excursions</li>
+                <li><span>🎥</span> Class-Specific Filming Locations</li>
+                <li><span>🍴</span> Special Food Recommendations</li>
+                <li><span>🌲</span> Greenery and Parks</li>
+                <li><span>⛩️</span> Special Shrines</li>
+                <li><span>🛍️</span> Otaku and Thrift Shopping</li>
+                <li><span class="icon-silver" style="color: silver;">🎵</span> Arcades and Music</li>
+            </ul>
+        </div>
+        <!-- Anime Map Panel -->
+        <div class="map-panel" id="panel-anime-map" role="tabpanel" aria-labelledby="tab-anime-map">
+            <div class="map-container"
+                style="position: relative; padding-bottom: 79.17%; height: 0; overflow: hidden; border: 1px solid var(--accent-neon-cyan); border-top: none; box-shadow: 0 0 20px rgba(0, 243, 255, 0.2);">
+                <iframe id="anime-map-iframe" class="map-frame" loading="lazy"
+                    data-src="anime-map.html?v=5"
+                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
+                    allowfullscreen title="Interactive Anime Maps of Tokyo"></iframe>
+            </div>
+            <p style="text-align:center;margin-top:1rem;color:#999;font-size:0.85rem;">
+                Switch between Jujutsu Kaisen, Chainsaw Man, Tokyo Ghoul, and Suzume × Your Name using the tabs inside the map.
+                <a href="anime-map.html" target="_blank" rel="noopener" style="color:var(--accent-neon-cyan);margin-left:0.5rem;">Open fullscreen &rarr;</a>
+            </p>
+        </div>
+    </section>
+    <script>
+    (function () {
+        var tabs = document.querySelectorAll('.map-tab');
+        var panels = document.querySelectorAll('.map-panel');
+
+        function show(name) {
+            for (var i = 0; i < tabs.length; i++) {
+                var isTabMatch = tabs[i].getAttribute('data-tab') === name;
+                tabs[i].classList.toggle('active', isTabMatch);
+                tabs[i].setAttribute('aria-selected', isTabMatch ? 'true' : 'false');
+            }
+            for (var j = 0; j < panels.length; j++) {
+                var isMatch = panels[j].id === 'panel-' + name;
+                panels[j].classList.toggle('active', isMatch);
+                if (isMatch) {
+                    var frame = panels[j].querySelector('iframe[data-src]');
+                    if (frame && !frame.src) frame.src = frame.getAttribute('data-src');
+                }
+            }
+        }
+
+        var activeTab = document.querySelector('.map-tab.active');
+        var initial = activeTab ? activeTab.getAttribute('data-tab') : 'class-map';
+        show(initial);
+
+        for (var k = 0; k < tabs.length; k++) {
+            (function (tab) {
+                tab.addEventListener('click', function () {
+                    show(tab.getAttribute('data-tab'));
+                });
+            })(tabs[k]);
+        }
+    })();
+    </script>
+
+    <section id="film-list" class="container">
+        <div style="text-align: center; margin-bottom: 2rem;" data-scroll>
+            <h2>2026 Film List</h2>
+            <p style="color: #bbb;">The films (and anime) we will analyze for this class:</p>
+        </div>
+        <ul class="film-slider" id="filmSlider">
+            <li class="film-slide">
+                <p class="film-slide-number">01 / 16</p>
+                <h3 class="film-slide-title"><a href="https://www.imdb.com/title/tt1433830/" target="_blank" rel="noopener">13 Assassins</a></h3>
+                <p class="film-slide-genre">Action · Adventure · Drama</p>
+                <p class="film-slide-logline">Twelve samurai are assembled to assassinate a sadistic lord before he can rise to power in feudal Japan.</p>
+                <p class="film-slide-director">Takashi Miike</p>
+                <button class="film-explore-btn" data-film="13-assassins">Explore</button>
+            </li>
+            <li class="film-slide">
+                <p class="film-slide-number">02 / 16</p>
+                <h3 class="film-slide-title"><a href="https://www.imdb.com/title/tt0094625/" target="_blank" rel="noopener">Akira</a></h3>
+                <p class="film-slide-genre">Animation · Action · Sci-Fi</p>
+                <p class="film-slide-logline">A biker's latent psychic powers spiral out of control, threatening to destroy the dystopian future city of Neo-Tokyo.</p>
+                <p class="film-slide-director">Katsuhiro Otomo</p>
+                <button class="film-explore-btn" data-film="akira">Explore</button>
+            </li>
+            <li class="film-slide">
+                <p class="film-slide-number">03 / 16</p>
+                <h3 class="film-slide-title"><a href="https://www.imdb.com/title/tt12593682/" target="_blank" rel="noopener">Bullet Train</a></h3>
+                <p class="film-slide-genre">Action · Comedy · Thriller</p>
+                <p class="film-slide-logline">Five assassins aboard a speeding bullet train discover their missions are all connected, and only one of them can get off alive.</p>
+                <p class="film-slide-director">David Leitch</p>
+                <button class="film-explore-btn" data-film="bullet-train">Explore</button>
+            </li>
+            <li class="film-slide">
+                <p class="film-slide-number">04 / 16</p>
+                <h3 class="film-slide-title"><a href="https://www.imdb.com/title/tt30472557/" target="_blank" rel="noopener">Chainsaw Man: Reze Arc</a></h3>
+                <p class="film-slide-genre">Animation · Action · Horror</p>
+                <p class="film-slide-logline">Denji falls for a mysterious girl hiding a violent secret, and discovers that love in a world of devils may be the most dangerous thing of all.</p>
+                <p class="film-slide-director">Tatsuya Yoshihara</p>
+                <button class="film-explore-btn" data-film="chainsaw-man">Explore</button>
+            </li>
+            <li class="film-slide">
+                <p class="film-slide-number">05 / 16</p>
+                <h3 class="film-slide-title"><a href="https://www.imdb.com/title/tt35222590/" target="_blank" rel="noopener">Exit 8</a></h3>
+                <p class="film-slide-genre">Horror · Psychological · Thriller</p>
+                <p class="film-slide-logline">Trapped in an endlessly looping Tokyo subway corridor, a man must learn to identify anomalies in his surroundings, or be reset to Exit 0.</p>
+                <p class="film-slide-director">Genki Kawamura</p>
+                <button class="film-explore-btn" data-film="exit-8">Explore</button>
+            </li>
+            <li class="film-slide">
+                <p class="film-slide-number">06 / 16</p>
+                <h3 class="film-slide-title"><a href="https://www.imdb.com/title/tt0455546/" target="_blank" rel="noopener">Initial D</a></h3>
+                <p class="film-slide-genre">Action · Drama · Sport</p>
+                <p class="film-slide-logline">A teenage tofu delivery driver becomes an underground street racing legend on the mountain passes of Japan.</p>
+                <p class="film-slide-director">Andrew Lau, Alan Mak</p>
+                <button class="film-explore-btn" data-film="initial-d">Explore</button>
+            </li>
+            <li class="film-slide">
+                <p class="film-slide-number">07 / 16</p>
+                <h3 class="film-slide-title"><a href="https://www.imdb.com/title/tt1772925/" target="_blank" rel="noopener">Jiro Dreams of Sushi</a></h3>
+                <p class="film-slide-genre">Documentary</p>
+                <p class="film-slide-logline">An 85-year-old sushi master and his sons pursue perfection in a tiny Tokyo basement restaurant that holds three Michelin stars.</p>
+                <p class="film-slide-director">David Gelb</p>
+                <button class="film-explore-btn" data-film="jiro-dreams-of-sushi">Explore</button>
+            </li>
+            <li class="film-slide">
+                <p class="film-slide-number">08 / 16</p>
+                <h3 class="film-slide-title"><a href="https://www.imdb.com/title/tt0178824/" target="_blank" rel="noopener">Ringu</a></h3>
+                <p class="film-slide-genre">Horror · Mystery · Thriller</p>
+                <p class="film-slide-logline">A reporter investigates a cursed videotape that kills anyone who watches it seven days later, leading her into a well of dread.</p>
+                <p class="film-slide-director">Hideo Nakata</p>
+                <button class="film-explore-btn" data-film="ringu">Explore</button>
+            </li>
+            <li class="film-slide">
+                <p class="film-slide-number">09 / 16</p>
+                <h3 class="film-slide-title"><a href="https://www.imdb.com/title/tt12343534/" target="_blank" rel="noopener">Jujutsu Kaisen</a></h3>
+                <p class="film-slide-genre">Animation · Action · Fantasy</p>
+                <p class="film-slide-logline">A high schooler swallows a cursed finger and enters a secret world of sorcerers fighting malevolent curses across Tokyo.</p>
+                <p class="film-slide-director">Sunghoo Park</p>
+                <button class="film-explore-btn" data-film="jujutsu-kaisen">Explore</button>
+            </li>
+            <li class="film-slide">
+                <p class="film-slide-number">10 / 16</p>
+                <h3 class="film-slide-title"><a href="https://www.imdb.com/title/tt1462667/" target="_blank" rel="noopener">Outrage</a></h3>
+                <p class="film-slide-genre">Action · Crime · Drama</p>
+                <p class="film-slide-logline">A loyal yakuza enforcer is drawn into an escalating chain of betrayals where bosses scheme, alliances shift, and loyalty becomes a death sentence.</p>
+                <p class="film-slide-director">Takeshi Kitano</p>
+                <button class="film-explore-btn" data-film="outrage">Explore</button>
+            </li>
+            <li class="film-slide">
+                <p class="film-slide-number">11 / 16</p>
+                <h3 class="film-slide-title"><a href="https://www.imdb.com/title/tt6583944/" target="_blank" rel="noopener">Ramen Heads</a></h3>
+                <p class="film-slide-genre">Documentary</p>
+                <p class="film-slide-logline">An obsessive portrait of Japan's ramen culture, following the country's top chefs on their relentless pursuit of the perfect bowl.</p>
+                <p class="film-slide-director">Koki Shigeno</p>
+                <button class="film-explore-btn" data-film="ramen-heads">Explore</button>
+            </li>
+            <li class="film-slide">
+                <p class="film-slide-number">12 / 16</p>
+                <h3 class="film-slide-title"><a href="https://www.imdb.com/title/tt0042876/" target="_blank" rel="noopener">Rashomon</a></h3>
+                <p class="film-slide-genre">Crime · Drama · Mystery</p>
+                <p class="film-slide-logline">A samurai's murder and his wife's assault are recounted by four witnesses, each telling a contradictory version of the same story.</p>
+                <p class="film-slide-director">Akira Kurosawa</p>
+                <button class="film-explore-btn" data-film="rashomon">Explore</button>
+            </li>
+            <li class="film-slide">
+                <p class="film-slide-number">13 / 16</p>
+                <h3 class="film-slide-title"><a href="https://www.imdb.com/title/tt14142060/" target="_blank" rel="noopener">Rental Family</a></h3>
+                <p class="film-slide-genre">Comedy · Drama</p>
+                <p class="film-slide-logline">A lonely American actor in Tokyo joins a rental family agency, playing stand-in roles for strangers until performance and real connection begin to blur.</p>
+                <p class="film-slide-director">Hikari</p>
+                <button class="film-explore-btn" data-film="rental-family">Explore</button>
+            </li>
+            <li class="film-slide">
+                <p class="film-slide-number">14 / 16</p>
+                <h3 class="film-slide-title"><a href="https://www.imdb.com/title/tt11991748/" target="_blank" rel="noopener">Rurouni Kenshin: Final Chapter Part II - The Beginning</a></h3>
+                <p class="film-slide-genre">Action · Adventure · Drama</p>
+                <p class="film-slide-logline">Before becoming a protector, Kenshin is a fearsome assassin known as Battosai, but his story changes when he meets the gentle Tomoe Yukishiro.</p>
+                <p class="film-slide-director">Keishi Ōtomo</p>
+                <button class="film-explore-btn" data-film="rurouni-kenshin-the-beginning">Explore</button>
+            </li>
+            <li class="film-slide">
+                <p class="film-slide-number">15 / 16</p>
+                <h3 class="film-slide-title"><a href="https://www.imdb.com/title/tt0092048/" target="_blank" rel="noopener">Tampopo</a></h3>
+                <p class="film-slide-genre">Comedy</p>
+                <p class="film-slide-logline">A pair of truck drivers help a struggling widow turn her noodle shop around in a comic quest for the perfect bowl of ramen.</p>
+                <p class="film-slide-director">Juzo Itami</p>
+                <button class="film-explore-btn" data-film="tampopo">Explore</button>
+            </li>
+            <li class="film-slide">
+                <p class="film-slide-number">16 / 16</p>
+                <h3 class="film-slide-title"><a href="https://www.imdb.com/title/tt5311514/" target="_blank" rel="noopener">Your Name</a></h3>
+                <p class="film-slide-genre">Animation · Drama · Fantasy</p>
+                <p class="film-slide-logline">Two teenagers who mysteriously swap bodies must race across distance and time to prevent a catastrophe only they can see coming.</p>
+                <p class="film-slide-director">Makoto Shinkai</p>
+                <button class="film-explore-btn" data-film="your-name">Explore</button>
+            </li>
+        </ul>
+        <div class="film-slider-nav">
+            <button class="slider-btn" id="sliderPrev" disabled>&#8592; Prev</button>
+            <span class="slider-counter" id="sliderCounter">1 / 16</span>
+            <button class="slider-btn" id="sliderNext">Next &#8594;</button>
+        </div>
+    </section>
+
+    <div class="film-modal-overlay" id="filmModal">
+        <div class="film-modal">
+            <button class="film-modal-close" id="filmModalClose">&times;</button>
+            <div id="filmModalContent"></div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Tokyo in Film.</p>
+        <div class="attribution-text">
+            <p><a href="https://chauesprinciple.github.io/Tokyo-in-Film/">Tokyo in Film</a> &copy; 2023 by <a
+                    href="https://chauesprinciple.github.io/ChauesProductions/">Robert Ladd</a> is licensed under <a
+                    href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike
+                    4.0 International</a>.</p>
+            <p><strong>Originally adapted from:</strong> <em>Moving Pictures: An Introduction to Cinema</em> by Russell Sharman.</p>
+        </div>
+    </footer>
+
+    <script src="js/scroll-animate.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+    <script src="js/scroll-fx.js?v=5"></script>
+    <script src="js/glossary.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Film slider
+            const filmSlider = document.getElementById('filmSlider');
+            if (filmSlider) {
+                const slides = filmSlider.querySelectorAll('.film-slide');
+                const prevBtn = document.getElementById('sliderPrev');
+                const nextBtn = document.getElementById('sliderNext');
+                const counter = document.getElementById('sliderCounter');
+                let current = 0;
+                function updateSlider() {
+                    prevBtn.disabled = current === 0;
+                    nextBtn.disabled = current === slides.length - 1;
+                    counter.textContent = `${current + 1} / ${slides.length}`;
+                }
+                function goTo(index) {
+                    current = Math.max(0, Math.min(index, slides.length - 1));
+                    filmSlider.scrollTo({ left: current * filmSlider.clientWidth, behavior: 'smooth' });
+                    updateSlider();
+                }
+                prevBtn.addEventListener('click', () => goTo(current - 1));
+                nextBtn.addEventListener('click', () => goTo(current + 1));
+                filmSlider.addEventListener('scroll', () => {
+                    const index = Math.round(filmSlider.scrollLeft / filmSlider.clientWidth);
+                    if (index !== current) { current = index; updateSlider(); }
+                });
+                // Drag-to-scroll
+                let isDragging = false, dragStartX, dragScrollLeft;
+                filmSlider.addEventListener('mousedown', (e) => {
+                    isDragging = true;
+                    filmSlider.classList.add('is-dragging');
+                    dragStartX = e.pageX - filmSlider.offsetLeft;
+                    dragScrollLeft = filmSlider.scrollLeft;
+                    e.preventDefault();
+                });
+                const endDrag = () => {
+                    if (!isDragging) return;
+                    isDragging = false;
+                    filmSlider.classList.remove('is-dragging');
+                    goTo(Math.round(filmSlider.scrollLeft / filmSlider.clientWidth));
+                };
+                filmSlider.addEventListener('mouseup', endDrag);
+                filmSlider.addEventListener('mouseleave', endDrag);
+                filmSlider.addEventListener('mousemove', (e) => {
+                    if (!isDragging) return;
+                    e.preventDefault();
+                    filmSlider.scrollLeft = dragScrollLeft - (e.pageX - filmSlider.offsetLeft - dragStartX);
+                });
+                // Touch support for mobile
+                let touchStartX = 0, touchScrollLeft = 0;
+                filmSlider.addEventListener('touchstart', (e) => {
+                    touchStartX = e.touches[0].pageX;
+                    touchScrollLeft = filmSlider.scrollLeft;
+                }, { passive: true });
+                filmSlider.addEventListener('touchmove', (e) => {
+                    const dx = e.touches[0].pageX - touchStartX;
+                    filmSlider.scrollLeft = touchScrollLeft - dx;
+                }, { passive: true });
+                filmSlider.addEventListener('touchend', () => {
+                    goTo(Math.round(filmSlider.scrollLeft / filmSlider.clientWidth));
+                });
+            }
+            const mobileMenu = document.getElementById('mobile-menu');
+            const navList = document.querySelector('.nav-list');
+
+            if (mobileMenu) {
+                mobileMenu.addEventListener('click', () => {
+                    const isOpen = navList.classList.toggle('active');
+                    mobileMenu.classList.toggle('is-active');
+                    mobileMenu.setAttribute('aria-expanded', String(isOpen));
+                });
+            }
+
+            // Dropdown Toggle Logic
+            const logo = document.querySelector('.logo');
+            if (logo) {
+                logo.addEventListener('click', (e) => {
+                    // Only toggle if the click is on the logo container itself or the text, 
+                    // not if the user is clicking an actual link inside the dropdown
+                    if (!e.target.closest('.dropdown-item')) {
+                        logo.classList.toggle('active');
+                    }
+                });
+
+                // Close dropdown when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (!logo.contains(e.target)) {
+                        logo.classList.remove('active');
+                    }
+                });
+            }
+        });
+    </script>
+    <script>
+    (function() {
+        const filmData = {
+            '13-assassins': {
+                title: '13 Assassins', director: 'Takashi Miike', year: 2010,
+                genre: 'Action \u00b7 Adventure \u00b7 Drama',
+                logline: 'Twelve samurai are assembled to assassinate a sadistic lord before he can rise to power in feudal Japan.',
+                imdb: 'https://www.imdb.com/title/tt1433830/',
+                pages: [
+                    { label: 'Storyboard Assignment', url: 'pre-production/storyboard.html' },
+                    { label: 'Shot List Assignment', url: 'pre-production/shot-list.html' },
+                    { label: 'Animated Films (Samurai Legacy)', url: 'post-production/animated-films.html' },
+                    { label: 'Catharsis in Film', url: 'pre-production/catharsis.html' }
+                ],
+                locations: ['Imperial Palace Main Gate Ishibashi Ornamental Lamp', 'Maneki-neko Hall', 'Kurazukuri no Machinami / Warehouse District', 'Edo Wonderland Nikko Edomura'],
+                map: null
+            },
+            'akira': {
+                title: 'Akira', director: 'Katsuhiro Otomo', year: 1988,
+                genre: 'Animation \u00b7 Action \u00b7 Sci-Fi',
+                logline: "A biker's latent psychic powers spiral out of control, threatening to destroy the dystopian future city of Neo-Tokyo.",
+                imdb: 'https://www.imdb.com/title/tt0094625/',
+                pages: [
+                    { label: 'Sound Design (Post)', url: 'post-production/sound-design.html' },
+                    { label: 'Animated Films', url: 'post-production/animated-films.html' },
+                    { label: 'How to Watch a Movie', url: 'pre-production/how-to-watch.html' }
+                ],
+                locations: [],
+                map: null
+            },
+            'bullet-train': {
+                title: 'Bullet Train', director: 'David Leitch', year: 2022,
+                genre: 'Action \u00b7 Comedy \u00b7 Thriller',
+                logline: 'Five assassins aboard a speeding bullet train discover their missions are all connected, and only one of them can get off alive.',
+                imdb: 'https://www.imdb.com/title/tt12593682/',
+                pages: [
+                    { label: 'Visual Foreshadowing', url: 'production/visual-foreshadowing.html' },
+                    { label: 'Storyboard Assignment', url: 'pre-production/storyboard.html' },
+                    { label: 'Shot List Assignment', url: 'pre-production/shot-list.html' },
+                    { label: 'Production Guide', url: 'production/guide.html' }
+                ],
+                locations: [],
+                map: null
+            },
+            'chainsaw-man': {
+                title: 'Chainsaw Man: Reze Arc', director: 'Tatsuya Yoshihara', year: 2025,
+                genre: 'Animation \u00b7 Action \u00b7 Horror',
+                logline: "Denji falls for a mysterious girl hiding a violent secret, and discovers that love in a world of devils may be the most dangerous thing of all.",
+                imdb: 'https://www.imdb.com/title/tt30472557/',
+                pages: [
+                    { label: 'Animated Films', url: 'post-production/animated-films.html' },
+                    { label: 'Editing & Animation', url: 'post-production/editing-and-animation.html' }
+                ],
+                locations: [],
+                map: { label: 'Chainsaw Man — Tokyo Devil Hunter Map', url: 'anime-map.html?anime=chainsaw_man' }
+            },
+            'exit-8': {
+                title: 'Exit 8', director: 'Genki Kawamura', year: 2025,
+                genre: 'Horror \u00b7 Psychological \u00b7 Thriller',
+                logline: 'Trapped in an endlessly looping Tokyo subway corridor, a man must learn to identify anomalies in his surroundings, or be reset to Exit 0.',
+                imdb: 'https://www.imdb.com/title/tt35222590/',
+                pages: [
+                    { label: 'Mise-en-Sc\u00e8ne (Pre)', url: 'pre-production/mise-en-scene.html' }
+                ],
+                locations: [],
+                map: null
+            },
+            'initial-d': {
+                title: 'Initial D', director: 'Andrew Lau, Alan Mak', year: 2005,
+                genre: 'Action \u00b7 Drama \u00b7 Sport',
+                logline: 'A teenage tofu delivery driver becomes an underground street racing legend on the mountain passes of Japan.',
+                imdb: 'https://www.imdb.com/title/tt0455546/',
+                pages: [
+                    { label: 'Cinematography (Production)', url: 'production/cinematography.html' }
+                ],
+                locations: ['Fujiwara Tofu Shop (Tokyo)', 'Fujiwara Tofu Shop (Gunma)'],
+                map: null
+            },
+            'jiro-dreams-of-sushi': {
+                title: 'Jiro Dreams of Sushi', director: 'David Gelb', year: 2011,
+                genre: 'Documentary',
+                logline: 'An 85-year-old sushi master and his sons pursue perfection in a tiny Tokyo basement restaurant that holds three Michelin stars.',
+                imdb: 'https://www.imdb.com/title/tt1772925/',
+                pages: [
+                    { label: 'Shot List Assignment', url: 'pre-production/shot-list.html' },
+                    { label: 'Post-Production Guide', url: 'post-production/guide.html' }
+                ],
+                locations: ['Sukiyabashi Jiro'],
+                map: null
+            },
+            'ringu': {
+                title: 'Ringu', director: 'Hideo Nakata', year: 1998,
+                genre: 'Horror \u00b7 Mystery \u00b7 Thriller',
+                logline: 'A reporter investigates a cursed videotape that kills anyone who watches it seven days later, leading her into a well of dread.',
+                imdb: 'https://www.imdb.com/title/tt0178824/',
+                pages: [],
+                locations: [],
+                map: null
+            },
+            'jujutsu-kaisen': {
+                title: 'Jujutsu Kaisen', director: 'Sunghoo Park', year: 2020,
+                genre: 'Animation \u00b7 Action \u00b7 Fantasy',
+                logline: 'A high schooler swallows a cursed finger and enters a secret world of sorcerers fighting malevolent curses across Tokyo.',
+                imdb: 'https://www.imdb.com/title/tt12343534/',
+                pages: [
+                    { label: 'Animated Films', url: 'post-production/animated-films.html' }
+                ],
+                locations: ['Takeshita Street Entrance Arch', 'Edo-Tokyo Open Air Architectural Museum', 'Tokyo Metropolitan Government Building', 'Aoyama Cemetery', 'Yoyogi National Gymnasium'],
+                map: { label: 'Jujutsu Kaisen — Cursed Territory Map', url: 'anime-map.html?anime=jjk' }
+            },
+            'outrage': {
+                title: 'Outrage', director: 'Takeshi Kitano', year: 2010,
+                genre: 'Action \u00b7 Crime \u00b7 Drama',
+                logline: 'A loyal yakuza enforcer is drawn into an escalating chain of betrayals where bosses scheme, alliances shift, and loyalty becomes a death sentence.',
+                imdb: 'https://www.imdb.com/title/tt1462667/',
+                pages: [],
+                locations: [],
+                map: null
+            },
+            'ramen-heads': {
+                title: 'Ramen Heads', director: 'Koki Shigeno', year: 2017,
+                genre: 'Documentary',
+                logline: "An obsessive portrait of Japan's ramen culture, following the country's top chefs on their relentless pursuit of the perfect bowl.",
+                imdb: 'https://www.imdb.com/title/tt6583944/',
+                pages: [
+                    { label: 'Shot List Assignment', url: 'pre-production/shot-list.html' },
+                    { label: 'Post-Production Guide', url: 'post-production/guide.html' }
+                ],
+                locations: ['Sugoi Niboshi R\u0101men Nagi Shinjuku Golden Gai', 'Ramen Emoto Masahiro', 'Shuuichi (Ramen)', 'Tokyo Ramen Street'],
+                map: null
+            },
+            'rashomon': {
+                title: 'Rashomon', director: 'Akira Kurosawa', year: 1950,
+                genre: 'Crime \u00b7 Drama \u00b7 Mystery',
+                logline: "A samurai's murder and his wife's assault are recounted by four witnesses, each telling a contradictory version of the same story.",
+                imdb: 'https://www.imdb.com/title/tt0042876/',
+                pages: [
+                    { label: 'How to Watch a Movie', url: 'pre-production/how-to-watch.html' },
+                    { label: 'Editing & Animation', url: 'post-production/editing-and-animation.html' }
+                ],
+                locations: ['Daiei Tokyo Studios, Chofu (now Kadokawa Daiei Studio)', 'Imperial Theatre, Marunouchi (1950 premiere)', 'Komyoji Temple forest (Kyoto)', 'Nara primeval forest (Nara)'],
+                map: null
+            },
+            'rental-family': {
+                title: 'Rental Family', director: 'Hikari', year: 2025,
+                genre: 'Comedy \u00b7 Drama',
+                logline: 'A lonely American actor in Tokyo joins a rental family agency, playing stand-in roles for strangers until performance and real connection begin to blur.',
+                imdb: 'https://www.imdb.com/title/tt14142060/',
+                pages: [],
+                locations: [],
+                map: null
+            },
+            'rurouni-kenshin-the-beginning': {
+                title: 'Rurouni Kenshin: Final Chapter Part II - The Beginning', director: 'Keishi \u014ctomo', year: 2021,
+                genre: 'Action \u00b7 Adventure \u00b7 Drama',
+                logline: 'Before becoming a protector, Kenshin is a fearsome assassin known as Battosai, but his story changes when he meets the gentle Tomoe Yukishiro.',
+                imdb: 'https://www.imdb.com/title/tt11991748/',
+                pages: [
+                    { label: 'Storyboard Assignment', url: 'pre-production/storyboard.html' },
+                    { label: 'Shot List Assignment', url: 'pre-production/shot-list.html' }
+                ],
+                locations: ['Zuishin-in Temple, Yamashina (Kyoto)', 'Mizuno Tanrenjo swordsmith workshop, Sakai (Osaka)'],
+                map: null
+            },
+            'tampopo': {
+                title: 'Tampopo', director: 'Juzo Itami', year: 1985,
+                genre: 'Comedy',
+                logline: 'A pair of truck drivers help a struggling widow turn her noodle shop around in a comic quest for the perfect bowl of ramen.',
+                imdb: 'https://www.imdb.com/title/tt0092048/',
+                pages: [],
+                locations: [],
+                map: null
+            },
+            'your-name': {
+                title: 'Your Name', director: 'Makoto Shinkai', year: 2016,
+                genre: 'Animation \u00b7 Drama \u00b7 Fantasy',
+                logline: 'Two teenagers who mysteriously swap bodies must race across distance and time to prevent a catastrophe only they can see coming.',
+                imdb: 'https://www.imdb.com/title/tt5311514/',
+                pages: [
+                    { label: 'Sound Design (Post)', url: 'post-production/sound-design.html' },
+                    { label: 'Animated Films', url: 'post-production/animated-films.html' },
+                    { label: 'How to Watch a Movie', url: 'pre-production/how-to-watch.html' },
+                    { label: 'Storyboard Assignment', url: 'pre-production/storyboard.html' }
+                ],
+                locations: ['Yotsuya Station', 'Suga Shrine', 'Shinanomachi Station'],
+                map: null
+            }
+        };
+
+        function openFilmModal(filmId) {
+            const film = filmData[filmId];
+            if (!film) return;
+            const modal = document.getElementById('filmModal');
+            const content = document.getElementById('filmModalContent');
+
+            let html = '<h2>' + film.title + '</h2>';
+            html += '<p class="fm-director">' + film.director + ' \u00b7 ' + film.year + ' \u00b7 ' + film.genre + '</p>';
+            html += '<p class="fm-logline">' + film.logline + '</p>';
+
+            // IMDB
+            html += '<div class="fm-section"><div class="fm-links"><a href="' + film.imdb + '" target="_blank" rel="noopener">IMDB Page</a></div></div>';
+
+            // Anime Map
+            if (film.map) {
+                html += '<div class="fm-section"><div class="fm-section-title">Interactive Map</div>';
+                html += '<div class="fm-links"><a href="' + film.map.url + '">' + film.map.label + '</a></div></div>';
+            }
+
+            // Course Pages
+            if (film.pages.length > 0) {
+                html += '<div class="fm-section"><div class="fm-section-title">Referenced In</div><div class="fm-links">';
+                film.pages.forEach(function(p) {
+                    html += '<a href="' + p.url + '">' + p.label + '</a>';
+                });
+                html += '</div></div>';
+            }
+
+            // Locations
+            if (film.locations.length > 0) {
+                html += '<div class="fm-section"><div class="fm-section-title">Tokyo Locations</div><div class="fm-locations">';
+                film.locations.forEach(function(loc) {
+                    html += '<span class="fm-loc-tag">' + loc + '</span>';
+                });
+                html += '</div></div>';
+            } else {
+                html += '<div class="fm-section"><div class="fm-section-title">Tokyo Locations</div><p class="fm-no-data">No pilgrimage locations mapped yet</p></div>';
+            }
+
+            content.innerHTML = html;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeFilmModal() {
+            document.getElementById('filmModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.getElementById('filmModalClose').addEventListener('click', closeFilmModal);
+        document.getElementById('filmModal').addEventListener('click', function(e) {
+            if (e.target === this) closeFilmModal();
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeFilmModal();
+        });
+
+        document.querySelectorAll('.film-explore-btn').forEach(function(btn) {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                openFilmModal(this.dataset.film);
+            });
+        });
+    })();
+    </script>
+</body>
+
+</html>

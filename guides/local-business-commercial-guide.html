@@ -1,1 +1,408 @@
-<!DOCTYPE html><html lang="en"><head>    <meta charset="UTF-8">    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <title>Short Form Video Guide - Tokyo in Film</title>    <meta name="description"        content="A universal guide to creating effective short-form video content: commercial, documentary, or narrative.">    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;600&display=swap"        rel="stylesheet">    <link rel="stylesheet" href="../style.css?v=23">    <style>        .guide-header {            background: linear-gradient(135deg, rgba(255, 0, 127, 0.1), rgba(0, 243, 255, 0.05));            border-bottom: 3px solid var(--accent-neon-pink);            padding: 2rem;            margin-bottom: 2rem;            border-radius: 8px;        }        .guide-header h1 {            font-size: 2.5rem;            margin-bottom: 0.5rem;        }        .guide-header .subtitle {            color: var(--accent-neon-cyan);            font-size: 1.1rem;            text-transform: uppercase;            letter-spacing: 0.1em;        }        .guide-content h2 {            color: var(--accent-neon-cyan);            border-bottom: 1px solid rgba(0, 243, 255, 0.3);            padding-bottom: 0.5rem;            margin-top: 3rem;            font-size: 1.8rem;        }        .guide-content h3 {            color: #fff;            margin-top: 2rem;            font-size: 1.2rem;        }        .step-box {            background: rgba(0, 0, 0, 0.3);            border: 1px solid rgba(255, 255, 255, 0.1);            border-radius: 8px;            padding: 1.5rem;            margin: 1.5rem 0;        }        .step-box h4 {            color: var(--accent-neon-pink);            margin-bottom: 0.75rem;            font-size: 1rem;            text-transform: uppercase;            letter-spacing: 0.05em;        }        .example-box {            background: rgba(0, 243, 255, 0.05);            border-left: 3px solid var(--accent-neon-cyan);            padding: 1rem 1.5rem;            margin: 1rem 0;            border-radius: 0 8px 8px 0;        }        .example-box strong {            color: var(--accent-neon-cyan);        }        .choices-box {            background: rgba(255, 0, 127, 0.05);            border-left: 3px solid var(--accent-neon-pink);            padding: 1rem 1.5rem;            margin: 1rem 0;            border-radius: 0 8px 8px 0;        }        .choices-box strong {            color: var(--accent-neon-pink);        }        /* Interactive Elements */        .form-label {            color: #aaa;            font-size: 0.9rem;            margin-bottom: 0.5rem;            display: block;            margin-top: 1.5rem;        }        .worksheet-textarea {            width: 100%;            max-width: 100%;            box-sizing: border-box;            /* Critical for mobile */            background: rgba(255, 255, 255, 0.03);            border: 1px solid rgba(255, 255, 255, 0.15);            border-radius: 4px;            color: #fff;            padding: 1rem;            min-height: 80px;            font-family: 'Inter', sans-serif;            resize: vertical;            display: block;            margin-bottom: 1rem;        }        .worksheet-textarea:focus {            outline: none;            border-color: var(--accent-neon-cyan);            background: rgba(255, 255, 255, 0.05);        }        .download-section {            background: rgba(0, 243, 255, 0.05);            border: 1px solid rgba(0, 243, 255, 0.2);            border-radius: 8px;            padding: 1.5rem;            margin-top: 3rem;            text-align: center;        }        /* Mobile Adjustments */        @media (max-width: 768px) {            .guide-header {                padding: 1.5rem;            }            .guide-header h1 {                font-size: 2rem;                /* Smaller header */                word-wrap: break-word;            }            .guide-content h2 {                font-size: 1.5rem;            }            .step-box,            .example-box,            .choices-box {                padding: 1rem;            }            main.container {                padding-left: 1rem;                padding-right: 1rem;            }        }        @media print {            nav,            footer,            .download-section {                display: none;            }            body {                background: #fff;                color: #000;            }            .worksheet-textarea {                border: 1px solid #ccc;                background: #fff;                color: #000;                min-height: 60px;            }            h1,            h2,            h3,            h4,            p,            li,            label,            strong {                color: #000 !important;            }            .example-box,            .choices-box,            .step-box {                border: 1px solid #ccc;                background: transparent;                color: #000;            }        }    </style></head><body>    <nav>        <div class="nav-brand" style="display: flex; align-items: center; gap: 1rem;"><div class="logo">    Tokyo in Film    <div class="dropdown-menu">        <a href="https://chauesprinciple.github.io/Tokyo-in-Film/" class="dropdown-item current">Tokyo in Film</a>        <a href="https://chauesprinciple.github.io/Ancient-literature/" class="dropdown-item">Ancient Literature</a>    </div></div>            <a href="https://www.instagram.com/chaues/" target="_blank" rel="noopener" class="ig-icon" aria-label="Instagram"></a>        </div>        <button type="button" class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-nav">            <span class="bar"></span>            <span class="bar"></span>            <span class="bar"></span>        </button>        <ul class="nav-list" id="primary-nav">            <li><a href="../index.html">Home</a></li>            <li><a href="../documentary-project.html">Documentary Project</a></li>            <li><a href="../pre-production/index.html">Pre-Production</a></li>            <li><a href="../production/index.html">Production</a></li>            <li><a href="../post-production/index.html">Post-Production</a></li>            <li><a href="../glossary.html">Glossary</a></li>            <li><a href="../free-guides.html" class="active">Free Guides</a></li>        </ul>    </nav>    <main class="container" style="padding-top: 100px;">        <div class="guide-header">            <p class="subtitle">Tokyo in Film &bull; Interactive Worksheet</p>            <h1>Short Form Video Guide</h1>            <p style="margin-top: 1rem; color: #ddd;">A universal framework for Commercials, Documentaries, or Narrative                shorts. This worksheet guides you through the process of creating effective short-form content.</p>        </div>        <div class="textbook-content guide-content">            <h2>1. Identify the Subject/Business</h2>            <div class="step-box">                <h4>Definition</h4>                <p>Choose a real subject (business, person, or event) and gather essential information directly from the                    source.</p>            </div>            <p><strong>What to do:</strong></p>            <ul>                <li>Pick a subject willing to let you film</li>                <li>Interview someone involved (owner, employee, or subject)</li>                <li>Ask three questions:                    <ul>                        <li>"What single service, product, or idea do you want more people to know about?"</li>                        <li>"Who is your ideal audience/customer for that?"</li>                        <li>"What do you want viewers to do after watching the video?"</li>                    </ul>                </li>                <li>Write down their exact answers. These control your entire video.</li>            </ul>            <label class="form-label" for="wf1"><strong>Core Subject/Product:</strong> What is the ONE thing this video is                about?</label>            <textarea class="worksheet-textarea" id="wf1" placeholder="e.g. The bike shop's tune-up service..."></textarea>            <label class="form-label" for="wf2"><strong>Target Audience:</strong> Who is this specific message for?</label>            <textarea class="worksheet-textarea" id="wf2"                placeholder="e.g. Daily commuters who ignore maintenance..."></textarea>            <label class="form-label" for="wf3"><strong>Desired Action:</strong> What should they do next?</label>            <textarea class="worksheet-textarea" id="wf3" placeholder="e.g. Bring the bike in today..."></textarea>            <h2>2. Write the Hook</h2>            <div class="step-box">                <h4>Definition</h4>                <p>A short, spoken line that instantly makes the viewer think, "This is about me."</p>            </div>            <div class="choices-box">                <strong>Choices:</strong><br>                If they feel frustrated &rarr; write a <strong>problem hook</strong>.<br>                If they want improvement &rarr; write a <strong>desire hook</strong>.<br>                If the process looks interesting &rarr; write a <strong>curiosity hook</strong>.<br>                If the result is visually strong &rarr; write an <strong>outcome hook</strong>.            </div>            <label class="form-label" for="wf4"><strong>Your Hook (Under 3 seconds):</strong></label>            <textarea class="worksheet-textarea" id="wf4"                placeholder="e.g. 'If this keeps slowing you down, here is your fix.'"></textarea>            <h2>3. Write the Experience Section</h2>            <div class="step-box">                <h4>Definition</h4>                <p>Explain what the viewer goes through from start to finish.</p>            </div>            <p><strong>What to do:</strong> Write 3-4 short sentences describing the actual journey. Make every sentence                filmable.</p>            <div class="example-box">                <strong>Example:</strong> "You walk in and we look at what you need. We show you the best option right                away. The process is quick. You leave with the problem handled."            </div>            <label class="form-label" for="wf5"><strong>The Journey (Start &rarr; Middle &rarr; End):</strong></label>            <textarea class="worksheet-textarea" id="wf5" style="min-height: 120px;"                placeholder="Write the sequence here..."></textarea>            <h2>4. Write the Offer + Call to Action</h2>            <div class="step-box">                <h4>Definition</h4>                <p>State what the viewer gets and tell them exactly what to do.</p>            </div>            <label class="form-label" for="wf6"><strong>The Offer:</strong> What do they get?</label>            <textarea class="worksheet-textarea" id="wf6"                placeholder="e.g. Bring it in and we will take care of it today."></textarea>            <label class="form-label" for="wf7"><strong>The Call to Action:</strong> What must they do?</label>            <textarea class="worksheet-textarea" id="wf7" placeholder="e.g. Stop by today and try it for yourself."></textarea>            <h2>5. Turn Script into Shot Plan</h2>            <div class="step-box">                <h4>Definition</h4>                <p>Decide exactly what the viewer sees for each line of the script. Assign a visual that clearly shows                    that moment.</p>            </div>            <div class="example-box">                <strong>Examples:</strong><br>                Line: "You walk in." &rarr; Shot: Front door opening.<br>                Line: "We fix what is wrong." &rarr; Shot: Employee using tool on bike.            </div>            <label class="form-label" for="wf8"><strong>Shot List Plan:</strong> (Match your hook, experience, and CTA to                visuals)</label>            <textarea class="worksheet-textarea" id="wf8" style="min-height: 200px;"                placeholder="Line 1: [Visual]&#10;Line 2: [Visual]&#10;Line 3: [Visual]..."></textarea>            <h2>6. Shooting Order</h2>            <div class="step-box">                <h4>Strategy</h4>                <p>Film in a sequence that prevents missing anything.</p>            </div>            <ol>                <li>Film the <strong>Hook</strong> first.</li>                <li>Film the <strong>Ending/Conclusion</strong> second.</li>                <li>Record the <strong>entire script as narration</strong> third.</li>                <li>Then film all <strong>B-roll</strong> in the same order the script is written.</li>            </ol>            <h2>7. Edit the Video</h2>            <ol>                <li>Put the narration on the timeline.</li>                <li>Place the hook shot over the first line.</li>                <li>Place the ending shot over the last line.</li>                <li>Match every narration line to a corresponding visual.</li>                <li>Cut each shot down to the simplest version.</li>            </ol>            <h2>8. Create the Vertical Version</h2>            <p>Reframe for phones. Duplicate your edit, change sequence settings to vertical (9:16), and reframe shots                so important elements stay centered.</p>            <div class="choices-box">                <strong>Choices:</strong><br>                Shift upward to show faces.<br>                Shift downward to show tools.<br>                Use closer shots if wide ones crop poorly.            </div>            <h2>9. Final Check</h2>            <div class="step-box">                <h4>Definition</h4>                <p>Confirm the video works from the audience's perspective.</p>            </div>            <ul style="list-style: none; padding-left: 0;">                <li><input type="checkbox"> <strong>Hook:</strong> Instantly describes the viewer's situation</li>                <li><input type="checkbox"> <strong>Middle:</strong> Experience is clear and easy to follow</li>                <li><input type="checkbox"> <strong>Ending:</strong> Action is direct and unmistakable</li>            </ul>            <div class="download-section">                <h3>Save Your Worksheet</h3>                <p>Print to PDF to save your script and shot plan.</p>                <button class="btn" onclick="window.print()">Print / Save as PDF</button>            </div>        </div>        <div style="text-align: center; margin-top: 4rem; margin-bottom: 2rem;">            <a href="../free-guides.html" class="btn">&larr; Back to Free Guides</a>        </div>    </main>    <footer>        <p>&copy; 2026 Tokyo in Film.</p>        <div class="attribution-text">            <p><a href="https://chauesprinciple.github.io/Tokyo-in-Film/">Tokyo in Film</a> &copy; 2023 by <a href="https://chauesprinciple.github.io/ChauesProductions/">Robert Ladd</a> is licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International</a>.</p>            <p><strong>Originally adapted from:</strong> <em>Moving Pictures: An Introduction to Cinema</em> by Russell Sharman.</p>        </div>    </footer>    <script src="../js/mobile-nav.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Short Form Video Guide - Tokyo in Film</title>
+    <meta name="description"
+        content="A universal guide to creating effective short-form video content: commercial, documentary, or narrative.">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../style.css?v=22">
+    <style>
+        .guide-header {
+            background: linear-gradient(135deg, rgba(255, 0, 127, 0.1), rgba(0, 243, 255, 0.05));
+            border-bottom: 3px solid var(--accent-neon-pink);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+        }
+
+        .guide-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .guide-header .subtitle {
+            color: var(--accent-neon-cyan);
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .guide-content h2 {
+            color: var(--accent-neon-cyan);
+            border-bottom: 1px solid rgba(0, 243, 255, 0.3);
+            padding-bottom: 0.5rem;
+            margin-top: 3rem;
+            font-size: 1.8rem;
+        }
+
+        .guide-content h3 {
+            color: #fff;
+            margin-top: 2rem;
+            font-size: 1.2rem;
+        }
+
+        .step-box {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .step-box h4 {
+            color: var(--accent-neon-pink);
+            margin-bottom: 0.75rem;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .example-box {
+            background: rgba(0, 243, 255, 0.05);
+            border-left: 3px solid var(--accent-neon-cyan);
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .example-box strong {
+            color: var(--accent-neon-cyan);
+        }
+
+        .choices-box {
+            background: rgba(255, 0, 127, 0.05);
+            border-left: 3px solid var(--accent-neon-pink);
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .choices-box strong {
+            color: var(--accent-neon-pink);
+        }
+
+        /* Interactive Elements */
+        .form-label {
+            color: #aaa;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            display: block;
+            margin-top: 1.5rem;
+        }
+
+        .worksheet-textarea {
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
+            /* Critical for mobile */
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 4px;
+            color: #fff;
+            padding: 1rem;
+            min-height: 80px;
+            font-family: 'Inter', sans-serif;
+            resize: vertical;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .worksheet-textarea:focus {
+            outline: none;
+            border-color: var(--accent-neon-cyan);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .download-section {
+            background: rgba(0, 243, 255, 0.05);
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .guide-header {
+                padding: 1.5rem;
+            }
+
+            .guide-header h1 {
+                font-size: 2rem;
+                /* Smaller header */
+                word-wrap: break-word;
+            }
+
+            .guide-content h2 {
+                font-size: 1.5rem;
+            }
+
+            .step-box,
+            .example-box,
+            .choices-box {
+                padding: 1rem;
+            }
+
+            main.container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+        }
+
+        @media print {
+
+            nav,
+            footer,
+            .download-section {
+                display: none;
+            }
+
+            body {
+                background: #fff;
+                color: #000;
+            }
+
+            .worksheet-textarea {
+                border: 1px solid #ccc;
+                background: #fff;
+                color: #000;
+                min-height: 60px;
+            }
+
+            h1,
+            h2,
+            h3,
+            h4,
+            p,
+            li,
+            label,
+            strong {
+                color: #000 !important;
+            }
+
+            .example-box,
+            .choices-box,
+            .step-box {
+                border: 1px solid #ccc;
+                background: transparent;
+                color: #000;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="nav-brand" style="display: flex; align-items: center; gap: 1rem;">
+<div class="logo">
+    Tokyo in Film
+    <div class="dropdown-menu">
+        <a href="https://chauesprinciple.github.io/Tokyo-in-Film/" class="dropdown-item current">Tokyo in Film</a>
+        <a href="https://chauesprinciple.github.io/Ancient-literature/" class="dropdown-item">Ancient Literature</a>
+    </div>
+</div>
+            <a href="https://www.instagram.com/chaues/" target="_blank" rel="noopener" class="ig-icon" aria-label="Instagram"></a>
+        </div>
+        <button type="button" class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-nav">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+        <ul class="nav-list" id="primary-nav">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../documentary-project.html">Documentary Project</a></li>
+            <li><a href="../pre-production/index.html">Pre-Production</a></li>
+            <li><a href="../production/index.html">Production</a></li>
+            <li><a href="../post-production/index.html">Post-Production</a></li>
+            <li><a href="../glossary.html">Glossary</a></li>
+            <li><a href="../free-guides.html" class="active">Free Guides</a></li>
+        </ul>
+    </nav>
+
+    <main class="container" style="padding-top: 100px;">
+        <div class="guide-header">
+            <p class="subtitle">Tokyo in Film &bull; Interactive Worksheet</p>
+            <h1>Short Form Video Guide</h1>
+            <p style="margin-top: 1rem; color: #ddd;">A universal framework for Commercials, Documentaries, or Narrative
+                shorts. This worksheet guides you through the process of creating effective short-form content.</p>
+        </div>
+
+        <div class="textbook-content guide-content">
+
+            <h2>1. Identify the Subject/Business</h2>
+            <div class="step-box">
+                <h4>Definition</h4>
+                <p>Choose a real subject (business, person, or event) and gather essential information directly from the
+                    source.</p>
+            </div>
+
+            <p><strong>What to do:</strong></p>
+            <ul>
+                <li>Pick a subject willing to let you film</li>
+                <li>Interview someone involved (owner, employee, or subject)</li>
+                <li>Ask three questions:
+                    <ul>
+                        <li>"What single service, product, or idea do you want more people to know about?"</li>
+                        <li>"Who is your ideal audience/customer for that?"</li>
+                        <li>"What do you want viewers to do after watching the video?"</li>
+                    </ul>
+                </li>
+                <li>Write down their exact answers. These control your entire video.</li>
+            </ul>
+
+            <label class="form-label" for="wf1"><strong>Core Subject/Product:</strong> What is the ONE thing this video is
+                about?</label>
+            <textarea class="worksheet-textarea" id="wf1" placeholder="e.g. The bike shop's tune-up service..."></textarea>
+
+            <label class="form-label" for="wf2"><strong>Target Audience:</strong> Who is this specific message for?</label>
+            <textarea class="worksheet-textarea" id="wf2"
+                placeholder="e.g. Daily commuters who ignore maintenance..."></textarea>
+
+            <label class="form-label" for="wf3"><strong>Desired Action:</strong> What should they do next?</label>
+            <textarea class="worksheet-textarea" id="wf3" placeholder="e.g. Bring the bike in today..."></textarea>
+
+            <h2>2. Write the Hook</h2>
+            <div class="step-box">
+                <h4>Definition</h4>
+                <p>A short, spoken line that instantly makes the viewer think, "This is about me."</p>
+            </div>
+
+            <div class="choices-box">
+                <strong>Choices:</strong><br>
+                If they feel frustrated &rarr; write a <strong>problem hook</strong>.<br>
+                If they want improvement &rarr; write a <strong>desire hook</strong>.<br>
+                If the process looks interesting &rarr; write a <strong>curiosity hook</strong>.<br>
+                If the result is visually strong &rarr; write an <strong>outcome hook</strong>.
+            </div>
+
+            <label class="form-label" for="wf4"><strong>Your Hook (Under 3 seconds):</strong></label>
+            <textarea class="worksheet-textarea" id="wf4"
+                placeholder="e.g. 'If this keeps slowing you down, here is your fix.'"></textarea>
+
+            <h2>3. Write the Experience Section</h2>
+            <div class="step-box">
+                <h4>Definition</h4>
+                <p>Explain what the viewer goes through from start to finish.</p>
+            </div>
+
+            <p><strong>What to do:</strong> Write 3-4 short sentences describing the actual journey. Make every sentence
+                filmable.</p>
+
+            <div class="example-box">
+                <strong>Example:</strong> "You walk in and we look at what you need. We show you the best option right
+                away. The process is quick. You leave with the problem handled."
+            </div>
+
+            <label class="form-label" for="wf5"><strong>The Journey (Start &rarr; Middle &rarr; End):</strong></label>
+            <textarea class="worksheet-textarea" id="wf5" style="min-height: 120px;"
+                placeholder="Write the sequence here..."></textarea>
+
+            <h2>4. Write the Offer + Call to Action</h2>
+            <div class="step-box">
+                <h4>Definition</h4>
+                <p>State what the viewer gets and tell them exactly what to do.</p>
+            </div>
+
+            <label class="form-label" for="wf6"><strong>The Offer:</strong> What do they get?</label>
+            <textarea class="worksheet-textarea" id="wf6"
+                placeholder="e.g. Bring it in and we will take care of it today."></textarea>
+
+            <label class="form-label" for="wf7"><strong>The Call to Action:</strong> What must they do?</label>
+            <textarea class="worksheet-textarea" id="wf7" placeholder="e.g. Stop by today and try it for yourself."></textarea>
+
+
+            <h2>5. Turn Script into Shot Plan</h2>
+            <div class="step-box">
+                <h4>Definition</h4>
+                <p>Decide exactly what the viewer sees for each line of the script. Assign a visual that clearly shows
+                    that moment.</p>
+            </div>
+
+            <div class="example-box">
+                <strong>Examples:</strong><br>
+                Line: "You walk in." &rarr; Shot: Front door opening.<br>
+                Line: "We fix what is wrong." &rarr; Shot: Employee using tool on bike.
+            </div>
+
+            <label class="form-label" for="wf8"><strong>Shot List Plan:</strong> (Match your hook, experience, and CTA to
+                visuals)</label>
+            <textarea class="worksheet-textarea" id="wf8" style="min-height: 200px;"
+                placeholder="Line 1: [Visual]&#10;Line 2: [Visual]&#10;Line 3: [Visual]..."></textarea>
+
+
+            <h2>6. Shooting Order</h2>
+            <div class="step-box">
+                <h4>Strategy</h4>
+                <p>Film in a sequence that prevents missing anything.</p>
+            </div>
+            <ol>
+                <li>Film the <strong>Hook</strong> first.</li>
+                <li>Film the <strong>Ending/Conclusion</strong> second.</li>
+                <li>Record the <strong>entire script as narration</strong> third.</li>
+                <li>Then film all <strong>B-roll</strong> in the same order the script is written.</li>
+            </ol>
+
+            <h2>7. Edit the Video</h2>
+            <ol>
+                <li>Put the narration on the timeline.</li>
+                <li>Place the hook shot over the first line.</li>
+                <li>Place the ending shot over the last line.</li>
+                <li>Match every narration line to a corresponding visual.</li>
+                <li>Cut each shot down to the simplest version.</li>
+            </ol>
+
+            <h2>8. Create the Vertical Version</h2>
+            <p>Reframe for phones. Duplicate your edit, change sequence settings to vertical (9:16), and reframe shots
+                so important elements stay centered.</p>
+
+            <div class="choices-box">
+                <strong>Choices:</strong><br>
+                Shift upward to show faces.<br>
+                Shift downward to show tools.<br>
+                Use closer shots if wide ones crop poorly.
+            </div>
+
+            <h2>9. Final Check</h2>
+            <div class="step-box">
+                <h4>Definition</h4>
+                <p>Confirm the video works from the audience's perspective.</p>
+            </div>
+            <ul style="list-style: none; padding-left: 0;">
+                <li><input type="checkbox"> <strong>Hook:</strong> Instantly describes the viewer's situation</li>
+                <li><input type="checkbox"> <strong>Middle:</strong> Experience is clear and easy to follow</li>
+                <li><input type="checkbox"> <strong>Ending:</strong> Action is direct and unmistakable</li>
+            </ul>
+
+            <div class="download-section">
+                <h3>Save Your Worksheet</h3>
+                <p>Print to PDF to save your script and shot plan.</p>
+                <button class="btn" onclick="window.print()">Print / Save as PDF</button>
+            </div>
+
+        </div>
+
+        <div style="text-align: center; margin-top: 4rem; margin-bottom: 2rem;">
+            <a href="../free-guides.html" class="btn">&larr; Back to Free Guides</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Tokyo in Film.</p>
+        <div class="attribution-text">
+            <p><a href="https://chauesprinciple.github.io/Tokyo-in-Film/">Tokyo in Film</a> &copy; 2023 by <a href="https://chauesprinciple.github.io/ChauesProductions/">Robert Ladd</a> is licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International</a>.</p>
+            <p><strong>Originally adapted from:</strong> <em>Moving Pictures: An Introduction to Cinema</em> by Russell Sharman.</p>
+        </div>
+    </footer>
+
+    <script src="../js/mobile-nav.js"></script>
+</body>
+
+</html>
+
+
+

@@ -1,1 +1,394 @@
-<!DOCTYPE html><html lang="en"><head>    <meta charset="UTF-8">    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <title>Three-Act Three-Shot Guide - Tokyo in Film</title>    <meta name="description"        content="A guide to understanding dramatic structure through the Three-Act framework and applying it to a Three-Shot sequence.">    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;600&display=swap"        rel="stylesheet">    <link rel="stylesheet" href="../style.css?v=23">    <style>        .guide-header {            background: linear-gradient(135deg, rgba(255, 0, 127, 0.1), rgba(0, 243, 255, 0.05));            border-bottom: 3px solid var(--accent-neon-cyan);            padding: 2rem;            margin-bottom: 2rem;            border-radius: 8px;        }        .guide-header h1 {            font-size: 2.2rem;            margin-bottom: 0.5rem;        }        .guide-header .subtitle {            color: var(--accent-neon-pink);            font-size: 1.1rem;            text-transform: uppercase;            letter-spacing: 0.1em;        }        .guide-content h2 {            color: var(--accent-neon-cyan);            border-bottom: 1px solid rgba(0, 243, 255, 0.3);            padding-bottom: 0.5rem;            margin-top: 3rem;            font-size: 1.5rem;        }        .guide-content h3 {            color: #fff;            margin-top: 1.5rem;            font-size: 1.2rem;            border-left: 3px solid var(--accent-neon-pink);            padding-left: 1rem;        }        .guide-content h4 {            color: #ddd;            margin-top: 1rem;            margin-bottom: 0.5rem;            font-size: 1rem;            font-weight: bold;        }        .principle-box {            background: rgba(255, 0, 127, 0.08);            border-left: 4px solid var(--accent-neon-pink);            padding: 1rem 1.5rem;            margin: 1.5rem 0;            border-radius: 0 8px 8px 0;        }        .theory-box {            background: rgba(0, 243, 255, 0.05);            border: 1px solid rgba(0, 243, 255, 0.1);            padding: 1.5rem;            margin: 1.5rem 0;            border-radius: 8px;        }        /* Interactive Elements */        .form-label {            color: var(--accent-neon-cyan);            font-size: 0.95rem;            margin-bottom: 0.5rem;            display: block;            margin-top: 1.5rem;            font-weight: 600;        }        .form-sublabel {            color: #aaa;            font-size: 0.85rem;            margin-bottom: 0.5rem;            display: block;            font-style: italic;        }        .worksheet-textarea {            width: 100%;            background: rgba(255, 255, 255, 0.03);            border: 1px solid rgba(255, 255, 255, 0.15);            border-radius: 4px;            color: #fff;            padding: 1rem;            min-height: 80px;            font-family: 'Inter', sans-serif;            resize: vertical;            display: block;            margin-bottom: 1rem;        }        .worksheet-textarea:focus {            outline: none;            border-color: var(--accent-neon-cyan);            background: rgba(255, 255, 255, 0.05);        }        .meta-grid {            display: grid;            grid-template-columns: 1fr 1fr;            gap: 1rem;            margin-bottom: 2rem;        }        .meta-input {            width: 100%;            background: rgba(255, 255, 255, 0.03);            border: 1px solid rgba(255, 255, 255, 0.15);            border-radius: 4px;            color: #fff;            padding: 0.5rem;            font-family: 'Inter', sans-serif;        }        .download-section {            background: rgba(0, 243, 255, 0.05);            border: 1px solid rgba(0, 243, 255, 0.2);            border-radius: 8px;            padding: 1.5rem;            margin-top: 3rem;            text-align: center;        }        @media print {            nav,            footer,            .download-section {                display: none;            }            body {                background: #fff;                color: #000;            }            .worksheet-textarea,            .meta-input {                border: 1px solid #ccc;                background: #fff;                color: #000;            }            h1,            h2,            h3,            h4,            p,            li,            label,            strong {                color: #000 !important;            }            .principle-box,            .theory-box {                border: 1px solid #ccc;                background: transparent;                color: #000;            }            .guide-header {                border-bottom: 2px solid #000;            }        }    </style></head><body>    <nav>        <div class="nav-brand" style="display: flex; align-items: center; gap: 1rem;"><div class="logo">    Tokyo in Film    <div class="dropdown-menu">        <a href="https://chauesprinciple.github.io/Tokyo-in-Film/" class="dropdown-item current">Tokyo in Film</a>        <a href="https://chauesprinciple.github.io/Ancient-literature/" class="dropdown-item">Ancient Literature</a>    </div></div>            <a href="https://www.instagram.com/chaues/" target="_blank" rel="noopener" class="ig-icon" aria-label="Instagram"></a>        </div>        <button type="button" class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-nav">            <span class="bar"></span>            <span class="bar"></span>            <span class="bar"></span>        </button>        <ul class="nav-list" id="primary-nav">            <li><a href="../index.html">Home</a></li>            <li><a href="../documentary-project.html">Documentary Project</a></li>            <li><a href="../pre-production/index.html">Pre-Production</a></li>            <li><a href="../production/index.html">Production</a></li>            <li><a href="../post-production/index.html">Post-Production</a></li>            <li><a href="../glossary.html">Glossary</a></li>            <li><a href="../free-guides.html" class="active">Free Guides</a></li>        </ul>    </nav>    <main class="container" style="padding-top: 100px;">        <div class="guide-header">            <p class="subtitle">Feature Film Structure &bull; Micro Application</p>            <h1>Three-Act, Three-Shot Guide</h1>        </div>        <div class="textbook-content guide-content">            <section id="theory">                <h2>The Structure of Story</h2>                <p>Most stories can be understood as a sequence of three major movements. Like a magic trick, the                    structure works because it guides attention, sets expectations, and then changes the situation in a                    way that forces a resolution.</p>                <div class="principle-box">                    <strong>It is a framework, not a cage.</strong> The structure stays consistent (Setup &rarr; Escalation &rarr; Resolution), while what you build inside it can vary endlessly in genre, tone, and style.                </div>                <p>At its core, three-act structure is about plot and transformation. The "story" is what happens. The                    "plot" is how those events are arranged and revealed.</p>                <div class="theory-box">                    <h3>Act One: Setup and Commitment</h3>                    <p>Act One establishes the baseline world. It gives the audience a reason to keep watching, then                        introduces the central problem.</p>                    <ul>                        <li><strong>The Hook:</strong> The reason to keep watching. Often creates curiosity or begins                            "in the middle of something."</li>                        <li><strong>The Inciting Event:</strong> The disruption that changes "normal" for the                            protagonist.</li>                        <li><strong>Plot Point 1:</strong> The threshold moment. The protagonist is committed to the                            journey and cannot return to normal.</li>                    </ul>                    <h3>Act Two: Escalation and Reversal</h3>                    <p>The sustained struggle. The protagonist faces obstacles, pressure increases, and the story tests                        their commitment.</p>                    <ul>                        <li><strong>Midpoint:</strong> A structural pivot where the conflict becomes clearer, more                            personal, or unavoidable. The protagonist often shifts from reactive to proactive.</li>                        <li><strong>Pinch Points:</strong> Moments that clarify the risk and remind us of the                            antagonistic force.</li>                    </ul>                    <h3>Act Three: Crisis and Resolution</h3>                    <p>The story cashes out everything established so far.</p>                    <ul>                        <li><strong>Climax:</strong> The decisive confrontation that determines the outcome. It fulfills                            the protagonist's transformation.</li>                        <li><strong>Resolution:</strong> A brief landing to show the "new normal" and settle                            consequences.</li>                    </ul>                </div>            </section>            <section id="practice">                <h2>The Three-Shot Worksheet</h2>                <p>To master this structure, we practice with the smallest possible narrative unit: The Three-Shot                    Sequence. We map the three acts directly onto three shots.</p>                <div class="meta-grid">                    <div>                        <label for="ta1">Name</label>                        <input type="text" class="meta-input" id="ta1">                    </div>                    <div>                        <label for="ta2">Course / Section</label>                        <input type="text" class="meta-input" id="ta2">                    </div>                    <div>                        <label for="ta3">Film Title</label>                        <input type="text" class="meta-input" id="ta3">                    </div>                    <div>                        <label for="ta4">Role</label>                        <input type="text" class="meta-input" id="ta4">                    </div>                </div>                <label class="form-label" for="ta5">LOGLINE OF THE SCENE (1 sentence)</label>                <div class="form-sublabel">What happens in this three-shot sequence?</div>                <textarea class="worksheet-textarea" style="min-height: 60px;" id="ta5"></textarea>                <hr style="border: 0; border-top: 1px solid #444; margin: 3rem 0;">                <!-- SHOT 1 -->                <h3>ACT 1 / SHOT 1: Establish The Normal</h3>                <p><em>Corresponding to the Setup and Inciting Incident.</em></p>                <label class="form-label" for="ta6">1) What is the "normal" rhythm of this space?</label>                <div class="form-sublabel">Describe light, movement, sound, routine, behavior.</div>                <textarea class="worksheet-textarea" id="ta6"></textarea>                <label class="form-label" for="ta7">2) What will the camera show to make this normal clear?</label>                <div class="form-sublabel">Frame, angle, lens choice, camera height, movement, duration.</div>                <textarea class="worksheet-textarea" id="ta7"></textarea>                <label class="form-label" for="ta8">3) Why is this the baseline the viewer must understand?</label>                <div class="form-sublabel">What rule, pattern, or expectation is being set?</div>                <textarea class="worksheet-textarea" id="ta8"></textarea>                <!-- SHOT 2 -->                <h3>ACT 2 / SHOT 2: Disrupt The Normal</h3>                <p><em>Corresponding to the Escalation, Pinch Points, and Midpoint.</em></p>                <label class="form-label" for="ta9">1) What single thing breaks the rhythm or logic of the space?</label>                <div class="form-sublabel">Visual interruption, sound change, unexpected movement, new information.                </div>                <textarea class="worksheet-textarea" id="ta9"></textarea>                <label class="form-label" for="ta10">2) How will the disruption enter the frame?</label>                <div class="form-sublabel">Timing, direction, pacing, foreground/background, off-screen to on-screen.                </div>                <textarea class="worksheet-textarea" id="ta10"></textarea>                <label class="form-label" for="ta11">3) How does this escalate naturally from Shot 1?</label>                <div class="form-sublabel">What is the cause-and-effect link?</div>                <textarea class="worksheet-textarea" id="ta11"></textarea>                <!-- SHOT 3 -->                <h3>ACT 3 / SHOT 3: Payoff / Consequence</h3>                <p><em>Corresponding to the Climax and Resolution.</em></p>                <label class="form-label" for="ta12">1) What final image shows the result of the disruption?</label>                <div class="form-sublabel">The only possible outcome of Shot 2.</div>                <textarea class="worksheet-textarea" id="ta12"></textarea>                <label class="form-label" for="ta13">2) How will you frame the payoff using the location itself?</label>                <div class="form-sublabel">Windows, doorways, stairs, reflections, depth, etc.</div>                <textarea class="worksheet-textarea" id="ta13"></textarea>                <label class="form-label" for="ta14">3) What emotion or tone should the final shot leave the viewer with?</label>                <div class="form-sublabel">E.g., relief, dread, irony, calm, tension, ambiguity.</div>                <textarea class="worksheet-textarea" id="ta14"></textarea>                <hr style="border: 0; border-top: 1px solid #444; margin: 3rem 0;">                <h2>Check for Throughline</h2>                <label class="form-label" for="ta15">How do Shots 1 to 2 to 3 connect logically as one sequence?</label>                <div class="form-sublabel">Write the causal chain in one paragraph or 3 short lines.</div>                <textarea class="worksheet-textarea" id="ta15"></textarea>                <h2>Shot Summary</h2>                <div style="background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 8px;">                    <label class="form-label" style="margin-top: 0;" for="ta16">Shot 1 (Setup):</label>                    <input type="text" class="meta-input" placeholder="One sentence description..." id="ta16">                    <label class="form-label" for="ta17">Shot 2 (Disruption):</label>                    <input type="text" class="meta-input" placeholder="One sentence description..." id="ta17">                    <label class="form-label" for="ta18">Shot 3 (Payoff):</label>                    <input type="text" class="meta-input" placeholder="One sentence description..." id="ta18">                </div>            </section>            <div class="download-section">                <h3>Save Your Worksheet</h3>                <p>Fill out the forms above and print to PDF.</p>                <button class="btn" onclick="window.print()">Print / Save as PDF</button>            </div>        </div>        <div style="text-align: center; margin-top: 4rem; margin-bottom: 2rem;">            <a href="../free-guides.html" class="btn">&larr; Back to Free Guides</a>        </div>    </main>    <footer>        <p>&copy; 2026 Tokyo in Film.</p>        <div class="attribution-text">            <p><a href="https://chauesprinciple.github.io/Tokyo-in-Film/">Tokyo in Film</a> &copy; 2023 by <a href="https://chauesprinciple.github.io/ChauesProductions/">Robert Ladd</a> is licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International</a>.</p>            <p><strong>Originally adapted from:</strong> <em>Moving Pictures: An Introduction to Cinema</em> by Russell Sharman.</p>        </div>    </footer>    <script src="../js/mobile-nav.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Three-Act Three-Shot Guide - Tokyo in Film</title>
+    <meta name="description"
+        content="A guide to understanding dramatic structure through the Three-Act framework and applying it to a Three-Shot sequence.">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../style.css?v=22">
+    <style>
+        .guide-header {
+            background: linear-gradient(135deg, rgba(255, 0, 127, 0.1), rgba(0, 243, 255, 0.05));
+            border-bottom: 3px solid var(--accent-neon-cyan);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+        }
+
+        .guide-header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .guide-header .subtitle {
+            color: var(--accent-neon-pink);
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .guide-content h2 {
+            color: var(--accent-neon-cyan);
+            border-bottom: 1px solid rgba(0, 243, 255, 0.3);
+            padding-bottom: 0.5rem;
+            margin-top: 3rem;
+            font-size: 1.5rem;
+        }
+
+        .guide-content h3 {
+            color: #fff;
+            margin-top: 1.5rem;
+            font-size: 1.2rem;
+            border-left: 3px solid var(--accent-neon-pink);
+            padding-left: 1rem;
+        }
+
+        .guide-content h4 {
+            color: #ddd;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        .principle-box {
+            background: rgba(255, 0, 127, 0.08);
+            border-left: 4px solid var(--accent-neon-pink);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .theory-box {
+            background: rgba(0, 243, 255, 0.05);
+            border: 1px solid rgba(0, 243, 255, 0.1);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+        }
+
+        /* Interactive Elements */
+        .form-label {
+            color: var(--accent-neon-cyan);
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+            display: block;
+            margin-top: 1.5rem;
+            font-weight: 600;
+        }
+
+        .form-sublabel {
+            color: #aaa;
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+            display: block;
+            font-style: italic;
+        }
+
+        .worksheet-textarea {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 4px;
+            color: #fff;
+            padding: 1rem;
+            min-height: 80px;
+            font-family: 'Inter', sans-serif;
+            resize: vertical;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .worksheet-textarea:focus {
+            outline: none;
+            border-color: var(--accent-neon-cyan);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .meta-input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 4px;
+            color: #fff;
+            padding: 0.5rem;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .download-section {
+            background: rgba(0, 243, 255, 0.05);
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        @media print {
+
+            nav,
+            footer,
+            .download-section {
+                display: none;
+            }
+
+            body {
+                background: #fff;
+                color: #000;
+            }
+
+            .worksheet-textarea,
+            .meta-input {
+                border: 1px solid #ccc;
+                background: #fff;
+                color: #000;
+            }
+
+            h1,
+            h2,
+            h3,
+            h4,
+            p,
+            li,
+            label,
+            strong {
+                color: #000 !important;
+            }
+
+            .principle-box,
+            .theory-box {
+                border: 1px solid #ccc;
+                background: transparent;
+                color: #000;
+            }
+
+            .guide-header {
+                border-bottom: 2px solid #000;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="nav-brand" style="display: flex; align-items: center; gap: 1rem;">
+<div class="logo">
+    Tokyo in Film
+    <div class="dropdown-menu">
+        <a href="https://chauesprinciple.github.io/Tokyo-in-Film/" class="dropdown-item current">Tokyo in Film</a>
+        <a href="https://chauesprinciple.github.io/Ancient-literature/" class="dropdown-item">Ancient Literature</a>
+    </div>
+</div>
+            <a href="https://www.instagram.com/chaues/" target="_blank" rel="noopener" class="ig-icon" aria-label="Instagram"></a>
+        </div>
+        <button type="button" class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-nav">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+        <ul class="nav-list" id="primary-nav">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../documentary-project.html">Documentary Project</a></li>
+            <li><a href="../pre-production/index.html">Pre-Production</a></li>
+            <li><a href="../production/index.html">Production</a></li>
+            <li><a href="../post-production/index.html">Post-Production</a></li>
+            <li><a href="../glossary.html">Glossary</a></li>
+            <li><a href="../free-guides.html" class="active">Free Guides</a></li>
+        </ul>
+    </nav>
+
+    <main class="container" style="padding-top: 100px;">
+        <div class="guide-header">
+            <p class="subtitle">Feature Film Structure &bull; Micro Application</p>
+            <h1>Three-Act, Three-Shot Guide</h1>
+        </div>
+
+        <div class="textbook-content guide-content">
+
+            <section id="theory">
+                <h2>The Structure of Story</h2>
+                <p>Most stories can be understood as a sequence of three major movements. Like a magic trick, the
+                    structure works because it guides attention, sets expectations, and then changes the situation in a
+                    way that forces a resolution.</p>
+
+                <div class="principle-box">
+                    <strong>It is a framework, not a cage.</strong> The structure stays consistent (Setup &rarr; Escalation &rarr; Resolution), while what you build inside it can vary endlessly in genre, tone, and style.
+                </div>
+
+                <p>At its core, three-act structure is about plot and transformation. The "story" is what happens. The
+                    "plot" is how those events are arranged and revealed.</p>
+
+                <div class="theory-box">
+                    <h3>Act One: Setup and Commitment</h3>
+                    <p>Act One establishes the baseline world. It gives the audience a reason to keep watching, then
+                        introduces the central problem.</p>
+                    <ul>
+                        <li><strong>The Hook:</strong> The reason to keep watching. Often creates curiosity or begins
+                            "in the middle of something."</li>
+                        <li><strong>The Inciting Event:</strong> The disruption that changes "normal" for the
+                            protagonist.</li>
+                        <li><strong>Plot Point 1:</strong> The threshold moment. The protagonist is committed to the
+                            journey and cannot return to normal.</li>
+                    </ul>
+
+                    <h3>Act Two: Escalation and Reversal</h3>
+                    <p>The sustained struggle. The protagonist faces obstacles, pressure increases, and the story tests
+                        their commitment.</p>
+                    <ul>
+                        <li><strong>Midpoint:</strong> A structural pivot where the conflict becomes clearer, more
+                            personal, or unavoidable. The protagonist often shifts from reactive to proactive.</li>
+                        <li><strong>Pinch Points:</strong> Moments that clarify the risk and remind us of the
+                            antagonistic force.</li>
+                    </ul>
+
+                    <h3>Act Three: Crisis and Resolution</h3>
+                    <p>The story cashes out everything established so far.</p>
+                    <ul>
+                        <li><strong>Climax:</strong> The decisive confrontation that determines the outcome. It fulfills
+                            the protagonist's transformation.</li>
+                        <li><strong>Resolution:</strong> A brief landing to show the "new normal" and settle
+                            consequences.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="practice">
+                <h2>The Three-Shot Worksheet</h2>
+                <p>To master this structure, we practice with the smallest possible narrative unit: The Three-Shot
+                    Sequence. We map the three acts directly onto three shots.</p>
+
+                <div class="meta-grid">
+                    <div>
+                        <label for="ta1">Name</label>
+                        <input type="text" class="meta-input" id="ta1">
+                    </div>
+                    <div>
+                        <label for="ta2">Course / Section</label>
+                        <input type="text" class="meta-input" id="ta2">
+                    </div>
+                    <div>
+                        <label for="ta3">Film Title</label>
+                        <input type="text" class="meta-input" id="ta3">
+                    </div>
+                    <div>
+                        <label for="ta4">Role</label>
+                        <input type="text" class="meta-input" id="ta4">
+                    </div>
+                </div>
+
+                <label class="form-label" for="ta5">LOGLINE OF THE SCENE (1 sentence)</label>
+                <div class="form-sublabel">What happens in this three-shot sequence?</div>
+                <textarea class="worksheet-textarea" style="min-height: 60px;" id="ta5"></textarea>
+
+                <hr style="border: 0; border-top: 1px solid #444; margin: 3rem 0;">
+
+                <!-- SHOT 1 -->
+                <h3>ACT 1 / SHOT 1: Establish The Normal</h3>
+                <p><em>Corresponding to the Setup and Inciting Incident.</em></p>
+
+                <label class="form-label" for="ta6">1) What is the "normal" rhythm of this space?</label>
+                <div class="form-sublabel">Describe light, movement, sound, routine, behavior.</div>
+                <textarea class="worksheet-textarea" id="ta6"></textarea>
+
+                <label class="form-label" for="ta7">2) What will the camera show to make this normal clear?</label>
+                <div class="form-sublabel">Frame, angle, lens choice, camera height, movement, duration.</div>
+                <textarea class="worksheet-textarea" id="ta7"></textarea>
+
+                <label class="form-label" for="ta8">3) Why is this the baseline the viewer must understand?</label>
+                <div class="form-sublabel">What rule, pattern, or expectation is being set?</div>
+                <textarea class="worksheet-textarea" id="ta8"></textarea>
+
+                <!-- SHOT 2 -->
+                <h3>ACT 2 / SHOT 2: Disrupt The Normal</h3>
+                <p><em>Corresponding to the Escalation, Pinch Points, and Midpoint.</em></p>
+
+                <label class="form-label" for="ta9">1) What single thing breaks the rhythm or logic of the space?</label>
+                <div class="form-sublabel">Visual interruption, sound change, unexpected movement, new information.
+                </div>
+                <textarea class="worksheet-textarea" id="ta9"></textarea>
+
+                <label class="form-label" for="ta10">2) How will the disruption enter the frame?</label>
+                <div class="form-sublabel">Timing, direction, pacing, foreground/background, off-screen to on-screen.
+                </div>
+                <textarea class="worksheet-textarea" id="ta10"></textarea>
+
+                <label class="form-label" for="ta11">3) How does this escalate naturally from Shot 1?</label>
+                <div class="form-sublabel">What is the cause-and-effect link?</div>
+                <textarea class="worksheet-textarea" id="ta11"></textarea>
+
+                <!-- SHOT 3 -->
+                <h3>ACT 3 / SHOT 3: Payoff / Consequence</h3>
+                <p><em>Corresponding to the Climax and Resolution.</em></p>
+
+                <label class="form-label" for="ta12">1) What final image shows the result of the disruption?</label>
+                <div class="form-sublabel">The only possible outcome of Shot 2.</div>
+                <textarea class="worksheet-textarea" id="ta12"></textarea>
+
+                <label class="form-label" for="ta13">2) How will you frame the payoff using the location itself?</label>
+                <div class="form-sublabel">Windows, doorways, stairs, reflections, depth, etc.</div>
+                <textarea class="worksheet-textarea" id="ta13"></textarea>
+
+                <label class="form-label" for="ta14">3) What emotion or tone should the final shot leave the viewer with?</label>
+                <div class="form-sublabel">E.g., relief, dread, irony, calm, tension, ambiguity.</div>
+                <textarea class="worksheet-textarea" id="ta14"></textarea>
+
+                <hr style="border: 0; border-top: 1px solid #444; margin: 3rem 0;">
+
+                <h2>Check for Throughline</h2>
+                <label class="form-label" for="ta15">How do Shots 1 to 2 to 3 connect logically as one sequence?</label>
+                <div class="form-sublabel">Write the causal chain in one paragraph or 3 short lines.</div>
+                <textarea class="worksheet-textarea" id="ta15"></textarea>
+
+                <h2>Shot Summary</h2>
+                <div style="background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 8px;">
+                    <label class="form-label" style="margin-top: 0;" for="ta16">Shot 1 (Setup):</label>
+                    <input type="text" class="meta-input" placeholder="One sentence description..." id="ta16">
+
+                    <label class="form-label" for="ta17">Shot 2 (Disruption):</label>
+                    <input type="text" class="meta-input" placeholder="One sentence description..." id="ta17">
+
+                    <label class="form-label" for="ta18">Shot 3 (Payoff):</label>
+                    <input type="text" class="meta-input" placeholder="One sentence description..." id="ta18">
+                </div>
+
+            </section>
+
+            <div class="download-section">
+                <h3>Save Your Worksheet</h3>
+                <p>Fill out the forms above and print to PDF.</p>
+                <button class="btn" onclick="window.print()">Print / Save as PDF</button>
+            </div>
+
+        </div>
+
+        <div style="text-align: center; margin-top: 4rem; margin-bottom: 2rem;">
+            <a href="../free-guides.html" class="btn">&larr; Back to Free Guides</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Tokyo in Film.</p>
+        <div class="attribution-text">
+            <p><a href="https://chauesprinciple.github.io/Tokyo-in-Film/">Tokyo in Film</a> &copy; 2023 by <a href="https://chauesprinciple.github.io/ChauesProductions/">Robert Ladd</a> is licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International</a>.</p>
+            <p><strong>Originally adapted from:</strong> <em>Moving Pictures: An Introduction to Cinema</em> by Russell Sharman.</p>
+        </div>
+    </footer>
+
+    <script src="../js/mobile-nav.js"></script>
+</body>
+
+</html>
+
+
+
