@@ -576,7 +576,21 @@ async function loadMap(){
   const urlAnime=urlParams.get('anime');
   const urlWard=urlParams.get('ward');
   const urlPoi=urlParams.get('poi');
+  if(urlAnime&&!ANIME[urlAnime]) console.error('Unknown map dataset:',urlAnime,'— check that the data script loaded');
   if(urlAnime&&ANIME[urlAnime]) currentAnime=urlAnime;
+
+  // Sync tab buttons to match the URL-selected dataset (static HTML defaults to JJK active)
+  document.querySelectorAll('.anime-tab').forEach(t=>{
+    const on=t.dataset.anime===currentAnime;
+    t.classList.toggle('active',on);
+    t.setAttribute('aria-selected',on?'true':'false');
+  });
+
+  // Hide the inner anime switcher when embedded with chrome=0 (e.g. the class map panel on index.html)
+  if(urlParams.get('chrome')==='0'){
+    const sw=document.getElementById('anime-switcher');
+    if(sw) sw.style.display='none';
+  }
 
   // Apply initial anime theme
   applyAnimeTheme();
