@@ -1300,7 +1300,7 @@
         var STOPS = [1.4, 1.7, 2, 2.4, 2.8, 3.3, 4, 4.8, 5.6, 6.7, 8, 9.5, 11, 13, 16, 19, 22];
 
         // Subject position in SVG user units — the zoom anchor for both modes.
-        // (300, 225) = fraction (0.5, 0.75) of the 600Ã—300 viewBox.
+        // (300, 225) = fraction (0.5, 0.75) of the 600×300 viewBox.
         var SUBJECT_X = 300, SUBJECT_Y = 225;
         var SUBJECT_FX = 0.5, SUBJECT_FY = 0.75;
 
@@ -1328,7 +1328,7 @@
             return 'Telephoto';
         }
 
-        // Real defocus blur disc diameter on sensor (mm) â†’ screen pixels
+        // Real defocus blur disc diameter on sensor (mm) → screen pixels
         function blurPx(f, N, s, d) {
             if (d <= 0 || d === s) return 0;
             var denom = N * (s * 1000 - f);
@@ -1370,7 +1370,7 @@
             rafId = null;
 
             // Measure stage width inside update() so it's always current.
-            // If the widget is hidden (display:none â†’ width 0), stageW keeps
+            // If the widget is hidden (display:none → width 0), stageW keeps
             // its last value; ResizeObserver fires scheduleUpdate on reveal.
             var r = svg.getBoundingClientRect();
             if (r.width > 0) stageW = r.width;
@@ -1438,7 +1438,7 @@
                 // Compression mode: per-layer differential magnification.
                 // layerScale(d) = (d / (d + delta)) * (sEff / s)
                 // At f=F0, delta=0, sEff=s, so scale=1 for all layers (no-op).
-                // At 200mm: bg(400m) scales ~3.86Ã—, mid(15m) ~2.0Ã—, fg stays 1Ã—.
+                // At 200mm: bg(400m) scales ~3.86×, mid(15m) ~2.0×, fg stays 1×.
                 svg.setAttribute('viewBox', '0 0 600 300');
                 vbWidth = 600;
                 bgScale = layerScale(dBg, sEff, s, delta);
