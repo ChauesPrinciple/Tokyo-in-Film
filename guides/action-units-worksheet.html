@@ -46,19 +46,6 @@
             margin: 1.5rem 0;
         }
 
-        .form-field {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 4px;
-            padding: 1rem;
-            margin: 0.75rem 0;
-            min-height: 2.5rem;
-        }
-
-        .form-field.tall {
-            min-height: 4rem;
-        }
-
         .form-label {
             color: #aaa;
             font-size: 0.9rem;
@@ -86,7 +73,7 @@
             flex-shrink: 0;
         }
 
-        .numbered-field .form-field {
+        .numbered-field .worksheet-textarea {
             flex: 1;
             margin: 0;
         }
@@ -119,11 +106,6 @@
             footer,
             .download-section {
                 display: none;
-            }
-
-            .form-field {
-                border: 1px solid #ccc;
-                background: #fff;
             }
         }
     </style>
@@ -182,15 +164,15 @@
             </div>
 
             <h2>Project Context</h2>
-            <label class="form-label">Film / Project:</label>
-            <textarea class="worksheet-textarea"></textarea>
+            <label class="form-label" for="wf1">Film / Project:</label>
+            <textarea class="worksheet-textarea" id="wf1"></textarea>
 
-            <label class="form-label">Scene / Location:</label>
-            <textarea class="worksheet-textarea"></textarea>
+            <label class="form-label" for="wf2">Scene / Location:</label>
+            <textarea class="worksheet-textarea" id="wf2"></textarea>
 
-            <label class="form-label">Purpose of this action unit in the scene (advance, overwhelm, reverse power,
+            <label class="form-label" for="wf3">Purpose of this action unit in the scene (advance, overwhelm, reverse power,
                 escape, etc.):</label>
-            <textarea class="worksheet-textarea tall"></textarea>
+            <textarea class="worksheet-textarea tall" id="wf3"></textarea>
 
             <h2>Action Unit: 2&ndash;4 Continuous Physical Actions</h2>
             <p>Write ONLY physical actions. No pauses. No resets. Stop after the fourth action.</p>
@@ -213,14 +195,14 @@
             </div>
 
             <h2>Camera (For These Actions Only)</h2>
-            <label class="form-label">Camera position relative to action (front / side / behind / distance):</label>
-            <textarea class="worksheet-textarea"></textarea>
+            <label class="form-label" for="wf4">Camera position relative to action (front / side / behind / distance):</label>
+            <textarea class="worksheet-textarea" id="wf4"></textarea>
 
-            <label class="form-label">Camera movement (static / pan / track / follow):</label>
-            <textarea class="worksheet-textarea"></textarea>
+            <label class="form-label" for="wf5">Camera movement (static / pan / track / follow):</label>
+            <textarea class="worksheet-textarea" id="wf5"></textarea>
 
-            <label class="form-label">What must remain visible for clarity (bodies, hands, weapons, direction):</label>
-            <textarea class="worksheet-textarea"></textarea>
+            <label class="form-label" for="wf6">What must remain visible for clarity (bodies, hands, weapons, direction):</label>
+            <textarea class="worksheet-textarea" id="wf6"></textarea>
 
             <h2>Shooting Method</h2>
             <div class="checkbox-field">
@@ -233,14 +215,14 @@
             </div>
 
             <h2>Physical Result (End of This Unit)</h2>
-            <label class="form-label">Performers, placement / orientation / contact:</label>
-            <textarea class="worksheet-textarea"></textarea>
+            <label class="form-label" for="wf7">Performers, placement / orientation / contact:</label>
+            <textarea class="worksheet-textarea" id="wf7"></textarea>
 
-            <label class="form-label">Environment, props moved / damage / blood present:</label>
-            <textarea class="worksheet-textarea"></textarea>
+            <label class="form-label" for="wf8">Environment, props moved / damage / blood present:</label>
+            <textarea class="worksheet-textarea" id="wf8"></textarea>
 
-            <label class="form-label">Costume / body, tears / blood / dirt / fatigue:</label>
-            <textarea class="worksheet-textarea"></textarea>
+            <label class="form-label" for="wf9">Costume / body, tears / blood / dirt / fatigue:</label>
+            <textarea class="worksheet-textarea" id="wf9"></textarea>
 
             <h2>Reuse</h2>
             <p>If the action continues, use a new copy of this worksheet to record the next 2&ndash;4 actions. Nothing on this

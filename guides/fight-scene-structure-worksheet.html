@@ -55,10 +55,6 @@
             min-height: 2.5rem;
         }
 
-        .form-field.tall {
-            min-height: 4rem;
-        }
-
         .form-label {
             color: #fff;
             font-weight: 600;
@@ -108,7 +104,7 @@
             text-align: center;
         }
 
-        .page-item label {
+        .page-item .page-name {
             display: block;
             color: var(--accent-neon-cyan);
             font-weight: 600;
@@ -191,21 +187,21 @@
             </div>
 
             <h2>Project Context</h2>
-            <label class="form-label">Film / Project:</label>
-            <textarea class="worksheet-textarea"></textarea>
+            <label class="form-label" for="wf1">Film / Project:</label>
+            <textarea class="worksheet-textarea" id="wf1"></textarea>
 
-            <label class="form-label">Scene / Location:</label>
-            <textarea class="worksheet-textarea"></textarea>
+            <label class="form-label" for="wf2">Scene / Location:</label>
+            <textarea class="worksheet-textarea" id="wf2"></textarea>
 
-            <label class="form-label">Brief description of the confrontation (one sentence):</label>
-            <textarea class="worksheet-textarea tall"></textarea>
+            <label class="form-label" for="wf3">Brief description of the confrontation (one sentence):</label>
+            <textarea class="worksheet-textarea tall" id="wf3"></textarea>
 
             <div class="section-card">
                 <h3>SET, Why This Fight Exists</h3>
 
-                <label class="form-label">Personal stake (one sentence):</label>
+                <label class="form-label" for="wf4">Personal stake (one sentence):</label>
                 <p style="color: #aaa;">If the hero fails, they lose...</p>
-                <textarea class="worksheet-textarea"></textarea>
+                <textarea class="worksheet-textarea" id="wf4"></textarea>
 
                 <label class="form-label">Internal conflict driving the fight:</label>
                 <div class="option-list">
@@ -217,29 +213,29 @@
                     <span class="option-item">temptation</span>
                     <span class="option-item">other</span>
                 </div>
-                <label class="form-label">Specify:</label>
-                <textarea class="worksheet-textarea"></textarea>
+                <label class="form-label" for="wf5">Specify:</label>
+                <textarea class="worksheet-textarea" id="wf5"></textarea>
 
-                <label class="form-label">What the hero is holding back or refusing to do at the start:</label>
-                <textarea class="worksheet-textarea tall"></textarea>
+                <label class="form-label" for="wf6">What the hero is holding back or refusing to do at the start:</label>
+                <textarea class="worksheet-textarea tall" id="wf6"></textarea>
             </div>
 
             <div class="section-card">
                 <h3>RISE, When the Fight Commits</h3>
 
-                <label class="form-label">What triggers escalation</label>
+                <label class="form-label">What triggers escalation?</label>
                 <div class="option-list">
                     <span class="option-item">space collapses</span>
                     <span class="option-item">injury occurs</span>
                     <span class="option-item">time pressure</span>
                     <span class="option-item">opponent commits</span>
                 </div>
-                <label class="form-label">Specify trigger:</label>
-                <textarea class="worksheet-textarea"></textarea>
+                <label class="form-label" for="wf7">Specify trigger:</label>
+                <textarea class="worksheet-textarea" id="wf7"></textarea>
 
-                <label class="form-label">What changes in the heros behavior after escalation:</label>
+                <label class="form-label" for="wf8">What changes in the hero's behavior after escalation:</label>
                 <p style="color: #aaa;">Before escalation, the hero is...</p>
-                <textarea class="worksheet-textarea"></textarea>
+                <textarea class="worksheet-textarea" id="wf8"></textarea>
                 <p style="color: #aaa;">After escalation, the hero becomes...</p>
                 <textarea class="worksheet-textarea"></textarea>
             </div>
@@ -255,24 +251,24 @@
                     <span class="option-item">loss of resource</span>
                     <span class="option-item">outside interference</span>
                 </div>
-                <label class="form-label">Describe the change in one sentence:</label>
-                <textarea class="worksheet-textarea tall"></textarea>
+                <label class="form-label" for="wf9">Describe the change in one sentence:</label>
+                <textarea class="worksheet-textarea tall" id="wf9"></textarea>
 
                 <label class="form-label">Resulting shift:</label>
                 <div class="option-list">
                     <span class="option-item">hero loses an option</span>
                     <span class="option-item">hero gains an option</span>
                 </div>
-                <label class="form-label">Specify which option:</label>
-                <textarea class="worksheet-textarea"></textarea>
+                <label class="form-label" for="wf10">Specify which option:</label>
+                <textarea class="worksheet-textarea" id="wf10"></textarea>
             </div>
 
             <div class="section-card">
                 <h3>TIE, What the Fight Means in the End</h3>
 
-                <label class="form-label">Ending meaning:</label>
+                <label class="form-label" for="wf11">Ending meaning:</label>
                 <p style="color: #aaa;">The fight proves the hero has changed because they...</p>
-                <textarea class="worksheet-textarea tall"></textarea>
+                <textarea class="worksheet-textarea tall" id="wf11"></textarea>
 
                 <label class="form-label">Final choice made by the hero:</label>
                 <div class="option-list">
@@ -282,8 +278,8 @@
                     <span class="option-item">failure</span>
                     <span class="option-item">transformation</span>
                 </div>
-                <label class="form-label">Describe the choice in one sentence:</label>
-                <textarea class="worksheet-textarea tall"></textarea>
+                <label class="form-label" for="wf12">Describe the choice in one sentence:</label>
+                <textarea class="worksheet-textarea tall" id="wf12"></textarea>
             </div>
 
             <h2>Bridge to Action Unit Worksheets</h2>
@@ -301,33 +297,33 @@
             <label class="form-label">Assign a story function to each physical worksheet:</label>
             <div class="page-grid">
                 <div class="page-item">
-                    <label>Page 1</label>
+                    <span class="page-name">Page 1</span>
                     <span style="font-size: 0.85rem; color: #888;">Set / Rise / Twist / Tie</span>
                 </div>
                 <div class="page-item">
-                    <label>Page 2</label>
+                    <span class="page-name">Page 2</span>
                     <span style="font-size: 0.85rem; color: #888;">Set / Rise / Twist / Tie</span>
                 </div>
                 <div class="page-item">
-                    <label>Page 3</label>
+                    <span class="page-name">Page 3</span>
                     <span style="font-size: 0.85rem; color: #888;">Set / Rise / Twist / Tie</span>
                 </div>
                 <div class="page-item">
-                    <label>Page 4</label>
+                    <span class="page-name">Page 4</span>
                     <span style="font-size: 0.85rem; color: #888;">Set / Rise / Twist / Tie</span>
                 </div>
                 <div class="page-item">
-                    <label>Page 5</label>
+                    <span class="page-name">Page 5</span>
                     <span style="font-size: 0.85rem; color: #888;">Set / Rise / Twist / Tie</span>
                 </div>
                 <div class="page-item">
-                    <label>Page 6</label>
+                    <span class="page-name">Page 6</span>
                     <span style="font-size: 0.85rem; color: #888;">Set / Rise / Twist / Tie</span>
                 </div>
             </div>
 
             <label class="form-label">Required condition at the end of each physical worksheet:</label>
-            <p style="color: #aaa; font-size: 0.9rem;">What must be physically true when that page ends</p>
+            <p style="color: #aaa; font-size: 0.9rem;">What must be physically true when that page ends?</p>
             <div class="form-field">End of Page 1:</div>
             <div class="form-field">End of Page 2:</div>
             <div class="form-field">End of Page 3:</div>

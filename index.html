@@ -34,6 +34,11 @@
         .fm-locations { display: flex; flex-wrap: wrap; gap: 0.4rem; }
         .fm-loc-tag { font-size: 0.8rem; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; padding: 0.25rem 0.6rem; color: #bbb; }
         .fm-no-data { color: #666; font-size: 0.85rem; font-style: italic; }
+        /* Seigaiha (青海波) wave texture — traditional Japanese motif, inline SVG
+           pattern so it costs no extra network request. */
+        #map-section { position: relative; }
+        #map-section > .seigaiha { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; opacity: 0.05; pointer-events: none; }
+        #map-section > *:not(.seigaiha) { position: relative; z-index: 1; }
     </style>
     <script type="application/ld+json">
     {
@@ -193,6 +198,14 @@
     </main>
 
     <section id="map-section" class="container" style="padding: 0 2rem 4rem;">
+        <svg class="seigaiha" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+                <pattern id="seigaiha-pattern" x="0" y="0" width="36" height="18" patternUnits="userSpaceOnUse">
+                    <path d="M18 0 A18 18 0 0 1 18 36 A18 18 0 0 1 18 0 Z M18 4 A14 14 0 0 1 18 32 A14 14 0 0 1 18 4 Z" fill="none" stroke="currentColor" stroke-width="1"/>
+                </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#seigaiha-pattern)"/>
+        </svg>
         <div style="text-align: center; margin-bottom: 1.5rem;" data-scroll><h2>Tokyo Maps</h2></div>
         <div class="map-tabs" style="display:flex;justify-content:center;gap:0;margin-bottom:0;">
             <button class="map-tab active" data-tab="class-map" style="padding:0.6rem 1.5rem;font-size:0.85rem;text-transform:uppercase;letter-spacing:0.08em;background:rgba(0,243,255,0.12);color:var(--accent-neon-cyan);border:1px solid var(--accent-neon-cyan);border-bottom:none;border-radius:6px 6px 0 0;cursor:pointer;font-family:Inter,sans-serif;font-weight:600;transition:all 0.2s;">Class Map</button>
@@ -202,19 +215,15 @@
         <div class="map-panel active" id="panel-class-map">
             <div class="map-container"
                 style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border: 1px solid var(--accent-neon-cyan); border-top: none; box-shadow: 0 0 20px rgba(0, 243, 255, 0.2);">
-                <iframe src="https://www.google.com/maps/d/embed?mid=1V4GApFpOipMmySIyy2loBujui--BV3Y" width="640"
-                    height="480" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
-                    allowfullscreen title="Interactive Map of Tokyo Film Locations"></iframe>
+                <iframe id="class-map-iframe" src="anime-map.html?anime=class_locations" width="960" height="760"
+                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
+                    allowfullscreen title="Interactive Map of Tokyo Class Locations"></iframe>
             </div>
-            <ul class="map-key-list">
-                <li><span>⭐</span> Class-Specific Excursions</li>
-                <li><span>🎥</span> Class-Specific Filming Locations</li>
-                <li><span>🍴</span> Special Food Recommendations</li>
-                <li><span>🌲</span> Greenery and Parks</li>
-                <li><span>⛩️</span> Special Shrines</li>
-                <li><span>🛍️</span> Otaku and Thrift Shopping</li>
-                <li><span class="icon-silver" style="color: silver;">🎵</span> Arcades and Music</li>
-            </ul>
+            <p style="text-align:center;margin-top:1rem;color:#999;font-size:0.85rem;">
+                Filter by location type in the map legend, or search any location by name.
+                <a href="anime-map.html?anime=class_locations" target="_blank" rel="noopener" style="color:var(--accent-neon-cyan);margin-left:0.5rem;">Open fullscreen &rarr;</a>
+                <a href="https://www.google.com/maps/d/viewer?mid=1V4GApFpOipMmySIyy2loBujui--BV3Y" target="_blank" rel="noopener" style="color:#888;margin-left:0.75rem;">Google Maps version &rarr;</a>
+            </p>
         </div>
         <!-- Anime Map Panel -->
         <div class="map-panel" id="panel-anime-map" style="display:none;">

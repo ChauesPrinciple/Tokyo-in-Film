@@ -53,15 +53,6 @@
             font-size: 1.1rem;
         }
 
-        .form-field {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 4px;
-            padding: 1rem;
-            margin: 0.75rem 0;
-            min-height: 3rem;
-        }
-
         .form-label {
             color: #fff;
             font-weight: 600;
@@ -144,11 +135,6 @@
             .download-section {
                 display: none;
             }
-
-            .form-field {
-                border: 1px solid #ccc;
-                background: #fff;
-            }
         }
     </style>
 </head>
@@ -209,7 +195,7 @@
             <h2>Context</h2>
             <p>This page answers <strong>one question only</strong>:</p>
             <p style="font-size: 1.1rem; color: #fff;"><strong>How does the camera help the audience understand what
-                    changed during this exchange</strong></p>
+                    changed during this exchange?</strong></p>
 
             <h2>Information Change</h2>
             <p>Every camera decision is tied to <strong>a change in information</strong>.</p>
@@ -228,8 +214,8 @@
                         style="border-bottom: 1px solid #666; display: inline-block; width: 200px;"></span></li>
             </ul>
 
-            <label class="form-label">State it clearly in one sentence:</label>
-            <textarea class="worksheet-textarea"></textarea>
+            <label class="form-label" for="wf1">State it clearly in one sentence:</label>
+            <textarea class="worksheet-textarea" id="wf1"></textarea>
 
             <h2>Camera Response</h2>
             <p>Now decide <strong>how the camera behaves</strong> in order to make that information clear.</p>
@@ -294,8 +280,8 @@
             <h2>End Condition</h2>
             <p style="font-style: italic; color: #aaa;">(What the audience now knows that they did not before)</p>
 
-            <label class="form-label">By the end of this exchange, the audience understands:</label>
-            <textarea class="worksheet-textarea"></textarea>
+            <label class="form-label" for="wf2">By the end of this exchange, the audience understands:</label>
+            <textarea class="worksheet-textarea" id="wf2"></textarea>
 
             <h2>Student Confirmation</h2>
             <p>I can point to:</p>

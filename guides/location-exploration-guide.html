@@ -47,19 +47,6 @@
             font-style: italic;
         }
 
-        .form-field {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 4px;
-            padding: 1rem;
-            margin: 0.75rem 0;
-            min-height: 3rem;
-        }
-
-        .form-field.tall {
-            min-height: 5rem;
-        }
-
         .form-label {
             color: #fff;
             font-weight: 600;
@@ -120,11 +107,6 @@
             .download-section {
                 display: none;
             }
-
-            .form-field {
-                border: 1px solid #ccc;
-                background: #fff;
-            }
         }
 
         @media (max-width: 600px) {
@@ -178,40 +160,40 @@
             <h2>Conditions</h2>
             <p style="font-style: italic; color: #aaa;">(Fill this out while physically at the location)</p>
 
-            <label class="form-label">What parts of the original scene depend on conditions you cannot control
+            <label class="form-label" for="wf1">What parts of the original scene depend on conditions you cannot control
                 here?</label>
             <p class="form-hint">(light, weather, crowds, noise, obstacles)</p>
-            <textarea class="worksheet-textarea tall"></textarea>
+            <textarea class="worksheet-textarea tall" id="wf1"></textarea>
 
-            <label class="form-label">Which of these conditions can you <em>work with</em> rather than fight?</label>
+            <label class="form-label" for="wf2">Which of these conditions can you <em>work with</em> rather than fight?</label>
             <p class="form-hint">(Example: original scene was quiet; this space is crowded → change blocking to reflect
                 energy)</p>
-            <textarea class="worksheet-textarea tall"></textarea>
+            <textarea class="worksheet-textarea tall" id="wf2"></textarea>
 
-            <label class="form-label">What intention must remain the same for the scene to still be the same
+            <label class="form-label" for="wf3">What intention must remain the same for the scene to still be the same
                 scene?</label>
             <p class="form-hint">(Emotion / Power dynamic / Motion / Reveal)</p>
-            <textarea class="worksheet-textarea tall"></textarea>
+            <textarea class="worksheet-textarea tall" id="wf3"></textarea>
 
             <h2>Location Shaping: How the Space Changes Your Recreation</h2>
 
-            <label class="form-label">What does THIS location naturally offer that the original shot did not?</label>
+            <label class="form-label" for="wf4">What does THIS location naturally offer that the original shot did not?</label>
             <p class="form-hint">(lines, depth, height, reflections, color, movement, sound, framing elements)</p>
-            <textarea class="worksheet-textarea tall"></textarea>
+            <textarea class="worksheet-textarea tall" id="wf4"></textarea>
 
-            <label class="form-label">How can those features replace or improve the original cinematic idea?</label>
-            <textarea class="worksheet-textarea tall"></textarea>
+            <label class="form-label" for="wf5">How can those features replace or improve the original cinematic idea?</label>
+            <textarea class="worksheet-textarea tall" id="wf5"></textarea>
 
-            <label class="form-label">What framing or angle from the original scene is impossible here, and what is your
+            <label class="form-label" for="wf6">What framing or angle from the original scene is impossible here, and what is your
                 replacement angle that keeps the same narrative purpose?</label>
-            <textarea class="worksheet-textarea tall"></textarea>
+            <textarea class="worksheet-textarea tall" id="wf6"></textarea>
 
             <h2>Team Decision Points</h2>
             <p style="font-style: italic; color: #aaa;">Ensuring everyone agrees BEFORE shooting</p>
 
-            <label class="form-label">In ONE sentence, what is the emotional or narrative beat we are
+            <label class="form-label" for="wf7">In ONE sentence, what is the emotional or narrative beat we are
                 recreating?</label>
-            <textarea class="worksheet-textarea"></textarea>
+            <textarea class="worksheet-textarea" id="wf7"></textarea>
 
             <label class="form-label">Does every team member understand this beat the same way?</label>
             <div class="checkbox-group">
@@ -222,34 +204,34 @@
             <label class="form-label">What is each person responsible for during the recreation?</label>
             <div class="role-grid">
                 <div class="role-item">
-                    <label>Director:</label>
-                    <textarea class="worksheet-textarea"></textarea>
+                    <label for="role1">Director:</label>
+                    <textarea class="worksheet-textarea" id="role1"></textarea>
                 </div>
                 <div class="role-item">
-                    <label>Camera/Framing Lead:</label>
-                    <textarea class="worksheet-textarea"></textarea>
+                    <label for="role2">Camera/Framing Lead:</label>
+                    <textarea class="worksheet-textarea" id="role2"></textarea>
                 </div>
                 <div class="role-item">
-                    <label>Performance Lead:</label>
-                    <textarea class="worksheet-textarea"></textarea>
+                    <label for="role3">Performance Lead:</label>
+                    <textarea class="worksheet-textarea" id="role3"></textarea>
                 </div>
                 <div class="role-item">
-                    <label>Continuity & Reference Lead:</label>
-                    <textarea class="worksheet-textarea"></textarea>
+                    <label for="role4">Continuity & Reference Lead:</label>
+                    <textarea class="worksheet-textarea" id="role4"></textarea>
                 </div>
             </div>
 
             <h2>Recreation Plan Snapshot</h2>
             <p style="font-style: italic; color: #aaa;">The final box before shooting day</p>
 
-            <label class="form-label">Original film moment (describe simply):</label>
-            <textarea class="worksheet-textarea tall"></textarea>
+            <label class="form-label" for="wf8">Original film moment (describe simply):</label>
+            <textarea class="worksheet-textarea tall" id="wf8"></textarea>
 
-            <label class="form-label">Adjusted version (what you will actually do here):</label>
-            <textarea class="worksheet-textarea tall"></textarea>
+            <label class="form-label" for="wf9">Adjusted version (what you will actually do here):</label>
+            <textarea class="worksheet-textarea tall" id="wf9"></textarea>
 
-            <label class="form-label">How this version still communicates the same meaning:</label>
-            <textarea class="worksheet-textarea tall"></textarea>
+            <label class="form-label" for="wf10">How this version still communicates the same meaning:</label>
+            <textarea class="worksheet-textarea tall" id="wf10"></textarea>
 
             <div class="download-section">
                 <p>Print this worksheet to use during location scouting:</p>

@@ -36,6 +36,14 @@
     body.bright-theme .ward-path{stroke:transparent;}
     body.bright-theme #subway-group{opacity:0.35;}
     .poi-dot{cursor:pointer;transition:r .2s;outline:none;} .poi-dot:hover{r:6;}
+    /* Selected POI: the popup alone didn't indicate WHICH dot was open. */
+    .poi-dot.poi-selected{stroke:#fff;stroke-width:3;stroke-opacity:1;}
+    .poi-ping{pointer-events:none;fill:none;stroke-width:1.5;opacity:0;}
+    @media (prefers-reduced-motion: no-preference){
+      .poi-ping{animation:poi-ping-kf 2.4s cubic-bezier(0,.5,.5,1) infinite;}
+    }
+    @keyframes poi-ping-kf{0%{transform:scale(1);opacity:.55;}100%{transform:scale(2.6);opacity:0;}}
+    .poi-dot.poi-dimmed{opacity:0.12;pointer-events:none;}
     .ward-path:focus-visible,.poi-dot:focus-visible,.legend-item:focus-visible{outline:2px solid var(--accent-bright);outline-offset:1px;}
     .anime-tab:focus-visible,.custom-zoom button:focus-visible,.close-btn:focus-visible,.legend-toggle:focus-visible{outline:2px solid var(--accent-bright);outline-offset:2px;}
     .legend-item{border-radius:2px;padding:2px 4px;margin:-2px -4px .5rem -4px;}
@@ -63,6 +71,8 @@
     .anime-tab[data-anime="tokyo_ghoul"].active{background:rgba(139,0,0,0.5);text-shadow:0 0 8px rgba(220,20,60,.5);}
     .anime-tab[data-anime="chainsaw_man"].active{background:rgba(234,88,12,0.4);text-shadow:0 0 8px rgba(249,115,22,.5);}
     .anime-tab[data-anime="jjk"].active{background:rgba(124,58,237,0.4);text-shadow:0 0 8px rgba(139,92,246,.5);}
+    .anime-tab[data-anime="shinkai"].active{background:rgba(168,85,247,0.35);text-shadow:0 0 8px rgba(168,85,247,.5);}
+    .anime-tab[data-anime="class_locations"].active{background:rgba(0,243,255,0.22);text-shadow:0 0 8px rgba(0,243,255,.55);}
 
     /* ── Header ── */
     #hdr{
@@ -196,7 +206,8 @@
 <div id="map-container" role="application" aria-label="Interactive Tokyo ward map. Use Tab to move focus, Enter or Space to select a ward or POI, arrow keys to pan, plus and minus to zoom.">
 
   <!-- Anime Switcher -->
-  <div id="anime-switcher" role="tablist" aria-label="Select anime series">
+  <div id="anime-switcher" role="tablist" aria-label="Select map dataset">
+    <button class="anime-tab" data-anime="class_locations" role="tab" aria-selected="false">Class Locations</button>
     <button class="anime-tab active" data-anime="jjk" role="tab" aria-selected="true">Jujutsu Kaisen</button>
     <button class="anime-tab" data-anime="chainsaw_man" role="tab" aria-selected="false">Chainsaw Man</button>
     <button class="anime-tab" data-anime="tokyo_ghoul" role="tab" aria-selected="false">Tokyo Ghoul</button>
@@ -221,7 +232,7 @@
 
   <!-- Legend (dynamic) -->
   <div id="legend">
-    <div class="legend-title">Ward Status</div>
+    <div class="legend-title" id="legend-title">Ward Status</div>
     <div id="legend-items"></div>
   </div>
 
@@ -244,6 +255,7 @@
 </div>
 
 <script src="assets/anime-map-data.js"></script>
+<script src="assets/class-map-data.js"></script>
 <script>
 (function(){
 'use strict';
@@ -411,6 +423,8 @@ let selectedPath = null;
 let wardPaths = {}; // jp name → SVG path element
 let wardBounds = {}; // jp name → {minX, maxX, minY, maxY} in SVG units (for zoom-to-ward)
 let activeFilter = null; // current legend status filter (null = show all)
+let activePoiFilter = null; // current POI category filter, for poiLegend datasets (null = show all)
+let selectedPoiName = null; // name of the POI whose popup is open, so its dot can be marked
 let suppressZoomOnSelect = false; // true when selection is triggered by camera-moving caller
 
 const wrap = document.getElementById('map-svg-wrap');
@@ -554,7 +568,7 @@ async function loadMap(){
 
   // Close POI popup on any click outside a POI dot (wrap, svg, ward, subway, label, etc.)
   wrap.addEventListener('click',e=>{
-    if(!e.target.closest('.poi-dot')) poiPopup.style.display='none';
+    if(!e.target.closest('.poi-dot')) hidePoiPopup();
   });
 
   // Deep-link params: ?anime=<key>&ward=<n>&poi=<slug>
@@ -608,8 +622,11 @@ function switchAnime(key){
   // Close info panel and clear any active legend filter (status keys differ per anime)
   document.getElementById('info-panel').classList.remove('active');
   if(selectedPath){selectedPath.classList.remove('selected');selectedPath=null;}
+  // No hidePoiPopup() here: applyAnimeTheme() below re-renders the POIs anyway.
   poiPopup.style.display='none';
+  selectedPoiName=null;
   activeFilter=null;
+  activePoiFilter=null;
 
   applyAnimeTheme();
   updateUrl();
@@ -730,14 +747,56 @@ function applyAnimeTheme(){
     }
   });
 
-  // Legend: hide when ward fills are disabled (nothing to legend)
+  // Legend has three modes:
+  //   poiLegend      -> legend lists POI categories and filters the POIs
+  //   skipWardFills  -> nothing to legend, hide it
+  //   default        -> legend lists ward statuses and filters the wards
   const legendEl=document.getElementById('legend');
   const legendItems=document.getElementById('legend-items');
+  const legendTitle=document.getElementById('legend-title');
   legendItems.innerHTML='';
-  if(skipWardFills){
+  if(anime.poiLegend){
+    legendEl.style.display='';
+    legendTitle.textContent='Location Type';
+    // Only offer categories that actually occur in this dataset.
+    const present=new Set(anime.pois.map(p=>p.cat));
+    Object.entries(anime.statuses).forEach(([key,{color,label}])=>{
+      if(!present.has(key)) return;
+      const count=anime.pois.filter(p=>p.cat===key).length;
+      const item=document.createElement('div');
+      item.className='legend-item';
+      item.dataset.status=key;
+      item.setAttribute('role','button');
+      item.setAttribute('tabindex','0');
+      item.setAttribute('aria-pressed', activePoiFilter===key ? 'true' : 'false');
+      const sw=document.createElement('div');
+      sw.className='legend-swatch';
+      sw.style.background=color;
+      const span=document.createElement('span');
+      span.textContent=`${label} (${count})`;
+      item.appendChild(sw);item.appendChild(span);
+      const toggle=()=>{
+        activePoiFilter = (activePoiFilter===key) ? null : key;
+        // Re-render dots and refresh the pressed states.
+        renderPOIs();
+        legendItems.querySelectorAll('.legend-item').forEach(el=>{
+          const on = el.dataset.status===activePoiFilter;
+          el.classList.toggle('active-filter', on);
+          el.setAttribute('aria-pressed', on ? 'true' : 'false');
+        });
+      };
+      item.addEventListener('click',toggle);
+      item.addEventListener('keydown',e=>{
+        if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle();}
+      });
+      item.classList.toggle('active-filter', activePoiFilter===key);
+      legendItems.appendChild(item);
+    });
+  } else if(skipWardFills){
     legendEl.style.display='none';
   } else {
     legendEl.style.display='';
+    legendTitle.textContent='Ward Status';
     Object.entries(anime.statuses).forEach(([key,{color,label}])=>{
       const item=document.createElement('div');item.className='legend-item';item.dataset.status=key;
       item.innerHTML=`<div class="legend-swatch" style="background:${color}"></div><span>${label}</span>`;
@@ -795,7 +854,7 @@ function selectWard(jpName){
   const path=wardPaths[jpName];
   if(path){path.classList.add('selected');selectedPath=path;}
 
-  poiPopup.style.display='none';
+  hidePoiPopup();
   // Some anime (Shinkai) don't want a ward info panel — wards are admin boundaries, not story units.
   if(!anime.disableWardInfo) updateInfoPanel(ward);
   else document.getElementById('info-panel').classList.remove('active');
@@ -893,6 +952,21 @@ function showPoiDetail(clientX, clientY, poi, poiColor){
   poiPopup.appendChild(body);
   poiPopup.style.display='block';
   positionPopup(clientX,clientY);
+  // Mark the originating dot so the map shows which POI is open.
+  if(selectedPoiName!==poi.name){
+    selectedPoiName=poi.name;
+    renderPOIs();
+  }
+}
+
+// Single exit point for dismissing the POI popup, so the dot's selected
+// state and the popup visibility can never drift apart.
+function hidePoiPopup(){
+  poiPopup.style.display='none';
+  if(selectedPoiName!==null){
+    selectedPoiName=null;
+    renderPOIs();
+  }
 }
 function showClusterList(clientX, clientY, grp, poiColor){
   poiPopup.textContent='';
@@ -941,11 +1015,20 @@ function renderPOIs(){
   const poiGroup=document.getElementById('poi-group');
   if(!poiGroup||!anime)return;
   poiGroup.innerHTML='';
-  const poiColor=anime.theme.accentBright;
+  const themeColor=anime.theme.accentBright;
+  // Datasets may colour individual POIs (category colours on the class map,
+  // per-film colours on the Shinkai map). Fall back to the theme accent.
+  const colorOf=poi=>poi.color||themeColor;
   const inv=1/currentScale;
   const CLUSTER_SVG=CONFIG.CLUSTER_SCREEN_PX*inv; // screen px threshold in SVG units
 
-  const items=anime.pois.map(poi=>{
+  // A POI-category filter hides non-matching POIs outright, so they don't
+  // get absorbed into clusters and inflate the cluster counts.
+  const visiblePois=activePoiFilter
+    ? anime.pois.filter(p=>p.cat===activePoiFilter)
+    : anime.pois;
+
+  const items=visiblePois.map(poi=>{
     const[sx,sy]=project(poi.lng,poi.lat);
     return{poi,sx,sy};
   });
@@ -983,26 +1066,45 @@ function renderPOIs(){
     const ay=grp.reduce((s,g)=>s+g.sy,0)/grp.length;
     if(grp.length===1){
       const poi=grp[0].poi;
+      const dotColor=colorOf(poi);
+      const isSelected=selectedPoiName===poi.name;
+      // Expanding ring on the open POI — marks which dot the popup belongs to.
+      if(isSelected){
+        const ping=document.createElementNS('http://www.w3.org/2000/svg','circle');
+        ping.setAttribute('cx',ax);ping.setAttribute('cy',ay);ping.setAttribute('r',7*inv);
+        ping.setAttribute('stroke',dotColor);
+        ping.setAttribute('stroke-width',1.5*inv);
+        ping.classList.add('poi-ping');
+        ping.style.transformOrigin=`${ax}px ${ay}px`;
+        poiGroup.appendChild(ping);
+      }
       const c=document.createElementNS('http://www.w3.org/2000/svg','circle');
-      c.setAttribute('cx',ax);c.setAttribute('cy',ay);c.setAttribute('r',7*inv);
-      c.setAttribute('fill',poiColor);c.setAttribute('stroke','#fff');
-      c.setAttribute('stroke-width',1.5*inv);c.setAttribute('stroke-opacity','0.8');
+      c.setAttribute('cx',ax);c.setAttribute('cy',ay);c.setAttribute('r',(isSelected?9:7)*inv);
+      c.setAttribute('fill',dotColor);c.setAttribute('stroke','#fff');
+      c.setAttribute('stroke-width',(isSelected?3:1.5)*inv);
+      c.setAttribute('stroke-opacity',isSelected?'1':'0.8');
       c.classList.add('poi-dot');c.style.cursor='pointer';
+      if(isSelected) c.classList.add('poi-selected');
       // Accessibility
       c.setAttribute('tabindex','0');
       c.setAttribute('role','button');
+      c.setAttribute('aria-pressed',isSelected?'true':'false');
       c.setAttribute('aria-label',`Point of interest: ${poi.name}`);
-      c.addEventListener('click',e=>{e.stopPropagation();showPoiDetail(e.clientX,e.clientY,poi,poiColor);});
+      c.addEventListener('click',e=>{e.stopPropagation();showPoiDetail(e.clientX,e.clientY,poi,dotColor);});
       c.addEventListener('keydown',e=>{
         if(e.key==='Enter'||e.key===' '){
           e.preventDefault();
           const r=c.getBoundingClientRect();
-          showPoiDetail(r.left+r.width/2, r.top+r.height/2, poi, poiColor);
+          showPoiDetail(r.left+r.width/2, r.top+r.height/2, poi, dotColor);
         }
       });
       poiGroup.appendChild(c);
     } else {
       const R=16*inv;
+      // Clusters can span categories; use the theme accent unless the whole
+      // group shares one colour, in which case that colour is more informative.
+      const groupColors=[...new Set(grp.map(g=>colorOf(g.poi)))];
+      const poiColor=groupColors.length===1?groupColors[0]:themeColor;
       const c=document.createElementNS('http://www.w3.org/2000/svg','circle');
       c.setAttribute('cx',ax);c.setAttribute('cy',ay);c.setAttribute('r',R);
       c.setAttribute('fill','rgba(0,0,0,0.82)');c.setAttribute('stroke',poiColor);
@@ -1129,8 +1231,9 @@ document.getElementById('btn-zoom-reset').addEventListener('click',()=>{
   // Clear selection + filter so reset is "start over"
   if(selectedPath){selectedPath.classList.remove('selected');selectedPath=null;}
   document.getElementById('info-panel').classList.remove('active');
-  poiPopup.style.display='none';
+  hidePoiPopup();
   activeFilter=null; applyLegendFilter();
+  if(activePoiFilter!==null){activePoiFilter=null;applyAnimeTheme();}
   centerMap();
   updateUrl();
 });
@@ -1244,7 +1347,7 @@ document.addEventListener('keydown',e=>{
     case '-': case '_': zoomMap(-1); e.preventDefault(); break;
     case 'Escape':
       document.getElementById('info-panel').classList.remove('active');
-      poiPopup.style.display='none';
+      hidePoiPopup();
       break;
   }
 });

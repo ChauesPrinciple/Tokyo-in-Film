@@ -21,6 +21,151 @@
         .video-fallback-link:hover {
             color: var(--accent-neon-cyan);
         }
+
+        /* Lens Simulator Widget */
+        .lens-sim {
+            margin: 2.5rem auto;
+            max-width: 720px;
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            border-radius: 8px;
+            overflow: hidden;
+            background: rgba(8, 12, 18, 0.7);
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.06);
+        }
+
+        .lens-sim-intro {
+            padding: 1rem 1.5rem 0;
+            color: #8899aa;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        .lens-sim-intro strong {
+            color: var(--accent-neon-cyan, #00f3ff);
+        }
+
+        .lens-sim-stage {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 2 / 1;
+            overflow: hidden;
+            background: #0a0e14;
+        }
+
+        .lens-sim-scene {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .visually-hidden {
+            position: absolute !important;
+            width: 1px; height: 1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+            padding: 0;
+            margin: -1px;
+        }
+
+        .ls-toggle-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding-top: 4px;
+        }
+
+        .ls-toggle-row input[type="checkbox"] {
+            accent-color: var(--accent-neon-cyan);
+            width: 14px;
+            height: 14px;
+        }
+
+        .ls-toggle-row label {
+            font-size: 10.5px;
+            color: #7888aa;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            cursor: pointer;
+        }
+
+        .lens-sim-panel {
+            padding: 14px 18px 12px;
+            background: rgba(8, 12, 18, 0.9);
+            border-top: 1px solid rgba(0, 243, 255, 0.12);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .lens-sim-panel-title {
+            margin: 0 0 2px;
+            font-size: 11px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--accent-neon-cyan, #00f3ff);
+        }
+
+        .ls-row {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: center;
+            gap: 3px 10px;
+        }
+
+        .ls-row span:first-child {
+            grid-column: 1;
+            color: #7888aa;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            font-size: 10.5px;
+        }
+
+        .ls-row .ls-val {
+            grid-column: 2;
+            font-variant-numeric: tabular-nums;
+            color: var(--accent-neon-cyan, #00f3ff);
+            font-size: 11.5px;
+            justify-self: end;
+        }
+
+        .ls-row input[type="range"] {
+            grid-column: 1 / -1;
+            width: 100%;
+            accent-color: var(--accent-neon-cyan, #00f3ff);
+        }
+
+        .ls-row input[type="range"]:focus-visible {
+            outline: 2px solid var(--accent-neon-cyan, #00f3ff);
+            outline-offset: 3px;
+        }
+
+        .ls-readout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3px 16px;
+            margin-top: 4px;
+            padding-top: 8px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 10.5px;
+        }
+
+        .ls-readout-row {
+            display: flex;
+            justify-content: space-between;
+            color: #7888aa;
+        }
+
+        .ls-readout-row span:last-child {
+            color: #b8c4d0;
+            font-variant-numeric: tabular-nums;
+        }
+
+        @media (max-width: 640px) {
+            .lens-sim { max-width: 100%; }
+            .ls-readout { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 
@@ -696,6 +841,101 @@
                 background are how you sell that illusion, whether you are working with a cinema camera or the
                 phone in your pocket.</p>
 
+            <div class="lens-sim" id="lens-sim">
+                <div class="lens-sim-intro">
+                    <strong>Lens Simulator</strong> &mdash; Drag the sliders to see how focal length, aperture, and subject distance interact. The scene updates in real time: field of view widens or narrows, and depth of field shifts between layers.
+                </div>
+                <div class="lens-sim-stage">
+                    <svg class="lens-sim-scene" viewBox="0 0 600 300" preserveAspectRatio="xMidYMid slice" aria-label="Interactive lens simulator scene">
+                        <defs>
+                            <linearGradient id="ls-sky" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stop-color="#1a2030"/>
+                                <stop offset="100%" stop-color="#2a3040"/>
+                            </linearGradient>
+                            <linearGradient id="ls-ground" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stop-color="#1e1a16"/>
+                                <stop offset="100%" stop-color="#0e0c0a"/>
+                            </linearGradient>
+                            <radialGradient id="ls-vignette" cx="50%" cy="50%" r="70%">
+                                <stop offset="60%" stop-color="rgba(0,0,0,0)"/>
+                                <stop offset="100%" stop-color="rgba(0,0,0,0.5)"/>
+                            </radialGradient>
+                        </defs>
+                        <rect x="-5000" y="-3000" width="10000" height="6000" fill="url(#ls-sky)"/>
+                        <g id="ls-content">
+                            <!-- Background layer: distant Tokyo skyline -->
+                            <g class="ls-layer" id="ls-bg" data-distance="400">
+                                <rect x="0" y="180" width="600" height="120" fill="url(#ls-ground)"/>
+                                <rect x="40" y="120" width="50" height="60" fill="#2a2a38" opacity="0.7"/>
+                                <rect x="100" y="100" width="40" height="80" fill="#32323e" opacity="0.7"/>
+                                <rect x="150" y="130" width="60" height="50" fill="#28282e" opacity="0.6"/>
+                                <rect x="230" y="90" width="45" height="90" fill="#34343c" opacity="0.7"/>
+                                <rect x="290" y="110" width="55" height="70" fill="#2c2c34" opacity="0.65"/>
+                                <rect x="370" y="95" width="40" height="85" fill="#303038" opacity="0.7"/>
+                                <rect x="425" y="125" width="50" height="55" fill="#26262e" opacity="0.6"/>
+                                <rect x="490" y="105" width="45" height="75" fill="#2e2e36" opacity="0.68"/>
+                                <rect x="550" y="130" width="40" height="50" fill="#24242c" opacity="0.6"/>
+                                <!-- Tokyo Tower silhouette -->
+                                <polygon points="470,180 460,140 465,140 462,100 468,100 465,60 472,60 470,100 476,100 473,140 478,140 470,180" fill="#3a2020" opacity="0.5"/>
+                                <circle cx="470" cy="55" r="3" fill="#ff6a3d" opacity="0.6"/>
+                            </g>
+                            <!-- Midground layer: trees / street -->
+                            <g class="ls-layer" id="ls-mid" data-distance="15">
+                                <rect x="0" y="200" width="600" height="100" fill="#1a1612" opacity="0.8"/>
+                                <ellipse cx="120" cy="210" rx="35" ry="25" fill="#1e2a1a" opacity="0.7"/>
+                                <rect x="115" y="190" width="6" height="20" fill="#2a1a10" opacity="0.7"/>
+                                <ellipse cx="480" cy="208" rx="40" ry="28" fill="#1c2818" opacity="0.7"/>
+                                <rect x="476" y="185" width="6" height="25" fill="#2a1a10" opacity="0.7"/>
+                                <rect x="50" y="215" width="500" height="3" fill="#333" opacity="0.4"/>
+                                <rect x="50" y="225" width="500" height="2" fill="#2a2a2a" opacity="0.3"/>
+                            </g>
+                            <!-- Foreground layer: subject (a person silhouette) -->
+                            <g class="ls-layer" id="ls-fg" data-distance="0">
+                                <ellipse cx="300" cy="280" rx="30" ry="8" fill="rgba(0,0,0,0.4)"/>
+                                <rect x="288" y="200" width="24" height="60" rx="4" fill="#4a4a5a"/>
+                                <circle cx="300" cy="188" r="14" fill="#5a5a6a"/>
+                                <rect x="284" y="175" width="32" height="16" rx="8" fill="#3a3a4a"/>
+                                <rect x="280" y="210" width="8" height="40" rx="3" fill="#3e3e4e"/>
+                                <rect x="312" y="210" width="8" height="40" rx="3" fill="#3e3e4e"/>
+                            </g>
+                        </g>
+                        <rect x="-5000" y="-3000" width="10000" height="6000" fill="url(#ls-vignette)" pointer-events="none"/>
+                    </svg>
+                </div>
+                <div class="lens-sim-panel">
+                    <p class="lens-sim-panel-title">Lens Controls</p>
+                    <label class="ls-row">
+                        <span>Focal Length</span>
+                        <input id="ls-focal" type="range" min="14" max="200" step="1" value="50" aria-label="Focal length in millimeters">
+                        <span class="ls-val" id="ls-focal-val">50mm</span>
+                    </label>
+                    <label class="ls-row">
+                        <span>Aperture (f/)</span>
+                        <input id="ls-aperture" type="range" min="0" max="8" step="0.5" value="2" aria-label="Aperture f-stop (0=f/1.4, 8=f/22)">
+                        <span class="ls-val" id="ls-aperture-val">f/2.8</span>
+                    </label>
+                    <label class="ls-row">
+                        <span>Subject Distance</span>
+                        <input id="ls-distance" type="range" min="1" max="30" step="0.5" value="5" aria-label="Subject distance in meters">
+                        <span class="ls-val" id="ls-distance-val">5m</span>
+                    </label>
+                    <div class="ls-toggle-row">
+                        <input type="checkbox" id="ls-framed" checked>
+                        <label for="ls-framed">Keep subject framed (show compression)</label>
+                    </div>
+                    <div class="ls-readout" id="ls-readout">
+                        <div class="ls-readout-row" id="ls-delta-row" style="display:none"><span>Camera Shift</span><span id="ls-delta">0m</span></div>
+                        <div class="ls-readout-row"><span>Diagonal AoV</span><span id="ls-aov">46.8&deg;</span></div>
+                        <div class="ls-readout-row"><span>Hyperfocal</span><span id="ls-hyp">29.8m</span></div>
+                        <div class="ls-readout-row"><span>Near Focus</span><span id="ls-near">4.3m</span></div>
+                        <div class="ls-readout-row"><span>Far Focus</span><span id="ls-far">6.0m</span></div>
+                        <div class="ls-readout-row"><span>DoF</span><span id="ls-dof">1.7m</span></div>
+                        <div class="ls-readout-row"><span>Lens Type</span><span id="ls-type">Normal</span></div>
+                    </div>
+                </div>
+            </div>
+            <div id="ls-sr" class="visually-hidden" aria-live="polite"></div>
+
             <h2>The Director of Photography</h2>
             <p><img src="../assets/images/cinematography/camera-operator-bw.jpg"
                     style="display: block; margin: 0 auto; max-width: 450px; height: auto;"
@@ -1022,6 +1262,273 @@
     <script src="../js/glossary.js"></script>
     <script src="../js/mobile-nav.js"></script>
     <script src="../js/youtube-facade.js"></script>
+    <script>
+    (function () {
+        var focalEl = document.getElementById('ls-focal');
+        var aptEl  = document.getElementById('ls-aperture');
+        var distEl = document.getElementById('ls-distance');
+        var framedEl = document.getElementById('ls-framed');
+        var srEl = document.getElementById('ls-sr');
+        var deltaRow = document.getElementById('ls-delta-row');
+        var deltaEl = document.getElementById('ls-delta');
+        if (!focalEl || !aptEl || !distEl) return;
+
+        var focalVal = document.getElementById('ls-focal-val');
+        var aptVal   = document.getElementById('ls-aperture-val');
+        var distVal  = document.getElementById('ls-distance-val');
+        var aovEl    = document.getElementById('ls-aov');
+        var hypEl    = document.getElementById('ls-hyp');
+        var nearEl   = document.getElementById('ls-near');
+        var farEl    = document.getElementById('ls-far');
+        var dofEl    = document.getElementById('ls-dof');
+        var typeEl   = document.getElementById('ls-type');
+        if (!focalVal || !aptVal || !distVal || !aovEl || !hypEl || !nearEl || !farEl || !dofEl || !typeEl) return;
+
+        var bgLayer  = document.getElementById('ls-bg');
+        var midLayer = document.getElementById('ls-mid');
+        var fgLayer  = document.getElementById('ls-fg');
+        var svg      = document.querySelector('.lens-sim-scene');
+        if (!bgLayer || !midLayer || !fgLayer || !svg) return;
+
+        var SENSOR_W = 36;       // full-frame sensor width (mm)
+        var DIAG = 43.27;        // full-frame diagonal (mm)
+        var COC = 0.03;          // circle of confusion (mm)
+        var F0 = 50;             // reference focal length (where zoom = 1)
+
+        // f-stop lookup table — matches the series engraved on real lenses.
+        // Slider index i (0–8, step 0.5) maps to 17 entries (half-stops).
+        var STOPS = [1.4, 1.7, 2, 2.4, 2.8, 3.3, 4, 4.8, 5.6, 6.7, 8, 9.5, 11, 13, 16, 19, 22];
+
+        // Subject position in SVG user units — the zoom anchor for both modes.
+        // (300, 225) = fraction (0.5, 0.75) of the 600×300 viewBox.
+        var SUBJECT_X = 300, SUBJECT_Y = 225;
+        var SUBJECT_FX = 0.5, SUBJECT_FY = 0.75;
+
+        // Layer distances (metres) from data-distance attributes
+        var dBg  = parseFloat(bgLayer.getAttribute('data-distance'));   // 400m
+        var dMid = parseFloat(midLayer.getAttribute('data-distance')); // 15m
+        var minLayerD = Math.min(dMid, dBg);
+        if (!isFinite(dBg) || !isFinite(dMid)) return;
+
+        var stageW = 720;
+        var rafId = null;
+        var pendingAnnounce = false;
+
+        function fmtDist(m) {
+            if (m === Infinity) return '\u221E';
+            if (m < 1) return (m * 100).toFixed(1) + 'cm';
+            return m.toFixed(1) + 'm';
+        }
+
+        function lensType(f) {
+            if (f < 24) return 'Ultra Wide';
+            if (f < 35) return 'Wide';
+            if (f <= 55) return 'Normal';
+            if (f <= 105) return 'Short Tele';
+            return 'Telephoto';
+        }
+
+        // Real defocus blur disc diameter on sensor (mm) → screen pixels
+        function blurPx(f, N, s, d) {
+            if (d <= 0 || d === s) return 0;
+            var denom = N * (s * 1000 - f);
+            if (denom <= 0) return 0;
+            var c = (f * f / denom) * Math.abs(d - s) / d;
+            return c / SENSOR_W * stageW;
+        }
+
+        // Convert screen-px blur to user-space px for CSS filter.
+        // CSS filter on a <g> is applied in user space, then the element's
+        // transform and viewBox scaling multiply the result.  We divide out
+        // the total scale so the on-screen disc matches blurPx().
+        function applyBlur(layer, screenPx, ls, vbWidth) {
+            if (screenPx < 0.05) { layer.style.filter = 'none'; return; }
+            var pxPerUnit = stageW / vbWidth;
+            var totalScale = pxPerUnit * ls;
+            var userPx = totalScale > 0 ? screenPx / totalScale : 0;
+            layer.style.filter = 'blur(' + userPx.toFixed(2) + 'px)';
+        }
+
+        // Hoisted: per-layer scale and transform helpers.
+        // Relative magnification in framed mode is pure geometry: f cancels.
+        // layerScale = (d / (d + delta)) * (sEff / s)
+        // Unclamped: sEff/s === f/F0, reduces to previous (f/F0)·d/(d+delta).
+        // Clamped: stays self-consistent with the subject's true scale.
+        function layerScale(d, sEff, s, delta) {
+            var dd = d + delta;
+            if (dd <= 0) dd = 0.01;  // unreachable while delta clamp holds; defensive tripwire
+            return (d / dd) * (sEff / s);
+        }
+
+        function layerTransform(scale) {
+            if (scale === 1) return '';
+            return 'translate(' + SUBJECT_X + ' ' + SUBJECT_Y +
+                   ') scale(' + scale + ') translate(' + (-SUBJECT_X) + ' ' + (-SUBJECT_Y) + ')';
+        }
+
+        function update() {
+            rafId = null;
+
+            // Measure stage width inside update() so it's always current.
+            // If the widget is hidden (display:none → width 0), stageW keeps
+            // its last value; ResizeObserver fires scheduleUpdate on reveal.
+            var r = svg.getBoundingClientRect();
+            if (r.width > 0) stageW = r.width;
+
+            var f = parseFloat(focalEl.value);
+            var i = parseFloat(aptEl.value);       // slider index (0–8, half-stops)
+            var N = STOPS[Math.round(i * 2)];      // lookup: f/1.4, 2, 2.8, 4, 5.6, 8, 11, 16, 22
+            var s = parseFloat(distEl.value);
+            var keepFramed = framedEl ? framedEl.checked : false;
+
+            // Step-back model: to keep the subject the same size on sensor,
+            // camera distance scales with focal length.
+            var sEff = keepFramed ? s * f / F0 : s;
+            var delta = sEff - s;  // how far the camera moved back (+) or forward (−)
+
+            // Bound camera movement so it can't pass through the nearest layer.
+            // Hold 5m in front so wide-angle + far subject doesn't explode.
+            if (keepFramed) {
+                var minDelta = 5 - minLayerD;  // stay ≥5m in front of nearest layer
+                if (delta < minDelta) delta = minDelta;
+                sEff = s + delta;  // recompute sEff after clamping
+            }
+
+            // Update slider labels
+            focalVal.textContent = f + 'mm';
+            aptVal.textContent   = 'f/' + N;
+            distVal.textContent  = keepFramed && Math.abs(delta) > 0.1
+                ? s + 'm \u2192 ' + sEff.toFixed(1) + 'm'
+                : s + 'm';
+            typeEl.textContent   = lensType(f);
+
+            // Show camera shift when stepped back
+            if (deltaRow && deltaEl) {
+                if (keepFramed && Math.abs(delta) > 0.1) {
+                    deltaRow.style.display = '';
+                    deltaEl.textContent = (delta > 0 ? '+' : '') + delta.toFixed(1) + 'm';
+                } else {
+                    deltaRow.style.display = 'none';
+                }
+            }
+
+            // Diagonal angle of view
+            var aov = 2 * Math.atan(DIAG / (2 * f)) * 180 / Math.PI;
+            aovEl.textContent = aov.toFixed(1) + '\u00B0';
+
+            // Hyperfocal distance (with +f term): H = (f²/(N·CoC) + f) / 1000
+            // Hyperfocal is distance-independent; sEff enters at near/far below.
+            var H = ((f * f) / (N * COC) + f) / 1000;
+            hypEl.textContent = fmtDist(H);
+
+            // Correct DoF: near = H·sEff/(H+sEff), far = H·sEff/(H−sEff) or ∞
+            var near = H * sEff / (H + sEff);
+            var far  = sEff >= H ? Infinity : H * sEff / (H - sEff);
+            var dof  = far === Infinity ? Infinity : far - near;
+
+            nearEl.textContent = fmtDist(near);
+            farEl.textContent  = fmtDist(far);
+            dofEl.textContent  = fmtDist(dof);
+
+            // --- Geometry ---
+            var vbWidth;
+            var bgScale = 1, midScale = 1;
+
+            if (keepFramed) {
+                // Compression mode: per-layer differential magnification.
+                // layerScale(d) = (d / (d + delta)) * (sEff / s)
+                // At f=F0, delta=0, sEff=s, so scale=1 for all layers (no-op).
+                // At 200mm: bg(400m) scales ~3.86×, mid(15m) ~2.0×, fg stays 1×.
+                svg.setAttribute('viewBox', '0 0 600 300');
+                vbWidth = 600;
+                bgScale = layerScale(dBg, sEff, s, delta);
+                midScale = layerScale(dMid, sEff, s, delta);
+                bgLayer.setAttribute('transform', layerTransform(bgScale));
+                midLayer.setAttribute('transform', layerTransform(midScale));
+                fgLayer.setAttribute('transform', '');
+            } else {
+                // Crop mode: narrow viewBox for honest zoom.
+                // Anchor at subject's normalized position so 50mm = 0 0 600 300.
+                bgLayer.setAttribute('transform', '');
+                midLayer.setAttribute('transform', '');
+                fgLayer.setAttribute('transform', '');
+                var zf = f / F0;
+                var w = 600 / zf, h = 300 / zf;
+                vbWidth = w;
+                svg.setAttribute('viewBox',
+                    (SUBJECT_X - SUBJECT_FX * w) + ' ' +
+                    (SUBJECT_Y - SUBJECT_FY * h) + ' ' +
+                    w + ' ' + h);
+            }
+
+            // --- Defocus blur ---
+            // Use sEff for focus distance; layers are at d + delta in stepped-back space.
+            // Cap in screen px, then convert to user-space px for CSS filter.
+            var blurCap = stageW * 0.15;  // 15% of stage width, in screen px
+            var bBg  = Math.min(blurPx(f, N, sEff, dBg + delta), blurCap);
+            var bMid = Math.min(blurPx(f, N, sEff, dMid + delta), blurCap);
+
+            applyBlur(fgLayer, 0, 1, vbWidth);
+            applyBlur(midLayer, bMid, midScale, vbWidth);
+            applyBlur(bgLayer, bBg, bgScale, vbWidth);
+
+            // Announce if pending — flushes through the same rAF path so
+            // keyboard users get the current frame, not the previous one.
+            if (pendingAnnounce && srEl) {
+                pendingAnnounce = false;
+                srEl.textContent = f + ' millimeters, f/' + N +
+                    ', depth of field ' + fmtDist(dof);
+            }
+        }
+
+        function scheduleUpdate() {
+            if (rafId) return;
+            rafId = requestAnimationFrame(update);
+        }
+
+        // will-change: set on drag start, drop on drag end (fgLayer excluded — never blurs)
+        var layers = [bgLayer, midLayer];
+        function setWillChange(on) {
+            layers.forEach(function (l) {
+                l.style.willChange = on ? 'filter' : 'auto';
+            });
+        }
+        [focalEl, aptEl, distEl].forEach(function (el) {
+            el.addEventListener('pointerdown', function () { setWillChange(true); });
+            el.addEventListener('pointerup', function () { setWillChange(false); });
+            el.addEventListener('pointercancel', function () { setWillChange(false); });
+        });
+
+        focalEl.addEventListener('input', scheduleUpdate);
+        aptEl.addEventListener('input', scheduleUpdate);
+        distEl.addEventListener('input', scheduleUpdate);
+        if (framedEl) framedEl.addEventListener('change', scheduleUpdate);
+
+        // Screen reader: flag for announce, flushed inside update() after computation
+        function announce() { pendingAnnounce = true; scheduleUpdate(); }
+        [focalEl, aptEl, distEl, framedEl].forEach(function (el) {
+            if (el) el.addEventListener('change', announce);
+        });
+
+        // Re-measure on reveal or container change (not just window resize).
+        // ResizeObserver fires when an element gains size (e.g. tab switch),
+        // which the window listener misses. Debounced so animated layouts
+        // (sidebar slide-in, etc.) don't trigger a full re-render per frame.
+        // Falls back to window resize for older browsers.
+        var resizeTimer = null;
+        function onResize() {
+            if (resizeTimer) return;
+            resizeTimer = setTimeout(function () { resizeTimer = null; scheduleUpdate(); }, 100);
+        }
+        if (window.ResizeObserver) {
+            new ResizeObserver(onResize).observe(svg);
+        } else {
+            window.addEventListener('resize', onResize);
+        }
+
+        update();
+    })();
+    </script>
 </body>
 
 </html>

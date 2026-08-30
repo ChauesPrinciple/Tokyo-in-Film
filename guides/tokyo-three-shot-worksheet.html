@@ -38,19 +38,6 @@
             font-size: 1.4rem;
         }
 
-        .form-field {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 4px;
-            padding: 1rem;
-            margin: 0.75rem 0;
-            min-height: 2.5rem;
-        }
-
-        .form-field.tall {
-            min-height: 5rem;
-        }
-
         .form-label {
             color: #fff;
             font-weight: 600;
@@ -135,11 +122,6 @@
             .download-section {
                 display: none;
             }
-
-            .form-field {
-                border: 1px solid #ccc;
-                background: #fff;
-            }
         }
 
         @media (max-width: 600px) {
@@ -188,87 +170,87 @@
 
             <div class="context-grid">
                 <div class="context-item">
-                    <label>Name:</label>
-                    <textarea class="worksheet-textarea"></textarea>
+                    <label for="ctx1">Name:</label>
+                    <textarea class="worksheet-textarea" id="ctx1"></textarea>
                 </div>
                 <div class="context-item">
-                    <label>Location:</label>
-                    <textarea class="worksheet-textarea"></textarea>
+                    <label for="ctx2">Location:</label>
+                    <textarea class="worksheet-textarea" id="ctx2"></textarea>
                 </div>
                 <div class="context-item">
-                    <label>Course Film Connection:</label>
-                    <textarea class="worksheet-textarea"></textarea>
+                    <label for="ctx3">Course Film Connection:</label>
+                    <textarea class="worksheet-textarea" id="ctx3"></textarea>
                 </div>
                 <div class="context-item">
-                    <label>Team Name:</label>
-                    <textarea class="worksheet-textarea"></textarea>
+                    <label for="ctx4">Team Name:</label>
+                    <textarea class="worksheet-textarea" id="ctx4"></textarea>
                 </div>
                 <div class="context-item">
-                    <label>Role:</label>
-                    <textarea class="worksheet-textarea"></textarea>
+                    <label for="ctx5">Role:</label>
+                    <textarea class="worksheet-textarea" id="ctx5"></textarea>
                 </div>
             </div>
 
-            <label class="form-label">Logline of the Scene:</label>
-            <textarea class="worksheet-textarea tall"></textarea>
+            <label class="form-label" for="wf1">Logline of the Scene:</label>
+            <textarea class="worksheet-textarea tall" id="wf1"></textarea>
 
             <div class="shot-card">
                 <h3><span class="shot-number">1</span>Establish the Normal</h3>
 
-                <label class="form-label">What is the "normal" rhythm of this Tokyo space?</label>
+                <label class="form-label" for="wf2">What is the "normal" rhythm of this Tokyo space?</label>
                 <p class="form-hint">(Describe light, movement, sound, or routine you will capture.)</p>
-                <textarea class="worksheet-textarea tall"></textarea>
+                <textarea class="worksheet-textarea tall" id="wf2"></textarea>
 
-                <label class="form-label">What will the camera show to make this normal clear?</label>
+                <label class="form-label" for="wf3">What will the camera show to make this normal clear?</label>
                 <p class="form-hint">(Frame, angle, movement.)</p>
-                <textarea class="worksheet-textarea tall"></textarea>
+                <textarea class="worksheet-textarea tall" id="wf3"></textarea>
 
-                <label class="form-label">Why is this the baseline the viewer must understand?</label>
-                <textarea class="worksheet-textarea tall"></textarea>
+                <label class="form-label" for="wf4">Why is this the baseline the viewer must understand?</label>
+                <textarea class="worksheet-textarea tall" id="wf4"></textarea>
             </div>
 
             <div class="shot-card">
                 <h3><span class="shot-number">2</span>Disrupt the Normal</h3>
 
-                <label class="form-label">What single thing breaks the rhythm or logic of the space?</label>
+                <label class="form-label" for="wf5">What single thing breaks the rhythm or logic of the space?</label>
                 <p class="form-hint">(Visual interruption, sound change, unexpected movement.)</p>
-                <textarea class="worksheet-textarea tall"></textarea>
+                <textarea class="worksheet-textarea tall" id="wf5"></textarea>
 
-                <label class="form-label">How will the disruption enter the frame?</label>
+                <label class="form-label" for="wf6">How will the disruption enter the frame?</label>
                 <p class="form-hint">(Timing, direction, pacing.)</p>
-                <textarea class="worksheet-textarea tall"></textarea>
+                <textarea class="worksheet-textarea tall" id="wf6"></textarea>
 
-                <label class="form-label">How does this escalate naturally from Shot 1?</label>
-                <textarea class="worksheet-textarea tall"></textarea>
+                <label class="form-label" for="wf7">How does this escalate naturally from Shot 1?</label>
+                <textarea class="worksheet-textarea tall" id="wf7"></textarea>
             </div>
 
             <div class="shot-card">
                 <h3><span class="shot-number">3</span>Payoff / Consequence</h3>
 
-                <label class="form-label">What final image shows the result of the disruption?</label>
+                <label class="form-label" for="wf8">What final image shows the result of the disruption?</label>
                 <p class="form-hint">(The "only possible outcome" of Shot 2.)</p>
-                <textarea class="worksheet-textarea tall"></textarea>
+                <textarea class="worksheet-textarea tall" id="wf8"></textarea>
 
-                <label class="form-label">How will you frame the payoff using the location itself?</label>
+                <label class="form-label" for="wf9">How will you frame the payoff using the location itself?</label>
                 <p class="form-hint">(Windows, doorways, stairs, platforms, alleys, rails, signage, etc.)</p>
-                <textarea class="worksheet-textarea tall"></textarea>
+                <textarea class="worksheet-textarea tall" id="wf9"></textarea>
 
-                <label class="form-label">What emotion or tone should the final shot leave the viewer with?</label>
-                <textarea class="worksheet-textarea tall"></textarea>
+                <label class="form-label" for="wf10">What emotion or tone should the final shot leave the viewer with?</label>
+                <textarea class="worksheet-textarea tall" id="wf10"></textarea>
             </div>
 
             <h2>Check for Throughline</h2>
-            <label class="form-label">How do Shots 1, 2, and 3 connect logically as one sequence?</label>
-            <textarea class="worksheet-textarea tall"></textarea>
+            <label class="form-label" for="wf11">How do Shots 1, 2, and 3 connect logically as one sequence?</label>
+            <textarea class="worksheet-textarea tall" id="wf11"></textarea>
 
             <div class="summary-card">
                 <h3>Shot Summary</h3>
-                <label class="form-label">Shot 1:</label>
-                <textarea class="worksheet-textarea"></textarea>
-                <label class="form-label">Shot 2:</label>
-                <textarea class="worksheet-textarea"></textarea>
-                <label class="form-label">Shot 3:</label>
-                <textarea class="worksheet-textarea"></textarea>
+                <label class="form-label" for="wf12">Shot 1:</label>
+                <textarea class="worksheet-textarea" id="wf12"></textarea>
+                <label class="form-label" for="wf13">Shot 2:</label>
+                <textarea class="worksheet-textarea" id="wf13"></textarea>
+                <label class="form-label" for="wf14">Shot 3:</label>
+                <textarea class="worksheet-textarea" id="wf14"></textarea>
             </div>
 
             <div class="download-section">

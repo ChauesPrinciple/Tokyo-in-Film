@@ -1312,6 +1312,10 @@ blockquote {
     resize: vertical;
 }
 
+.worksheet-textarea.tall {
+    min-height: 220px;
+}
+
 .print-btn-container {
     text-align: right;
     margin-bottom: 2rem;
