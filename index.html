@@ -34,6 +34,11 @@
         .fm-locations { display: flex; flex-wrap: wrap; gap: 0.4rem; }
         .fm-loc-tag { font-size: 0.8rem; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; padding: 0.25rem 0.6rem; color: #bbb; }
         .fm-no-data { color: #666; font-size: 0.85rem; font-style: italic; }
+        /* Seigaiha (青海波) wave texture — traditional Japanese motif, inline SVG
+           pattern so it costs no extra network request. */
+        #map-section { position: relative; }
+        #map-section > .seigaiha { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; opacity: 0.05; pointer-events: none; }
+        #map-section > *:not(.seigaiha) { position: relative; z-index: 1; }
         .map-tabs { display:flex; justify-content:center; gap:0; margin-bottom:0; }
         .map-tab { padding:0.6rem 1.5rem; font-size:0.85rem; text-transform:uppercase; letter-spacing:0.08em; background:transparent; color:#888; border:1px solid rgba(255,255,255,0.15); border-bottom:none; border-radius:6px 6px 0 0; cursor:pointer; font-family:Inter,sans-serif; font-weight:600; transition:all 0.2s; }
         .map-tab + .map-tab { margin-left:-1px; }
@@ -199,6 +204,14 @@
     </main>
 
     <section id="map-section" class="container" style="padding: 0 2rem 4rem;">
+        <svg class="seigaiha" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+                <pattern id="seigaiha-pattern" x="0" y="0" width="36" height="18" patternUnits="userSpaceOnUse">
+                    <path d="M18 0 A18 18 0 0 1 18 36 A18 18 0 0 1 18 0 Z M18 4 A14 14 0 0 1 18 32 A14 14 0 0 1 18 4 Z" fill="none" stroke="currentColor" stroke-width="1"/>
+                </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#seigaiha-pattern)"/>
+        </svg>
         <div style="text-align: center; margin-bottom: 1.5rem;" data-scroll><h2>Tokyo Maps</h2></div>
         <div class="map-tabs" role="tablist" aria-label="Tokyo Maps">
             <button type="button" class="map-tab active" role="tab" id="tab-class-map" data-tab="class-map" aria-controls="panel-class-map" aria-selected="true">Class Map</button>
