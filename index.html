@@ -39,6 +39,11 @@
         #map-section { position: relative; }
         #map-section > .seigaiha { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; opacity: 0.05; pointer-events: none; }
         #map-section > *:not(.seigaiha) { position: relative; z-index: 1; }
+        .map-tabs { display:flex; justify-content:center; gap:0; margin-bottom:0; }
+        .map-tab { padding:0.6rem 1.5rem; font-size:0.85rem; text-transform:uppercase; letter-spacing:0.08em; background:transparent; color:#888; border:1px solid rgba(255,255,255,0.15); border-bottom:none; border-radius:6px 6px 0 0; cursor:pointer; font-family:Inter,sans-serif; font-weight:600; transition:all 0.2s; }
+        .map-tab.active { background:rgba(0,243,255,0.12); color:var(--accent-neon-cyan); border:1px solid var(--accent-neon-cyan); border-bottom:none; }
+        .map-panel { display:none; }
+        .map-panel.active { display:block; }
     </style>
     <script type="application/ld+json">
     {
@@ -207,29 +212,39 @@
             <rect width="100%" height="100%" fill="url(#seigaiha-pattern)"/>
         </svg>
         <div style="text-align: center; margin-bottom: 1.5rem;" data-scroll><h2>Tokyo Maps</h2></div>
-        <div class="map-tabs" style="display:flex;justify-content:center;gap:0;margin-bottom:0;">
-            <button class="map-tab active" data-tab="class-map" style="padding:0.6rem 1.5rem;font-size:0.85rem;text-transform:uppercase;letter-spacing:0.08em;background:rgba(0,243,255,0.12);color:var(--accent-neon-cyan);border:1px solid var(--accent-neon-cyan);border-bottom:none;border-radius:6px 6px 0 0;cursor:pointer;font-family:Inter,sans-serif;font-weight:600;transition:all 0.2s;">Class Map</button>
-            <button class="map-tab" data-tab="anime-map" style="padding:0.6rem 1.5rem;font-size:0.85rem;text-transform:uppercase;letter-spacing:0.08em;background:transparent;color:#888;border:1px solid rgba(255,255,255,0.15);border-bottom:none;border-radius:6px 6px 0 0;cursor:pointer;font-family:Inter,sans-serif;font-weight:600;transition:all 0.2s;">Anime Maps</button>
+        <div class="map-tabs">
+            <button type="button" class="map-tab active" data-tab="class-map">Class Map</button>
+            <button type="button" class="map-tab" data-tab="anime-map">Anime Maps</button>
         </div>
         <!-- Class Map Panel -->
         <div class="map-panel active" id="panel-class-map">
             <div class="map-container"
-                style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border: 1px solid var(--accent-neon-cyan); border-top: none; box-shadow: 0 0 20px rgba(0, 243, 255, 0.2);">
-                <iframe id="class-map-iframe" src="anime-map.html?anime=class_locations" width="960" height="760"
+                style="position: relative; padding-bottom: 79.17%; height: 0; overflow: hidden; border: 1px solid var(--accent-neon-cyan); border-top: none; box-shadow: 0 0 20px rgba(0, 243, 255, 0.2);">
+                <iframe id="class-map-iframe" class="map-frame" loading="lazy"
+                    data-src="anime-map.html?anime=class_locations"
                     style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
                     allowfullscreen title="Interactive Map of Tokyo Class Locations"></iframe>
             </div>
+            <ul class="map-key-list">
+                <li><span>⭐</span> Class-Specific Excursions</li>
+                <li><span>🎥</span> Class-Specific Filming Locations</li>
+                <li><span>🍴</span> Special Food Recommendations</li>
+                <li><span>🌲</span> Greenery and Parks</li>
+                <li><span>⛩️</span> Special Shrines</li>
+                <li><span>🛍️</span> Otaku and Thrift Shopping</li>
+                <li><span class="icon-silver" style="color: silver;">🎵</span> Arcades and Music</li>
+            </ul>
             <p style="text-align:center;margin-top:1rem;color:#999;font-size:0.85rem;">
-                Filter by location type in the map legend, or search any location by name.
                 <a href="anime-map.html?anime=class_locations" target="_blank" rel="noopener" style="color:var(--accent-neon-cyan);margin-left:0.5rem;">Open fullscreen &rarr;</a>
                 <a href="https://www.google.com/maps/d/viewer?mid=1V4GApFpOipMmySIyy2loBujui--BV3Y" target="_blank" rel="noopener" style="color:#888;margin-left:0.75rem;">Google Maps version &rarr;</a>
             </p>
         </div>
         <!-- Anime Map Panel -->
-        <div class="map-panel" id="panel-anime-map" style="display:none;">
+        <div class="map-panel" id="panel-anime-map">
             <div class="map-container"
-                style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border: 1px solid var(--accent-neon-cyan); border-top: none; box-shadow: 0 0 20px rgba(0, 243, 255, 0.2);">
-                <iframe id="anime-map-iframe" data-src="anime-map.html?v=4" width="960" height="760"
+                style="position: relative; padding-bottom: 79.17%; height: 0; overflow: hidden; border: 1px solid var(--accent-neon-cyan); border-top: none; box-shadow: 0 0 20px rgba(0, 243, 255, 0.2);">
+                <iframe id="anime-map-iframe" class="map-frame" loading="lazy"
+                    data-src="anime-map.html?v=5"
                     style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
                     allowfullscreen title="Interactive Anime Maps of Tokyo"></iframe>
             </div>
@@ -240,27 +255,37 @@
         </div>
     </section>
     <script>
-    document.querySelectorAll('.map-tab').forEach(function(tab) {
-        tab.addEventListener('click', function() {
-            document.querySelectorAll('.map-tab').forEach(function(t) {
-                t.classList.remove('active');
-                t.style.background = 'transparent';
-                t.style.color = '#888';
-                t.style.borderColor = 'rgba(255,255,255,0.15)';
-            });
-            this.classList.add('active');
-            this.style.background = 'rgba(0,243,255,0.12)';
-            this.style.color = 'var(--accent-neon-cyan)';
-            this.style.borderColor = 'var(--accent-neon-cyan)';
-            document.querySelectorAll('.map-panel').forEach(function(p) { p.style.display = 'none'; p.classList.remove('active'); });
-            var panel = document.getElementById('panel-' + this.dataset.tab);
-            panel.style.display = 'block';
-            panel.classList.add('active');
-            // Lazy-load anime map iframe on first tab click
-            var iframe = document.getElementById('anime-map-iframe');
-            if (iframe && !iframe.src && iframe.dataset.src) { iframe.src = iframe.dataset.src; }
-        });
-    });
+    (function () {
+        var tabs = document.querySelectorAll('.map-tab');
+        var panels = document.querySelectorAll('.map-panel');
+
+        function show(name) {
+            for (var i = 0; i < tabs.length; i++) {
+                tabs[i].classList.toggle('active', tabs[i].getAttribute('data-tab') === name);
+            }
+            for (var j = 0; j < panels.length; j++) {
+                var isMatch = panels[j].id === 'panel-' + name;
+                panels[j].classList.toggle('active', isMatch);
+                panels[j].style.display = isMatch ? '' : 'none';
+            }
+            var frame = document.querySelector('#' + name + '-iframe');
+            if (frame && frame.getAttribute('data-src') && !frame.src) {
+                frame.src = frame.getAttribute('data-src');
+            }
+        }
+
+        var activeTab = document.querySelector('.map-tab.active');
+        var initial = activeTab ? activeTab.getAttribute('data-tab') : 'class-map';
+        show(initial);
+
+        for (var k = 0; k < tabs.length; k++) {
+            (function (tab) {
+                tab.addEventListener('click', function () {
+                    show(tab.getAttribute('data-tab'));
+                });
+            })(tabs[k]);
+        }
+    })();
     </script>
 
     <section id="film-list" class="container">
