@@ -1744,3 +1744,102 @@ blockquote {
     outline: 2px solid var(--accent-neon-cyan, #00e5ff);
     outline-offset: 2px;
 }
+
+/* Course Filmography - discreet archive list below the active film list */
+.course-filmography {
+    max-width: 900px;
+    margin: 0 auto 4rem;
+    padding: 0 1rem;
+}
+
+.course-filmography details {
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 0.35rem 0;
+}
+
+.course-filmography summary {
+    cursor: pointer;
+    list-style: none;
+    padding: 0.65rem 0.25rem;
+    color: #8d97a3;
+    font-size: 0.82rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: color 0.2s ease;
+}
+
+.course-filmography summary::-webkit-details-marker {
+    display: none;
+}
+
+.course-filmography summary::before {
+    content: "+";
+    display: inline-block;
+    width: 1.1em;
+    color: var(--accent-neon-cyan, #00e5ff);
+    opacity: 0.7;
+}
+
+.course-filmography details[open] summary::before {
+    content: "\2013";
+}
+
+.course-filmography summary:hover,
+.course-filmography summary:focus-visible {
+    color: var(--accent-neon-cyan, #00e5ff);
+}
+
+.filmography-list {
+    columns: 3;
+    column-gap: 2.25rem;
+    list-style: none;
+    margin: 0.75rem 0 1rem;
+    padding: 0;
+}
+
+.filmography-list li {
+    break-inside: avoid;
+    margin-bottom: 0.45rem;
+    font-size: 0.82rem;
+    line-height: 1.45;
+    color: #7f8894;
+}
+
+.filmography-list .fg-title {
+    color: #c3cad4;
+}
+
+.filmography-list a.fg-title {
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+}
+
+.filmography-list a.fg-title:hover {
+    color: var(--accent-neon-cyan, #00e5ff);
+    border-bottom-color: rgba(0, 229, 255, 0.5);
+}
+
+.filmography-list .fg-meta {
+    display: block;
+    font-size: 0.75rem;
+    color: #6a7280;
+}
+
+.course-filmography .fg-note {
+    margin: 0 0 0.5rem;
+    font-size: 0.74rem;
+    color: #6a7280;
+}
+
+@media (max-width: 900px) {
+    .filmography-list {
+        columns: 2;
+    }
+}
+
+@media (max-width: 560px) {
+    .filmography-list {
+        columns: 1;
+    }
+}
