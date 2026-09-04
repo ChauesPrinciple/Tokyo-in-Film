@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=ddefeb61">
+    <link rel="stylesheet" href="style.css?v=24b6b0b6">
     <!-- /build:head -->
     <style>
         .glossary-grid {
@@ -134,50 +134,9 @@
     </footer>
     <!-- /build:footer -->
 
-    <!-- Load the glossary data -->
-    <script src="js/glossary.js?v=71cb4430"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const container = document.getElementById('glossary-container');
-            const searchInput = document.getElementById('search-input');
-
-            // Function to categorize term (simple heuristic or manual mapping could be added)
-            // For now, we just display the term and definition.
-
-            function renderTerms(filter = "") {
-                container.innerHTML = '';
-                const lowerFilter = filter.toLowerCase();
-
-                // Sort terms alphabetically
-                const sortedTerms = glossaryTerms.sort((a, b) => a.term.localeCompare(b.term));
-
-                sortedTerms.forEach(item => {
-                    if (item.term.toLowerCase().includes(lowerFilter) || item.definition.toLowerCase().includes(lowerFilter)) {
-                        const card = document.createElement('div');
-                        card.className = 'glossary-card';
-
-                        card.innerHTML = `
-                            <div class="glossary-term">${item.term}</div>
-                            <div class="glossary-def">${item.definition}</div>
-                        `;
-                        container.appendChild(card);
-                    }
-                });
-
-                if (container.children.length === 0) {
-                    container.innerHTML = '<p style="text-align:center; grid-column: 1/-1; color: #777;">No terms found matching your search.</p>';
-                }
-            }
-
-            // Initial Render
-            renderTerms();
-
-            // Search Listener
-            searchInput.addEventListener('input', (e) => {
-                renderTerms(e.target.value);
-            });
-        });
-    </script>
+    <!-- Load the glossary data, then render the searchable list -->
+    <script src="js/glossary.js?v=824211c9"></script>
+    <script src="js/glossary-page.js?v=e05d5d58"></script>
     <script src="js/mobile-nav.js"></script>
 </body>
 

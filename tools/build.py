@@ -17,11 +17,24 @@ to a content hash so browsers pick up changes without manual version bumps.
 """
 import re
 import sys
+from pathlib import Path
 
 import sitelib as s
 
-ASSET_RE = re.compile(r'(?P<path>(?:\.\./)*(?:style\.css|js/[\w-]+\.js))\?v=[\w.]+')
+ASSET_RE = re.compile(r'(?P<path>(?:\.\./)*(?:style\.css|(?:js/|assets/)?[\w-]+\.(?:js|json)))\?v=[\w.]+')
 REGIONS = ('head', 'nav', 'footer')
+# JS files that reference other assets with ?v= (e.g. glossary.js -> glossary-data.json)
+JS_WITH_ASSETS = ('js/glossary.js',)
+
+
+def rehash_assets(rel, text):
+    """Rewrite ?v= on local asset references relative to the file `rel`."""
+    def rehash(m):
+        target = (s.ROOT / rel).parent / m.group('path')
+        if not target.exists():
+            return m.group(0)
+        return f"{m.group('path')}?v={s.file_hash(target.resolve().relative_to(s.ROOT))}"
+    return ASSET_RE.sub(rehash, text)
 
 
 def build_page(rel, text):
@@ -37,21 +50,17 @@ def build_page(rel, text):
         body = s.indent_block(s.render_partial(name, rel), indent, eol)
         block = s.MARK.format(name=name) + eol + body + eol + indent + s.END_MARK.format(name=name)
         text = text[:m.start()] + block + text[m.end():]
-
-    def rehash(m):
-        target = (s.ROOT / rel).parent / m.group('path')
-        if not target.exists():
-            return m.group(0)
-        return f"{m.group('path')}?v={s.file_hash(target.resolve().relative_to(s.ROOT))}"
-    return ASSET_RE.sub(rehash, text)
+    return rehash_assets(rel, text)
 
 
 def main(argv):
     check = '--check' in argv
     changed = []
-    for rel in s.pages():
+    # JS first, so the pages then pick up the JS files' new hashes.
+    targets = [(Path(p), rehash_assets) for p in JS_WITH_ASSETS] + [(rel, build_page) for rel in s.pages()]
+    for rel, fn in targets:
         old = s.read(rel)
-        new = build_page(rel, old)
+        new = fn(rel, old)
         if new != old:
             changed.append(rel.as_posix())
             if not check:
