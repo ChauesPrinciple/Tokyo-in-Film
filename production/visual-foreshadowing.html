@@ -5,32 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2.5 Visual Foreshadowing - Tokyo in Film</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;600&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="../style.css?v=23">
+    <!-- build:head -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css?v=ddefeb61">
+    <!-- /build:head -->
     <style>
-        .video-fallback-link {
-            display: block;
-            text-align: center;
-            margin-top: 0.5rem;
-            color: #888;
-            font-size: 0.9rem;
-            text-decoration: underline;
-        }
-
-        .video-fallback-link:hover {
-            color: var(--accent-neon-cyan);
-        }
-
-        .download-section {
-            background: rgba(0, 243, 255, 0.05);
-            border: 1px solid rgba(0, 243, 255, 0.2);
-            border-radius: 8px;
-            padding: 1.5rem;
-            margin-top: 3rem;
-            text-align: center;
-        }
-
+        
         @media print {
             nav, footer, .download-section {
                 display: none;
@@ -43,17 +25,16 @@
 </head>
 
 <body>
+    <!-- build:nav -->
     <nav>
-        <div class="nav-brand" style="display: flex; align-items: center; gap: 1rem;">
-<div class="logo">
-            Tokyo in Film
-            <div class="dropdown-menu">
-                <a href="https://chauesprinciple.github.io/Tokyo-in-Film/" class="dropdown-item current">Tokyo in
-                    Film</a>
-                <a href="https://chauesprinciple.github.io/Ancient-literature/" class="dropdown-item">Ancient
-                    Literature</a>
+        <div class="nav-brand">
+            <div class="logo">
+                Tokyo in Film
+                <div class="dropdown-menu">
+                    <a href="../index.html" class="dropdown-item current">Tokyo in Film</a>
+                    <a href="https://chauesprinciple.github.io/Ancient-literature/" class="dropdown-item">Ancient Literature</a>
+                </div>
             </div>
-        </div>
             <a href="https://www.instagram.com/chaues/" target="_blank" rel="noopener" class="ig-icon" aria-label="Instagram"></a>
         </div>
         <button type="button" class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-nav">
@@ -65,12 +46,13 @@
             <li><a href="../index.html">Home</a></li>
             <li><a href="../documentary-project.html">Documentary Project</a></li>
             <li><a href="../pre-production/index.html">Pre-Production</a></li>
-            <li><a href="index.html" class="active">Production</a></li>
+            <li><a href="../production/index.html" class="active">Production</a></li>
             <li><a href="../post-production/index.html">Post-Production</a></li>
             <li><a href="../glossary.html">Glossary</a></li>
             <li><a href="../free-guides.html">Free Guides</a></li>
         </ul>
     </nav>
+    <!-- /build:nav -->
 
     <main class="container" style="padding-top: 100px;">
         <span class="toc-number">2.5</span>
@@ -258,6 +240,7 @@
         </div>
     </main>
 
+    <!-- build:footer -->
     <footer>
         <p>&copy; 2026 Tokyo in Film.</p>
         <div class="attribution-text">
@@ -265,6 +248,7 @@
             <p><strong>Originally adapted from:</strong> <em>Moving Pictures: An Introduction to Cinema</em> by Russell Sharman.</p>
         </div>
     </footer>
+    <!-- /build:footer -->
 
     <script src="../js/glossary.js"></script>
     <script src="../js/mobile-nav.js"></script>

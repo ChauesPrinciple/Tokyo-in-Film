@@ -5,67 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shot List: Structuring a Scene Through Visual Logic - Tokyo in Film</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;600&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="../style.css?v=23">
+    <!-- build:head -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css?v=ddefeb61">
+    <!-- /build:head -->
     <style>
-        .assignment-label {
-            display: inline-block;
-            background: rgba(255, 0, 127, 0.15);
-            border: 1px solid var(--accent-neon-pink);
-            color: var(--accent-neon-pink);
-            font-size: 0.8rem;
-            font-weight: 600;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            padding: 0.3rem 0.8rem;
-            border-radius: 4px;
-            margin-bottom: 1rem;
-        }
-        .example-box {
-            background: rgba(0, 243, 255, 0.06);
-            border-left: 4px solid var(--accent-neon-cyan);
-            padding: 1rem 1.5rem;
-            margin: 1.5rem 0;
-            border-radius: 0 8px 8px 0;
-        }
-        .deliverables-box {
-            background: rgba(255, 0, 127, 0.06);
-            border: 1px solid rgba(255, 0, 127, 0.3);
-            border-radius: 8px;
-            padding: 1.5rem;
-            margin: 2rem 0;
-        }
-        .final-thought {
-            background: rgba(0, 0, 0, 0.3);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 2rem;
-            margin-top: 3rem;
-            border-radius: 8px;
-            font-style: italic;
-            text-align: center;
-        }
-        .step-number {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 2rem;
-            height: 2rem;
-            background: var(--accent-neon-pink);
-            color: #000;
-            font-weight: 700;
-            border-radius: 50%;
-            margin-right: 0.75rem;
-            font-size: 1rem;
-            flex-shrink: 0;
-        }
-        .step-heading {
-            display: flex;
-            align-items: center;
-            margin-top: 2rem;
-            margin-bottom: 0.75rem;
-        }
-        .step-heading h3 { margin: 0; }
+        
         .shot-table {
             width: 100%;
             border-collapse: collapse;
@@ -89,27 +36,7 @@
         }
         .shot-table tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
         .shot-table tr.empty td { height: 2.5rem; color: rgba(255,255,255,0.15); font-style: italic; }
-        .page-nav {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-        }
-        .booklet-nav {
-            background: rgba(0,0,0,0.2);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 8px;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-        }
-        .booklet-nav h4 { margin: 0 0 0.75rem; color: var(--accent-neon-cyan); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.08em; }
-        .booklet-nav-links { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-        .booklet-nav-links a { font-size: 0.85rem; padding: 0.3rem 0.8rem; border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; color: #ccc; text-decoration: none; }
-        .booklet-nav-links a:hover { border-color: var(--accent-neon-pink); color: var(--accent-neon-pink); }
-        .booklet-nav-links a.current { border-color: var(--accent-neon-pink); color: var(--accent-neon-pink); background: rgba(255,0,127,0.1); }
+        
         @media (max-width: 700px) {
             .shot-table { font-size: 0.78rem; }
             .shot-table th, .shot-table td { padding: 0.4rem 0.5rem; }
@@ -118,30 +45,34 @@
 </head>
 
 <body>
+    <!-- build:nav -->
     <nav>
-        <div class="nav-brand" style="display: flex; align-items: center; gap: 1rem;">
+        <div class="nav-brand">
             <div class="logo">
                 Tokyo in Film
                 <div class="dropdown-menu">
-                    <a href="https://chauesprinciple.github.io/Tokyo-in-Film/" class="dropdown-item current">Tokyo in Film</a>
+                    <a href="../index.html" class="dropdown-item current">Tokyo in Film</a>
                     <a href="https://chauesprinciple.github.io/Ancient-literature/" class="dropdown-item">Ancient Literature</a>
                 </div>
             </div>
             <a href="https://www.instagram.com/chaues/" target="_blank" rel="noopener" class="ig-icon" aria-label="Instagram"></a>
         </div>
         <button type="button" class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-nav">
-            <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
         </button>
         <ul class="nav-list" id="primary-nav">
             <li><a href="../index.html">Home</a></li>
             <li><a href="../documentary-project.html">Documentary Project</a></li>
-            <li><a href="index.html" class="active">Pre-Production</a></li>
+            <li><a href="../pre-production/index.html" class="active">Pre-Production</a></li>
             <li><a href="../production/index.html">Production</a></li>
             <li><a href="../post-production/index.html">Post-Production</a></li>
             <li><a href="../glossary.html">Glossary</a></li>
             <li><a href="../free-guides.html">Free Guides</a></li>
         </ul>
     </nav>
+    <!-- /build:nav -->
 
     <main class="container" style="padding-top: 100px;">
         <span class="toc-number">1.1.4</span>
@@ -298,17 +229,15 @@
         </div>
     </main>
 
+    <!-- build:footer -->
     <footer>
         <p>&copy; 2026 Tokyo in Film.</p>
         <div class="attribution-text">
-            <p><a href="https://chauesprinciple.github.io/Tokyo-in-Film/">Tokyo in Film</a> &copy; 2023 by <a
-                    href="https://chauesprinciple.github.io/ChauesProductions/">Robert Ladd</a> is licensed under <a
-                    href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0
-                    International</a>.</p>
-            <p><strong>Originally adapted from:</strong> <em>Moving Pictures: An Introduction to Cinema</em> by Russell
-                Sharman.</p>
+            <p><a href="https://chauesprinciple.github.io/Tokyo-in-Film/">Tokyo in Film</a> &copy; 2023 by <a href="https://chauesprinciple.github.io/ChauesProductions/">Robert Ladd</a> is licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International</a>.</p>
+            <p><strong>Originally adapted from:</strong> <em>Moving Pictures: An Introduction to Cinema</em> by Russell Sharman.</p>
         </div>
     </footer>
+    <!-- /build:footer -->
 
     <script src="../js/glossary.js"></script>
     <script src="../js/mobile-nav.js"></script>

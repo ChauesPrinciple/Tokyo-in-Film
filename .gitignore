@@ -11,6 +11,9 @@ dist
 *.pdf
 *.py
 *.ps1
+*.bak
+# ...except the site build/check tooling
+!tools/*.py
 
 # Screenplay drafts and extracts
 KURASAWA_*.txt
@@ -31,10 +34,12 @@ Student Work/
 class_resources/
 
 # Debug, test, and backup HTML files
-debug_*.html
-test_*.html
+debug_*
+test_*
 temp_*.html
 scratch.html
+scratch-*.html
+backup-*.html
 *_new_content.html
 
 # Audit and strategy docs
@@ -54,3 +59,5 @@ assets/images/libretexts/mise-en-scene-banner.gif
 assets/images/libretexts/sound-design-banner.gif
 assets/images/libretexts/animation-editing-banner.gif
 assets/images/libretexts/art-corner-banner.gif
+
+__pycache__/

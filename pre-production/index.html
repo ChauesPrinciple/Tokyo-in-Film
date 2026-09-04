@@ -5,26 +5,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pre-Production - Tokyo in Film</title>
+    <!-- build:head -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;600&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="../style.css?v=23">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css?v=ddefeb61">
+    <!-- /build:head -->
 </head>
 
 <body>
 
+    <!-- build:nav -->
     <nav>
-        <div class="nav-brand" style="display: flex; align-items: center; gap: 1rem;">
-<div class="logo">
-            Tokyo in Film
-            <div class="dropdown-menu">
-                <a href="https://chauesprinciple.github.io/Tokyo-in-Film/" class="dropdown-item current">Tokyo in
-                    Film</a>
-                <a href="https://chauesprinciple.github.io/Ancient-literature/" class="dropdown-item">Ancient
-                    Literature</a>
+        <div class="nav-brand">
+            <div class="logo">
+                Tokyo in Film
+                <div class="dropdown-menu">
+                    <a href="../index.html" class="dropdown-item current">Tokyo in Film</a>
+                    <a href="https://chauesprinciple.github.io/Ancient-literature/" class="dropdown-item">Ancient Literature</a>
+                </div>
             </div>
-        </div>
             <a href="https://www.instagram.com/chaues/" target="_blank" rel="noopener" class="ig-icon" aria-label="Instagram"></a>
         </div>
         <button type="button" class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-nav">
@@ -35,13 +35,14 @@
         <ul class="nav-list" id="primary-nav">
             <li><a href="../index.html">Home</a></li>
             <li><a href="../documentary-project.html">Documentary Project</a></li>
-            <li><a href="index.html" class="active">Pre-Production</a></li>
+            <li><a href="../pre-production/index.html" class="active">Pre-Production</a></li>
             <li><a href="../production/index.html">Production</a></li>
             <li><a href="../post-production/index.html">Post-Production</a></li>
             <li><a href="../glossary.html">Glossary</a></li>
             <li><a href="../free-guides.html">Free Guides</a></li>
         </ul>
     </nav>
+    <!-- /build:nav -->
 
     <main class="container" style="padding-top: 100px;">
         <h1>Phase 1: Pre-Production</h1>
@@ -90,6 +91,7 @@
     
     </main>
 
+    <!-- build:footer -->
     <footer>
         <p>&copy; 2026 Tokyo in Film.</p>
         <div class="attribution-text">
@@ -97,45 +99,14 @@
             <p><strong>Originally adapted from:</strong> <em>Moving Pictures: An Introduction to Cinema</em> by Russell Sharman.</p>
         </div>
     </footer>
+    <!-- /build:footer -->
 
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
-    <script src="../js/scroll-fx.js?v=5"></script>
-    <script src="../js/glossary.js?v=4"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const mobileMenu = document.getElementById('mobile-menu');
-            const navList = document.querySelector('.nav-list');
-
-            if (mobileMenu) {
-                mobileMenu.addEventListener('click', () => {
-                    const isOpen = navList.classList.toggle('active');
-                    mobileMenu.classList.toggle('is-active');
-                    mobileMenu.setAttribute('aria-expanded', String(isOpen));
-                });
-            }
-
-            // Dropdown Toggle Logic
-            const logo = document.querySelector('.logo');
-            if (logo) {
-                logo.addEventListener('click', (e) => {
-                    // Only toggle if the click is on the logo container itself or the text, 
-                    // not if the user is clicking an actual link inside the dropdown
-                    if (!e.target.closest('.dropdown-item')) {
-                        logo.classList.toggle('active');
-                    }
-                });
-
-                // Close dropdown when clicking outside
-                document.addEventListener('click', (e) => {
-                    if (!logo.contains(e.target)) {
-                        logo.classList.remove('active');
-                    }
-                });
-            }
-        });
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" integrity="sha384-g4NTh/Iv5PPU4xPyhEWqPcwtNXOvdaDI8LLnyYfyNZOjKJeYQyjzQ9X5275eBjpt" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" integrity="sha384-Z3REaz79l2IaAZqJsSABtTbhjgOUYyV3p90XNnAPCSHg3EMTz1fouunq9WZRtj3d" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js" integrity="sha384-O55L/6rhHr9CFvrxqv5luxOCcmVaBmETbZbJDP+Do8T0pztTACsFBD/IXCNkj7DV" crossorigin="anonymous"></script>
+    <script src="../js/scroll-fx.js?v=9ce6a31c"></script>
+    <script src="../js/glossary.js?v=71cb4430"></script>
+    <script src="../js/mobile-nav.js"></script>
 </body>
 
 </html>

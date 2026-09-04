@@ -1,84 +1,32 @@
 ---
+name: update-css-version
 description: Update CSS version number across all HTML files when styles are modified
-tags: [css, cache-busting, maintenance]
 ---
 
 # Update CSS Version Skill
 
 ## Purpose
-Increment the CSS version query parameter in all HTML files to force browser cache refresh after style changes.
+Make browsers pick up changes to `style.css` (and `js/*.js`) on the live site.
 
-## Current Version
-**style.css?v=12**
+## How it works now
+Manual `style.css?v=NN` bumps are **obsolete**. `tools/build.py` rewrites every
+`style.css?v=...` and `js/<file>.js?v=...` reference to an 8-character content hash,
+so the version changes automatically whenever the file changes.
 
-## When to Use
-- After modifying `style.css`
-- When style changes don't appear on live site
-- Before deploying style updates
-
-## Files to Update
-All HTML files that link to `style.css`:
-
-- `index.html`
-- `textbook.html`
-- `scene-project.html`
-- `glossary.html`
-- `free-guides.html`
-- `pre-production/*.html` (6 files: 1.1-1.6 + guide.html)
-- `production/*.html` (5 files: 2.1-2.5 + guide.html)
-- `post-production/*.html` (5 files: 3.1-3.5 + guide.html)
-- `guides/*.html` (15 worksheet files)
-
-## Update Process
-
-### Step 1: Determine new version
-Current version is **v=12**. Increment to **v=13**.
-
-### Step 2: Search and replace
-Use PowerShell with UTF-8 encoding:
+## Process
 
 ```powershell
-$files = Get-ChildItem -Recurse -Include *.html
-foreach ($file in $files) {
-    $content = [System.IO.File]::ReadAllText($file.FullName, [System.Text.Encoding]::UTF8)
-    $content = $content -replace 'style\.css\?v=12', 'style.css?v=13'
-    [System.IO.File]::WriteAllText($file.FullName, $content, [System.Text.Encoding]::UTF8)
-}
+python tools/build.py     # rewrites hashes + regenerates nav/footer/head regions
+python tools/check.py     # confirms every page is fresh and links resolve
 ```
 
-### Step 3: Verify
-Check a few files to confirm:
+Then commit and deploy (see `deploy-site`).
 
-```bash
-grep -n "style.css?v=" index.html pre-production/guide.html
-```
+## Verification
+- `python tools/build.py --check` prints `All pages up to date.`
+- `grep -n "style.css?v=" index.html pre-production/guide.html` shows the same hash on both.
 
-## CRITICAL: UTF-8 Encoding
-**NEVER** use plain PowerShell `Get-Content` or `Set-Content` for this task. They use Windows-1252 encoding and will corrupt Japanese characters (kanji).
-
-**Always use:**
-- `[System.IO.File]::ReadAllText($path, [System.Text.Encoding]::UTF8)`
-- `[System.IO.File]::WriteAllText($path, $content, [System.Text.Encoding]::UTF8)`
-
-## Verification Checklist
-- [ ] All HTML files updated to new version
-- [ ] No Japanese characters corrupted
-- [ ] Test one page locally to confirm styles load
-- [ ] Commit and deploy changes
-
-## Common Issues
-
-### Styles not updating after version bump
-- Clear browser cache (Ctrl+F5 / Cmd+Shift+R)
-- Check browser dev tools Network tab to verify new version is loading
-- Verify version number in HTML source matches CSS file link
-
-### Encoding corruption
-If Japanese characters appear as gibberish after update, the file was saved with wrong encoding. Revert and use UTF-8 encoding method above.
-
-
----
-
-## Sources
-
-This skill is **procedural** — it does not make film-craft claims. Per `CITATION_PROTOCOL.md` the citation discipline does not apply to procedural workflows (deployment, formatting, encoding, file management). If this skill is later extended with craft-level reasoning, replace this block with citations to the relevant entries in `SOURCE_INDEX.md`.
+## Notes
+- The build reads/writes UTF-8 without BOM and preserves CRLF, so Japanese characters are safe.
+- Pages in `STANDALONE` (`tools/sitelib.py`) that do not load `style.css` are untouched.
+- Details of the region/partial system: `AGENTS.md` (repo root).

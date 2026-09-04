@@ -7,38 +7,14 @@
     <title>The Process for Creating a Short Film - Tokyo in Film</title>
     <meta name="description"
         content="A practical, fillable student guide for recreating a scene or creating a short film.">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;600&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="../style.css?v=23">
+    <!-- build:head -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css?v=ddefeb61">
+    <!-- /build:head -->
     <style>
-        .guide-header {
-            background: linear-gradient(135deg, rgba(255, 0, 127, 0.1), rgba(0, 243, 255, 0.05));
-            border-bottom: 3px solid var(--accent-neon-pink);
-            padding: 2rem;
-            margin-bottom: 2rem;
-            border-radius: 8px;
-        }
-
-        .guide-header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .guide-header .subtitle {
-            color: var(--accent-neon-cyan);
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-
-        .guide-content h2 {
-            color: var(--accent-neon-cyan);
-            border-bottom: 1px solid rgba(0, 243, 255, 0.3);
-            padding-bottom: 0.5rem;
-            margin-top: 2.5rem;
-            font-size: 1.5rem;
-        }
-
+        
         .section-intro {
             background: rgba(0, 0, 0, 0.2);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -76,16 +52,7 @@
             accent-color: var(--accent-neon-cyan);
             margin-top: 3px;
         }
-
-        .download-section {
-            background: rgba(0, 243, 255, 0.05);
-            border: 1px solid rgba(0, 243, 255, 0.2);
-            border-radius: 8px;
-            padding: 1.5rem;
-            margin-top: 3rem;
-            text-align: center;
-        }
-
+        
         @media print {
 
             nav,
@@ -104,15 +71,16 @@
 </head>
 
 <body>
+    <!-- build:nav -->
     <nav>
-        <div class="nav-brand" style="display: flex; align-items: center; gap: 1rem;">
-<div class="logo">
-    Tokyo in Film
-    <div class="dropdown-menu">
-        <a href="https://chauesprinciple.github.io/Tokyo-in-Film/" class="dropdown-item current">Tokyo in Film</a>
-        <a href="https://chauesprinciple.github.io/Ancient-literature/" class="dropdown-item">Ancient Literature</a>
-    </div>
-</div>
+        <div class="nav-brand">
+            <div class="logo">
+                Tokyo in Film
+                <div class="dropdown-menu">
+                    <a href="../index.html" class="dropdown-item current">Tokyo in Film</a>
+                    <a href="https://chauesprinciple.github.io/Ancient-literature/" class="dropdown-item">Ancient Literature</a>
+                </div>
+            </div>
             <a href="https://www.instagram.com/chaues/" target="_blank" rel="noopener" class="ig-icon" aria-label="Instagram"></a>
         </div>
         <button type="button" class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-nav">
@@ -130,6 +98,7 @@
             <li><a href="../free-guides.html" class="active">Free Guides</a></li>
         </ul>
     </nav>
+    <!-- /build:nav -->
 
     <main class="container" style="padding-top: 100px;">
         <div class="guide-header">
@@ -298,6 +267,7 @@
         </div>
     </main>
 
+    <!-- build:footer -->
     <footer>
         <p>&copy; 2026 Tokyo in Film.</p>
         <div class="attribution-text">
@@ -305,6 +275,7 @@
             <p><strong>Originally adapted from:</strong> <em>Moving Pictures: An Introduction to Cinema</em> by Russell Sharman.</p>
         </div>
     </footer>
+    <!-- /build:footer -->
 
     <script src="../js/mobile-nav.js"></script>
 </body>

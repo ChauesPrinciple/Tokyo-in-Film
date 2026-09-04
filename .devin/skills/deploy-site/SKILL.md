@@ -43,10 +43,9 @@ git push origin main
 Visit `https://chauesprinciple.github.io/Tokyo-in-Film/` after 1-2 minutes.
 
 ## Pre-Deployment Checklist
+- [ ] `python tools/build.py` (regenerates nav/footer/head regions + asset hashes)
+- [ ] `python tools/check.py` passes (freshness, broken local links, UTF-8/mojibake)
 - [ ] Test all pages locally (use local server on port 8080)
-- [ ] Verify no broken links
-- [ ] Check CSS version is updated if styles changed
-- [ ] Ensure UTF-8 encoding for all HTML files
 - [ ] Verify .nojekyll file exists
 - [ ] Check no sensitive data in commits
 
@@ -58,7 +57,7 @@ Visit `https://chauesprinciple.github.io/Tokyo-in-Film/` after 1-2 minutes.
 
 ### CSS Not Updating
 **Symptom:** Style changes don't appear on live site
-**Fix:** Increment version in `style.css?v=XX` query parameter in all HTML files
+**Fix:** Run `python tools/build.py` — it rewrites `style.css?v=<hash>` in every page from the file's content
 
 ### UTF-8 Encoding
 **Symptom:** Japanese characters display as gibberish

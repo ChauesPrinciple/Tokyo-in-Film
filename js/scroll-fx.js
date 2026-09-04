@@ -92,30 +92,24 @@
         }
     }
 
-    /* ---------- 5. Chapter grids are left alone ---------- */
-    var showcaseBuilt = false;
-
-    /* ---------- 6. 3D tilt-in for toc tiles only when no fly-through ---------- */
+    /* ---------- 5. 3D tilt-in for toc tiles ---------- */
     // Narrow, safe target set: no [data-scroll] elements (see section 2).
-    if (!showcaseBuilt) {
-        gsap.utils.toArray('.toc-grid .toc-item').forEach(function (el, i) {
-            if (el.parentNode) { gsap.set(el.parentNode, { perspective: 900 }); }
-            gsap.from(el, {
-                rotateX: 22,
-                y: 70,
-                z: -100,
-                duration: 1,
-                delay: (i % 3) * 0.12,
-                ease: 'power3.out',
-                scrollTrigger: { trigger: el, start: 'top 92%', toggleActions: 'play none none none' }
-            });
+    gsap.utils.toArray('.toc-grid .toc-item').forEach(function (el, i) {
+        if (el.parentNode) { gsap.set(el.parentNode, { perspective: 900 }); }
+        gsap.from(el, {
+            rotateX: 22,
+            y: 70,
+            z: -100,
+            duration: 1,
+            delay: (i % 3) * 0.12,
+            ease: 'power3.out',
+            scrollTrigger: { trigger: el, start: 'top 92%', toggleActions: 'play none none none' }
         });
-    }
+    });
 
-    /* ---------- 7. Interactive hover tilt on cards (pointer devices only) ---------- */
-    var hoverSelector = showcaseBuilt ? '.section-grid .card' : '.section-grid .card, .toc-grid .toc-item';
+    /* ---------- 6. Interactive hover tilt on cards (pointer devices only) ---------- */
     if (window.matchMedia('(hover: hover)').matches) {
-        gsap.utils.toArray(hoverSelector).forEach(function (card) {
+        gsap.utils.toArray('.section-grid .card, .toc-grid .toc-item').forEach(function (card) {
             var setX = gsap.quickTo(card, 'rotationY', { duration: 0.4, ease: 'power2.out' });
             var setY = gsap.quickTo(card, 'rotationX', { duration: 0.4, ease: 'power2.out' });
             // Kill the [data-scroll] CSS transition once the entrance fade is done,
@@ -130,8 +124,8 @@
         });
     }
 
-    /* ---------- 8. Keep ScrollTrigger honest after layout shifts ---------- */
+    /* ---------- 7. Keep ScrollTrigger honest after layout shifts ---------- */
     window.addEventListener('load', function () { ScrollTrigger.refresh(); });
 
-    console.info('[scroll-fx] active (hero parallax' + (showcaseBuilt ? ' + tile fly-through' : '') + ')');
+    console.info('[scroll-fx] active (hero parallax)');
 })();

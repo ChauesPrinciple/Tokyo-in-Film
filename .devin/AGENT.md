@@ -124,7 +124,7 @@ Voice performance monotone    → Director not working actor → Give the charac
 
 1. Identify absolute file path.
 2. Japanese text? Use `[System.IO.File]::ReadAllText/WriteAllText` with UTF8 (no BOM). Never plain PowerShell `Get-Content` for bulk HTML edits. Write helper scripts to `$env:TEMP`, not the repo (`.gitignore` blocks `.ps1`).
-3. Style change? Increment `style.css?v=N`.
+3. Edited `style.css`, `js/*.js`, or `tools/partials/*`? Run `python tools/build.py` (rewrites content-hash `?v=` and regenerates the `<!-- build:nav/footer/head -->` regions). Never hand-edit those regions — edit the partial. Then `python tools/check.py`. See root `AGENTS.md`.
 4. Run `/deploy-updates` last.
 5. Verify on live site.
 
@@ -271,7 +271,7 @@ Course/content:
 - **Branch**: `main`
 - **Deploy**: `git push origin main`
 - **Live site**: `https://chauesprinciple.github.io/Tokyo-in-Film/` (served from `origin/main`, `.nojekyll` at repo root)
-- **CSS version**: `style.css?v=22` (increment on style changes)
+- **CSS version**: content hash written by `python tools/build.py` (no manual bumps)
 - **Encoding**: UTF-8 no BOM. Japanese text → `[System.IO.File]` API, not `Get-Content`.
 
 ---

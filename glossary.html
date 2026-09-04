@@ -5,9 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Filmmaking Glossary - Tokyo in Film</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;600&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=23">
+    <!-- build:head -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=ddefeb61">
+    <!-- /build:head -->
     <style>
         .glossary-grid {
             display: grid;
@@ -78,17 +81,16 @@
 </head>
 
 <body>
+    <!-- build:nav -->
     <nav>
-        <div class="nav-brand" style="display: flex; align-items: center; gap: 1rem;">
-<div class="logo">
-            Tokyo in Film
-            <div class="dropdown-menu">
-                <a href="https://chauesprinciple.github.io/Tokyo-in-Film/" class="dropdown-item current">Tokyo in
-                    Film</a>
-                <a href="https://chauesprinciple.github.io/Ancient-literature/" class="dropdown-item">Ancient
-                    Literature</a>
+        <div class="nav-brand">
+            <div class="logo">
+                Tokyo in Film
+                <div class="dropdown-menu">
+                    <a href="index.html" class="dropdown-item current">Tokyo in Film</a>
+                    <a href="https://chauesprinciple.github.io/Ancient-literature/" class="dropdown-item">Ancient Literature</a>
+                </div>
             </div>
-        </div>
             <a href="https://www.instagram.com/chaues/" target="_blank" rel="noopener" class="ig-icon" aria-label="Instagram"></a>
         </div>
         <button type="button" class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-nav">
@@ -106,6 +108,7 @@
             <li><a href="free-guides.html">Free Guides</a></li>
         </ul>
     </nav>
+    <!-- /build:nav -->
 
     <main class="container" style="padding-top: 100px;">
         <h1 style="text-align: center; margin-bottom: 1rem;">Filmmaking Glossary</h1>
@@ -121,6 +124,7 @@
         </div>
     </main>
 
+    <!-- build:footer -->
     <footer>
         <p>&copy; 2026 Tokyo in Film.</p>
         <div class="attribution-text">
@@ -128,42 +132,10 @@
             <p><strong>Originally adapted from:</strong> <em>Moving Pictures: An Introduction to Cinema</em> by Russell Sharman.</p>
         </div>
     </footer>
+    <!-- /build:footer -->
 
     <!-- Load the glossary data -->
-    <script src="js/glossary.js?v=4"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const mobileMenu = document.getElementById('mobile-menu');
-            const navList = document.querySelector('.nav-list');
-
-            if (mobileMenu) {
-                mobileMenu.addEventListener('click', () => {
-                    const isOpen = navList.classList.toggle('active');
-                    mobileMenu.classList.toggle('is-active');
-                    mobileMenu.setAttribute('aria-expanded', String(isOpen));
-                });
-            }
-
-            // Dropdown Toggle Logic
-            const logo = document.querySelector('.logo');
-            if (logo) {
-                logo.addEventListener('click', (e) => {
-                    // Only toggle if the click is on the logo container itself or the text, 
-                    // not if the user is clicking an actual link inside the dropdown
-                    if (!e.target.closest('.dropdown-item')) {
-                        logo.classList.toggle('active');
-                    }
-                });
-
-                // Close dropdown when clicking outside
-                document.addEventListener('click', (e) => {
-                    if (!logo.contains(e.target)) {
-                        logo.classList.remove('active');
-                    }
-                });
-            }
-        });
-    </script>
+    <script src="js/glossary.js?v=71cb4430"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const container = document.getElementById('glossary-container');
@@ -206,6 +178,7 @@
             });
         });
     </script>
+    <script src="js/mobile-nav.js"></script>
 </body>
 
 </html>
