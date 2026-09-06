@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A field guide to saved ramen places in Tokyo, with an interactive map, neighborhood details, and a printable place index.">
+  <meta name="theme-color" content="#f4f6f7">
+  <title>Ramen of Tokyo — Tokyo in Film</title>
+  <link rel="icon" href="assets/images/image07.png">
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #12171c;
+      --ink-soft: #4d565f;
+      --muted: #79838c;
+      --line: #dfe4e8;
+      --paper: #f4f6f7;
+      --panel: #ffffff;
+      --sea: #e3e9ee;
+      --land: #f8f9fa;
+      --land-line: #cfd6dd;
+      --context: #edf0f2;
+      --context-line: #dde2e7;
+      --accent: #1c2126;
+      --accent-ink: #000000;
+      --mark: #f08300;
+      --mark-soft: #fdf0dd;
+      --mark-ink: #8a4d00;
+      --transit: #6f7b87;
+      --radius: 10px;
+    }
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font: 400 15px/1.55 ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-feature-settings: "kern" 1;
+      text-rendering: optimizeLegibility;
+    }
+    button, input, select { font: inherit; }
+    button, select, input { accent-color: var(--mark); }
+    button, a, input, select, summary { -webkit-tap-highlight-color: transparent; }
+    a { color: var(--ink); text-underline-offset: 4px; }
+    a:hover { color: var(--mark); }
+    button { cursor: pointer; }
+    button:disabled { cursor: not-allowed; opacity: .4; }
+    :focus-visible { outline: 2px solid var(--mark); outline-offset: 2px; }
+    [hidden], .hidden { display: none !important; }
+    .skip-link { position: absolute; top: -100px; left: 20px; z-index: 10; background: var(--panel); padding: 12px; border: 1px solid var(--line); border-radius: 7px; }
+    .skip-link:focus { top: 12px; }
+
+    .page-shell { max-width: 1540px; margin: 0 auto; padding: 0 32px 48px; }
+
+    .masthead {
+      display: flex; align-items: center; justify-content: space-between; gap: 24px;
+      padding: 22px 0 18px; border-bottom: 1px solid var(--line);
+    }
+    .eyebrow { margin: 0; color: var(--mark); font-size: 11px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; }
+    .masthead nav { display: flex; flex-wrap: wrap; gap: 22px; font-size: 13px; }
+    .masthead nav a { text-decoration: none; color: var(--ink-soft); }
+    .masthead nav a:hover { color: var(--mark); text-decoration: underline; }
+
+    .page-header { padding: 28px 0 8px; }
+    .page-header h1 {
+      margin: 0; font-size: clamp(32px, 4vw, 48px); font-weight: 700; letter-spacing: -.025em; line-height: 1.1;
+    }
+    .page-header h1 span { color: var(--mark); }
+    .lede { margin: 10px 0 0; color: var(--ink-soft); font-size: 15px; max-width: 62ch; line-height: 1.55; }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 420px;
+      gap: 24px;
+      padding-top: 16px;
+      align-items: start;
+    }
+    @media (max-width: 1040px) { .layout { grid-template-columns: 1fr; } }
+
+    .map-panel { position: sticky; top: 20px; }
+    @media (max-width: 1040px) { .map-panel { position: static; } }
+
+    .map-toolbar {
+      display: flex; gap: 8px; align-items: center; margin-bottom: 12px; flex-wrap: wrap;
+    }
+    .map-toolbar button {
+      font: 500 13.5px/1 inherit; padding: 8px 13px; border: 1px solid var(--line);
+      background: var(--panel); border-radius: 7px; cursor: pointer; color: var(--ink-soft);
+      transition: border-color .12s, color .12s;
+    }
+    .map-toolbar button:hover:not(:disabled) { border-color: var(--ink); color: var(--ink); }
+    .map-toolbar button:disabled { opacity: .4; cursor: default; }
+    .toggle { display: inline-flex; gap: 7px; align-items: center; color: var(--ink-soft); font-size: 13.5px; }
+    .toggle input { width: 15px; height: 15px; margin: 0; }
+
+    .map-frame {
+      position: relative; background: var(--panel);
+      border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden;
+    }
+    #ramen-map { display: block; width: 100%; height: min(76vh, 720px); background: var(--sea); outline: none; cursor: grab; touch-action: none; }
+    #ramen-map:active { cursor: grabbing; }
+    #ramen-map:focus-visible { outline: 2px solid var(--mark); outline-offset: -2px; }
+
+    .scale-bar {
+      position: absolute; left: 16px; bottom: 14px; color: var(--ink-soft);
+      font-size: 11px; letter-spacing: .05em; pointer-events: none;
+      background: rgba(255,255,255,0.85); padding: 3px 7px; border-radius: 4px;
+    }
+    .map-status {
+      margin: 11px 2px 0; color: var(--ink-soft); font-size: 13px;
+      min-height: 20px; max-width: 80ch;
+    }
+
+    .map-foot { padding-top: 12px; }
+    .map-key { padding: 4px 0; }
+    .key-heading { margin: 0 0 10px; font-size: 11px; letter-spacing: .08em; font-weight: 700; text-transform: uppercase; color: var(--muted); }
+    #map-legend { display: grid; gap: 8px; font-size: 12px; color: var(--ink-soft); }
+    .legend-item { display: flex; gap: 10px; align-items: center; }
+    .legend-symbol { flex: 0 0 22px; display: inline-flex; align-items: center; justify-content: center; height: 22px; }
+    .legend-pin { background: var(--accent); color: #fff; border-radius: 50%; font-size: 10px; font-weight: 700; }
+    .legend-historical { border: 1.5px dashed #9aa3ab; border-radius: 50%; color: #9aa3ab; font-size: 10px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; }
+    .legend-dot::before { content: ""; width: 5px; height: 5px; background: var(--accent-ink); border-radius: 50%; }
+    .legend-line::before { content: ""; width: 22px; height: 1px; background: var(--transit); }
+    .map-hint { margin: 12px 0 0; max-width: 380px; font-size: 11px; color: var(--muted); line-height: 1.5; }
+
+    .list-panel {
+      max-height: calc(100vh - 64px); overflow: auto; padding-right: 6px; scroll-padding-top: 104px;
+      scrollbar-width: thin; scrollbar-color: var(--line) transparent;
+    }
+    .list-panel::-webkit-scrollbar { width: 6px; }
+    .list-panel::-webkit-scrollbar-track { background: transparent; }
+    .list-panel::-webkit-scrollbar-thumb { background: var(--line); border-radius: 3px; }
+    @media (max-width: 1040px) { .list-panel { max-height: none; overflow: visible; } }
+
+    .list-controls {
+      display: grid; grid-template-columns: 1fr 170px; gap: 10px 12px; align-items: end;
+      position: sticky; top: 0; z-index: 2; background: var(--paper);
+      padding: 2px 0 12px; margin-bottom: 4px;
+    }
+    .field { display: grid; gap: 5px; font-size: 11px; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+    .field input, .field select {
+      font: 400 14px/1.3 inherit; text-transform: none; letter-spacing: 0; color: var(--ink);
+      padding: 9px 10px; border: 1px solid var(--line); border-radius: 7px; background: var(--panel);
+      transition: border-color .12s;
+    }
+    .field input:focus, .field select:focus { border-color: var(--mark); outline: 2px solid var(--mark); outline-offset: -1px; }
+    .field input::placeholder { color: var(--muted); }
+    .count { grid-column: 1 / -1; margin: 0; font-size: 12.5px; color: var(--muted); }
+    .count span { color: var(--mark); font-weight: 600; }
+
+    .shop-list { display: grid; gap: 10px; }
+
+    .shop-card {
+      border: 1px solid var(--line); border-radius: var(--radius);
+      background: var(--panel); padding: 14px 16px 15px;
+      transition: border-color .12s, box-shadow .12s;
+      scroll-margin: 8px;
+    }
+    .shop-card:hover { border-color: #b9c2ca; cursor: pointer; }
+    .shop-card.is-selected {
+      border-color: var(--ink); box-shadow: inset 3px 0 0 var(--mark), 0 6px 18px -12px rgba(0,0,0,.35);
+      background: #fff;
+    }
+    .shop-card.is-historical { background: #f7f8f9; }
+    .shop-card.is-historical.is-selected { background: #fff; }
+
+    .shop-select {
+      display: flex; gap: 10px; align-items: baseline; width: 100%;
+      background: none; border: 0; padding: 0; text-align: left; cursor: pointer;
+      font: 600 16.5px/1.3 inherit; letter-spacing: -.005em; color: var(--ink);
+    }
+    .shop-select:hover { color: var(--mark); }
+    .shop-number {
+      display: inline-grid; place-items: center; width: 23px; height: 23px; flex: none;
+      border-radius: 50%; background: var(--accent); color: #fff;
+      font: 600 11.5px/1 inherit; transform: translateY(2px);
+    }
+    .shop-card.is-historical .shop-number { background: #9aa3ab; }
+
+    .shop-area {
+      margin: 7px 0 0 33px; font-size: 11px; letter-spacing: .05em;
+      text-transform: uppercase; color: var(--muted); font-weight: 600;
+    }
+    .shop-style { margin: 6px 0 0 33px; font-size: 13.5px; color: var(--mark-ink); font-weight: 600; }
+    .shop-address { margin: 3px 0 0 33px; font-size: 13.5px; color: var(--ink-soft); overflow-wrap: anywhere; }
+
+    .shop-description {
+      margin: 10px 0 0 33px; font-size: 14px; line-height: 1.62; max-width: 56ch;
+      color: var(--ink); display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden;
+    }
+    .shop-note {
+      margin: 9px 0 0 33px; font-size: 12.5px; line-height: 1.5; color: var(--muted); max-width: 56ch;
+      display: none;
+    }
+    .shop-status {
+      margin: 10px 0 0 33px; font-size: 11.5px; letter-spacing: .03em; display: inline-block;
+      background: var(--mark-soft); color: var(--mark-ink); padding: 3px 9px; border-radius: 999px;
+      font-weight: 600;
+    }
+    .shop-card.is-historical .shop-status { background: #eef0f2; color: #6a737d; }
+    .shop-links { margin: 11px 0 0 33px; display: none; flex-wrap: wrap; gap: 7px; }
+    .shop-link {
+      font-size: 12px; color: var(--ink-soft); text-decoration: none;
+      border: 1px solid var(--line); border-radius: 999px; padding: 4px 10px; background: var(--paper);
+      transition: border-color .12s, color .12s;
+    }
+    .shop-link:hover { color: var(--ink); border-color: var(--ink); }
+
+    .shop-card.is-selected .shop-description { -webkit-line-clamp: unset; display: block; }
+    .shop-card.is-selected .shop-note { display: block; }
+    .shop-card.is-selected .shop-links { display: flex; }
+
+    #empty-state { color: var(--muted); font-size: 14px; padding: 20px 0; }
+
+    .excluded { margin-top: 28px; border-top: 1px solid var(--line); padding-top: 16px; }
+    .excluded h2 { margin: 0 0 10px; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+    .excluded p { margin: 0 0 11px; font-size: 12.5px; line-height: 1.55; color: var(--muted); max-width: 60ch; }
+    .excluded a { color: var(--ink-soft); }
+
+    .page-footer { margin-top: 32px; padding-top: 16px; border-top: 1px solid var(--line); }
+    .print-note { margin: 0; font-size: 13px; color: var(--ink-soft); }
+    .sources { margin: 8px 0 0; color: var(--muted); font-size: 11px; line-height: 1.6; }
+    .sources a { color: var(--ink-soft); }
+    #source-notes { margin-top: 12px; max-width: 850px; color: var(--muted); font-size: 12px; line-height: 1.6; }
+    #source-notes summary { width: fit-content; color: var(--ink-soft); cursor: pointer; font-weight: 600; }
+    #source-notes summary:hover { color: var(--mark); }
+    #source-notes p { margin: 10px 0; }
+    #excluded-list { line-height: 1.7; }
+    noscript p { padding: 16px; border: 1px solid var(--mark); background: var(--mark-soft); color: var(--mark-ink); border-radius: 7px; }
+
+    svg text { font-family: inherit; pointer-events: none; }
+    .ward-shape { fill: var(--land); stroke: var(--land-line); stroke-width: .8; vector-effect: non-scaling-stroke; pointer-events: none; }
+    .ward-shape[data-context] { fill: var(--context); stroke: var(--context-line); }
+    .ward-name { fill: #a9b3bc; font-size: 9.5px; letter-spacing: .16em; text-anchor: middle; pointer-events: none; }
+    .transit-line { fill: none; stroke: var(--transit); stroke-width: 1.1; opacity: .55; stroke-linejoin: round; stroke-linecap: round; vector-effect: non-scaling-stroke; pointer-events: none; }
+    .place-label { fill: #79838c; font-size: 11px; font-weight: 600; pointer-events: none; }
+
+    .map-marker { cursor: pointer; outline: none; pointer-events: auto; }
+    .marker-leader { stroke: var(--accent-ink); stroke-width: 1; vector-effect: non-scaling-stroke; opacity: .5; }
+    .location-dot { fill: var(--accent-ink); }
+    .marker-disc { fill: var(--accent); stroke: var(--paper); stroke-width: 2; transition: fill .12s; }
+    text.marker-number, .marker-number text { fill: #fff; stroke: none; font-size: 12px; font-weight: 650; text-anchor: middle; dominant-baseline: central; pointer-events: none; }
+    .map-marker.is-selected .marker-disc { fill: var(--mark); stroke: var(--ink); stroke-width: 3; }
+    .map-marker.is-selected .marker-number { fill: var(--ink); }
+    .map-marker:hover .marker-disc, .map-marker:focus-visible .marker-disc { fill: var(--accent-ink); }
+    .map-marker:focus-visible { outline: 2px solid var(--mark); outline-offset: 4px; }
+    .map-marker.is-historical .marker-disc { fill: #9aa3ab; }
+    .map-marker.is-historical .marker-number { fill: #fff; }
+    .map-marker.is-historical.is-selected .marker-disc { fill: var(--mark); }
+
+    @media (max-width: 1040px) {
+      .page-shell { padding: 0 20px 32px; }
+      .list-controls { grid-template-columns: 1fr 140px; }
+    }
+    @media (max-width: 600px) {
+      .page-shell { padding: 0 16px 24px; }
+      .masthead { gap: 14px; padding: 16px 0 12px; }
+      .masthead nav { gap: 14px; font-size: 12px; }
+      .page-header { padding: 20px 0 6px; }
+      .list-controls { grid-template-columns: 1fr; }
+      .shop-card { padding: 13px 14px 14px; }
+      .shop-select { font-size: 15px; }
+    }
+
+    @page { size: A4 landscape; margin: 10mm; }
+    @media print {
+      * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      body { background: #fff; font-size: 9pt; }
+      .page-shell { max-width: none; margin: 0; padding: 0 12px; }
+      .skip-link, .masthead nav, .map-toolbar, .toggle, .list-controls, #source-notes, #map-status, .map-hint, .shop-note, .shop-links, noscript { display: none !important; }
+      .masthead { padding: 0 0 2mm; border-bottom-color: var(--line); }
+      .page-header { padding: 2mm 0; }
+      .page-header h1 { font-size: 24pt; }
+      .lede { font-size: 8pt; }
+      .layout { display: block; }
+      .map-panel { position: static; }
+      .map-frame { border-radius: 0; }
+      #ramen-map { height: 110mm; }
+      .scale-bar { bottom: 3mm; left: 3mm; font-size: 7pt; }
+      .map-foot { padding-top: 2mm; }
+      .key-heading { margin-bottom: 2mm; font-size: 7pt; }
+      #map-legend { display: flex; flex-wrap: wrap; gap: 3mm; font-size: 7pt; }
+      .list-panel { max-height: none; overflow: visible; }
+      .shop-list { display: block; }
+      .shop-card { break-inside: avoid; border-radius: 0; border: 0; border-bottom: 1px solid var(--line); padding: 3mm 0; box-shadow: none; }
+      .shop-card.is-selected { box-shadow: none; background: #fff; }
+      .shop-description, .shop-note, .shop-links { display: block; -webkit-line-clamp: unset; }
+      .shop-links { display: flex !important; }
+      .shop-select { font-size: 10pt; }
+      .shop-number { width: 5mm; height: 5mm; font-size: 8pt; }
+      .shop-area { margin: 1mm 0 0 7mm; font-size: 8pt; }
+      .shop-style { margin: 0.5mm 0 0 7mm; font-size: 8pt; }
+      .shop-address { margin: 0.5mm 0 0 7mm; font-size: 8pt; }
+      .shop-description { margin: 1mm 0 0 7mm; font-size: 8.5pt; line-height: 1.4; }
+      .shop-note { margin: 1mm 0 0 7mm; font-size: 7.5pt; }
+      .shop-status { margin: 1mm 0 0 7mm; font-size: 7.5pt; }
+      .page-footer { margin-top: 3mm; padding-top: 2mm; break-inside: avoid; }
+      .print-note { font-size: 8pt; }
+      .sources { font-size: 6pt; }
+      .sources a { text-decoration: none; }
+    }
+  </style>
+  <script src="js/ramen-map.js?v=3b1c3533" defer></script>
+</head>
+<body data-context-shapes="4">
+  <a class="skip-link" href="#shop-search">Skip to ramen places</a>
+  <div class="page-shell">
+    <header>
+      <div class="masthead">
+        <p class="eyebrow">Tokyo in Film</p>
+        <nav aria-label="Related pages">
+          <a href="anime-map.html">Anime Ward Map</a>
+          <a href="index.html">Home</a>
+        </nav>
+      </div>
+      <div class="page-header">
+        <h1>Ramen <span>of</span> Tokyo</h1>
+        <p class="lede">Thirteen ramen places from the saved lists, mapped by neighborhood. Choose a bowl, explore an area. This is not an optimized route.</p>
+      </div>
+    </header>
+    <noscript><p>This interactive map needs JavaScript to load saved ramen places, map details, and the printable guide. Please enable JavaScript and reload this page.</p></noscript>
+    <main class="layout">
+      <section class="map-panel" aria-label="Map">
+        <div class="map-toolbar">
+          <button type="button" id="zoom-in" aria-label="Zoom in">+</button>
+          <button type="button" id="zoom-out" aria-label="Zoom out">&minus;</button>
+          <button type="button" id="fit-map">Fit</button>
+          <label class="toggle"><input type="checkbox" id="show-transit" checked> Subway</label>
+          <button type="button" id="print-map" disabled>Print</button>
+        </div>
+        <div class="map-frame">
+          <svg id="ramen-map" role="application" aria-label="Map of ramen places in Tokyo"></svg>
+          <div id="scale-bar" class="scale-bar" aria-hidden="true"></div>
+        </div>
+        <p id="map-status" class="map-status" role="status" aria-live="polite">Loading map data.</p>
+        <div class="map-foot">
+          <div class="map-key">
+            <p class="key-heading">Reading the map</p>
+            <div id="map-legend" aria-label="Map legend">
+              <span class="legend-item"><span class="legend-symbol legend-pin" aria-hidden="true">1</span> Number matches the place index</span>
+              <span class="legend-item"><span class="legend-symbol legend-dot" aria-hidden="true"></span> Dot: saved location; numbered badge may be offset</span>
+              <span class="legend-item"><span class="legend-symbol legend-line" aria-hidden="true"></span> Subway context, not walking directions</span>
+            </div>
+            <p class="map-hint">Drag to explore. Use + and &minus; to zoom. Select a numbered marker or a place in the index for details. Keyboard: Tab to a marker, then Enter or Space.</p>
+          </div>
+        </div>
+      </section>
+      <section class="list-panel" aria-label="Places">
+        <div class="list-controls">
+          <label class="field">
+            <span>Search</span>
+            <input type="search" id="shop-search" placeholder="Name, area, address" autocomplete="off">
+          </label>
+          <label class="field">
+            <span>Area</span>
+            <select id="area-filter"><option value="">All areas</option></select>
+          </label>
+          <p class="count">Showing <span id="shop-count">0 / 0</span></p>
+        </div>
+        <div id="shop-list" class="shop-list" role="region" aria-label="Ramen places"></div>
+        <p id="empty-state" hidden>No matching places.</p>
+        <section class="excluded" aria-label="Notes and exclusions">
+          <h2>Notes</h2>
+          <div id="excluded-list"></div>
+        </section>
+      </section>
+    </main>
+    <footer class="page-footer">
+      <p class="print-note">Numbers identify places, not visit order. Check opening hours before travelling.</p>
+      <p class="sources">Source: Saved-place exports; boundaries reused from Anime Ward Map. Subway geometry &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>.</p>
+      <details id="source-notes">
+        <summary>Map notes &amp; exclusions</summary>
+        <p>Locations reflect saved-place records, not verified entrances. Each included shop has an address source and a saved map link in its place card. Use those links to check current details before setting out.</p>
+        <p>Subway lines provide geographic context only. They are not walking directions, a journey planner, or a suggested visit order.</p>
+        <div id="excluded-list-footer"></div>
+      </details>
+    </footer>
+  </div>
+</body>
+</html>

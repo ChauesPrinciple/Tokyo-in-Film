@@ -13,7 +13,7 @@ _SKIP_NAME = re.compile(r'^(scratch|backup|debug_|test_|temp_)')
 
 # Pages that intentionally have no shared nav/footer (redirects, embeds, standalone tools).
 STANDALONE = {
-    'anime-map.html', 'contact-form-embedded.html', 'scene-project.html',
+    'anime-map.html', 'ramen-map.html', 'contact-form-embedded.html', 'scene-project.html',
     'your-documentary.html', 'Practical Effects.html', 'Practical Effects List of Ingredients.html',
 }
 
