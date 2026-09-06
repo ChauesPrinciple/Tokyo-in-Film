@@ -448,7 +448,7 @@
   async function init() {
     try {
       const [data, boundaries] = await Promise.all([getJSON('assets/ramen-map-data.json'), getJSON('assets/tokyo-wards.geojson')]);
-      const areas = ['Shibadaimon / Minato', 'Omori / Omorikaigan', 'Zoshiki / Kamata', 'Komae', 'Ebisu', 'Shinsen / Shibuya', 'Nishi-Shinjuku', 'Shinjuku', 'Ueno / Okachimachi', 'Kanda', 'Tokyo Station'];
+      const areas = ['Shibadaimon / Minato', 'Omori / Omorikaigan', 'Zoshiki / Kamata', 'Komae', 'Ebisu', 'Shinsen / Shibuya', 'Nishi-Shinjuku', 'Shinjuku', 'Ueno / Okachimachi', 'Tokyo Station', 'Kanda'];
       shops = data.shops.sort((a, b) => {
         const rank = area => areas.includes(area) ? areas.indexOf(area) : areas.length;
         return rank(a.area) - rank(b.area) || a.lng - b.lng;
