@@ -346,13 +346,7 @@
       $('area-filter').append(option);
     });
     const excludedList = $('excluded-list');
-    excludedList.append(html('p', '', `${data.coordinateNote} Data reviewed ${data.reviewed}. This is a selection of identifiable ramen entries, not a classification of every saved place.`));
-    data.excluded.forEach(place => {
-      const paragraph = html('p');
-      paragraph.append(html('strong', '', `${place.name}. `), document.createTextNode(place.reason + ' '), link('Source', place.url));
-      if (Number.isFinite(place.lat) && Number.isFinite(place.lng)) paragraph.append(document.createTextNode(' '), link('Original pin', mapUrl(place)));
-      excludedList.append(paragraph);
-    });
+    excludedList.append(html('p', '', `${data.coordinateNote} Data reviewed ${data.reviewed}.`));
   }
 
   function beforePrint() {
