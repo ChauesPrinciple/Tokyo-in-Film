@@ -322,6 +322,7 @@
       card.append(button, html('p', 'shop-area', areaLine));
       if (shop.style) card.append(html('p', 'shop-style', shop.style));
       card.append(html('p', 'shop-address', shop.address));
+      if (shop.station) card.append(html('p', 'shop-station', shop.station));
       if (shop.description) card.append(html('p', 'shop-description', shop.description));
       if (shop.note) card.append(html('p', 'shop-note', shop.note));
       if (shop.status) {

@@ -19,7 +19,7 @@ class RamenMapTests(unittest.TestCase):
                 self.assertTrue(35.55 < shop['lat'] < 35.85)
                 self.assertTrue(139.48 < shop['lng'] < 139.92)
                 self.assertTrue(shop['ward'] or shop.get('municipality'))
-                for field in ('name', 'area', 'address', 'style', 'description', 'coordinateSource', 'sources'):
+                for field in ('name', 'area', 'address', 'station', 'style', 'description', 'coordinateSource', 'sources'):
                     self.assertTrue(shop[field])
                 self.assertTrue(all(source['url'].startswith('https://') for source in shop['sources']))
 
