@@ -100,11 +100,14 @@ class RamenMapTests(unittest.TestCase):
         missing = sorted(looked_up - page_ids - runtime_ids)
         self.assertEqual(missing, [], f'script reads ids that no element defines: {missing}')
 
-        # Static containers in the page that nothing populates or styles are dead weight.
-        script_refs = looked_up | runtime_ids | set(re.findall(r"getElementById\('([\w-]+)'\)", script))
-        unused = sorted(i for i in page_ids - script_refs
-                        if i not in html.split('<style>')[-1].split('</style>')[0]
-                        and f'href="#{i}"' not in html)
+        # Static containers that no script, style, link or ARIA relationship uses are dead weight.
+        css = html.split('<style>')[-1].split('</style>')[0]
+        referenced = (looked_up | runtime_ids
+                      | set(re.findall(r"getElementById\('([\w-]+)'\)", script))
+                      | {v for attr in ('aria-labelledby', 'aria-describedby', 'aria-controls', 'for', 'list')
+                         for value in re.findall(rf'{attr}="([^"]+)"', html) for v in value.split()}
+                      | set(re.findall(r'href="#([\w-]+)"', html)))
+        unused = sorted(i for i in page_ids - referenced if i not in css)
         self.assertEqual(unused, [], f'page defines ids nothing uses: {unused}')
 
 

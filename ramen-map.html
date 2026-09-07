@@ -68,6 +68,58 @@
     }
     .page-header h1 span { color: var(--mark); }
     .lede { margin: 10px 0 0; color: var(--ink-soft); font-size: 15px; max-width: 62ch; line-height: 1.55; }
+    .kicker {
+      margin: 0 0 8px; color: var(--mark-ink); font-size: 12px; font-weight: 700;
+      letter-spacing: .14em; text-transform: uppercase;
+    }
+
+    .challenge-strip {
+      list-style: none; margin: 20px 0 0; padding: 0;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 12px; max-width: 1000px;
+    }
+    .challenge-card {
+      background: var(--panel); border: 1px solid var(--line);
+      border-radius: var(--radius); padding: 15px 17px 16px;
+      border-top: 3px solid var(--ink);
+    }
+    .challenge-card.is-oni { border-top-color: var(--mark); background: var(--mark-soft); }
+    .challenge-count {
+      margin: 0; font-size: 21px; font-weight: 700; letter-spacing: -.02em; line-height: 1;
+      font-variant-numeric: tabular-nums;
+    }
+    .challenge-count span { color: var(--muted); font-weight: 400; }
+    .challenge-card.is-oni .challenge-count { color: var(--mark-ink); }
+    .challenge-name {
+      margin: 7px 0 0; font-size: 12px; font-weight: 700;
+      letter-spacing: .08em; text-transform: uppercase; color: var(--muted);
+    }
+    .challenge-card.is-oni .challenge-name { color: var(--mark-ink); }
+    .challenge-note { margin: 9px 0 0; font-size: 13.5px; line-height: 1.55; color: var(--ink-soft); }
+    .challenge-card.is-oni .challenge-note { color: #6b4413; }
+    @media (max-width: 780px) { .challenge-strip { grid-template-columns: 1fr; } }
+
+    .films { margin-top: 34px; border-top: 1px solid var(--line); padding-top: 22px; }
+    .films-head h2 {
+      margin: 0; font-size: 12px; font-weight: 700;
+      letter-spacing: .14em; text-transform: uppercase; color: var(--mark-ink);
+    }
+    .films-head p { margin: 8px 0 0; font-size: 13.5px; color: var(--ink-soft); max-width: 70ch; line-height: 1.55; }
+    .film-list {
+      list-style: none; margin: 16px 0 0; padding: 0;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+    }
+    .film-card {
+      background: var(--panel); border: 1px solid var(--line);
+      border-radius: var(--radius); padding: 15px 17px 16px;
+    }
+    .film-title { margin: 0; font-size: 16px; font-weight: 700; letter-spacing: -.01em; }
+    .film-title span { color: var(--muted); font-weight: 400; font-size: 13px; font-variant-numeric: tabular-nums; }
+    .film-credit {
+      margin: 5px 0 0; font-size: 11px; font-weight: 600;
+      letter-spacing: .05em; text-transform: uppercase; color: var(--muted);
+    }
+    .film-note { margin: 10px 0 0; font-size: 13.5px; line-height: 1.6; color: var(--ink-soft); }
+    @media (max-width: 1040px) { .film-list { grid-template-columns: 1fr; } }
 
     .layout {
       display: grid;
@@ -261,9 +313,15 @@
       * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
       body { background: #fff; font-size: 9pt; }
       .page-shell { max-width: none; margin: 0; padding: 0 12px; }
-      .skip-link, .masthead nav, .map-toolbar, .toggle, .list-controls, #source-notes, #map-status, .map-hint, .shop-note, .shop-links, noscript { display: none !important; }
+      .skip-link, .masthead nav, .map-toolbar, .toggle, .list-controls, #source-notes, #map-status, .map-hint, .shop-note, .shop-links, noscript, .films { display: none !important; }
       .masthead { padding: 0 0 2mm; border-bottom-color: var(--line); }
       .page-header { padding: 2mm 0; }
+      .kicker { margin-bottom: 1mm; font-size: 8pt; }
+      .challenge-strip { display: flex; gap: 4mm; margin-top: 2mm; break-inside: avoid; }
+      .challenge-card { padding: 2mm 3mm; border-top-width: 2px; border-radius: 0; }
+      .challenge-count { font-size: 12pt; }
+      .challenge-name { margin-top: 1mm; font-size: 7pt; }
+      .challenge-note { margin-top: 1mm; font-size: 7.5pt; line-height: 1.4; }
       .page-header h1 { font-size: 24pt; }
       .lede { font-size: 8pt; }
       .layout { display: block; }
@@ -309,8 +367,21 @@
         </nav>
       </div>
       <div class="page-header">
+        <p class="kicker">The 12 Bowl Ramen Challenge</p>
         <h1>Ramen <span>of</span> Tokyo</h1>
-        <p class="lede">Thirteen ramen places from the saved lists, mapped by neighborhood. Choose a bowl, explore an area. This is not an optimized route.</p>
+        <p class="lede">Twelve bowls. Twelve neighborhoods. No two the same. Work through them in whatever order your feet and the trains allow, because this is a map, not a route. Then, if you think you have earned it, there is a thirteenth bowl waiting in Kanda.</p>
+        <ul class="challenge-strip">
+          <li class="challenge-card">
+            <p class="challenge-count">01 <span>–</span> 12</p>
+            <p class="challenge-name">The Challenge</p>
+            <p class="challenge-note">Twelve shops, twelve different bowls: shoyu, niboshi, shijimi clam, duck and leek, curry tsukemen, tantanmen, halal wagyu, charcoal-grilled chuka soba, a four-sauce tsukemen counter, and one station basement holding ten shops of its own. Order the thing each shop is known for. That is the whole rule.</p>
+          </li>
+          <li class="challenge-card is-oni">
+            <p class="challenge-count">13</p>
+            <p class="challenge-name">Bonus: The Oni Challenge</p>
+            <p class="challenge-note">Kikanbō in Kanda. Kara-shibi miso, which means chili heat (kara) stacked on sanshō numbing (shibi), and you set both dials yourself on a five-point scale. The top setting is oni-mashi. Devil level. It costs extra, and it should. (Come for my Oni level, if you dare.)</p>
+          </li>
+        </ul>
       </div>
     </header>
     <noscript><p>This interactive map needs JavaScript to load saved ramen places, map details, and the printable guide. Please enable JavaScript and reload this page.</p></noscript>
@@ -360,6 +431,29 @@
         </section>
       </section>
     </main>
+    <section class="films" aria-labelledby="films-heading">
+      <div class="films-head">
+        <h2 id="films-heading">Watch first</h2>
+        <p>Three films that change what you see when you sit down at a counter. None of them was shot in the twelve shops below, so treat this as training for your eyes, not a location guide.</p>
+      </div>
+      <ul class="film-list">
+        <li class="film-card">
+          <p class="film-title">Ramen Heads <span>2017</span></p>
+          <p class="film-credit">Directed by Koki Shigeno</p>
+          <p class="film-note">Shigeno spends fifteen months with Osamu Tomita, a four-time consecutive winner of the TRY Grand Prize, at Chuka Soba Tomita in Matsudo. Tomita opens up the entire process, and when asked why some shops guard their recipes he says they are just not doing anything worth hiding. Watch it for the repetition: the same tasks, the same corrections, every single day. That is the part you cannot see from a stool.</p>
+        </li>
+        <li class="film-card">
+          <p class="film-title">Tampopo <span>1985</span></p>
+          <p class="film-credit">Directed by Juzo Itami</p>
+          <p class="film-note">A ramen western, and the reason half the world thinks there is a correct way to approach a bowl. In the opening lesson an old man walks a student through it: study the whole bowl first, note the arrangement, stroke the surface with the chopstick tips, then apologize to the pork before setting it aside. It is a joke, and it is also completely sincere, which is very much the point. Do the ritual once at your first shop. See how it changes the second one.</p>
+        </li>
+        <li class="film-card">
+          <p class="film-title">Jiro Dreams of Sushi <span>2011</span></p>
+          <p class="film-credit">Directed by David Gelb</p>
+          <p class="film-note">Not ramen. Same affliction. Ono Jiro grinding away at Sukiyabashi Jiro is the clearest portrait anyone has made of shokunin obsession, the decision to do one narrow thing for fifty years and still be annoyed about it. Several shops on this map are run by people who trained for years under one master before earning their own six seats. This is what those years look like.</p>
+        </li>
+      </ul>
+    </section>
     <footer class="page-footer">
       <p class="print-note">Numbers identify places, not visit order. Check opening hours before travelling.</p>
       <p class="sources">Source: Saved-place exports; boundaries reused from Anime Ward Map. Subway geometry &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>.</p>
