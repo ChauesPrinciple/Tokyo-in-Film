@@ -12,7 +12,7 @@
       color-scheme: light;
       --ink: #12171c;
       --ink-soft: #4d565f;
-      --muted: #6b7680;
+      --muted: #64707a;
       --line: #dfe4e8;
       --paper: #f4f6f7;
       --panel: #ffffff;
@@ -62,7 +62,7 @@
       display: flex; align-items: center; justify-content: space-between; gap: 24px;
       padding: 22px 0 18px; border-bottom: 1px solid var(--line);
     }
-    .eyebrow { margin: 0; color: var(--mark); font-size: 11px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; }
+    .eyebrow { margin: 0; color: var(--mark-ink); font-size: 11px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; }
     .masthead nav { display: flex; flex-wrap: wrap; gap: 22px; font-size: 13px; }
     .masthead nav a { text-decoration: none; color: var(--ink-soft); }
     .masthead nav a:hover { color: var(--mark-ink); text-decoration: underline; }
@@ -103,7 +103,7 @@
       margin: 0; font-size: 12px; font-weight: 700;
       letter-spacing: .14em; text-transform: uppercase; color: var(--mark-ink);
     }
-    .films-head p { margin: 8px 0 0; font-size: 13.5px; color: var(--ink-soft); max-width: 70ch; line-height: 1.55; }
+    .films-head { margin-bottom: 16px; }
     .film-list {
       list-style: none; margin: 16px 0 0; padding: 0;
       display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;
@@ -136,7 +136,7 @@
       font-size: 13.5px; font-weight: 600; text-decoration: none; color: var(--mark-ink);
       border-bottom: 1.5px solid var(--mark); padding-bottom: 1px; transition: color .2s, border-color .2s;
     }
-    .partner-links a:hover { color: var(--mark-ink); border-color: var(--mark-ink); }
+    .partner-links a:hover { color: var(--ink); border-color: var(--mark-ink); text-decoration: underline; }
 
     .layout {
       display: grid;
@@ -216,7 +216,7 @@
     .field input:focus, .field select:focus { border-color: var(--mark-ink); outline: 2px solid var(--mark-ink); outline-offset: -1px; }
     .field input::placeholder { color: var(--muted); }
     .count { grid-column: 1 / -1; margin: 0; font-size: 12.5px; color: var(--muted); }
-    .count span { color: var(--mark); font-weight: 600; }
+    .count span { color: var(--mark-ink); font-weight: 600; }
 
     .shop-list { display: grid; gap: 10px; }
 
@@ -310,9 +310,9 @@
     .ward-pattern { color: var(--ink); pointer-events: none; }
     .ward-pattern.is-oni { color: var(--oni); }
     .ward-pattern.is-komae { -webkit-mask: radial-gradient(circle, #000 30%, transparent 75%); mask: radial-gradient(circle, #000 30%, transparent 75%); }
-    .ward-name { fill: #8a96a0; font-size: 9.5px; letter-spacing: .16em; text-anchor: middle; pointer-events: none; }
+    .ward-name { fill: #7a868f; font-size: 9.5px; letter-spacing: .16em; text-anchor: middle; pointer-events: none; }
     .transit-line { fill: none; stroke: var(--transit); stroke-width: 1.1; opacity: .55; stroke-linejoin: round; stroke-linecap: round; vector-effect: non-scaling-stroke; pointer-events: none; }
-    .place-label { fill: #79838c; font-size: 11px; font-weight: 600; pointer-events: none; }
+    .place-label { fill: var(--muted); font-size: 11px; font-weight: 600; pointer-events: none; }
 
     .map-marker { cursor: pointer; outline: none; pointer-events: auto; }
     .marker-leader { stroke: var(--accent-ink); stroke-width: 1; vector-effect: non-scaling-stroke; opacity: .5; }
@@ -417,7 +417,7 @@
           <li class="challenge-card">
             <p class="challenge-count">01 <span>–</span> 12</p>
             <h2 class="challenge-name">The Challenge</h2>
-            <p class="challenge-note">Twelve shops, twelve different bowls: shoyu, niboshi, shijimi clam, duck and leek, curry tsukemen, tantanmen, chicken paitan from Yamagata, charcoal-grilled chuka soba, a tsukemen counter with four dipping sauces to choose from, and one station basement holding ten shops of its own. Order the thing each shop is known for. That is the whole rule.</p>
+            <p class="challenge-note">Twelve shops, twelve different bowls: shoyu (two shops, two arguments), niboshi, shijimi clam, duck and leek, curry tsukemen, tantanmen, chicken paitan from Yamagata, charcoal-grilled chuka soba, a tsukemen counter with four dipping sauces to choose from, and one station basement holding ten shops of its own. Order the thing each shop is known for. That is the whole rule.</p>
           </li>
           <li class="challenge-card is-oni">
             <p class="challenge-count">13</p>
@@ -576,8 +576,8 @@
       </ul>
     </section>
     <section id="partner-block" class="partner" hidden aria-labelledby="partner-heading">
-      <h2 class="partner-eyebrow" id="partner-heading">Tokyo in Film Partner</h2>
-      <p class="partner-name">Shin-Yokohama Ramen Museum</p>
+      <p class="partner-eyebrow">Tokyo in Film Partner</p>
+      <h2 class="partner-name" id="partner-heading">Shin-Yokohama Ramen Museum</h2>
       <p class="partner-note">Outside the thirteen bowls on this map, but part of the Tokyo in Film ramen story. The museum hosts a hands-on noodle-making class where you knead, cut, and boil your own ramen from scratch. We filmed the experience for a short piece on the project.</p>
       <p class="partner-links">
         <a class="partner-cooking" href="https://www.raumen.co.jp/makingnoodle_en.html" rel="noopener" target="_blank">Book the noodle-making class</a>
