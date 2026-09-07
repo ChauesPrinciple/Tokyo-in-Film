@@ -326,6 +326,15 @@
       if (Number.isFinite(place.lat) && Number.isFinite(place.lng)) paragraph.append(document.createTextNode(' '), link('Original pin', mapUrl(place)));
       excludedList.append(paragraph);
     });
+
+    const museum = data.excluded.find(place => place.id === 'ramen-museum');
+    if (museum && museum.partner) {
+      const partner = $('partner-block');
+      partner.querySelector('.partner-name').textContent = museum.name;
+      partner.querySelector('.partner-cooking').href = museum.cookingClassUrl;
+      partner.querySelector('.partner-film').href = museum.filmUrl;
+      partner.hidden = false;
+    }
   }
 
   function beforePrint() {

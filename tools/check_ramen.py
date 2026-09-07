@@ -121,6 +121,20 @@ class RamenMapTests(unittest.TestCase):
         unused = sorted(i for i in page_ids - referenced if i not in css)
         self.assertEqual(unused, [], f'page defines ids nothing uses: {unused}')
 
+    def test_ramen_museum_partner(self):
+        """The Ramen Museum is a Tokyo in Film partner with cooking class and film links."""
+        museum = next(p for p in self.data['excluded'] if p['id'] == 'ramen-museum')
+        self.assertTrue(museum.get('partner'))
+        self.assertEqual(museum['cookingClassUrl'], 'https://www.raumen.co.jp/makingnoodle_en.html')
+        self.assertEqual(museum['filmUrl'], 'https://www.instagram.com/p/DaROiC6P57-/')
+        script = (ROOT / 'js/ramen-map.js').read_text(encoding='utf-8')
+        self.assertIn('partner-block', script)
+        self.assertIn('partner-cooking', script)
+        self.assertIn('partner-film', script)
+        html = (ROOT / 'ramen-map.html').read_text(encoding='utf-8')
+        self.assertIn('id="partner-block"', html)
+        self.assertIn('Tokyo in Film Partner', html)
+
 
 if __name__ == '__main__':
     unittest.main()

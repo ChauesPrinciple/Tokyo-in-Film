@@ -157,7 +157,10 @@
     {
       "id": "ramen-museum", "name": "Shin-Yokohama Ramen Museum", "lat": 35.509896, "lng": 139.614572,
       "reason": "A ramen-themed food amusement park in Kohoku-ku, Yokohama, opened March 6, 1994. It gathers famous ramen shops from across Japan in one place, letting visitors sample regional styles without traveling the country. The lower-level food court recreates a 1958 Showa-era Japanese streetscape, the year instant ramen was invented, complete with retro storefronts, neon lights, and old-fashioned snack stands. About a five-minute walk from Shin-Yokohama Station. Not pinned on this map because it sits outside Tokyo, but worth the trip if you want to taste Japan's regional ramen culture and soak up nostalgic, mid-20th-century atmosphere.",
-      "url": "https://www.raumen.co.jp/english/"
+      "url": "https://www.raumen.co.jp/english/",
+      "cookingClassUrl": "https://www.raumen.co.jp/makingnoodle_en.html",
+      "filmUrl": "https://www.instagram.com/p/DaROiC6P57-/",
+      "partner": true
     },
     {
       "id": "sugimoto", "name": "Ramen Sugimoto", "lat": 35.5502952, "lng": 139.5153279,

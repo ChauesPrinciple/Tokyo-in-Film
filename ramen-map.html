@@ -126,6 +126,23 @@
     .film-note { margin: 10px 0 0; font-size: 13.5px; line-height: 1.6; color: var(--ink-soft); }
     @media (max-width: 1040px) { .film-list { grid-template-columns: 1fr; } }
 
+    .partner {
+      margin-top: 22px; border: 1px solid var(--line); border-left: 4px solid var(--mark);
+      border-radius: var(--radius); padding: 16px 20px 18px; background: var(--mark-soft);
+    }
+    .partner-eyebrow {
+      margin: 0 0 4px; font-size: 11px; font-weight: 700;
+      letter-spacing: .14em; text-transform: uppercase; color: var(--mark-ink);
+    }
+    .partner-name { margin: 0 0 8px; font-size: 17px; font-weight: 700; letter-spacing: -.01em; }
+    .partner-note { margin: 0 0 12px; font-size: 13.5px; line-height: 1.6; color: var(--ink-soft); max-width: 70ch; }
+    .partner-links { margin: 0; display: flex; flex-wrap: wrap; gap: 10px 20px; }
+    .partner-links a {
+      font-size: 13.5px; font-weight: 600; text-decoration: none; color: var(--mark-ink);
+      border-bottom: 1.5px solid var(--mark); padding-bottom: 1px; transition: color .2s, border-color .2s;
+    }
+    .partner-links a:hover { color: var(--mark); border-color: var(--mark-ink); }
+
     .layout {
       display: grid;
       grid-template-columns: minmax(0, 1fr) 420px;
@@ -340,6 +357,10 @@
       body { background: #fff; font-size: 9pt; }
       .page-shell { max-width: none; margin: 0; padding: 0 12px; }
       .skip-link, .masthead nav, .map-toolbar, .toggle, .list-controls, #source-notes, #map-status, .map-hint, .shop-note, .shop-links, noscript, .films { display: none !important; }
+      .partner { margin-top: 3mm; padding: 2mm 3mm; border-radius: 0; break-inside: avoid; }
+      .partner-note { font-size: 8pt; }
+      .partner-links { gap: 3mm 6mm; }
+      .partner-links a { font-size: 8pt; }
       .masthead { padding: 0 0 2mm; border-bottom-color: var(--line); }
       .page-header { padding: 2mm 0; }
       .kicker { margin-bottom: 1mm; font-size: 8pt; }
@@ -379,7 +400,7 @@
       .sources a { text-decoration: none; }
     }
   </style>
-  <script src="js/ramen-map.js?v=799a04d8" defer></script>
+  <script src="js/ramen-map.js?v=d4d73441" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#shop-search">Skip to ramen places</a>
@@ -480,6 +501,15 @@
           <p class="film-note">Not ramen. Same affliction. Ono Jiro grinding away at Sukiyabashi Jiro is the clearest portrait anyone has made of shokunin obsession, the decision to do one narrow thing for fifty years and still be annoyed about it. Several shops on this map are run by people who trained for years under one master before earning their own six seats. This is what those years look like.</p>
         </li>
       </ul>
+    </section>
+    <section id="partner-block" class="partner" hidden aria-labelledby="partner-heading">
+      <p class="partner-eyebrow" id="partner-heading">Tokyo in Film Partner</p>
+      <p class="partner-name"></p>
+      <p class="partner-note">Outside the thirteen bowls on this map, but part of the Tokyo in Film ramen story. The museum hosts a hands-on noodle-making class where you knead, cut, and boil your own ramen from scratch. We filmed the experience for a short piece on the project.</p>
+      <p class="partner-links">
+        <a class="partner-cooking" href="#" rel="noopener">Book the noodle-making class</a>
+        <a class="partner-film" href="#" rel="noopener" target="_blank">Watch our short about the experience</a>
+      </p>
     </section>
     <footer class="page-footer">
       <p class="print-note">Numbers identify places, not visit order. Check opening hours before travelling.</p>
