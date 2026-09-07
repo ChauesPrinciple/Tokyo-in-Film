@@ -12,7 +12,7 @@
       color-scheme: light;
       --ink: #12171c;
       --ink-soft: #4d565f;
-      --muted: #79838c;
+      --muted: #6b7680;
       --line: #dfe4e8;
       --paper: #f4f6f7;
       --panel: #ffffff;
@@ -48,10 +48,10 @@
     button, select, input { accent-color: var(--mark); }
     button, a, input, select, summary { -webkit-tap-highlight-color: transparent; }
     a { color: var(--ink); text-underline-offset: 4px; }
-    a:hover { color: var(--mark); }
+    a:hover { color: var(--mark-ink); }
     button { cursor: pointer; }
     button:disabled { cursor: not-allowed; opacity: .4; }
-    :focus-visible { outline: 2px solid var(--mark); outline-offset: 2px; }
+    :focus-visible { outline: 2px solid var(--mark-ink); outline-offset: 2px; }
     [hidden], .hidden { display: none !important; }
     .skip-link { position: absolute; top: -100px; left: 20px; z-index: 10; background: var(--panel); padding: 12px; border: 1px solid var(--line); border-radius: 7px; }
     .skip-link:focus { top: 12px; }
@@ -65,7 +65,7 @@
     .eyebrow { margin: 0; color: var(--mark); font-size: 11px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; }
     .masthead nav { display: flex; flex-wrap: wrap; gap: 22px; font-size: 13px; }
     .masthead nav a { text-decoration: none; color: var(--ink-soft); }
-    .masthead nav a:hover { color: var(--mark); text-decoration: underline; }
+    .masthead nav a:hover { color: var(--mark-ink); text-decoration: underline; }
 
     .page-header { padding: 28px 0 8px; }
     .page-header h1 {
@@ -136,7 +136,7 @@
       font-size: 13.5px; font-weight: 600; text-decoration: none; color: var(--mark-ink);
       border-bottom: 1.5px solid var(--mark); padding-bottom: 1px; transition: color .2s, border-color .2s;
     }
-    .partner-links a:hover { color: var(--mark); border-color: var(--mark-ink); }
+    .partner-links a:hover { color: var(--mark-ink); border-color: var(--mark-ink); }
 
     .layout {
       display: grid;
@@ -169,7 +169,7 @@
     }
     #ramen-map { display: block; width: 100%; height: min(76vh, 720px); background: var(--sea); outline: none; cursor: grab; touch-action: none; }
     #ramen-map:active { cursor: grabbing; }
-    #ramen-map:focus-visible { outline: 2px solid var(--mark); outline-offset: -2px; }
+    #ramen-map:focus-visible { outline: 2px solid var(--mark-ink); outline-offset: -2px; }
 
     .scale-bar {
       position: absolute; left: 16px; bottom: 14px; color: var(--ink-soft);
@@ -213,7 +213,7 @@
       padding: 9px 10px; border: 1px solid var(--line); border-radius: 7px; background: var(--panel);
       transition: border-color .12s;
     }
-    .field input:focus, .field select:focus { border-color: var(--mark); outline: 2px solid var(--mark); outline-offset: -1px; }
+    .field input:focus, .field select:focus { border-color: var(--mark-ink); outline: 2px solid var(--mark-ink); outline-offset: -1px; }
     .field input::placeholder { color: var(--muted); }
     .count { grid-column: 1 / -1; margin: 0; font-size: 12.5px; color: var(--muted); }
     .count span { color: var(--mark); font-weight: 600; }
@@ -237,7 +237,7 @@
       background: none; border: 0; padding: 0; text-align: left; cursor: pointer;
       font: 600 16.5px/1.3 inherit; letter-spacing: -.005em; color: var(--ink);
     }
-    .shop-select:hover { color: var(--mark); }
+    .shop-select:hover { color: var(--mark-ink); }
     .shop-number {
       display: inline-grid; place-items: center; width: 23px; height: 23px; flex: none;
       border-radius: 50%; background: var(--accent); color: #fff;
@@ -300,7 +300,7 @@
     .sources a { color: var(--ink-soft); }
     #source-notes { margin-top: 12px; max-width: 850px; color: var(--muted); font-size: 12px; line-height: 1.6; }
     #source-notes summary { width: fit-content; color: var(--ink-soft); cursor: pointer; font-weight: 600; }
-    #source-notes summary:hover { color: var(--mark); }
+    #source-notes summary:hover { color: var(--mark-ink); }
     #source-notes p { margin: 10px 0; }
     noscript p { padding: 16px; border: 1px solid var(--mark); background: var(--mark-soft); color: var(--mark-ink); border-radius: 7px; }
 
@@ -310,7 +310,7 @@
     .ward-pattern { color: var(--ink); pointer-events: none; }
     .ward-pattern.is-oni { color: var(--oni); }
     .ward-pattern.is-komae { -webkit-mask: radial-gradient(circle, #000 30%, transparent 75%); mask: radial-gradient(circle, #000 30%, transparent 75%); }
-    .ward-name { fill: #a9b3bc; font-size: 9.5px; letter-spacing: .16em; text-anchor: middle; pointer-events: none; }
+    .ward-name { fill: #8a96a0; font-size: 9.5px; letter-spacing: .16em; text-anchor: middle; pointer-events: none; }
     .transit-line { fill: none; stroke: var(--transit); stroke-width: 1.1; opacity: .55; stroke-linejoin: round; stroke-linecap: round; vector-effect: non-scaling-stroke; pointer-events: none; }
     .place-label { fill: #79838c; font-size: 11px; font-weight: 600; pointer-events: none; }
 
@@ -323,7 +323,9 @@
     .map-marker.is-selected .marker-number { fill: var(--ink); }
     .map-marker:hover .marker-disc, .map-marker:focus-visible .marker-disc { fill: var(--accent-ink); }
     .map-marker:hover .marker-number, .map-marker:focus-visible .marker-number { fill: #fff; }
-    .map-marker:focus-visible { outline: 2px solid var(--mark); outline-offset: 4px; }
+    .map-marker.is-selected:hover .marker-disc, .map-marker.is-selected:focus-visible .marker-disc { fill: var(--mark); }
+    .map-marker.is-selected:hover .marker-number, .map-marker.is-selected:focus-visible .marker-number { fill: var(--ink); }
+    .map-marker:focus-visible { outline: 2px solid var(--mark-ink); outline-offset: 4px; }
     .map-marker.is-oni .marker-disc { fill: var(--oni); }
     .map-marker.is-oni .marker-number { fill: #fff; }
     .map-marker.is-oni .location-dot { fill: var(--oni-ink); }
@@ -395,7 +397,7 @@
       .sources a { text-decoration: none; }
     }
   </style>
-  <script src="js/ramen-map.js?v=90a37968" defer></script>
+  <script src="js/ramen-map.js?v=4b0bcd1a" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#shop-search">Skip to ramen places</a>
@@ -415,7 +417,7 @@
           <li class="challenge-card">
             <p class="challenge-count">01 <span>–</span> 12</p>
             <h2 class="challenge-name">The Challenge</h2>
-            <p class="challenge-note">Twelve shops, twelve different bowls: shoyu, niboshi, shijimi clam, duck and leek, curry tsukemen, tantanmen, chicken paitan from the ramen kingdom of Yamagata, charcoal-grilled chuka soba, a four-sauce tsukemen counter, and one station basement holding ten shops of its own. Order the thing each shop is known for. That is the whole rule.</p>
+            <p class="challenge-note">Twelve shops, twelve different bowls: shoyu, niboshi, shijimi clam, duck and leek, curry tsukemen, tantanmen, chicken paitan from Yamagata, charcoal-grilled chuka soba, a tsukemen counter with four dipping sauces to choose from, and one station basement holding ten shops of its own. Order the thing each shop is known for. That is the whole rule.</p>
           </li>
           <li class="challenge-card is-oni">
             <p class="challenge-count">13</p>
@@ -523,14 +525,14 @@
               <symbol id="sym-pig" viewBox="0 0 24 24"><path d="M5 12C5 7 9 4 14 4C19 4 22 7 22 12C22 17 19 20 14 20C9 20 5 17 5 12Z" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="10" r="1.2" fill="currentColor"/><circle cx="17" cy="10" r="1.2" fill="currentColor"/><path d="M11 14L14 16L17 14" fill="none" stroke="currentColor" stroke-width="1.2"/></symbol>
             </defs>
           </svg>
-          <svg id="ramen-map" role="application" aria-label="Map of ramen places in Tokyo"></svg>
+          <svg id="ramen-map" role="group" aria-label="Map of ramen places in Tokyo"></svg>
           <div id="scale-bar" class="scale-bar" aria-hidden="true"></div>
         </div>
         <p id="map-status" class="map-status" role="status" aria-live="polite">Loading map data.</p>
         <div class="map-foot">
           <div class="map-key">
-            <p class="key-heading">Reading the map</p>
-            <ul id="map-legend">
+            <h2 class="key-heading" id="map-legend-heading">Reading the map</h2>
+            <ul id="map-legend" aria-labelledby="map-legend-heading">
               <li class="legend-item"><span class="legend-symbol legend-pin" aria-hidden="true">1</span> Number matches the place index</li>
               <li class="legend-item"><span class="legend-symbol legend-pin legend-oni" aria-hidden="true">13</span> The bonus Oni bowl: Kikanbō, kara-shibi miso</li>
               <li class="legend-item"><span class="legend-symbol legend-dot" aria-hidden="true"></span> Dot: saved location; numbered badge may be offset</li>
@@ -552,34 +554,35 @@
           </label>
           <p class="count">Showing <span id="shop-count">0 / 0</span></p>
         </div>
-        <div id="shop-list" class="shop-list" role="region" aria-label="Ramen places"></div>
+        <div id="shop-list" class="shop-list"></div>
         <p id="empty-state" hidden>No matching places.</p>
       </section>
     </main>
     <section class="films" aria-labelledby="films-heading">
       <div class="films-head">
         <h2 id="films-heading">Before you go</h2>
+        <p>Neither film was shot at any of the twelve shops below.</p>
       </div>
       <ul class="film-list">
         <li class="film-card">
-          <p class="film-title">Ramen Heads <span>2017</span></p>
+          <h3 class="film-title">Ramen Heads <span>2017</span></h3>
           <p class="film-credit">Directed by Koki Shigeno</p>
           <p class="film-note">Shigeno spends fifteen months with Osamu Tomita, a four-time consecutive winner of the TRY Grand Prize, at Chuka Soba Tomita in Matsudo. Tomita opens up the entire process, and when asked why some shops guard their recipes he says they are just not doing anything worth hiding. Watch it for the repetition: the same tasks, the same corrections, every single day. That is the part you cannot see from a stool.</p>
         </li>
         <li class="film-card">
-          <p class="film-title">Tampopo <span>1985</span></p>
+          <h3 class="film-title">Tampopo <span>1985</span></h3>
           <p class="film-credit">Directed by Juzo Itami</p>
-          <p class="film-note">A ramen western, and the reason half the world thinks there is a correct way to approach a bowl. In the opening scene an old man narrates the whole ritual: study the bowl first, note the arrangement, stroke the surface with the chopstick tips, then apologize to the pork before setting it aside. It is a joke, and it is also completely sincere, which is very much the point. Do the ritual once at your first shop. See how it changes the second one.</p>
+          <p class="film-note">A ramen western, and the reason half the world thinks there is a correct way to approach a bowl. In the opening lesson an old man walks a student through it: study the whole bowl first, note the arrangement, stroke the surface with the chopstick tips, then apologize to the pork before setting it aside. It is a joke, and it is also completely sincere, which is very much the point. Do the ritual once at your first shop. See how it changes the second one.</p>
         </li>
       </ul>
     </section>
     <section id="partner-block" class="partner" hidden aria-labelledby="partner-heading">
-      <p class="partner-eyebrow" id="partner-heading">Tokyo in Film Partner</p>
+      <h2 class="partner-eyebrow" id="partner-heading">Tokyo in Film Partner</h2>
       <p class="partner-name">Shin-Yokohama Ramen Museum</p>
-      <p class="partner-note" id="partner-note-text">Outside the thirteen bowls on this map, but part of the Tokyo in Film ramen story. The museum hosts a hands-on noodle-making class where you knead, cut, and boil your own ramen from scratch. We filmed the experience for a short piece on the project.</p>
+      <p class="partner-note">Outside the thirteen bowls on this map, but part of the Tokyo in Film ramen story. The museum hosts a hands-on noodle-making class where you knead, cut, and boil your own ramen from scratch. We filmed the experience for a short piece on the project.</p>
       <p class="partner-links">
-        <a class="partner-cooking" href="https://www.raumen.co.jp/makingnoodle_en.html" rel="noopener" target="_blank" aria-describedby="partner-note-text">Book the noodle-making class</a>
-        <a class="partner-film" href="https://www.instagram.com/p/DaROiC6P57-/" rel="noopener" target="_blank" aria-describedby="partner-note-text">Watch our short about the experience</a>
+        <a class="partner-cooking" href="https://www.raumen.co.jp/makingnoodle_en.html" rel="noopener" target="_blank">Book the noodle-making class</a>
+        <a class="partner-film" href="https://www.instagram.com/p/DaROiC6P57-/" rel="noopener" target="_blank">Watch our short about the experience</a>
       </p>
     </section>
     <footer class="page-footer">

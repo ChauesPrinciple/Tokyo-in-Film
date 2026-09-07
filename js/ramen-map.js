@@ -410,7 +410,6 @@
   window.addEventListener('beforeprint', beforePrint);
   window.addEventListener('afterprint', afterPrint);
   svg.setAttribute('tabindex', '0');
-  svg.style.touchAction = 'none';
   svg.addEventListener('wheel', event => {
     event.preventDefault();
     const rect = svg.getBoundingClientRect();
