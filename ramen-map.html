@@ -294,11 +294,6 @@
 
     #empty-state { color: var(--muted); font-size: 14px; padding: 20px 0; }
 
-    .excluded { margin-top: 28px; border-top: 1px solid var(--line); padding-top: 16px; }
-    .excluded h2 { margin: 0 0 10px; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
-    .excluded p { margin: 0 0 11px; font-size: 12.5px; line-height: 1.55; color: var(--muted); max-width: 60ch; }
-    .excluded a { color: var(--ink-soft); }
-
     .page-footer { margin-top: 32px; padding-top: 16px; border-top: 1px solid var(--line); }
     .print-note { margin: 0; font-size: 13px; color: var(--ink-soft); }
     .sources { margin: 8px 0 0; color: var(--muted); font-size: 11px; line-height: 1.6; }
@@ -307,7 +302,6 @@
     #source-notes summary { width: fit-content; color: var(--ink-soft); cursor: pointer; font-weight: 600; }
     #source-notes summary:hover { color: var(--mark); }
     #source-notes p { margin: 10px 0; }
-    #excluded-list { line-height: 1.7; }
     noscript p { padding: 16px; border: 1px solid var(--mark); background: var(--mark-soft); color: var(--mark-ink); border-radius: 7px; }
 
     svg text { font-family: inherit; pointer-events: none; }
@@ -401,7 +395,7 @@
       .sources a { text-decoration: none; }
     }
   </style>
-  <script src="js/ramen-map.js?v=43ca70b3" defer></script>
+  <script src="js/ramen-map.js?v=90a37968" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#shop-search">Skip to ramen places</a>
@@ -560,10 +554,6 @@
         </div>
         <div id="shop-list" class="shop-list" role="region" aria-label="Ramen places"></div>
         <p id="empty-state" hidden>No matching places.</p>
-        <section class="excluded" aria-label="Notes and exclusions">
-          <h2>Notes</h2>
-          <div id="excluded-list"></div>
-        </section>
       </section>
     </main>
     <section class="films" aria-labelledby="films-heading">
