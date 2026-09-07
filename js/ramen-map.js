@@ -15,6 +15,7 @@
   let shops = [], visible = [], selected = '', world, markers, wardLabels = [], savedPrint = null;
   let width = 800, height = 600, ready = false, transitAvailable = true;
   let frame = 0;
+  const wardPaths = new Map();
   const pointers = new Map();
   let gesture = null, suppressClick = false;
 
@@ -76,20 +77,61 @@
     data.features.forEach(feature => {
       const geometry = feature.geometry;
       const polygons = geometry.type === 'MultiPolygon' ? geometry.coordinates : [geometry.coordinates];
+      const d = polygons.flatMap(polygon => polygon.map(ringPath)).join('');
       const path = el('path', {
-        d: polygons.flatMap(polygon => polygon.map(ringPath)).join(''),
-        class: 'ward-shape', 'fill-rule': 'evenodd', 'vector-effect': 'non-scaling-stroke'
+        d, class: 'ward-shape', 'fill-rule': 'evenodd', 'vector-effect': 'non-scaling-stroke'
       });
       if (feature.properties.context) path.setAttribute('data-context', '');
       wards.append(path);
+      const name = (feature.properties.ward_en || '').replace(/ Ku$/, '');
+      if (name) wardPaths.set(name, {d, context: !!feature.properties.context});
       if (feature.properties.context) return;
       const center = polygons.map(polygon => centroid(polygon[0])).sort((a, b) => b.area - a.area)[0];
-      const name = (feature.properties.ward_en || '').replace(/ Ku$/, '');
       if (name && Number.isFinite(center.x)) wardLabels.push({...center, name});
     });
     world.append(wards);
     markers = el('g', {id: 'ramen-markers'});
     svg.append(world, el('g', {id: 'ward-labels', 'aria-hidden': 'true'}), markers);
+  }
+
+  function patterns() {
+    const layer = el('g', {id: 'pattern-layer', 'aria-hidden': 'true'});
+    const byWard = new Map();
+    shops.forEach(shop => {
+      if (!shop.pattern || !shop.ward) return;
+      const ward = wardPaths.get(shop.ward);
+      if (!ward || ward.context) return;
+      if (!byWard.has(shop.ward)) byWard.set(shop.ward, []);
+      byWard.get(shop.ward).push(shop);
+    });
+    byWard.forEach((wardShops, wardName) => {
+      const {d} = wardPaths.get(wardName);
+      const opacity = Math.max(0.04, 0.10 / wardShops.length);
+      wardShops.forEach(shop => {
+        const fill = el('path', {
+          d, 'fill-rule': 'evenodd',
+          fill: `url(#pat-${shop.pattern})`,
+          class: `ward-pattern${shop.oni ? ' is-oni' : ''}`,
+          'data-shop': shop.id,
+          'pointer-events': 'none'
+        });
+        fill.style.opacity = opacity;
+        layer.append(fill);
+      });
+    });
+    shops.filter(shop => shop.pattern && !shop.ward && shop.point).forEach(shop => {
+      const [x, y] = shop.point;
+      const fill = el('circle', {
+        cx: x, cy: y, r: 2500,
+        fill: `url(#pat-${shop.pattern})`,
+        class: `ward-pattern is-komae${shop.oni ? ' is-oni' : ''}`,
+        'data-shop': shop.id,
+        'pointer-events': 'none'
+      });
+      fill.style.opacity = 0.08;
+      layer.append(fill);
+    });
+    world.insertBefore(layer, world.firstChild);
   }
 
   function subway(data) {
@@ -295,6 +337,16 @@
       const button = html('button', 'shop-select');
       button.type = 'button';
       button.setAttribute('aria-pressed', 'false');
+      if (shop.pattern) {
+        const icon = document.createElementNS(NS, 'svg');
+        icon.setAttribute('class', 'shop-icon');
+        icon.setAttribute('viewBox', '0 0 24 24');
+        icon.setAttribute('aria-hidden', 'true');
+        const use = document.createElementNS(NS, 'use');
+        use.setAttribute('href', `#sym-${shop.pattern}`);
+        icon.append(use);
+        button.append(icon);
+      }
       button.append(html('span', 'shop-number', shop.number), document.createTextNode(shop.name));
       button.addEventListener('click', () => select(shop, true));
       const areaLine = shop.ward ? `${shop.area} · ${shop.ward} ward` : `${shop.area} · ${shop.municipality}, ${shop.prefecture}`;
@@ -441,6 +493,7 @@
         .sort((a, b) => a.number - b.number);
       visible = [...shops];
       geography(boundaries);
+      patterns();
       cards(data);
       resize();
       filter();

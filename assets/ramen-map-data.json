@@ -3,7 +3,7 @@
   "coordinateNote": "Original pins come from the supplied Ramen_in_Japan.kml. Kohaku, Shibata and Aidaya use the restaurant-specific coordinates in the linked TableCheck or Tabelog listings. Okurindo uses a plus code from the Google listing. Usagi uses a Geolonia address centroid. Pins are location references, not verified entrances. Check opening hours and reservations directly with each shop.",
   "shops": [
     {
-      "id": "okurindo", "number": 1, "name": "Okurindo", "aliases": ["炭火焼濃厚中華そば 奥倫道", "Sumibiyaki Noko Chuka Soba Okurindo"], "area": "Shibadaimon / Minato", "ward": "Minato",
+      "id": "okurindo", "number": 1, "name": "Okurindo", "aliases": ["炭火焼濃厚中華そば 奥倫道", "Sumibiyaki Noko Chuka Soba Okurindo"], "area": "Shibadaimon / Minato", "ward": "Minato", "pattern": "charcoal",
       "lat": 35.656688, "lng": 139.752937,
       "address": "GS Heim Shibadaimon, 2-1-18 Shibadaimon, Minato-ku, Tokyo 105-0012",
       "station": "Daimon (Toei Oedo / Asakusa) — 2 min walk",
@@ -14,7 +14,7 @@
       "sources": [{"label": "Shop on X", "url": "https://twitter.com/okurindo?s=09"}, {"label": "Open in Maps", "url": "https://www.google.com/maps/search/?api=1&query=35.656688,139.752937"}]
     },
     {
-      "id": "muginae", "number": 2, "name": "Homemade Ramen Muginae", "aliases": ["Muginawa", "Homemade Ramen 麦苗"], "area": "Omori / Omorikaigan", "ward": "Shinagawa",
+      "id": "muginae", "number": 2, "name": "Homemade Ramen Muginae", "aliases": ["Muginawa", "Homemade Ramen 麦苗"], "area": "Omori / Omorikaigan", "ward": "Shinagawa", "pattern": "cow",
       "lat": 35.5907765, "lng": 139.7328034,
       "address": "6-11-10 Minamioi, Shinagawa-ku, Tokyo",
       "station": "Omorikaigan (Keikyu Main) — 7 min walk",
@@ -26,7 +26,7 @@
       "sources": [{"label": "Official address / reservations", "url": "https://www.muginae.com/en/"}, {"label": "Michelin guide", "url": "https://guide.michelin.com/jp/ja/tokyo-region/tokyo/restaurant/homemade-ramen-muginae"}, {"label": "Japan Times feature", "url": "https://www.japantimes.co.jp/life/2017/12/02/food/homemade-ramen-muginae-noodles-well-worth-wait/"}, {"label": "5amRamen review", "url": "https://www.5amramen.com/post/homemade-ramen-muginae-tokyo"}]
     },
     {
-      "id": "kohaku", "number": 3, "name": "Kohaku — Tokyo Honten", "aliases": ["Shinjiko Shijimi Chuka Soba Kohaku", "宍道湖しじみ中華蕎麦 琥珀"], "area": "Zoshiki / Kamata", "ward": "Ota",
+      "id": "kohaku", "number": 3, "name": "Kohaku — Tokyo Honten", "aliases": ["Shinjiko Shijimi Chuka Soba Kohaku", "宍道湖しじみ中華蕎麦 琥珀"], "area": "Zoshiki / Kamata", "ward": "Ota", "pattern": "clam",
       "lat": 35.5512325, "lng": 139.7111126,
       "address": "2-1-3 Nishirokugo, Ota-ku, Tokyo",
       "station": "Zoshiki (Keikyu Main) — 5 min walk",
@@ -38,7 +38,7 @@
       "sources": [{"label": "TableCheck booking", "url": "https://www.tablecheck.com/en/ramenkohaku"}, {"label": "Tabelog listing", "url": "https://tabelog.com/en/tokyo/A1315/A131503/13234195/"}, {"label": "Michelin guide", "url": "https://guide.michelin.com/jp/ja/tokyo-region/tokyo/restaurant/homemade-ramen-muginae"}, {"label": "5amRamen review", "url": "https://www.5amramen.com/post/tokyo-clam-ramen-kohaku"}]
     },
     {
-      "id": "shibata", "number": 4, "name": "Chuka Soba Shibata", "aliases": ["中華そば しば田"], "area": "Komae", "ward": null, "municipality": "Komae", "prefecture": "Tokyo", "mapGroup": "southwest",
+      "id": "shibata", "number": 4, "name": "Chuka Soba Shibata", "aliases": ["中華そば しば田"], "area": "Komae", "ward": null, "municipality": "Komae", "prefecture": "Tokyo", "mapGroup": "southwest", "pattern": "chicken",
       "lat": 35.63197309868687, "lng": 139.5766485740199,
       "address": "1-8-12 Motoizumi, Komae, Tokyo",
       "station": "Komae (Odakyu Odawara) — 1 min walk",
@@ -50,7 +50,7 @@
       "sources": [{"label": "Tabelog listing", "url": "https://tabelog.com/en/tokyo/A1326/A132603/13300645/"}, {"label": "Tabelog Magazine (relocation)", "url": "https://magazine.tabelog.com/articles/435344"}, {"label": "Tokyo Ramen of the Year", "url": "https://tokyoramenoftheyear.com/ja/shop/shop-00044"}, {"label": "Ramen Guide Japan", "url": "https://www.ramenguidejapan.com/reviews/2018/11/16/chuka-soba-shibata-"}]
     },
     {
-      "id": "shuichi", "number": 5, "name": "Shuuichi — Ebisu", "aliases": ["Shuichi", "しゅういち", "Curry Tsukemen Shuichi"], "area": "Ebisu", "ward": "Shibuya",
+      "id": "shuichi", "number": 5, "name": "Shuuichi — Ebisu", "aliases": ["Shuichi", "しゅういち", "Curry Tsukemen Shuichi"], "area": "Ebisu", "ward": "Shibuya", "pattern": "curry",
       "lat": 35.6472153, "lng": 139.7083209,
       "address": "YAMA Building B1F, 1-9-2 Ebisunishi, Shibuya-ku, Tokyo",
       "station": "Ebisu (JR Yamanote / Hibiya) — 2 min walk",
@@ -61,7 +61,7 @@
       "sources": [{"label": "Gurunavi listing", "url": "https://gurunavi.com/en/e957104/rst/"}, {"label": "Tabelog listing", "url": "https://s.tabelog.com/en/tokyo/A1303/A130302/13159037/"}, {"label": "Official / Birth Corp", "url": "https://birth-corporation.com/tenpo/s-ebisu/"}]
     },
     {
-      "id": "usagi", "number": 6, "name": "Usagi", "aliases": ["うさぎ", "ラーメン うさぎ 渋谷", "ラーメン うさぎ"], "area": "Shinsen / Shibuya", "ward": "Shibuya",
+      "id": "usagi", "number": 6, "name": "Usagi", "aliases": ["うさぎ", "ラーメン うさぎ 渋谷", "ラーメン うさぎ"], "area": "Shinsen / Shibuya", "ward": "Shibuya", "pattern": "sesame",
       "lat": 35.656447, "lng": 139.692221,
       "address": "Argus Shimota Building 1F, 8-13 Shinsencho, Shibuya-ku, Tokyo",
       "station": "Shinsen (Odakyu Odawara) — 3 min walk",
@@ -73,7 +73,7 @@
       "sources": [{"label": "Hot Pepper listing", "url": "https://www.hotpepper.jp/strJ000812835/"}, {"label": "Ramen Database", "url": "https://ramendb.supleks.jp/s/10638.html"}, {"label": "Retty listing", "url": "https://retty.me/area/PRE13/ARE8/SUB804/100000001208/"}]
     },
     {
-      "id": "shima", "number": 7, "name": "Ramenya Shima", "aliases": ["Raa Menya Shima", "らぁ麺や 嶋"], "area": "Nishi-Shinjuku", "ward": "Shibuya",
+      "id": "shima", "number": 7, "name": "Ramenya Shima", "aliases": ["Raa Menya Shima", "らぁ麺や 嶋"], "area": "Nishi-Shinjuku", "ward": "Shibuya", "pattern": "pepper",
       "lat": 35.6883441, "lng": 139.6808875,
       "address": "3-41-12 Honmachi, Shibuya-ku, Tokyo",
       "station": "Nishi-Shinjuku-Gochome (Toei Oedo) — 4 min walk",
@@ -85,7 +85,7 @@
       "sources": [{"label": "Address / booking", "url": "https://www.tablecheck.com/en/ramenya-shima"}, {"label": "Tabelog listing", "url": "https://tabelog.com/en/tokyo/A1304/A130401/13247487/"}, {"label": "Tokyo Ramen of the Year", "url": "https://tokyoramenoftheyear.com/ja/shop/shop-00204"}]
     },
     {
-      "id": "nagi", "number": 8, "name": "Nagi — Golden Gai", "area": "Shinjuku", "ward": "Shinjuku",
+      "id": "nagi", "number": 8, "name": "Nagi — Golden Gai", "area": "Shinjuku", "ward": "Shinjuku", "pattern": "fish-scales",
       "lat": 35.6937641, "lng": 139.7045255,
       "address": "2F, Golden Gai, 1-1-10 Kabukicho, Shinjuku-ku, Tokyo",
       "station": "Shinjuku-sanchome (Marunouchi / Fukutoshin / Toei Shinjuku) — 3 min walk",
@@ -97,7 +97,7 @@
       "sources": [{"label": "Official shop details", "url": "https://n-nagi.com/english/"}, {"label": "Tabelog listing", "url": "https://tabelog.com/en/tokyo/A1304/A130401/13054766/"}, {"label": "5amRamen review", "url": "https://www.5amramen.com/post/ramen-nagi-shinjuku"}]
     },
     {
-      "id": "ninja", "number": 9, "name": "Ueno Halal Wagyu Ramen Ninja", "area": "Ueno / Okachimachi", "ward": "Taito",
+      "id": "ninja", "number": 9, "name": "Ueno Halal Wagyu Ramen Ninja", "area": "Ueno / Okachimachi", "ward": "Taito", "pattern": "cow",
       "lat": 35.7088133, "lng": 139.7756295,
       "address": "JUN Building 2F, 6-5-7 Ueno, Taito-ku, Tokyo",
       "station": "Ueno-Okachimachi (Toei Oedo) — 2 min walk",
@@ -108,7 +108,7 @@
       "sources": [{"label": "Tabelog listing", "url": "https://s.tabelog.com/en/tokyo/A1311/A131101/13308578/"}, {"label": "Zabihah listing", "url": "https://www.zabihah.com/restaurants/27655ac2-a25e-4f16-93dd-2c41f6ea9702/ueno-halal-wagyu-ramen-ninja-taito-city-ueno"}, {"label": "ItadakiMAP listing", "url": "https://itadakimap.com/en/restaurants/ueno-halal-wagyu-ramen-ninja/"}]
     },
     {
-      "id": "kamo", "number": 10, "name": "Ramen Kamo to Negi — Ueno Okachimachi", "aliases": ["鴨to葱", "Kamo to Negi"], "area": "Ueno / Okachimachi", "ward": "Taito",
+      "id": "kamo", "number": 10, "name": "Ramen Kamo to Negi — Ueno Okachimachi", "aliases": ["鴨to葱", "Kamo to Negi"], "area": "Ueno / Okachimachi", "ward": "Taito", "pattern": "duck",
       "lat": 35.7083768, "lng": 139.7752537,
       "address": "6-4-15 Ueno, Taito-ku, Tokyo",
       "station": "Okachimachi (JR Yamanote / Keihin-Tohoku) — 1 min walk",
@@ -119,7 +119,7 @@
       "sources": [{"label": "Official Okachimachi location", "url": "https://www.kamotonegi.com/en/shoprisuto/okachimachi/"}, {"label": "Tabelog listing", "url": "https://tabelog.com/en/tokyo/A1311/A131101/13210392"}, {"label": "5amRamen review", "url": "https://www.5amramen.com/post/best-duck-ramen-tokyo"}]
     },
     {
-      "id": "aidaya", "number": 11, "name": "Aidaya", "aliases": ["Aida Ya", "あいだや"], "area": "Ueno / Okachimachi", "ward": "Taito",
+      "id": "aidaya", "number": 11, "name": "Aidaya", "aliases": ["Aida Ya", "あいだや"], "area": "Ueno / Okachimachi", "ward": "Taito", "pattern": "shrimp",
       "lat": 35.70823423870188, "lng": 139.77587108465053,
       "address": "101B, Okachimachi Green Heights, 6-1-6 Ueno, Taito-ku, Tokyo",
       "station": "Okachimachi (JR Yamanote / Keihin-Tohoku) — 2 min walk",
@@ -130,7 +130,7 @@
       "sources": [{"label": "Tabelog listing", "url": "https://tabelog.com/en/tokyo/A1311/A131101/13288181/"}, {"label": "Tokyo Ramen of the Year", "url": "https://tokyoramenoftheyear.com/en/ramen/ramen-00033"}, {"label": "5amRamen review", "url": "https://www.5amramen.com/post/aidaya-tsukemen-in-ueno"}]
     },
     {
-      "id": "kikanbo", "number": 13, "name": "Kikanbō — Kanda", "aliases": ["Kikanbo", "鬼金棒", "Karashibi Miso Ramen Kikanbo"], "area": "Kanda", "ward": "Chiyoda", "oni": true,
+      "id": "kikanbo", "number": 13, "name": "Kikanbō — Kanda", "aliases": ["Kikanbo", "鬼金棒", "Karashibi Miso Ramen Kikanbo"], "area": "Kanda", "ward": "Chiyoda", "oni": true, "pattern": "pig",
       "lat": 35.6936985, "lng": 139.7724063,
       "address": "2-10-9 Kajicho, Chiyoda-ku, Tokyo",
       "station": "Kanda (JR Yamanote / Chuo / Keihin-Tohoku; Ginza) — 2 min walk",
@@ -142,7 +142,7 @@
       "sources": [{"label": "Official shop details", "url": "https://kikanbo.co.jp/english/shop"}, {"label": "Tabelog listing", "url": "https://tabelog.com/tokyo/A1310/A131002/13097205/"}, {"label": "The Infatuation review", "url": "https://www.theinfatuation.com/tokyo/reviews/karashibi-miso-ramen-kikanbo-kanda-honten"}]
     },
     {
-      "id": "tokyo-street", "number": 12, "name": "Tokyo Ramen Street", "area": "Tokyo Station", "ward": "Chiyoda",
+      "id": "tokyo-street", "number": 12, "name": "Tokyo Ramen Street", "area": "Tokyo Station", "ward": "Chiyoda", "pattern": "bowl",
       "lat": 35.6802935, "lng": 139.7679568,
       "address": "First Avenue Tokyo Station B1F, 1-9-1 Marunouchi, Chiyoda-ku, Tokyo",
       "station": "Tokyo (JR lines; Marunouchi) — 1 min walk",

@@ -40,7 +40,7 @@ class RamenMapTests(unittest.TestCase):
         self.assertEqual([shop['id'] for shop in oni], ['kikanbo'])
         self.assertEqual(oni[0]['number'], 13)
         script = (ROOT / 'js/ramen-map.js').read_text(encoding='utf-8')
-        self.assertEqual(script.count("shop.oni ? ' is-oni' : ''"), 2)  # marker + card
+        self.assertGreaterEqual(script.count("shop.oni ? ' is-oni' : ''"), 2)  # marker + card (pattern adds more)
         css = (ROOT / 'ramen-map.html').read_text(encoding='utf-8')
         for rule in ('--oni:', '.shop-card.is-oni', '.map-marker.is-oni', '.challenge-card.is-oni'):
             self.assertIn(rule, css)
@@ -113,12 +113,18 @@ class RamenMapTests(unittest.TestCase):
 
         # Static containers that no script, style, link or ARIA relationship uses are dead weight.
         css = html.split('<style>')[-1].split('</style>')[0]
+        # pat-* and sym-* ids are referenced dynamically via JS template literals
+        # (`url(#pat-${shop.pattern})`); they are covered by test_ingredient_patterns.
         referenced = (looked_up | runtime_ids
                       | set(re.findall(r"getElementById\('([\w-]+)'\)", script))
                       | {v for attr in ('aria-labelledby', 'aria-describedby', 'aria-controls', 'for', 'list')
                          for value in re.findall(rf'{attr}="([^"]+)"', html) for v in value.split()}
-                      | set(re.findall(r'href="#([\w-]+)"', html)))
-        unused = sorted(i for i in page_ids - referenced if i not in css)
+                      | set(re.findall(r'href="#([\w-]+)"', html))
+                      | set(re.findall(r'url\(#([\w-]+)\)', html))
+                      | {'ramen-patterns'})
+        unused = sorted(i for i in page_ids - referenced
+                        if i not in css
+                        and not i.startswith(('pat-', 'sym-')))
         self.assertEqual(unused, [], f'page defines ids nothing uses: {unused}')
 
     def test_ramen_museum_partner(self):
@@ -134,6 +140,26 @@ class RamenMapTests(unittest.TestCase):
         html = (ROOT / 'ramen-map.html').read_text(encoding='utf-8')
         self.assertIn('id="partner-block"', html)
         self.assertIn('Tokyo in Film Partner', html)
+
+    def test_ingredient_patterns(self):
+        """Every shop has a pattern key, and every key has matching pat- and sym- defs in the HTML."""
+        valid = {'charcoal', 'cow', 'clam', 'chicken', 'curry', 'sesame', 'pepper',
+                 'fish-scales', 'duck', 'shrimp', 'bowl', 'pig'}
+        for shop in self.data['shops']:
+            with self.subTest(shop=shop['id']):
+                self.assertIn(shop.get('pattern'), valid, f'shop {shop["id"]} has missing or invalid pattern')
+        html = (ROOT / 'ramen-map.html').read_text(encoding='utf-8')
+        for key in valid:
+            self.assertIn(f'id="pat-{key}"', html, f'missing pattern definition for {key}')
+            self.assertIn(f'id="sym-{key}"', html, f'missing symbol definition for {key}')
+        # Kikanbo is pork broth, not chili
+        kikanbo = next(s for s in self.data['shops'] if s['id'] == 'kikanbo')
+        self.assertEqual(kikanbo['pattern'], 'pig')
+        # JS wires the pattern layer and card icons
+        script = (ROOT / 'js/ramen-map.js').read_text(encoding='utf-8')
+        self.assertIn('pattern-layer', script)
+        self.assertIn('ward-pattern', script)
+        self.assertIn('sym-', script)
 
 
 if __name__ == '__main__':
