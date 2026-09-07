@@ -28,8 +28,9 @@
       "sources": [{"label": "Official address / reservations", "url": "https://www.muginae.com/en/"}, {"label": "Michelin guide", "url": "https://guide.michelin.com/jp/ja/tokyo-region/tokyo/restaurant/homemade-ramen-muginae"}, {"label": "Japan Times feature", "url": "https://www.japantimes.co.jp/life/2017/12/02/food/homemade-ramen-muginae-noodles-well-worth-wait/"}, {"label": "5amRamen review", "url": "https://www.5amramen.com/post/homemade-ramen-muginae-tokyo"}]
     },
     {
-      "id": "kohaku", "number": 3, "name": "Kohaku — Tokyo Honten", "aliases": ["Shinjiko Shijimi Chuka Soba Kohaku", "宍道湖しじみ中華蕎麦 琥珀"], "area": "Zoshiki / Kamata", "ward": "Ota", "pattern": "clam",
+      "id": "kohaku", "number": 3, "name": "Shinjiko Shijimi Chuka Soba Kohaku Honten", "aliases": ["Kohaku", "宍道湖しじみ中華蕎麦 琥珀"], "area": "Zoshiki / Kamata", "ward": "Ota", "pattern": "clam",
       "lat": 35.5512325, "lng": 139.7111126,
+      "mapsUrl": "https://maps.app.goo.gl/1dD8rEqsRwtuvbA89",
       "address": "2-1-3 Nishirokugo, Ota-ku, Tokyo",
       "station": "Zoshiki (Keikyu Main) — 5 min walk",
       "style": "Shinji Lake clam (shijimi)",
@@ -40,8 +41,9 @@
       "sources": [{"label": "TableCheck booking", "url": "https://www.tablecheck.com/en/ramenkohaku"}, {"label": "Tabelog listing", "url": "https://tabelog.com/en/tokyo/A1315/A131503/13234195/"}, {"label": "Michelin guide", "url": "https://guide.michelin.com/us/en/tokyo-region/tokyo/restaurant/shinjiko-shijimi-chukasoba-kohaku"}, {"label": "5amRamen review", "url": "https://www.5amramen.com/post/tokyo-clam-ramen-kohaku"}]
     },
     {
-      "id": "shibata", "number": 4, "name": "Chuka Soba Shibata", "aliases": ["中華そば しば田"], "area": "Komae", "ward": null, "municipality": "Komae", "prefecture": "Tokyo", "mapGroup": "southwest", "pattern": "chicken",
+      "id": "shibata", "number": 4, "name": "Chukasoba Shibata", "aliases": ["中華そば しば田"], "area": "Komae", "ward": null, "municipality": "Komae", "prefecture": "Tokyo", "mapGroup": "southwest", "pattern": "chicken",
       "lat": 35.63197309868687, "lng": 139.5766485740199,
+      "mapsUrl": "https://maps.app.goo.gl/Eiibo533hgPAahrn7",
       "address": "1-8-12 Motoizumi, Komae, Tokyo",
       "station": "Komae (Odakyu Odawara) — 1 min walk",
       "style": "Shoyu · 11-layer soy sauce blend",
@@ -52,8 +54,9 @@
       "sources": [{"label": "Tabelog listing", "url": "https://tabelog.com/en/tokyo/A1326/A132603/13300645/"}, {"label": "Tabelog Magazine (relocation)", "url": "https://magazine.tabelog.com/articles/435344"}, {"label": "Tokyo Ramen of the Year", "url": "https://tokyoramenoftheyear.com/ja/shop/shop-00044"}, {"label": "Ramen Guide Japan", "url": "https://www.ramenguidejapan.com/reviews/2018/11/16/chuka-soba-shibata-"}]
     },
     {
-      "id": "shuichi", "number": 5, "name": "Shuuichi — Ebisu", "aliases": ["Shuichi", "しゅういち", "Curry Tsukemen Shuichi"], "area": "Ebisu", "ward": "Shibuya", "pattern": "curry",
+      "id": "shuichi", "number": 5, "name": "Curry Tsukemen Shuuichi — Ebisu", "aliases": ["Shuuichi", "カレーつけ麺 しゅういち 恵比寿店", "しゅういち"], "area": "Ebisu", "ward": "Shibuya", "pattern": "curry",
       "lat": 35.6472153, "lng": 139.7083209,
+      "mapsUrl": "https://maps.app.goo.gl/66nozHAKfToW5jhg7",
       "address": "YAMA Building B1F, 1-9-2 Ebisunishi, Shibuya-ku, Tokyo",
       "station": "Ebisu (JR Yamanote / Hibiya) — 2 min walk",
       "style": "Curry tsukemen",
@@ -63,8 +66,9 @@
       "sources": [{"label": "Gurunavi listing", "url": "https://gurunavi.com/en/e957104/rst/"}, {"label": "Tabelog listing", "url": "https://s.tabelog.com/en/tokyo/A1303/A130302/13159037/"}, {"label": "Official / Birth Corp", "url": "https://birth-corporation.com/tenpo/s-ebisu/"}]
     },
     {
-      "id": "usagi", "number": 6, "name": "Usagi", "aliases": ["うさぎ", "ラーメン うさぎ 渋谷", "ラーメン うさぎ"], "area": "Shinsen / Shibuya", "ward": "Shibuya", "pattern": "sesame",
+      "id": "usagi", "number": 6, "name": "Usagi", "aliases": ["うさぎ USAGI", "ラーメン うさぎ 渋谷", "ラーメン うさぎ"], "area": "Shinsen / Shibuya", "ward": "Shibuya", "pattern": "sesame",
       "lat": 35.656447, "lng": 139.692221,
+      "mapsUrl": "https://maps.app.goo.gl/XxUqLnDurNUF41WR9",
       "address": "Argus Shimota Building 1F, 8-13 Shinsencho, Shibuya-ku, Tokyo",
       "station": "Shinsen (Odakyu Odawara) — 3 min walk",
       "style": "Tantanmen",
@@ -75,8 +79,9 @@
       "sources": [{"label": "Hot Pepper listing", "url": "https://www.hotpepper.jp/strJ000812835/"}, {"label": "Ramen Database", "url": "https://ramendb.supleks.jp/s/10638.html"}, {"label": "Retty listing", "url": "https://retty.me/area/PRE13/ARE8/SUB804/100000001208/"}]
     },
     {
-      "id": "shima", "number": 7, "name": "Ramenya Shima", "aliases": ["Raa Menya Shima", "らぁ麺や 嶋"], "area": "Nishi-Shinjuku", "ward": "Shibuya", "pattern": "pepper",
+      "id": "shima", "number": 7, "name": "Ramenya Shima", "aliases": ["らぁ麺や 嶋", "Raa Menya Shima"], "area": "Nishi-Shinjuku", "ward": "Shibuya", "pattern": "pepper",
       "lat": 35.6883441, "lng": 139.6808875,
+      "mapsUrl": "https://maps.app.goo.gl/A3n8aeSjaMEJqJN77",
       "address": "3-41-12 Honmachi, Shibuya-ku, Tokyo",
       "station": "Nishi-Shinjuku-Gochome (Toei Oedo) — 4 min walk",
       "style": "Shoyu · seasonal grape pepper",
@@ -99,8 +104,9 @@
       "sources": [{"label": "Official shop details", "url": "https://n-nagi.com/english/"}, {"label": "Tabelog listing", "url": "https://tabelog.com/en/tokyo/A1304/A130401/13054766/"}, {"label": "5amRamen review", "url": "https://www.5amramen.com/post/ramen-nagi-shinjuku"}]
     },
     {
-      "id": "honma", "number": 9, "name": "Homemade Noodles Honma", "aliases": ["自家製麺 ほんま", "Jikaseimen Honma"], "area": "Komagome", "ward": "Bunkyo", "pattern": "chicken",
+      "id": "honma", "number": 9, "name": "Jikaseimen Honma", "aliases": ["自家製麺 ほんま", "Homemade Noodles Honma"], "area": "Komagome", "ward": "Bunkyo", "pattern": "chicken",
       "lat": 35.7328, "lng": 139.7524,
+      "mapsUrl": "https://maps.app.goo.gl/ZFDzoM2cMboG1dU78",
       "address": "5-58-7 Honkomagome, Bunkyo-ku, Tokyo 113-0021",
       "station": "Komagome (JR Yamanote) — 6 min walk from east exit",
       "style": "Chicken paitan and vegetable potage, homemade noodles",
@@ -110,8 +116,9 @@
       "sources": [{"label": "The Japan News profile", "url": "https://japannews.japantimes.com/general/honma-owner-hailing-from-ramen-kingdom-yamagata-offers-variety-of-dishes-fit-for-royalty-locally-sourced-ingredients-key-to-authenticity/"}, {"label": "Tabelog listing", "url": "https://tabelog.com/tokyo/A1323/A132301/13235081/"}, {"label": "Ramen DB listing", "url": "https://tokyo-ramendb.supleks.jp/s/118470.html"}]
     },
     {
-      "id": "kamo", "number": 10, "name": "Ramen Kamo to Negi — Ueno Okachimachi", "aliases": ["鴨to葱", "Kamo to Negi"], "area": "Ueno / Okachimachi", "ward": "Taito", "pattern": "duck",
+      "id": "kamo", "number": 10, "name": "Ramen Kamo to Negi Ueno Okachimachi Main Store", "aliases": ["らーめん 鴨to葱 上野御徒町本店", "鴨to葱", "Kamo to Negi"], "area": "Ueno / Okachimachi", "ward": "Taito", "pattern": "duck",
       "lat": 35.7083768, "lng": 139.7752537,
+      "mapsUrl": "https://maps.app.goo.gl/EuEhZxpSLT2MidRz6",
       "address": "6-4-15 Ueno, Taito-ku, Tokyo",
       "station": "Okachimachi (JR Yamanote / Keihin-Tohoku) — 1 min walk",
       "style": "Duck and leek",
@@ -121,8 +128,9 @@
       "sources": [{"label": "Official Okachimachi location", "url": "https://www.kamotonegi.com/en/shoprisuto/okachimachi/"}, {"label": "Tabelog listing", "url": "https://tabelog.com/en/tokyo/A1311/A131101/13210392"}, {"label": "5amRamen review", "url": "https://www.5amramen.com/post/best-duck-ramen-tokyo"}]
     },
     {
-      "id": "aidaya", "number": 11, "name": "Aidaya", "aliases": ["Aida Ya", "あいだや"], "area": "Ueno / Okachimachi", "ward": "Taito", "pattern": "shrimp",
+      "id": "aidaya", "number": 11, "name": "Aidaya", "aliases": ["あいだや", "Aida Ya"], "area": "Ueno / Okachimachi", "ward": "Taito", "pattern": "shrimp",
       "lat": 35.70823423870188, "lng": 139.77587108465053,
+      "mapsUrl": "https://maps.app.goo.gl/STRAAb9iQSP4953P9",
       "address": "101B, Okachimachi Green Heights, 6-1-6 Ueno, Taito-ku, Tokyo",
       "station": "Okachimachi (JR Yamanote / Keihin-Tohoku) — 2 min walk",
       "style": "Tsukemen · choose two of four dipping sauces",
@@ -132,8 +140,9 @@
       "sources": [{"label": "Tabelog listing", "url": "https://tabelog.com/en/tokyo/A1311/A131101/13288181/"}, {"label": "Tokyo Ramen of the Year", "url": "https://tokyoramenoftheyear.com/en/ramen/ramen-00033"}, {"label": "5amRamen review", "url": "https://www.5amramen.com/post/aidaya-tsukemen-in-ueno"}]
     },
     {
-      "id": "tokyo-street", "number": 12, "name": "Tokyo Ramen Street", "area": "Tokyo Station", "ward": "Chiyoda", "pattern": "bowl",
+      "id": "tokyo-street", "number": 12, "name": "Tokyo Ramen Street", "aliases": ["東京ラーメンストリート"], "area": "Tokyo Station", "ward": "Chiyoda", "pattern": "bowl",
       "lat": 35.6802935, "lng": 139.7679568,
+      "mapsUrl": "https://maps.app.goo.gl/x4KYTwefakvZerhWA",
       "address": "First Avenue Tokyo Station B1F, 1-9-1 Marunouchi, Chiyoda-ku, Tokyo",
       "station": "Tokyo (JR lines; Marunouchi) — 1 min walk",
       "style": "Multi-shop ramen hall",
