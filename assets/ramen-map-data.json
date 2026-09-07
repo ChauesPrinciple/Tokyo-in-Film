@@ -5,13 +5,14 @@
     {
       "id": "okurindo", "number": 1, "name": "Okurindo", "aliases": ["炭火焼濃厚中華そば 奥倫道", "Sumibiyaki Noko Chuka Soba Okurindo"], "area": "Shibadaimon / Minato", "ward": "Minato", "pattern": "charcoal",
       "lat": 35.656688, "lng": 139.752937,
+      "mapsUrl": "https://maps.app.goo.gl/ZmRtPxEepLT5xmVR8",
       "address": "GS Heim Shibadaimon, 2-1-18 Shibadaimon, Minato-ku, Tokyo 105-0012",
       "station": "Daimon (Toei Oedo / Asakusa) — 2 min walk",
       "style": "Charcoal-grilled rich chuka soba",
       "description": "The shop name, 炭火焼濃厚中華そば, sets out what it serves: charcoal-grilled, thick chuka soba. The broth is built around that charcoal smoke, deep and roasted, with a richness that you do not expect from a bowl this cheap. Dine-in, takeout, and delivery. Ground floor of GS Heim Shibadaimon, a few minutes from Daimon and Hamamatsucho stations, between Zojoji temple and the bay side. A solid, unpretentious bowl in a neighborhood that does not get the ramen tourist traffic.",
       "note": "Coordinates recovered from the plus code MQ43+M5 Minato City (full code 8Q7XMQ43+M5). Everything here comes from the Google listing supplied; hours and prices change, so check before going. Phone +81 3-3438-0188.",
       "coordinateSource": "Plus code MQ43+M5 supplied with the Google listing",
-      "sources": [{"label": "Shop on X", "url": "https://twitter.com/okurindo?s=09"}, {"label": "Open in Maps", "url": "https://www.google.com/maps/search/?api=1&query=35.656688,139.752937"}]
+      "sources": [{"label": "Shop on X", "url": "https://twitter.com/okurindo?s=09"}, {"label": "Open in Maps", "url": "https://maps.app.goo.gl/ZmRtPxEepLT5xmVR8"}]
     },
     {
       "id": "muginae", "number": 2, "name": "Homemade Ramen Muginae", "aliases": ["Muginawa", "Homemade Ramen 麦苗"], "area": "Omori / Omorikaigan", "ward": "Shinagawa", "pattern": "cow",
