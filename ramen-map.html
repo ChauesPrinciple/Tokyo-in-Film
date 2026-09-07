@@ -184,7 +184,7 @@
     .map-foot { padding-top: 12px; }
     .map-key { padding: 4px 0; }
     .key-heading { margin: 0 0 10px; font-size: 11px; letter-spacing: .08em; font-weight: 700; text-transform: uppercase; color: var(--muted); }
-    #map-legend { display: grid; gap: 8px; font-size: 12px; color: var(--ink-soft); }
+    #map-legend { display: grid; gap: 8px; font-size: 12px; color: var(--ink-soft); list-style: none; margin: 0; padding: 0; }
     .legend-item { display: flex; gap: 10px; align-items: center; }
     .legend-symbol { flex: 0 0 22px; display: inline-flex; align-items: center; justify-content: center; height: 22px; }
     .legend-pin { background: var(--accent); color: #fff; border-radius: 50%; font-size: 10px; font-weight: 700; }
@@ -315,7 +315,7 @@
     .ward-shape[data-context] { fill: var(--context); stroke: var(--context-line); }
     .ward-pattern { color: var(--ink); pointer-events: none; }
     .ward-pattern.is-oni { color: var(--oni); }
-    .ward-pattern.is-komae { mask: url(#komae-fade); -webkit-mask: radial-gradient(circle, #000 30%, transparent 75%); mask: radial-gradient(circle, #000 30%, transparent 75%); }
+    .ward-pattern.is-komae { -webkit-mask: radial-gradient(circle, #000 30%, transparent 75%); mask: radial-gradient(circle, #000 30%, transparent 75%); }
     .ward-name { fill: #a9b3bc; font-size: 9.5px; letter-spacing: .16em; text-anchor: middle; pointer-events: none; }
     .transit-line { fill: none; stroke: var(--transit); stroke-width: 1.1; opacity: .55; stroke-linejoin: round; stroke-linecap: round; vector-effect: non-scaling-stroke; pointer-events: none; }
     .place-label { fill: #79838c; font-size: 11px; font-weight: 600; pointer-events: none; }
@@ -324,12 +324,14 @@
     .marker-leader { stroke: var(--accent-ink); stroke-width: 1; vector-effect: non-scaling-stroke; opacity: .5; }
     .location-dot { fill: var(--accent-ink); }
     .marker-disc { fill: var(--accent); stroke: var(--paper); stroke-width: 2; transition: fill .12s; }
-    text.marker-number, .marker-number text { fill: #fff; stroke: none; font-size: 12px; font-weight: 650; text-anchor: middle; dominant-baseline: central; pointer-events: none; }
+    text.marker-number, .marker-number text { fill: var(--ink); stroke: none; font-size: 12px; font-weight: 700; text-anchor: middle; dominant-baseline: central; pointer-events: none; }
     .map-marker.is-selected .marker-disc { fill: var(--mark); stroke: var(--ink); stroke-width: 3; }
     .map-marker.is-selected .marker-number { fill: var(--ink); }
     .map-marker:hover .marker-disc, .map-marker:focus-visible .marker-disc { fill: var(--accent-ink); }
+    .map-marker:hover .marker-number, .map-marker:focus-visible .marker-number { fill: #fff; }
     .map-marker:focus-visible { outline: 2px solid var(--mark); outline-offset: 4px; }
     .map-marker.is-oni .marker-disc { fill: var(--oni); }
+    .map-marker.is-oni .marker-number { fill: #fff; }
     .map-marker.is-oni .location-dot { fill: var(--oni-ink); }
     .map-marker.is-oni .marker-leader { stroke: var(--oni-ink); }
     .map-marker.is-oni:hover .marker-disc, .map-marker.is-oni:focus-visible .marker-disc { fill: var(--oni-ink); }
@@ -399,7 +401,7 @@
       .sources a { text-decoration: none; }
     }
   </style>
-  <script src="js/ramen-map.js?v=006aa5d9" defer></script>
+  <script src="js/ramen-map.js?v=43ca70b3" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#shop-search">Skip to ramen places</a>
@@ -418,12 +420,12 @@
         <ul class="challenge-strip">
           <li class="challenge-card">
             <p class="challenge-count">01 <span>–</span> 12</p>
-            <p class="challenge-name">The Challenge</p>
+            <h2 class="challenge-name">The Challenge</h2>
             <p class="challenge-note">Twelve shops, twelve different bowls: shoyu, niboshi, shijimi clam, duck and leek, curry tsukemen, tantanmen, halal wagyu, charcoal-grilled chuka soba, a four-sauce tsukemen counter, and one station basement holding ten shops of its own. Order the thing each shop is known for. That is the whole rule.</p>
           </li>
           <li class="challenge-card is-oni">
             <p class="challenge-count">13</p>
-            <p class="challenge-name">Bonus: The Oni Challenge</p>
+            <h2 class="challenge-name">Bonus: The Oni Challenge</h2>
             <p class="challenge-note">Kikanbō in Kanda. Kara-shibi miso, which means chili heat (kara) stacked on sanshō numbing (shibi), and you set both dials yourself on a five-point scale. The top setting is oni-mashi. Devil level. It costs extra, and it should. (Come for my Oni level, if you dare.)</p>
           </li>
         </ul>
@@ -534,12 +536,12 @@
         <div class="map-foot">
           <div class="map-key">
             <p class="key-heading">Reading the map</p>
-            <div id="map-legend" aria-label="Map legend">
-              <span class="legend-item"><span class="legend-symbol legend-pin" aria-hidden="true">1</span> Number matches the place index</span>
-              <span class="legend-item"><span class="legend-symbol legend-pin legend-oni" aria-hidden="true">13</span> The bonus Oni bowl: Kikanbō, kara-shibi miso</span>
-              <span class="legend-item"><span class="legend-symbol legend-dot" aria-hidden="true"></span> Dot: saved location; numbered badge may be offset</span>
-              <span class="legend-item"><span class="legend-symbol legend-line" aria-hidden="true"></span> Subway context, not walking directions</span>
-            </div>
+            <ul id="map-legend">
+              <li class="legend-item"><span class="legend-symbol legend-pin" aria-hidden="true">1</span> Number matches the place index</li>
+              <li class="legend-item"><span class="legend-symbol legend-pin legend-oni" aria-hidden="true">13</span> The bonus Oni bowl: Kikanbō, kara-shibi miso</li>
+              <li class="legend-item"><span class="legend-symbol legend-dot" aria-hidden="true"></span> Dot: saved location; numbered badge may be offset</li>
+              <li class="legend-item"><span class="legend-symbol legend-line" aria-hidden="true"></span> Subway context, not walking directions</li>
+            </ul>
             <p class="map-hint">Drag to explore. Use + and &minus; to zoom. Select a numbered marker or a place in the index for details. Keyboard: Tab to a marker, then Enter or Space.</p>
           </div>
         </div>
@@ -577,17 +579,17 @@
         <li class="film-card">
           <p class="film-title">Tampopo <span>1985</span></p>
           <p class="film-credit">Directed by Juzo Itami</p>
-          <p class="film-note">A ramen western, and the reason half the world thinks there is a correct way to approach a bowl. In the opening lesson an old man walks a student through it: study the whole bowl first, note the arrangement, stroke the surface with the chopstick tips, then apologize to the pork before setting it aside. It is a joke, and it is also completely sincere, which is very much the point. Do the ritual once at your first shop. See how it changes the second one.</p>
+          <p class="film-note">A ramen western, and the reason half the world thinks there is a correct way to approach a bowl. In the opening scene an old man narrates the whole ritual: study the bowl first, note the arrangement, stroke the surface with the chopstick tips, then apologize to the pork before setting it aside. It is a joke, and it is also completely sincere, which is very much the point. Do the ritual once at your first shop. See how it changes the second one.</p>
         </li>
       </ul>
     </section>
     <section id="partner-block" class="partner" hidden aria-labelledby="partner-heading">
       <p class="partner-eyebrow" id="partner-heading">Tokyo in Film Partner</p>
-      <p class="partner-name"></p>
-      <p class="partner-note">Outside the thirteen bowls on this map, but part of the Tokyo in Film ramen story. The museum hosts a hands-on noodle-making class where you knead, cut, and boil your own ramen from scratch. We filmed the experience for a short piece on the project.</p>
+      <p class="partner-name">Shin-Yokohama Ramen Museum</p>
+      <p class="partner-note" id="partner-note-text">Outside the thirteen bowls on this map, but part of the Tokyo in Film ramen story. The museum hosts a hands-on noodle-making class where you knead, cut, and boil your own ramen from scratch. We filmed the experience for a short piece on the project.</p>
       <p class="partner-links">
-        <a class="partner-cooking" href="#" rel="noopener">Book the noodle-making class</a>
-        <a class="partner-film" href="#" rel="noopener" target="_blank">Watch our short about the experience</a>
+        <a class="partner-cooking" href="https://www.raumen.co.jp/makingnoodle_en.html" rel="noopener" target="_blank" aria-describedby="partner-note-text">Book the noodle-making class</a>
+        <a class="partner-film" href="https://www.instagram.com/p/DaROiC6P57-/" rel="noopener" target="_blank" aria-describedby="partner-note-text">Watch our short about the experience</a>
       </p>
     </section>
     <footer class="page-footer">

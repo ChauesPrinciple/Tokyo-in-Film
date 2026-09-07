@@ -135,11 +135,11 @@ class RamenMapTests(unittest.TestCase):
         self.assertEqual(museum['filmUrl'], 'https://www.instagram.com/p/DaROiC6P57-/')
         script = (ROOT / 'js/ramen-map.js').read_text(encoding='utf-8')
         self.assertIn('partner-block', script)
-        self.assertIn('partner-cooking', script)
-        self.assertIn('partner-film', script)
         html = (ROOT / 'ramen-map.html').read_text(encoding='utf-8')
         self.assertIn('id="partner-block"', html)
         self.assertIn('Tokyo in Film Partner', html)
+        self.assertIn('https://www.raumen.co.jp/makingnoodle_en.html', html)
+        self.assertIn('https://www.instagram.com/p/DaROiC6P57-/', html)
 
     def test_ingredient_patterns(self):
         """Every shop has a pattern key, and every key has matching pat- and sym- defs in the HTML."""
