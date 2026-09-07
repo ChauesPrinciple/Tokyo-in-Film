@@ -35,7 +35,7 @@
       "description": "Five consecutive years Michelin Bib Gourmand. Five counter seats. Reservation only. Chef Iwata Hiroyuki is from Shimane, home of Lake Shinji, and he builds the bowl around its freshwater clams. The broth is clear, golden, no MSG, with roughly eighty clams contributing their natural succinic acid per bowl. Chicken bones round out the base. The result is delicate and powerfully umami at the same time, and it does not taste like any pork- or fish-based Tokyo shop. Straight thin noodles from Suga no Seimen. The shoyu bowl lets you choose thin or hand-kneaded medium-thick. Iwata trained for about five years with the Mendokoro Honda group before opening here in May 2019. Near Zoshiki station on the Keihin Kyuko line, in a residential backstreet of Ota-ku. Quiet, old-school, hard to reach as a tourist. Worth the trip.",
       "note": "The Tokyo main store near Zoshiki, not a different Kohaku branch. Reservation-only via TableCheck. Check current business days before booking. Also accessible on foot from JR Kamata station (about 15 minutes).",
       "coordinateSource": "Restaurant-specific Directions link on TableCheck /ramenkohaku",
-      "sources": [{"label": "TableCheck booking", "url": "https://www.tablecheck.com/en/ramenkohaku"}, {"label": "Tabelog listing", "url": "https://tabelog.com/en/tokyo/A1315/A131503/13234195/"}, {"label": "Michelin guide", "url": "https://guide.michelin.com/jp/ja/tokyo-region/tokyo/restaurant/homemade-ramen-muginae"}, {"label": "5amRamen review", "url": "https://www.5amramen.com/post/tokyo-clam-ramen-kohaku"}]
+      "sources": [{"label": "TableCheck booking", "url": "https://www.tablecheck.com/en/ramenkohaku"}, {"label": "Tabelog listing", "url": "https://tabelog.com/en/tokyo/A1315/A131503/13234195/"}, {"label": "Michelin guide", "url": "https://guide.michelin.com/us/en/tokyo-region/tokyo/restaurant/shinjiko-shijimi-chukasoba-kohaku"}, {"label": "5amRamen review", "url": "https://www.5amramen.com/post/tokyo-clam-ramen-kohaku"}]
     },
     {
       "id": "shibata", "number": 4, "name": "Chuka Soba Shibata", "aliases": ["中華そば しば田"], "area": "Komae", "ward": null, "municipality": "Komae", "prefecture": "Tokyo", "mapGroup": "southwest", "pattern": "chicken",
@@ -130,6 +130,17 @@
       "sources": [{"label": "Tabelog listing", "url": "https://tabelog.com/en/tokyo/A1311/A131101/13288181/"}, {"label": "Tokyo Ramen of the Year", "url": "https://tokyoramenoftheyear.com/en/ramen/ramen-00033"}, {"label": "5amRamen review", "url": "https://www.5amramen.com/post/aidaya-tsukemen-in-ueno"}]
     },
     {
+      "id": "tokyo-street", "number": 12, "name": "Tokyo Ramen Street", "area": "Tokyo Station", "ward": "Chiyoda", "pattern": "bowl",
+      "lat": 35.6802935, "lng": 139.7679568,
+      "address": "First Avenue Tokyo Station B1F, 1-9-1 Marunouchi, Chiyoda-ku, Tokyo",
+      "station": "Tokyo (JR lines; Marunouchi) — 1 min walk",
+      "style": "Multi-shop ramen hall",
+      "description": "Not one shop. A curated basement hall of ten ramen restaurants under Tokyo Station, on the Yaesu side outside the ticket gates. As of the 2025 renewal: Rokurinsha (the famous tsukemen shop), Soranairo NIPPON (shoyu and vegan, gluten-free, Michelin-listed), Hirugao (shio specialist), Tokyo Station Ikaruga (tonkotsu-gyokai double soup), and six more covering miso, ie-kei, niboshi, and regional pop-ups. This is the most efficient way to try several top styles in one lunch hour without leaving the station. (Prepare to wait.) Queues at peak. Go off-peak. Check the floor guide for current tenants, because the lineup rotates.",
+      "note": "A collection of ramen restaurants, not a single shop. Underground on the Yaesu side, outside the ticket gates. Check the official floor guide for current tenants before visiting.",
+      "coordinateSource": "Ramen_in_Japan.kml",
+      "sources": [{"label": "Official floor guide", "url": "https://www.tokyoeki-1bangai.co.jp/shop/?area=area3&floor=b1f"}, {"label": "2025 renewal press release", "url": "https://prtimes.jp/main/html/rd/p/000000022.000089063.html"}]
+    },
+    {
       "id": "kikanbo", "number": 13, "name": "Kikanbō — Kanda", "aliases": ["Kikanbo", "鬼金棒", "Karashibi Miso Ramen Kikanbo"], "area": "Kanda", "ward": "Chiyoda", "oni": true, "pattern": "pig",
       "lat": 35.6936985, "lng": 139.7724063,
       "address": "2-10-9 Kajicho, Chiyoda-ku, Tokyo",
@@ -140,17 +151,6 @@
       "coordinateSource": "Ramen_in_Japan.kml",
       "mapsUrl": "https://www.google.com/maps/place/Kikanbo/data=!4m2!3m1!1s0x60188c020f7e92d1:0xb61cf551ada0f90d",
       "sources": [{"label": "Official shop details", "url": "https://kikanbo.co.jp/english/shop"}, {"label": "Tabelog listing", "url": "https://tabelog.com/tokyo/A1310/A131002/13097205/"}, {"label": "The Infatuation review", "url": "https://www.theinfatuation.com/tokyo/reviews/karashibi-miso-ramen-kikanbo-kanda-honten"}]
-    },
-    {
-      "id": "tokyo-street", "number": 12, "name": "Tokyo Ramen Street", "area": "Tokyo Station", "ward": "Chiyoda", "pattern": "bowl",
-      "lat": 35.6802935, "lng": 139.7679568,
-      "address": "First Avenue Tokyo Station B1F, 1-9-1 Marunouchi, Chiyoda-ku, Tokyo",
-      "station": "Tokyo (JR lines; Marunouchi) — 1 min walk",
-      "style": "Multi-shop ramen hall",
-      "description": "Not one shop. A curated basement hall of ten ramen restaurants under Tokyo Station, on the Yaesu side outside the ticket gates. As of the 2025 renewal: Rokurinsha (the famous tsukemen shop), Soranairo NIPPON (shoyu and vegan, gluten-free, Michelin-listed), Hirugao (shio specialist), Tokyo Station Ikaruga (tonkotsu-gyokai double soup), and six more covering miso, ie-kei, niboshi, and regional pop-ups. This is the most efficient way to try several top styles in one lunch hour without leaving the station. (Prepare to wait.) Queues at peak. Go off-peak. Check the floor guide for current tenants, because the lineup rotates.",
-      "note": "A collection of ramen restaurants, not a single shop. Underground on the Yaesu side, outside the ticket gates. Check the official floor guide for current tenants before visiting.",
-      "coordinateSource": "Ramen_in_Japan.kml",
-      "sources": [{"label": "Official floor guide", "url": "https://www.tokyoeki-1bangai.co.jp/shop/?area=area3&floor=b1f"}, {"label": "2025 renewal press release", "url": "https://prtimes.jp/main/html/rd/p/000000022.000089063.html"}]
     }
   ],
   "excluded": [
@@ -158,8 +158,6 @@
       "id": "ramen-museum", "name": "Shin-Yokohama Ramen Museum", "lat": 35.509896, "lng": 139.614572,
       "reason": "Not pinned: in Yokohama, not Tokyo. Listed below as a Tokyo in Film partner.",
       "url": "https://www.raumen.co.jp/english/",
-      "cookingClassUrl": "https://www.raumen.co.jp/makingnoodle_en.html",
-      "filmUrl": "https://www.instagram.com/p/DaROiC6P57-/",
       "partner": true
     },
     {
