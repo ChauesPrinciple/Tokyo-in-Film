@@ -17,6 +17,7 @@
     {
       "id": "muginae", "number": 2, "name": "Homemade Ramen Muginae", "aliases": ["Muginawa", "Homemade Ramen 麦苗"], "area": "Omori / Omorikaigan", "ward": "Shinagawa", "pattern": "cow",
       "lat": 35.5907765, "lng": 139.7328034,
+      "mapsUrl": "https://maps.app.goo.gl/UNhBtJJ6zQntNkvS6",
       "address": "6-11-10 Minamioi, Shinagawa-ku, Tokyo",
       "station": "Omorikaigan (Keikyu Main) — 7 min walk",
       "style": "Chemical-free · Michelin Bib Gourmand",
