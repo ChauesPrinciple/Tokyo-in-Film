@@ -130,7 +130,7 @@
       "sources": [{"label": "Tabelog listing", "url": "https://tabelog.com/en/tokyo/A1311/A131101/13288181/"}, {"label": "Tokyo Ramen of the Year", "url": "https://tokyoramenoftheyear.com/en/ramen/ramen-00033"}, {"label": "5amRamen review", "url": "https://www.5amramen.com/post/aidaya-tsukemen-in-ueno"}]
     },
     {
-      "id": "kikanbo", "number": 13, "name": "Kikanbō — Kanda", "aliases": ["Kikanbo", "鬼金棒", "Karashibi Miso Ramen Kikanbo"], "area": "Kanda", "ward": "Chiyoda",
+      "id": "kikanbo", "number": 13, "name": "Kikanbō — Kanda", "aliases": ["Kikanbo", "鬼金棒", "Karashibi Miso Ramen Kikanbo"], "area": "Kanda", "ward": "Chiyoda", "oni": true,
       "lat": 35.6936985, "lng": 139.7724063,
       "address": "2-10-9 Kajicho, Chiyoda-ku, Tokyo",
       "station": "Kanda (JR Yamanote / Chuo / Keihin-Tohoku; Ginza) — 2 min walk",

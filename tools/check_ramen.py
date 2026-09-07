@@ -34,6 +34,17 @@ class RamenMapTests(unittest.TestCase):
         script = (ROOT / 'js/ramen-map.js').read_text(encoding='utf-8')
         self.assertNotIn('number: index + 1', script)  # numbering must come from the data
 
+    def test_oni_bowl_is_flagged_and_styled_red(self):
+        """The bonus 13th bowl gets the chili-red profile, driven by data not a hardcoded number."""
+        oni = [shop for shop in self.data['shops'] if shop.get('oni')]
+        self.assertEqual([shop['id'] for shop in oni], ['kikanbo'])
+        self.assertEqual(oni[0]['number'], 13)
+        script = (ROOT / 'js/ramen-map.js').read_text(encoding='utf-8')
+        self.assertEqual(script.count("shop.oni ? ' is-oni' : ''"), 2)  # marker + card
+        css = (ROOT / 'ramen-map.html').read_text(encoding='utf-8')
+        for rule in ('--oni:', '.shop-card.is-oni', '.map-marker.is-oni', '.challenge-card.is-oni'):
+            self.assertIn(rule, css)
+
     def test_original_map_corrections(self):
         shops = {shop['id']: shop for shop in self.data['shops']}
         excluded = {item['id']: item for item in self.data['excluded']}

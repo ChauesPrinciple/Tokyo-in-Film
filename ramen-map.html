@@ -26,6 +26,11 @@
       --mark: #f08300;
       --mark-soft: #fdf0dd;
       --mark-ink: #8a4d00;
+      /* Oni / kara-shibi red, reserved for the bonus 13th bowl. */
+      --oni: #cf2118;
+      --oni-soft: #fdeceb;
+      --oni-line: #f0c4c1;
+      --oni-ink: #8f1810;
       --transit: #6f7b87;
       --radius: 10px;
     }
@@ -82,20 +87,20 @@
       border-radius: var(--radius); padding: 15px 17px 16px;
       border-top: 3px solid var(--ink);
     }
-    .challenge-card.is-oni { border-top-color: var(--mark); background: var(--mark-soft); }
+    .challenge-card.is-oni { border-top-color: var(--oni); background: var(--oni-soft); border-color: var(--oni-line); }
     .challenge-count {
       margin: 0; font-size: 21px; font-weight: 700; letter-spacing: -.02em; line-height: 1;
       font-variant-numeric: tabular-nums;
     }
     .challenge-count span { color: var(--muted); font-weight: 400; }
-    .challenge-card.is-oni .challenge-count { color: var(--mark-ink); }
+    .challenge-card.is-oni .challenge-count { color: var(--oni); }
     .challenge-name {
       margin: 7px 0 0; font-size: 12px; font-weight: 700;
       letter-spacing: .08em; text-transform: uppercase; color: var(--muted);
     }
-    .challenge-card.is-oni .challenge-name { color: var(--mark-ink); }
+    .challenge-card.is-oni .challenge-name { color: var(--oni-ink); }
     .challenge-note { margin: 9px 0 0; font-size: 13.5px; line-height: 1.55; color: var(--ink-soft); }
-    .challenge-card.is-oni .challenge-note { color: #6b4413; }
+    .challenge-card.is-oni .challenge-note { color: #6d211b; }
     @media (max-width: 780px) { .challenge-strip { grid-template-columns: 1fr; } }
 
     .films { margin-top: 34px; border-top: 1px solid var(--line); padding-top: 22px; }
@@ -171,6 +176,7 @@
     .legend-item { display: flex; gap: 10px; align-items: center; }
     .legend-symbol { flex: 0 0 22px; display: inline-flex; align-items: center; justify-content: center; height: 22px; }
     .legend-pin { background: var(--accent); color: #fff; border-radius: 50%; font-size: 10px; font-weight: 700; }
+    .legend-oni { background: var(--oni); font-size: 9px; }
     .legend-dot::before { content: ""; width: 5px; height: 5px; background: var(--accent-ink); border-radius: 50%; }
     .legend-line::before { content: ""; width: 22px; height: 1px; background: var(--transit); }
     .map-hint { margin: 12px 0 0; max-width: 380px; font-size: 11px; color: var(--muted); line-height: 1.5; }
@@ -259,6 +265,19 @@
     .shop-card.is-selected .shop-note { display: block; }
     .shop-card.is-selected .shop-links { display: flex; }
 
+    /* The bonus 13th bowl: chili red instead of the standard orange accent. */
+    .shop-card.is-oni { border-color: var(--oni-line); background: var(--oni-soft); }
+    .shop-card.is-oni:hover { border-color: var(--oni); }
+    .shop-card.is-oni.is-selected {
+      border-color: var(--oni-ink); background: #fff;
+      box-shadow: inset 3px 0 0 var(--oni), 0 6px 18px -12px rgba(143,24,16,.45);
+    }
+    .shop-card.is-oni .shop-number { background: var(--oni); }
+    .shop-card.is-oni .shop-select:hover { color: var(--oni); }
+    .shop-card.is-oni .shop-style,
+    .shop-card.is-oni .shop-station { color: var(--oni-ink); }
+    .shop-card.is-oni .shop-status { background: var(--oni); color: #fff; }
+
     #empty-state { color: var(--muted); font-size: 14px; padding: 20px 0; }
 
     .excluded { margin-top: 28px; border-top: 1px solid var(--line); padding-top: 16px; }
@@ -293,6 +312,13 @@
     .map-marker.is-selected .marker-number { fill: var(--ink); }
     .map-marker:hover .marker-disc, .map-marker:focus-visible .marker-disc { fill: var(--accent-ink); }
     .map-marker:focus-visible { outline: 2px solid var(--mark); outline-offset: 4px; }
+    .map-marker.is-oni .marker-disc { fill: var(--oni); }
+    .map-marker.is-oni .location-dot { fill: var(--oni-ink); }
+    .map-marker.is-oni .marker-leader { stroke: var(--oni-ink); }
+    .map-marker.is-oni:hover .marker-disc, .map-marker.is-oni:focus-visible .marker-disc { fill: var(--oni-ink); }
+    .map-marker.is-oni:focus-visible { outline-color: var(--oni); }
+    .map-marker.is-oni.is-selected .marker-disc { fill: var(--oni); stroke: var(--oni-ink); stroke-width: 3; }
+    .map-marker.is-oni.is-selected .marker-number { fill: #fff; }
 
     @media (max-width: 1040px) {
       .page-shell { padding: 0 20px 32px; }
@@ -353,7 +379,7 @@
       .sources a { text-decoration: none; }
     }
   </style>
-  <script src="js/ramen-map.js?v=e2d6254e" defer></script>
+  <script src="js/ramen-map.js?v=799a04d8" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#shop-search">Skip to ramen places</a>
@@ -404,6 +430,7 @@
             <p class="key-heading">Reading the map</p>
             <div id="map-legend" aria-label="Map legend">
               <span class="legend-item"><span class="legend-symbol legend-pin" aria-hidden="true">1</span> Number matches the place index</span>
+              <span class="legend-item"><span class="legend-symbol legend-pin legend-oni" aria-hidden="true">13</span> The bonus Oni bowl: Kikanbō, kara-shibi miso</span>
               <span class="legend-item"><span class="legend-symbol legend-dot" aria-hidden="true"></span> Dot: saved location; numbered badge may be offset</span>
               <span class="legend-item"><span class="legend-symbol legend-line" aria-hidden="true"></span> Subway context, not walking directions</span>
             </div>
