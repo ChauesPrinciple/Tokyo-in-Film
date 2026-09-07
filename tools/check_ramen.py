@@ -50,7 +50,7 @@ class RamenMapTests(unittest.TestCase):
         excluded = {item['id']: item for item in self.data['excluded']}
         self.assertEqual(shops['shima']['ward'], 'Shibuya')
         self.assertEqual(shops['kamo']['ward'], 'Taito')
-        self.assertEqual(shops['ninja']['ward'], 'Taito')
+        self.assertEqual(shops['honma']['ward'], 'Bunkyo')
         self.assertIn('muginae', shops)
         self.assertEqual(len(shops), 13)
         self.assertIn('okurindo', shops)
