@@ -4,10 +4,7 @@
   const $ = id => document.getElementById(id);
   const svg = $('ramen-map');
   const normalize = text => String(text).normalize('NFD').replace(/\p{M}/gu, '').toLocaleLowerCase();
-  const isSouthwest = shop => shop.mapGroup === 'southwest';
-  const corePlaces = places => places.filter(shop => !isSouthwest(shop));
   const locality = shop => shop.ward ? `${shop.ward} ward, Tokyo` : `${shop.municipality}, ${shop.prefecture}`;
-  const isHistorical = shop => shop.historical || /closed/i.test(shop.status || '');
   const NS = 'http://www.w3.org/2000/svg';
   const radians = Math.PI / 180;
   const radius = 6378137 * Math.cos(35.65 * radians);
@@ -83,7 +80,9 @@
         d: polygons.flatMap(polygon => polygon.map(ringPath)).join(''),
         class: 'ward-shape', 'fill-rule': 'evenodd', 'vector-effect': 'non-scaling-stroke'
       });
+      if (feature.properties.context) path.setAttribute('data-context', '');
       wards.append(path);
+      if (feature.properties.context) return;
       const center = polygons.map(polygon => centroid(polygon[0])).sort((a, b) => b.area - a.area)[0];
       const name = (feature.properties.ward_en || '').replace(/ Ku$/, '');
       if (name && Number.isFinite(center.x)) wardLabels.push({...center, name});
@@ -91,22 +90,6 @@
     world.append(wards);
     markers = el('g', {id: 'ramen-markers'});
     svg.append(world, el('g', {id: 'ward-labels', 'aria-hidden': 'true'}), markers);
-    tintContext();
-  }
-
-  function tintContext() {
-    const contextCount = Number(document.body.dataset.contextShapes || 0);
-    if (!contextCount) return;
-    const tint = () => {
-      const shapes = document.querySelectorAll('.ward-shape');
-      if (!shapes.length) return false;
-      for (let i = 0; i < contextCount && i < shapes.length; i++) shapes[i].setAttribute('data-context', '');
-      return true;
-    };
-    if (!tint()) {
-      const timer = setInterval(() => { if (tint()) clearInterval(timer); }, 120);
-      setTimeout(() => clearInterval(timer), 8000);
-    }
   }
 
   function subway(data) {
@@ -133,7 +116,6 @@
   }
 
   function fit(places = visible) {
-    places = corePlaces(places);
     if (!places.length) {
       render();
       return;
@@ -161,17 +143,15 @@
 
   function select(shop, fromList = false) {
     selected = shop.id;
-    if (!isSouthwest(shop)) {
-      const [x, y] = screen(shop.point);
-      if (fromList || x < 30 || y < 30 || x > width - 30 || y > height - 30) {
-        camera.x = shop.point[0];
-        camera.y = shop.point[1];
-        camera.width = Math.min(camera.width, 4500);
-      }
+    const [x, y] = screen(shop.point);
+    if (fromList || x < 30 || y < 30 || x > width - 30 || y > height - 30) {
+      camera.x = shop.point[0];
+      camera.y = shop.point[1];
+      camera.width = Math.min(camera.width, 4500);
     }
     updateSelection();
     if (!fromList) scrollToCard(shop.id);
-    $('map-status').textContent = `${shop.number}. ${shop.name} — ${shop.area}, ${locality(shop)}${shop.status ? ` · ${shop.status}` : ''}${isSouthwest(shop) ? ' · southwest of central Tokyo' : ''}`;
+    $('map-status').textContent = `${shop.number}. ${shop.name} — ${shop.area}, ${locality(shop)}${shop.status ? ` · ${shop.status}` : ''}`;
     render();
   }
 
@@ -186,9 +166,9 @@
     panel.scrollTo({top: card.offsetTop - panel.offsetTop - header - 10, behavior: 'smooth'});
   }
 
-  function marker(shop, x, y, placed, bounds, target, shortLabel = '', preferred = null) {
+  function marker(shop, x, y, placed, bounds, target) {
     const r = 13;
-    let position = preferred;
+    let position = null;
     const angles = [-Math.PI / 4, Math.PI / 4, -3 * Math.PI / 4, 3 * Math.PI / 4, 0, Math.PI, -Math.PI / 2, Math.PI / 2];
     for (const distance of [24, 42, 60, 78, 96]) {
       if (position) break;
@@ -205,7 +185,7 @@
     const [cx, cy] = position || [Math.max(18, Math.min(bounds[0] - 18, x)), Math.max(18, Math.min(bounds[1] - 18, y))];
     placed.push([cx, cy]);
     const group = el('g', {
-      class: `map-marker${isHistorical(shop) ? ' is-historical' : ''}${selected === shop.id ? ' is-selected' : ''}`,
+      class: `map-marker${selected === shop.id ? ' is-selected' : ''}`,
       'data-shop': shop.id, tabindex: 0, role: 'button', 'aria-pressed': String(selected === shop.id),
       'aria-label': `${shop.number}. ${shop.name}, ${shop.area}, ${locality(shop)}.${shop.status ? ` ${shop.status}.` : ''} Show shop details.`
     });
@@ -215,7 +195,6 @@
     group.append(el('circle', {cx, cy, r: 20, fill: 'transparent', class: 'marker-hit'}));
     group.append(el('circle', {cx, cy, r, class: 'marker-disc'}));
     group.append(el('text', {x: cx, y: cy, class: 'marker-number', 'text-anchor': 'middle', 'dominant-baseline': 'central'}, shop.number));
-    if (shortLabel) group.append(el('text', {x: cx + 19, y: cy + 4, class: 'place-label'}, shortLabel));
     group.addEventListener('click', () => { if (!suppressClick) select(shop); });
     group.addEventListener('keydown', event => {
       if (event.key === 'Enter' || event.key === ' ') {
@@ -290,9 +269,9 @@
   }
 
   function filter() {
-    const query = $('shop-search').value.trim().toLocaleLowerCase();
+    const query = normalize($('shop-search').value.trim());
     const area = $('area-filter').value;
-    visible = shops.filter(shop => (!area || shop.area === area) && `${shop.name} ${shop.area} ${shop.ward} ${shop.address}`.toLocaleLowerCase().includes(query));
+    visible = shops.filter(shop => (!area || shop.area === area) && shop.haystack.includes(query));
     const ids = new Set(visible.map(shop => shop.id));
     shops.forEach(shop => { $(`shop-${shop.id}`).hidden = !ids.has(shop.id); });
     $('empty-state').hidden = visible.length > 0;
@@ -325,19 +304,13 @@
       if (shop.station) card.append(html('p', 'shop-station', shop.station));
       if (shop.description) card.append(html('p', 'shop-description', shop.description));
       if (shop.note) card.append(html('p', 'shop-note', shop.note));
-      if (shop.status) {
-        const status = html('p', 'shop-status', shop.status);
-        if (isHistorical(shop)) card.classList.add('is-historical');
-        card.append(status);
-      }
+      if (shop.status) card.append(html('p', 'shop-status', shop.status));
       const links = html('div', 'shop-links');
       links.append(link('Open saved location', mapUrl(shop)));
       shop.sources.forEach(source => links.append(link(source.label, source.url)));
       card.append(links);
       card.addEventListener('click', event => {
-        if (event.target.closest('a, button')) return;
-        card.querySelector('shop-select')?.click();
-        select(shop, true);
+        if (!event.target.closest('a, button')) select(shop, true);
       });
       $('shop-list').append(card);
     });
@@ -448,11 +421,15 @@
   async function init() {
     try {
       const [data, boundaries] = await Promise.all([getJSON('assets/ramen-map-data.json'), getJSON('assets/tokyo-wards.geojson')]);
-      const areas = ['Shibadaimon / Minato', 'Omori / Omorikaigan', 'Zoshiki / Kamata', 'Komae', 'Ebisu', 'Shinsen / Shibuya', 'Nishi-Shinjuku', 'Shinjuku', 'Ueno / Okachimachi', 'Tokyo Station', 'Kanda'];
-      shops = data.shops.sort((a, b) => {
-        const rank = area => areas.includes(area) ? areas.indexOf(area) : areas.length;
-        return rank(a.area) - rank(b.area) || a.lng - b.lng;
-      }).map((shop, index) => ({...shop, number: index + 1, point: project(shop.lng, shop.lat)}));
+      shops = data.shops
+        .map(shop => ({
+          ...shop,
+          point: project(shop.lng, shop.lat),
+          haystack: normalize([shop.name, ...(shop.aliases || []), shop.area, shop.ward,
+                               shop.municipality, shop.prefecture, shop.address,
+                               shop.station, shop.style].filter(Boolean).join(' '))
+        }))
+        .sort((a, b) => a.number - b.number);
       visible = [...shops];
       geography(boundaries);
       cards(data);

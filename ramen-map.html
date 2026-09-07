@@ -119,7 +119,6 @@
     .legend-item { display: flex; gap: 10px; align-items: center; }
     .legend-symbol { flex: 0 0 22px; display: inline-flex; align-items: center; justify-content: center; height: 22px; }
     .legend-pin { background: var(--accent); color: #fff; border-radius: 50%; font-size: 10px; font-weight: 700; }
-    .legend-historical { border: 1.5px dashed #9aa3ab; border-radius: 50%; color: #9aa3ab; font-size: 10px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; }
     .legend-dot::before { content: ""; width: 5px; height: 5px; background: var(--accent-ink); border-radius: 50%; }
     .legend-line::before { content: ""; width: 22px; height: 1px; background: var(--transit); }
     .map-hint { margin: 12px 0 0; max-width: 380px; font-size: 11px; color: var(--muted); line-height: 1.5; }
@@ -162,8 +161,6 @@
       border-color: var(--ink); box-shadow: inset 3px 0 0 var(--mark), 0 6px 18px -12px rgba(0,0,0,.35);
       background: #fff;
     }
-    .shop-card.is-historical { background: #f7f8f9; }
-    .shop-card.is-historical.is-selected { background: #fff; }
 
     .shop-select {
       display: flex; gap: 10px; align-items: baseline; width: 100%;
@@ -176,7 +173,6 @@
       border-radius: 50%; background: var(--accent); color: #fff;
       font: 600 11.5px/1 inherit; transform: translateY(2px);
     }
-    .shop-card.is-historical .shop-number { background: #9aa3ab; }
 
     .shop-area {
       margin: 7px 0 0 33px; font-size: 11px; letter-spacing: .05em;
@@ -199,7 +195,6 @@
       background: var(--mark-soft); color: var(--mark-ink); padding: 3px 9px; border-radius: 999px;
       font-weight: 600;
     }
-    .shop-card.is-historical .shop-status { background: #eef0f2; color: #6a737d; }
     .shop-links { margin: 11px 0 0 33px; display: none; flex-wrap: wrap; gap: 7px; }
     .shop-link {
       font-size: 12px; color: var(--ink-soft); text-decoration: none;
@@ -246,9 +241,6 @@
     .map-marker.is-selected .marker-number { fill: var(--ink); }
     .map-marker:hover .marker-disc, .map-marker:focus-visible .marker-disc { fill: var(--accent-ink); }
     .map-marker:focus-visible { outline: 2px solid var(--mark); outline-offset: 4px; }
-    .map-marker.is-historical .marker-disc { fill: #9aa3ab; }
-    .map-marker.is-historical .marker-number { fill: #fff; }
-    .map-marker.is-historical.is-selected .marker-disc { fill: var(--mark); }
 
     @media (max-width: 1040px) {
       .page-shell { padding: 0 20px 32px; }
@@ -303,9 +295,9 @@
       .sources a { text-decoration: none; }
     }
   </style>
-  <script src="js/ramen-map.js?v=516b7412" defer></script>
+  <script src="js/ramen-map.js?v=e2d6254e" defer></script>
 </head>
-<body data-context-shapes="4">
+<body>
   <a class="skip-link" href="#shop-search">Skip to ramen places</a>
   <div class="page-shell">
     <header>
@@ -375,7 +367,6 @@
         <summary>Map notes &amp; exclusions</summary>
         <p>Locations reflect saved-place records, not verified entrances. Each included shop has an address source and a saved map link in its place card. Use those links to check current details before setting out.</p>
         <p>Subway lines provide geographic context only. They are not walking directions, a journey planner, or a suggested visit order.</p>
-        <div id="excluded-list-footer"></div>
       </details>
     </footer>
   </div>

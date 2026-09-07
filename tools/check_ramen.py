@@ -1,4 +1,5 @@
 import json
+import re
 import unittest
 from pathlib import Path
 
@@ -22,6 +23,16 @@ class RamenMapTests(unittest.TestCase):
                 for field in ('name', 'area', 'address', 'station', 'style', 'description', 'coordinateSource', 'sources'):
                     self.assertTrue(shop[field])
                 self.assertTrue(all(source['url'].startswith('https://') for source in shop['sources']))
+
+    def test_numbers_are_contiguous_and_drive_the_map(self):
+        """js/ramen-map.js sorts and labels markers straight from these numbers."""
+        shops = self.data['shops']
+        numbers = sorted(shop['number'] for shop in shops)
+        self.assertEqual(numbers, list(range(1, len(shops) + 1)))
+        by_number = {shop['number']: shop['id'] for shop in shops}
+        self.assertEqual(by_number[13], 'kikanbo')  # the Oni challenge closes the loop
+        script = (ROOT / 'js/ramen-map.js').read_text(encoding='utf-8')
+        self.assertNotIn('number: index + 1', script)  # numbering must come from the data
 
     def test_original_map_corrections(self):
         shops = {shop['id']: shop for shop in self.data['shops']}
@@ -76,6 +87,25 @@ class RamenMapTests(unittest.TestCase):
         self.assertIn('@media print', html)
         self.assertIn('<noscript>', html)
         self.assertIn('ramen-map.html', (ROOT / 'tools/sitelib.py').read_text(encoding='utf-8'))
+
+    def test_script_and_markup_agree(self):
+        """Every id the script reads must exist, and every hook in the page must be used."""
+        html = (ROOT / 'ramen-map.html').read_text(encoding='utf-8')
+        script = (ROOT / 'js/ramen-map.js').read_text(encoding='utf-8')
+        page_ids = set(re.findall(r'\bid="([\w-]+)"', html))
+        # ids created at runtime by the script itself (markers, ward labels, per-shop cards).
+        runtime_ids = set(re.findall(r"id: '([\w-]+)'", script)) | {'ramen-transit'}
+
+        looked_up = set(re.findall(r"\$\('([\w-]+)'\)", script))
+        missing = sorted(looked_up - page_ids - runtime_ids)
+        self.assertEqual(missing, [], f'script reads ids that no element defines: {missing}')
+
+        # Static containers in the page that nothing populates or styles are dead weight.
+        script_refs = looked_up | runtime_ids | set(re.findall(r"getElementById\('([\w-]+)'\)", script))
+        unused = sorted(i for i in page_ids - script_refs
+                        if i not in html.split('<style>')[-1].split('</style>')[0]
+                        and f'href="#{i}"' not in html)
+        self.assertEqual(unused, [], f'page defines ids nothing uses: {unused}')
 
 
 if __name__ == '__main__':
