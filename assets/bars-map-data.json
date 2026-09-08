@@ -147,25 +147,30 @@
       ]
     },
     {
-      "id": "bar-lonely",
+      "id": "kakuretai",
       "number": 7,
-      "name": "Bar Lonely",
+      "name": "KAKURETAI",
       "aliases": [
-        "バー ロンリー"
+        "かくれたい",
+        "KAKURETAI Speakeasy Bar"
       ],
-      "area": "Kabukicho",
+      "area": "Arakicho",
       "ward": "Shinjuku",
-      "lat": 35.6938706,
-      "lng": 139.7049614,
-      "mapsUrl": "https://www.google.com/maps/place/Bar+Lonely/data=!4m2!3m1!1s0x60188daafb137443:0x1bbcbe3e34b856c1",
-      "address": "1-1-8 Kabukicho, Shinjuku-ku, Tokyo",
-      "station": "Shinjuku (JR / Tokyo Metro / Odakyu / Keio) — 5 min walk",
-      "style": "Bar",
-      "description": "A Kabukicho bar that does not try to be anything other than a bar. Counter seats, strong drinks, no attitude. The name is the vibe.",
+      "lat": 35.6890885,
+      "lng": 139.721872,
+      "mapsUrl": "https://www.google.com/maps/place/KAKURETAI-+Speakeasy+Bar/data=!4m2!3m1!1s0x60188dfe7fa3624d:0x6179cc8341bd4c44",
+      "address": "B1F Nakabayashi Building, 1-2 Arakicho, Shinjuku-ku, Tokyo",
+      "station": "Yotsuya-Sanchome (Tokyo Metro Marunouchi) — 2 min walk",
+      "style": "Speakeasy",
+      "description": "A hidden speakeasy in Arakicho, down an unmarked basement entrance. Owner Yuta crafts seasonal cocktails with Japanese fruits — the strawberry margarita and Earl Grey tea sake are standouts. Cheese-and-mouse decor, J-Pop playlists, sometimes a live DJ. A cozy hideout that treats regulars and first-timers the same. Closed weekends.",
       "sources": [
         {
-          "label": "Open in Maps",
-          "url": "https://www.google.com/maps/place/Bar+Lonely/data=!4m2!3m1!1s0x60188daafb137443:0x1bbcbe3e34b856c1"
+          "label": "Tabelog",
+          "url": "https://tabelog.com/en/tokyo/A1309/A130903/13282157/"
+        },
+        {
+          "label": "Instagram",
+          "url": "https://www.instagram.com/kakuretai_tokyo"
         }
       ]
     },
