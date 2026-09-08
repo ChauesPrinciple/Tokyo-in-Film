@@ -218,12 +218,11 @@
   // normally and the map follows.
   let activeStopId = null;
   let cameraAnim = null; // {fromX, fromY, fromW, toX, toY, toW, start, duration}
+  let phaseTimer = null; // pending phase-2 setTimeout for distant stops
 
   function animateCameraTo(targetX, targetY, targetWidth, duration = 600) {
-    if (cameraAnim) {
-      cancelAnimationFrame(cameraAnim.raf);
-      if (cameraAnim.phaseTimer) clearTimeout(cameraAnim.phaseTimer);
-    }
+    if (cameraAnim) cancelAnimationFrame(cameraAnim.raf);
+    if (phaseTimer) { clearTimeout(phaseTimer); phaseTimer = null; }
     // Respect reduced-motion: snap instead of animate
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduced) {
@@ -234,7 +233,7 @@
     cameraAnim = {
       fromX: camera.x, fromY: camera.y, fromW: camera.width,
       toX: targetX, toY: targetY, toW: targetWidth,
-      start: performance.now(), duration, phaseTimer: null
+      start: performance.now(), duration
     };
     function step(now) {
       if (!cameraAnim) return;
@@ -284,8 +283,8 @@
         500
       );
       // Phase 2: zoom in after phase 1 completes
-      // Store the timer so a new animation can cancel it
-      if (cameraAnim) cameraAnim.phaseTimer = setTimeout(() => {
+      phaseTimer = setTimeout(() => {
+        phaseTimer = null;
         animateCameraTo(bar.point[0], bar.point[1], targetWidth, duration);
       }, 550);
     } else {
