@@ -2,6 +2,60 @@
   'use strict';
 
   const $ = id => document.getElementById(id);
+
+  // --- View switch: Journey vs Map & list ---
+  // The journey content is server-rendered (build:journey region), so this
+  // toggle only controls visibility. No data fetching required.
+  // `onShowMap` is wired later (after resize() is defined) so switching to the
+  // map view re-measures the SVG, which the ResizeObserver may have missed
+  // while the panel was hidden.
+  let onShowMap = null;
+  (function initViewSwitch() {
+    const journeyTab = $('view-journey');
+    const mapTab = $('view-map');
+    const journeyView = $('journey-view');
+    const mapView = $('map-view');
+    if (!journeyTab || !mapTab || !journeyView || !mapView) return;
+
+    const tabs = [journeyTab, mapTab];
+
+    function setView(mode) {
+      const isJourney = mode === 'journey';
+      journeyTab.classList.toggle('is-active', isJourney);
+      journeyTab.setAttribute('aria-selected', String(isJourney));
+      mapTab.classList.toggle('is-active', !isJourney);
+      mapTab.setAttribute('aria-selected', String(!isJourney));
+      journeyView.classList.toggle('is-active', isJourney);
+      journeyView.hidden = !isJourney;
+      mapView.classList.toggle('is-active', !isJourney);
+      mapView.hidden = isJourney;
+      try { localStorage.setItem('bars-view', mode); } catch (e) {}
+      if (!isJourney && typeof onShowMap === 'function') onShowMap();
+    }
+
+    journeyTab.addEventListener('click', () => setView('journey'));
+    mapTab.addEventListener('click', () => setView('map'));
+
+    // Arrow-key navigation for the tablist (left/right, home/end).
+    tabs.forEach((tab, i) => {
+      tab.addEventListener('keydown', e => {
+        const keys = {ArrowLeft: i - 1, ArrowRight: i + 1, Home: 0, End: tabs.length - 1};
+        const next = keys[e.key];
+        if (next === undefined) return;
+        e.preventDefault();
+        const target = tabs[Math.max(0, Math.min(tabs.length - 1, next))];
+        target.focus();
+        setView(target === journeyTab ? 'journey' : 'map');
+      });
+    });
+
+    // Restore last choice, default to journey.
+    let initial = 'journey';
+    try { initial = localStorage.getItem('bars-view') || 'journey'; } catch (e) {}
+    if (initial !== 'journey' && initial !== 'map') initial = 'journey';
+    if (initial === 'map') setView('map');
+  })();
+
   const svg = $('bars-map');
   const normalize = text => String(text).normalize('NFD').replace(/\p{M}/gu, '').toLocaleLowerCase();
   const locality = bar => bar.ward ? `${bar.ward} ward, Tokyo` : `${bar.municipality}, ${bar.prefecture}`;
@@ -157,6 +211,159 @@
     render();
   }
 
+  // --- Scroll-driven camera for Journey view ---
+  // As the user scrolls through .stop sections, the map camera pans to the
+  // corresponding bar. Uses an IntersectionObserver to find the active stop,
+  // then smoothly animates the camera. No scroll hijacking — the page scrolls
+  // normally and the map follows.
+  let activeStopId = null;
+  let cameraAnim = null; // {fromX, fromY, fromW, toX, toY, toW, start, duration}
+
+  function animateCameraTo(targetX, targetY, targetWidth, duration = 600) {
+    if (cameraAnim) {
+      cancelAnimationFrame(cameraAnim.raf);
+      if (cameraAnim.phaseTimer) clearTimeout(cameraAnim.phaseTimer);
+    }
+    // Respect reduced-motion: snap instead of animate
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced) {
+      camera.x = targetX; camera.y = targetY; camera.width = targetWidth;
+      render();
+      return;
+    }
+    cameraAnim = {
+      fromX: camera.x, fromY: camera.y, fromW: camera.width,
+      toX: targetX, toY: targetY, toW: targetWidth,
+      start: performance.now(), duration, phaseTimer: null
+    };
+    function step(now) {
+      if (!cameraAnim) return;
+      const t = Math.min(1, (now - cameraAnim.start) / cameraAnim.duration);
+      // ease-in-out cubic
+      const e = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+      camera.x = cameraAnim.fromX + (cameraAnim.toX - cameraAnim.fromX) * e;
+      camera.y = cameraAnim.fromY + (cameraAnim.toY - cameraAnim.fromY) * e;
+      camera.width = cameraAnim.fromW + (cameraAnim.toW - cameraAnim.fromW) * e;
+      render();
+      if (t < 1) cameraAnim.raf = requestAnimationFrame(step);
+      else cameraAnim = null;
+    }
+    cameraAnim.raf = requestAnimationFrame(step);
+  }
+
+  function focusStop(bar, stopElement) {
+    if (!bar || !bar.point) return;
+    activeStopId = bar.id;
+    selected = bar.id;
+    updateSelection();
+
+    // Category-aware camera behavior
+    const cats = stopElement ? (stopElement.dataset.category || '') : '';
+    const isBasement = cats.includes('basement');
+    const isHighrise = cats.includes('highrise');
+    const isDistant = cats.includes('distant');
+    const isSpotlight = cats.includes('spotlight');
+    const isGoldenGai = cats.includes('golden-gai');
+
+    // Default zoom width per category
+    let targetWidth = 3500;
+    if (isBasement) targetWidth = 2800;       // tighter — you're going down
+    if (isHighrise) targetWidth = 5000;        // wider — show the tower in context
+    if (isGoldenGai) targetWidth = 2200;       // tightest — alleys are tiny
+    if (isSpotlight) targetWidth = 4500;      // deliberate, wider final view
+    let duration = 700;
+    if (isSpotlight) duration = 1200;          // slower, more deliberate
+
+    // Distant stops: two-phase animation — pull back to overview, then zoom in
+    if (isDistant) {
+      // Phase 1: pull back to a wide overview between current camera and target
+      animateCameraTo(
+        (camera.x + bar.point[0]) / 2,
+        (camera.y + bar.point[1]) / 2,
+        12000, // wide overview showing both areas
+        500
+      );
+      // Phase 2: zoom in after phase 1 completes
+      // Store the timer so a new animation can cancel it
+      if (cameraAnim) cameraAnim.phaseTimer = setTimeout(() => {
+        animateCameraTo(bar.point[0], bar.point[1], targetWidth, duration);
+      }, 550);
+    } else {
+      animateCameraTo(bar.point[0], bar.point[1], targetWidth, duration);
+    }
+
+    $('map-status').textContent = `${bar.number}. ${bar.name} — ${bar.area}, ${locality(bar)}${bar.status ? ` · ${bar.status}` : ''}`;
+
+    // In map view, scroll the corresponding card into view
+    const mapView = $('map-view');
+    if (mapView && !mapView.hidden) scrollToCard(bar.id);
+  }
+
+  function initScrollObserver() {
+    const stops = document.querySelectorAll('.stop[data-stop]');
+    if (!stops.length) return;
+
+    // Find the bar data for each stop id
+    const barById = new Map(bars.map(b => [b.id, b]));
+
+    // IntersectionObserver: when a stop crosses the middle of the viewport,
+    // it becomes active and the map pans to it.
+    const observer = new IntersectionObserver(entries => {
+      // Only act when journey view is active
+      const journeyView = $('journey-view');
+      if (!journeyView || journeyView.hidden) return;
+
+      // Find the entry closest to the center of the viewport
+      let bestEntry = null, bestDistance = Infinity;
+      const viewportCenter = window.innerHeight / 2;
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        const rect = entry.boundingClientRect;
+        const center = rect.top + rect.height / 2;
+        const dist = Math.abs(center - viewportCenter);
+        if (dist < bestDistance) {
+          bestDistance = dist;
+          bestEntry = entry;
+        }
+      }
+      if (bestEntry) {
+        const stopId = bestEntry.target.dataset.stop;
+        if (stopId && stopId !== activeStopId) {
+          const bar = barById.get(stopId);
+          if (bar) focusStop(bar, bestEntry.target);
+        }
+      }
+    }, {
+      // Trigger when any part of a stop is in the middle band of the viewport
+      rootMargin: '-40% 0px -40% 0px',
+      threshold: 0
+    });
+
+    stops.forEach(stop => observer.observe(stop));
+
+    // Also handle direct clicks on stops — focus the map
+    stops.forEach(stop => {
+      stop.addEventListener('click', () => {
+        const stopId = stop.dataset.stop;
+        const bar = barById.get(stopId);
+        if (bar) focusStop(bar, stop);
+      });
+    });
+
+    // Golden Gai: clicking a subvenue focuses the parent stop's location
+    const subvenues = document.querySelectorAll('.subvenue');
+    subvenues.forEach(sv => {
+      sv.addEventListener('click', e => {
+        e.stopPropagation();
+        const stop = sv.closest('.stop');
+        if (!stop) return;
+        const stopId = stop.dataset.stop;
+        const bar = barById.get(stopId);
+        if (bar) focusStop(bar, stop);
+      });
+    });
+  }
+
   function scrollToCard(id) {
     const card = $(`shop-${id}`);
     if (!card) return;
@@ -261,6 +468,10 @@
     if (savedPrint) fit(bars);
     else render();
   }
+
+  // Now that resize() exists, wire the view switch so unhiding the map
+  // re-measures the SVG (the ResizeObserver may have missed the hidden span).
+  onShowMap = () => requestAnimationFrame(resize);
 
   function zoom(factor, anchor = [width / 2, height / 2]) {
     const old = camera.width;
@@ -434,6 +645,19 @@
       ready = true;
       document.documentElement.dataset.mapReady = 'true';
       $('print-map').disabled = false;
+      // Wire scroll-driven camera for Journey view
+      initScrollObserver();
+      // In journey view, start the camera on the first stop instead of fit()
+      const journeyView = $('journey-view');
+      if (journeyView && !journeyView.hidden && bars.length) {
+        const first = bars[0];
+        camera.x = first.point[0];
+        camera.y = first.point[1];
+        camera.width = 3500;
+        selected = first.id;
+        updateSelection();
+        render();
+      }
       try {
         subway(await getJSON('assets/tokyo-subway.json'));
       } catch (error) {

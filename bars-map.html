@@ -112,8 +112,21 @@
     }
     @media (max-width: 1040px) { .layout { grid-template-columns: 1fr; } }
 
-    .map-panel { position: sticky; top: 20px; }
-    @media (max-width: 1040px) { .map-panel { position: static; } }
+    .map-stage { position: sticky; top: 20px; }
+    @media (max-width: 1040px) {
+      .map-stage {
+        position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+        background: var(--paper); border-bottom: 1px solid var(--line);
+        padding: 8px 16px;
+      }
+      .map-stage .map-toolbar { margin-bottom: 8px; }
+      .map-stage .map-frame { border-radius: 8px; }
+      #bars-map { height: 160px; }
+      .map-stage .map-foot,
+      .map-stage .map-status { display: none; }
+      /* Push content below the fixed mini-map */
+      .layout { padding-top: 240px; }
+    }
 
     .map-toolbar {
       display: flex; gap: 8px; align-items: center; margin-bottom: 12px; flex-wrap: wrap;
@@ -309,6 +322,109 @@
       .shop-select { font-size: 15px; }
     }
 
+    /* View switch — Journey vs Map & list. Both views share the sticky map. */
+    .view-switch {
+      display: flex; gap: 4px; margin: 14px 0 18px;
+      padding: 4px; background: var(--panel); border: 1px solid var(--line);
+      border-radius: 999px; width: fit-content;
+    }
+    .view-tab {
+      font: 600 13.5px/1 inherit; padding: 9px 18px; border: 0; border-radius: 999px;
+      background: transparent; color: var(--ink-soft); cursor: pointer;
+      transition: background .12s, color .12s;
+    }
+    .view-tab:hover { color: var(--ink); }
+    .view-tab.is-active { background: var(--accent); color: #fff; }
+    .view-tab:focus-visible { outline: 2px solid var(--mark-ink); outline-offset: 2px; }
+
+    /* Journey view — readable, no animation yet */
+    .journey-view { display: none; }
+    .journey-view.is-active { display: block; }
+    .map-view { display: none; }
+    .map-view.is-active { display: block; }
+
+    .journey-scroll { max-width: 720px; margin: 0 auto; padding: 0 0 24px; }
+    .journey-intro {
+      margin: 0 0 28px; color: var(--ink-soft); font-size: 15px; line-height: 1.6;
+      max-width: 62ch; padding-bottom: 18px; border-bottom: 1px solid var(--line);
+    }
+
+    .stop {
+      margin: 0 0 28px; padding: 22px 24px 20px;
+      background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
+      scroll-margin: 24px;
+    }
+    .stop.is-spotlight {
+      border-color: var(--glow-line); background: var(--glow-soft);
+    }
+    .stop-head { margin: 0 0 14px; }
+    .stop-number {
+      display: inline-grid; place-items: center; width: 26px; height: 26px;
+      margin: 0 0 8px; border-radius: 50%; background: var(--accent); color: #fff;
+      font: 700 12px/1 inherit;
+    }
+    .stop.is-spotlight .stop-number { background: var(--glow); color: #14121c; }
+    .stop-name { margin: 0; font-size: 24px; font-weight: 700; letter-spacing: -.015em; line-height: 1.2; }
+    .stop-aliases { margin: 5px 0 0; font-size: 13px; color: var(--muted); letter-spacing: .02em; }
+
+    .stop-facts { margin: 0 0 14px; display: grid; grid-template-columns: max-content 1fr; gap: 6px 16px; font-size: 14px; }
+    .stop-facts dt { color: var(--muted); font-weight: 600; letter-spacing: .04em; text-transform: uppercase; font-size: 11px; padding-top: 2px; }
+    .stop-facts dd { margin: 0; color: var(--ink); line-height: 1.5; }
+    .stop.is-spotlight .stop-facts dd { color: var(--glow-ink); }
+
+    .stop-description { margin: 0 0 14px; font-size: 15.5px; line-height: 1.65; color: var(--ink); max-width: 60ch; }
+    .stop.is-spotlight .stop-description { color: var(--ink); }
+
+    .subvenues { margin: 0 0 14px; display: grid; gap: 10px; }
+    .subvenue {
+      padding: 14px 16px; background: var(--paper); border: 1px solid var(--line); border-radius: 8px;
+    }
+    .subvenue-name { margin: 0; font-size: 15.5px; font-weight: 700; }
+    .subvenue-aliases { margin: 3px 0 0; font-size: 12px; color: var(--muted); }
+    .subvenue-floor { margin: 4px 0 0; font-size: 12.5px; color: var(--mark-ink); font-weight: 600; }
+    .subvenue-address { margin: 4px 0 0; font-size: 13px; color: var(--ink-soft); }
+    .subvenue-description { margin: 8px 0 0; font-size: 13.5px; line-height: 1.55; color: var(--ink); }
+    .subvenue-link { display: inline-block; margin: 8px 0 0; font-size: 12px; color: var(--ink-soft); text-decoration: none; border: 1px solid var(--line); border-radius: 999px; padding: 3px 10px; }
+    .subvenue-link:hover { color: var(--ink); border-color: var(--ink); }
+
+    .stop-links { margin: 0; display: flex; flex-wrap: wrap; gap: 7px; }
+    .stop-link {
+      font-size: 12.5px; color: var(--ink-soft); text-decoration: none;
+      border: 1px solid var(--line); border-radius: 999px; padding: 5px 12px; background: var(--paper);
+      transition: border-color .12s, color .12s;
+    }
+    .stop-link:hover { color: var(--ink); border-color: var(--ink); }
+    .stop.is-spotlight .stop-link { border-color: var(--glow-line); }
+    .stop.is-spotlight .stop-link:hover { color: var(--glow-ink); border-color: var(--glow); }
+
+    /* Category visual cues — small floor/transfer indicators */
+    .stop[data-category*="basement"] .stop-number::after {
+      content: " ↓"; font-size: 10px; font-weight: 700; opacity: .7;
+    }
+    .stop[data-category*="highrise"] .stop-number::after {
+      content: " ↑"; font-size: 10px; font-weight: 700; opacity: .7;
+    }
+    .stop[data-category*="distant"] .stop-number::after {
+      content: " ⟷"; font-size: 10px; font-weight: 700; opacity: .7;
+    }
+    .stop[data-category*="golden-gai"] .stop-number::after {
+      content: " ⋮"; font-size: 10px; font-weight: 700; opacity: .7;
+    }
+    /* Spotlight already has the magenta treatment; add a final-stop marker */
+    .stop[data-category*="spotlight"] .stop-number::after {
+      content: " ◆"; font-size: 9px; font-weight: 700; opacity: .8;
+    }
+
+    /* Golden Gai subvenues: make them feel individually selectable */
+    .subvenue { cursor: pointer; transition: border-color .12s, background .12s; }
+    .subvenue:hover { border-color: var(--accent); background: var(--panel); }
+
+    @media (max-width: 600px) {
+      .stop { padding: 18px 18px 16px; }
+      .stop-name { font-size: 21px; }
+      .stop-description { font-size: 14.5px; }
+    }
+
     @page { size: A4 landscape; margin: 10mm; }
     @media print {
       /* Flip back to ink-on-paper: the dark screen palette would flood a printer. */
@@ -324,13 +440,21 @@
         --glow: #a3175c; --glow-soft: #fbeef4; --glow-line: #e0aac6; --glow-ink: #8c134e;
       }
       * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-      body { background: #fff; font-size: 9pt; }
+      body { background: #fff; color: #14121c; font-size: 9pt; }
       .scale-bar { background: none; }
       .shop-card.is-spotlight .shop-number,
       .map-marker.is-spotlight .marker-number { color: #fff; fill: #fff; }
       .shop-card.is-spotlight .shop-status { background: var(--glow); color: #fff; }
       .page-shell { max-width: none; margin: 0; padding: 0 12px; }
-      .skip-link, .masthead nav, .map-toolbar, .toggle, .list-controls, #source-notes, #map-status, .map-hint, .shop-note, .shop-links, noscript, .films { display: none !important; }
+      .skip-link, .masthead nav, .map-toolbar, .toggle, .list-controls, #source-notes, #map-status, .map-hint, .shop-note, .shop-links, noscript, .films, .view-switch, .journey-intro, .stop-links { display: none !important; }
+      .journey-view, .map-view { display: block !important; }
+      .journey-scroll { max-width: none; padding: 0; }
+      .stop { break-inside: avoid; border-radius: 0; margin: 0; padding: 3mm 0; border: 0; border-bottom: 1px solid var(--line); background: #fff; }
+      .stop.is-spotlight { background: var(--glow-soft); }
+      .stop-name { font-size: 12pt; }
+      .stop-description { font-size: 9pt; }
+      .stop-facts { font-size: 8.5pt; }
+      .subvenue { border-color: var(--line); }
       .epigraph { margin: 2mm 0 0; padding-left: 3mm; border-left-width: 2px; break-inside: avoid; }
       .epigraph p { font-size: 8pt; }
       .epigraph figcaption { font-size: 7pt; margin-top: 1mm; }
@@ -339,7 +463,7 @@
       .page-header h1 { font-size: 24pt; }
       .lede { font-size: 8pt; }
       .layout { display: block; }
-      .map-panel { position: static; }
+      .map-stage { position: static; }
       .map-frame { border-radius: 0; }
       #bars-map { height: 110mm; }
       .scale-bar { bottom: 3mm; left: 3mm; font-size: 7pt; }
@@ -367,7 +491,7 @@
       .sources a { text-decoration: none; }
     }
   </style>
-  <script src="js/bars-map.js?v=e695a6a2" defer></script>
+  <script src="js/bars-map.js?v=664d94d4" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#shop-search">Skip to the list</a>
@@ -392,9 +516,13 @@
         </figure>
       </div>
     </header>
-    <noscript><p>This interactive map needs JavaScript to load the bars, map details, and the printable guide. Please enable JavaScript and reload this page.</p></noscript>
+    <noscript><p>This interactive map needs JavaScript to load the bars, map details, and the printable guide. The journey view below is fully readable without JavaScript.</p></noscript>
+    <div class="view-switch" role="tablist" aria-label="View mode">
+      <button type="button" id="view-journey" class="view-tab is-active" role="tab" aria-selected="true" aria-controls="journey-view">Journey</button>
+      <button type="button" id="view-map" class="view-tab" role="tab" aria-selected="false" aria-controls="map-view">Map & list</button>
+    </div>
     <main class="layout">
-      <section class="map-panel" aria-label="Map">
+      <section class="map-stage" aria-label="Map">
         <div class="map-toolbar">
           <button type="button" id="zoom-in" aria-label="Zoom in">+</button>
           <button type="button" id="zoom-out" aria-label="Zoom out">&minus;</button>
@@ -412,7 +540,7 @@
             <h2 class="key-heading" id="map-legend-heading">Reading the map</h2>
             <ul id="map-legend" aria-labelledby="map-legend-heading">
               <li class="legend-item"><span class="legend-symbol legend-pin" aria-hidden="true">1</span> Number matches the place index</li>
-              <li class="legend-item"><span class="legend-symbol legend-pin legend-spotlight" aria-hidden="true">31</span> Members only — arrange access before you travel</li>
+              <li class="legend-item"><span class="legend-symbol legend-pin legend-spotlight" aria-hidden="true">30</span> Members only — arrange access before you travel</li>
               <li class="legend-item"><span class="legend-symbol legend-dot" aria-hidden="true"></span> Dot: saved location; numbered badge may be offset</li>
               <li class="legend-item"><span class="legend-symbol legend-line" aria-hidden="true"></span> Subway context, not walking directions</li>
             </ul>
@@ -420,6 +548,584 @@
           </div>
         </div>
       </section>
+      <section id="journey-view" class="journey-view is-active" role="tabpanel" aria-labelledby="view-journey">
+        <div class="journey-scroll">
+<!-- build:journey -->
+<p class="journey-intro">Scroll through the night. Each stop is a place — with its floor, its address, and a note on what it is. Switch to Map & list to see them all at once.</p>
+  <section class="stop" id="stop-apollo-bar" data-stop="apollo-bar" data-number="1" data-floor="B1F" data-category="basement">
+    <header class="stop-head">
+      <p class="stop-number">1</p>
+      <h3 class="stop-name">Apollo Bar Ginza</h3>
+      <p class="stop-aliases">アポロバー銀座</p>
+    </header>
+    <dl class="stop-facts">
+      <dt>Type</dt><dd>Cocktail bar</dd>
+      <dt>Floor</dt><dd>B1F</dd>
+      <dt>Address</dt><dd>B1F MEIKO Building, 8-2-15 Ginza, Chuo-ku, Tokyo</dd>
+      <dt>Locality</dt><dd>Chuo ward, Tokyo</dd>
+      <dt>Station</dt><dd>Shimbashi (JR / Tokyo Metro) — 5 min walk</dd>
+    </dl>
+    <p class="stop-description">A Ginza cocktail bar with a modern, relaxed feel compared to the old-school counters nearby. Good for a long evening that starts here and moves.</p>
+    <p class="stop-links">
+      <a class="stop-link" href="https://www.google.com/maps/place/APOLLO+BAR+GINZA/data=!4m2!3m1!1s0x0:0x89c9493ae4d0df85" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+    </p>
+  </section>
+  <section class="stop" id="stop-star-bar" data-stop="star-bar" data-number="2" data-floor="B1F" data-category="basement">
+    <header class="stop-head">
+      <p class="stop-number">2</p>
+      <h3 class="stop-name">Star Bar Ginza</h3>
+      <p class="stop-aliases">スターバー銀座</p>
+    </header>
+    <dl class="stop-facts">
+      <dt>Type</dt><dd>Classic cocktail bar</dd>
+      <dt>Floor</dt><dd>B1F</dd>
+      <dt>Address</dt><dd>B1F MODERNS GINZA, 1-5-13 Ginza, Chuo-ku, Tokyo</dd>
+      <dt>Locality</dt><dd>Chuo ward, Tokyo</dd>
+      <dt>Station</dt><dd>Ginza (Tokyo Metro Ginza/Marunouchi/Hibiya) — 3 min walk</dd>
+    </dl>
+    <p class="stop-description">One of Ginza&#x27;s most respected cocktail bars. A short counter, ice carved by hand, and drinks built with a precision that makes the room go quiet. The kind of place where you order one thing and stay for three.</p>
+    <p class="stop-links">
+      <a class="stop-link" href="https://www.google.com/maps/place/Star+Bar+Ginza/data=!4m2!3m1!1s0x60188be462541b4f:0xd175d7d502838db3" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+    </p>
+  </section>
+  <section class="stop" id="stop-lamp-bar" data-stop="lamp-bar" data-number="3" data-floor="4F">
+    <header class="stop-head">
+      <p class="stop-number">3</p>
+      <h3 class="stop-name">Lamp Bar</h3>
+      <p class="stop-aliases">ランプバー</p>
+    </header>
+    <dl class="stop-facts">
+      <dt>Type</dt><dd>Bar</dd>
+      <dt>Floor</dt><dd>4F</dd>
+      <dt>Address</dt><dd>4F Wakamatsu Building, 6-6-19 Ginza, Chuo-ku, Tokyo</dd>
+      <dt>Locality</dt><dd>Chuo ward, Tokyo</dd>
+      <dt>Station</dt><dd>Ginza (Tokyo Metro Ginza/Marunouchi/Hibiya) — 4 min walk</dd>
+    </dl>
+    <p class="stop-description">A warm, lamplit Ginza counter bar. Quiet, intimate, and the kind of place where the bartender remembers what you drank last time.</p>
+    <p class="stop-links">
+      <a class="stop-link" href="https://www.google.com/maps/place/LAMP+BAR/data=!4m2!3m1!1s0x60013a29c590c9eb:0xa45e576f05e2ccc5" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+    </p>
+  </section>
+  <section class="stop" id="stop-nocturne" data-stop="nocturne" data-number="4" data-floor="3F">
+    <header class="stop-head">
+      <p class="stop-number">4</p>
+      <h3 class="stop-name">NOCTURNE</h3>
+      <p class="stop-aliases">ノクターン · オーセンティックバー Nocturne</p>
+    </header>
+    <dl class="stop-facts">
+      <dt>Type</dt><dd>Authentic bar</dd>
+      <dt>Floor</dt><dd>3F</dd>
+      <dt>Address</dt><dd>3F Ryushin Building, 8-7-9 Ginza, Chuo-ku, Tokyo</dd>
+      <dt>Locality</dt><dd>Chuo ward, Tokyo</dd>
+      <dt>Station</dt><dd>Shimbashi (JR / Tokyo Metro) — 5 min walk</dd>
+    </dl>
+    <p class="stop-description">An authentic bar on the 3rd floor of the Ryushin Building in Ginza, near Shimbashi. A quiet counter with a master who knows his cocktails and his regulars. The kind of Ginza bar where the elevator entrance is hard to find — that is the point.</p>
+    <p class="stop-links">
+      <a class="stop-link" href="https://www.google.com/maps/search/?api=1&amp;query=NOCTURNE+Ginza+8-7-9+Tokyo" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+      <a class="stop-link" href="https://tabelog.com/tokyo/A1301/A130103/13058173/" target="_blank" rel="noopener noreferrer">Tabelog</a>
+    </p>
+  </section>
+  <section class="stop" id="stop-new-york-bar" data-stop="new-york-bar" data-number="5" data-category="highrise">
+    <header class="stop-head">
+      <p class="stop-number">5</p>
+      <h3 class="stop-name">New York Bar</h3>
+      <p class="stop-aliases">ニューヨークバー · Park Hyatt Tokyo</p>
+    </header>
+    <dl class="stop-facts">
+      <dt>Type</dt><dd>Hotel bar · high-end</dd>
+      <dt>Address</dt><dd>Park Hyatt Tokyo, 52F, 3-7-1-2 Nishishinjuku, Shinjuku-ku, Tokyo</dd>
+      <dt>Locality</dt><dd>Shinjuku ward, Tokyo</dd>
+      <dt>Station</dt><dd>Shinjuku (JR / Tokyo Metro / Odakyu / Keio) — 10 min walk</dd>
+    </dl>
+    <p class="stop-description">The bar from Lost in Translation. Fifty-second floor of the Park Hyatt, floor-to-ceiling windows, a live jazz trio, and a whisky list that runs deep. Expensive, and worth it once. Go early on a weeknight for a seat by the window.</p>
+    <p class="stop-links">
+      <a class="stop-link" href="http://maps.google.com/?cid=7415215759206413780" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+    </p>
+  </section>
+  <section class="stop" id="stop-bar-cocktailbook" data-stop="bar-cocktailbook" data-number="6" data-floor="2F">
+    <header class="stop-head">
+      <p class="stop-number">6</p>
+      <h3 class="stop-name">Bar Cocktailbook Shinjuku</h3>
+      <p class="stop-aliases">バー カクテルブック 新宿</p>
+    </header>
+    <dl class="stop-facts">
+      <dt>Type</dt><dd>Cocktail bar</dd>
+      <dt>Floor</dt><dd>2F</dd>
+      <dt>Address</dt><dd>2F Plaza Nishishinjuku, 7-5-5 Nishishinjuku, Shinjuku-ku, Tokyo</dd>
+      <dt>Locality</dt><dd>Shinjuku ward, Tokyo</dd>
+      <dt>Station</dt><dd>Shinjuku (JR / Tokyo Metro / Odakyu / Keio) — 5 min walk</dd>
+    </dl>
+    <p class="stop-description">A Shinjuku cocktail bar with a bookshelf of cocktail recipes behind the counter. The bartender will make you something off the page if you ask. A quieter alternative to the Ginza circuit.</p>
+    <p class="stop-links">
+      <a class="stop-link" href="https://www.google.com/maps/place/Bar+Cocktailbook+Shinjuku/data=!4m2!3m1!1s0x60188d29c95985c9:0x54f5ec36ecff12c" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+    </p>
+  </section>
+  <section class="stop" id="stop-bar-lonely" data-stop="bar-lonely" data-number="7">
+    <header class="stop-head">
+      <p class="stop-number">7</p>
+      <h3 class="stop-name">Bar Lonely</h3>
+      <p class="stop-aliases">バー ロンリー</p>
+    </header>
+    <dl class="stop-facts">
+      <dt>Type</dt><dd>Bar</dd>
+      <dt>Address</dt><dd>1-1-8 Kabukicho, Shinjuku-ku, Tokyo</dd>
+      <dt>Locality</dt><dd>Shinjuku ward, Tokyo</dd>
+      <dt>Station</dt><dd>Shinjuku (JR / Tokyo Metro / Odakyu / Keio) — 5 min walk</dd>
+    </dl>
+    <p class="stop-description">A Kabukicho bar that does not try to be anything other than a bar. Counter seats, strong drinks, no attitude. The name is the vibe.</p>
+    <p class="stop-links">
+      <a class="stop-link" href="https://www.google.com/maps/place/Bar+Lonely/data=!4m2!3m1!1s0x60188daafb137443:0x1bbcbe3e34b856c1" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+    </p>
+  </section>
+  <section class="stop" id="stop-bar-rest" data-stop="bar-rest" data-number="8" data-floor="3F">
+    <header class="stop-head">
+      <p class="stop-number">8</p>
+      <h3 class="stop-name">Bar rest</h3>
+      <p class="stop-aliases">歌舞伎町 rest · スナックバー rest</p>
+    </header>
+    <dl class="stop-facts">
+      <dt>Type</dt><dd>Snack bar</dd>
+      <dt>Floor</dt><dd>3F</dd>
+      <dt>Address</dt><dd>3F Dai-san Hirasawa Building, 2-46-7 Kabukicho, Shinjuku-ku, Tokyo</dd>
+      <dt>Locality</dt><dd>Shinjuku ward, Tokyo</dd>
+      <dt>Station</dt><dd>Shinjuku (JR / Tokyo Metro / Odakyu / Keio) — 5 min walk</dd>
+    </dl>
+    <p class="stop-description">A snack bar on the 3rd floor of the Dai-san Hirasawa Building in Kabukicho, one minute from Seibu-Shinjuku station. A hidden counter with a view of the trains rolling past the Shinjuku skyline. The master keeps a quiet room above the noise below.</p>
+    <p class="stop-links">
+      <a class="stop-link" href="https://www.google.com/maps/search/?api=1&amp;query=Bar+rest+2-46-7+Kabukicho+Shinjuku+Tokyo" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+      <a class="stop-link" href="https://bar-rest.shop/" target="_blank" rel="noopener noreferrer">Official site</a>
+    </p>
+  </section>
+  <section class="stop" id="stop-eigakan-jazz" data-stop="eigakan-jazz" data-number="9" data-floor="B1F" data-category="basement">
+    <header class="stop-head">
+      <p class="stop-number">9</p>
+      <h3 class="stop-name">Eigakan Jazz</h3>
+      <p class="stop-aliases">映画館ジャズ</p>
+    </header>
+    <dl class="stop-facts">
+      <dt>Type</dt><dd>Jazz bar</dd>
+      <dt>Floor</dt><dd>B1F</dd>
+      <dt>Address</dt><dd>B1F, 5-33-19 Hakusan, Bunkyo-ku, Tokyo 112-0001</dd>
+      <dt>Locality</dt><dd>Bunkyo ward, Tokyo</dd>
+      <dt>Station</dt><dd>Hakusan (Toei Mita Line A3) — 1 min walk</dd>
+    </dl>
+    <p class="stop-description">A jazz kissa in Hakusan, down a narrow staircase from street level. The name means &#x27;cinema.&#x27; Vinyl on the turntable, dim light below ground, and a room that has been spinning records for decades. Cash only. Closed Sundays, Mondays, and holidays.</p>
+    <p class="stop-links">
+      <a class="stop-link" href="https://www.google.com/maps/search/?api=1&amp;query=Eigakan+Jazz+5-33-19+Hakusan+Bunkyo+Tokyo" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+      <a class="stop-link" href="http://www.jazzeigakan.com/" target="_blank" rel="noopener noreferrer">Official site</a>
+    </p>
+  </section>
+  <section class="stop" id="stop-sake-market" data-stop="sake-market" data-number="10" data-floor="6F">
+    <header class="stop-head">
+      <p class="stop-number">10</p>
+      <h3 class="stop-name">SAKE MARKET Shinjuku</h3>
+      <p class="stop-aliases">サケマーケット新宿</p>
+    </header>
+    <dl class="stop-facts">
+      <dt>Type</dt><dd>Sake bar</dd>
+      <dt>Floor</dt><dd>6F</dd>
+      <dt>Address</dt><dd>6F Shinjuku Watassei-Tama Building, 3-9-9 Shinjuku, Shinjuku-ku, Tokyo</dd>
+      <dt>Locality</dt><dd>Shinjuku ward, Tokyo</dd>
+      <dt>Station</dt><dd>Shinjuku (JR / Tokyo Metro / Odakyu / Keio) — 3 min walk</dd>
+    </dl>
+    <p class="stop-description">A sake bar in Shinjuku with a rotating selection by the glass. Good for a tasting flight before moving on to dinner.</p>
+    <p class="stop-links">
+      <a class="stop-link" href="http://maps.google.com/?cid=7870946726099253627" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+    </p>
+  </section>
+  <section class="stop" id="stop-a-bar-sleeping-tales" data-stop="a-bar-sleeping-tales" data-number="11" data-floor="B1F" data-category="basement">
+    <header class="stop-head">
+      <p class="stop-number">11</p>
+      <h3 class="stop-name">a BAR Sleeping Tales</h3>
+      <p class="stop-aliases">ア バー スリーピング テイルズ</p>
+    </header>
+    <dl class="stop-facts">
+      <dt>Type</dt><dd>Bar</dd>
+      <dt>Floor</dt><dd>B1F</dd>
+      <dt>Address</dt><dd>B1F (right door) Towa Shinjuku Gyoen Co-op II, 2-1-14 Shinjuku, Shinjuku-ku, Tokyo</dd>
+      <dt>Locality</dt><dd>Shinjuku ward, Tokyo</dd>
+      <dt>Station</dt><dd>Shinjuku (JR / Tokyo Metro / Odakyu / Keio) — 5 min walk</dd>
+    </dl>
+    <p class="stop-description">A Shinjuku bar with a storybook name. A quiet counter for a late drink, away from the Kabukicho noise.</p>
+    <p class="stop-links">
+      <a class="stop-link" href="https://www.google.com/maps/place/a+BAR+Sleeping+Tales/data=!4m2!3m1!1s0x60188d0016ef28d1:0xc10f48326e234d67" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+    </p>
+  </section>
+  <section class="stop" id="stop-janai-coffee" data-stop="janai-coffee" data-number="12" data-floor="B1F" data-category="basement">
+    <header class="stop-head">
+      <p class="stop-number">12</p>
+      <h3 class="stop-name">JANAI COFFEE</h3>
+      <p class="stop-aliases">ジャナイコーヒー</p>
+    </header>
+    <dl class="stop-facts">
+      <dt>Type</dt><dd>Speakeasy</dd>
+      <dt>Floor</dt><dd>B1F</dd>
+      <dt>Address</dt><dd>B1F Yamanen Building, 2-3-13 Ebisuminami, Shibuya-ku, Tokyo</dd>
+      <dt>Locality</dt><dd>Shibuya ward, Tokyo</dd>
+      <dt>Station</dt><dd>Ebisu (JR Yamanote / Tokyo Metro Hibiya) — 3 min walk</dd>
+    </dl>
+    <p class="stop-description">It is called a coffee shop. It is not a coffee shop. JANAI means &#x27;not this&#x27; — the door is a speakeasy entrance, and what is behind it is a bar. Go down the stairs, find the door, and order a drink. The coffee is a cover story.</p>
+    <p class="stop-links">
+      <a class="stop-link" href="https://www.google.com/maps/place/JANAI+COFFEE/data=!4m2!3m1!1s0x60188b40c1000001:0xf21b512300945656" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+    </p>
+  </section>
+  <section class="stop" id="stop-a10" data-stop="a10" data-number="13" data-floor="B1F" data-category="basement">
+    <header class="stop-head">
+      <p class="stop-number">13</p>
+      <h3 class="stop-name">A10</h3>
+      <p class="stop-aliases">エーテン</p>
+    </header>
+    <dl class="stop-facts">
+      <dt>Type</dt><dd>Bar</dd>
+      <dt>Floor</dt><dd>B1F</dd>
+      <dt>Address</dt><dd>B1F Bios Building, 1-12-11 Ebisunishi, Shibuya-ku, Tokyo</dd>
+      <dt>Locality</dt><dd>Shibuya ward, Tokyo</dd>
+      <dt>Station</dt><dd>Ebisu (JR Yamanote / Tokyo Metro Hibiya) — 3 min walk</dd>
+    </dl>
+    <p class="stop-description">An Ebisu bar around the corner from JANAI. Small, focused, and easy to miss if you are not looking for it.</p>
+    <p class="stop-links">
+      <a class="stop-link" href="https://www.google.com/maps/place/A10/data=!4m2!3m1!1s0x60188b8d0bbc998d:0xdbdb6eb72400c38f" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+    </p>
+  </section>
+  <section class="stop" id="stop-fightclub" data-stop="fightclub" data-number="14" data-floor="1F">
+    <header class="stop-head">
+      <p class="stop-number">14</p>
+      <h3 class="stop-name">FIGHTCLUB Shibuya</h3>
+      <p class="stop-aliases">ファイトクラブ渋谷</p>
+    </header>
+    <dl class="stop-facts">
+      <dt>Type</dt><dd>Bar</dd>
+      <dt>Floor</dt><dd>1F</dd>
+      <dt>Address</dt><dd>1F Towa Dogenzaka Building, 2-27-2 Dogenzaka, Shibuya-ku, Tokyo</dd>
+      <dt>Locality</dt><dd>Shibuya ward, Tokyo</dd>
+      <dt>Station</dt><dd>Shibuya (JR / Tokyo Metro / Tokyu / Keio Inokashira) — 3 min walk</dd>
+    </dl>
+    <p class="stop-description">A kickboxing gym and bar on Dogenzaka in Shibuya. Fight training upstairs, drinks after. Not a cocktail bar — a place where the crowd came to hit things and then order a round. Loud, young, and exactly what the name says.</p>
+    <p class="stop-links">
+      <a class="stop-link" href="https://www.google.com/maps/search/?api=1&amp;query=FIGHTCLUB+Shibuya+2-27-2+Dogenzaka+Tokyo" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+    </p>
+  </section>
+  <section class="stop" id="stop-bundan" data-stop="bundan" data-number="15">
+    <header class="stop-head">
+      <p class="stop-number">15</p>
+      <h3 class="stop-name">BUNDAN Coffee &amp; Beer</h3>
+      <p class="stop-aliases">文旦</p>
+    </header>
+    <dl class="stop-facts">
+      <dt>Type</dt><dd>Coffee &amp; beer bar</dd>
+      <dt>Address</dt><dd>Inside the Museum of Modern Japanese Literature, 4-3-55 Komaba, Meguro-ku, Tokyo</dd>
+      <dt>Locality</dt><dd>Meguro ward, Tokyo</dd>
+      <dt>Station</dt><dd>Komaba-Todaimae (Keio Inokashira) — 3 min walk</dd>
+    </dl>
+    <p class="stop-description">A literary cafe and bar inside the Museum of Modern Japanese Literature in Komaba. Coffee by day, beer and wine by evening, and books on every wall. The name means &#x27;passing along a story.&#x27; A quiet stop between the museum and the park.</p>
+    <p class="stop-links">
+      <a class="stop-link" href="https://www.google.com/maps/search/?api=1&amp;query=BUNDAN+Coffee+Beer+Komaba+Meguro+Tokyo" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+    </p>
+  </section>
+  <section class="stop" id="stop-bar-sawa" data-stop="bar-sawa" data-number="16" data-floor="1F">
+    <header class="stop-head">
+      <p class="stop-number">16</p>
+      <h3 class="stop-name">Bar sawa</h3>
+      <p class="stop-aliases">バー サワ</p>
+    </header>
+    <dl class="stop-facts">
+      <dt>Type</dt><dd>Bar</dd>
+      <dt>Floor</dt><dd>1F</dd>
+      <dt>Address</dt><dd>1F Forum Nakameguro, 1-6-7 Higashiyama, Meguro-ku, Tokyo</dd>
+      <dt>Locality</dt><dd>Meguro ward, Tokyo</dd>
+      <dt>Station</dt><dd>Nakameguro (Tokyo Metro Hibiya) — 5 min walk</dd>
+    </dl>
+    <p class="stop-description">A bar in Higashiyama, the quiet side of Nakameguro. A counter spot for a drink before or after dinner in the neighborhood.</p>
+    <p class="stop-links">
+      <a class="stop-link" href="https://www.google.com/maps/place/Bar+sawa/data=!4m2!3m1!1s0x80c2c78f35b274cd:0xf372ecbef3bf0575" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+    </p>
+  </section>
+  <section class="stop" id="stop-gen-yamamoto" data-stop="gen-yamamoto" data-number="17" data-floor="1F">
+    <header class="stop-head">
+      <p class="stop-number">17</p>
+      <h3 class="stop-name">Gen Yamamoto</h3>
+      <p class="stop-aliases">ゲン ヤマモト</p>
+    </header>
+    <dl class="stop-facts">
+      <dt>Type</dt><dd>Cocktail bar · high-end</dd>
+      <dt>Floor</dt><dd>1F</dd>
+      <dt>Address</dt><dd>1F Anniversary Building, 1-6-4 Azabujuban, Minato-ku, Tokyo</dd>
+      <dt>Locality</dt><dd>Minato ward, Tokyo</dd>
+      <dt>Station</dt><dd>Azabujuban (Toei Oedo) — 3 min walk</dd>
+    </dl>
+    <p class="stop-description">A reservation-only cocktail bar in Azabujuban. One bartender, a short counter, and a tasting-menu-style flight of seasonal cocktails built on Japanese ingredients. Sit, watch, do not rush.</p>
+    <p class="stop-links">
+      <a class="stop-link" href="http://maps.google.com/?cid=9087814451927436466" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+    </p>
+  </section>
+  <section class="stop" id="stop-bar-centifolia" data-stop="bar-centifolia" data-number="18" data-floor="6F">
+    <header class="stop-head">
+      <p class="stop-number">18</p>
+      <h3 class="stop-name">Bar Centifolia</h3>
+      <p class="stop-aliases">バー センティフォリア</p>
+    </header>
+    <dl class="stop-facts">
+      <dt>Type</dt><dd>Bar</dd>
+      <dt>Floor</dt><dd>6F</dd>
+      <dt>Address</dt><dd>6F La Muse Azabujuban Building, 1-6-5 Azabujuban, Minato-ku, Tokyo</dd>
+      <dt>Locality</dt><dd>Minato ward, Tokyo</dd>
+      <dt>Station</dt><dd>Azabujuban (Toei Oedo) — 3 min walk</dd>
+    </dl>
+    <p class="stop-description">An Azabujuban bar near Gen Yamamoto. A quieter, older-school counter for a late drink in the neighborhood.</p>
+    <p class="stop-links">
+      <a class="stop-link" href="https://www.google.com/maps/place/Bar+Centifolia/data=!4m2!3m1!1s0x60188b9fa69c033f:0xc44593ba0ccc4863" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+    </p>
+  </section>
+  <section class="stop" id="stop-rokusan-angel" data-stop="rokusan-angel" data-number="19" data-floor="B2F" data-category="basement">
+    <header class="stop-head">
+      <p class="stop-number">19</p>
+      <h3 class="stop-name">Rokusan Angel (Burlesque Tokyo)</h3>
+      <p class="stop-aliases">六三アングル</p>
+    </header>
+    <dl class="stop-facts">
+      <dt>Type</dt><dd>Burlesque bar</dd>
+      <dt>Floor</dt><dd>B2F</dd>
+      <dt>Address</dt><dd>B2F Roppongi Nittaku Building, 3-8-15 Roppongi, Minato-ku, Tokyo</dd>
+      <dt>Locality</dt><dd>Minato ward, Tokyo</dd>
+      <dt>Station</dt><dd>Roppongi (Toei Oedo / Tokyo Metro Hibiya) — 5 min walk</dd>
+    </dl>
+    <p class="stop-description">A Roppongi burlesque bar. Live performances, cocktails, and a stage that is close enough to touch. Book ahead.</p>
+    <p class="stop-links">
+      <a class="stop-link" href="https://www.google.com/maps/place/ROKUSAN+ANGEL%EF%BC%88Burlesque+Tokyo%EF%BC%89/data=!4m2!3m1!1s0x60188b78685d2fcb:0x949f91afc7f95845" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+    </p>
+  </section>
+  <section class="stop" id="stop-bar-under" data-stop="bar-under" data-number="20" data-floor="B1F" data-category="basement">
+    <header class="stop-head">
+      <p class="stop-number">20</p>
+      <h3 class="stop-name">BAR &amp;UNDER</h3>
+      <p class="stop-aliases">バー アンドアンダー</p>
+    </header>
+    <dl class="stop-facts">
+      <dt>Type</dt><dd>Bar</dd>
+      <dt>Floor</dt><dd>B1F</dd>
+      <dt>Address</dt><dd>B1F Sotokanda Kanemura Building, 2-6-4 Sotokanda, Chiyoda-ku, Tokyo</dd>
+      <dt>Locality</dt><dd>Chiyoda ward, Tokyo</dd>
+      <dt>Station</dt><dd>Akihabara (JR / Tokyo Metro Hibiya) — 5 min walk</dd>
+    </dl>
+    <p class="stop-description">A basement bar in Kanda, near Akihabara. The name tells you where to look — go down. A good late-night stop in a neighborhood that shuts early.</p>
+    <p class="stop-links">
+      <a class="stop-link" href="https://www.google.com/maps/place/BAR+%26UNDER/data=!4m2!3m1!1s0x60188d5ee280613d:0xfda3db99d25dd786" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+    </p>
+  </section>
+  <section class="stop" id="stop-golden-gai-trio" data-stop="golden-gai-trio" data-number="21" data-category="golden-gai">
+    <header class="stop-head">
+      <p class="stop-number">21</p>
+      <h3 class="stop-name">Golden Gai: Happy, BAR COO &amp; OPEN BOOK</h3>
+      <p class="stop-aliases">新宿ゴールデン街 · ハッピー ロッキンソールバー · BAR COO · バー 空 · OPEN BOOK · オープンブック</p>
+    </header>
+    <dl class="stop-facts">
+      <dt>Type</dt><dd>Golden Gai bars</dd>
+      <dt>Address</dt><dd>1-1-6 to 1-1-8 Kabukicho, Shinjuku-ku, Tokyo</dd>
+      <dt>Locality</dt><dd>Shinjuku ward, Tokyo</dd>
+      <dt>Station</dt><dd>Shinjuku (JR / Tokyo Metro / Toei) — 5 min walk</dd>
+    </dl>
+    <p class="stop-description">Three bars in Shinjuku Golden Gai, the dense cluster of 200-plus tiny drinking dens off Kabukicho — each on a different floor of the same narrow alley. Happy (Rockin&#x27; Soul Bar) is up on the 3rd floor of the Maruha Building at 1-1-7 — a soul-and-rock counter with a 4.8 rating. BAR COO (バー 空) is at street level (1F) at 1-1-8, on Golden Gai 3rd street — six seats, drinks and snacks at the owner&#x27;s discretion, like drinking in a friend&#x27;s kitchen. OPEN BOOK is on Golden Gai 5th street at 1-1-6, ground floor, no signboard — a lemon sour bar founded in 2015, shelves lined with books inherited from the owner&#x27;s grandfather, poet Tanaka Kojimasa. Pick any of the three, or bar-hop between them.</p>
+    <div class="subvenues" role="list">
+      <article class="subvenue" data-floor="3F">
+        <h4 class="subvenue-name">Happy (Rockin&#x27; Soul Bar)</h4>
+        <p class="subvenue-aliases">ハッピー · ロッキンソールバー</p>
+        <p class="subvenue-floor">3F · Maruha Building</p>
+        <p class="subvenue-address">3F Maruha Building, 1-1-7 Kabukicho, Shinjuku-ku, Tokyo</p>
+        <p class="subvenue-description">A soul-and-rock counter bar on the 3rd floor of the Maruha Building. 4.8 rating. Go up the stairs.</p>
+        <a class="subvenue-link" href="https://www.google.com/maps/search/?api=1&amp;query=Happy+Rockin+Soul+Bar+1-1-7+Kabukicho+Shinjuku+Tokyo" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+      </article>
+      <article class="subvenue" data-floor="1F">
+        <h4 class="subvenue-name">BAR COO</h4>
+        <p class="subvenue-aliases">バー 空 · BAR COO 空</p>
+        <p class="subvenue-floor">1F</p>
+        <p class="subvenue-address">1F, 1-1-8 Kabukicho, Shinjuku-ku, Tokyo</p>
+        <p class="subvenue-description">A six-seat casual bar on Golden Gai 3rd street. Drinks and snacks at the owner&#x27;s discretion — like drinking in a friend&#x27;s kitchen.</p>
+        <a class="subvenue-link" href="https://www.google.com/maps/search/?api=1&amp;query=BAR+COO+1-1-8+Kabukicho+Shinjuku+Tokyo" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+      </article>
+      <article class="subvenue" data-floor="Ground floor">
+        <h4 class="subvenue-name">OPEN BOOK</h4>
+        <p class="subvenue-aliases">オープンブック</p>
+        <p class="subvenue-floor">Ground floor</p>
+        <p class="subvenue-address">1-1-6 Kabukicho, Shinjuku-ku, Tokyo</p>
+        <p class="subvenue-description">A lemon sour bar on Golden Gai 5th street, founded in 2015. No signboard — third door from the outside. Shelves lined with books inherited from the owner&#x27;s grandfather, poet Tanaka Kojimasa.</p>
+        <a class="subvenue-link" href="https://www.google.com/maps/search/?api=1&amp;query=OPEN+BOOK+1-1-6+Kabukicho+Golden+Gai+Shinjuku+Tokyo" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+      </article>
+    </div>
+    <p class="stop-links">
+      <a class="stop-link" href="https://www.google.com/maps/place/Shinjuku+Golden+Gai/data=!4m2!3m1!1s0x60188be462541b4f:0x0" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+      <a class="stop-link" href="https://www.google.com/maps/place/Happy+Rockin+Soul+Bar/data=!4m2!3m1!1s0x60188be462541b4f:0x0" target="_blank" rel="noopener noreferrer">Happy on Maps</a>
+      <a class="stop-link" href="https://bar-quest.com/en/bars/265ceb06b92a" target="_blank" rel="noopener noreferrer">BAR COO on bar-quest.com</a>
+      <a class="stop-link" href="http://ocha-naru.com/" target="_blank" rel="noopener noreferrer">OPEN BOOK at ocha-naru.com</a>
+    </p>
+  </section>
+  <section class="stop" id="stop-bar-willows" data-stop="bar-willows" data-number="22" data-floor="6F-">
+    <header class="stop-head">
+      <p class="stop-number">22</p>
+      <h3 class="stop-name">BAR Willow&#x27;s</h3>
+      <p class="stop-aliases">バー ウィローズ</p>
+    </header>
+    <dl class="stop-facts">
+      <dt>Type</dt><dd>Bar</dd>
+      <dt>Floor</dt><dd>6F-</dd>
+      <dt>Address</dt><dd>6F-E, 88 Building, 2-1-3 Ueno, Taito-ku, Tokyo</dd>
+      <dt>Locality</dt><dd>Taito ward, Tokyo</dd>
+      <dt>Station</dt><dd>Okachimachi (JR) — 3 min walk; Ueno-Hirokoji (Tokyo Metro Ginza) — 1 min walk</dd>
+    </dl>
+    <p class="stop-description">A bar on the 6th floor of the 88 Building in Ueno. Antique chairs, a long cocktail and whisky list, and a counter that welcomes first-timers. The kind of hidden-floor Tokyo bar you have to know the elevator for.</p>
+    <p class="stop-links">
+      <a class="stop-link" href="https://www.google.com/maps/place/BAR+Willow&#x27;s/data=!4m2!3m1!1s0x60188d3e5e0018b3:0xe2bda4fa0a3810c4" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+    </p>
+  </section>
+  <section class="stop" id="stop-the-trad" data-stop="the-trad" data-number="23" data-floor="1F">
+    <header class="stop-head">
+      <p class="stop-number">23</p>
+      <h3 class="stop-name">The TRAD whisky &amp; cocktails</h3>
+      <p class="stop-aliases">ザ トラッド</p>
+    </header>
+    <dl class="stop-facts">
+      <dt>Type</dt><dd>Whisky &amp; cocktail bar</dd>
+      <dt>Floor</dt><dd>1F</dd>
+      <dt>Address</dt><dd>1F Fukase Building, 3-43-9 Yushima, Bunkyo-ku, Tokyo</dd>
+      <dt>Locality</dt><dd>Bunkyo ward, Tokyo</dd>
+      <dt>Station</dt><dd>Ueno-Hirokoji (Tokyo Metro Ginza) — 3 min walk</dd>
+    </dl>
+    <p class="stop-description">A whisky and cocktail bar in Yushima, between Ueno and Okachimachi. The name says what it is. A solid counter, a deep whisky shelf, and no pretense.</p>
+    <p class="stop-links">
+      <a class="stop-link" href="https://www.google.com/maps/place/The+TRAD+whisky+%26+cocktails+%E6%B9%AF%E5%B3%B6+%E5%BE%A1%E5%BE%92%E7%94%BA+%E4%B8%8A%E9%87%8E%E3%83%90%E3%83%BC/data=!4m2!3m1!1s0x60188c20f66448e3:0xca25a905c1abddc1" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+    </p>
+  </section>
+  <section class="stop" id="stop-rock-bar-sakebi" data-stop="rock-bar-sakebi" data-number="24" data-floor="1F">
+    <header class="stop-head">
+      <p class="stop-number">24</p>
+      <h3 class="stop-name">Rock Bar Sakebi</h3>
+      <p class="stop-aliases">ロックバー さけび</p>
+    </header>
+    <dl class="stop-facts">
+      <dt>Type</dt><dd>Rock bar</dd>
+      <dt>Floor</dt><dd>1F</dd>
+      <dt>Address</dt><dd>1F, 2-16-11 Negishi, Taito-ku, Tokyo</dd>
+      <dt>Locality</dt><dd>Taito ward, Tokyo</dd>
+      <dt>Station</dt><dd>Nippori (JR Yamanote / Keisei) — 8 min walk</dd>
+    </dl>
+    <p class="stop-description">A rock bar in Negishi, north of Ueno. Loud music, strong drinks, and a crowd that came for both. Not the place for a quiet conversation.</p>
+    <p class="stop-links">
+      <a class="stop-link" href="https://www.google.com/maps/place/Rock+Bar+Sakebi/data=!4m2!3m1!1s0x60188f79659e8de5:0xf831bb430ca98480" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+    </p>
+  </section>
+  <section class="stop" id="stop-naru-jazz" data-stop="naru-jazz" data-number="25">
+    <header class="stop-head">
+      <p class="stop-number">25</p>
+      <h3 class="stop-name">NARU Jazz Livehouse</h3>
+      <p class="stop-aliases">ジャズハウスナル · Jazz House Naru</p>
+    </header>
+    <dl class="stop-facts">
+      <dt>Type</dt><dd>Jazz livehouse</dd>
+      <dt>Address</dt><dd>B1 Jujiya Building, 2-1 Kanda Surugadai, Chiyoda-ku, Tokyo 101-0062</dd>
+      <dt>Locality</dt><dd>Chiyoda ward, Tokyo</dd>
+      <dt>Station</dt><dd>Ochanomizu (JR Chuo/Sobu, Tokyo Metro Marunouchi) — 1 min walk</dd>
+    </dl>
+    <p class="stop-description">A long-running jazz livehouse in Ochanomizu, open since 1969. Intimate tables around a grand piano, nightly sets from working Tokyo musicians, and a kitchen that turns out a real dinner. Cover charge around ¥2,500 plus drinks.</p>
+    <p class="stop-links">
+      <a class="stop-link" href="https://www.google.com/maps/search/?api=1&amp;query=NARU+Jazz+Livehouse+2-1+Kanda+Surugadai+Ochanomizu+Tokyo" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+      <a class="stop-link" href="http://ocha-naru.com/" target="_blank" rel="noopener noreferrer">ocha-naru.com</a>
+    </p>
+  </section>
+  <section class="stop" id="stop-game-bar-abutton" data-stop="game-bar-abutton" data-number="26" data-floor="1F">
+    <header class="stop-head">
+      <p class="stop-number">26</p>
+      <h3 class="stop-name">Game Bar A-Button</h3>
+      <p class="stop-aliases">ゲームバー エーボタン</p>
+    </header>
+    <dl class="stop-facts">
+      <dt>Type</dt><dd>Game bar</dd>
+      <dt>Floor</dt><dd>1F</dd>
+      <dt>Address</dt><dd>1F Dai-5 Mitsumasa Building, 1-13-9 Taito, Taito-ku, Tokyo</dd>
+      <dt>Locality</dt><dd>Taito ward, Tokyo</dd>
+      <dt>Station</dt><dd>Inaricho (Tokyo Metro Ginza) — 4 min walk</dd>
+    </dl>
+    <p class="stop-description">A game bar in Taito. Retro consoles behind the counter, drinks in front, and you can borrow a controller. A good stop if you want a drink and a round of something old.</p>
+    <p class="stop-links">
+      <a class="stop-link" href="https://www.google.com/maps/place/Game+Bar+A-Button/data=!4m2!3m1!1s0x60188ea671e4cfdd:0xe02deb3793822519" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+    </p>
+  </section>
+  <section class="stop" id="stop-no-room-squares" data-stop="no-room-squares" data-number="27" data-floor="4F" data-category="distant">
+    <header class="stop-head">
+      <p class="stop-number">27</p>
+      <h3 class="stop-name">No Room For Squares</h3>
+      <p class="stop-aliases">ノー・ルーム・フォー・スクエアーズ</p>
+    </header>
+    <dl class="stop-facts">
+      <dt>Type</dt><dd>Jazz bar</dd>
+      <dt>Floor</dt><dd>4F</dd>
+      <dt>Address</dt><dd>4F Housing Kitazawa Building II, 2-1-7 Kitazawa, Setagaya-ku, Tokyo</dd>
+      <dt>Locality</dt><dd>Setagaya ward, Tokyo</dd>
+      <dt>Station</dt><dd>Shimokitazawa (Odakyu / Keio Inokashira) — 3 min walk</dd>
+    </dl>
+    <p class="stop-description">A jazz bar in Shimokitazawa. The name is a Mingus reference. Vinyl on the turntable, a small room, and a crowd that came for the music. Check the schedule.</p>
+    <p class="stop-links">
+      <a class="stop-link" href="http://maps.google.com/?cid=911402204683980032" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+    </p>
+  </section>
+  <section class="stop" id="stop-shooting-bar-ea" data-stop="shooting-bar-ea" data-number="28" data-floor="2F" data-category="distant">
+    <header class="stop-head">
+      <p class="stop-number">28</p>
+      <h3 class="stop-name">Shooting Bar EA</h3>
+      <p class="stop-aliases">シューティングバー イーエー</p>
+    </header>
+    <dl class="stop-facts">
+      <dt>Type</dt><dd>Shooting bar</dd>
+      <dt>Floor</dt><dd>2F</dd>
+      <dt>Address</dt><dd>2F Sawada Building, 1-5-5 Gotenyama, Musashino, Tokyo</dd>
+      <dt>Locality</dt><dd>Musashino, Tokyo</dd>
+      <dt>Station</dt><dd>Kichijoji (JR Chuo / Keio Inokashira) — 8 min walk</dd>
+    </dl>
+    <p class="stop-description">A shooting bar in Kichijoji, in the city of Musashino west of the 23 wards. Airsoft rifles, a target range, and drinks. Not a cocktail bar, but a uniquely Tokyo evening out — reachable on the Chuo line from Shinjuku in about 20 minutes.</p>
+    <p class="stop-links">
+      <a class="stop-link" href="http://maps.google.com/?cid=3696340728203653624" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+    </p>
+  </section>
+  <section class="stop" id="stop-pizza-bar-38th" data-stop="pizza-bar-38th" data-number="29" data-floor="38F" data-category="highrise">
+    <header class="stop-head">
+      <p class="stop-number">29</p>
+      <h3 class="stop-name">The Pizza Bar On 38th</h3>
+      <p class="stop-aliases">ザ ピザバー オン 38th</p>
+    </header>
+    <dl class="stop-facts">
+      <dt>Type</dt><dd>Hotel bar · high-end</dd>
+      <dt>Floor</dt><dd>38F</dd>
+      <dt>Address</dt><dd>38F Mandarin Oriental Tokyo, 2-1-1 Nihonbashi Muromachi, Chuo-ku, Tokyo</dd>
+      <dt>Locality</dt><dd>Chuo ward, Tokyo</dd>
+      <dt>Station</dt><dd>Mitsukoshimae (Tokyo Metro Ginza/Hanzomon) — 2 min walk</dd>
+    </dl>
+    <p class="stop-description">A pizza bar on the 38th floor of the Mandarin Oriental. Yes, pizza — wood-fired, counter seating, and a view that rivals New York Bar&#x27;s. Expensive, and the pizza is better than it has any right to be at that altitude.</p>
+    <p class="stop-links">
+      <a class="stop-link" href="https://www.google.com/maps/place/The+Pizza+Bar+On+38th/data=!4m2!3m1!1s0x6018895562e77a3b:0xe3c077a9dbbe0dcd" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+    </p>
+  </section>
+  <section class="stop is-spotlight" id="stop-sake-bar-o" data-stop="sake-bar-o" data-number="30" data-floor="1F" data-category="spotlight">
+    <header class="stop-head">
+      <p class="stop-number">30</p>
+      <h3 class="stop-name">SAKEBARO Aoyama</h3>
+      <p class="stop-aliases">酒バー O · Sakebaro · SAKEBARO 青山店</p>
+    </header>
+    <dl class="stop-facts">
+      <dt>Type</dt><dd>Exclusive sake club</dd>
+      <dt>Floor</dt><dd>1F</dd>
+      <dt>Address</dt><dd>1F MD Aoyama, 2-10-8 Minami-Aoyama, Minato-ku, Tokyo 107-0062</dd>
+      <dt>Locality</dt><dd>Minato ward, Tokyo</dd>
+      <dt>Station</dt><dd>Omotesando (Tokyo Metro Ginza/Hanzomon/Chiyoda) — 8 min walk</dd>
+      <dt>Access</dt><dd>Members only</dd>
+    </dl>
+    <p class="stop-description">The one that is not like the others. A members-only sake club in Minami-Aoyama — an extension of the original Naka-Meguro SAKEBARO. A tin cube counter, an auto-playing piano, LED light that shifts from deep blue to red. A curated cellar of rare and seasonal brews, and staff who can tell you the brewery, the yeast strain, and the rice polish rate for every pour. Everything else on this map you can walk into. This one you have to be let into.</p>
+    <p class="stop-links">
+      <a class="stop-link" href="https://www.google.com/maps/search/?api=1&amp;query=SAKEBARO+Aoyama+2-10-8+Minami-Aoyama+Tokyo" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+      <a class="stop-link" href="https://www.sakebaro.biz/location-aoyama" target="_blank" rel="noopener noreferrer">Official site</a>
+    </p>
+  </section>
+<!-- /build:journey -->
+        </div>
+      </section>
+      <section id="map-view" class="map-view" role="tabpanel" aria-labelledby="view-map" hidden>
       <section class="list-panel" aria-label="Places">
         <div class="list-controls">
           <label class="field">
@@ -434,6 +1140,7 @@
         </div>
         <div id="shop-list" class="shop-list"></div>
         <p id="empty-state" hidden>No matching places.</p>
+      </section>
       </section>
     </main>
     <section class="films" aria-labelledby="films-heading">
