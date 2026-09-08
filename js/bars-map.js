@@ -187,7 +187,7 @@
     const [cx, cy] = position || [Math.max(18, Math.min(bounds[0] - 18, x)), Math.max(18, Math.min(bounds[1] - 18, y))];
     placed.push([cx, cy]);
     const group = el('g', {
-      class: `map-marker${selected === bar.id ? ' is-selected' : ''}`,
+      class: `map-marker${bar.spotlight ? ' is-spotlight' : ''}${selected === bar.id ? ' is-selected' : ''}`,
       'data-shop': bar.id, tabindex: 0, role: 'button', 'aria-pressed': String(selected === bar.id),
       'aria-label': `${bar.number}. ${bar.name}, ${bar.area}, ${locality(bar)}.${bar.status ? ` ${bar.status}.` : ''} Show bar details.`
     });
@@ -292,7 +292,7 @@
 
   function cards() {
     bars.forEach(bar => {
-      const card = html('article', 'shop-card');
+      const card = html('article', `shop-card${bar.spotlight ? ' is-spotlight' : ''}`);
       card.id = `shop-${bar.id}`;
       const button = html('button', 'shop-select');
       button.type = 'button';

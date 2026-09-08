@@ -4,29 +4,34 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="A field guide to cocktail counters, jazz bars, and late-night spots across Tokyo, with an interactive map, neighborhood details, and a printable place index.">
-  <meta name="theme-color" content="#f4f6f7">
+  <meta name="theme-color" content="#14121c">
   <title>Tokyo After Dark — Tokyo in Film</title>
   <link rel="icon" href="assets/images/image07.png">
   <style>
     :root {
-      color-scheme: light;
-      --ink: #12171c;
-      --ink-soft: #4d565f;
-      --muted: #64707a;
-      --line: #dfe4e8;
-      --paper: #f4f6f7;
-      --panel: #ffffff;
-      --sea: #e3e9ee;
-      --land: #f8f9fa;
-      --land-line: #cfd6dd;
-      --context: #edf0f2;
-      --context-line: #dde2e7;
-      --accent: #1c2126;
-      --accent-ink: #000000;
-      --mark: #f08300;
-      --mark-soft: #fdf0dd;
-      --mark-ink: #8a4d00;
-      --transit: #6f7b87;
+      color-scheme: dark;
+      --ink: #eceaf2;
+      --ink-soft: #a9a4bb;
+      --muted: #837d97;
+      --line: #2c2839;
+      --paper: #14121c;
+      --panel: #1c1926;
+      --sea: #0e0d15;
+      --land: #211d2d;
+      --land-line: #322d43;
+      --context: #191622;
+      --context-line: #272235;
+      --accent: #6f5ce0;
+      --accent-ink: #d8d2f5;
+      --mark: #f2c14e;
+      --mark-soft: #2e2716;
+      --mark-ink: #f7d685;
+      --transit: #4a4460;
+      /* Sake Bar O: members-only spotlight, deep magenta instead of the standard amber. */
+      --glow: #e0508f;
+      --glow-soft: #2e1522;
+      --glow-line: #5c2440;
+      --glow-ink: #f284b4;
       --radius: 10px;
     }
     * { box-sizing: border-box; }
@@ -134,7 +139,7 @@
     .scale-bar {
       position: absolute; left: 16px; bottom: 14px; color: var(--ink-soft);
       font-size: 11px; letter-spacing: .05em; pointer-events: none;
-      background: rgba(255,255,255,0.85); padding: 3px 7px; border-radius: 4px;
+      background: rgba(20,18,28,0.85); padding: 3px 7px; border-radius: 4px;
     }
     .map-status {
       margin: 11px 2px 0; color: var(--ink-soft); font-size: 13px;
@@ -148,6 +153,7 @@
     .legend-item { display: flex; gap: 10px; align-items: center; }
     .legend-symbol { flex: 0 0 22px; display: inline-flex; align-items: center; justify-content: center; height: 22px; }
     .legend-pin { background: var(--accent); color: #fff; border-radius: 50%; font-size: 10px; font-weight: 700; }
+    .legend-spotlight { background: var(--glow); color: #14121c; font-size: 9px; }
     .legend-dot::before { content: ""; width: 5px; height: 5px; background: var(--accent-ink); border-radius: 50%; }
     .legend-line::before { content: ""; width: 22px; height: 1px; background: var(--transit); }
     .map-hint { margin: 12px 0 0; max-width: 380px; font-size: 11px; color: var(--muted); line-height: 1.5; }
@@ -236,6 +242,19 @@
     .shop-card.is-selected .shop-note { display: block; }
     .shop-card.is-selected .shop-links { display: flex; }
 
+    /* Sake Bar O: the members-only entry, magenta instead of the standard amber. */
+    .shop-card.is-spotlight { border-color: var(--glow-line); background: var(--glow-soft); }
+    .shop-card.is-spotlight:hover { border-color: var(--glow); }
+    .shop-card.is-spotlight.is-selected {
+      border-color: var(--glow); background: #241320;
+      box-shadow: inset 3px 0 0 var(--glow), 0 6px 22px -12px rgba(224,80,143,.6);
+    }
+    .shop-card.is-spotlight .shop-number { background: var(--glow); color: #14121c; }
+    .shop-card.is-spotlight .shop-select:hover { color: var(--glow-ink); }
+    .shop-card.is-spotlight .shop-style,
+    .shop-card.is-spotlight .shop-station { color: var(--glow-ink); }
+    .shop-card.is-spotlight .shop-status { background: var(--glow); color: #14121c; }
+
     #empty-state { color: var(--muted); font-size: 14px; padding: 20px 0; }
 
     .page-footer { margin-top: 32px; padding-top: 16px; border-top: 1px solid var(--line); }
@@ -267,6 +286,14 @@
     .map-marker.is-selected:hover .marker-disc, .map-marker.is-selected:focus-visible .marker-disc { fill: var(--mark); }
     .map-marker.is-selected:hover .marker-number, .map-marker.is-selected:focus-visible .marker-number { fill: var(--ink); }
     .map-marker:focus-visible { outline: 2px solid var(--mark-ink); outline-offset: 4px; }
+    .map-marker.is-spotlight .marker-disc { fill: var(--glow); stroke: var(--paper); }
+    .map-marker.is-spotlight .marker-number { fill: #14121c; }
+    .map-marker.is-spotlight .location-dot { fill: var(--glow-ink); }
+    .map-marker.is-spotlight .marker-leader { stroke: var(--glow-ink); }
+    .map-marker.is-spotlight:hover .marker-disc, .map-marker.is-spotlight:focus-visible .marker-disc { fill: var(--glow-ink); }
+    .map-marker.is-spotlight:focus-visible { outline-color: var(--glow); }
+    .map-marker.is-spotlight.is-selected .marker-disc { fill: var(--glow); stroke: var(--glow-ink); stroke-width: 3; }
+    .map-marker.is-spotlight.is-selected .marker-number { fill: #14121c; }
 
     @media (max-width: 1040px) {
       .page-shell { padding: 0 20px 32px; }
@@ -284,8 +311,24 @@
 
     @page { size: A4 landscape; margin: 10mm; }
     @media print {
+      /* Flip back to ink-on-paper: the dark screen palette would flood a printer. */
+      :root {
+        color-scheme: light;
+        --ink: #12171c; --ink-soft: #3f4650; --muted: #5c6570;
+        --line: #ccd2d8; --paper: #fff; --panel: #fff;
+        --sea: #eef1f4; --land: #fff; --land-line: #c3cad1;
+        --context: #f4f6f7; --context-line: #dde2e7;
+        --accent: #1c2126; --accent-ink: #000;
+        --mark: #8a6300; --mark-soft: #f6efdc; --mark-ink: #6b4b00;
+        --transit: #7b838d;
+        --glow: #a3175c; --glow-soft: #fbeef4; --glow-line: #e0aac6; --glow-ink: #8c134e;
+      }
       * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
       body { background: #fff; font-size: 9pt; }
+      .scale-bar { background: none; }
+      .shop-card.is-spotlight .shop-number,
+      .map-marker.is-spotlight .marker-number { color: #fff; fill: #fff; }
+      .shop-card.is-spotlight .shop-status { background: var(--glow); color: #fff; }
       .page-shell { max-width: none; margin: 0; padding: 0 12px; }
       .skip-link, .masthead nav, .map-toolbar, .toggle, .list-controls, #source-notes, #map-status, .map-hint, .shop-note, .shop-links, noscript, .films { display: none !important; }
       .epigraph { margin: 2mm 0 0; padding-left: 3mm; border-left-width: 2px; break-inside: avoid; }
@@ -324,7 +367,7 @@
       .sources a { text-decoration: none; }
     }
   </style>
-  <script src="js/bars-map.js?v=db3f2f23" defer></script>
+  <script src="js/bars-map.js?v=e695a6a2" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#shop-search">Skip to the list</a>
@@ -340,7 +383,7 @@
       </div>
       <div class="page-header">
         <h1>Tokyo After Dark</h1>
-        <p class="lede">Across Tokyo, <span id="bar-count">39</span> bars: Ginza counters where the ice is carved by hand, an Ebisu basement that calls itself a coffee shop, a Shimokitazawa jazz room named after a Mingus record, and the bar from <cite>Lost in Translation</cite>. Tell the bartender what you're in the mood for and let them build it.</p>
+        <p class="lede">Across Tokyo, <span id="bar-count">39</span> bars: Ginza counters where the ice is carved by hand, an Ebisu basement that calls itself a coffee shop, a Shimokitazawa jazz room named after a Mingus record, and the bar from <cite>Lost in Translation</cite>. Tell the bartender what you're in the mood for and let them build it. One of them you cannot just walk into.</p>
         <figure class="epigraph">
           <blockquote>
             <p>In this world, there are things you can only do alone, and things you can only do with somebody else. It's important to combine the two in just the right amount.</p>
@@ -369,6 +412,7 @@
             <h2 class="key-heading" id="map-legend-heading">Reading the map</h2>
             <ul id="map-legend" aria-labelledby="map-legend-heading">
               <li class="legend-item"><span class="legend-symbol legend-pin" aria-hidden="true">1</span> Number matches the place index</li>
+              <li class="legend-item"><span class="legend-symbol legend-pin legend-spotlight" aria-hidden="true">31</span> Members only — arrange access before you travel</li>
               <li class="legend-item"><span class="legend-symbol legend-dot" aria-hidden="true"></span> Dot: saved location; numbered badge may be offset</li>
               <li class="legend-item"><span class="legend-symbol legend-line" aria-hidden="true"></span> Subway context, not walking directions</li>
             </ul>
