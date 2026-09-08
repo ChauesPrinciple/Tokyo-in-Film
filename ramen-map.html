@@ -99,7 +99,7 @@
     @media (max-width: 780px) { .challenge-strip { grid-template-columns: 1fr; } }
 
     .films { margin-top: 34px; border-top: 1px solid var(--line); padding-top: 22px; }
-    .films-head h2 {
+    .films h2 {
       margin: 0 0 16px; font-size: 12px; font-weight: 700;
       letter-spacing: .14em; text-transform: uppercase; color: var(--mark-ink);
     }
@@ -405,6 +405,7 @@
       <div class="masthead">
         <p class="eyebrow">Tokyo in Film</p>
         <nav aria-label="Related pages">
+          <a href="bars-map.html">Tokyo After Dark</a>
           <a href="anime-map.html">Anime Ward Map</a>
           <a href="index.html">Home</a>
         </nav>
@@ -558,9 +559,7 @@
       </section>
     </main>
     <section class="films" aria-labelledby="films-heading">
-      <div class="films-head">
-        <h2 id="films-heading">Before you go</h2>
-      </div>
+      <h2 id="films-heading">Before you go</h2>
       <ul class="film-list">
         <li class="film-card">
           <h3 class="film-title">Ramen Heads <span>2017</span></h3>
@@ -587,7 +586,7 @@
       <p class="print-note">Numbers identify places, not visit order. Check opening hours before travelling.</p>
       <p class="sources">Source: Saved-place exports; boundaries reused from Anime Ward Map. Subway geometry &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>.</p>
       <details id="source-notes">
-        <summary>Map notes &amp; exclusions</summary>
+        <summary>Map notes</summary>
         <p>Locations reflect saved-place records, not verified entrances. Each included shop has an address source and a saved map link in its place card. Use those links to check current details before setting out.</p>
         <p>Subway lines provide geographic context only. They are not walking directions, a journey planner, or a suggested visit order.</p>
       </details>

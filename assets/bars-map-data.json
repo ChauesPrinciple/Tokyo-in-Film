@@ -1,0 +1,397 @@
+{
+  "reviewed": "2026-09-06",
+  "coordinateNote": "Coordinates come from three sources: the Saved Places JSON export (verified Google Maps pins), web research (Tabelog, official sites, NAVITIME), and the GSI address-search API for bars with known addresses. Some pins are address-level approximations, not verified entrances. Check opening hours and reservations directly with each bar.",
+  "bars": [
+    {
+      "id": "star-bar", "number": 1, "name": "Star Bar Ginza", "aliases": ["スターバー銀座"], "area": "Ginza", "ward": "Chuo",
+      "lat": 35.674801, "lng": 139.766907,
+      "mapsUrl": "https://www.google.com/maps/place/Star+Bar+Ginza/data=!4m2!3m1!1s0x60188be462541b4f:0xd175d7d502838db3",
+      "address": "1-5-13 Ginza, Chuo-ku, Tokyo",
+      "station": "Ginza (Tokyo Metro Ginza/Marunouchi/Hibiya) — 3 min walk",
+      "style": "Classic cocktail bar",
+      "description": "One of Ginza's most respected cocktail bars. A short counter, ice carved by hand, and drinks built with a precision that makes the room go quiet. The kind of place where you order one thing and stay for three.",
+      "sources": [{"label": "Open in Maps", "url": "https://www.google.com/maps/place/Star+Bar+Ginza/data=!4m2!3m1!1s0x60188be462541b4f:0xd175d7d502838db3"}]
+    },
+    {
+      "id": "apollo-bar", "number": 2, "name": "Apollo Bar Ginza", "aliases": ["アポロバー銀座"], "area": "Ginza", "ward": "Chuo",
+      "lat": 35.669762, "lng": 139.75943,
+      "mapsUrl": "https://www.google.com/maps/place/APOLLO+BAR+GINZA/data=!4m2!3m1!1s0x0:0x89c9493ae4d0df85",
+      "address": "8-2-15 Ginza, Chuo-ku, Tokyo",
+      "station": "Shimbashi (JR / Tokyo Metro) — 5 min walk",
+      "style": "Cocktail bar",
+      "description": "A Ginza cocktail bar with a modern, relaxed feel compared to the old-school counters nearby. Good for a long evening that starts here and moves.",
+      "sources": [{"label": "Open in Maps", "url": "https://www.google.com/maps/place/APOLLO+BAR+GINZA/data=!4m2!3m1!1s0x0:0x89c9493ae4d0df85"}]
+    },
+    {
+      "id": "vampire-cafe", "number": 3, "name": "Vampire Café", "aliases": ["ヴァンパイアカフェ"], "area": "Ginza", "ward": "Chuo",
+      "lat": 35.6704655, "lng": 139.7626722,
+      "mapsUrl": "http://maps.google.com/?cid=17458963653998942333",
+      "address": "6-7-6 Ginza, Chuo-ku, Tokyo",
+      "station": "Ginza (Tokyo Metro Ginza/Marunouchi/Hibiya) — 4 min walk",
+      "style": "Themed cocktail bar",
+      "description": "A Gothic vampire-themed bar in Ginza. Red velvet, candelabra, cocktails served in syringes and skulls. It is unapologetically theatrical, and that is the point.",
+      "sources": [{"label": "Open in Maps", "url": "http://maps.google.com/?cid=17458963653998942333"}]
+    },
+    {
+      "id": "ori-whisky", "number": 4, "name": "Ori Japanese Whisky Store", "aliases": ["オリエンタルホテル"], "area": "Ginza", "ward": "Chuo",
+      "lat": 35.669917, "lng": 139.7649284,
+      "mapsUrl": "http://maps.google.com/?cid=3086005657603713809",
+      "address": "5-9-12 Ginza, Chuo-ku, Tokyo",
+      "station": "Ginza (Tokyo Metro Ginza/Marunouchi/Hibiya) — 3 min walk",
+      "style": "Japanese whisky bar",
+      "description": "A dedicated Japanese whisky bar and shop in Ginza. Deep selection of single casks and distillery exclusives you will not find outside Japan. Tasting flights, knowledgeable staff, and bottles available to go.",
+      "sources": [{"label": "Open in Maps", "url": "http://maps.google.com/?cid=3086005657603713809"}]
+    },
+    {
+      "id": "jba-bar", "number": 5, "name": "JBA Bar", "aliases": ["JBAバー"], "area": "Ginza", "ward": "Chuo",
+      "lat": 35.671641, "lng": 139.763003,
+      "mapsUrl": "https://www.google.com/maps/place/JBA+Bar/data=!4m2!3m1!1s0x60188be621c4b529:0x9a10dc6b2df2b2d",
+      "address": "5-4-15 Ginza, Chuo-ku, Tokyo",
+      "station": "Ginza (Tokyo Metro Ginza/Marunouchi/Hibiya) — 3 min walk",
+      "style": "Bar",
+      "description": "A Ginza bar associated with the Japan Bartenders Association. Old-school counter, classic preparations, no shortcuts.",
+      "sources": [{"label": "Open in Maps", "url": "https://www.google.com/maps/place/JBA+Bar/data=!4m2!3m1!1s0x60188be621c4b529:0x9a10dc6b2df2b2d"}]
+    },
+    {
+      "id": "lamp-bar", "number": 6, "name": "Lamp Bar", "aliases": ["ランプバー"], "area": "Ginza", "ward": "Chuo",
+      "lat": 35.670667, "lng": 139.763242,
+      "mapsUrl": "https://www.google.com/maps/place/LAMP+BAR/data=!4m2!3m1!1s0x60013a29c590c9eb:0xa45e576f05e2ccc5",
+      "address": "6-6-19 Ginza, Chuo-ku, Tokyo",
+      "station": "Ginza (Tokyo Metro Ginza/Marunouchi/Hibiya) — 4 min walk",
+      "style": "Bar",
+      "description": "A warm, lamplit Ginza counter bar. Quiet, intimate, and the kind of place where the bartender remembers what you drank last time.",
+      "sources": [{"label": "Open in Maps", "url": "https://www.google.com/maps/place/LAMP+BAR/data=!4m2!3m1!1s0x60013a29c590c9eb:0xa45e576f05e2ccc5"}]
+    },
+    {
+      "id": "nocturne", "number": 7, "name": "Nocturne Wine & Whisky Bar", "aliases": ["ノクターン"], "area": "Ginza", "ward": "Chuo",
+      "lat": 35.666698, "lng": 139.763463,
+      "mapsUrl": "https://www.google.com/maps/place/Nocturne+Wine+%26+Whisky+Bar/data=!4m2!3m1!1s0x3404007b79462ae5:0x3585110052c148a3",
+      "address": "8-7-9 Ginza, Chuo-ku, Tokyo",
+      "station": "Shimbashi (JR / Tokyo Metro) — 5 min walk",
+      "style": "Wine & whisky bar",
+      "description": "A Ginza bar that splits its attention between wine and whisky, which is rarer than it sounds. Good by the glass on both sides.",
+      "sources": [{"label": "Open in Maps", "url": "https://www.google.com/maps/place/Nocturne+Wine+%26+Whisky+Bar/data=!4m2!3m1!1s0x3404007b79462ae5:0x3585110052c148a3"}]
+    },
+    {
+      "id": "akita-dining", "number": 8, "name": "Akita Dining Namahagé Ginza", "aliases": ["秋田ダイニング なまはげ銀座店"], "area": "Ginza", "ward": "Chuo",
+      "lat": 35.668944, "lng": 139.760361,
+      "mapsUrl": "https://www.google.com/maps/place/Akita+Dining+Namahag%C3%A9+Ginza/data=!4m2!3m1!1s0x60188be8de9d3307:0x405820d386084374",
+      "address": "8-5-6 Ginza, Chuo-ku, Tokyo",
+      "station": "Shimbashi (JR / Tokyo Metro) — 5 min walk",
+      "style": "Akita regional dining bar",
+      "description": "An Akita prefecture regional dining bar in Ginza. Namahagé demon-mask décor, Akita sake list, and regional dishes you will not find elsewhere in Tokyo. Drink the sake, eat the kiritanpo, stay for the atmosphere.",
+      "sources": [{"label": "Open in Maps", "url": "https://www.google.com/maps/place/Akita+Dining+Namahag%C3%A9+Ginza/data=!4m2!3m1!1s0x60188be8de9d3307:0x405820d386084374"}]
+    },
+    {
+      "id": "new-york-bar", "number": 9, "name": "New York Bar", "aliases": ["ニューヨークバー", "Park Hyatt Tokyo"], "area": "Nishishinjuku", "ward": "Shinjuku",
+      "lat": 35.686113, "lng": 139.6904009,
+      "mapsUrl": "http://maps.google.com/?cid=7415215759206413780",
+      "address": "Park Hyatt Tokyo, 52F, 3-7-1-2 Nishishinjuku, Shinjuku-ku, Tokyo",
+      "station": "Shinjuku (JR / Tokyo Metro / Odakyu / Keio) — 10 min walk",
+      "style": "Hotel bar · high-end",
+      "description": "The bar from Lost in Translation. Fifty-second floor of the Park Hyatt, floor-to-ceiling windows, a live jazz trio, and a whisky list that runs deep. Expensive, and worth it once. Go early on a weeknight for a seat by the window.",
+      "sources": [{"label": "Open in Maps", "url": "http://maps.google.com/?cid=7415215759206413780"}]
+    },
+    {
+      "id": "bar-cocktailbook", "number": 10, "name": "Bar Cocktailbook Shinjuku", "aliases": ["バー カクテルブック 新宿"], "area": "Shinjuku", "ward": "Shinjuku",
+      "lat": 35.696323, "lng": 139.698318,
+      "mapsUrl": "https://www.google.com/maps/place/Bar+Cocktailbook+Shinjuku/data=!4m2!3m1!1s0x60188d29c95985c9:0x54f5ec36ecff12c",
+      "address": "7-5-5 Nishishinjuku, Shinjuku-ku, Tokyo",
+      "station": "Shinjuku (JR / Tokyo Metro / Odakyu / Keio) — 5 min walk",
+      "style": "Cocktail bar",
+      "description": "A Shinjuku cocktail bar with a bookshelf of cocktail recipes behind the counter. The bartender will make you something off the page if you ask. A quieter alternative to the Ginza circuit.",
+      "sources": [{"label": "Open in Maps", "url": "https://www.google.com/maps/place/Bar+Cocktailbook+Shinjuku/data=!4m2!3m1!1s0x60188d29c95985c9:0x54f5ec36ecff12c"}]
+    },
+    {
+      "id": "bar-lonely", "number": 11, "name": "Bar Lonely", "aliases": ["バー ロンリー"], "area": "Kabukicho", "ward": "Shinjuku",
+      "lat": 35.6938706, "lng": 139.7049614,
+      "mapsUrl": "https://www.google.com/maps/place/Bar+Lonely/data=!4m2!3m1!1s0x60188daafb137443:0x1bbcbe3e34b856c1",
+      "address": "1-1-8 Kabukicho, Shinjuku-ku, Tokyo",
+      "station": "Shinjuku (JR / Tokyo Metro / Odakyu / Keio) — 5 min walk",
+      "style": "Bar",
+      "description": "A Kabukicho bar that does not try to be anything other than a bar. Counter seats, strong drinks, no attitude. The name is the vibe.",
+      "sources": [{"label": "Open in Maps", "url": "https://www.google.com/maps/place/Bar+Lonely/data=!4m2!3m1!1s0x60188daafb137443:0x1bbcbe3e34b856c1"}]
+    },
+    {
+      "id": "bar-coo", "number": 12, "name": "BAR COO", "aliases": ["バークー"], "area": "Kabukicho", "ward": "Shinjuku",
+      "lat": 35.693829, "lng": 139.704956,
+      "mapsUrl": "https://www.google.com/maps/place/BAR+COO/data=!4m2!3m1!1s0x60188cd965ba46a3:0xaf58d8b14acf1d16",
+      "address": "1-1-8 Kabukicho, Shinjuku-ku, Tokyo",
+      "station": "Shinjuku (JR / Tokyo Metro / Odakyu / Keio) — 5 min walk",
+      "style": "Bar",
+      "description": "A Kabukicho counter bar near Bar Lonely. Small, dark, and serious about the drinks.",
+      "sources": [{"label": "Open in Maps", "url": "https://www.google.com/maps/place/BAR+COO/data=!4m2!3m1!1s0x60188cd965ba46a3:0xaf58d8b14acf1d16"}]
+    },
+    {
+      "id": "bar-rest-fine", "number": 13, "name": "Bar rest fine", "aliases": ["バー レストフィン"], "area": "Kabukicho", "ward": "Shinjuku",
+      "lat": 35.6985745, "lng": 139.6996876,
+      "mapsUrl": "https://www.google.com/maps/place/Bar+rest+fine/data=!4m2!3m1!1s0x3540f472c11bd385:0xc57b8f546ca617e",
+      "address": "2-46-7 Kabukicho, Shinjuku-ku, Tokyo",
+      "station": "Shinjuku (JR / Tokyo Metro / Odakyu / Keio) — 5 min walk",
+      "style": "Bar",
+      "description": "A Kabukicho bar with a relaxed, restful name. A counter spot for a late drink after the area has gotten loud.",
+      "sources": [{"label": "Open in Maps", "url": "https://www.google.com/maps/place/Bar+rest+fine/data=!4m2!3m1!1s0x3540f472c11bd385:0xc57b8f546ca617e"}]
+    },
+    {
+      "id": "eigakan-jazz", "number": 14, "name": "Eigakan Jazz", "aliases": ["映画館ジャズ"], "area": "Kabukicho", "ward": "Shinjuku",
+      "lat": 35.695393, "lng": 139.701294,
+      "mapsUrl": "https://www.google.com/maps/place/Eigakan+Jazz/data=!4m2!3m1!1s0x60188db601888faf:0xd45aed956dea453c",
+      "address": "Kabukicho, Shinjuku-ku, Tokyo",
+      "station": "Shinjuku (JR / Tokyo Metro / Odakyu / Keio) — 5 min walk",
+      "style": "Jazz bar",
+      "description": "A jazz bar in Kabukicho with a cinema-themed name. Records on vinyl, dim light, and a counter that faces the speakers.",
+      "sources": [{"label": "Open in Maps", "url": "https://www.google.com/maps/place/Eigakan+Jazz/data=!4m2!3m1!1s0x60188db601888faf:0xd45aed956dea453c"}]
+    },
+    {
+      "id": "sake-market", "number": 15, "name": "SAKE MARKET Shinjuku", "aliases": ["サケマーケット新宿"], "area": "Shinjuku", "ward": "Shinjuku",
+      "lat": 35.6911998, "lng": 139.7068416,
+      "mapsUrl": "http://maps.google.com/?cid=7870946726099253627",
+      "address": "3-9-9 Shinjuku, Shinjuku-ku, Tokyo",
+      "station": "Shinjuku (JR / Tokyo Metro / Odakyu / Keio) — 3 min walk",
+      "style": "Sake bar",
+      "description": "A sake bar in Shinjuku with a rotating selection by the glass. Good for a tasting flight before moving on to dinner.",
+      "sources": [{"label": "Open in Maps", "url": "http://maps.google.com/?cid=7870946726099253627"}]
+    },
+    {
+      "id": "kuro-bar", "number": 16, "name": "KURO Bar", "aliases": ["クロバー"], "area": "Yotsuya", "ward": "Shinjuku",
+      "lat": 35.688474, "lng": 139.717628,
+      "mapsUrl": "https://www.google.com/maps/place/KURO+Bar/data=!4m2!3m1!1s0x60188cd9644318d3:0xbb53b64861c7616d",
+      "address": "4-13-7 Yotsuya, Shinjuku-ku, Tokyo",
+      "station": "Yotsuya (JR / Tokyo Metro Marunouchi) — 2 min walk",
+      "style": "Bar",
+      "description": "A Yotsuya bar on the Shinjuku side of the station. Small, dark, and deliberate about its name — kuro means black.",
+      "sources": [{"label": "Open in Maps", "url": "https://www.google.com/maps/place/KURO+Bar/data=!4m2!3m1!1s0x60188cd9644318d3:0xbb53b64861c7616d"}]
+    },
+    {
+      "id": "janai-coffee", "number": 17, "name": "JANAI COFFEE", "aliases": ["ジャナイコーヒー"], "area": "Ebisu", "ward": "Shibuya",
+      "lat": 35.6455994, "lng": 139.7071991,
+      "mapsUrl": "https://www.google.com/maps/place/JANAI+COFFEE/data=!4m2!3m1!1s0x60188b40c1000001:0xf21b512300945656",
+      "address": "B1F Yamanen Building, 2-3-13 Ebisuminami, Shibuya-ku, Tokyo",
+      "station": "Ebisu (JR Yamanote / Tokyo Metro Hibiya) — 3 min walk",
+      "style": "Speakeasy",
+      "description": "It is called a coffee shop. It is not a coffee shop. JANAI means 'not this' — the door is a speakeasy entrance, and what is behind it is a bar. Go down the stairs, find the door, and order a drink. The coffee is a cover story.",
+      "sources": [{"label": "Open in Maps", "url": "https://www.google.com/maps/place/JANAI+COFFEE/data=!4m2!3m1!1s0x60188b40c1000001:0xf21b512300945656"}]
+    },
+    {
+      "id": "a10", "number": 18, "name": "A10", "aliases": ["エーテン"], "area": "Ebisu", "ward": "Shibuya",
+      "lat": 35.647301, "lng": 139.70726,
+      "mapsUrl": "https://www.google.com/maps/place/A10/data=!4m2!3m1!1s0x60188b8d0bbc998d:0xdbdb6eb72400c38f",
+      "address": "1-12-11 Ebisuminami, Shibuya-ku, Tokyo",
+      "station": "Ebisu (JR Yamanote / Tokyo Metro Hibiya) — 3 min walk",
+      "style": "Bar",
+      "description": "An Ebisu bar around the corner from JANAI. Small, focused, and easy to miss if you are not looking for it.",
+      "sources": [{"label": "Open in Maps", "url": "https://www.google.com/maps/place/A10/data=!4m2!3m1!1s0x60188b8d0bbc998d:0xdbdb6eb72400c38f"}]
+    },
+    {
+      "id": "ginger-whisky", "number": 19, "name": "Ginger Whisky Bar", "aliases": ["ジンジャーウイスキーバー"], "area": "Ebisu", "ward": "Shibuya",
+      "lat": 35.645842, "lng": 139.709108,
+      "mapsUrl": "https://www.google.com/maps/place/Ginger+Whisky+Bar/data=!4m2!3m1!1s0x3404007c7c9be5f5:0x99004cbeae9392b4",
+      "address": "1-9-11 Ebisuminami, Shibuya-ku, Tokyo",
+      "station": "Ebisu (JR Yamanote / Tokyo Metro Hibiya) — 4 min walk",
+      "style": "Whisky bar",
+      "description": "An Ebisu whisky bar with a deep selection and a ginger theme. Warm, small, and serious about its pours.",
+      "sources": [{"label": "Open in Maps", "url": "https://www.google.com/maps/place/Ginger+Whisky+Bar/data=!4m2!3m1!1s0x3404007c7c9be5f5:0x99004cbeae9392b4"}]
+    },
+    {
+      "id": "fightclub", "number": 20, "name": "FIGHTCLUB Shibuya", "aliases": ["ファイトクラブ渋谷"], "area": "Shibuya", "ward": "Shibuya",
+      "lat": 35.66209, "lng": 139.697418,
+      "mapsUrl": "https://www.google.com/maps/place/FIGHTCLUB%E3%83%BB%E3%82%B7%E3%83%96%E3%83%A4/data=!4m2!3m1!1s0x60188ca9ea06d1dd:0x40df4913420c175f",
+      "address": "Udagawacho, Shibuya-ku, Tokyo",
+      "station": "Shibuya (JR / Tokyo Metro / Tokyu / Keio Inokashira) — 3 min walk",
+      "style": "Bar",
+      "description": "A Shibuya bar with a name that tells you the vibe. Loud, young, and not the place for a quiet whisky.",
+      "sources": [{"label": "Open in Maps", "url": "https://www.google.com/maps/place/FIGHTCLUB%E3%83%BB%E3%82%B7%E3%83%96%E3%83%A4/data=!4m2!3m1!1s0x60188ca9ea06d1dd:0x40df4913420c175f"}]
+    },
+    {
+      "id": "bundan", "number": 21, "name": "BUNDAN Coffee & Beer", "aliases": ["文旦"], "area": "Shibuya", "ward": "Shibuya",
+      "lat": 35.664085, "lng": 139.701385,
+      "mapsUrl": "https://www.google.com/maps/place/BUNDAN+Coffee+%26+Beer/data=!4m2!3m1!1s0x6018f3456ed23b47:0x5f1c02feed0a974b",
+      "address": "1-9-5 Jinnan, Shibuya-ku, Tokyo",
+      "station": "Shibuya (JR / Tokyo Metro / Tokyu / Keio Inokashira) — 4 min walk",
+      "style": "Coffee & beer bar",
+      "description": "A Shibuya spot that serves both coffee and beer. Daytime café, evening bar. A good bridge between afternoon and night.",
+      "sources": [{"label": "Open in Maps", "url": "https://www.google.com/maps/place/BUNDAN+Coffee+%26+Beer/data=!4m2!3m1!1s0x6018f3456ed23b47:0x5f1c02feed0a974b"}]
+    },
+    {
+      "id": "bar-sawa", "number": 22, "name": "Bar sawa", "aliases": ["バー サワ"], "area": "Higashiyama", "ward": "Meguro",
+      "lat": 35.645924, "lng": 139.696854,
+      "mapsUrl": "https://www.google.com/maps/place/Bar+sawa/data=!4m2!3m1!1s0x80c2c78f35b274cd:0xf372ecbef3bf0575",
+      "address": "1-6-7 Higashiyama, Meguro-ku, Tokyo",
+      "station": "Nakameguro (Tokyo Metro Hibiya) — 5 min walk",
+      "style": "Bar",
+      "description": "A bar in Higashiyama, the quiet side of Nakameguro. A counter spot for a drink before or after dinner in the neighborhood.",
+      "sources": [{"label": "Open in Maps", "url": "https://www.google.com/maps/place/Bar+sawa/data=!4m2!3m1!1s0x80c2c78f35b274cd:0xf372ecbef3bf0575"}]
+    },
+    {
+      "id": "gen-yamamoto", "number": 23, "name": "Gen Yamamoto", "aliases": ["ゲン ヤマモト"], "area": "Azabujuban", "ward": "Minato",
+      "lat": 35.6564878, "lng": 139.7342623,
+      "mapsUrl": "http://maps.google.com/?cid=9087814451927436466",
+      "address": "1-6-4 Azabujuban, Minato-ku, Tokyo",
+      "station": "Azabujuban (Toei Oedo) — 3 min walk",
+      "style": "Cocktail bar · high-end",
+      "description": "A reservation-only cocktail bar in Azabujuban. One bartender, a short counter, and a tasting-menu-style flight of seasonal cocktails built on Japanese ingredients. Sit, watch, do not rush.",
+      "sources": [{"label": "Open in Maps", "url": "http://maps.google.com/?cid=9087814451927436466"}]
+    },
+    {
+      "id": "bar-centifolia", "number": 24, "name": "Bar Centifolia", "aliases": ["バー センティフォリア"], "area": "Azabujuban", "ward": "Minato",
+      "lat": 35.65659, "lng": 139.734238,
+      "mapsUrl": "https://www.google.com/maps/place/Bar+Centifolia/data=!4m2!3m1!1s0x60188b9fa69c033f:0xc44593ba0ccc4863",
+      "address": "1-6-5 Azabujuban, Minato-ku, Tokyo",
+      "station": "Azabujuban (Toei Oedo) — 3 min walk",
+      "style": "Bar",
+      "description": "An Azabujuban bar near Gen Yamamoto. A quieter, older-school counter for a late drink in the neighborhood.",
+      "sources": [{"label": "Open in Maps", "url": "https://www.google.com/maps/place/Bar+Centifolia/data=!4m2!3m1!1s0x60188b9fa69c033f:0xc44593ba0ccc4863"}]
+    },
+    {
+      "id": "rokusan-angel", "number": 25, "name": "Rokusan Angel (Burlesque Tokyo)", "aliases": ["六三アングル"], "area": "Roppongi", "ward": "Minato",
+      "lat": 35.6633285, "lng": 139.7341877,
+      "mapsUrl": "https://www.google.com/maps/place/ROKUSAN+ANGEL%EF%BC%88Burlesque+Tokyo%EF%BC%89/data=!4m2!3m1!1s0x60188b78685d2fcb:0x949f91afc7f95845",
+      "address": "3-8-15 Roppongi, Minato-ku, Tokyo",
+      "station": "Roppongi (Toei Oedo / Tokyo Metro Hibiya) — 5 min walk",
+      "style": "Burlesque bar",
+      "description": "A Roppongi burlesque bar. Live performances, cocktails, and a stage that is close enough to touch. Book ahead.",
+      "sources": [{"label": "Open in Maps", "url": "https://www.google.com/maps/place/ROKUSAN+ANGEL%EF%BC%88Burlesque+Tokyo%EF%BC%89/data=!4m2!3m1!1s0x60188b78685d2fcb:0x949f91afc7f95845"}]
+    },
+    {
+      "id": "sake-bar-o", "number": 26, "name": "Sake Bar O", "aliases": ["酒バー O", "Sakebaro"], "area": "Minamiaoyama", "ward": "Minato",
+      "lat": 35.669693, "lng": 139.725235,
+      "mapsUrl": "https://www.google.com/maps/place/Sake+Bar+O/data=!4m2!3m1!1s0x60188bb0765eec77:0xd16733ca3d68369f",
+      "address": "Minamiaoyama, Minato-ku, Tokyo",
+      "station": "Omotesando (Tokyo Metro Ginza/Hanzomon/Chiyoda) — 8 min walk",
+      "style": "Exclusive sake club",
+      "description": "An exclusive sake club in Minamiaoyama. Members-only access, a curated cellar of rare and seasonal brews, and staff who can tell you the brewery, the yeast strain, and the rice polish rate for every pour. The kind of place where you learn what sake can be.",
+      "note": "Reservation or membership required. Check access before visiting.",
+      "sources": [{"label": "Open in Maps", "url": "https://www.google.com/maps/place/Sake+Bar+O/data=!4m2!3m1!1s0x60188bb0765eec77:0xd16733ca3d68369f"}]
+    },
+    {
+      "id": "bar-under", "number": 27, "name": "BAR &UNDER", "aliases": ["バー アンドアンダー"], "area": "Kanda", "ward": "Chiyoda",
+      "lat": 35.700415, "lng": 139.768349,
+      "mapsUrl": "https://www.google.com/maps/place/BAR+%26UNDER/data=!4m2!3m1!1s0x60188d5ee280613d:0xfda3db99d25dd786",
+      "address": "B1F Sotokanda Kanemura Building, 2-6-4 Sotokanda, Chiyoda-ku, Tokyo",
+      "station": "Akihabara (JR / Tokyo Metro Hibiya) — 5 min walk",
+      "style": "Bar",
+      "description": "A basement bar in Kanda, near Akihabara. The name tells you where to look — go down. A good late-night stop in a neighborhood that shuts early.",
+      "sources": [{"label": "Open in Maps", "url": "https://www.google.com/maps/place/BAR+%26UNDER/data=!4m2!3m1!1s0x60188d5ee280613d:0xfda3db99d25dd786"}]
+    },
+    {
+      "id": "bar-alchemist", "number": 28, "name": "bar alchemist", "aliases": ["バー アルケミスト"], "area": "Kanda", "ward": "Chiyoda",
+      "lat": 35.698153, "lng": 139.776092,
+      "mapsUrl": "https://www.google.com/maps/place/bar+alchemist/data=!4m2!3m1!1s0x600108954d815555:0x96b96e4c5d751bc0",
+      "address": "2-11 Kanda Sakumacho, Chiyoda-ku, Tokyo",
+      "station": "Akihabara (JR / Tokyo Metro Hibiya) — 4 min walk",
+      "style": "Cocktail bar",
+      "description": "A Kanda cocktail bar with an alchemist's name. Experimental preparations, a short menu, and a counter that rewards attention.",
+      "sources": [{"label": "Open in Maps", "url": "https://www.google.com/maps/place/bar+alchemist/data=!4m2!3m1!1s0x600108954d815555:0x96b96e4c5d751bc0"}]
+    },
+    {
+      "id": "exbar", "number": 29, "name": "EXBAR TOKYO plus Akihabara", "aliases": ["エクスバー東京"], "area": "Akihabara", "ward": "Chiyoda",
+      "lat": 35.6981277, "lng": 139.772964,
+      "mapsUrl": "http://maps.google.com/?cid=6036868133136580470",
+      "address": "1-6-1 Kanda Sakumacho, Chiyoda-ku, Tokyo",
+      "station": "Akihabara (JR / Tokyo Metro Hibiya) — 2 min walk",
+      "style": "Bar",
+      "description": "A bar in the Akihabara station passage. Easy to find, easy to stop in, and a good meeting point before heading deeper into the neighborhood.",
+      "sources": [{"label": "Open in Maps", "url": "http://maps.google.com/?cid=6036868133136580470"}]
+    },
+    {
+      "id": "bar-willows", "number": 30, "name": "BAR Willow's", "aliases": ["バー ウィローズ"], "area": "Ueno", "ward": "Taito",
+      "lat": 35.708229, "lng": 139.772491,
+      "mapsUrl": "https://www.google.com/maps/place/BAR+Willow's/data=!4m2!3m1!1s0x60188d3e5e0018b3:0xe2bda4fa0a3810c4",
+      "address": "2-1-3 Ueno, Taito-ku, Tokyo",
+      "station": "Ueno (JR / Tokyo Metro Ginza/Hibiya) — 3 min walk",
+      "style": "Bar",
+      "description": "A bar in Ueno near the station. A reliable stop for a drink before or after the park, the museums, or the Ameyoko market.",
+      "sources": [{"label": "Open in Maps", "url": "https://www.google.com/maps/place/BAR+Willow's/data=!4m2!3m1!1s0x60188d3e5e0018b3:0xe2bda4fa0a3810c4"}]
+    },
+    {
+      "id": "the-trad", "number": 31, "name": "The TRAD whisky & cocktails", "aliases": ["ザ トラッド"], "area": "Yushima", "ward": "Bunkyo",
+      "lat": 35.708847, "lng": 139.77121,
+      "mapsUrl": "https://www.google.com/maps/place/The+TRAD+whisky+%26+cocktails+%E6%B9%AF%E5%B3%B6+%E5%BE%A1%E5%BE%92%E7%94%BA+%E4%B8%8A%E9%87%8E%E3%83%90%E3%83%BC/data=!4m2!3m1!1s0x60188c20f66448e3:0xca25a905c1abddc1",
+      "address": "3-43-9 Yushima, Bunkyo-ku, Tokyo",
+      "station": "Ueno-Hirokoji (Tokyo Metro Ginza) — 3 min walk",
+      "style": "Whisky & cocktail bar",
+      "description": "A whisky and cocktail bar in Yushima, between Ueno and Okachimachi. The name says what it is. A solid counter, a deep whisky shelf, and no pretense.",
+      "sources": [{"label": "Open in Maps", "url": "https://www.google.com/maps/place/The+TRAD+whisky+%26+cocktails+%E6%B9%AF%E5%B3%B6+%E5%BE%A1%E5%BE%92%E7%94%BA+%E4%B8%8A%E9%87%8E%E3%83%90%E3%83%BC/data=!4m2!3m1!1s0x60188c20f66448e3:0xca25a905c1abddc1"}]
+    },
+    {
+      "id": "hookah-base", "number": 32, "name": "Hookah & Bar BASE", "aliases": ["フッカーバーベース"], "area": "Yushima", "ward": "Bunkyo",
+      "lat": 35.708653, "lng": 139.769587,
+      "mapsUrl": "https://www.google.com/maps/place/Ueno,Yushima+%5BHookah%26Bar+BASE%5D/data=!4m2!3m1!1s0x60188dd9aaa8db3f:0x7e9a2744b4e51d2e",
+      "address": "3-45-2 Yushima, Bunkyo-ku, Tokyo",
+      "station": "Ueno-Hirokoji (Tokyo Metro Ginza) — 3 min walk",
+      "style": "Hookah bar",
+      "description": "A hookah bar in Yushima near Ueno. Flavored tobacco, drinks, and a relaxed room. A different pace from the cocktail counters.",
+      "sources": [{"label": "Open in Maps", "url": "https://www.google.com/maps/place/Ueno,Yushima+%5BHookah%26Bar+BASE%5D/data=!4m2!3m1!1s0x60188dd9aaa8db3f:0x7e9a2744b4e51d2e"}]
+    },
+    {
+      "id": "rock-bar-sakebi", "number": 33, "name": "Rock Bar Sakebi", "aliases": ["ロックバー さけび"], "area": "Negishi", "ward": "Taito",
+      "lat": 35.724407, "lng": 139.778671,
+      "mapsUrl": "https://www.google.com/maps/place/Rock+Bar+Sakebi/data=!4m2!3m1!1s0x60188f79659e8de5:0xf831bb430ca98480",
+      "address": "2-16-11 Negishi, Taito-ku, Tokyo",
+      "station": "Nippori (JR Yamanote / Keisei) — 8 min walk",
+      "style": "Rock bar",
+      "description": "A rock bar in Negishi, north of Ueno. Loud music, strong drinks, and a crowd that came for both. Not the place for a quiet conversation.",
+      "sources": [{"label": "Open in Maps", "url": "https://www.google.com/maps/place/Rock+Bar+Sakebi/data=!4m2!3m1!1s0x60188f79659e8de5:0xf831bb430ca98480"}]
+    },
+    {
+      "id": "tree-bar", "number": 34, "name": "Cafe & Bar TREE BAR", "aliases": ["ツリーバー"], "area": "Yanagibashi", "ward": "Taito",
+      "lat": 35.6963166, "lng": 139.7862468,
+      "mapsUrl": "https://www.google.com/maps/place/Cafe%26Bar+TREE+BAR+%E3%83%84%E3%83%AA%E3%83%BC%E3%83%90%E3%83%BC/data=!4m2!3m1!1s0x6000e660de4de997:0xb1135420ac86f3f6",
+      "address": "1-4-10 Yanagibashi, Taito-ku, Tokyo",
+      "station": "Asakusabashi (JR Soban / Toei Asakusa) — 3 min walk",
+      "style": "Bar",
+      "description": "A café and bar in Yanagibashi, near Asakusabashi. A quiet spot in an old downtown neighborhood that most tourists skip.",
+      "sources": [{"label": "Open in Maps", "url": "https://www.google.com/maps/place/Cafe%26Bar+TREE+BAR+%E3%83%84%E3%83%AA%E3%83%BC%E3%83%90%E3%83%BC/data=!4m2!3m1!1s0x6000e660de4de997:0xb1135420ac86f3f6"}]
+    },
+    {
+      "id": "game-bar-abutton", "number": 35, "name": "Game Bar A-Button", "aliases": ["ゲームバー エーボタン"], "area": "Taito", "ward": "Taito",
+      "lat": 35.701458, "lng": 139.778197,
+      "mapsUrl": "https://www.google.com/maps/place/Game+Bar+A-Button/data=!4m2!3m1!1s0x60188ea671e4cfdd:0xe02deb3793822519",
+      "address": "1-13-9 Taito, Taito-ku, Tokyo",
+      "station": "Taito-cho (Toei Asakusa) — 3 min walk",
+      "style": "Game bar",
+      "description": "A game bar in Taito. Retro consoles behind the counter, drinks in front, and you can borrow a controller. A good stop if you want a drink and a round of something old.",
+      "sources": [{"label": "Open in Maps", "url": "https://www.google.com/maps/place/Game+Bar+A-Button/data=!4m2!3m1!1s0x60188ea671e4cfdd:0xe02deb3793822519"}]
+    },
+    {
+      "id": "no-room-squares", "number": 36, "name": "No Room For Squares", "aliases": ["ノー・ルーム・フォー・スクエアーズ"], "area": "Kitazawa", "ward": "Setagaya",
+      "lat": 35.6591442, "lng": 139.6676007,
+      "mapsUrl": "http://maps.google.com/?cid=911402204683980032",
+      "address": "2-1-7 Kitazawa, Setagaya-ku, Tokyo",
+      "station": "Shimokitazawa (Odakyu / Keio Inokashira) — 3 min walk",
+      "style": "Jazz bar",
+      "description": "A jazz bar in Shimokitazawa. The name is a Mingus reference. Vinyl on the turntable, a small room, and a crowd that came for the music. Check the schedule.",
+      "sources": [{"label": "Open in Maps", "url": "http://maps.google.com/?cid=911402204683980032"}]
+    },
+    {
+      "id": "shooting-bar-ea", "number": 37, "name": "Shooting Bar EA", "aliases": ["シューティングバー エーエー"], "area": "Kichijoji", "ward": null, "municipality": "Musashino", "prefecture": "Tokyo", "mapGroup": "west",
+      "lat": 35.7019815, "lng": 139.5759106,
+      "mapsUrl": "http://maps.google.com/?cid=3696340728203653624",
+      "address": "1-5-5 Gotenyama, Musashino, Tokyo",
+      "station": "Kichijoji (JR Chuo / Keio Inokashira) — 8 min walk",
+      "style": "Shooting bar",
+      "description": "A shooting bar in Kichijoji. Airsoft rifles, a target range, and drinks. Not a cocktail bar, but a uniquely Tokyo evening out. Musashino is outside the 23 wards but reachable on the Chuo line.",
+      "sources": [{"label": "Open in Maps", "url": "http://maps.google.com/?cid=3696340728203653624"}]
+    },
+    {
+      "id": "pizza-bar-38th", "number": 38, "name": "The Pizza Bar On 38th", "aliases": ["ザ ピザバー オン 38th"], "area": "Nihonbashi", "ward": "Chuo",
+      "lat": 35.686972, "lng": 139.77306,
+      "mapsUrl": "https://www.google.com/maps/place/The+Pizza+Bar+On+38th/data=!4m2!3m1!1s0x6018895562e77a3b:0xe3c077a9dbbe0dcd",
+      "address": "38F Mandarin Oriental Tokyo, 2-1-1 Nihonbashi Muromachi, Chuo-ku, Tokyo",
+      "station": "Mitsukoshimae (Tokyo Metro Ginza/Hanzomon) — 2 min walk",
+      "style": "Hotel bar · high-end",
+      "description": "A pizza bar on the 38th floor of the Mandarin Oriental. Yes, pizza — wood-fired, counter seating, and a view that rivals New York Bar's. Expensive, and the pizza is better than it has any right to be at that altitude.",
+      "sources": [{"label": "Open in Maps", "url": "https://www.google.com/maps/place/The+Pizza+Bar+On+38th/data=!4m2!3m1!1s0x6018895562e77a3b:0xe3c077a9dbbe0dcd"}]
+    },
+    {
+      "id": "a-bar-sleeping-tales", "number": 39, "name": "a BAR Sleeping Tales", "aliases": ["ア バー スリーピング テイルズ"], "area": "Shinjuku", "ward": "Shinjuku",
+      "lat": 35.7040365, "lng": 139.778697,
+      "mapsUrl": "https://www.google.com/maps/place/a+BAR+Sleeping+Tales/data=!4m2!3m1!1s0x60188d0016ef28d1:0xc10f48326e234d67",
+      "address": "2-1-14 Shinjuku, Shinjuku-ku, Tokyo",
+      "station": "Shinjuku (JR / Tokyo Metro / Odakyu / Keio) — 5 min walk",
+      "style": "Bar",
+      "description": "A Shinjuku bar with a storybook name. A quiet counter for a late drink, away from the Kabukicho noise.",
+      "sources": [{"label": "Open in Maps", "url": "https://www.google.com/maps/place/a+BAR+Sleeping+Tales/data=!4m2!3m1!1s0x60188d0016ef28d1:0xc10f48326e234d67"}]
+    }
+  ]
+}
