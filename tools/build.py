@@ -236,7 +236,44 @@ def main(argv):
         print('All pages up to date.')
         return 0
     print(f'Updated {len(changed)} page(s).' + (('\n  ' + '\n  '.join(changed)) if changed else ''))
+    # Post-build consistency checks for bars-map.html
+    _assert_bars_consistency()
     return 0
+
+
+def _assert_bars_consistency():
+    """Verify bars-map.html is internally consistent after build."""
+    html_path = Path('bars-map.html')
+    if not html_path.exists():
+        return
+    text = html_path.read_text(encoding='utf-8')
+    errors = []
+    # data-category must be single-valued
+    for m in re.finditer(r'data-category="([^"]+)"', text):
+        if len(m.group(1).split()) > 1:
+            errors.append(f"Multi-valued data-category: '{m.group(1)}'")
+    # stop count == bar-count == max data-number == JSON count
+    stop_count = len(re.findall(r'class="stop(?: is-spotlight)?"\s', text))
+    data_numbers = [int(n) for n in re.findall(r'data-number="(\d+)"', text)]
+    max_number = max(data_numbers) if data_numbers else 0
+    count_match = re.search(r'id="bar-count"[^>]*>(\d+)<', text)
+    static_count = int(count_match.group(1)) if count_match else 0
+    json_path = Path('assets/bars-map-data.json')
+    if json_path.exists():
+        json_count = len(json.loads(json_path.read_text(encoding='utf-8'))['bars'])
+    else:
+        json_count = -1
+    if static_count != stop_count:
+        errors.append(f"bar-count span ({static_count}) != .stop count ({stop_count})")
+    if stop_count != max_number:
+        errors.append(f".stop count ({stop_count}) != max data-number ({max_number})")
+    if json_count != stop_count:
+        errors.append(f"JSON bar count ({json_count}) != .stop count ({stop_count})")
+    if errors:
+        print("WARNING: bars-map consistency check failed:")
+        for e in errors:
+            print(f"  {e}")
+        sys.exit(1)
 
 
 if __name__ == '__main__':
