@@ -122,7 +122,15 @@ def _render_subvenue(sv):
 
 
 def _render_stop(bar):
-    """Render one venue as a semantic <section class="stop">."""
+    """Render one venue as a semantic <section class="stop">.
+
+    Hierarchy is ordered for choosing-then-finding:
+      1. Name + Japanese aliases (what it is)
+      2. Neighborhood, type, floor (where it sits in the city)
+      3. Description (why to go)
+      4. Station, address, access (how to find the entrance)
+      5. Primary Maps action + secondary sources
+    """
     bid = _esc(bar['id'])
     num = bar['number']
     spotlight = ' is-spotlight' if bar.get('spotlight') else ''
@@ -132,6 +140,7 @@ def _render_stop(bar):
     cat_attr = f' data-category="{_esc(category)}"' if category else ''
     parts = []
     parts.append(f'  <section class="stop{spotlight}" id="stop-{bid}" data-stop="{bid}" data-number="{num}"{floor_attr}{cat_attr}>')
+    # 1. Name + Japanese aliases
     parts.append(f'    <header class="stop-head">')
     parts.append(f'      <p class="stop-number">{num}</p>')
     parts.append(f'      <h3 class="stop-name">{_esc(bar["name"])}</h3>')
@@ -139,20 +148,24 @@ def _render_stop(bar):
     if aliases:
         parts.append(f'      <p class="stop-aliases">{_esc(" · ".join(aliases))}</p>')
     parts.append(f'    </header>')
-    parts.append(f'    <dl class="stop-facts">')
+    # 2. Neighborhood, type, floor — a compact "where it sits" line
+    summary_bits = [_locality(bar)]
     if bar.get('style'):
-        parts.append(f'      <dt>Type</dt><dd>{_esc(bar["style"])}</dd>')
+        summary_bits.append(bar['style'])
     if floor:
-        parts.append(f'      <dt>Floor</dt><dd>{_esc(floor)}</dd>')
-    parts.append(f'      <dt>Address</dt><dd>{_esc(bar["address"])}</dd>')
-    parts.append(f'      <dt>Locality</dt><dd>{_esc(_locality(bar))}</dd>')
+        summary_bits.append(floor)
+    parts.append(f'    <p class="stop-summary">{_esc(" · ".join(summary_bits))}</p>')
+    # 3. Description — why to go
+    if bar.get('description'):
+        parts.append(f'    <p class="stop-description">{_esc(bar["description"])}</p>')
+    # 4. Practical details for finding the entrance
+    parts.append(f'    <dl class="stop-facts">')
     if bar.get('station'):
         parts.append(f'      <dt>Station</dt><dd>{_esc(bar["station"])}</dd>')
+    parts.append(f'      <dt>Address</dt><dd>{_esc(bar["address"])}</dd>')
     if bar.get('status'):
         parts.append(f'      <dt>Access</dt><dd>{_esc(bar["status"])}</dd>')
     parts.append(f'    </dl>')
-    if bar.get('description'):
-        parts.append(f'    <p class="stop-description">{_esc(bar["description"])}</p>')
     # Golden Gai subvenues
     subvenues = bar.get('subvenues') or []
     if subvenues:
@@ -160,10 +173,10 @@ def _render_stop(bar):
         for sv in subvenues:
             parts.append(_render_subvenue(sv))
         parts.append(f'    </div>')
-    # Links
+    # 5. Primary Maps action + secondary sources (deduplicated)
     parts.append(f'    <p class="stop-links">')
     maps_url = bar.get('mapsUrl') or f'https://www.google.com/maps/search/?api=1&query={bar["lat"]},{bar["lng"]}'
-    parts.append(f'      <a class="stop-link" href="{_esc(maps_url)}" target="_blank" rel="noopener noreferrer">Open in Maps</a>')
+    parts.append(f'      <a class="stop-link stop-link-primary" href="{_esc(maps_url)}" target="_blank" rel="noopener noreferrer">Open in Maps</a>')
     for src in bar.get('sources') or []:
         if src.get('label') and src.get('url'):
             # Skip sources that duplicate the mapsUrl link.

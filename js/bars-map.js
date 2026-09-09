@@ -10,6 +10,7 @@
   // map view re-measures the SVG, which the ResizeObserver may have missed
   // while the panel was hidden.
   let onShowMap = null;
+  let setViewFn = null; // set by initViewSwitch; used by hash-link restore
   (function initViewSwitch() {
     const journeyTab = $('view-journey');
     const mapTab = $('view-map');
@@ -29,9 +30,15 @@
       journeyView.hidden = !isJourney;
       mapView.classList.toggle('is-active', !isJourney);
       mapView.hidden = isJourney;
+      // Drive the layout grid + skip-link target from the active view.
+      const layout = document.querySelector('.layout');
+      if (layout) layout.setAttribute('data-view', mode);
+      const skip = document.querySelector('.skip-link');
+      if (skip) skip.setAttribute('href', isJourney ? '#journey-view' : '#shop-search');
       try { localStorage.setItem('bars-view', mode); } catch (e) {}
       if (!isJourney && typeof onShowMap === 'function') onShowMap();
     }
+    setViewFn = setView;
 
     journeyTab.addEventListener('click', () => setView('journey'));
     mapTab.addEventListener('click', () => setView('map'));
@@ -53,12 +60,28 @@
     let initial = 'journey';
     try { initial = localStorage.getItem('bars-view') || 'journey'; } catch (e) {}
     if (initial !== 'journey' && initial !== 'map') initial = 'journey';
+    const layoutEl = document.querySelector('.layout');
+    if (layoutEl) layoutEl.setAttribute('data-view', initial);
     if (initial === 'map') setView('map');
   })();
 
   const svg = $('bars-map');
   const normalize = text => String(text).normalize('NFD').replace(/\p{M}/gu, '').toLocaleLowerCase();
   const locality = bar => bar.ward ? `${bar.ward} ward, Tokyo` : `${bar.municipality}, ${bar.prefecture}`;
+  // Group the granular per-venue styles into a handful of useful buckets so
+  // the Type filter stays practical (8 options, not 18 near-synonyms).
+  const STYLE_CATEGORIES = [
+    ['Cocktail bars', ['Classic cocktail bar', 'Cocktail bar', 'Cocktail bar · high-end', 'Whisky & cocktail bar']],
+    ['Hotel bars', ['Hotel bar · high-end']],
+    ['Jazz & listening', ['Jazz bar', 'Jazz livehouse']],
+    ['Speakeasy', ['Speakeasy']],
+    ['Sake bars', ['Sake bar', 'Exclusive sake club']],
+    ['Snack & authentic bars', ['Snack bar', 'Bar', 'Authentic bar']],
+    ['Themed bars', ['Game bar', 'Shooting bar', 'Rock bar', 'Burlesque bar', 'Coffee & beer bar']],
+    ['Golden Gai', ['Golden Gai bars']],
+  ];
+  const _styleToCategory = new Map(STYLE_CATEGORIES.flatMap(([cat, styles]) => styles.map(s => [s, cat])));
+  const categoryOf = style => _styleToCategory.get(style || '') || '';
   const NS = 'http://www.w3.org/2000/svg';
   const radians = Math.PI / 180;
   const radius = 6378137 * Math.cos(35.65 * radians);
@@ -69,6 +92,7 @@
   let bars = [], visible = [], selected = '', world, markers, wardLabels = [], savedPrint = null;
   let width = 800, height = 600, ready = false, transitAvailable = true;
   let frame = 0;
+  let followReading = true;
   const wardPaths = new Map();
   const pointers = new Map();
   let gesture = null, suppressClick = false;
@@ -206,8 +230,15 @@
       camera.width = Math.min(camera.width, 4500);
     }
     updateSelection();
-    if (!fromList) scrollToCard(bar.id);
+    if (!fromList) {
+      // Scroll the surface that's actually visible: the journey stop or the
+      // list card. Selecting from the map should never scroll a hidden panel.
+      const mapView = $('map-view');
+      if (mapView && mapView.hidden) scrollToStop(bar.id);
+      else scrollToCard(bar.id);
+    }
     $('map-status').textContent = `${bar.number}. ${bar.name} — ${bar.area}, ${locality(bar)}${bar.status ? ` · ${bar.status}` : ''}`;
+    try { history.replaceState(null, '', `#stop-${bar.id}`); } catch (e) {}
     render();
   }
 
@@ -215,10 +246,28 @@
   // As the user scrolls through .stop sections, the map camera pans to the
   // corresponding bar. Uses an IntersectionObserver to find the active stop,
   // then smoothly animates the camera. No scroll hijacking — the page scrolls
-  // normally and the map follows.
+  // normally and the map follows. "Follow" can be paused by the user (or by
+  // manual map interaction) and resumed from the toolbar.
   let activeStopId = null;
   let cameraAnim = null; // {fromX, fromY, fromW, toX, toY, toW, start, duration}
   let phaseTimer = null; // pending phase-2 setTimeout for distant stops
+
+  function setFollow(on) {
+    followReading = on;
+    const cb = $('follow-reading');
+    if (cb) cb.checked = on;
+    // When follow is paused, cancel any in-flight scroll-driven camera motion
+    // so the map stays where the user left it instead of drifting to a stop.
+    if (!on) {
+      if (cameraAnim) { cancelAnimationFrame(cameraAnim.raf); cameraAnim = null; }
+      if (phaseTimer) { clearTimeout(phaseTimer); phaseTimer = null; }
+    }
+  }
+
+  // Manual map interaction pauses scroll-driven following; the user can resume
+  // it from the toolbar toggle. This prevents the camera from yanking control
+  // back after the user has deliberately explored the map.
+  function pauseFollow() { if (followReading) setFollow(false); }
 
   function animateCameraTo(targetX, targetY, targetWidth, duration = 600) {
     if (cameraAnim) cancelAnimationFrame(cameraAnim.raf);
@@ -308,9 +357,10 @@
     // IntersectionObserver: when a stop crosses the middle of the viewport,
     // it becomes active and the map pans to it.
     const observer = new IntersectionObserver(entries => {
-      // Only act when journey view is active
+      // Only act when journey view is active and follow is enabled
       const journeyView = $('journey-view');
       if (!journeyView || journeyView.hidden) return;
+      if (!followReading) return;
 
       // Find the entry closest to the center of the viewport
       let bestEntry = null, bestDistance = Infinity;
@@ -361,6 +411,11 @@
         if (bar) focusStop(bar, stop);
       });
     });
+  }
+
+  function scrollToStop(id) {
+    const stop = $(`stop-${id}`);
+    if (stop) stop.scrollIntoView({block: 'start', behavior: 'smooth'});
   }
 
   function scrollToCard(id) {
@@ -483,9 +538,17 @@
   function filter() {
     const query = normalize($('shop-search').value.trim());
     const area = $('area-filter').value;
-    visible = bars.filter(bar => (!area || bar.area === area) && bar.haystack.includes(query));
+    const type = $('type-filter').value;
+    const matches = bar => (!area || bar.area === area) && (!type || categoryOf(bar.style) === type) && bar.haystack.includes(query);
+    visible = bars.filter(matches);
     const ids = new Set(visible.map(bar => bar.id));
-    bars.forEach(bar => { $(`shop-${bar.id}`).hidden = !ids.has(bar.id); });
+    bars.forEach(bar => {
+      $(`shop-${bar.id}`).hidden = !ids.has(bar.id);
+      // Keep Journey stops in sync with the same filter, so the reading view
+      // never focuses a venue whose marker is hidden on the map.
+      const stop = $(`stop-${bar.id}`);
+      if (stop) stop.hidden = !ids.has(bar.id);
+    });
     $('empty-state').hidden = visible.length > 0;
     $('shop-count').textContent = `${visible.length} / ${bars.length}`;
     $('map-status').textContent = visible.length ? `${visible.length} places shown.${transitAvailable ? '' : ' Subway context unavailable.'}` : 'No matching places. Clear the search or choose another area.';
@@ -518,9 +581,27 @@
       if (bar.note) card.append(html('p', 'shop-note', bar.note));
       if (bar.status) card.append(html('p', 'shop-status', bar.status));
       const links = html('div', 'shop-links');
-      links.append(link('Open saved location', mapUrl(bar)));
-      (bar.sources || []).forEach(source => links.append(link(source.label, source.url)));
+      const primaryUrl = mapUrl(bar);
+      // The always-visible primary "Open in Maps" pill below covers the maps
+      // URL, so the link cluster only carries secondary sources (Tabelog,
+      // Instagram, official site, ...), deduplicated against the maps URL.
+      const seen = new Set([primaryUrl]);
+      (bar.sources || []).forEach(source => {
+        if (seen.has(source.url)) return;
+        seen.add(source.url);
+        const a = link(source.label, source.url);
+        a.target = '_blank'; a.rel = 'noopener noreferrer';
+        links.append(a);
+      });
       card.append(links);
+      // Always-visible primary Maps action so users don't have to expand the
+      // link cluster to find the venue on a map.
+      const primary = document.createElement('a');
+      primary.className = 'shop-link-primary';
+      primary.href = primaryUrl;
+      primary.textContent = 'Open in Maps';
+      primary.target = '_blank'; primary.rel = 'noopener noreferrer';
+      card.append(primary);
       card.addEventListener('click', event => {
         if (!event.target.closest('a, button')) select(bar, true);
       });
@@ -531,13 +612,20 @@
       option.value = area;
       $('area-filter').append(option);
     });
+    // Type filter uses grouped categories, not the granular per-venue styles.
+    STYLE_CATEGORIES.forEach(([cat]) => {
+      const option = html('option', '', cat);
+      option.value = cat;
+      $('type-filter').append(option);
+    });
   }
 
   function beforePrint() {
     if (!ready || savedPrint) return;
-    savedPrint = {camera: {...camera}, search: $('shop-search').value, area: $('area-filter').value, selected};
+    savedPrint = {camera: {...camera}, search: $('shop-search').value, area: $('area-filter').value, type: $('type-filter').value, selected};
     $('shop-search').value = '';
     $('area-filter').value = '';
+    $('type-filter').value = '';
     filter();
     resize();
   }
@@ -548,20 +636,25 @@
     savedPrint = null;
     $('shop-search').value = previous.search;
     $('area-filter').value = previous.area;
+    $('type-filter').value = previous.type;
     selected = previous.selected;
     filter();
     Object.assign(camera, previous.camera);
     resize();
   }
 
-  $('zoom-in').addEventListener('click', () => zoom(0.7));
-  $('zoom-out').addEventListener('click', () => zoom(1 / 0.7));
-  $('fit-map').addEventListener('click', () => fit());
+  $('zoom-in').addEventListener('click', () => { pauseFollow(); zoom(0.7); });
+  $('zoom-out').addEventListener('click', () => { pauseFollow(); zoom(1 / 0.7); });
+  $('fit-map').addEventListener('click', () => { pauseFollow(); fit(); });
   $('shop-search').addEventListener('input', filter);
   $('area-filter').addEventListener('change', filter);
+  $('type-filter').addEventListener('change', filter);
   $('show-transit').addEventListener('change', () => {
     const group = $('bars-transit');
     if (group) group.style.display = $('show-transit').checked ? '' : 'none';
+  });
+  $('follow-reading').addEventListener('change', () => {
+    followReading = $('follow-reading').checked;
   });
   $('print-map').addEventListener('click', () => window.print());
   window.addEventListener('beforeprint', beforePrint);
@@ -569,6 +662,7 @@
   svg.setAttribute('tabindex', '0');
   svg.addEventListener('wheel', event => {
     event.preventDefault();
+    pauseFollow();
     const rect = svg.getBoundingClientRect();
     zoom(Math.exp(Math.max(-200, Math.min(200, event.deltaY)) * 0.002), [event.clientX - rect.left, event.clientY - rect.top]);
   }, {passive: false});
@@ -577,11 +671,13 @@
     const moves = {ArrowLeft: [-1, 0], ArrowRight: [1, 0], ArrowUp: [0, -1], ArrowDown: [0, 1]};
     if (moves[event.key]) {
       event.preventDefault();
+      pauseFollow();
       camera.x += moves[event.key][0] * camera.width * 0.12;
       camera.y += moves[event.key][1] * camera.width * 0.12;
       render();
     } else if (['+', '=', '-', '0'].includes(event.key)) {
       event.preventDefault();
+      pauseFollow();
       if (event.key === '0') fit();
       else zoom(event.key === '-' ? 1.3 : 1 / 1.3);
     }
@@ -596,7 +692,10 @@
     if (event.button !== 0) return;
     suppressClick = false;
     pointers.set(event.pointerId, [event.clientX, event.clientY]);
-    if (!event.target.closest('.map-marker')) svg.setPointerCapture(event.pointerId);
+    if (!event.target.closest('.map-marker')) {
+      svg.setPointerCapture(event.pointerId);
+      pauseFollow();
+    }
     resetGesture();
   });
   svg.addEventListener('pointermove', event => {
@@ -646,9 +745,17 @@
       $('print-map').disabled = false;
       // Wire scroll-driven camera for Journey view
       initScrollObserver();
-      // In journey view, start the camera on the first stop instead of fit()
+      // Restore a venue from the URL hash (#stop-<id>) if present and valid;
+      // otherwise start on the first stop in Journey view, or fit() in Map view.
+      const hashMatch = /^#stop-(.+)$/.exec(location.hash);
+      const hashBar = hashMatch ? bars.find(b => b.id === hashMatch[1]) : null;
       const journeyView = $('journey-view');
-      if (journeyView && !journeyView.hidden && bars.length) {
+      if (hashBar) {
+        // A shared selection should land in Map & list so the card is visible
+        // and the marker is selectable, regardless of the saved view.
+        if (setViewFn) setViewFn('map');
+        select(hashBar, true);
+      } else if (journeyView && !journeyView.hidden && bars.length) {
         const first = bars[0];
         camera.x = first.point[0];
         camera.y = first.point[1];
