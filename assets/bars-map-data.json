@@ -102,8 +102,31 @@
       ]
     },
     {
-      "id": "new-york-bar",
+      "id": "pizza-bar-38th",
       "number": 5,
+      "name": "The Pizza Bar On 38th",
+      "aliases": [
+        "ザ ピザバー オン 38th"
+      ],
+      "area": "Nihonbashi",
+      "ward": "Chuo",
+      "lat": 35.686972,
+      "lng": 139.77306,
+      "mapsUrl": "https://www.google.com/maps/place/The+Pizza+Bar+On+38th/data=!4m2!3m1!1s0x6018895562e77a3b:0xe3c077a9dbbe0dcd",
+      "address": "38F Mandarin Oriental Tokyo, 2-1-1 Nihonbashi Muromachi, Chuo-ku, Tokyo",
+      "station": "Mitsukoshimae (Tokyo Metro Ginza/Hanzomon) — 2 min walk",
+      "style": "Hotel bar · high-end",
+      "description": "A pizza bar on the 38th floor of the Mandarin Oriental. Yes, pizza — wood-fired, counter seating, and a view that rivals New York Bar's. Expensive, and the pizza is better than it has any right to be at that altitude.",
+      "sources": [
+        {
+          "label": "Open in Maps",
+          "url": "https://www.google.com/maps/place/The+Pizza+Bar+On+38th/data=!4m2!3m1!1s0x6018895562e77a3b:0xe3c077a9dbbe0dcd"
+        }
+      ]
+    },
+    {
+      "id": "new-york-bar",
+      "number": 6,
       "name": "New York Bar",
       "aliases": [
         "ニューヨークバー",
@@ -127,7 +150,7 @@
     },
     {
       "id": "bar-cocktailbook",
-      "number": 6,
+      "number": 7,
       "name": "Bar Cocktailbook Shinjuku",
       "aliases": [
         "バー カクテルブック 新宿"
@@ -150,7 +173,7 @@
     },
     {
       "id": "kakuretai",
-      "number": 7,
+      "number": 8,
       "name": "KAKURETAI",
       "aliases": [
         "かくれたい",
@@ -178,7 +201,7 @@
     },
     {
       "id": "bar-rest",
-      "number": 8,
+      "number": 9,
       "name": "Bar rest",
       "aliases": [
         "歌舞伎町 rest",
@@ -201,33 +224,6 @@
         {
           "label": "Open in Maps",
           "url": "https://www.google.com/maps/search/?api=1&query=Bar+rest+2-46-7+Kabukicho+Shinjuku+Tokyo"
-        }
-      ]
-    },
-    {
-      "id": "eigakan-jazz",
-      "number": 9,
-      "name": "Eigakan Jazz",
-      "aliases": [
-        "映画館ジャズ"
-      ],
-      "area": "Hakusan",
-      "ward": "Bunkyo",
-      "lat": 35.721989,
-      "lng": 139.752213,
-      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Eigakan+Jazz+5-33-19+Hakusan+Bunkyo+Tokyo",
-      "address": "B1F, 5-33-19 Hakusan, Bunkyo-ku, Tokyo 112-0001",
-      "station": "Hakusan (Toei Mita Line A3) — 1 min walk",
-      "style": "Jazz bar",
-      "description": "A jazz kissa in Hakusan, down a narrow staircase from street level. The name means 'cinema.' Vinyl on the turntable, dim light below ground, and a room that has been spinning records for decades. Cash only. Closed Sundays, Mondays, and holidays.",
-      "sources": [
-        {
-          "label": "Official site",
-          "url": "http://www.jazzeigakan.com/"
-        },
-        {
-          "label": "Open in Maps",
-          "url": "https://www.google.com/maps/search/?api=1&query=Eigakan+Jazz+5-33-19+Hakusan+Bunkyo+Tokyo"
         }
       ]
     },
@@ -278,215 +274,8 @@
       ]
     },
     {
-      "id": "janai-coffee",
-      "number": 12,
-      "name": "JANAI COFFEE",
-      "aliases": [
-        "ジャナイコーヒー"
-      ],
-      "area": "Ebisu",
-      "ward": "Shibuya",
-      "lat": 35.6455994,
-      "lng": 139.7071991,
-      "mapsUrl": "https://www.google.com/maps/place/JANAI+COFFEE/data=!4m2!3m1!1s0x60188b40c1000001:0xf21b512300945656",
-      "address": "B1F Yamanen Building, 2-3-13 Ebisuminami, Shibuya-ku, Tokyo",
-      "station": "Ebisu (JR Yamanote / Tokyo Metro Hibiya) — 3 min walk",
-      "style": "Speakeasy",
-      "description": "It is called a coffee shop. It is not a coffee shop. JANAI means 'not this' — the door is a speakeasy entrance, and what is behind it is a bar. Go down the stairs, find the door, and order a drink. The coffee is a cover story.",
-      "sources": [
-        {
-          "label": "Open in Maps",
-          "url": "https://www.google.com/maps/place/JANAI+COFFEE/data=!4m2!3m1!1s0x60188b40c1000001:0xf21b512300945656"
-        }
-      ]
-    },
-    {
-      "id": "a10",
-      "number": 13,
-      "name": "A10",
-      "aliases": [
-        "エーテン"
-      ],
-      "area": "Ebisunishi",
-      "ward": "Shibuya",
-      "lat": 35.647301,
-      "lng": 139.70726,
-      "mapsUrl": "https://www.google.com/maps/place/A10/data=!4m2!3m1!1s0x60188b8d0bbc998d:0xdbdb6eb72400c38f",
-      "address": "B1F Bios Building, 1-12-11 Ebisunishi, Shibuya-ku, Tokyo",
-      "station": "Ebisu (JR Yamanote / Tokyo Metro Hibiya) — 3 min walk",
-      "style": "Bar",
-      "description": "An Ebisu bar around the corner from JANAI. Small, focused, and easy to miss if you are not looking for it.",
-      "sources": [
-        {
-          "label": "Open in Maps",
-          "url": "https://www.google.com/maps/place/A10/data=!4m2!3m1!1s0x60188b8d0bbc998d:0xdbdb6eb72400c38f"
-        }
-      ]
-    },
-    {
-      "id": "fightclub",
-      "number": 14,
-      "name": "FIGHTCLUB Shibuya",
-      "aliases": [
-        "ファイトクラブ渋谷"
-      ],
-      "area": "Dogenzaka",
-      "ward": "Shibuya",
-      "lat": 35.659412,
-      "lng": 139.697601,
-      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=FIGHTCLUB+Shibuya+2-27-2+Dogenzaka+Tokyo",
-      "address": "1F Towa Dogenzaka Building, 2-27-2 Dogenzaka, Shibuya-ku, Tokyo",
-      "station": "Shibuya (JR / Tokyo Metro / Tokyu / Keio Inokashira) — 3 min walk",
-      "style": "Bar",
-      "description": "A kickboxing gym and bar on Dogenzaka in Shibuya. Fight training upstairs, drinks after. Not a cocktail bar — a place where the crowd came to hit things and then order a round. Loud, young, and exactly what the name says.",
-      "sources": [
-        {
-          "label": "Open in Maps",
-          "url": "https://www.google.com/maps/search/?api=1&query=FIGHTCLUB+Shibuya+2-27-2+Dogenzaka+Tokyo"
-        }
-      ]
-    },
-    {
-      "id": "bundan",
-      "number": 15,
-      "name": "BUNDAN Coffee & Beer",
-      "aliases": [
-        "文旦"
-      ],
-      "area": "Komaba",
-      "ward": "Meguro",
-      "lat": 35.663353,
-      "lng": 139.679703,
-      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=BUNDAN+Coffee+Beer+Komaba+Meguro+Tokyo",
-      "address": "Inside the Museum of Modern Japanese Literature, 4-3-55 Komaba, Meguro-ku, Tokyo",
-      "station": "Komaba-Todaimae (Keio Inokashira) — 3 min walk",
-      "style": "Coffee & beer bar",
-      "description": "A literary cafe and bar inside the Museum of Modern Japanese Literature in Komaba. Coffee by day, beer and wine by evening, and books on every wall. The name means 'passing along a story.' A quiet stop between the museum and the park.",
-      "sources": [
-        {
-          "label": "Open in Maps",
-          "url": "https://www.google.com/maps/search/?api=1&query=BUNDAN+Coffee+Beer+Komaba+Meguro+Tokyo"
-        }
-      ]
-    },
-    {
-      "id": "bar-sawa",
-      "number": 16,
-      "name": "Bar sawa",
-      "aliases": [
-        "バー サワ"
-      ],
-      "area": "Higashiyama",
-      "ward": "Meguro",
-      "lat": 35.645924,
-      "lng": 139.696854,
-      "mapsUrl": "https://www.google.com/maps/place/Bar+sawa/data=!4m2!3m1!1s0x80c2c78f35b274cd:0xf372ecbef3bf0575",
-      "address": "1F Forum Nakameguro, 1-6-7 Higashiyama, Meguro-ku, Tokyo",
-      "station": "Nakameguro (Tokyo Metro Hibiya) — 5 min walk",
-      "style": "Bar",
-      "description": "A bar in Higashiyama, the quiet side of Nakameguro. A counter spot for a drink before or after dinner in the neighborhood.",
-      "sources": [
-        {
-          "label": "Open in Maps",
-          "url": "https://www.google.com/maps/place/Bar+sawa/data=!4m2!3m1!1s0x80c2c78f35b274cd:0xf372ecbef3bf0575"
-        }
-      ]
-    },
-    {
-      "id": "gen-yamamoto",
-      "number": 17,
-      "name": "Gen Yamamoto",
-      "aliases": [
-        "ゲン ヤマモト"
-      ],
-      "area": "Azabujuban",
-      "ward": "Minato",
-      "lat": 35.6564878,
-      "lng": 139.7342623,
-      "mapsUrl": "http://maps.google.com/?cid=9087814451927436466",
-      "address": "1F Anniversary Building, 1-6-4 Azabujuban, Minato-ku, Tokyo",
-      "station": "Azabujuban (Toei Oedo) — 3 min walk",
-      "style": "Cocktail bar · high-end",
-      "description": "A reservation-only cocktail bar in Azabujuban. One bartender, a short counter, and a tasting-menu-style flight of seasonal cocktails built on Japanese ingredients. Sit, watch, do not rush.",
-      "sources": [
-        {
-          "label": "Open in Maps",
-          "url": "http://maps.google.com/?cid=9087814451927436466"
-        }
-      ]
-    },
-    {
-      "id": "bar-centifolia",
-      "number": 18,
-      "name": "Bar Centifolia",
-      "aliases": [
-        "バー センティフォリア"
-      ],
-      "area": "Azabujuban",
-      "ward": "Minato",
-      "lat": 35.65659,
-      "lng": 139.734238,
-      "mapsUrl": "https://www.google.com/maps/place/Bar+Centifolia/data=!4m2!3m1!1s0x60188b9fa69c033f:0xc44593ba0ccc4863",
-      "address": "6F La Muse Azabujuban Building, 1-6-5 Azabujuban, Minato-ku, Tokyo",
-      "station": "Azabujuban (Toei Oedo) — 3 min walk",
-      "style": "Bar",
-      "description": "An Azabujuban bar near Gen Yamamoto. A quieter, older-school counter for a late drink in the neighborhood.",
-      "sources": [
-        {
-          "label": "Open in Maps",
-          "url": "https://www.google.com/maps/place/Bar+Centifolia/data=!4m2!3m1!1s0x60188b9fa69c033f:0xc44593ba0ccc4863"
-        }
-      ]
-    },
-    {
-      "id": "rokusan-angel",
-      "number": 19,
-      "name": "Rokusan Angel (Burlesque Tokyo)",
-      "aliases": [
-        "六三アングル"
-      ],
-      "area": "Roppongi",
-      "ward": "Minato",
-      "lat": 35.6633285,
-      "lng": 139.7341877,
-      "mapsUrl": "https://www.google.com/maps/place/ROKUSAN+ANGEL%EF%BC%88Burlesque+Tokyo%EF%BC%89/data=!4m2!3m1!1s0x60188b78685d2fcb:0x949f91afc7f95845",
-      "address": "B2F Roppongi Nittaku Building, 3-8-15 Roppongi, Minato-ku, Tokyo",
-      "station": "Roppongi (Toei Oedo / Tokyo Metro Hibiya) — 5 min walk",
-      "style": "Burlesque bar",
-      "description": "A Roppongi burlesque bar. Live performances, cocktails, and a stage that is close enough to touch. Book ahead.",
-      "sources": [
-        {
-          "label": "Open in Maps",
-          "url": "https://www.google.com/maps/place/ROKUSAN+ANGEL%EF%BC%88Burlesque+Tokyo%EF%BC%89/data=!4m2!3m1!1s0x60188b78685d2fcb:0x949f91afc7f95845"
-        }
-      ]
-    },
-    {
-      "id": "bar-under",
-      "number": 20,
-      "name": "BAR &UNDER",
-      "aliases": [
-        "バー アンドアンダー"
-      ],
-      "area": "Kanda",
-      "ward": "Chiyoda",
-      "lat": 35.700415,
-      "lng": 139.768349,
-      "mapsUrl": "https://www.google.com/maps/place/BAR+%26UNDER/data=!4m2!3m1!1s0x60188d5ee280613d:0xfda3db99d25dd786",
-      "address": "B1F Sotokanda Kanemura Building, 2-6-4 Sotokanda, Chiyoda-ku, Tokyo",
-      "station": "Akihabara (JR / Tokyo Metro Hibiya) — 5 min walk",
-      "style": "Bar",
-      "description": "A basement bar in Kanda, near Akihabara. The name tells you where to look — go down. A good late-night stop in a neighborhood that shuts early.",
-      "sources": [
-        {
-          "label": "Open in Maps",
-          "url": "https://www.google.com/maps/place/BAR+%26UNDER/data=!4m2!3m1!1s0x60188d5ee280613d:0xfda3db99d25dd786"
-        }
-      ]
-    },
-    {
       "id": "golden-gai-trio",
-      "number": 21,
+      "number": 12,
       "name": "Golden Gai: Happy, BAR COO & OPEN BOOK",
       "aliases": [
         "新宿ゴールデン街",
@@ -558,80 +347,238 @@
       ]
     },
     {
-      "id": "bar-willows",
-      "number": 22,
-      "name": "BAR Willow's",
+      "id": "fightclub",
+      "number": 13,
+      "name": "FIGHTCLUB Shibuya",
       "aliases": [
-        "バー ウィローズ"
+        "ファイトクラブ渋谷"
       ],
-      "area": "Ueno",
-      "ward": "Taito",
-      "lat": 35.708229,
-      "lng": 139.772491,
-      "mapsUrl": "https://www.google.com/maps/place/BAR+Willow's/data=!4m2!3m1!1s0x60188d3e5e0018b3:0xe2bda4fa0a3810c4",
-      "address": "6F-E, 88 Building, 2-1-3 Ueno, Taito-ku, Tokyo",
-      "station": "Okachimachi (JR) — 3 min walk; Ueno-Hirokoji (Tokyo Metro Ginza) — 1 min walk",
+      "area": "Dogenzaka",
+      "ward": "Shibuya",
+      "lat": 35.659412,
+      "lng": 139.697601,
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=FIGHTCLUB+Shibuya+2-27-2+Dogenzaka+Tokyo",
+      "address": "1F Towa Dogenzaka Building, 2-27-2 Dogenzaka, Shibuya-ku, Tokyo",
+      "station": "Shibuya (JR / Tokyo Metro / Tokyu / Keio Inokashira) — 3 min walk",
       "style": "Bar",
-      "description": "A bar on the 6th floor of the 88 Building in Ueno. Antique chairs, a long cocktail and whisky list, and a counter that welcomes first-timers. The kind of hidden-floor Tokyo bar you have to know the elevator for.",
-      "video": "assets/movie/bar-willows.webm",
+      "description": "A kickboxing gym and bar on Dogenzaka in Shibuya. Fight training upstairs, drinks after. Not a cocktail bar — a place where the crowd came to hit things and then order a round. Loud, young, and exactly what the name says.",
       "sources": [
         {
           "label": "Open in Maps",
-          "url": "https://www.google.com/maps/place/BAR+Willow's/data=!4m2!3m1!1s0x60188d3e5e0018b3:0xe2bda4fa0a3810c4"
+          "url": "https://www.google.com/maps/search/?api=1&query=FIGHTCLUB+Shibuya+2-27-2+Dogenzaka+Tokyo"
         }
       ]
     },
     {
-      "id": "the-trad",
-      "number": 23,
-      "name": "The TRAD whisky & cocktails",
+      "id": "janai-coffee",
+      "number": 14,
+      "name": "JANAI COFFEE",
       "aliases": [
-        "ザ トラッド"
+        "ジャナイコーヒー"
       ],
-      "area": "Yushima",
-      "ward": "Bunkyo",
-      "lat": 35.708847,
-      "lng": 139.77121,
-      "mapsUrl": "https://www.google.com/maps/place/The+TRAD+whisky+%26+cocktails+%E6%B9%AF%E5%B3%B6+%E5%BE%A1%E5%BE%92%E7%94%BA+%E4%B8%8A%E9%87%8E%E3%83%90%E3%83%BC/data=!4m2!3m1!1s0x60188c20f66448e3:0xca25a905c1abddc1",
-      "address": "1F Fukase Building, 3-43-9 Yushima, Bunkyo-ku, Tokyo",
-      "station": "Ueno-Hirokoji (Tokyo Metro Ginza) — 3 min walk",
-      "style": "Whisky & cocktail bar",
-      "description": "A whisky and cocktail bar in Yushima, between Ueno and Okachimachi. The name says what it is. A solid counter, a deep whisky shelf, and no pretense.",
-      "image": "assets/imgs/bars/whiskey-glass.jpg",
-      "imageAlt": "A glass of whisky on a bar counter",
+      "area": "Ebisu",
+      "ward": "Shibuya",
+      "lat": 35.6455994,
+      "lng": 139.7071991,
+      "mapsUrl": "https://www.google.com/maps/place/JANAI+COFFEE/data=!4m2!3m1!1s0x60188b40c1000001:0xf21b512300945656",
+      "address": "B1F Yamanen Building, 2-3-13 Ebisuminami, Shibuya-ku, Tokyo",
+      "station": "Ebisu (JR Yamanote / Tokyo Metro Hibiya) — 3 min walk",
+      "style": "Speakeasy",
+      "description": "It is called a coffee shop. It is not a coffee shop. JANAI means 'not this' — the door is a speakeasy entrance, and what is behind it is a bar. Go down the stairs, find the door, and order a drink. The coffee is a cover story.",
       "sources": [
         {
           "label": "Open in Maps",
-          "url": "https://www.google.com/maps/place/The+TRAD+whisky+%26+cocktails+%E6%B9%AF%E5%B3%B6+%E5%BE%A1%E5%BE%92%E7%94%BA+%E4%B8%8A%E9%87%8E%E3%83%90%E3%83%BC/data=!4m2!3m1!1s0x60188c20f66448e3:0xca25a905c1abddc1"
+          "url": "https://www.google.com/maps/place/JANAI+COFFEE/data=!4m2!3m1!1s0x60188b40c1000001:0xf21b512300945656"
         }
       ]
     },
     {
-      "id": "rock-bar-sakebi",
-      "number": 24,
-      "name": "Rock Bar Sakebi",
+      "id": "a10",
+      "number": 15,
+      "name": "A10",
       "aliases": [
-        "ロックバー さけび"
+        "エーテン"
       ],
-      "area": "Negishi",
-      "ward": "Taito",
-      "lat": 35.724407,
-      "lng": 139.778671,
-      "mapsUrl": "https://www.google.com/maps/place/Rock+Bar+Sakebi/data=!4m2!3m1!1s0x60188f79659e8de5:0xf831bb430ca98480",
-      "address": "1F, 2-16-11 Negishi, Taito-ku, Tokyo",
-      "station": "Nippori (JR Yamanote / Keisei) — 8 min walk",
-      "style": "Rock bar",
-      "description": "A rock bar in Negishi, north of Ueno. Loud music, strong drinks, and a crowd that came for both. Not the place for a quiet conversation.",
+      "area": "Ebisunishi",
+      "ward": "Shibuya",
+      "lat": 35.647301,
+      "lng": 139.70726,
+      "mapsUrl": "https://www.google.com/maps/place/A10/data=!4m2!3m1!1s0x60188b8d0bbc998d:0xdbdb6eb72400c38f",
+      "address": "B1F Bios Building, 1-12-11 Ebisunishi, Shibuya-ku, Tokyo",
+      "station": "Ebisu (JR Yamanote / Tokyo Metro Hibiya) — 3 min walk",
+      "style": "Bar",
+      "description": "An Ebisu bar around the corner from JANAI. Small, focused, and easy to miss if you are not looking for it.",
       "sources": [
         {
           "label": "Open in Maps",
-          "url": "https://www.google.com/maps/place/Rock+Bar+Sakebi/data=!4m2!3m1!1s0x60188f79659e8de5:0xf831bb430ca98480"
+          "url": "https://www.google.com/maps/place/A10/data=!4m2!3m1!1s0x60188b8d0bbc998d:0xdbdb6eb72400c38f"
+        }
+      ]
+    },
+    {
+      "id": "bundan",
+      "number": 16,
+      "name": "BUNDAN Coffee & Beer",
+      "aliases": [
+        "文旦"
+      ],
+      "area": "Komaba",
+      "ward": "Meguro",
+      "lat": 35.663353,
+      "lng": 139.679703,
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=BUNDAN+Coffee+Beer+Komaba+Meguro+Tokyo",
+      "address": "Inside the Museum of Modern Japanese Literature, 4-3-55 Komaba, Meguro-ku, Tokyo",
+      "station": "Komaba-Todaimae (Keio Inokashira) — 3 min walk",
+      "style": "Coffee & beer bar",
+      "description": "A literary cafe and bar inside the Museum of Modern Japanese Literature in Komaba. Coffee by day, beer and wine by evening, and books on every wall. The name means 'passing along a story.' A quiet stop between the museum and the park.",
+      "sources": [
+        {
+          "label": "Open in Maps",
+          "url": "https://www.google.com/maps/search/?api=1&query=BUNDAN+Coffee+Beer+Komaba+Meguro+Tokyo"
+        }
+      ]
+    },
+    {
+      "id": "bar-sawa",
+      "number": 17,
+      "name": "Bar sawa",
+      "aliases": [
+        "バー サワ"
+      ],
+      "area": "Higashiyama",
+      "ward": "Meguro",
+      "lat": 35.645924,
+      "lng": 139.696854,
+      "mapsUrl": "https://www.google.com/maps/place/Bar+sawa/data=!4m2!3m1!1s0x80c2c78f35b274cd:0xf372ecbef3bf0575",
+      "address": "1F Forum Nakameguro, 1-6-7 Higashiyama, Meguro-ku, Tokyo",
+      "station": "Nakameguro (Tokyo Metro Hibiya) — 5 min walk",
+      "style": "Bar",
+      "description": "A bar in Higashiyama, the quiet side of Nakameguro. A counter spot for a drink before or after dinner in the neighborhood.",
+      "sources": [
+        {
+          "label": "Open in Maps",
+          "url": "https://www.google.com/maps/place/Bar+sawa/data=!4m2!3m1!1s0x80c2c78f35b274cd:0xf372ecbef3bf0575"
+        }
+      ]
+    },
+    {
+      "id": "no-room-squares",
+      "number": 18,
+      "name": "No Room For Squares",
+      "aliases": [
+        "ノー・ルーム・フォー・スクエアーズ"
+      ],
+      "area": "Kitazawa",
+      "ward": "Setagaya",
+      "lat": 35.6591442,
+      "lng": 139.6676007,
+      "mapsUrl": "http://maps.google.com/?cid=911402204683980032",
+      "address": "4F Housing Kitazawa Building II, 2-1-7 Kitazawa, Setagaya-ku, Tokyo",
+      "station": "Shimokitazawa (Odakyu / Keio Inokashira) — 3 min walk",
+      "style": "Jazz bar",
+      "description": "A jazz bar in Shimokitazawa. The name is a Mingus reference. Vinyl on the turntable, a small room, and a crowd that came for the music. Check the schedule.",
+      "sources": [
+        {
+          "label": "Open in Maps",
+          "url": "http://maps.google.com/?cid=911402204683980032"
+        }
+      ]
+    },
+    {
+      "id": "gen-yamamoto",
+      "number": 19,
+      "name": "Gen Yamamoto",
+      "aliases": [
+        "ゲン ヤマモト"
+      ],
+      "area": "Azabujuban",
+      "ward": "Minato",
+      "lat": 35.6564878,
+      "lng": 139.7342623,
+      "mapsUrl": "http://maps.google.com/?cid=9087814451927436466",
+      "address": "1F Anniversary Building, 1-6-4 Azabujuban, Minato-ku, Tokyo",
+      "station": "Azabujuban (Toei Oedo) — 3 min walk",
+      "style": "Cocktail bar · high-end",
+      "description": "A reservation-only cocktail bar in Azabujuban. One bartender, a short counter, and a tasting-menu-style flight of seasonal cocktails built on Japanese ingredients. Sit, watch, do not rush.",
+      "sources": [
+        {
+          "label": "Open in Maps",
+          "url": "http://maps.google.com/?cid=9087814451927436466"
+        }
+      ]
+    },
+    {
+      "id": "bar-centifolia",
+      "number": 20,
+      "name": "Bar Centifolia",
+      "aliases": [
+        "バー センティフォリア"
+      ],
+      "area": "Azabujuban",
+      "ward": "Minato",
+      "lat": 35.65659,
+      "lng": 139.734238,
+      "mapsUrl": "https://www.google.com/maps/place/Bar+Centifolia/data=!4m2!3m1!1s0x60188b9fa69c033f:0xc44593ba0ccc4863",
+      "address": "6F La Muse Azabujuban Building, 1-6-5 Azabujuban, Minato-ku, Tokyo",
+      "station": "Azabujuban (Toei Oedo) — 3 min walk",
+      "style": "Bar",
+      "description": "An Azabujuban bar near Gen Yamamoto. A quieter, older-school counter for a late drink in the neighborhood.",
+      "sources": [
+        {
+          "label": "Open in Maps",
+          "url": "https://www.google.com/maps/place/Bar+Centifolia/data=!4m2!3m1!1s0x60188b9fa69c033f:0xc44593ba0ccc4863"
+        }
+      ]
+    },
+    {
+      "id": "rokusan-angel",
+      "number": 21,
+      "name": "Rokusan Angel (Burlesque Tokyo)",
+      "aliases": [
+        "六三アングル"
+      ],
+      "area": "Roppongi",
+      "ward": "Minato",
+      "lat": 35.6633285,
+      "lng": 139.7341877,
+      "mapsUrl": "https://www.google.com/maps/place/ROKUSAN+ANGEL%EF%BC%88Burlesque+Tokyo%EF%BC%89/data=!4m2!3m1!1s0x60188b78685d2fcb:0x949f91afc7f95845",
+      "address": "B2F Roppongi Nittaku Building, 3-8-15 Roppongi, Minato-ku, Tokyo",
+      "station": "Roppongi (Toei Oedo / Tokyo Metro Hibiya) — 5 min walk",
+      "style": "Burlesque bar",
+      "description": "A Roppongi burlesque bar. Live performances, cocktails, and a stage that is close enough to touch. Book ahead.",
+      "sources": [
+        {
+          "label": "Open in Maps",
+          "url": "https://www.google.com/maps/place/ROKUSAN+ANGEL%EF%BC%88Burlesque+Tokyo%EF%BC%89/data=!4m2!3m1!1s0x60188b78685d2fcb:0x949f91afc7f95845"
+        }
+      ]
+    },
+    {
+      "id": "bar-under",
+      "number": 22,
+      "name": "BAR &UNDER",
+      "aliases": [
+        "バー アンドアンダー"
+      ],
+      "area": "Kanda",
+      "ward": "Chiyoda",
+      "lat": 35.700415,
+      "lng": 139.768349,
+      "mapsUrl": "https://www.google.com/maps/place/BAR+%26UNDER/data=!4m2!3m1!1s0x60188d5ee280613d:0xfda3db99d25dd786",
+      "address": "B1F Sotokanda Kanemura Building, 2-6-4 Sotokanda, Chiyoda-ku, Tokyo",
+      "station": "Akihabara (JR / Tokyo Metro Hibiya) — 5 min walk",
+      "style": "Bar",
+      "description": "A basement bar in Kanda, near Akihabara. The name tells you where to look — go down. A good late-night stop in a neighborhood that shuts early.",
+      "sources": [
+        {
+          "label": "Open in Maps",
+          "url": "https://www.google.com/maps/place/BAR+%26UNDER/data=!4m2!3m1!1s0x60188d5ee280613d:0xfda3db99d25dd786"
         }
       ]
     },
     {
       "id": "naru-jazz",
-      "number": 25,
+      "number": 23,
       "name": "NARU Jazz Livehouse",
       "aliases": [
         "ジャズハウスナル",
@@ -659,7 +606,7 @@
     },
     {
       "id": "game-bar-abutton",
-      "number": 26,
+      "number": 24,
       "name": "Game Bar A-Button",
       "aliases": [
         "ゲームバー エーボタン"
@@ -681,31 +628,107 @@
       ]
     },
     {
-      "id": "no-room-squares",
-      "number": 27,
-      "name": "No Room For Squares",
+      "id": "bar-willows",
+      "number": 25,
+      "name": "BAR Willow's",
       "aliases": [
-        "ノー・ルーム・フォー・スクエアーズ"
+        "バー ウィローズ"
       ],
-      "area": "Kitazawa",
-      "ward": "Setagaya",
-      "lat": 35.6591442,
-      "lng": 139.6676007,
-      "mapsUrl": "http://maps.google.com/?cid=911402204683980032",
-      "address": "4F Housing Kitazawa Building II, 2-1-7 Kitazawa, Setagaya-ku, Tokyo",
-      "station": "Shimokitazawa (Odakyu / Keio Inokashira) — 3 min walk",
-      "style": "Jazz bar",
-      "description": "A jazz bar in Shimokitazawa. The name is a Mingus reference. Vinyl on the turntable, a small room, and a crowd that came for the music. Check the schedule.",
+      "area": "Ueno",
+      "ward": "Taito",
+      "lat": 35.708229,
+      "lng": 139.772491,
+      "mapsUrl": "https://www.google.com/maps/place/BAR+Willow's/data=!4m2!3m1!1s0x60188d3e5e0018b3:0xe2bda4fa0a3810c4",
+      "address": "6F-E, 88 Building, 2-1-3 Ueno, Taito-ku, Tokyo",
+      "station": "Okachimachi (JR) — 3 min walk; Ueno-Hirokoji (Tokyo Metro Ginza) — 1 min walk",
+      "style": "Bar",
+      "description": "A bar on the 6th floor of the 88 Building in Ueno. Antique chairs, a long cocktail and whisky list, and a counter that welcomes first-timers. The kind of hidden-floor Tokyo bar you have to know the elevator for.",
+      "video": "assets/movie/bar-willows.webm",
       "sources": [
         {
           "label": "Open in Maps",
-          "url": "http://maps.google.com/?cid=911402204683980032"
+          "url": "https://www.google.com/maps/place/BAR+Willow's/data=!4m2!3m1!1s0x60188d3e5e0018b3:0xe2bda4fa0a3810c4"
+        }
+      ]
+    },
+    {
+      "id": "rock-bar-sakebi",
+      "number": 26,
+      "name": "Rock Bar Sakebi",
+      "aliases": [
+        "ロックバー さけび"
+      ],
+      "area": "Negishi",
+      "ward": "Taito",
+      "lat": 35.724407,
+      "lng": 139.778671,
+      "mapsUrl": "https://www.google.com/maps/place/Rock+Bar+Sakebi/data=!4m2!3m1!1s0x60188f79659e8de5:0xf831bb430ca98480",
+      "address": "1F, 2-16-11 Negishi, Taito-ku, Tokyo",
+      "station": "Nippori (JR Yamanote / Keisei) — 8 min walk",
+      "style": "Rock bar",
+      "description": "A rock bar in Negishi, north of Ueno. Loud music, strong drinks, and a crowd that came for both. Not the place for a quiet conversation.",
+      "sources": [
+        {
+          "label": "Open in Maps",
+          "url": "https://www.google.com/maps/place/Rock+Bar+Sakebi/data=!4m2!3m1!1s0x60188f79659e8de5:0xf831bb430ca98480"
+        }
+      ]
+    },
+    {
+      "id": "the-trad",
+      "number": 27,
+      "name": "The TRAD whisky & cocktails",
+      "aliases": [
+        "ザ トラッド"
+      ],
+      "area": "Yushima",
+      "ward": "Bunkyo",
+      "lat": 35.708847,
+      "lng": 139.77121,
+      "mapsUrl": "https://www.google.com/maps/place/The+TRAD+whisky+%26+cocktails+%E6%B9%AF%E5%B3%B6+%E5%BE%A1%E5%BE%92%E7%94%BA+%E4%B8%8A%E9%87%8E%E3%83%90%E3%83%BC/data=!4m2!3m1!1s0x60188c20f66448e3:0xca25a905c1abddc1",
+      "address": "1F Fukase Building, 3-43-9 Yushima, Bunkyo-ku, Tokyo",
+      "station": "Ueno-Hirokoji (Tokyo Metro Ginza) — 3 min walk",
+      "style": "Whisky & cocktail bar",
+      "description": "A whisky and cocktail bar in Yushima, between Ueno and Okachimachi. The name says what it is. A solid counter, a deep whisky shelf, and no pretense.",
+      "image": "assets/imgs/bars/whiskey-glass.jpg",
+      "imageAlt": "A glass of whisky on a bar counter",
+      "sources": [
+        {
+          "label": "Open in Maps",
+          "url": "https://www.google.com/maps/place/The+TRAD+whisky+%26+cocktails+%E6%B9%AF%E5%B3%B6+%E5%BE%A1%E5%BE%92%E7%94%BA+%E4%B8%8A%E9%87%8E%E3%83%90%E3%83%BC/data=!4m2!3m1!1s0x60188c20f66448e3:0xca25a905c1abddc1"
+        }
+      ]
+    },
+    {
+      "id": "eigakan-jazz",
+      "number": 28,
+      "name": "Eigakan Jazz",
+      "aliases": [
+        "映画館ジャズ"
+      ],
+      "area": "Hakusan",
+      "ward": "Bunkyo",
+      "lat": 35.721989,
+      "lng": 139.752213,
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Eigakan+Jazz+5-33-19+Hakusan+Bunkyo+Tokyo",
+      "address": "B1F, 5-33-19 Hakusan, Bunkyo-ku, Tokyo 112-0001",
+      "station": "Hakusan (Toei Mita Line A3) — 1 min walk",
+      "style": "Jazz bar",
+      "description": "A jazz kissa in Hakusan, down a narrow staircase from street level. The name means 'cinema.' Vinyl on the turntable, dim light below ground, and a room that has been spinning records for decades. Cash only. Closed Sundays, Mondays, and holidays.",
+      "sources": [
+        {
+          "label": "Official site",
+          "url": "http://www.jazzeigakan.com/"
+        },
+        {
+          "label": "Open in Maps",
+          "url": "https://www.google.com/maps/search/?api=1&query=Eigakan+Jazz+5-33-19+Hakusan+Bunkyo+Tokyo"
         }
       ]
     },
     {
       "id": "shooting-bar-ea",
-      "number": 28,
+      "number": 29,
       "name": "Shooting Bar EA",
       "aliases": [
         "シューティングバー イーエー"
@@ -724,29 +747,6 @@
         {
           "label": "Open in Maps",
           "url": "http://maps.google.com/?cid=3696340728203653624"
-        }
-      ]
-    },
-    {
-      "id": "pizza-bar-38th",
-      "number": 29,
-      "name": "The Pizza Bar On 38th",
-      "aliases": [
-        "ザ ピザバー オン 38th"
-      ],
-      "area": "Nihonbashi",
-      "ward": "Chuo",
-      "lat": 35.686972,
-      "lng": 139.77306,
-      "mapsUrl": "https://www.google.com/maps/place/The+Pizza+Bar+On+38th/data=!4m2!3m1!1s0x6018895562e77a3b:0xe3c077a9dbbe0dcd",
-      "address": "38F Mandarin Oriental Tokyo, 2-1-1 Nihonbashi Muromachi, Chuo-ku, Tokyo",
-      "station": "Mitsukoshimae (Tokyo Metro Ginza/Hanzomon) — 2 min walk",
-      "style": "Hotel bar · high-end",
-      "description": "A pizza bar on the 38th floor of the Mandarin Oriental. Yes, pizza — wood-fired, counter seating, and a view that rivals New York Bar's. Expensive, and the pizza is better than it has any right to be at that altitude.",
-      "sources": [
-        {
-          "label": "Open in Maps",
-          "url": "https://www.google.com/maps/place/The+Pizza+Bar+On+38th/data=!4m2!3m1!1s0x6018895562e77a3b:0xe3c077a9dbbe0dcd"
         }
       ]
     },

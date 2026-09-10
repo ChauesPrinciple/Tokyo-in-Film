@@ -105,7 +105,7 @@ def _category(bar):
 
 def _render_subvenue(sv):
     parts = []
-    parts.append(f'      <article class="subvenue" data-floor="{_esc(sv.get("floor") or "")}">')
+    parts.append(f'      <article class="subvenue" data-floor="{_esc(sv.get("floor") or "")}" tabindex="0" role="button" aria-label="{_esc(sv["name"])} \u2014 focus on map">')
     parts.append(f'        <h4 class="subvenue-name">{_esc(sv["name"])}</h4>')
     aliases = sv.get('aliases') or []
     if aliases:
@@ -171,9 +171,11 @@ def _render_stop(bar):
     if video:
         poster = bar.get('videoPoster') or ''
         poster_attr = f' poster="{_esc(poster)}"' if poster else ''
+        mp4 = bar.get('videoMp4') or video.replace('.webm', '.mp4')
         parts.append(f'    <figure class="stop-media">')
-        parts.append(f'      <video class="stop-video" muted loop playsinline preload="none"{poster_attr}>')
+        parts.append(f'      <video class="stop-video" muted loop playsinline preload="metadata"{poster_attr}>')
         parts.append(f'        <source src="{_esc(video)}" type="video/webm">')
+        parts.append(f'        <source src="{_esc(mp4)}" type="video/mp4">')
         parts.append(f'      </video>')
         parts.append(f'    </figure>')
     elif image:
@@ -216,13 +218,43 @@ def render_journey(data_path):
     with open(s.ROOT / data_path, 'r', encoding='utf-8') as f:
         data = json.load(f)
     bars = data['bars']
-    stops = '\n'.join(_render_stop(b) for b in bars)
-    intro = (
-        '<p class="journey-intro">Scroll through the night. Each stop is a place — '
+
+    # Night-journey legs: geographic clusters that progress deeper into the
+    # night. Each leg gets a header so the reader can see the structure.
+    legs = [
+        ('Ginza &amp; Nihonbashi', 'Early evening — cocktails and counters'),
+        ('Shinjuku', 'Late evening — hotel bars, speakeasies, Golden Gai'),
+        ('Shibuya &amp; Ebisu &amp; Meguro', 'Midnight — coffee shops that aren\u2019t, jazz rooms'),
+        ('Minato &amp; Roppongi', 'Deep night — Azabujuban counters and Roppongi basements'),
+        ('East Tokyo', 'After hours — Kanda to Ueno to Bunkyo'),
+        ('The outer reaches', 'The far outliers and the locked door'),
+    ]
+    # Map bar numbers to leg indices (1-based numbering, 0-based legs).
+    leg_bounds = [5, 12, 18, 21, 28, 30]  # last number in each leg
+    leg_of = {}
+    li = 0
+    for n in range(1, len(bars) + 1):
+        if li < len(leg_bounds) and n > leg_bounds[li]:
+            li += 1
+        leg_of[n] = li
+
+    parts = [
+        '<p class="journey-intro">A night in order: Ginza cocktails, then Shinjuku\u2019s '
+        'hidden floors, then the midnight shift south through Ebisu and Roppongi, '
+        'and finally the east-side after-hours crawl. Each stop is a place \u2014 '
         'with its floor, its address, and a note on what it is. '
-        'Switch to Map & list to see them all at once.</p>'
-    )
-    return intro + '\n' + stops
+        'Switch to Map &amp; list to see them all at once.</p>'
+    ]
+    prev_leg = -1
+    for bar in bars:
+        n = bar['number']
+        leg = leg_of.get(n, 0)
+        if leg != prev_leg:
+            title, subtitle = legs[leg]
+            parts.append(f'<h3 class="journey-leg">{title}<span class="journey-leg-sub">{subtitle}</span></h3>')
+            prev_leg = leg
+        parts.append(_render_stop(bar))
+    return '\n'.join(parts)
 
 
 def build_page(rel, text):

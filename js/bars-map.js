@@ -415,13 +415,17 @@
     // Golden Gai: clicking a subvenue focuses the parent stop's location
     const subvenues = document.querySelectorAll('.subvenue');
     subvenues.forEach(sv => {
-      sv.addEventListener('click', e => {
+      const focusParent = (e) => {
         e.stopPropagation();
         const stop = sv.closest('.stop');
         if (!stop) return;
         const stopId = stop.dataset.stop;
         const bar = barById.get(stopId);
         if (bar) focusStop(bar, stop);
+      };
+      sv.addEventListener('click', focusParent);
+      sv.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); focusParent(e); }
       });
     });
   }
@@ -735,25 +739,15 @@
   new ResizeObserver(resize).observe(svg);
 
   // --- Background video loader ---
-  // Tries to load the WebM background; if it fails, tries the MP4 fallback.
-  // If both fail (no files yet), the video stays hidden and the page works as
-  // before. Only fades in once the video can actually play.
+  // The video has both WebM and MP4 sources; the browser picks whichever it
+  // supports. If neither loads (no files yet), the video stays hidden and the
+  // page works as before. Only fades in once the video can actually play.
   (function initBgVideo() {
     const video = document.querySelector('.bars-bg-video');
     if (!video) return;
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduced) return;
     video.addEventListener('loadeddata', () => video.classList.add('is-loaded'), {once: true});
-    video.addEventListener('error', () => {
-      const fallback = video.querySelector('source[data-fallback]');
-      if (fallback) {
-        const mp4 = document.createElement('source');
-        mp4.src = fallback.getAttribute('data-fallback');
-        mp4.type = 'video/mp4';
-        video.replaceChild(mp4, video.querySelector('source'));
-        video.load();
-      }
-    }, {once: true});
     video.load();
   })();
 

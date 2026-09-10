@@ -374,6 +374,15 @@
       max-width: 62ch; padding-bottom: 22px; border-bottom: 1px solid var(--line);
       font-family: 'Shippori Mincho', serif;
     }
+    .journey-leg {
+      margin: 48px 0 24px; padding: 0 0 8px; border-bottom: 1px solid var(--line);
+      font-size: 18px; font-weight: 700; letter-spacing: -.01em; color: var(--mark-ink);
+      display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap;
+    }
+    .journey-leg-sub {
+      font-size: 12px; font-weight: 400; letter-spacing: .04em; color: var(--muted);
+      text-transform: uppercase;
+    }
 
     /* Fade-in: stops start dimmed and lifted, then settle as they enter. */
     .stop {
@@ -430,8 +439,7 @@
     /* Per-stop video: subtle fade-in when it scrolls into view, like the stop
        cards themselves. The IntersectionObserver in bars-map.js handles the
        is-playing class; we also autoplay muted when visible. */
-    .stop-video { opacity: .85; transition: opacity .6s ease; }
-    .stop-video.is-playing { opacity: 1; }
+    .stop-video { opacity: 1; }
     .stop.is-spotlight .stop-description { color: var(--ink); }
 
     .subvenues { margin: 0 0 14px; display: grid; gap: 10px; }
@@ -546,12 +554,13 @@
     }
   </style>
   <script src="js/ripple.js?v=493127a8" defer></script>
-  <script src="js/bars-map.js?v=570043f5" defer></script>
+  <script src="js/bars-map.js?v=defc5023" defer></script>
 </head>
 <body>
   <div class="bars-bg" aria-hidden="true">
     <video class="bars-bg-video" muted loop playsinline preload="none">
-      <source src="assets/movie/bars-bg.webm" type="video/webm" data-fallback="assets/movie/bars-bg.mp4">
+      <source src="assets/movie/bars-bg.webm" type="video/webm">
+      <source src="assets/movie/bars-bg.mp4" type="video/mp4">
     </video>
     <div class="bars-bg-veil"></div>
   </div>
@@ -613,7 +622,8 @@
       <section id="journey-view" class="journey-view is-active" role="tabpanel" aria-labelledby="view-journey" tabindex="-1">
         <div class="journey-scroll">
 <!-- build:journey -->
-<p class="journey-intro">Scroll through the night. Each stop is a place — with its floor, its address, and a note on what it is. Switch to Map & list to see them all at once.</p>
+<p class="journey-intro">A night in order: Ginza cocktails, then Shinjuku’s hidden floors, then the midnight shift south through Ebisu and Roppongi, and finally the east-side after-hours crawl. Each stop is a place — with its floor, its address, and a note on what it is. Switch to Map &amp; list to see them all at once.</p>
+<h3 class="journey-leg">Ginza &amp; Nihonbashi<span class="journey-leg-sub">Early evening — cocktails and counters</span></h3>
   <section class="stop" id="stop-apollo-bar" data-stop="apollo-bar" data-number="1" data-floor="B1F" data-category="basement">
     <header class="stop-head">
       <p class="stop-number">1</p>
@@ -623,8 +633,9 @@
     <p class="stop-summary">Chuo ward, Tokyo · Cocktail bar · B1F</p>
     <p class="stop-description">A Ginza cocktail bar with a modern, relaxed feel compared to the old-school counters nearby. Good for a long evening that starts here and moves.</p>
     <figure class="stop-media">
-      <video class="stop-video" muted loop playsinline preload="none" poster="assets/imgs/bars/whiskey-glass.jpg">
+      <video class="stop-video" muted loop playsinline preload="metadata" poster="assets/imgs/bars/whiskey-glass.jpg">
         <source src="assets/movie/apollo-bar.webm" type="video/webm">
+        <source src="assets/movie/apollo-bar.mp4" type="video/mp4">
       </video>
     </figure>
     <dl class="stop-facts">
@@ -684,9 +695,26 @@
       <a class="stop-link" href="https://tabelog.com/tokyo/A1301/A130103/13058173/" target="_blank" rel="noopener noreferrer">Tabelog</a>
     </p>
   </section>
-  <section class="stop" id="stop-new-york-bar" data-stop="new-york-bar" data-number="5" data-category="highrise">
+  <section class="stop" id="stop-pizza-bar-38th" data-stop="pizza-bar-38th" data-number="5" data-floor="38F" data-category="highrise">
     <header class="stop-head">
       <p class="stop-number">5</p>
+      <h3 class="stop-name">The Pizza Bar On 38th</h3>
+      <p class="stop-aliases">ザ ピザバー オン 38th</p>
+    </header>
+    <p class="stop-summary">Chuo ward, Tokyo · Hotel bar · high-end · 38F</p>
+    <p class="stop-description">A pizza bar on the 38th floor of the Mandarin Oriental. Yes, pizza — wood-fired, counter seating, and a view that rivals New York Bar&#x27;s. Expensive, and the pizza is better than it has any right to be at that altitude.</p>
+    <dl class="stop-facts">
+      <dt>Station</dt><dd>Mitsukoshimae (Tokyo Metro Ginza/Hanzomon) — 2 min walk</dd>
+      <dt>Address</dt><dd>38F Mandarin Oriental Tokyo, 2-1-1 Nihonbashi Muromachi, Chuo-ku, Tokyo</dd>
+    </dl>
+    <p class="stop-links">
+      <a class="stop-link stop-link-primary" href="https://www.google.com/maps/place/The+Pizza+Bar+On+38th/data=!4m2!3m1!1s0x6018895562e77a3b:0xe3c077a9dbbe0dcd" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+    </p>
+  </section>
+<h3 class="journey-leg">Shinjuku<span class="journey-leg-sub">Late evening — hotel bars, speakeasies, Golden Gai</span></h3>
+  <section class="stop" id="stop-new-york-bar" data-stop="new-york-bar" data-number="6" data-category="highrise">
+    <header class="stop-head">
+      <p class="stop-number">6</p>
       <h3 class="stop-name">New York Bar</h3>
       <p class="stop-aliases">ニューヨークバー<br>Park Hyatt Tokyo</p>
     </header>
@@ -700,9 +728,9 @@
       <a class="stop-link stop-link-primary" href="http://maps.google.com/?cid=7415215759206413780" target="_blank" rel="noopener noreferrer">Open in Maps</a>
     </p>
   </section>
-  <section class="stop" id="stop-bar-cocktailbook" data-stop="bar-cocktailbook" data-number="6" data-floor="2F">
+  <section class="stop" id="stop-bar-cocktailbook" data-stop="bar-cocktailbook" data-number="7" data-floor="2F">
     <header class="stop-head">
-      <p class="stop-number">6</p>
+      <p class="stop-number">7</p>
       <h3 class="stop-name">Bar Cocktailbook Shinjuku</h3>
       <p class="stop-aliases">バー カクテルブック 新宿</p>
     </header>
@@ -716,9 +744,9 @@
       <a class="stop-link stop-link-primary" href="https://www.google.com/maps/place/Bar+Cocktailbook+Shinjuku/data=!4m2!3m1!1s0x60188d29c95985c9:0x54f5ec36ecff12c" target="_blank" rel="noopener noreferrer">Open in Maps</a>
     </p>
   </section>
-  <section class="stop" id="stop-kakuretai" data-stop="kakuretai" data-number="7" data-floor="B1F" data-category="basement">
+  <section class="stop" id="stop-kakuretai" data-stop="kakuretai" data-number="8" data-floor="B1F" data-category="basement">
     <header class="stop-head">
-      <p class="stop-number">7</p>
+      <p class="stop-number">8</p>
       <h3 class="stop-name">KAKURETAI</h3>
       <p class="stop-aliases">かくれたい<br>KAKURETAI Speakeasy Bar</p>
     </header>
@@ -734,9 +762,9 @@
       <a class="stop-link" href="https://www.instagram.com/kakuretai_tokyo" target="_blank" rel="noopener noreferrer">Instagram</a>
     </p>
   </section>
-  <section class="stop" id="stop-bar-rest" data-stop="bar-rest" data-number="8" data-floor="3F">
+  <section class="stop" id="stop-bar-rest" data-stop="bar-rest" data-number="9" data-floor="3F">
     <header class="stop-head">
-      <p class="stop-number">8</p>
+      <p class="stop-number">9</p>
       <h3 class="stop-name">Bar rest</h3>
       <p class="stop-aliases">歌舞伎町 rest<br>スナックバー rest</p>
     </header>
@@ -749,23 +777,6 @@
     <p class="stop-links">
       <a class="stop-link stop-link-primary" href="https://www.google.com/maps/search/?api=1&amp;query=Bar+rest+2-46-7+Kabukicho+Shinjuku+Tokyo" target="_blank" rel="noopener noreferrer">Open in Maps</a>
       <a class="stop-link" href="https://bar-rest.shop/" target="_blank" rel="noopener noreferrer">Official site</a>
-    </p>
-  </section>
-  <section class="stop" id="stop-eigakan-jazz" data-stop="eigakan-jazz" data-number="9" data-floor="B1F" data-category="basement">
-    <header class="stop-head">
-      <p class="stop-number">9</p>
-      <h3 class="stop-name">Eigakan Jazz</h3>
-      <p class="stop-aliases">映画館ジャズ</p>
-    </header>
-    <p class="stop-summary">Bunkyo ward, Tokyo · Jazz bar · B1F</p>
-    <p class="stop-description">A jazz kissa in Hakusan, down a narrow staircase from street level. The name means &#x27;cinema.&#x27; Vinyl on the turntable, dim light below ground, and a room that has been spinning records for decades. Cash only. Closed Sundays, Mondays, and holidays.</p>
-    <dl class="stop-facts">
-      <dt>Station</dt><dd>Hakusan (Toei Mita Line A3) — 1 min walk</dd>
-      <dt>Address</dt><dd>B1F, 5-33-19 Hakusan, Bunkyo-ku, Tokyo 112-0001</dd>
-    </dl>
-    <p class="stop-links">
-      <a class="stop-link stop-link-primary" href="https://www.google.com/maps/search/?api=1&amp;query=Eigakan+Jazz+5-33-19+Hakusan+Bunkyo+Tokyo" target="_blank" rel="noopener noreferrer">Open in Maps</a>
-      <a class="stop-link" href="http://www.jazzeigakan.com/" target="_blank" rel="noopener noreferrer">Official site</a>
     </p>
   </section>
   <section class="stop" id="stop-sake-market" data-stop="sake-market" data-number="10" data-floor="6F">
@@ -800,153 +811,9 @@
       <a class="stop-link stop-link-primary" href="https://www.google.com/maps/place/a+BAR+Sleeping+Tales/data=!4m2!3m1!1s0x60188d0016ef28d1:0xc10f48326e234d67" target="_blank" rel="noopener noreferrer">Open in Maps</a>
     </p>
   </section>
-  <section class="stop" id="stop-janai-coffee" data-stop="janai-coffee" data-number="12" data-floor="B1F" data-category="basement">
+  <section class="stop" id="stop-golden-gai-trio" data-stop="golden-gai-trio" data-number="12" data-category="golden-gai">
     <header class="stop-head">
       <p class="stop-number">12</p>
-      <h3 class="stop-name">JANAI COFFEE</h3>
-      <p class="stop-aliases">ジャナイコーヒー</p>
-    </header>
-    <p class="stop-summary">Shibuya ward, Tokyo · Speakeasy · B1F</p>
-    <p class="stop-description">It is called a coffee shop. It is not a coffee shop. JANAI means &#x27;not this&#x27; — the door is a speakeasy entrance, and what is behind it is a bar. Go down the stairs, find the door, and order a drink. The coffee is a cover story.</p>
-    <dl class="stop-facts">
-      <dt>Station</dt><dd>Ebisu (JR Yamanote / Tokyo Metro Hibiya) — 3 min walk</dd>
-      <dt>Address</dt><dd>B1F Yamanen Building, 2-3-13 Ebisuminami, Shibuya-ku, Tokyo</dd>
-    </dl>
-    <p class="stop-links">
-      <a class="stop-link stop-link-primary" href="https://www.google.com/maps/place/JANAI+COFFEE/data=!4m2!3m1!1s0x60188b40c1000001:0xf21b512300945656" target="_blank" rel="noopener noreferrer">Open in Maps</a>
-    </p>
-  </section>
-  <section class="stop" id="stop-a10" data-stop="a10" data-number="13" data-floor="B1F" data-category="basement">
-    <header class="stop-head">
-      <p class="stop-number">13</p>
-      <h3 class="stop-name">A10</h3>
-      <p class="stop-aliases">エーテン</p>
-    </header>
-    <p class="stop-summary">Shibuya ward, Tokyo · Bar · B1F</p>
-    <p class="stop-description">An Ebisu bar around the corner from JANAI. Small, focused, and easy to miss if you are not looking for it.</p>
-    <dl class="stop-facts">
-      <dt>Station</dt><dd>Ebisu (JR Yamanote / Tokyo Metro Hibiya) — 3 min walk</dd>
-      <dt>Address</dt><dd>B1F Bios Building, 1-12-11 Ebisunishi, Shibuya-ku, Tokyo</dd>
-    </dl>
-    <p class="stop-links">
-      <a class="stop-link stop-link-primary" href="https://www.google.com/maps/place/A10/data=!4m2!3m1!1s0x60188b8d0bbc998d:0xdbdb6eb72400c38f" target="_blank" rel="noopener noreferrer">Open in Maps</a>
-    </p>
-  </section>
-  <section class="stop" id="stop-fightclub" data-stop="fightclub" data-number="14" data-floor="1F">
-    <header class="stop-head">
-      <p class="stop-number">14</p>
-      <h3 class="stop-name">FIGHTCLUB Shibuya</h3>
-      <p class="stop-aliases">ファイトクラブ渋谷</p>
-    </header>
-    <p class="stop-summary">Shibuya ward, Tokyo · Bar · 1F</p>
-    <p class="stop-description">A kickboxing gym and bar on Dogenzaka in Shibuya. Fight training upstairs, drinks after. Not a cocktail bar — a place where the crowd came to hit things and then order a round. Loud, young, and exactly what the name says.</p>
-    <dl class="stop-facts">
-      <dt>Station</dt><dd>Shibuya (JR / Tokyo Metro / Tokyu / Keio Inokashira) — 3 min walk</dd>
-      <dt>Address</dt><dd>1F Towa Dogenzaka Building, 2-27-2 Dogenzaka, Shibuya-ku, Tokyo</dd>
-    </dl>
-    <p class="stop-links">
-      <a class="stop-link stop-link-primary" href="https://www.google.com/maps/search/?api=1&amp;query=FIGHTCLUB+Shibuya+2-27-2+Dogenzaka+Tokyo" target="_blank" rel="noopener noreferrer">Open in Maps</a>
-    </p>
-  </section>
-  <section class="stop" id="stop-bundan" data-stop="bundan" data-number="15">
-    <header class="stop-head">
-      <p class="stop-number">15</p>
-      <h3 class="stop-name">BUNDAN Coffee &amp; Beer</h3>
-      <p class="stop-aliases">文旦</p>
-    </header>
-    <p class="stop-summary">Meguro ward, Tokyo · Coffee &amp; beer bar</p>
-    <p class="stop-description">A literary cafe and bar inside the Museum of Modern Japanese Literature in Komaba. Coffee by day, beer and wine by evening, and books on every wall. The name means &#x27;passing along a story.&#x27; A quiet stop between the museum and the park.</p>
-    <dl class="stop-facts">
-      <dt>Station</dt><dd>Komaba-Todaimae (Keio Inokashira) — 3 min walk</dd>
-      <dt>Address</dt><dd>Inside the Museum of Modern Japanese Literature, 4-3-55 Komaba, Meguro-ku, Tokyo</dd>
-    </dl>
-    <p class="stop-links">
-      <a class="stop-link stop-link-primary" href="https://www.google.com/maps/search/?api=1&amp;query=BUNDAN+Coffee+Beer+Komaba+Meguro+Tokyo" target="_blank" rel="noopener noreferrer">Open in Maps</a>
-    </p>
-  </section>
-  <section class="stop" id="stop-bar-sawa" data-stop="bar-sawa" data-number="16" data-floor="1F">
-    <header class="stop-head">
-      <p class="stop-number">16</p>
-      <h3 class="stop-name">Bar sawa</h3>
-      <p class="stop-aliases">バー サワ</p>
-    </header>
-    <p class="stop-summary">Meguro ward, Tokyo · Bar · 1F</p>
-    <p class="stop-description">A bar in Higashiyama, the quiet side of Nakameguro. A counter spot for a drink before or after dinner in the neighborhood.</p>
-    <dl class="stop-facts">
-      <dt>Station</dt><dd>Nakameguro (Tokyo Metro Hibiya) — 5 min walk</dd>
-      <dt>Address</dt><dd>1F Forum Nakameguro, 1-6-7 Higashiyama, Meguro-ku, Tokyo</dd>
-    </dl>
-    <p class="stop-links">
-      <a class="stop-link stop-link-primary" href="https://www.google.com/maps/place/Bar+sawa/data=!4m2!3m1!1s0x80c2c78f35b274cd:0xf372ecbef3bf0575" target="_blank" rel="noopener noreferrer">Open in Maps</a>
-    </p>
-  </section>
-  <section class="stop" id="stop-gen-yamamoto" data-stop="gen-yamamoto" data-number="17" data-floor="1F">
-    <header class="stop-head">
-      <p class="stop-number">17</p>
-      <h3 class="stop-name">Gen Yamamoto</h3>
-      <p class="stop-aliases">ゲン ヤマモト</p>
-    </header>
-    <p class="stop-summary">Minato ward, Tokyo · Cocktail bar · high-end · 1F</p>
-    <p class="stop-description">A reservation-only cocktail bar in Azabujuban. One bartender, a short counter, and a tasting-menu-style flight of seasonal cocktails built on Japanese ingredients. Sit, watch, do not rush.</p>
-    <dl class="stop-facts">
-      <dt>Station</dt><dd>Azabujuban (Toei Oedo) — 3 min walk</dd>
-      <dt>Address</dt><dd>1F Anniversary Building, 1-6-4 Azabujuban, Minato-ku, Tokyo</dd>
-    </dl>
-    <p class="stop-links">
-      <a class="stop-link stop-link-primary" href="http://maps.google.com/?cid=9087814451927436466" target="_blank" rel="noopener noreferrer">Open in Maps</a>
-    </p>
-  </section>
-  <section class="stop" id="stop-bar-centifolia" data-stop="bar-centifolia" data-number="18" data-floor="6F">
-    <header class="stop-head">
-      <p class="stop-number">18</p>
-      <h3 class="stop-name">Bar Centifolia</h3>
-      <p class="stop-aliases">バー センティフォリア</p>
-    </header>
-    <p class="stop-summary">Minato ward, Tokyo · Bar · 6F</p>
-    <p class="stop-description">An Azabujuban bar near Gen Yamamoto. A quieter, older-school counter for a late drink in the neighborhood.</p>
-    <dl class="stop-facts">
-      <dt>Station</dt><dd>Azabujuban (Toei Oedo) — 3 min walk</dd>
-      <dt>Address</dt><dd>6F La Muse Azabujuban Building, 1-6-5 Azabujuban, Minato-ku, Tokyo</dd>
-    </dl>
-    <p class="stop-links">
-      <a class="stop-link stop-link-primary" href="https://www.google.com/maps/place/Bar+Centifolia/data=!4m2!3m1!1s0x60188b9fa69c033f:0xc44593ba0ccc4863" target="_blank" rel="noopener noreferrer">Open in Maps</a>
-    </p>
-  </section>
-  <section class="stop" id="stop-rokusan-angel" data-stop="rokusan-angel" data-number="19" data-floor="B2F" data-category="basement">
-    <header class="stop-head">
-      <p class="stop-number">19</p>
-      <h3 class="stop-name">Rokusan Angel (Burlesque Tokyo)</h3>
-      <p class="stop-aliases">六三アングル</p>
-    </header>
-    <p class="stop-summary">Minato ward, Tokyo · Burlesque bar · B2F</p>
-    <p class="stop-description">A Roppongi burlesque bar. Live performances, cocktails, and a stage that is close enough to touch. Book ahead.</p>
-    <dl class="stop-facts">
-      <dt>Station</dt><dd>Roppongi (Toei Oedo / Tokyo Metro Hibiya) — 5 min walk</dd>
-      <dt>Address</dt><dd>B2F Roppongi Nittaku Building, 3-8-15 Roppongi, Minato-ku, Tokyo</dd>
-    </dl>
-    <p class="stop-links">
-      <a class="stop-link stop-link-primary" href="https://www.google.com/maps/place/ROKUSAN+ANGEL%EF%BC%88Burlesque+Tokyo%EF%BC%89/data=!4m2!3m1!1s0x60188b78685d2fcb:0x949f91afc7f95845" target="_blank" rel="noopener noreferrer">Open in Maps</a>
-    </p>
-  </section>
-  <section class="stop" id="stop-bar-under" data-stop="bar-under" data-number="20" data-floor="B1F" data-category="basement">
-    <header class="stop-head">
-      <p class="stop-number">20</p>
-      <h3 class="stop-name">BAR &amp;UNDER</h3>
-      <p class="stop-aliases">バー アンドアンダー</p>
-    </header>
-    <p class="stop-summary">Chiyoda ward, Tokyo · Bar · B1F</p>
-    <p class="stop-description">A basement bar in Kanda, near Akihabara. The name tells you where to look — go down. A good late-night stop in a neighborhood that shuts early.</p>
-    <dl class="stop-facts">
-      <dt>Station</dt><dd>Akihabara (JR / Tokyo Metro Hibiya) — 5 min walk</dd>
-      <dt>Address</dt><dd>B1F Sotokanda Kanemura Building, 2-6-4 Sotokanda, Chiyoda-ku, Tokyo</dd>
-    </dl>
-    <p class="stop-links">
-      <a class="stop-link stop-link-primary" href="https://www.google.com/maps/place/BAR+%26UNDER/data=!4m2!3m1!1s0x60188d5ee280613d:0xfda3db99d25dd786" target="_blank" rel="noopener noreferrer">Open in Maps</a>
-    </p>
-  </section>
-  <section class="stop" id="stop-golden-gai-trio" data-stop="golden-gai-trio" data-number="21" data-category="golden-gai">
-    <header class="stop-head">
-      <p class="stop-number">21</p>
       <h3 class="stop-name">Golden Gai: Happy, BAR COO &amp; OPEN BOOK</h3>
       <p class="stop-aliases">新宿ゴールデン街<br>ハッピー ロッキンソールバー<br>BAR COO<br>バー 空<br>OPEN BOOK<br>オープンブック</p>
     </header>
@@ -957,7 +824,7 @@
       <dt>Address</dt><dd>1-1-6 to 1-1-8 Kabukicho, Shinjuku-ku, Tokyo</dd>
     </dl>
     <div class="subvenues" role="list">
-      <article class="subvenue" data-floor="3F">
+      <article class="subvenue" data-floor="3F" tabindex="0" role="button" aria-label="Happy (Rockin&#x27; Soul Bar) — focus on map">
         <h4 class="subvenue-name">Happy (Rockin&#x27; Soul Bar)</h4>
         <p class="subvenue-aliases">ハッピー · ロッキンソールバー</p>
         <p class="subvenue-floor">3F · Maruha Building</p>
@@ -965,7 +832,7 @@
         <p class="subvenue-description">A soul-and-rock counter bar on the 3rd floor of the Maruha Building. 4.8 rating. Go up the stairs.</p>
         <a class="subvenue-link" href="https://www.google.com/maps/search/?api=1&amp;query=Happy+Rockin+Soul+Bar+1-1-7+Kabukicho+Shinjuku+Tokyo" target="_blank" rel="noopener noreferrer">Open in Maps</a>
       </article>
-      <article class="subvenue" data-floor="1F">
+      <article class="subvenue" data-floor="1F" tabindex="0" role="button" aria-label="BAR COO — focus on map">
         <h4 class="subvenue-name">BAR COO</h4>
         <p class="subvenue-aliases">バー 空 · BAR COO 空</p>
         <p class="subvenue-floor">1F</p>
@@ -973,7 +840,7 @@
         <p class="subvenue-description">A six-seat casual bar on Golden Gai 3rd street. Drinks and snacks at the owner&#x27;s discretion — like drinking in a friend&#x27;s kitchen.</p>
         <a class="subvenue-link" href="https://www.google.com/maps/search/?api=1&amp;query=BAR+COO+1-1-8+Kabukicho+Shinjuku+Tokyo" target="_blank" rel="noopener noreferrer">Open in Maps</a>
       </article>
-      <article class="subvenue" data-floor="Ground floor">
+      <article class="subvenue" data-floor="Ground floor" tabindex="0" role="button" aria-label="OPEN BOOK — focus on map">
         <h4 class="subvenue-name">OPEN BOOK</h4>
         <p class="subvenue-aliases">オープンブック</p>
         <p class="subvenue-floor">Ground floor</p>
@@ -989,17 +856,214 @@
       <a class="stop-link" href="http://ocha-naru.com/" target="_blank" rel="noopener noreferrer">OPEN BOOK at ocha-naru.com</a>
     </p>
   </section>
-  <section class="stop" id="stop-bar-willows" data-stop="bar-willows" data-number="22" data-floor="6F-E">
+<h3 class="journey-leg">Shibuya &amp; Ebisu &amp; Meguro<span class="journey-leg-sub">Midnight — coffee shops that aren’t, jazz rooms</span></h3>
+  <section class="stop" id="stop-fightclub" data-stop="fightclub" data-number="13" data-floor="1F">
+    <header class="stop-head">
+      <p class="stop-number">13</p>
+      <h3 class="stop-name">FIGHTCLUB Shibuya</h3>
+      <p class="stop-aliases">ファイトクラブ渋谷</p>
+    </header>
+    <p class="stop-summary">Shibuya ward, Tokyo · Bar · 1F</p>
+    <p class="stop-description">A kickboxing gym and bar on Dogenzaka in Shibuya. Fight training upstairs, drinks after. Not a cocktail bar — a place where the crowd came to hit things and then order a round. Loud, young, and exactly what the name says.</p>
+    <dl class="stop-facts">
+      <dt>Station</dt><dd>Shibuya (JR / Tokyo Metro / Tokyu / Keio Inokashira) — 3 min walk</dd>
+      <dt>Address</dt><dd>1F Towa Dogenzaka Building, 2-27-2 Dogenzaka, Shibuya-ku, Tokyo</dd>
+    </dl>
+    <p class="stop-links">
+      <a class="stop-link stop-link-primary" href="https://www.google.com/maps/search/?api=1&amp;query=FIGHTCLUB+Shibuya+2-27-2+Dogenzaka+Tokyo" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+    </p>
+  </section>
+  <section class="stop" id="stop-janai-coffee" data-stop="janai-coffee" data-number="14" data-floor="B1F" data-category="basement">
+    <header class="stop-head">
+      <p class="stop-number">14</p>
+      <h3 class="stop-name">JANAI COFFEE</h3>
+      <p class="stop-aliases">ジャナイコーヒー</p>
+    </header>
+    <p class="stop-summary">Shibuya ward, Tokyo · Speakeasy · B1F</p>
+    <p class="stop-description">It is called a coffee shop. It is not a coffee shop. JANAI means &#x27;not this&#x27; — the door is a speakeasy entrance, and what is behind it is a bar. Go down the stairs, find the door, and order a drink. The coffee is a cover story.</p>
+    <dl class="stop-facts">
+      <dt>Station</dt><dd>Ebisu (JR Yamanote / Tokyo Metro Hibiya) — 3 min walk</dd>
+      <dt>Address</dt><dd>B1F Yamanen Building, 2-3-13 Ebisuminami, Shibuya-ku, Tokyo</dd>
+    </dl>
+    <p class="stop-links">
+      <a class="stop-link stop-link-primary" href="https://www.google.com/maps/place/JANAI+COFFEE/data=!4m2!3m1!1s0x60188b40c1000001:0xf21b512300945656" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+    </p>
+  </section>
+  <section class="stop" id="stop-a10" data-stop="a10" data-number="15" data-floor="B1F" data-category="basement">
+    <header class="stop-head">
+      <p class="stop-number">15</p>
+      <h3 class="stop-name">A10</h3>
+      <p class="stop-aliases">エーテン</p>
+    </header>
+    <p class="stop-summary">Shibuya ward, Tokyo · Bar · B1F</p>
+    <p class="stop-description">An Ebisu bar around the corner from JANAI. Small, focused, and easy to miss if you are not looking for it.</p>
+    <dl class="stop-facts">
+      <dt>Station</dt><dd>Ebisu (JR Yamanote / Tokyo Metro Hibiya) — 3 min walk</dd>
+      <dt>Address</dt><dd>B1F Bios Building, 1-12-11 Ebisunishi, Shibuya-ku, Tokyo</dd>
+    </dl>
+    <p class="stop-links">
+      <a class="stop-link stop-link-primary" href="https://www.google.com/maps/place/A10/data=!4m2!3m1!1s0x60188b8d0bbc998d:0xdbdb6eb72400c38f" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+    </p>
+  </section>
+  <section class="stop" id="stop-bundan" data-stop="bundan" data-number="16">
+    <header class="stop-head">
+      <p class="stop-number">16</p>
+      <h3 class="stop-name">BUNDAN Coffee &amp; Beer</h3>
+      <p class="stop-aliases">文旦</p>
+    </header>
+    <p class="stop-summary">Meguro ward, Tokyo · Coffee &amp; beer bar</p>
+    <p class="stop-description">A literary cafe and bar inside the Museum of Modern Japanese Literature in Komaba. Coffee by day, beer and wine by evening, and books on every wall. The name means &#x27;passing along a story.&#x27; A quiet stop between the museum and the park.</p>
+    <dl class="stop-facts">
+      <dt>Station</dt><dd>Komaba-Todaimae (Keio Inokashira) — 3 min walk</dd>
+      <dt>Address</dt><dd>Inside the Museum of Modern Japanese Literature, 4-3-55 Komaba, Meguro-ku, Tokyo</dd>
+    </dl>
+    <p class="stop-links">
+      <a class="stop-link stop-link-primary" href="https://www.google.com/maps/search/?api=1&amp;query=BUNDAN+Coffee+Beer+Komaba+Meguro+Tokyo" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+    </p>
+  </section>
+  <section class="stop" id="stop-bar-sawa" data-stop="bar-sawa" data-number="17" data-floor="1F">
+    <header class="stop-head">
+      <p class="stop-number">17</p>
+      <h3 class="stop-name">Bar sawa</h3>
+      <p class="stop-aliases">バー サワ</p>
+    </header>
+    <p class="stop-summary">Meguro ward, Tokyo · Bar · 1F</p>
+    <p class="stop-description">A bar in Higashiyama, the quiet side of Nakameguro. A counter spot for a drink before or after dinner in the neighborhood.</p>
+    <dl class="stop-facts">
+      <dt>Station</dt><dd>Nakameguro (Tokyo Metro Hibiya) — 5 min walk</dd>
+      <dt>Address</dt><dd>1F Forum Nakameguro, 1-6-7 Higashiyama, Meguro-ku, Tokyo</dd>
+    </dl>
+    <p class="stop-links">
+      <a class="stop-link stop-link-primary" href="https://www.google.com/maps/place/Bar+sawa/data=!4m2!3m1!1s0x80c2c78f35b274cd:0xf372ecbef3bf0575" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+    </p>
+  </section>
+  <section class="stop" id="stop-no-room-squares" data-stop="no-room-squares" data-number="18" data-floor="4F" data-category="distant">
+    <header class="stop-head">
+      <p class="stop-number">18</p>
+      <h3 class="stop-name">No Room For Squares</h3>
+      <p class="stop-aliases">ノー・ルーム・フォー・スクエアーズ</p>
+    </header>
+    <p class="stop-summary">Setagaya ward, Tokyo · Jazz bar · 4F</p>
+    <p class="stop-description">A jazz bar in Shimokitazawa. The name is a Mingus reference. Vinyl on the turntable, a small room, and a crowd that came for the music. Check the schedule.</p>
+    <dl class="stop-facts">
+      <dt>Station</dt><dd>Shimokitazawa (Odakyu / Keio Inokashira) — 3 min walk</dd>
+      <dt>Address</dt><dd>4F Housing Kitazawa Building II, 2-1-7 Kitazawa, Setagaya-ku, Tokyo</dd>
+    </dl>
+    <p class="stop-links">
+      <a class="stop-link stop-link-primary" href="http://maps.google.com/?cid=911402204683980032" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+    </p>
+  </section>
+<h3 class="journey-leg">Minato &amp; Roppongi<span class="journey-leg-sub">Deep night — Azabujuban counters and Roppongi basements</span></h3>
+  <section class="stop" id="stop-gen-yamamoto" data-stop="gen-yamamoto" data-number="19" data-floor="1F">
+    <header class="stop-head">
+      <p class="stop-number">19</p>
+      <h3 class="stop-name">Gen Yamamoto</h3>
+      <p class="stop-aliases">ゲン ヤマモト</p>
+    </header>
+    <p class="stop-summary">Minato ward, Tokyo · Cocktail bar · high-end · 1F</p>
+    <p class="stop-description">A reservation-only cocktail bar in Azabujuban. One bartender, a short counter, and a tasting-menu-style flight of seasonal cocktails built on Japanese ingredients. Sit, watch, do not rush.</p>
+    <dl class="stop-facts">
+      <dt>Station</dt><dd>Azabujuban (Toei Oedo) — 3 min walk</dd>
+      <dt>Address</dt><dd>1F Anniversary Building, 1-6-4 Azabujuban, Minato-ku, Tokyo</dd>
+    </dl>
+    <p class="stop-links">
+      <a class="stop-link stop-link-primary" href="http://maps.google.com/?cid=9087814451927436466" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+    </p>
+  </section>
+  <section class="stop" id="stop-bar-centifolia" data-stop="bar-centifolia" data-number="20" data-floor="6F">
+    <header class="stop-head">
+      <p class="stop-number">20</p>
+      <h3 class="stop-name">Bar Centifolia</h3>
+      <p class="stop-aliases">バー センティフォリア</p>
+    </header>
+    <p class="stop-summary">Minato ward, Tokyo · Bar · 6F</p>
+    <p class="stop-description">An Azabujuban bar near Gen Yamamoto. A quieter, older-school counter for a late drink in the neighborhood.</p>
+    <dl class="stop-facts">
+      <dt>Station</dt><dd>Azabujuban (Toei Oedo) — 3 min walk</dd>
+      <dt>Address</dt><dd>6F La Muse Azabujuban Building, 1-6-5 Azabujuban, Minato-ku, Tokyo</dd>
+    </dl>
+    <p class="stop-links">
+      <a class="stop-link stop-link-primary" href="https://www.google.com/maps/place/Bar+Centifolia/data=!4m2!3m1!1s0x60188b9fa69c033f:0xc44593ba0ccc4863" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+    </p>
+  </section>
+  <section class="stop" id="stop-rokusan-angel" data-stop="rokusan-angel" data-number="21" data-floor="B2F" data-category="basement">
+    <header class="stop-head">
+      <p class="stop-number">21</p>
+      <h3 class="stop-name">Rokusan Angel (Burlesque Tokyo)</h3>
+      <p class="stop-aliases">六三アングル</p>
+    </header>
+    <p class="stop-summary">Minato ward, Tokyo · Burlesque bar · B2F</p>
+    <p class="stop-description">A Roppongi burlesque bar. Live performances, cocktails, and a stage that is close enough to touch. Book ahead.</p>
+    <dl class="stop-facts">
+      <dt>Station</dt><dd>Roppongi (Toei Oedo / Tokyo Metro Hibiya) — 5 min walk</dd>
+      <dt>Address</dt><dd>B2F Roppongi Nittaku Building, 3-8-15 Roppongi, Minato-ku, Tokyo</dd>
+    </dl>
+    <p class="stop-links">
+      <a class="stop-link stop-link-primary" href="https://www.google.com/maps/place/ROKUSAN+ANGEL%EF%BC%88Burlesque+Tokyo%EF%BC%89/data=!4m2!3m1!1s0x60188b78685d2fcb:0x949f91afc7f95845" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+    </p>
+  </section>
+<h3 class="journey-leg">East Tokyo<span class="journey-leg-sub">After hours — Kanda to Ueno to Bunkyo</span></h3>
+  <section class="stop" id="stop-bar-under" data-stop="bar-under" data-number="22" data-floor="B1F" data-category="basement">
     <header class="stop-head">
       <p class="stop-number">22</p>
+      <h3 class="stop-name">BAR &amp;UNDER</h3>
+      <p class="stop-aliases">バー アンドアンダー</p>
+    </header>
+    <p class="stop-summary">Chiyoda ward, Tokyo · Bar · B1F</p>
+    <p class="stop-description">A basement bar in Kanda, near Akihabara. The name tells you where to look — go down. A good late-night stop in a neighborhood that shuts early.</p>
+    <dl class="stop-facts">
+      <dt>Station</dt><dd>Akihabara (JR / Tokyo Metro Hibiya) — 5 min walk</dd>
+      <dt>Address</dt><dd>B1F Sotokanda Kanemura Building, 2-6-4 Sotokanda, Chiyoda-ku, Tokyo</dd>
+    </dl>
+    <p class="stop-links">
+      <a class="stop-link stop-link-primary" href="https://www.google.com/maps/place/BAR+%26UNDER/data=!4m2!3m1!1s0x60188d5ee280613d:0xfda3db99d25dd786" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+    </p>
+  </section>
+  <section class="stop" id="stop-naru-jazz" data-stop="naru-jazz" data-number="23">
+    <header class="stop-head">
+      <p class="stop-number">23</p>
+      <h3 class="stop-name">NARU Jazz Livehouse</h3>
+      <p class="stop-aliases">ジャズハウスナル<br>Jazz House Naru</p>
+    </header>
+    <p class="stop-summary">Chiyoda ward, Tokyo · Jazz livehouse</p>
+    <p class="stop-description">A long-running jazz livehouse in Ochanomizu, open since 1969. Intimate tables around a grand piano, nightly sets from working Tokyo musicians, and a kitchen that turns out a real dinner. Cover charge around ¥2,500 plus drinks.</p>
+    <dl class="stop-facts">
+      <dt>Station</dt><dd>Ochanomizu (JR Chuo/Sobu, Tokyo Metro Marunouchi) — 1 min walk</dd>
+      <dt>Address</dt><dd>B1 Jujiya Building, 2-1 Kanda Surugadai, Chiyoda-ku, Tokyo 101-0062</dd>
+    </dl>
+    <p class="stop-links">
+      <a class="stop-link stop-link-primary" href="https://www.google.com/maps/search/?api=1&amp;query=NARU+Jazz+Livehouse+2-1+Kanda+Surugadai+Ochanomizu+Tokyo" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+      <a class="stop-link" href="http://ocha-naru.com/" target="_blank" rel="noopener noreferrer">ocha-naru.com</a>
+    </p>
+  </section>
+  <section class="stop" id="stop-game-bar-abutton" data-stop="game-bar-abutton" data-number="24" data-floor="1F">
+    <header class="stop-head">
+      <p class="stop-number">24</p>
+      <h3 class="stop-name">Game Bar A-Button</h3>
+      <p class="stop-aliases">ゲームバー エーボタン</p>
+    </header>
+    <p class="stop-summary">Taito ward, Tokyo · Game bar · 1F</p>
+    <p class="stop-description">A game bar in Taito. Retro consoles behind the counter, drinks in front, and you can borrow a controller. A good stop if you want a drink and a round of something old.</p>
+    <dl class="stop-facts">
+      <dt>Station</dt><dd>Inaricho (Tokyo Metro Ginza) — 4 min walk</dd>
+      <dt>Address</dt><dd>1F Dai-5 Mitsumasa Building, 1-13-9 Taito, Taito-ku, Tokyo</dd>
+    </dl>
+    <p class="stop-links">
+      <a class="stop-link stop-link-primary" href="https://www.google.com/maps/place/Game+Bar+A-Button/data=!4m2!3m1!1s0x60188ea671e4cfdd:0xe02deb3793822519" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+    </p>
+  </section>
+  <section class="stop" id="stop-bar-willows" data-stop="bar-willows" data-number="25" data-floor="6F-E">
+    <header class="stop-head">
+      <p class="stop-number">25</p>
       <h3 class="stop-name">BAR Willow&#x27;s</h3>
       <p class="stop-aliases">バー ウィローズ</p>
     </header>
     <p class="stop-summary">Taito ward, Tokyo · Bar · 6F-E</p>
     <p class="stop-description">A bar on the 6th floor of the 88 Building in Ueno. Antique chairs, a long cocktail and whisky list, and a counter that welcomes first-timers. The kind of hidden-floor Tokyo bar you have to know the elevator for.</p>
     <figure class="stop-media">
-      <video class="stop-video" muted loop playsinline preload="none">
+      <video class="stop-video" muted loop playsinline preload="metadata">
         <source src="assets/movie/bar-willows.webm" type="video/webm">
+        <source src="assets/movie/bar-willows.mp4" type="video/mp4">
       </video>
     </figure>
     <dl class="stop-facts">
@@ -1010,9 +1074,25 @@
       <a class="stop-link stop-link-primary" href="https://www.google.com/maps/place/BAR+Willow&#x27;s/data=!4m2!3m1!1s0x60188d3e5e0018b3:0xe2bda4fa0a3810c4" target="_blank" rel="noopener noreferrer">Open in Maps</a>
     </p>
   </section>
-  <section class="stop" id="stop-the-trad" data-stop="the-trad" data-number="23" data-floor="1F">
+  <section class="stop" id="stop-rock-bar-sakebi" data-stop="rock-bar-sakebi" data-number="26" data-floor="1F">
     <header class="stop-head">
-      <p class="stop-number">23</p>
+      <p class="stop-number">26</p>
+      <h3 class="stop-name">Rock Bar Sakebi</h3>
+      <p class="stop-aliases">ロックバー さけび</p>
+    </header>
+    <p class="stop-summary">Taito ward, Tokyo · Rock bar · 1F</p>
+    <p class="stop-description">A rock bar in Negishi, north of Ueno. Loud music, strong drinks, and a crowd that came for both. Not the place for a quiet conversation.</p>
+    <dl class="stop-facts">
+      <dt>Station</dt><dd>Nippori (JR Yamanote / Keisei) — 8 min walk</dd>
+      <dt>Address</dt><dd>1F, 2-16-11 Negishi, Taito-ku, Tokyo</dd>
+    </dl>
+    <p class="stop-links">
+      <a class="stop-link stop-link-primary" href="https://www.google.com/maps/place/Rock+Bar+Sakebi/data=!4m2!3m1!1s0x60188f79659e8de5:0xf831bb430ca98480" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+    </p>
+  </section>
+  <section class="stop" id="stop-the-trad" data-stop="the-trad" data-number="27" data-floor="1F">
+    <header class="stop-head">
+      <p class="stop-number">27</p>
       <h3 class="stop-name">The TRAD whisky &amp; cocktails</h3>
       <p class="stop-aliases">ザ トラッド</p>
     </header>
@@ -1029,74 +1109,27 @@
       <a class="stop-link stop-link-primary" href="https://www.google.com/maps/place/The+TRAD+whisky+%26+cocktails+%E6%B9%AF%E5%B3%B6+%E5%BE%A1%E5%BE%92%E7%94%BA+%E4%B8%8A%E9%87%8E%E3%83%90%E3%83%BC/data=!4m2!3m1!1s0x60188c20f66448e3:0xca25a905c1abddc1" target="_blank" rel="noopener noreferrer">Open in Maps</a>
     </p>
   </section>
-  <section class="stop" id="stop-rock-bar-sakebi" data-stop="rock-bar-sakebi" data-number="24" data-floor="1F">
-    <header class="stop-head">
-      <p class="stop-number">24</p>
-      <h3 class="stop-name">Rock Bar Sakebi</h3>
-      <p class="stop-aliases">ロックバー さけび</p>
-    </header>
-    <p class="stop-summary">Taito ward, Tokyo · Rock bar · 1F</p>
-    <p class="stop-description">A rock bar in Negishi, north of Ueno. Loud music, strong drinks, and a crowd that came for both. Not the place for a quiet conversation.</p>
-    <dl class="stop-facts">
-      <dt>Station</dt><dd>Nippori (JR Yamanote / Keisei) — 8 min walk</dd>
-      <dt>Address</dt><dd>1F, 2-16-11 Negishi, Taito-ku, Tokyo</dd>
-    </dl>
-    <p class="stop-links">
-      <a class="stop-link stop-link-primary" href="https://www.google.com/maps/place/Rock+Bar+Sakebi/data=!4m2!3m1!1s0x60188f79659e8de5:0xf831bb430ca98480" target="_blank" rel="noopener noreferrer">Open in Maps</a>
-    </p>
-  </section>
-  <section class="stop" id="stop-naru-jazz" data-stop="naru-jazz" data-number="25">
-    <header class="stop-head">
-      <p class="stop-number">25</p>
-      <h3 class="stop-name">NARU Jazz Livehouse</h3>
-      <p class="stop-aliases">ジャズハウスナル<br>Jazz House Naru</p>
-    </header>
-    <p class="stop-summary">Chiyoda ward, Tokyo · Jazz livehouse</p>
-    <p class="stop-description">A long-running jazz livehouse in Ochanomizu, open since 1969. Intimate tables around a grand piano, nightly sets from working Tokyo musicians, and a kitchen that turns out a real dinner. Cover charge around ¥2,500 plus drinks.</p>
-    <dl class="stop-facts">
-      <dt>Station</dt><dd>Ochanomizu (JR Chuo/Sobu, Tokyo Metro Marunouchi) — 1 min walk</dd>
-      <dt>Address</dt><dd>B1 Jujiya Building, 2-1 Kanda Surugadai, Chiyoda-ku, Tokyo 101-0062</dd>
-    </dl>
-    <p class="stop-links">
-      <a class="stop-link stop-link-primary" href="https://www.google.com/maps/search/?api=1&amp;query=NARU+Jazz+Livehouse+2-1+Kanda+Surugadai+Ochanomizu+Tokyo" target="_blank" rel="noopener noreferrer">Open in Maps</a>
-      <a class="stop-link" href="http://ocha-naru.com/" target="_blank" rel="noopener noreferrer">ocha-naru.com</a>
-    </p>
-  </section>
-  <section class="stop" id="stop-game-bar-abutton" data-stop="game-bar-abutton" data-number="26" data-floor="1F">
-    <header class="stop-head">
-      <p class="stop-number">26</p>
-      <h3 class="stop-name">Game Bar A-Button</h3>
-      <p class="stop-aliases">ゲームバー エーボタン</p>
-    </header>
-    <p class="stop-summary">Taito ward, Tokyo · Game bar · 1F</p>
-    <p class="stop-description">A game bar in Taito. Retro consoles behind the counter, drinks in front, and you can borrow a controller. A good stop if you want a drink and a round of something old.</p>
-    <dl class="stop-facts">
-      <dt>Station</dt><dd>Inaricho (Tokyo Metro Ginza) — 4 min walk</dd>
-      <dt>Address</dt><dd>1F Dai-5 Mitsumasa Building, 1-13-9 Taito, Taito-ku, Tokyo</dd>
-    </dl>
-    <p class="stop-links">
-      <a class="stop-link stop-link-primary" href="https://www.google.com/maps/place/Game+Bar+A-Button/data=!4m2!3m1!1s0x60188ea671e4cfdd:0xe02deb3793822519" target="_blank" rel="noopener noreferrer">Open in Maps</a>
-    </p>
-  </section>
-  <section class="stop" id="stop-no-room-squares" data-stop="no-room-squares" data-number="27" data-floor="4F" data-category="distant">
-    <header class="stop-head">
-      <p class="stop-number">27</p>
-      <h3 class="stop-name">No Room For Squares</h3>
-      <p class="stop-aliases">ノー・ルーム・フォー・スクエアーズ</p>
-    </header>
-    <p class="stop-summary">Setagaya ward, Tokyo · Jazz bar · 4F</p>
-    <p class="stop-description">A jazz bar in Shimokitazawa. The name is a Mingus reference. Vinyl on the turntable, a small room, and a crowd that came for the music. Check the schedule.</p>
-    <dl class="stop-facts">
-      <dt>Station</dt><dd>Shimokitazawa (Odakyu / Keio Inokashira) — 3 min walk</dd>
-      <dt>Address</dt><dd>4F Housing Kitazawa Building II, 2-1-7 Kitazawa, Setagaya-ku, Tokyo</dd>
-    </dl>
-    <p class="stop-links">
-      <a class="stop-link stop-link-primary" href="http://maps.google.com/?cid=911402204683980032" target="_blank" rel="noopener noreferrer">Open in Maps</a>
-    </p>
-  </section>
-  <section class="stop" id="stop-shooting-bar-ea" data-stop="shooting-bar-ea" data-number="28" data-floor="2F" data-category="distant">
+  <section class="stop" id="stop-eigakan-jazz" data-stop="eigakan-jazz" data-number="28" data-floor="B1F" data-category="basement">
     <header class="stop-head">
       <p class="stop-number">28</p>
+      <h3 class="stop-name">Eigakan Jazz</h3>
+      <p class="stop-aliases">映画館ジャズ</p>
+    </header>
+    <p class="stop-summary">Bunkyo ward, Tokyo · Jazz bar · B1F</p>
+    <p class="stop-description">A jazz kissa in Hakusan, down a narrow staircase from street level. The name means &#x27;cinema.&#x27; Vinyl on the turntable, dim light below ground, and a room that has been spinning records for decades. Cash only. Closed Sundays, Mondays, and holidays.</p>
+    <dl class="stop-facts">
+      <dt>Station</dt><dd>Hakusan (Toei Mita Line A3) — 1 min walk</dd>
+      <dt>Address</dt><dd>B1F, 5-33-19 Hakusan, Bunkyo-ku, Tokyo 112-0001</dd>
+    </dl>
+    <p class="stop-links">
+      <a class="stop-link stop-link-primary" href="https://www.google.com/maps/search/?api=1&amp;query=Eigakan+Jazz+5-33-19+Hakusan+Bunkyo+Tokyo" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+      <a class="stop-link" href="http://www.jazzeigakan.com/" target="_blank" rel="noopener noreferrer">Official site</a>
+    </p>
+  </section>
+<h3 class="journey-leg">The outer reaches<span class="journey-leg-sub">The far outliers and the locked door</span></h3>
+  <section class="stop" id="stop-shooting-bar-ea" data-stop="shooting-bar-ea" data-number="29" data-floor="2F" data-category="distant">
+    <header class="stop-head">
+      <p class="stop-number">29</p>
       <h3 class="stop-name">Shooting Bar EA</h3>
       <p class="stop-aliases">シューティングバー イーエー</p>
     </header>
@@ -1108,22 +1141,6 @@
     </dl>
     <p class="stop-links">
       <a class="stop-link stop-link-primary" href="http://maps.google.com/?cid=3696340728203653624" target="_blank" rel="noopener noreferrer">Open in Maps</a>
-    </p>
-  </section>
-  <section class="stop" id="stop-pizza-bar-38th" data-stop="pizza-bar-38th" data-number="29" data-floor="38F" data-category="highrise">
-    <header class="stop-head">
-      <p class="stop-number">29</p>
-      <h3 class="stop-name">The Pizza Bar On 38th</h3>
-      <p class="stop-aliases">ザ ピザバー オン 38th</p>
-    </header>
-    <p class="stop-summary">Chuo ward, Tokyo · Hotel bar · high-end · 38F</p>
-    <p class="stop-description">A pizza bar on the 38th floor of the Mandarin Oriental. Yes, pizza — wood-fired, counter seating, and a view that rivals New York Bar&#x27;s. Expensive, and the pizza is better than it has any right to be at that altitude.</p>
-    <dl class="stop-facts">
-      <dt>Station</dt><dd>Mitsukoshimae (Tokyo Metro Ginza/Hanzomon) — 2 min walk</dd>
-      <dt>Address</dt><dd>38F Mandarin Oriental Tokyo, 2-1-1 Nihonbashi Muromachi, Chuo-ku, Tokyo</dd>
-    </dl>
-    <p class="stop-links">
-      <a class="stop-link stop-link-primary" href="https://www.google.com/maps/place/The+Pizza+Bar+On+38th/data=!4m2!3m1!1s0x6018895562e77a3b:0xe3c077a9dbbe0dcd" target="_blank" rel="noopener noreferrer">Open in Maps</a>
     </p>
   </section>
   <section class="stop is-spotlight" id="stop-sake-bar-o" data-stop="sake-bar-o" data-number="30" data-floor="1F" data-category="spotlight">
@@ -1185,12 +1202,12 @@
       </ul>
     </section>
     <footer class="page-footer">
-      <p class="print-note">Numbers identify places, not visit order. Check opening hours before travelling.</p>
+      <p class="print-note">Ordered by neighborhood, evening to dawn. Check opening hours before travelling.</p>
       <p class="sources">Source: Saved-place exports; boundaries reused from Anime Ward Map. Subway geometry &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>.</p>
       <details id="source-notes">
         <summary>Map notes</summary>
         <p>Locations reflect saved-place records, not verified entrances. Some pins are address-level approximations from web research or the GSI address-search API. Use the saved map links to check current details before setting out.</p>
-        <p>Subway lines provide geographic context only. They are not walking directions, a journey planner, or a suggested visit order.</p>
+        <p>Subway lines provide geographic context only. They are not walking directions or a journey planner.</p>
       </details>
     </footer>
   </div>
