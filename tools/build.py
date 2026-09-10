@@ -105,7 +105,7 @@ def _category(bar):
 
 def _render_subvenue(sv):
     parts = []
-    parts.append(f'      <article class="subvenue" data-floor="{_esc(sv.get("floor") or "")}" tabindex="0" role="button" aria-label="{_esc(sv["name"])} \u2014 focus on map">')
+    parts.append(f'      <article class="subvenue" data-floor="{_esc(sv.get("floor") or "")}" tabindex="0" aria-label="{_esc(sv["name"])} \u2014 focus on map">')
     parts.append(f'        <h4 class="subvenue-name">{_esc(sv["name"])}</h4>')
     aliases = sv.get('aliases') or []
     if aliases:
@@ -241,7 +241,7 @@ def render_journey(data_path):
     parts = [
         '<p class="journey-intro">A night in order: Ginza cocktails, then Shinjuku\u2019s '
         'hidden floors, then the midnight shift south through Ebisu and Roppongi, '
-        'and finally the east-side after-hours crawl. Each stop is a place \u2014 '
+        'and the east-side after-hours crawl, and the far outliers \u2014 ending at a door you have to be let into. Each stop is a place \u2014 '
         'with its floor, its address, and a note on what it is. '
         'Switch to Map &amp; list to see them all at once.</p>'
     ]

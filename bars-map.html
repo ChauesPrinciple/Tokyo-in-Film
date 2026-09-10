@@ -557,8 +557,8 @@
       .sources a { text-decoration: none; }
     }
   </style>
-  <script src="js/ripple.js?v=493127a8" defer></script>
-  <script src="js/bars-map.js?v=9cdab104" defer></script>
+  <script src="js/ripple.js?v=b3d90ef0" defer></script>
+  <script src="js/bars-map.js?v=eb26f248" defer></script>
 </head>
 <body>
   <div class="bars-bg" aria-hidden="true">
@@ -590,7 +590,10 @@
         </figure>
       </div>
     </header>
-    <noscript><p>This interactive map needs JavaScript to load the bars, map details, and the printable guide. The journey view below is fully readable without JavaScript.</p></noscript>
+    <noscript>
+      <style>.stop { opacity: 1 !important; transform: none !important; }</style>
+      <p>This interactive map needs JavaScript to load the bars, map details, and the printable guide. The journey view below is fully readable without JavaScript.</p>
+    </noscript>
     <div class="view-switch" role="tablist" aria-label="View mode">
       <button type="button" id="view-journey" class="view-tab is-active" role="tab" aria-selected="true" aria-controls="journey-view">Journey</button>
       <button type="button" id="view-map" class="view-tab" role="tab" aria-selected="false" aria-controls="map-view">Map & list</button>
@@ -615,7 +618,7 @@
             <h2 class="key-heading" id="map-legend-heading">Reading the map</h2>
             <ul id="map-legend" aria-labelledby="map-legend-heading">
               <li class="legend-item"><span class="legend-symbol legend-pin" aria-hidden="true">1</span> Number matches the place index</li>
-              <li class="legend-item"><span class="legend-symbol legend-pin legend-spotlight" aria-hidden="true">30</span> Members only — arrange access before you travel</li>
+              <li class="legend-item"><span id="legend-spotlight" class="legend-symbol legend-pin legend-spotlight" aria-hidden="true">30</span> Members only — arrange access before you travel</li>
               <li class="legend-item"><span class="legend-symbol legend-dot" aria-hidden="true"></span> Dot: saved location; numbered badge may be offset</li>
               <li class="legend-item"><span class="legend-symbol legend-line" aria-hidden="true"></span> Subway context, not walking directions</li>
             </ul>
@@ -626,7 +629,7 @@
       <section id="journey-view" class="journey-view is-active" role="tabpanel" aria-labelledby="view-journey" tabindex="-1">
         <div class="journey-scroll">
 <!-- build:journey -->
-<p class="journey-intro">A night in order: Ginza cocktails, then Shinjuku’s hidden floors, then the midnight shift south through Ebisu and Roppongi, and finally the east-side after-hours crawl. Each stop is a place — with its floor, its address, and a note on what it is. Switch to Map &amp; list to see them all at once.</p>
+<p class="journey-intro">A night in order: Ginza cocktails, then Shinjuku’s hidden floors, then the midnight shift south through Ebisu and Roppongi, and the east-side after-hours crawl, and the far outliers — ending at a door you have to be let into. Each stop is a place — with its floor, its address, and a note on what it is. Switch to Map &amp; list to see them all at once.</p>
 <h3 class="journey-leg">Ginza &amp; Nihonbashi<span class="journey-leg-sub">Early evening — cocktails and counters</span></h3>
   <section class="stop" id="stop-apollo-bar" data-stop="apollo-bar" data-number="1" data-floor="B1F" data-category="basement">
     <header class="stop-head">
@@ -828,7 +831,7 @@
       <dt>Address</dt><dd>1-1-6 to 1-1-8 Kabukicho, Shinjuku-ku, Tokyo</dd>
     </dl>
     <div class="subvenues" role="list">
-      <article class="subvenue" data-floor="3F" tabindex="0" role="button" aria-label="Happy (Rockin&#x27; Soul Bar) — focus on map">
+      <article class="subvenue" data-floor="3F" tabindex="0" aria-label="Happy (Rockin&#x27; Soul Bar) — focus on map">
         <h4 class="subvenue-name">Happy (Rockin&#x27; Soul Bar)</h4>
         <p class="subvenue-aliases">ハッピー · ロッキンソールバー</p>
         <p class="subvenue-floor">3F · Maruha Building</p>
@@ -836,7 +839,7 @@
         <p class="subvenue-description">A soul-and-rock counter bar on the 3rd floor of the Maruha Building. 4.8 rating. Go up the stairs.</p>
         <a class="subvenue-link" href="https://www.google.com/maps/search/?api=1&amp;query=Happy+Rockin+Soul+Bar+1-1-7+Kabukicho+Shinjuku+Tokyo" target="_blank" rel="noopener noreferrer">Open in Maps</a>
       </article>
-      <article class="subvenue" data-floor="1F" tabindex="0" role="button" aria-label="BAR COO — focus on map">
+      <article class="subvenue" data-floor="1F" tabindex="0" aria-label="BAR COO — focus on map">
         <h4 class="subvenue-name">BAR COO</h4>
         <p class="subvenue-aliases">バー 空 · BAR COO 空</p>
         <p class="subvenue-floor">1F</p>
@@ -844,7 +847,7 @@
         <p class="subvenue-description">A six-seat casual bar on Golden Gai 3rd street. Drinks and snacks at the owner&#x27;s discretion — like drinking in a friend&#x27;s kitchen.</p>
         <a class="subvenue-link" href="https://www.google.com/maps/search/?api=1&amp;query=BAR+COO+1-1-8+Kabukicho+Shinjuku+Tokyo" target="_blank" rel="noopener noreferrer">Open in Maps</a>
       </article>
-      <article class="subvenue" data-floor="Ground floor" tabindex="0" role="button" aria-label="OPEN BOOK — focus on map">
+      <article class="subvenue" data-floor="Ground floor" tabindex="0" aria-label="OPEN BOOK — focus on map">
         <h4 class="subvenue-name">OPEN BOOK</h4>
         <p class="subvenue-aliases">オープンブック</p>
         <p class="subvenue-floor">Ground floor</p>

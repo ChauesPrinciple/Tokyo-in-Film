@@ -425,6 +425,7 @@
       };
       sv.addEventListener('click', focusParent);
       sv.addEventListener('keydown', e => {
+        if (e.target !== sv) return;               // let the inner <a> handle its own keys
         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); focusParent(e); }
       });
     });
@@ -792,6 +793,10 @@
       visible = [...bars];
       const countEl = $('bar-count');
       if (countEl) countEl.textContent = bars.length;
+      // Derive the spotlight legend number from the data, not a hardcoded 30.
+      const spotlightBar = bars.find(b => b.spotlight);
+      const legendEl = $('legend-spotlight');
+      if (legendEl && spotlightBar) legendEl.textContent = spotlightBar.number;
       geography(boundaries);
       cards();
       resize();

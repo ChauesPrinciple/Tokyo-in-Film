@@ -37,6 +37,18 @@ json_count = len(data['bars'])
 if json_count != stop_count:
     errors.append(f"JSON bar count ({json_count}) != .stop count ({stop_count})")
 
+# 4. Journey stop IDs match JSON bar IDs (catches drift between the two)
+html_stop_ids = re.findall(r'id="stop-([^"]+)"', html)
+json_bar_ids = [b['id'] for b in data['bars']]
+html_set = set(html_stop_ids)
+json_set = set(json_bar_ids)
+missing_in_html = json_set - html_set
+missing_in_json = html_set - json_set
+for bid in sorted(missing_in_html):
+    errors.append(f"JSON bar '{bid}' has no matching <section id=\"stop-{bid}\"> in Journey HTML")
+for bid in sorted(missing_in_json):
+    errors.append(f"Journey HTML <section id=\"stop-{bid}\"> has no matching JSON bar entry")
+
 if errors:
     print("FAIL:")
     for e in errors:

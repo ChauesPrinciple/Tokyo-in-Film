@@ -33,8 +33,16 @@
   }
 
   function spawnRipple(figure, x, y) {
-    const {canvas, ctx, rect} = resize(figure);
-    if (!ctx) return;
+    // Only resize the canvas once per figure (on first spawn), not on every
+    // pointermove. getBoundingClientRect + canvas resize is expensive churn
+    // when called ~8x/sec during a hover-drag. A ResizeObserver would be
+    // ideal, but for 1-2 figures a one-shot is fine.
+    if (!figure._sized) {
+      const sized = resize(figure);
+      if (!sized.ctx) return;
+      figure._sized = sized;
+    }
+    const {canvas, ctx, rect} = figure._sized;
     ripples.push({
       canvas, ctx, rect,
       x: x - rect.left, y: y - rect.top,
