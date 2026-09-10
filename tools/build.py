@@ -146,7 +146,11 @@ def _render_stop(bar):
     parts.append(f'      <h3 class="stop-name">{_esc(bar["name"])}</h3>')
     aliases = bar.get('aliases') or []
     if aliases:
-        parts.append(f'      <p class="stop-aliases">{_esc(" · ".join(aliases))}</p>')
+        # Each alias becomes its own vertical column (writing-mode: vertical-rl);
+        # <br> moves to the next column to the left, the way multiple lantern
+        # cards sit beside a sign.
+        alias_html = '<br>'.join(_esc(a) for a in aliases)
+        parts.append(f'      <p class="stop-aliases">{alias_html}</p>')
     parts.append(f'    </header>')
     # 2. Neighborhood, type, floor — a compact "where it sits" line
     summary_bits = [_locality(bar)]
@@ -158,6 +162,14 @@ def _render_stop(bar):
     # 3. Description — why to go
     if bar.get('description'):
         parts.append(f'    <p class="stop-description">{_esc(bar["description"])}</p>')
+    # 3a. Optional atmospheric image — if the bar has an "image" field pointing
+    # at a file in assets/imgs/bars/, render it as a ripple-ready figure.
+    image = bar.get('image')
+    if image:
+        alt = _esc(bar.get('imageAlt') or bar.get('name', ''))
+        parts.append(f'    <figure class="stop-image" data-ripple>')
+        parts.append(f'      <img src="{_esc(image)}" alt="{alt}" loading="lazy" decoding="async">')
+        parts.append(f'    </figure>')
     # 4. Practical details for finding the entrance
     parts.append(f'    <dl class="stop-facts">')
     if bar.get('station'):

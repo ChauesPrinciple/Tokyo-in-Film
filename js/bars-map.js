@@ -30,9 +30,10 @@
       journeyView.hidden = !isJourney;
       mapView.classList.toggle('is-active', !isJourney);
       mapView.hidden = isJourney;
-      // Drive the layout grid + skip-link target from the active view.
+      // Drive the layout grid + skip-link target + background video from view.
       const layout = document.querySelector('.layout');
       if (layout) layout.setAttribute('data-view', mode);
+      document.body.toggleAttribute('data-journey-active', isJourney);
       const skip = document.querySelector('.skip-link');
       if (skip) skip.setAttribute('href', isJourney ? '#journey-view' : '#shop-search');
       try { localStorage.setItem('bars-view', mode); } catch (e) {}
@@ -62,6 +63,7 @@
     if (initial !== 'journey' && initial !== 'map') initial = 'journey';
     const layoutEl = document.querySelector('.layout');
     if (layoutEl) layoutEl.setAttribute('data-view', initial);
+    if (initial === 'journey') document.body.setAttribute('data-journey-active', '');
     if (initial === 'map') setView('map');
   })();
 
@@ -389,6 +391,19 @@
     });
 
     stops.forEach(stop => observer.observe(stop));
+
+    // Fade-in: reveal stops softly as they enter the viewport, the way a
+    // late-night walk brings each sign into view. Independent of the camera
+    // observer so it runs in both views and ignores the Follow toggle.
+    const reveal = new IntersectionObserver(entries => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-revealed');
+          reveal.unobserve(entry.target);
+        }
+      }
+    }, {rootMargin: '-8% 0px -8% 0px', threshold: 0});
+    stops.forEach(stop => reveal.observe(stop));
 
     // Also handle direct clicks on stops — focus the map
     stops.forEach(stop => {
@@ -720,6 +735,29 @@
   window.addEventListener('pointerup', release);
   window.addEventListener('pointercancel', release);
   new ResizeObserver(resize).observe(svg);
+
+  // --- Background video loader ---
+  // Tries to load the WebM background; if it fails, tries the MP4 fallback.
+  // If both fail (no files yet), the video stays hidden and the page works as
+  // before. Only fades in once the video can actually play.
+  (function initBgVideo() {
+    const video = document.querySelector('.bars-bg-video');
+    if (!video) return;
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced) return;
+    video.addEventListener('loadeddata', () => video.classList.add('is-loaded'), {once: true});
+    video.addEventListener('error', () => {
+      const fallback = video.querySelector('source[data-fallback]');
+      if (fallback) {
+        const mp4 = document.createElement('source');
+        mp4.src = fallback.getAttribute('data-fallback');
+        mp4.type = 'video/mp4';
+        video.replaceChild(mp4, video.querySelector('source'));
+        video.load();
+      }
+    }, {once: true});
+    video.load();
+  })();
 
   async function init() {
     try {

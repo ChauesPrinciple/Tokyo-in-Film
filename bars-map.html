@@ -8,6 +8,7 @@
   <title>Tokyo After Dark — Tokyo in Film</title>
   <link rel="icon" href="assets/images/image07.png">
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&display=swap');
     :root {
       color-scheme: dark;
       --ink: #eceaf2;
@@ -44,6 +45,18 @@
       font-feature-settings: "kern" 1;
       text-rendering: optimizeLegibility;
     }
+    /* Atmospheric background video — a muted, looping night loop sits behind
+       everything. A dark veil keeps it from competing with the content. If
+       no video file exists, the element stays empty and the page works as
+       before. Only the Journey view shows it; Map & list stays opaque so
+       the map stays readable. */
+    .bars-bg { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; background: var(--paper); }
+    .bars-bg-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1.2s ease; }
+    .bars-bg-video.is-loaded { opacity: .35; }
+    .bars-bg-veil { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(20,18,28,.55), rgba(20,18,28,.78)); }
+    /* Only show the video behind the Journey view. */
+    body:not([data-journey-active]) .bars-bg { opacity: 0; }
+    @media (prefers-reduced-motion: reduce) { .bars-bg-video { display: none; } }
     button, input, select { font: inherit; }
     button, select, input { accent-color: var(--mark-ink); }
     button, a, input, select, summary { -webkit-tap-highlight-color: transparent; }
@@ -346,37 +359,58 @@
     .view-tab.is-active { background: var(--accent); color: #fff; }
     .view-tab:focus-visible { outline: 2px solid var(--mark-ink); outline-offset: 2px; }
 
-    /* Journey view — readable, no animation yet */
+    /* Journey view — an ethereal scroll through the night.
+       Japanese aliases run vertically (縦書き) in Shippori Mincho, the way a
+       late-night reader would find them on a lantern or a card. Stops
+       materialize softly as they enter the viewport. */
     .journey-view { display: none; }
     .journey-view.is-active { display: block; }
     .map-view { display: none; }
     .map-view.is-active { display: block; }
 
-    .journey-scroll { max-width: 720px; margin: 0 auto; padding: 0 0 24px; }
+    .journey-scroll { max-width: 760px; margin: 0 auto; padding: 0 0 40px; }
     .journey-intro {
-      margin: 0 0 28px; color: var(--ink-soft); font-size: 15px; line-height: 1.6;
-      max-width: 62ch; padding-bottom: 18px; border-bottom: 1px solid var(--line);
+      margin: 0 0 40px; color: var(--ink-soft); font-size: 15px; line-height: 1.7;
+      max-width: 62ch; padding-bottom: 22px; border-bottom: 1px solid var(--line);
+      font-family: 'Shippori Mincho', serif;
     }
 
+    /* Fade-in: stops start dimmed and lifted, then settle as they enter. */
     .stop {
-      margin: 0 0 28px; padding: 22px 24px 20px;
+      margin: 0 0 36px; padding: 28px 30px 24px;
       background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
       scroll-margin: 24px;
+      opacity: 0; transform: translateY(14px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .stop.is-revealed { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      .stop { opacity: 1; transform: none; transition: none; }
     }
     .stop.is-spotlight {
       border-color: var(--glow-line); background: var(--glow-soft);
     }
-    .stop-head { margin: 0 0 14px; }
+    .stop-head { margin: 0 0 16px; display: flex; align-items: flex-start; gap: 18px; }
     .stop-number {
       display: inline-grid; place-items: center; width: 26px; height: 26px;
-      margin: 0 0 8px; border-radius: 50%; background: var(--accent); color: #fff;
-      font: 700 12px/1 inherit;
+      margin: 0; border-radius: 50%; background: var(--accent); color: #fff;
+      font: 700 12px/1 inherit; flex: 0 0 26px;
     }
     .stop.is-spotlight .stop-number { background: var(--glow); color: #14121c; }
     .stop-name { margin: 0; font-size: 24px; font-weight: 700; letter-spacing: -.015em; line-height: 1.2; }
-    .stop-aliases { margin: 5px 0 0; font-size: 13px; color: var(--muted); letter-spacing: .02em; }
+    /* Vertical Japanese aliases — 縦書き in Shippori Mincho, set to the right
+       of the English name the way a lantern card sits beside a sign. */
+    .stop-aliases {
+      margin: 0; padding: 2px 0 0;
+      writing-mode: vertical-rl; text-orientation: mixed;
+      font-family: 'Shippori Mincho', serif; font-weight: 500;
+      font-size: 15px; line-height: 1.9; letter-spacing: .08em;
+      color: var(--ink-soft); white-space: nowrap;
+      max-height: 9em; flex: 0 0 auto;
+    }
+    .stop.is-spotlight .stop-aliases { color: var(--glow-ink); }
 
-    .stop-summary { margin: 0 0 12px; font-size: 13px; color: var(--muted); letter-spacing: .02em; }
+    .stop-summary { margin: 0 0 14px; font-size: 12.5px; color: var(--muted); letter-spacing: .06em; text-transform: uppercase; }
     .stop-summary strong { color: var(--ink); font-weight: 600; }
     .stop.is-spotlight .stop-summary strong { color: var(--glow-ink); }
 
@@ -385,7 +419,13 @@
     .stop-facts dd { margin: 0; color: var(--ink); line-height: 1.5; }
     .stop.is-spotlight .stop-facts dd { color: var(--glow-ink); }
 
-    .stop-description { margin: 0 0 14px; font-size: 15.5px; line-height: 1.65; color: var(--ink); max-width: 60ch; }
+    .stop-description { margin: 0 0 16px; font-size: 15.5px; line-height: 1.75; color: var(--ink); max-width: 60ch; font-family: 'Shippori Mincho', serif; font-weight: 400; }
+
+    /* Optional atmospheric image — a ripple-ready figure. The canvas overlay
+       is injected by JS (js/ripple.js); without it, the image still shows. */
+    .stop-image { margin: 0 0 16px; position: relative; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); }
+    .stop-image img { display: block; width: 100%; height: auto; max-height: 360px; object-fit: cover; }
+    .stop-image canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
     .stop.is-spotlight .stop-description { color: var(--ink); }
 
     .subvenues { margin: 0 0 14px; display: grid; gap: 10px; }
@@ -438,6 +478,10 @@
       .stop { padding: 18px 18px 16px; }
       .stop-name { font-size: 21px; }
       .stop-description { font-size: 14.5px; }
+      /* Vertical aliases need room; on narrow screens, let them run horizontal
+         below the name so the header doesn't cramp. */
+      .stop-head { flex-direction: column; gap: 8px; }
+      .stop-aliases { writing-mode: horizontal-tb; max-height: none; font-size: 13px; }
     }
 
     @page { size: A4 landscape; margin: 10mm; }
@@ -456,6 +500,8 @@
       }
       * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
       body { background: #fff; color: #14121c; font-size: 9pt; }
+      .bars-bg { display: none; }
+      .stop-image { display: none; }
       .scale-bar { background: none; }
       .shop-card.is-spotlight .shop-number,
       .map-marker.is-spotlight .marker-number { color: #fff; fill: #fff; }
@@ -506,9 +552,16 @@
       .sources a { text-decoration: none; }
     }
   </style>
-  <script src="js/bars-map.js?v=006c023f" defer></script>
+  <script src="js/ripple.js?v=8be9203a" defer></script>
+  <script src="js/bars-map.js?v=ad241f1d" defer></script>
 </head>
 <body>
+  <div class="bars-bg" aria-hidden="true">
+    <video class="bars-bg-video" muted loop playsinline preload="none">
+      <source src="assets/movie/bars-bg.webm" type="video/webm" data-fallback="assets/movie/bars-bg.mp4">
+    </video>
+    <div class="bars-bg-veil"></div>
+  </div>
   <a class="skip-link" href="#journey-view">Skip to content</a>
   <div class="page-shell">
     <header>
@@ -620,7 +673,7 @@
     <header class="stop-head">
       <p class="stop-number">4</p>
       <h3 class="stop-name">NOCTURNE</h3>
-      <p class="stop-aliases">ノクターン · オーセンティックバー Nocturne</p>
+      <p class="stop-aliases">ノクターン<br>オーセンティックバー Nocturne</p>
     </header>
     <p class="stop-summary">Chuo ward, Tokyo · Authentic bar · 3F</p>
     <p class="stop-description">An authentic bar on the 3rd floor of the Ryushin Building in Ginza, near Shimbashi. A quiet counter with a master who knows his cocktails and his regulars. The kind of Ginza bar where the elevator entrance is hard to find — that is the point.</p>
@@ -637,7 +690,7 @@
     <header class="stop-head">
       <p class="stop-number">5</p>
       <h3 class="stop-name">New York Bar</h3>
-      <p class="stop-aliases">ニューヨークバー · Park Hyatt Tokyo</p>
+      <p class="stop-aliases">ニューヨークバー<br>Park Hyatt Tokyo</p>
     </header>
     <p class="stop-summary">Shinjuku ward, Tokyo · Hotel bar · high-end</p>
     <p class="stop-description">The bar from Lost in Translation. Fifty-second floor of the Park Hyatt, floor-to-ceiling windows, a live jazz trio, and a whisky list that runs deep. Expensive, and worth it once. Go early on a weeknight for a seat by the window.</p>
@@ -669,7 +722,7 @@
     <header class="stop-head">
       <p class="stop-number">7</p>
       <h3 class="stop-name">KAKURETAI</h3>
-      <p class="stop-aliases">かくれたい · KAKURETAI Speakeasy Bar</p>
+      <p class="stop-aliases">かくれたい<br>KAKURETAI Speakeasy Bar</p>
     </header>
     <p class="stop-summary">Shinjuku ward, Tokyo · Speakeasy · B1F</p>
     <p class="stop-description">A hidden speakeasy in Arakicho, down an unmarked basement entrance. Owner Yuta crafts seasonal cocktails with Japanese fruits — the strawberry margarita and Earl Grey tea sake are standouts. Cheese-and-mouse decor, J-Pop playlists, sometimes a live DJ. A cozy hideout that treats regulars and first-timers the same. Closed weekends.</p>
@@ -687,7 +740,7 @@
     <header class="stop-head">
       <p class="stop-number">8</p>
       <h3 class="stop-name">Bar rest</h3>
-      <p class="stop-aliases">歌舞伎町 rest · スナックバー rest</p>
+      <p class="stop-aliases">歌舞伎町 rest<br>スナックバー rest</p>
     </header>
     <p class="stop-summary">Shinjuku ward, Tokyo · Snack bar · 3F</p>
     <p class="stop-description">A snack bar on the 3rd floor of the Dai-san Hirasawa Building in Kabukicho, one minute from Seibu-Shinjuku station. A hidden counter with a view of the trains rolling past the Shinjuku skyline. The master keeps a quiet room above the noise below.</p>
@@ -897,7 +950,7 @@
     <header class="stop-head">
       <p class="stop-number">21</p>
       <h3 class="stop-name">Golden Gai: Happy, BAR COO &amp; OPEN BOOK</h3>
-      <p class="stop-aliases">新宿ゴールデン街 · ハッピー ロッキンソールバー · BAR COO · バー 空 · OPEN BOOK · オープンブック</p>
+      <p class="stop-aliases">新宿ゴールデン街<br>ハッピー ロッキンソールバー<br>BAR COO<br>バー 空<br>OPEN BOOK<br>オープンブック</p>
     </header>
     <p class="stop-summary">Shinjuku ward, Tokyo · Golden Gai bars</p>
     <p class="stop-description">Three bars in Shinjuku Golden Gai, the dense cluster of 200-plus tiny drinking dens off Kabukicho — each on a different floor of the same narrow alley. Happy (Rockin&#x27; Soul Bar) is up on the 3rd floor of the Maruha Building at 1-1-7 — a soul-and-rock counter with a 4.8 rating. BAR COO (バー 空) is at street level (1F) at 1-1-8, on Golden Gai 3rd street — six seats, drinks and snacks at the owner&#x27;s discretion, like drinking in a friend&#x27;s kitchen. OPEN BOOK is on Golden Gai 5th street at 1-1-6, ground floor, no signboard — a lemon sour bar founded in 2015, shelves lined with books inherited from the owner&#x27;s grandfather, poet Tanaka Kojimasa. Pick any of the three, or bar-hop between them.</p>
@@ -990,7 +1043,7 @@
     <header class="stop-head">
       <p class="stop-number">25</p>
       <h3 class="stop-name">NARU Jazz Livehouse</h3>
-      <p class="stop-aliases">ジャズハウスナル · Jazz House Naru</p>
+      <p class="stop-aliases">ジャズハウスナル<br>Jazz House Naru</p>
     </header>
     <p class="stop-summary">Chiyoda ward, Tokyo · Jazz livehouse</p>
     <p class="stop-description">A long-running jazz livehouse in Ochanomizu, open since 1969. Intimate tables around a grand piano, nightly sets from working Tokyo musicians, and a kitchen that turns out a real dinner. Cover charge around ¥2,500 plus drinks.</p>
@@ -1071,7 +1124,7 @@
     <header class="stop-head">
       <p class="stop-number">30</p>
       <h3 class="stop-name">SAKEBARO Aoyama</h3>
-      <p class="stop-aliases">酒バー O · Sakebaro · SAKEBARO 青山店</p>
+      <p class="stop-aliases">酒バー O<br>Sakebaro<br>SAKEBARO 青山店</p>
     </header>
     <p class="stop-summary">Minato ward, Tokyo · Exclusive sake club · 1F</p>
     <p class="stop-description">The one that is not like the others. A members-only sake club in Minami-Aoyama — an extension of the original Naka-Meguro SAKEBARO. A tin cube counter, an auto-playing piano, LED light that shifts from deep blue to red. A curated cellar of rare and seasonal brews, and staff who can tell you the brewery, the yeast strain, and the rice polish rate for every pour. Everything else on this map you can walk into. This one you have to be let into.</p>
