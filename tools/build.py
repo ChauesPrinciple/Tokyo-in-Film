@@ -245,11 +245,37 @@ def render_journey(data_path):
         'with its floor, its address, and a note on what it is. '
         'Switch to Map &amp; list to see them all at once.</p>'
     ]
+    # Interstitial transit clips inserted between legs — walking footage
+    # that gives the feeling of moving through Tokyo between neighborhoods.
+    # Keyed by the leg index they appear BEFORE (0 = before leg 0, etc.)
+    interstitials = {
+        1: ('assets/movie/interstitial-hallway.webm', 'assets/movie/interstitial-hallway.mp4',
+            'Walking down a narrow hallway'),
+        2: ('assets/movie/interstitial-stairs.webm', 'assets/movie/interstitial-stairs.mp4',
+            'Descending stairs'),
+        3: ('assets/movie/janai-coffee.webm', 'assets/movie/janai-coffee.mp4',
+            'Finding the door'),
+    }
+
+    def _interstitial(leg_idx):
+        if leg_idx not in interstitials:
+            return ''
+        webm, mp4, alt = interstitials[leg_idx]
+        return (
+            f'<figure class="journey-interstitial" aria-label="{_esc(alt)}">'
+            f'<video class="stop-video" muted loop playsinline preload="metadata">'
+            f'<source src="{_esc(webm)}" type="video/webm">'
+            f'<source src="{_esc(mp4)}" type="video/mp4">'
+            f'</video></figure>'
+        )
+
     prev_leg = -1
     for bar in bars:
         n = bar['number']
         leg = leg_of.get(n, 0)
         if leg != prev_leg:
+            if prev_leg >= 0:
+                parts.append(_interstitial(leg))
             title, subtitle = legs[leg]
             parts.append(f'<h3 class="journey-leg">{title}<span class="journey-leg-sub">{subtitle}</span></h3>')
             prev_leg = leg
