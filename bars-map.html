@@ -430,15 +430,19 @@
     }
     .stop.is-spotlight .stop-number { background: var(--glow); color: #14121c; }
     .stop-name { margin: 0; font-size: 24px; font-weight: 700; letter-spacing: -.015em; line-height: 1.2; }
-    /* Vertical Japanese aliases — 縦書き in Shippori Mincho, set to the right
-       of the English name the way a lantern card sits beside a sign. */
+    /* Name + aliases share a column; the aliases sit below the English name,
+       not beside it. Vertical text is decorative and must not overlap the
+       horizontal text that follows. */
+    .stop-head-text { min-width: 0; }
+    /* Vertical Japanese aliases — 縦書き in Shippori Mincho, set below the
+       English name. */
     .stop-aliases {
-      margin: 0; padding: 2px 0 0;
+      margin: 8px 0 0; padding: 0;
       writing-mode: vertical-rl; text-orientation: mixed;
       font-family: 'Shippori Mincho', serif; font-weight: 500;
       font-size: 15px; line-height: 1.9; letter-spacing: .08em;
       color: var(--ink-soft); white-space: nowrap;
-      max-height: 9em; flex: 0 0 auto;
+      max-height: 7em;
     }
     .stop.is-spotlight .stop-aliases { color: var(--glow-ink); }
 
@@ -659,8 +663,10 @@
   <section class="stop" id="stop-apollo-bar" data-stop="apollo-bar" data-number="1" data-floor="B1F" data-category="basement">
     <header class="stop-head">
       <p class="stop-number">1</p>
-      <h3 class="stop-name">Apollo Bar Ginza</h3>
-      <p class="stop-aliases">アポロバー銀座</p>
+      <div class="stop-head-text">
+        <h3 class="stop-name">Apollo Bar Ginza</h3>
+        <p class="stop-aliases">アポロバー銀座</p>
+      </div>
     </header>
     <p class="stop-summary">Chuo ward, Tokyo · Cocktail bar · B1F</p>
     <p class="stop-description">A Ginza cocktail bar with a modern, relaxed feel compared to the old-school counters nearby. Good for a long evening that starts here and moves.</p>
@@ -681,8 +687,10 @@
   <section class="stop" id="stop-star-bar" data-stop="star-bar" data-number="2" data-floor="B1F" data-category="basement">
     <header class="stop-head">
       <p class="stop-number">2</p>
-      <h3 class="stop-name">Star Bar Ginza</h3>
-      <p class="stop-aliases">スターバー銀座</p>
+      <div class="stop-head-text">
+        <h3 class="stop-name">Star Bar Ginza</h3>
+        <p class="stop-aliases">スターバー銀座</p>
+      </div>
     </header>
     <p class="stop-summary">Chuo ward, Tokyo · Classic cocktail bar · B1F</p>
     <p class="stop-description">One of Ginza&#x27;s most respected cocktail bars. A short counter, ice carved by hand, and drinks built with a precision that makes the room go quiet. The kind of place where you order one thing and stay for three.</p>
@@ -697,8 +705,10 @@
   <section class="stop" id="stop-lamp-bar" data-stop="lamp-bar" data-number="3" data-floor="4F">
     <header class="stop-head">
       <p class="stop-number">3</p>
-      <h3 class="stop-name">Lamp Bar</h3>
-      <p class="stop-aliases">ランプバー</p>
+      <div class="stop-head-text">
+        <h3 class="stop-name">Lamp Bar</h3>
+        <p class="stop-aliases">ランプバー</p>
+      </div>
     </header>
     <p class="stop-summary">Chuo ward, Tokyo · Bar · 4F</p>
     <p class="stop-description">A warm, lamplit Ginza counter bar. Quiet, intimate, and the kind of place where the bartender remembers what you drank last time.</p>
@@ -713,8 +723,10 @@
   <section class="stop" id="stop-nocturne" data-stop="nocturne" data-number="4" data-floor="3F">
     <header class="stop-head">
       <p class="stop-number">4</p>
-      <h3 class="stop-name">NOCTURNE</h3>
-      <p class="stop-aliases">ノクターン<br>オーセンティックバー Nocturne</p>
+      <div class="stop-head-text">
+        <h3 class="stop-name">NOCTURNE</h3>
+        <p class="stop-aliases">ノクターン<br>オーセンティックバー Nocturne</p>
+      </div>
     </header>
     <p class="stop-summary">Chuo ward, Tokyo · Authentic bar · 3F</p>
     <p class="stop-description">An authentic bar on the 3rd floor of the Ryushin Building in Ginza, near Shimbashi. A quiet counter with a master who knows his cocktails and his regulars. The kind of Ginza bar where the elevator entrance is hard to find — that is the point.</p>
@@ -730,8 +742,10 @@
   <section class="stop" id="stop-pizza-bar-38th" data-stop="pizza-bar-38th" data-number="5" data-floor="38F" data-category="highrise">
     <header class="stop-head">
       <p class="stop-number">5</p>
-      <h3 class="stop-name">The Pizza Bar On 38th</h3>
-      <p class="stop-aliases">ザ ピザバー オン 38th</p>
+      <div class="stop-head-text">
+        <h3 class="stop-name">The Pizza Bar On 38th</h3>
+        <p class="stop-aliases">ザ ピザバー オン 38th</p>
+      </div>
     </header>
     <p class="stop-summary">Chuo ward, Tokyo · Hotel bar · high-end · 38F</p>
     <p class="stop-description">A pizza bar on the 38th floor of the Mandarin Oriental. Yes, pizza — wood-fired, counter seating, and a view that rivals New York Bar&#x27;s. Expensive, and the pizza is better than it has any right to be at that altitude.</p>
@@ -748,8 +762,10 @@
   <section class="stop" id="stop-new-york-bar" data-stop="new-york-bar" data-number="6" data-category="highrise">
     <header class="stop-head">
       <p class="stop-number">6</p>
-      <h3 class="stop-name">New York Bar</h3>
-      <p class="stop-aliases">ニューヨークバー<br>Park Hyatt Tokyo</p>
+      <div class="stop-head-text">
+        <h3 class="stop-name">New York Bar</h3>
+        <p class="stop-aliases">ニューヨークバー<br>Park Hyatt Tokyo</p>
+      </div>
     </header>
     <p class="stop-summary">Shinjuku ward, Tokyo · Hotel bar · high-end</p>
     <p class="stop-description">The bar from Lost in Translation. Fifty-second floor of the Park Hyatt, floor-to-ceiling windows, a live jazz trio, and a whisky list that runs deep. Expensive, and worth it once. Go early on a weeknight for a seat by the window.</p>
@@ -764,8 +780,10 @@
   <section class="stop" id="stop-bar-cocktailbook" data-stop="bar-cocktailbook" data-number="7" data-floor="2F">
     <header class="stop-head">
       <p class="stop-number">7</p>
-      <h3 class="stop-name">Bar Cocktailbook Shinjuku</h3>
-      <p class="stop-aliases">バー カクテルブック 新宿</p>
+      <div class="stop-head-text">
+        <h3 class="stop-name">Bar Cocktailbook Shinjuku</h3>
+        <p class="stop-aliases">バー カクテルブック 新宿</p>
+      </div>
     </header>
     <p class="stop-summary">Shinjuku ward, Tokyo · Cocktail bar · 2F</p>
     <p class="stop-description">A Shinjuku cocktail bar with a bookshelf of cocktail recipes behind the counter. The bartender will make you something off the page if you ask. A quieter alternative to the Ginza circuit.</p>
@@ -780,8 +798,10 @@
   <section class="stop" id="stop-kakuretai" data-stop="kakuretai" data-number="8" data-floor="B1F" data-category="basement">
     <header class="stop-head">
       <p class="stop-number">8</p>
-      <h3 class="stop-name">KAKURETAI</h3>
-      <p class="stop-aliases">かくれたい<br>KAKURETAI Speakeasy Bar</p>
+      <div class="stop-head-text">
+        <h3 class="stop-name">KAKURETAI</h3>
+        <p class="stop-aliases">かくれたい<br>KAKURETAI Speakeasy Bar</p>
+      </div>
     </header>
     <p class="stop-summary">Shinjuku ward, Tokyo · Speakeasy · B1F</p>
     <p class="stop-description">A hidden speakeasy in Arakicho, down an unmarked basement entrance. Owner Yuta crafts seasonal cocktails with Japanese fruits — the strawberry margarita and Earl Grey tea sake are standouts. Cheese-and-mouse decor, J-Pop playlists, sometimes a live DJ. A cozy hideout that treats regulars and first-timers the same. Closed weekends.</p>
@@ -798,8 +818,10 @@
   <section class="stop" id="stop-bar-rest" data-stop="bar-rest" data-number="9" data-floor="3F">
     <header class="stop-head">
       <p class="stop-number">9</p>
-      <h3 class="stop-name">Bar rest</h3>
-      <p class="stop-aliases">歌舞伎町 rest<br>スナックバー rest</p>
+      <div class="stop-head-text">
+        <h3 class="stop-name">Bar rest</h3>
+        <p class="stop-aliases">歌舞伎町 rest<br>スナックバー rest</p>
+      </div>
     </header>
     <p class="stop-summary">Shinjuku ward, Tokyo · Snack bar · 3F</p>
     <p class="stop-description">A snack bar on the 3rd floor of the Dai-san Hirasawa Building in Kabukicho, one minute from Seibu-Shinjuku station. A hidden counter with a view of the trains rolling past the Shinjuku skyline. The master keeps a quiet room above the noise below.</p>
@@ -815,8 +837,10 @@
   <section class="stop" id="stop-sake-market" data-stop="sake-market" data-number="10" data-floor="6F">
     <header class="stop-head">
       <p class="stop-number">10</p>
-      <h3 class="stop-name">SAKE MARKET Shinjuku</h3>
-      <p class="stop-aliases">サケマーケット新宿</p>
+      <div class="stop-head-text">
+        <h3 class="stop-name">SAKE MARKET Shinjuku</h3>
+        <p class="stop-aliases">サケマーケット新宿</p>
+      </div>
     </header>
     <p class="stop-summary">Shinjuku ward, Tokyo · Sake bar · 6F</p>
     <p class="stop-description">A sake bar in Shinjuku with a rotating selection by the glass. Good for a tasting flight before moving on to dinner.</p>
@@ -831,8 +855,10 @@
   <section class="stop" id="stop-a-bar-sleeping-tales" data-stop="a-bar-sleeping-tales" data-number="11" data-floor="B1F" data-category="basement">
     <header class="stop-head">
       <p class="stop-number">11</p>
-      <h3 class="stop-name">a BAR Sleeping Tales</h3>
-      <p class="stop-aliases">ア バー スリーピング テイルズ</p>
+      <div class="stop-head-text">
+        <h3 class="stop-name">a BAR Sleeping Tales</h3>
+        <p class="stop-aliases">ア バー スリーピング テイルズ</p>
+      </div>
     </header>
     <p class="stop-summary">Shinjuku ward, Tokyo · Bar · B1F</p>
     <p class="stop-description">A Shinjuku bar with a storybook name. A quiet counter for a late drink, away from the Kabukicho noise.</p>
@@ -847,8 +873,10 @@
   <section class="stop" id="stop-golden-gai-trio" data-stop="golden-gai-trio" data-number="12" data-category="golden-gai">
     <header class="stop-head">
       <p class="stop-number">12</p>
-      <h3 class="stop-name">Golden Gai: Happy, BAR COO &amp; OPEN BOOK</h3>
-      <p class="stop-aliases">新宿ゴールデン街<br>ハッピー ロッキンソールバー<br>BAR COO<br>バー 空<br>OPEN BOOK<br>オープンブック</p>
+      <div class="stop-head-text">
+        <h3 class="stop-name">Golden Gai: Happy, BAR COO &amp; OPEN BOOK</h3>
+        <p class="stop-aliases">新宿ゴールデン街<br>ハッピー ロッキンソールバー<br>BAR COO<br>バー 空<br>OPEN BOOK<br>オープンブック</p>
+      </div>
     </header>
     <p class="stop-summary">Shinjuku ward, Tokyo · Golden Gai bars</p>
     <p class="stop-description">Three bars in Shinjuku Golden Gai, the dense cluster of 200-plus tiny drinking dens off Kabukicho — each on a different floor of the same narrow alley. Happy (Rockin&#x27; Soul Bar) is up on the 3rd floor of the Maruha Building at 1-1-7 — a soul-and-rock counter with a 4.8 rating. BAR COO (バー 空) is at street level (1F) at 1-1-8, on Golden Gai 3rd street — six seats, drinks and snacks at the owner&#x27;s discretion, like drinking in a friend&#x27;s kitchen. OPEN BOOK is on Golden Gai 5th street at 1-1-6, ground floor, no signboard — a lemon sour bar founded in 2015, shelves lined with books inherited from the owner&#x27;s grandfather, poet Tanaka Kojimasa. Pick any of the three, or bar-hop between them.</p>
@@ -894,8 +922,10 @@
   <section class="stop" id="stop-fightclub" data-stop="fightclub" data-number="13" data-floor="1F">
     <header class="stop-head">
       <p class="stop-number">13</p>
-      <h3 class="stop-name">FIGHTCLUB Shibuya</h3>
-      <p class="stop-aliases">ファイトクラブ渋谷</p>
+      <div class="stop-head-text">
+        <h3 class="stop-name">FIGHTCLUB Shibuya</h3>
+        <p class="stop-aliases">ファイトクラブ渋谷</p>
+      </div>
     </header>
     <p class="stop-summary">Shibuya ward, Tokyo · Bar · 1F</p>
     <p class="stop-description">A kickboxing gym and bar on Dogenzaka in Shibuya. Fight training upstairs, drinks after. Not a cocktail bar — a place where the crowd came to hit things and then order a round. Loud, young, and exactly what the name says.</p>
@@ -910,8 +940,10 @@
   <section class="stop" id="stop-janai-coffee" data-stop="janai-coffee" data-number="14" data-floor="B1F" data-category="basement">
     <header class="stop-head">
       <p class="stop-number">14</p>
-      <h3 class="stop-name">JANAI COFFEE</h3>
-      <p class="stop-aliases">ジャナイコーヒー</p>
+      <div class="stop-head-text">
+        <h3 class="stop-name">JANAI COFFEE</h3>
+        <p class="stop-aliases">ジャナイコーヒー</p>
+      </div>
     </header>
     <p class="stop-summary">Shibuya ward, Tokyo · Speakeasy · B1F</p>
     <p class="stop-description">It is called a coffee shop. It is not a coffee shop. JANAI means &#x27;not this&#x27; — the door is a speakeasy entrance, and what is behind it is a bar. Go down the stairs, find the door, and order a drink. The coffee is a cover story.</p>
@@ -926,8 +958,10 @@
   <section class="stop" id="stop-a10" data-stop="a10" data-number="15" data-floor="B1F" data-category="basement">
     <header class="stop-head">
       <p class="stop-number">15</p>
-      <h3 class="stop-name">A10</h3>
-      <p class="stop-aliases">エーテン</p>
+      <div class="stop-head-text">
+        <h3 class="stop-name">A10</h3>
+        <p class="stop-aliases">エーテン</p>
+      </div>
     </header>
     <p class="stop-summary">Shibuya ward, Tokyo · Bar · B1F</p>
     <p class="stop-description">An Ebisu bar around the corner from JANAI. Small, focused, and easy to miss if you are not looking for it.</p>
@@ -948,8 +982,10 @@
   <section class="stop" id="stop-bundan" data-stop="bundan" data-number="16">
     <header class="stop-head">
       <p class="stop-number">16</p>
-      <h3 class="stop-name">BUNDAN Coffee &amp; Beer</h3>
-      <p class="stop-aliases">文旦</p>
+      <div class="stop-head-text">
+        <h3 class="stop-name">BUNDAN Coffee &amp; Beer</h3>
+        <p class="stop-aliases">文旦</p>
+      </div>
     </header>
     <p class="stop-summary">Meguro ward, Tokyo · Coffee &amp; beer bar</p>
     <p class="stop-description">A literary cafe and bar inside the Museum of Modern Japanese Literature in Komaba. Coffee by day, beer and wine by evening, and books on every wall. The name means &#x27;passing along a story.&#x27; A quiet stop between the museum and the park.</p>
@@ -964,8 +1000,10 @@
   <section class="stop" id="stop-bar-sawa" data-stop="bar-sawa" data-number="17" data-floor="1F">
     <header class="stop-head">
       <p class="stop-number">17</p>
-      <h3 class="stop-name">Bar sawa</h3>
-      <p class="stop-aliases">バー サワ</p>
+      <div class="stop-head-text">
+        <h3 class="stop-name">Bar sawa</h3>
+        <p class="stop-aliases">バー サワ</p>
+      </div>
     </header>
     <p class="stop-summary">Meguro ward, Tokyo · Bar · 1F</p>
     <p class="stop-description">A bar in Higashiyama, the quiet side of Nakameguro. A counter spot for a drink before or after dinner in the neighborhood.</p>
@@ -980,8 +1018,10 @@
   <section class="stop" id="stop-no-room-squares" data-stop="no-room-squares" data-number="18" data-floor="4F" data-category="distant">
     <header class="stop-head">
       <p class="stop-number">18</p>
-      <h3 class="stop-name">No Room For Squares</h3>
-      <p class="stop-aliases">ノー・ルーム・フォー・スクエアーズ</p>
+      <div class="stop-head-text">
+        <h3 class="stop-name">No Room For Squares</h3>
+        <p class="stop-aliases">ノー・ルーム・フォー・スクエアーズ</p>
+      </div>
     </header>
     <p class="stop-summary">Setagaya ward, Tokyo · Jazz bar · 4F</p>
     <p class="stop-description">A jazz bar in Shimokitazawa. The name is a Mingus reference. Vinyl on the turntable, a small room, and a crowd that came for the music. Check the schedule.</p>
@@ -998,8 +1038,10 @@
   <section class="stop" id="stop-gen-yamamoto" data-stop="gen-yamamoto" data-number="19" data-floor="1F">
     <header class="stop-head">
       <p class="stop-number">19</p>
-      <h3 class="stop-name">Gen Yamamoto</h3>
-      <p class="stop-aliases">ゲン ヤマモト</p>
+      <div class="stop-head-text">
+        <h3 class="stop-name">Gen Yamamoto</h3>
+        <p class="stop-aliases">ゲン ヤマモト</p>
+      </div>
     </header>
     <p class="stop-summary">Minato ward, Tokyo · Cocktail bar · high-end · 1F</p>
     <p class="stop-description">A reservation-only cocktail bar in Azabujuban. One bartender, a short counter, and a tasting-menu-style flight of seasonal cocktails built on Japanese ingredients. Sit, watch, do not rush.</p>
@@ -1014,8 +1056,10 @@
   <section class="stop" id="stop-bar-centifolia" data-stop="bar-centifolia" data-number="20" data-floor="6F">
     <header class="stop-head">
       <p class="stop-number">20</p>
-      <h3 class="stop-name">Bar Centifolia</h3>
-      <p class="stop-aliases">バー センティフォリア</p>
+      <div class="stop-head-text">
+        <h3 class="stop-name">Bar Centifolia</h3>
+        <p class="stop-aliases">バー センティフォリア</p>
+      </div>
     </header>
     <p class="stop-summary">Minato ward, Tokyo · Bar · 6F</p>
     <p class="stop-description">An Azabujuban bar near Gen Yamamoto. A quieter, older-school counter for a late drink in the neighborhood.</p>
@@ -1030,8 +1074,10 @@
   <section class="stop" id="stop-rokusan-angel" data-stop="rokusan-angel" data-number="21" data-floor="B2F" data-category="basement">
     <header class="stop-head">
       <p class="stop-number">21</p>
-      <h3 class="stop-name">Rokusan Angel (Burlesque Tokyo)</h3>
-      <p class="stop-aliases">六三アングル</p>
+      <div class="stop-head-text">
+        <h3 class="stop-name">Rokusan Angel (Burlesque Tokyo)</h3>
+        <p class="stop-aliases">六三アングル</p>
+      </div>
     </header>
     <p class="stop-summary">Minato ward, Tokyo · Burlesque bar · B2F</p>
     <p class="stop-description">A Roppongi burlesque bar. Live performances, cocktails, and a stage that is close enough to touch. Book ahead.</p>
@@ -1048,8 +1094,10 @@
   <section class="stop" id="stop-bar-under" data-stop="bar-under" data-number="22" data-floor="B1F" data-category="basement">
     <header class="stop-head">
       <p class="stop-number">22</p>
-      <h3 class="stop-name">BAR &amp;UNDER</h3>
-      <p class="stop-aliases">バー アンドアンダー</p>
+      <div class="stop-head-text">
+        <h3 class="stop-name">BAR &amp;UNDER</h3>
+        <p class="stop-aliases">バー アンドアンダー</p>
+      </div>
     </header>
     <p class="stop-summary">Chiyoda ward, Tokyo · Bar · B1F</p>
     <p class="stop-description">A basement bar in Kanda, near Akihabara. The name tells you where to look — go down. A good late-night stop in a neighborhood that shuts early.</p>
@@ -1064,8 +1112,10 @@
   <section class="stop" id="stop-naru-jazz" data-stop="naru-jazz" data-number="23">
     <header class="stop-head">
       <p class="stop-number">23</p>
-      <h3 class="stop-name">NARU Jazz Livehouse</h3>
-      <p class="stop-aliases">ジャズハウスナル<br>Jazz House Naru</p>
+      <div class="stop-head-text">
+        <h3 class="stop-name">NARU Jazz Livehouse</h3>
+        <p class="stop-aliases">ジャズハウスナル<br>Jazz House Naru</p>
+      </div>
     </header>
     <p class="stop-summary">Chiyoda ward, Tokyo · Jazz livehouse</p>
     <p class="stop-description">A long-running jazz livehouse in Ochanomizu, open since 1969. Intimate tables around a grand piano, nightly sets from working Tokyo musicians, and a kitchen that turns out a real dinner. Cover charge around ¥2,500 plus drinks.</p>
@@ -1081,8 +1131,10 @@
   <section class="stop" id="stop-game-bar-abutton" data-stop="game-bar-abutton" data-number="24" data-floor="1F">
     <header class="stop-head">
       <p class="stop-number">24</p>
-      <h3 class="stop-name">Game Bar A-Button</h3>
-      <p class="stop-aliases">ゲームバー エーボタン</p>
+      <div class="stop-head-text">
+        <h3 class="stop-name">Game Bar A-Button</h3>
+        <p class="stop-aliases">ゲームバー エーボタン</p>
+      </div>
     </header>
     <p class="stop-summary">Taito ward, Tokyo · Game bar · 1F</p>
     <p class="stop-description">A game bar in Taito. Retro consoles behind the counter, drinks in front, and you can borrow a controller. A good stop if you want a drink and a round of something old.</p>
@@ -1097,8 +1149,10 @@
   <section class="stop" id="stop-bar-willows" data-stop="bar-willows" data-number="25" data-floor="6F-E">
     <header class="stop-head">
       <p class="stop-number">25</p>
-      <h3 class="stop-name">BAR Willow&#x27;s</h3>
-      <p class="stop-aliases">バー ウィローズ</p>
+      <div class="stop-head-text">
+        <h3 class="stop-name">BAR Willow&#x27;s</h3>
+        <p class="stop-aliases">バー ウィローズ</p>
+      </div>
     </header>
     <p class="stop-summary">Taito ward, Tokyo · Bar · 6F-E</p>
     <p class="stop-description">A bar on the 6th floor of the 88 Building in Ueno. Antique chairs, a long cocktail and whisky list, and a counter that welcomes first-timers. The kind of hidden-floor Tokyo bar you have to know the elevator for.</p>
@@ -1119,8 +1173,10 @@
   <section class="stop" id="stop-rock-bar-sakebi" data-stop="rock-bar-sakebi" data-number="26" data-floor="1F">
     <header class="stop-head">
       <p class="stop-number">26</p>
-      <h3 class="stop-name">Rock Bar Sakebi</h3>
-      <p class="stop-aliases">ロックバー さけび</p>
+      <div class="stop-head-text">
+        <h3 class="stop-name">Rock Bar Sakebi</h3>
+        <p class="stop-aliases">ロックバー さけび</p>
+      </div>
     </header>
     <p class="stop-summary">Taito ward, Tokyo · Rock bar · 1F</p>
     <p class="stop-description">A rock bar in Negishi, north of Ueno. Loud music, strong drinks, and a crowd that came for both. Not the place for a quiet conversation.</p>
@@ -1135,8 +1191,10 @@
   <section class="stop" id="stop-the-trad" data-stop="the-trad" data-number="27" data-floor="1F">
     <header class="stop-head">
       <p class="stop-number">27</p>
-      <h3 class="stop-name">The TRAD whisky &amp; cocktails</h3>
-      <p class="stop-aliases">ザ トラッド</p>
+      <div class="stop-head-text">
+        <h3 class="stop-name">The TRAD whisky &amp; cocktails</h3>
+        <p class="stop-aliases">ザ トラッド</p>
+      </div>
     </header>
     <p class="stop-summary">Bunkyo ward, Tokyo · Whisky &amp; cocktail bar · 1F</p>
     <p class="stop-description">A whisky and cocktail bar in Yushima, between Ueno and Okachimachi. The name says what it is. A solid counter, a deep whisky shelf, and no pretense.</p>
@@ -1151,8 +1209,10 @@
   <section class="stop" id="stop-eigakan-jazz" data-stop="eigakan-jazz" data-number="28" data-floor="B1F" data-category="basement">
     <header class="stop-head">
       <p class="stop-number">28</p>
-      <h3 class="stop-name">Eigakan Jazz</h3>
-      <p class="stop-aliases">映画館ジャズ</p>
+      <div class="stop-head-text">
+        <h3 class="stop-name">Eigakan Jazz</h3>
+        <p class="stop-aliases">映画館ジャズ</p>
+      </div>
     </header>
     <p class="stop-summary">Bunkyo ward, Tokyo · Jazz bar · B1F</p>
     <p class="stop-description">A jazz kissa in Hakusan, down a narrow staircase from street level. The name means &#x27;cinema.&#x27; Vinyl on the turntable, dim light below ground, and a room that has been spinning records for decades. Cash only. Closed Sundays, Mondays, and holidays.</p>
@@ -1170,8 +1230,10 @@
   <section class="stop" id="stop-shooting-bar-ea" data-stop="shooting-bar-ea" data-number="29" data-floor="2F" data-category="distant">
     <header class="stop-head">
       <p class="stop-number">29</p>
-      <h3 class="stop-name">Shooting Bar EA</h3>
-      <p class="stop-aliases">シューティングバー イーエー</p>
+      <div class="stop-head-text">
+        <h3 class="stop-name">Shooting Bar EA</h3>
+        <p class="stop-aliases">シューティングバー イーエー</p>
+      </div>
     </header>
     <p class="stop-summary">Musashino, Tokyo · Shooting bar · 2F</p>
     <p class="stop-description">A shooting bar in Kichijoji, in the city of Musashino west of the 23 wards. Airsoft rifles, a target range, and drinks. Not a cocktail bar, but a uniquely Tokyo evening out — reachable on the Chuo line from Shinjuku in about 20 minutes.</p>
@@ -1186,8 +1248,10 @@
   <section class="stop is-spotlight" id="stop-sake-bar-o" data-stop="sake-bar-o" data-number="30" data-floor="1F" data-category="spotlight">
     <header class="stop-head">
       <p class="stop-number">30</p>
-      <h3 class="stop-name">SAKEBARO Aoyama</h3>
-      <p class="stop-aliases">酒バー O<br>Sakebaro<br>SAKEBARO 青山店</p>
+      <div class="stop-head-text">
+        <h3 class="stop-name">SAKEBARO Aoyama</h3>
+        <p class="stop-aliases">酒バー O<br>Sakebaro<br>SAKEBARO 青山店</p>
+      </div>
     </header>
     <p class="stop-summary">Minato ward, Tokyo · Exclusive sake club · 1F</p>
     <p class="stop-description">The one that is not like the others. A members-only sake club in Minami-Aoyama — an extension of the original Naka-Meguro SAKEBARO. A tin cube counter, an auto-playing piano, LED light that shifts from deep blue to red. A curated cellar of rare and seasonal brews, and staff who can tell you the brewery, the yeast strain, and the rice polish rate for every pour. Everything else on this map you can walk into. This one you have to be let into.</p>

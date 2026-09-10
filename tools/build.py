@@ -144,14 +144,16 @@ def _render_stop(bar):
     # 1. Name + Japanese aliases
     parts.append(f'    <header class="stop-head">')
     parts.append(f'      <p class="stop-number">{num}</p>')
-    parts.append(f'      <h3 class="stop-name">{_esc(bar["name"])}</h3>')
+    parts.append(f'      <div class="stop-head-text">')
+    parts.append(f'        <h3 class="stop-name">{_esc(bar["name"])}</h3>')
     aliases = bar.get('aliases') or []
     if aliases:
         # Each alias becomes its own vertical column (writing-mode: vertical-rl);
         # <br> moves to the next column to the left, the way multiple lantern
         # cards sit beside a sign.
         alias_html = '<br>'.join(_esc(a) for a in aliases)
-        parts.append(f'      <p class="stop-aliases">{alias_html}</p>')
+        parts.append(f'        <p class="stop-aliases">{alias_html}</p>')
+    parts.append(f'      </div>')
     parts.append(f'    </header>')
     # 2. Neighborhood, type, floor — a compact "where it sits" line
     summary_bits = [_locality(bar)]
