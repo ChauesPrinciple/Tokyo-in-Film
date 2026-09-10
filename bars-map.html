@@ -80,10 +80,25 @@
     .masthead nav a { text-decoration: none; color: var(--ink-soft); }
     .masthead nav a:hover { color: var(--mark-ink); text-decoration: underline; }
 
-    .page-header { padding: 28px 0 8px; }
+    .page-header {
+      position: relative; padding: 60px 0 40px; margin: 0 -20px; padding-left: 20px; padding-right: 20px;
+      border-radius: 0 0 12px 12px; overflow: hidden;
+    }
+    .page-header::before {
+      content: ''; position: absolute; inset: 0; z-index: -1;
+      background: url('assets/imgs/bars/whiskey-glass.jpg') center 30% / cover no-repeat;
+      filter: brightness(.4) saturate(1.2);
+    }
+    .page-header::after {
+      content: ''; position: absolute; inset: 0; z-index: -1;
+      background: linear-gradient(to bottom, rgba(20,18,28,.6), rgba(20,18,28,.85));
+    }
     .page-header h1 {
       margin: 0; font-size: clamp(32px, 4vw, 48px); font-weight: 700; letter-spacing: -.025em; line-height: 1.1;
+      color: #f5f0e8;
     }
+    .page-header .lede, .page-header .eyebrow { color: rgba(245,240,232,.85); }
+    .page-header .epigraph p, .page-header .epigraph figcaption { color: rgba(245,240,232,.7); }
     .lede { margin: 10px 0 0; color: var(--ink-soft); font-size: 15px; max-width: 62ch; line-height: 1.55; }
 
     .epigraph {
@@ -369,19 +384,6 @@
     .map-view.is-active { display: block; }
 
     .journey-scroll { max-width: 760px; margin: 0 auto; padding: 0 0 40px; }
-    .journey-hero {
-      margin: 0 0 40px; border-radius: 10px; overflow: hidden;
-      aspect-ratio: 16/9; position: relative;
-    }
-    .journey-hero img {
-      width: 100%; height: 100%; object-fit: cover; display: block;
-      filter: brightness(.7) saturate(1.1);
-    }
-    .journey-hero::after {
-      content: ''; position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(20,18,28,.85), rgba(20,18,28,.15) 60%, transparent);
-      pointer-events: none;
-    }
     .journey-intro {
       margin: 0 0 40px; color: var(--ink-soft); font-size: 15px; line-height: 1.7;
       max-width: 62ch; padding-bottom: 22px; border-bottom: 1px solid var(--line);
@@ -546,7 +548,7 @@
       .map-marker.is-spotlight .marker-number { color: #fff; fill: #fff; }
       .shop-card.is-spotlight .shop-status { background: var(--glow); color: #fff; }
       .page-shell { max-width: none; margin: 0; padding: 0 12px; }
-      .skip-link, .masthead nav, .map-toolbar, .toggle, .list-controls, #source-notes, #map-status, .map-hint, .shop-note, .shop-links, noscript, .films, .view-switch, .journey-intro, .journey-hero, .journey-interstitial, .stop-links, .map-view { display: none !important; }
+      .skip-link, .masthead nav, .map-toolbar, .toggle, .list-controls, #source-notes, #map-status, .map-hint, .shop-note, .shop-links, noscript, .films, .view-switch, .journey-intro, .journey-interstitial, .stop-links, .map-view { display: none !important; }
       .journey-view { display: block !important; }
       .journey-scroll { max-width: none; padding: 0; }
       .stop { break-inside: avoid; border-radius: 0; margin: 0; padding: 3mm 0; border: 0; border-bottom: 1px solid var(--line); background: #fff; }
@@ -562,7 +564,9 @@
       .epigraph figcaption { font-size: 7pt; margin-top: 1mm; }
       .masthead { padding: 0 0 2mm; border-bottom-color: var(--line); }
       .page-header { padding: 2mm 0; }
-      .page-header h1 { font-size: 24pt; }
+      .page-header { padding: 10mm 0 5mm; }
+      .page-header::before, .page-header::after { display: none; }
+      .page-header h1 { font-size: 24pt; color: #14121c; }
       .lede { font-size: 8pt; }
       .layout { display: block; }
       .map-stage { position: static; }
@@ -649,9 +653,6 @@
       </section>
       <section id="journey-view" class="journey-view is-active" role="tabpanel" aria-labelledby="view-journey" tabindex="-1">
         <div class="journey-scroll">
-          <figure class="journey-hero">
-            <img src="assets/imgs/bars/whiskey-glass.jpg" alt="A glass of whisky on a bar counter, lit from behind" loading="eager">
-          </figure>
 <!-- build:journey -->
 <p class="journey-intro">A night in order: Ginza cocktails, then Shinjuku’s hidden floors, then the midnight shift south through Ebisu and Roppongi, and the east-side after-hours crawl, and the far outliers — ending at a door you have to be let into. Each stop is a place — with its floor, its address, and a note on what it is. Switch to Map &amp; list to see them all at once.</p>
 <h3 class="journey-leg">Ginza &amp; Nihonbashi<span class="journey-leg-sub">Early evening — cocktails and counters</span></h3>
