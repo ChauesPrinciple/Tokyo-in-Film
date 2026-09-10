@@ -175,7 +175,7 @@ def _render_stop(bar):
         poster_attr = f' poster="{_esc(poster)}"' if poster else ''
         mp4 = bar.get('videoMp4') or video.replace('.webm', '.mp4')
         parts.append(f'    <figure class="stop-media">')
-        parts.append(f'      <video class="stop-video" muted loop playsinline preload="metadata"{poster_attr}>')
+        parts.append(f'      <video class="stop-video" muted loop playsinline autoplay preload="metadata"{poster_attr}>')
         parts.append(f'        <source src="{_esc(video)}" type="video/webm">')
         parts.append(f'        <source src="{_esc(mp4)}" type="video/mp4">')
         parts.append(f'      </video>')
@@ -265,7 +265,7 @@ def render_journey(data_path):
         webm, mp4, alt = interstitials[leg_idx]
         return (
             f'<figure class="journey-interstitial" aria-label="{_esc(alt)}">'
-            f'<video class="stop-video" muted loop playsinline preload="metadata">'
+            f'<video class="stop-video" muted loop playsinline autoplay preload="metadata">'
             f'<source src="{_esc(webm)}" type="video/webm">'
             f'<source src="{_esc(mp4)}" type="video/mp4">'
             f'</video></figure>'

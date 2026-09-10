@@ -763,14 +763,14 @@
     const io = new IntersectionObserver((entries) => {
       for (const e of entries) {
         const v = e.target;
-        if (e.isIntersecting && e.intersectionRatio > 0.25) {
+        if (e.isIntersecting && e.intersectionRatio > 0.1) {
           v.play().then(() => v.classList.add('is-playing')).catch(() => {});
-        } else {
+        } else if (!e.isIntersecting) {
           v.pause();
           v.classList.remove('is-playing');
         }
       }
-    }, { threshold: [0, 0.25, 0.5] });
+    }, { threshold: [0, 0.1, 0.25, 0.5, 0.75] });
     videos.forEach(v => {
       v.load();
       io.observe(v);
