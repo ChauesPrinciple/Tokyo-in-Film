@@ -13,7 +13,7 @@
       "ward": "Chuo",
       "lat": 35.669762,
       "lng": 139.75943,
-      "mapsUrl": "https://www.google.com/maps/place/APOLLO+BAR+GINZA/data=!4m2!3m1!1s0x0:0x89c9493ae4d0df85",
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=APOLLO+BAR+GINZA+8-2-15+Ginza+Chuo+Tokyo",
       "address": "B1F MEIKO Building, 8-2-15 Ginza, Chuo-ku, Tokyo",
       "station": "Shimbashi (JR / Tokyo Metro) — 5 min walk",
       "style": "Cocktail bar",
@@ -23,7 +23,7 @@
       "sources": [
         {
           "label": "Open in Maps",
-          "url": "https://www.google.com/maps/place/APOLLO+BAR+GINZA/data=!4m2!3m1!1s0x0:0x89c9493ae4d0df85"
+          "url": "https://www.google.com/maps/search/?api=1&query=APOLLO+BAR+GINZA+8-2-15+Ginza+Chuo+Tokyo"
         }
       ]
     },
@@ -289,7 +289,7 @@
       "ward": "Shinjuku",
       "lat": 35.693958,
       "lng": 139.705017,
-      "mapsUrl": "https://www.google.com/maps/place/Shinjuku+Golden+Gai/data=!4m2!3m1!1s0x60188be462541b4f:0x0",
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Shinjuku+Golden+Gai+1-1-6+Kabukicho+Shinjuku+Tokyo",
       "address": "1-1-6 to 1-1-8 Kabukicho, Shinjuku-ku, Tokyo",
       "station": "Shinjuku (JR / Tokyo Metro / Toei) — 5 min walk",
       "style": "Golden Gai bars",
@@ -297,15 +297,15 @@
       "sources": [
         {
           "label": "Happy on Maps",
-          "url": "https://www.google.com/maps/place/Happy+Rockin+Soul+Bar/data=!4m2!3m1!1s0x60188be462541b4f:0x0"
+          "url": "https://www.google.com/maps/search/?api=1&query=Happy+Rockin+Soul+Bar+1-1-7+Kabukicho+Shinjuku+Tokyo"
         },
         {
           "label": "BAR COO on bar-quest.com",
           "url": "https://bar-quest.com/en/bars/265ceb06b92a"
         },
         {
-          "label": "OPEN BOOK at ocha-naru.com",
-          "url": "http://ocha-naru.com/"
+          "label": "OPEN BOOK at openbook.tokyo",
+          "url": "https://www.openbook.tokyo/en"
         }
       ],
       "subvenues": [
@@ -385,6 +385,7 @@
       "station": "Ebisu (JR Yamanote / Tokyo Metro Hibiya) — 3 min walk",
       "style": "Speakeasy",
       "description": "It is called a coffee shop. It is not a coffee shop. JANAI means 'not this' — the door is a speakeasy entrance, and what is behind it is a bar. Go down the stairs, find the door, and order a drink. The coffee is a cover story.",
+      "video": "assets/movie/janai-coffee.webm",
       "sources": [
         {
           "label": "Open in Maps",
@@ -408,6 +409,7 @@
       "station": "Ebisu (JR Yamanote / Tokyo Metro Hibiya) — 3 min walk",
       "style": "Bar",
       "description": "An Ebisu bar around the corner from JANAI. Small, focused, and easy to miss if you are not looking for it.",
+      "video": "assets/movie/a10.webm",
       "sources": [
         {
           "label": "Open in Maps",
@@ -690,8 +692,6 @@
       "station": "Ueno-Hirokoji (Tokyo Metro Ginza) — 3 min walk",
       "style": "Whisky & cocktail bar",
       "description": "A whisky and cocktail bar in Yushima, between Ueno and Okachimachi. The name says what it is. A solid counter, a deep whisky shelf, and no pretense.",
-      "image": "assets/imgs/bars/whiskey-glass.jpg",
-      "imageAlt": "A glass of whisky on a bar counter",
       "sources": [
         {
           "label": "Open in Maps",

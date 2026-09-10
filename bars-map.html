@@ -439,7 +439,11 @@
     /* Per-stop video: subtle fade-in when it scrolls into view, like the stop
        cards themselves. The IntersectionObserver in bars-map.js handles the
        is-playing class; we also autoplay muted when visible. */
-    .stop-video { opacity: 1; }
+    .stop-video { opacity: 1; transition: opacity .8s ease; }
+    /* When JS is active, dim until the video starts playing, then fade in. */
+    body.js-active .stop-video { opacity: .35; }
+    body.js-active .stop-video.is-playing { opacity: 1; }
+    @media (prefers-reduced-motion: reduce) { .stop-video { opacity: 1; transition: none; } }
     .stop.is-spotlight .stop-description { color: var(--ink); }
 
     .subvenues { margin: 0 0 14px; display: grid; gap: 10px; }
@@ -554,7 +558,7 @@
     }
   </style>
   <script src="js/ripple.js?v=493127a8" defer></script>
-  <script src="js/bars-map.js?v=defc5023" defer></script>
+  <script src="js/bars-map.js?v=9cdab104" defer></script>
 </head>
 <body>
   <div class="bars-bg" aria-hidden="true">
@@ -577,7 +581,7 @@
       </div>
       <div class="page-header">
         <h1>Tokyo After Dark</h1>
-        <p class="lede">Across Tokyo, <span id="bar-count">30</span> bars: Ginza counters where the ice is carved by hand, an Ebisu basement that calls itself a coffee shop, a Shimokitazawa jazz room named after a Mingus record, and the bar from <cite>Lost in Translation</cite>. Tell the bartender what you're in the mood for and let them build it.</p>
+        <p class="lede">Across Tokyo, <span id="bar-count">30</span> late-night places: Ginza counters where the ice is carved by hand, an Ebisu basement that calls itself a coffee shop, a Shimokitazawa jazz room named after a Mingus record, and the bar from <cite>Lost in Translation</cite>. Tell the bartender what you're in the mood for and let them build it.</p>
         <figure class="epigraph">
           <blockquote>
             <p>In this world, there are things you can only do alone, and things you can only do with somebody else. It's important to combine the two in just the right amount.</p>
@@ -643,7 +647,7 @@
       <dt>Address</dt><dd>B1F MEIKO Building, 8-2-15 Ginza, Chuo-ku, Tokyo</dd>
     </dl>
     <p class="stop-links">
-      <a class="stop-link stop-link-primary" href="https://www.google.com/maps/place/APOLLO+BAR+GINZA/data=!4m2!3m1!1s0x0:0x89c9493ae4d0df85" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+      <a class="stop-link stop-link-primary" href="https://www.google.com/maps/search/?api=1&amp;query=APOLLO+BAR+GINZA+8-2-15+Ginza+Chuo+Tokyo" target="_blank" rel="noopener noreferrer">Open in Maps</a>
     </p>
   </section>
   <section class="stop" id="stop-star-bar" data-stop="star-bar" data-number="2" data-floor="B1F" data-category="basement">
@@ -850,10 +854,10 @@
       </article>
     </div>
     <p class="stop-links">
-      <a class="stop-link stop-link-primary" href="https://www.google.com/maps/place/Shinjuku+Golden+Gai/data=!4m2!3m1!1s0x60188be462541b4f:0x0" target="_blank" rel="noopener noreferrer">Open in Maps</a>
-      <a class="stop-link" href="https://www.google.com/maps/place/Happy+Rockin+Soul+Bar/data=!4m2!3m1!1s0x60188be462541b4f:0x0" target="_blank" rel="noopener noreferrer">Happy on Maps</a>
+      <a class="stop-link stop-link-primary" href="https://www.google.com/maps/search/?api=1&amp;query=Shinjuku+Golden+Gai+1-1-6+Kabukicho+Shinjuku+Tokyo" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+      <a class="stop-link" href="https://www.google.com/maps/search/?api=1&amp;query=Happy+Rockin+Soul+Bar+1-1-7+Kabukicho+Shinjuku+Tokyo" target="_blank" rel="noopener noreferrer">Happy on Maps</a>
       <a class="stop-link" href="https://bar-quest.com/en/bars/265ceb06b92a" target="_blank" rel="noopener noreferrer">BAR COO on bar-quest.com</a>
-      <a class="stop-link" href="http://ocha-naru.com/" target="_blank" rel="noopener noreferrer">OPEN BOOK at ocha-naru.com</a>
+      <a class="stop-link" href="https://www.openbook.tokyo/en" target="_blank" rel="noopener noreferrer">OPEN BOOK at openbook.tokyo</a>
     </p>
   </section>
 <h3 class="journey-leg">Shibuya &amp; Ebisu &amp; Meguro<span class="journey-leg-sub">Midnight — coffee shops that aren’t, jazz rooms</span></h3>
@@ -881,6 +885,12 @@
     </header>
     <p class="stop-summary">Shibuya ward, Tokyo · Speakeasy · B1F</p>
     <p class="stop-description">It is called a coffee shop. It is not a coffee shop. JANAI means &#x27;not this&#x27; — the door is a speakeasy entrance, and what is behind it is a bar. Go down the stairs, find the door, and order a drink. The coffee is a cover story.</p>
+    <figure class="stop-media">
+      <video class="stop-video" muted loop playsinline preload="metadata">
+        <source src="assets/movie/janai-coffee.webm" type="video/webm">
+        <source src="assets/movie/janai-coffee.mp4" type="video/mp4">
+      </video>
+    </figure>
     <dl class="stop-facts">
       <dt>Station</dt><dd>Ebisu (JR Yamanote / Tokyo Metro Hibiya) — 3 min walk</dd>
       <dt>Address</dt><dd>B1F Yamanen Building, 2-3-13 Ebisuminami, Shibuya-ku, Tokyo</dd>
@@ -897,6 +907,12 @@
     </header>
     <p class="stop-summary">Shibuya ward, Tokyo · Bar · B1F</p>
     <p class="stop-description">An Ebisu bar around the corner from JANAI. Small, focused, and easy to miss if you are not looking for it.</p>
+    <figure class="stop-media">
+      <video class="stop-video" muted loop playsinline preload="metadata">
+        <source src="assets/movie/a10.webm" type="video/webm">
+        <source src="assets/movie/a10.mp4" type="video/mp4">
+      </video>
+    </figure>
     <dl class="stop-facts">
       <dt>Station</dt><dd>Ebisu (JR Yamanote / Tokyo Metro Hibiya) — 3 min walk</dd>
       <dt>Address</dt><dd>B1F Bios Building, 1-12-11 Ebisunishi, Shibuya-ku, Tokyo</dd>
@@ -1098,9 +1114,6 @@
     </header>
     <p class="stop-summary">Bunkyo ward, Tokyo · Whisky &amp; cocktail bar · 1F</p>
     <p class="stop-description">A whisky and cocktail bar in Yushima, between Ueno and Okachimachi. The name says what it is. A solid counter, a deep whisky shelf, and no pretense.</p>
-    <figure class="stop-image" data-ripple>
-      <img src="assets/imgs/bars/whiskey-glass.jpg" alt="A glass of whisky on a bar counter" loading="lazy" decoding="async">
-    </figure>
     <dl class="stop-facts">
       <dt>Station</dt><dd>Ueno-Hirokoji (Tokyo Metro Ginza) — 3 min walk</dd>
       <dt>Address</dt><dd>1F Fukase Building, 3-43-9 Yushima, Bunkyo-ku, Tokyo</dd>

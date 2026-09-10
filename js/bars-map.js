@@ -777,6 +777,7 @@
   })();
 
   async function init() {
+    document.body.classList.add('js-active');
     try {
       const [data, boundaries] = await Promise.all([getJSON('assets/bars-map-data.json'), getJSON('assets/tokyo-wards.geojson')]);
       bars = data.bars
