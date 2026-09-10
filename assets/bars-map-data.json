@@ -19,7 +19,6 @@
       "style": "Cocktail bar",
       "description": "A Ginza cocktail bar with a modern, relaxed feel compared to the old-school counters nearby. Good for a long evening that starts here and moves.",
       "video": "assets/movie/apollo-bar.webm",
-      "videoPoster": "assets/imgs/bars/whiskey-glass.jpg",
       "sources": [
         {
           "label": "Open in Maps",

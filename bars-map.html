@@ -369,6 +369,19 @@
     .map-view.is-active { display: block; }
 
     .journey-scroll { max-width: 760px; margin: 0 auto; padding: 0 0 40px; }
+    .journey-hero {
+      margin: 0 0 40px; border-radius: 10px; overflow: hidden;
+      aspect-ratio: 16/9; position: relative;
+    }
+    .journey-hero img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      filter: brightness(.7) saturate(1.1);
+    }
+    .journey-hero::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(20,18,28,.85), rgba(20,18,28,.15) 60%, transparent);
+      pointer-events: none;
+    }
     .journey-intro {
       margin: 0 0 40px; color: var(--ink-soft); font-size: 15px; line-height: 1.7;
       max-width: 62ch; padding-bottom: 22px; border-bottom: 1px solid var(--line);
@@ -525,7 +538,7 @@
       .map-marker.is-spotlight .marker-number { color: #fff; fill: #fff; }
       .shop-card.is-spotlight .shop-status { background: var(--glow); color: #fff; }
       .page-shell { max-width: none; margin: 0; padding: 0 12px; }
-      .skip-link, .masthead nav, .map-toolbar, .toggle, .list-controls, #source-notes, #map-status, .map-hint, .shop-note, .shop-links, noscript, .films, .view-switch, .journey-intro, .stop-links, .map-view { display: none !important; }
+      .skip-link, .masthead nav, .map-toolbar, .toggle, .list-controls, #source-notes, #map-status, .map-hint, .shop-note, .shop-links, noscript, .films, .view-switch, .journey-intro, .journey-hero, .stop-links, .map-view { display: none !important; }
       .journey-view { display: block !important; }
       .journey-scroll { max-width: none; padding: 0; }
       .stop { break-inside: avoid; border-radius: 0; margin: 0; padding: 3mm 0; border: 0; border-bottom: 1px solid var(--line); background: #fff; }
@@ -628,6 +641,9 @@
       </section>
       <section id="journey-view" class="journey-view is-active" role="tabpanel" aria-labelledby="view-journey" tabindex="-1">
         <div class="journey-scroll">
+          <figure class="journey-hero">
+            <img src="assets/imgs/bars/whiskey-glass.jpg" alt="A glass of whisky on a bar counter, lit from behind" loading="eager">
+          </figure>
 <!-- build:journey -->
 <p class="journey-intro">A night in order: Ginza cocktails, then Shinjuku’s hidden floors, then the midnight shift south through Ebisu and Roppongi, and the east-side after-hours crawl, and the far outliers — ending at a door you have to be let into. Each stop is a place — with its floor, its address, and a note on what it is. Switch to Map &amp; list to see them all at once.</p>
 <h3 class="journey-leg">Ginza &amp; Nihonbashi<span class="journey-leg-sub">Early evening — cocktails and counters</span></h3>
@@ -640,7 +656,7 @@
     <p class="stop-summary">Chuo ward, Tokyo · Cocktail bar · B1F</p>
     <p class="stop-description">A Ginza cocktail bar with a modern, relaxed feel compared to the old-school counters nearby. Good for a long evening that starts here and moves.</p>
     <figure class="stop-media">
-      <video class="stop-video" muted loop playsinline preload="metadata" poster="assets/imgs/bars/whiskey-glass.jpg">
+      <video class="stop-video" muted loop playsinline preload="metadata">
         <source src="assets/movie/apollo-bar.webm" type="video/webm">
         <source src="assets/movie/apollo-bar.mp4" type="video/mp4">
       </video>
