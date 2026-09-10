@@ -66,8 +66,9 @@ def _locality(bar):
 def _floor_label(bar):
     """Pull a short floor/building label out of the address, when present."""
     addr = bar.get('address', '')
-    # Match leading floor tokens like 'B1F', 'B2F', '1F', '6F', '38F', '4F', '3F'.
-    m = re.match(r'^((?:B\d+F|\d+F)(?:\s*[-A-Z])?)\b', addr)
+    # Match leading floor tokens like 'B1F', 'B2F', '1F', '6F', '38F', '4F',
+    # '3F', optionally followed by a hyphen + room letter (e.g. '6F-E').
+    m = re.match(r'^((?:B\d+F|\d+F)(?:-[A-Z])?)\b', addr)
     return m.group(1).strip() if m else ''
 
 
@@ -162,10 +163,20 @@ def _render_stop(bar):
     # 3. Description — why to go
     if bar.get('description'):
         parts.append(f'    <p class="stop-description">{_esc(bar["description"])}</p>')
-    # 3a. Optional atmospheric image — if the bar has an "image" field pointing
-    # at a file in assets/imgs/bars/, render it as a ripple-ready figure.
+    # 3a. Optional atmospheric media — if the bar has a "video" or "image"
+    # field, render it between the description and the practical facts.
+    # Video takes precedence over image when both are present.
+    video = bar.get('video')
     image = bar.get('image')
-    if image:
+    if video:
+        poster = bar.get('videoPoster') or ''
+        poster_attr = f' poster="{_esc(poster)}"' if poster else ''
+        parts.append(f'    <figure class="stop-media">')
+        parts.append(f'      <video class="stop-video" muted loop playsinline preload="none"{poster_attr}>')
+        parts.append(f'        <source src="{_esc(video)}" type="video/webm">')
+        parts.append(f'      </video>')
+        parts.append(f'    </figure>')
+    elif image:
         alt = _esc(bar.get('imageAlt') or bar.get('name', ''))
         parts.append(f'    <figure class="stop-image" data-ripple>')
         parts.append(f'      <img src="{_esc(image)}" alt="{alt}" loading="lazy" decoding="async">')

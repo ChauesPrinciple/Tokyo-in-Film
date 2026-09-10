@@ -46,17 +46,30 @@
 
   function animate() {
     const alive = [];
+    // Group ripples by canvas so we clear each canvas once per frame, then
+    // draw all ripples for that canvas. Without this, each ripple's clearRect
+    // erases the previous ripple on the same canvas.
+    const byCanvas = new Map();
     for (const r of ripples) {
       r.life += 1 / 60;
       r.radius += (r.maxRadius - r.radius) * 0.04;
       r.alpha *= 0.96;
-      r.ctx.clearRect(0, 0, r.canvas.width, r.canvas.height);
-      r.ctx.beginPath();
-      r.ctx.arc(r.x, r.y, r.radius, 0, Math.PI * 2);
-      r.ctx.strokeStyle = `rgba(220, 210, 240, ${r.alpha})`;
-      r.ctx.lineWidth = 1.5;
-      r.ctx.stroke();
-      if (r.alpha > 0.02) alive.push(r);
+      if (r.alpha > 0.02) {
+        alive.push(r);
+        if (!byCanvas.has(r.canvas)) byCanvas.set(r.canvas, []);
+        byCanvas.get(r.canvas).push(r);
+      }
+    }
+    for (const [canvas, group] of byCanvas) {
+      const ctx = group[0].ctx;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (const r of group) {
+        ctx.beginPath();
+        ctx.arc(r.x, r.y, r.radius, 0, Math.PI * 2);
+        ctx.strokeStyle = `rgba(220, 210, 240, ${r.alpha})`;
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+      }
     }
     ripples.length = 0;
     ripples.push(...alive);

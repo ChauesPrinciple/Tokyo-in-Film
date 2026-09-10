@@ -18,6 +18,8 @@
       "station": "Shimbashi (JR / Tokyo Metro) — 5 min walk",
       "style": "Cocktail bar",
       "description": "A Ginza cocktail bar with a modern, relaxed feel compared to the old-school counters nearby. Good for a long evening that starts here and moves.",
+      "video": "assets/movie/apollo-bar.webm",
+      "videoPoster": "assets/imgs/bars/whiskey-glass.jpg",
       "sources": [
         {
           "label": "Open in Maps",
@@ -571,6 +573,7 @@
       "station": "Okachimachi (JR) — 3 min walk; Ueno-Hirokoji (Tokyo Metro Ginza) — 1 min walk",
       "style": "Bar",
       "description": "A bar on the 6th floor of the 88 Building in Ueno. Antique chairs, a long cocktail and whisky list, and a counter that welcomes first-timers. The kind of hidden-floor Tokyo bar you have to know the elevator for.",
+      "video": "assets/movie/bar-willows.webm",
       "sources": [
         {
           "label": "Open in Maps",
@@ -594,6 +597,8 @@
       "station": "Ueno-Hirokoji (Tokyo Metro Ginza) — 3 min walk",
       "style": "Whisky & cocktail bar",
       "description": "A whisky and cocktail bar in Yushima, between Ueno and Okachimachi. The name says what it is. A solid counter, a deep whisky shelf, and no pretense.",
+      "image": "assets/imgs/bars/whiskey-glass.jpg",
+      "imageAlt": "A glass of whisky on a bar counter",
       "sources": [
         {
           "label": "Open in Maps",

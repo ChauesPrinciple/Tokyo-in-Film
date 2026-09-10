@@ -27,9 +27,7 @@
       mapTab.classList.toggle('is-active', !isJourney);
       mapTab.setAttribute('aria-selected', String(!isJourney));
       journeyView.classList.toggle('is-active', isJourney);
-      journeyView.hidden = !isJourney;
       mapView.classList.toggle('is-active', !isJourney);
-      mapView.hidden = isJourney;
       // Drive the layout grid + skip-link target + background video from view.
       const layout = document.querySelector('.layout');
       if (layout) layout.setAttribute('data-view', mode);
@@ -236,7 +234,7 @@
       // Scroll the surface that's actually visible: the journey stop or the
       // list card. Selecting from the map should never scroll a hidden panel.
       const mapView = $('map-view');
-      if (mapView && mapView.hidden) scrollToStop(bar.id);
+      if (mapView && !mapView.classList.contains('is-active')) scrollToStop(bar.id);
       else scrollToCard(bar.id);
     }
     $('map-status').textContent = `${bar.number}. ${bar.name} — ${bar.area}, ${locality(bar)}${bar.status ? ` · ${bar.status}` : ''}`;
@@ -346,7 +344,7 @@
 
     // In map view, scroll the corresponding card into view
     const mapView = $('map-view');
-    if (mapView && !mapView.hidden) scrollToCard(bar.id);
+    if (mapView && mapView.classList.contains('is-active')) scrollToCard(bar.id);
   }
 
   function initScrollObserver() {
@@ -361,7 +359,7 @@
     const observer = new IntersectionObserver(entries => {
       // Only act when journey view is active and follow is enabled
       const journeyView = $('journey-view');
-      if (!journeyView || journeyView.hidden) return;
+      if (!journeyView || !journeyView.classList.contains('is-active')) return;
       if (!followReading) return;
 
       // Find the entry closest to the center of the viewport
@@ -759,6 +757,31 @@
     video.load();
   })();
 
+  // --- Per-stop video autoplay/pause ---
+  // Each stop-card video plays (muted) when it scrolls into view and pauses
+  // when it leaves. Respects prefers-reduced-motion (videos stay paused).
+  (function initStopVideos() {
+    const videos = document.querySelectorAll('.stop-video');
+    if (!videos.length) return;
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced) return;
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        const v = e.target;
+        if (e.isIntersecting && e.intersectionRatio > 0.25) {
+          v.play().then(() => v.classList.add('is-playing')).catch(() => {});
+        } else {
+          v.pause();
+          v.classList.remove('is-playing');
+        }
+      }
+    }, { threshold: [0, 0.25, 0.5] });
+    videos.forEach(v => {
+      v.load();
+      io.observe(v);
+    });
+  })();
+
   async function init() {
     try {
       const [data, boundaries] = await Promise.all([getJSON('assets/bars-map-data.json'), getJSON('assets/tokyo-wards.geojson')]);
@@ -793,7 +816,7 @@
         // and the marker is selectable, regardless of the saved view.
         if (setViewFn) setViewFn('map');
         select(hashBar, true);
-      } else if (journeyView && !journeyView.hidden && bars.length) {
+      } else if (journeyView && journeyView.classList.contains('is-active') && bars.length) {
         const first = bars[0];
         camera.x = first.point[0];
         camera.y = first.point[1];

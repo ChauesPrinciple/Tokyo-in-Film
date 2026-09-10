@@ -50,7 +50,7 @@
        no video file exists, the element stays empty and the page works as
        before. Only the Journey view shows it; Map & list stays opaque so
        the map stays readable. */
-    .bars-bg { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; background: var(--paper); }
+    .bars-bg { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; background: var(--paper); transition: opacity .8s ease; }
     .bars-bg-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1.2s ease; }
     .bars-bg-video.is-loaded { opacity: .35; }
     .bars-bg-veil { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(20,18,28,.55), rgba(20,18,28,.78)); }
@@ -423,9 +423,15 @@
 
     /* Optional atmospheric image — a ripple-ready figure. The canvas overlay
        is injected by JS (js/ripple.js); without it, the image still shows. */
-    .stop-image { margin: 0 0 16px; position: relative; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); }
+    .stop-image, .stop-media { margin: 0 0 16px; position: relative; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); }
     .stop-image img { display: block; width: 100%; height: auto; max-height: 360px; object-fit: cover; }
+    .stop-video { display: block; width: 100%; height: auto; max-height: 560px; object-fit: cover; }
     .stop-image canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+    /* Per-stop video: subtle fade-in when it scrolls into view, like the stop
+       cards themselves. The IntersectionObserver in bars-map.js handles the
+       is-playing class; we also autoplay muted when visible. */
+    .stop-video { opacity: .85; transition: opacity .6s ease; }
+    .stop-video.is-playing { opacity: 1; }
     .stop.is-spotlight .stop-description { color: var(--ink); }
 
     .subvenues { margin: 0 0 14px; display: grid; gap: 10px; }
@@ -501,17 +507,19 @@
       * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
       body { background: #fff; color: #14121c; font-size: 9pt; }
       .bars-bg { display: none; }
-      .stop-image { display: none; }
+      .stop-image, .stop-media { display: none; }
       .scale-bar { background: none; }
       .shop-card.is-spotlight .shop-number,
       .map-marker.is-spotlight .marker-number { color: #fff; fill: #fff; }
       .shop-card.is-spotlight .shop-status { background: var(--glow); color: #fff; }
       .page-shell { max-width: none; margin: 0; padding: 0 12px; }
-      .skip-link, .masthead nav, .map-toolbar, .toggle, .list-controls, #source-notes, #map-status, .map-hint, .shop-note, .shop-links, noscript, .films, .view-switch, .journey-intro, .stop-links { display: none !important; }
-      .journey-view, .map-view { display: block !important; }
+      .skip-link, .masthead nav, .map-toolbar, .toggle, .list-controls, #source-notes, #map-status, .map-hint, .shop-note, .shop-links, noscript, .films, .view-switch, .journey-intro, .stop-links, .map-view { display: none !important; }
+      .journey-view { display: block !important; }
       .journey-scroll { max-width: none; padding: 0; }
       .stop { break-inside: avoid; border-radius: 0; margin: 0; padding: 3mm 0; border: 0; border-bottom: 1px solid var(--line); background: #fff; }
       .stop.is-spotlight { background: var(--glow-soft); }
+      .stop-head { flex-direction: column; gap: 2mm; }
+      .stop-aliases { writing-mode: horizontal-tb; max-height: none; font-size: 8pt; }
       .stop-name { font-size: 12pt; }
       .stop-description { font-size: 9pt; }
       .stop-facts { font-size: 8.5pt; }
@@ -531,29 +539,14 @@
       .map-foot { padding-top: 2mm; }
       .key-heading { margin-bottom: 2mm; font-size: 7pt; }
       #map-legend { display: flex; flex-wrap: wrap; gap: 3mm; font-size: 7pt; }
-      .list-panel { max-height: none; overflow: visible; }
-      .shop-list { display: block; }
-      .shop-card { break-inside: avoid; border-radius: 0; border: 0; border-bottom: 1px solid var(--line); padding: 3mm 0; box-shadow: none; }
-      .shop-card.is-selected { box-shadow: none; background: #fff; }
-      .shop-description, .shop-note, .shop-links { display: block; -webkit-line-clamp: unset; line-clamp: unset; }
-      .shop-links { display: flex !important; }
-      .shop-select { font-size: 10pt; }
-      .shop-number { width: 5mm; height: 5mm; font-size: 8pt; }
-      .shop-area { margin: 1mm 0 0 7mm; font-size: 8pt; }
-      .shop-style { margin: 0.5mm 0 0 7mm; font-size: 8pt; }
-      .shop-address { margin: 0.5mm 0 0 7mm; font-size: 8pt; }
-      .shop-station { margin: 0.5mm 0 0 7mm; font-size: 7.5pt; }
-      .shop-description { margin: 1mm 0 0 7mm; font-size: 8.5pt; line-height: 1.4; }
-      .shop-note { margin: 1mm 0 0 7mm; font-size: 7.5pt; }
-      .shop-status { margin: 1mm 0 0 7mm; font-size: 7.5pt; }
       .page-footer { margin-top: 3mm; padding-top: 2mm; break-inside: avoid; }
       .print-note { font-size: 8pt; }
       .sources { font-size: 6pt; }
       .sources a { text-decoration: none; }
     }
   </style>
-  <script src="js/ripple.js?v=8be9203a" defer></script>
-  <script src="js/bars-map.js?v=ad241f1d" defer></script>
+  <script src="js/ripple.js?v=493127a8" defer></script>
+  <script src="js/bars-map.js?v=570043f5" defer></script>
 </head>
 <body>
   <div class="bars-bg" aria-hidden="true">
@@ -629,6 +622,11 @@
     </header>
     <p class="stop-summary">Chuo ward, Tokyo · Cocktail bar · B1F</p>
     <p class="stop-description">A Ginza cocktail bar with a modern, relaxed feel compared to the old-school counters nearby. Good for a long evening that starts here and moves.</p>
+    <figure class="stop-media">
+      <video class="stop-video" muted loop playsinline preload="none" poster="assets/imgs/bars/whiskey-glass.jpg">
+        <source src="assets/movie/apollo-bar.webm" type="video/webm">
+      </video>
+    </figure>
     <dl class="stop-facts">
       <dt>Station</dt><dd>Shimbashi (JR / Tokyo Metro) — 5 min walk</dd>
       <dt>Address</dt><dd>B1F MEIKO Building, 8-2-15 Ginza, Chuo-ku, Tokyo</dd>
@@ -991,14 +989,19 @@
       <a class="stop-link" href="http://ocha-naru.com/" target="_blank" rel="noopener noreferrer">OPEN BOOK at ocha-naru.com</a>
     </p>
   </section>
-  <section class="stop" id="stop-bar-willows" data-stop="bar-willows" data-number="22" data-floor="6F-">
+  <section class="stop" id="stop-bar-willows" data-stop="bar-willows" data-number="22" data-floor="6F-E">
     <header class="stop-head">
       <p class="stop-number">22</p>
       <h3 class="stop-name">BAR Willow&#x27;s</h3>
       <p class="stop-aliases">バー ウィローズ</p>
     </header>
-    <p class="stop-summary">Taito ward, Tokyo · Bar · 6F-</p>
+    <p class="stop-summary">Taito ward, Tokyo · Bar · 6F-E</p>
     <p class="stop-description">A bar on the 6th floor of the 88 Building in Ueno. Antique chairs, a long cocktail and whisky list, and a counter that welcomes first-timers. The kind of hidden-floor Tokyo bar you have to know the elevator for.</p>
+    <figure class="stop-media">
+      <video class="stop-video" muted loop playsinline preload="none">
+        <source src="assets/movie/bar-willows.webm" type="video/webm">
+      </video>
+    </figure>
     <dl class="stop-facts">
       <dt>Station</dt><dd>Okachimachi (JR) — 3 min walk; Ueno-Hirokoji (Tokyo Metro Ginza) — 1 min walk</dd>
       <dt>Address</dt><dd>6F-E, 88 Building, 2-1-3 Ueno, Taito-ku, Tokyo</dd>
@@ -1015,6 +1018,9 @@
     </header>
     <p class="stop-summary">Bunkyo ward, Tokyo · Whisky &amp; cocktail bar · 1F</p>
     <p class="stop-description">A whisky and cocktail bar in Yushima, between Ueno and Okachimachi. The name says what it is. A solid counter, a deep whisky shelf, and no pretense.</p>
+    <figure class="stop-image" data-ripple>
+      <img src="assets/imgs/bars/whiskey-glass.jpg" alt="A glass of whisky on a bar counter" loading="lazy" decoding="async">
+    </figure>
     <dl class="stop-facts">
       <dt>Station</dt><dd>Ueno-Hirokoji (Tokyo Metro Ginza) — 3 min walk</dd>
       <dt>Address</dt><dd>1F Fukase Building, 3-43-9 Yushima, Bunkyo-ku, Tokyo</dd>
@@ -1141,7 +1147,7 @@
 <!-- /build:journey -->
         </div>
       </section>
-      <section id="map-view" class="map-view" role="tabpanel" aria-labelledby="view-map" hidden>
+      <section id="map-view" class="map-view" role="tabpanel" aria-labelledby="view-map">
       <section class="list-panel" aria-label="Places">
         <div class="list-controls">
           <label class="field">
