@@ -4,9 +4,10 @@
 // the old asymptotic-growth model that died from opacity before reaching
 // its intended size.
 //
-// Interstitial ripples fire when the .is-active stage class is toggled
-// (the transition is at full visibility). Hover ripples on [data-ripple]
-// figures are also supported for legacy stop-image figures.
+// Interstitial ripples fire when the .is-active class is toggled, which
+// bars-map.js does as the spacer takes over / releases the viewport, so a
+// burst marks both the entry and the exit of the transition. Hover ripples
+// on [data-ripple] figures are also supported for legacy stop-image figures.
 (() => {
   'use strict';
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -150,10 +151,10 @@
 
   // Interstitial ripple transitions. The interstitial itself is a transparent
   // 100vh spacer in the scroll flow; the video/canvas/overlay are position:fixed
-  // and faded in/out via staged classes (is-entering → is-active → is-exiting)
-  // driven by bars-map.js. Here we size the canvas to the viewport on first
-  // intersection, then fire a ripple burst when .is-active is added (the
-  // moment the transition reaches full visibility) and again when it leaves.
+  // and their opacity is scroll-linked through the --reveal custom property set
+  // by bars-map.js. Here we size the canvas to the viewport on first
+  // intersection, then fire a ripple burst when .is-active is added (the media
+  // takes over the screen) and again when it is removed (the media releases it).
   const interstitials = document.querySelectorAll('.journey-interstitial');
   if (interstitials.length) {
     interstitials.forEach(el => {

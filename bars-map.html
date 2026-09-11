@@ -408,56 +408,50 @@
     /* Interstitial transitions between journey legs.
        The .journey-interstitial element is a transparent 100vh spacer in
        the scroll flow. The video/overlay/canvas are position: fixed so they
-       cover the viewport, but they live BEHIND the stop cards (z-index 0)
-       so the cards remain readable on top. During .is-active the video
-       briefly comes forward (z-index 50) to cover the cards, then during
-       .is-exiting it recedes back behind them and fades away. This makes
-       the transition feel like the world shifting behind the content
-       rather than an interruption.
+       cover the viewport, sitting behind the stop cards (z-index 0) until
+       the spacer owns most of the screen, at which point .is-active brings
+       them forward (z-index 50) so the world fully takes over between legs.
 
-       Stages by scroll progress through the spacer:
-         .is-entering  (5-35%):   video fades in behind the previous card
-         .is-active    (35-65%):  video covers the cards, full screen between
-         .is-exiting   (65-95%):  video recedes behind the next card, fades out
-       Outside those ranges no class is set, so media stays hidden. */
+       Opacity is scroll-linked through --reveal, which bars-map.js sets from
+       how much of the viewport the spacer actually covers. It must follow
+       real coverage rather than a fixed scroll band: fading the media out at
+       a set progress point left the spacer covering most of the screen with
+       nothing drawn on it, which read as a large blank gap above the next
+       card. --reveal now only drops across the thin leading/trailing sliver
+       where the spacer is genuinely entering or leaving the viewport. */
     .journey-interstitial {
       position: relative;
       height: 100vh;
       margin: 0;
       pointer-events: none;
     }
+    /* Opacity is scroll-linked, not transitioned: bars-map.js sets --reveal
+       from how much of the viewport the spacer actually covers. A fixed
+       stage that fades out early leaves a blank hole where the spacer still
+       covers the screen, so --reveal only drops as the spacer leaves. */
     .journey-interstitial video {
       position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
       object-fit: cover; display: block;
       filter: brightness(.6) contrast(1.15) saturate(1.1);
-      opacity: 0; transition: opacity 1s ease;
+      opacity: var(--reveal, 0);
       z-index: 0;
     }
     .journey-interstitial canvas {
       position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
       pointer-events: none; z-index: 1;
+      opacity: var(--reveal, 0);
     }
     .journey-interstitial::after {
       content: ''; position: fixed; inset: 0; z-index: 0;
       background: linear-gradient(to bottom, rgba(10,8,16,.5), rgba(10,8,16,.7));
       pointer-events: none;
-      opacity: 0; transition: opacity 1s ease;
+      opacity: var(--reveal, 0);
     }
-    /* Entering: video fades in behind the cards (z-index 0). */
-    .journey-interstitial.is-entering video,
-    .journey-interstitial.is-entering::after { opacity: 1; }
-    /* Active: video comes forward to briefly cover the cards. */
+    /* Covering: the spacer owns most of the viewport, so the media comes
+       forward over the stop cards. Otherwise it sits behind them. */
     .journey-interstitial.is-active video,
-    .journey-interstitial.is-active::after { opacity: 1; z-index: 50; }
+    .journey-interstitial.is-active::after { z-index: 50; }
     .journey-interstitial.is-active canvas { z-index: 51; }
-    /* Exiting: video recedes back behind the cards and fades out. */
-    .journey-interstitial.is-exiting video,
-    .journey-interstitial.is-exiting::after { opacity: 0; z-index: 0; }
-    /* Under reduced motion, skip transitions entirely. */
-    @media (prefers-reduced-motion: reduce) {
-      .journey-interstitial video,
-      .journey-interstitial::after { transition: none; }
-    }
 
     /* Fade-in: stops start dimmed and lifted, then settle as they enter.
        position: relative + z-index keeps stop cards above the interstitial
@@ -643,8 +637,8 @@
       .sources a { text-decoration: none; }
     }
   </style>
-  <script src="js/ripple.js?v=cc1458cf" defer></script>
-  <script src="js/bars-map.js?v=1a4e6469" defer></script>
+  <script src="js/ripple.js?v=8f768271" defer></script>
+  <script src="js/bars-map.js?v=e67ac43f" defer></script>
 </head>
 <body>
   <div class="bars-bg" aria-hidden="true">

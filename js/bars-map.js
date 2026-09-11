@@ -424,18 +424,18 @@
     });
   }
 
-  // --- Interstitial staged transitions ---
+  // --- Interstitial scroll-linked transitions ---
   // Each .journey-interstitial is a transparent 100vh spacer in the scroll
-  // flow. Its video/overlay are position: fixed (covering the full viewport).
-  // A scroll listener computes progress (0→1) through each spacer and applies
-  // stage classes that drive CSS opacity transitions:
-  //   .is-entering  (0.05–0.35):  media fading in behind the previous card
-  //   .is-active    (0.35–0.65):  media covers the cards, full screen between
-  //   .is-exiting   (0.65–0.95):  media recedes behind the next card, fades out
-  // Outside those ranges no class is set, so media stays hidden and video
-  // is paused. The interstitial videos are controlled here (not by
-  // initStopVideos) because they are position:fixed and would otherwise
-  // be treated as always-visible by an IntersectionObserver.
+  // flow. Its video/overlay are position: fixed (covering the full viewport)
+  // and their opacity comes from the --reveal custom property, which this
+  // scroll listener drives from how much of the viewport the spacer actually
+  // covers. Opacity must follow real coverage: an earlier version faded the
+  // media out at a fixed 65% scroll progress, when the spacer still covered
+  // 70% of the screen, which left a large blank hole above the next card.
+  // Once the spacer owns most of the viewport, .is-active brings the media
+  // in front of the stop cards (and ripple.js keys its bursts off that class).
+  // These videos are controlled here rather than by initStopVideos because
+  // position:fixed makes an IntersectionObserver treat them as always visible.
   function initInterstitialFade() {
     const interstitials = Array.from(document.querySelectorAll('.journey-interstitial'));
     if (!interstitials.length) return;
@@ -458,27 +458,35 @@
       const h = vh();
       for (const el of interstitials) {
         const rect = el.getBoundingClientRect();
-        // 0 when the spacer's top reaches the bottom of the viewport, 1 when its
-        // bottom leaves the top; 0.5 is the spacer filling the screen.
-        const traveled = h - rect.top;
-        const range = rect.height + h;
-        const progress = Math.max(0, Math.min(1, traveled / range));
-        let stage = '';
-        if (progress >= 0.05 && progress < 0.35) stage = 'is-entering';
-        else if (progress >= 0.35 && progress < 0.65) stage = 'is-active';
-        else if (progress >= 0.65 && progress < 0.95) stage = 'is-exiting';
-        if (el.dataset.stage !== stage) {
-          el.dataset.stage = stage;
-          el.classList.remove('is-entering', 'is-active', 'is-exiting');
-          if (stage) el.classList.add(stage);
-          const v = el.querySelector('video');
-          if (v) {
-            if (stage === 'is-entering' || stage === 'is-active') {
-              playInterstitial(v);
-            } else {
-              v.pause();
-            }
-          }
+        // How much of the viewport the spacer actually covers, 0→1. Driving
+        // opacity from real coverage (rather than a fixed progress band) is
+        // what keeps the screen from going blank: the media can only fade
+        // while the spacer is genuinely leaving the viewport.
+        const covered = Math.max(0, Math.min(h, rect.bottom) - Math.max(0, rect.top));
+        const ratio = h > 0 ? covered / h : 0;
+        // Reach full opacity as soon as the spacer owns a quarter of the
+        // screen, so the fade happens only across a thin leading/trailing
+        // sliver and never while the spacer dominates the viewport.
+        const reveal = Math.max(0, Math.min(1, ratio / 0.25));
+        // Track the last written value on a JS property rather than a data
+        // attribute: this runs every scroll frame, and attribute writes would
+        // churn the DOM and wake the class MutationObserver in ripple.js.
+        const next = reveal.toFixed(3);
+        if (el._reveal !== next) {
+          el._reveal = next;
+          el.style.setProperty('--reveal', next);
+        }
+        // Covering: media comes forward over the cards once the spacer owns
+        // most of the viewport. Ripple bursts key off this class.
+        const covering = ratio >= 0.75;
+        if (el.classList.contains('is-active') !== covering) {
+          el.classList.toggle('is-active', covering);
+        }
+        const v = el.querySelector('video');
+        if (v) {
+          const shouldPlay = reveal > 0;
+          if (shouldPlay && v.paused) playInterstitial(v);
+          else if (!shouldPlay && !v.paused) v.pause();
         }
       }
     }
