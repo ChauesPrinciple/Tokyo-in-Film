@@ -479,10 +479,11 @@
     /* Closing quote after the final stop (SAKEBARO spotlight). Now a
        full-screen interstitial with the door-open video behind the
        storm quote, same prominence as the other interstitials.
-       Shorter than a regular interstitial (60vh, not 100vh) so the
-       footer and source-notes below it aren't covered by the fixed
-       video when the reader scrolls past (issue #2). */
-    .journey-coda { height: 60vh; }
+       80vh (not 100vh) so the footer below it isn't covered by the fixed
+       video when the reader scrolls past, but still tall enough to
+       trigger the .is-active covering threshold (75vh) so the quote
+       actually appears. */
+    .journey-coda { height: 80vh; }
 
     /* Fade-in: stops start dimmed and lifted, then settle as they enter.
        position: relative + z-index keeps stop cards above the interstitial
