@@ -321,7 +321,7 @@ def render_journey(data_path):
             )
         return (
             f'<figure class="journey-interstitial" aria-label="Stairwell transition">'
-            f'<video class="stop-video" muted loop playsinline preload="metadata">'
+            f'<video class="stop-video" muted loop playsinline autoplay preload="metadata">'
             f'<source src="{_esc(webm)}" type="video/webm">'
             f'<source src="{_esc(mp4)}" type="video/mp4">'
             f'</video>{quote_html}</figure>'
@@ -331,7 +331,7 @@ def render_journey(data_path):
         text, source = CODA_QUOTE
         return (
             f'<figure class="journey-interstitial journey-coda" aria-label="The storm">'
-            f'<video class="stop-video" muted loop playsinline preload="metadata">'
+            f'<video class="stop-video" muted loop playsinline autoplay preload="metadata">'
             f'<source src="assets/movie/coda.webm" type="video/webm">'
             f'<source src="assets/movie/coda.mp4" type="video/mp4">'
             f'</video>'
