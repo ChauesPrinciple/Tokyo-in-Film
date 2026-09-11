@@ -268,13 +268,7 @@ def render_journey(data_path):
             li += 1
         leg_of[n] = li
 
-    parts = [
-        '<p class="journey-intro">A night in order: Ginza cocktails, then Shinjuku\u2019s '
-        'hidden floors, then the midnight shift south through Ebisu and Roppongi, '
-        'and the east-side after-hours crawl, and the far outliers, ending at a door you have to be let into. Each stop is a place '
-        'with its floor, its address, and a note on what it is. '
-        'Switch to Map &amp; list to see them all at once.</p>'
-    ]
+    parts = []
 
     # Interstitial transit clips — stairwell footage spliced from the
     # JANAI COFFEE approach video (3-second increments). Inserted every
