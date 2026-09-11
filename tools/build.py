@@ -138,7 +138,9 @@ def _render_subvenue(sv):
 def _render_stop(bar):
     """Render one venue as a semantic <section class="stop">.
 
-    Hierarchy is ordered for choosing-then-finding:
+    Media (video or image) is a background layer behind the text. The text
+    sits in .stop-body with a sakura-tinted panel for readability over the
+    media. Hierarchy is ordered for choosing-then-finding:
       1. Name + Japanese aliases (what it is)
       2. Neighborhood, type, floor (where it sits in the city)
       3. Description (why to go)
@@ -160,13 +162,33 @@ def _render_stop(bar):
     cols_attr = f' style="--alias-cols:{_alias_columns(aliases)}"' if aliases else ''
     parts = []
     parts.append(f'  <section class="stop{spotlight}" id="stop-{bid}" data-stop="{bid}" data-number="{num}"{floor_attr}{cat_attr}{cols_attr}>')
+    # Media as a background layer — video or image covers the full card.
+    video = bar.get('video')
+    image = bar.get('image')
+    if video:
+        poster = bar.get('videoPoster') or ''
+        poster_attr = f' poster="{_esc(poster)}"' if poster else ''
+        mp4 = bar.get('videoMp4') or video.replace('.webm', '.mp4')
+        parts.append(f'    <div class="stop-media-bg">')
+        parts.append(f'      <video class="stop-video" muted loop playsinline autoplay preload="metadata"{poster_attr}>')
+        parts.append(f'        <source src="{_esc(video)}" type="video/webm">')
+        parts.append(f'        <source src="{_esc(mp4)}" type="video/mp4">')
+        parts.append(f'      </video>')
+        parts.append(f'    </div>')
+    elif image:
+        alt = _esc(bar.get('imageAlt') or bar.get('name', ''))
+        parts.append(f'    <div class="stop-media-bg">')
+        parts.append(f'      <img src="{_esc(image)}" alt="{alt}" loading="lazy" decoding="async">')
+        parts.append(f'    </div>')
+    # Text body on top of the media, with a sakura-tinted panel.
+    parts.append(f'    <div class="stop-body">')
     # 1. Name
-    parts.append(f'    <header class="stop-head">')
-    parts.append(f'      <p class="stop-number">{num}</p>')
-    parts.append(f'      <div class="stop-head-text">')
-    parts.append(f'        <h3 class="stop-name">{_esc(bar["name"])}</h3>')
-    parts.append(f'      </div>')
-    parts.append(f'    </header>')
+    parts.append(f'      <header class="stop-head">')
+    parts.append(f'        <p class="stop-number">{num}</p>')
+    parts.append(f'        <div class="stop-head-text">')
+    parts.append(f'          <h3 class="stop-name">{_esc(bar["name"])}</h3>')
+    parts.append(f'        </div>')
+    parts.append(f'      </header>')
     if aliases:
         # Each alias is its own vertical column (writing-mode: vertical-rl);
         # <br> starts the next column to the left, the way several lantern
@@ -174,63 +196,44 @@ def _render_stop(bar):
         # name, so narrow screens read name then Japanese name. On wide
         # screens CSS lifts it into the reserved gutter on the right.
         alias_html = '<br>'.join(_esc(a) for a in aliases)
-        parts.append(f'    <p class="stop-aliases">{alias_html}</p>')
+        parts.append(f'      <p class="stop-aliases">{alias_html}</p>')
     # 2. Neighborhood, type, floor — a compact "where it sits" line
     summary_bits = [_locality(bar)]
     if bar.get('style'):
         summary_bits.append(bar['style'])
     if floor:
         summary_bits.append(floor)
-    parts.append(f'    <p class="stop-summary">{_esc(" · ".join(summary_bits))}</p>')
+    parts.append(f'      <p class="stop-summary">{_esc(" · ".join(summary_bits))}</p>')
     # 3. Description — why to go
     if bar.get('description'):
-        parts.append(f'    <p class="stop-description">{_esc(bar["description"])}</p>')
-    # 3a. Optional atmospheric media — if the bar has a "video" or "image"
-    # field, render it between the description and the practical facts.
-    # Video takes precedence over image when both are present.
-    video = bar.get('video')
-    image = bar.get('image')
-    if video:
-        poster = bar.get('videoPoster') or ''
-        poster_attr = f' poster="{_esc(poster)}"' if poster else ''
-        mp4 = bar.get('videoMp4') or video.replace('.webm', '.mp4')
-        parts.append(f'    <figure class="stop-media">')
-        parts.append(f'      <video class="stop-video" muted loop playsinline autoplay preload="metadata"{poster_attr}>')
-        parts.append(f'        <source src="{_esc(video)}" type="video/webm">')
-        parts.append(f'        <source src="{_esc(mp4)}" type="video/mp4">')
-        parts.append(f'      </video>')
-        parts.append(f'    </figure>')
-    elif image:
-        alt = _esc(bar.get('imageAlt') or bar.get('name', ''))
-        parts.append(f'    <figure class="stop-image" data-ripple>')
-        parts.append(f'      <img src="{_esc(image)}" alt="{alt}" loading="lazy" decoding="async">')
-        parts.append(f'    </figure>')
+        parts.append(f'      <p class="stop-description">{_esc(bar["description"])}</p>')
     # 4. Practical details for finding the entrance
-    parts.append(f'    <dl class="stop-facts">')
+    parts.append(f'      <dl class="stop-facts">')
     if bar.get('station'):
-        parts.append(f'      <dt>Station</dt><dd>{_esc(bar["station"])}</dd>')
+        parts.append(f'        <dt>Station</dt><dd>{_esc(bar["station"])}</dd>')
     parts.append(f'      <dt>Address</dt><dd>{_esc(bar["address"])}</dd>')
     if bar.get('status'):
-        parts.append(f'      <dt>Access</dt><dd>{_esc(bar["status"])}</dd>')
-    parts.append(f'    </dl>')
+        parts.append(f'        <dt>Access</dt><dd>{_esc(bar["status"])}</dd>')
+    parts.append(f'      </dl>')
     # Golden Gai subvenues
     subvenues = bar.get('subvenues') or []
     if subvenues:
-        parts.append(f'    <div class="subvenues" role="list">')
+        parts.append(f'      <div class="subvenues" role="list">')
         for sv in subvenues:
-            parts.append(_render_subvenue(sv))
-        parts.append(f'    </div>')
+            parts.append('      ' + _render_subvenue(sv))
+        parts.append(f'      </div>')
     # 5. Primary Maps action + secondary sources (deduplicated)
-    parts.append(f'    <p class="stop-links">')
+    parts.append(f'      <p class="stop-links">')
     maps_url = bar.get('mapsUrl') or f'https://www.google.com/maps/search/?api=1&query={bar["lat"]},{bar["lng"]}'
-    parts.append(f'      <a class="stop-link stop-link-primary" href="{_esc(maps_url)}" target="_blank" rel="noopener noreferrer">Open in Maps</a>')
+    parts.append(f'        <a class="stop-link stop-link-primary" href="{_esc(maps_url)}" target="_blank" rel="noopener noreferrer">Open in Maps</a>')
     for src in bar.get('sources') or []:
         if src.get('label') and src.get('url'):
             # Skip sources that duplicate the mapsUrl link.
             if src['url'] == maps_url:
                 continue
-            parts.append(f'      <a class="stop-link" href="{_esc(src["url"])}" target="_blank" rel="noopener noreferrer">{_esc(src["label"])}</a>')
-    parts.append(f'    </p>')
+            parts.append(f'        <a class="stop-link" href="{_esc(src["url"])}" target="_blank" rel="noopener noreferrer">{_esc(src["label"])}</a>')
+    parts.append(f'      </p>')
+    parts.append(f'    </div>')
     parts.append(f'  </section>')
     return '\n'.join(parts)
 
@@ -267,40 +270,86 @@ def render_journey(data_path):
         'with its floor, its address, and a note on what it is. '
         'Switch to Map &amp; list to see them all at once.</p>'
     ]
-    # Interstitial transit clips inserted between legs — stairwell footage
-    # spliced from the JANAI COFFEE approach video (3-second increments).
-    # Keyed by the leg index they appear BEFORE (1 = before leg 1, etc.)
-    interstitials = {
-        1: ('assets/movie/interstitial-1.webm', 'assets/movie/interstitial-1.mp4'),
-        2: ('assets/movie/interstitial-2.webm', 'assets/movie/interstitial-2.mp4'),
-        3: ('assets/movie/interstitial-3.webm', 'assets/movie/interstitial-3.mp4'),
-        4: ('assets/movie/interstitial-4.webm', 'assets/movie/interstitial-4.mp4'),
-        5: ('assets/movie/interstitial-5.webm', 'assets/movie/interstitial-5.mp4'),
-    }
 
-    def _interstitial(leg_idx):
-        if leg_idx not in interstitials:
+    # Interstitial transit clips — stairwell footage spliced from the
+    # JANAI COFFEE approach video (3-second increments). Inserted every
+    # 3 stops so the reader scrolls through movement between neighborhoods.
+    # Clip order goes bright → dark: start with the soft-lit stairwell,
+    # end with the dark neon, cycling through the 5 available clips.
+    # Brightness values: clip 5=71, 3=51, 4=48, 1=42, 2=29 (0-255 scale).
+    CLIP_ORDER = [5, 3, 4, 1, 2, 5, 3, 4, 2]
+
+    # Murakami quotes flashed on the full-screen interstitials. Dropped the
+    # two least relevant to the night-journey arc: the books/reading quote
+    # (Norwegian Wood) and the unverified suffering quote (widely attributed
+    # to Norwegian Wood but not confirmable in the text). The remaining 8
+    # go on interstitials 1-8; the storm quote is the coda after SAKEBARO.
+    INTERSTITIAL_QUOTES = [
+        ('I dream. Sometimes I think that\u2019s the only right thing to do.', 'Sputnik Sweetheart'),
+        ('Even in the smallest events there\u2019s no such thing as coincidence.', 'Kafka on the Shore'),
+        ('In this world, there are things you can only do alone, and things you can only do with somebody else.', 'After Dark'),
+        ('A certain type of perfection can only be realized through a limitless accumulation of the imperfect.', 'Kafka on the Shore'),
+        ('What lasts, lasts; what doesn\u2019t, doesn\u2019t. Time solves most things. And what time can\u2019t solve, you have to solve yourself.', 'Dance Dance Dance'),
+        ('No matter how far you travel, you can never get away from yourself.', 'After the Quake'),
+        ('People\u2019s memories are maybe the fuel they burn to stay alive.', 'After Dark'),
+        ('Memories warm you up from the inside. But they also tear you apart.', 'Kafka on the Shore'),
+    ]
+    CODA_QUOTE = (
+        'And once the storm is over you won\u2019t remember how you made it through. '
+        'That\u2019s what the storm is all about.',
+        'Kafka on the Shore',
+    )
+
+    def _interstitial(idx):
+        if idx >= len(CLIP_ORDER):
             return ''
-        webm, mp4 = interstitials[leg_idx]
+        clip = CLIP_ORDER[idx]
+        webm = f'assets/movie/interstitial-{clip}.webm'
+        mp4 = f'assets/movie/interstitial-{clip}.mp4'
+        quote_html = ''
+        if idx < len(INTERSTITIAL_QUOTES):
+            text, source = INTERSTITIAL_QUOTES[idx]
+            quote_html = (
+                f'<figcaption class="interstitial-quote">'
+                f'<blockquote>{_esc(text)}</blockquote>'
+                f'<cite>{_esc(source)}</cite>'
+                f'</figcaption>'
+            )
         return (
             f'<figure class="journey-interstitial" aria-label="Stairwell transition">'
             f'<video class="stop-video" muted loop playsinline autoplay preload="metadata">'
             f'<source src="{_esc(webm)}" type="video/webm">'
             f'<source src="{_esc(mp4)}" type="video/mp4">'
-            f'</video></figure>'
+            f'</video>{quote_html}</figure>'
+        )
+
+    def _coda():
+        text, source = CODA_QUOTE
+        return (
+            f'<aside class="journey-coda">'
+            f'<blockquote>{_esc(text)}</blockquote>'
+            f'<cite>{_esc(source)}</cite>'
+            f'</aside>'
         )
 
     prev_leg = -1
+    interstitial_idx = 0
+    total = len(bars)
     for bar in bars:
         n = bar['number']
         leg = leg_of.get(n, 0)
         if leg != prev_leg:
-            if prev_leg >= 0:
-                parts.append(_interstitial(leg))
             title, subtitle = legs[leg]
             parts.append(f'<h3 class="journey-leg">{title}<span class="journey-leg-sub">{subtitle}</span></h3>')
             prev_leg = leg
         parts.append(_render_stop(bar))
+        # Insert an interstitial every 3 stops (but not after the last stop —
+        # the coda goes there instead).
+        if n < total and n % 3 == 0:
+            parts.append(_interstitial(interstitial_idx))
+            interstitial_idx += 1
+    # Closing quote after the final stop (SAKEBARO spotlight).
+    parts.append(_coda())
     return '\n'.join(parts)
 
 

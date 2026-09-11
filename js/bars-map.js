@@ -830,7 +830,7 @@
   (function initStopVideos() {
     // Only observe stop-card videos. Interstitial videos are position:fixed
     // (always "intersecting") and are controlled by initInterstitialFade.
-    const videos = document.querySelectorAll('.stop-media .stop-video');
+    const videos = document.querySelectorAll('.stop-media-bg .stop-video');
     if (!videos.length) return;
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduced) return;
