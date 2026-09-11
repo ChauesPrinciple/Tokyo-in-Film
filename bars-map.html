@@ -483,20 +483,23 @@
       color: rgba(255, 200, 210, 0.75);
     }
 
-    /* Closing quote after the final stop (SAKEBARO spotlight). A quiet coda
-       framed by thin sakura lines, not a full-screen interstitial. */
+    /* Closing quote after the final stop (SAKEBARO spotlight). Same
+       prominence as the interstitial quotes: large mincho text, centered,
+       framed by sakura lines. The final word of the journey. */
     .journey-coda {
-      margin: 48px 0 64px; padding: 36px 24px; text-align: center;
+      margin: 0 0 64px; padding: 80px 24px; text-align: center;
       border-top: 1px solid var(--glow-line);
       border-bottom: 1px solid var(--glow-line);
+      background: linear-gradient(180deg, rgba(42, 24, 32, 0.4), rgba(42, 24, 32, 0.7));
     }
     .journey-coda blockquote {
       font-family: 'Shippori Mincho', serif; font-weight: 400;
-      font-size: 22px; line-height: 1.6; color: var(--glow-ink);
+      font-size: clamp(20px, 4vw, 32px); line-height: 1.5; color: var(--glow-ink);
       margin: 0 auto; max-width: 56ch;
+      text-shadow: 0 2px 24px rgba(0, 0, 0, 0.5);
     }
     .journey-coda cite {
-      display: block; margin-top: 16px;
+      display: block; margin-top: 18px;
       font-size: 13px; font-style: normal; letter-spacing: .12em;
       text-transform: uppercase; color: var(--muted);
     }
