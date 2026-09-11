@@ -454,7 +454,6 @@
     if (!interstitials.length) return;
     const vh = () => window.innerHeight;
     let ticking = false;
-    const loaded = new WeakSet();
 
     function update() {
       ticking = false;
@@ -480,7 +479,6 @@
           const v = el.querySelector('video');
           if (v) {
             if (stage === 'is-entering' || stage === 'is-active') {
-              if (!loaded.has(v)) { v.load(); loaded.add(v); }
               v.play().catch(() => {});
             } else {
               v.pause();
@@ -834,15 +832,19 @@
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduced) return;
     // Lazy-load: don't fetch any video media until it first scrolls into view.
-    // Each video loads at most once; subsequent re-entries just play().
-    const loaded = new WeakSet();
+    // We don't call v.load() — that resets the element and interrupts play().
+    // Instead, v.play() triggers loading automatically. The preload="metadata"
+    // attribute loads only the first frame until play() is called.
+    const started = new WeakSet();
     const io = new IntersectionObserver((entries) => {
       for (const e of entries) {
         const v = e.target;
         if (e.isIntersecting && e.intersectionRatio > 0.1) {
-          if (!loaded.has(v)) { v.load(); loaded.add(v); }
-          v.play().then(() => v.classList.add('is-playing')).catch(() => {});
-        } else if (!e.isIntersecting) {
+          v.play().then(() => {
+            v.classList.add('is-playing');
+            started.add(v);
+          }).catch(() => {});
+        } else if (!e.isIntersecting && started.has(v)) {
           v.pause();
           v.classList.remove('is-playing');
         }
