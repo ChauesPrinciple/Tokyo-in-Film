@@ -299,7 +299,7 @@
     cameraAnim.raf = requestAnimationFrame(step);
   }
 
-  function focusStop(bar, stopElement) {
+  function focusStop(bar, stopElement, updateHash = false) {
     if (!bar || !bar.point) return;
     activeStopId = bar.id;
     selected = bar.id;
@@ -342,6 +342,12 @@
 
     $('map-status').textContent = `${bar.number}. ${bar.name} — ${bar.area}, ${locality(bar)}${bar.status ? ` · ${bar.status}` : ''}`;
 
+    // Scroll-driven focus keeps the URL hash in sync so the active stop is
+    // shareable; manual stop/subvenue clicks are transient and don't update it.
+    if (updateHash) {
+      try { history.replaceState(null, '', `#stop-${bar.id}`); } catch (e) {}
+    }
+
     // In map view, scroll the corresponding card into view
     const mapView = $('map-view');
     if (mapView && mapView.classList.contains('is-active')) scrollToCard(bar.id);
@@ -379,7 +385,7 @@
         const stopId = bestEntry.target.dataset.stop;
         if (stopId && stopId !== activeStopId) {
           const bar = barById.get(stopId);
-          if (bar) focusStop(bar, bestEntry.target);
+          if (bar) focusStop(bar, bestEntry.target, true);
         }
       }
     }, {
@@ -760,10 +766,14 @@
     if (!videos.length) return;
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduced) return;
+    // Lazy-load: don't fetch any video media until it first scrolls into view.
+    // Each video loads at most once; subsequent re-entries just play().
+    const loaded = new WeakSet();
     const io = new IntersectionObserver((entries) => {
       for (const e of entries) {
         const v = e.target;
         if (e.isIntersecting && e.intersectionRatio > 0.1) {
+          if (!loaded.has(v)) { v.load(); loaded.add(v); }
           v.play().then(() => v.classList.add('is-playing')).catch(() => {});
         } else if (!e.isIntersecting) {
           v.pause();
@@ -771,10 +781,7 @@
         }
       }
     }, { threshold: [0, 0.1, 0.25, 0.5, 0.75] });
-    videos.forEach(v => {
-      v.load();
-      io.observe(v);
-    });
+    videos.forEach(v => io.observe(v));
   })();
 
   async function init() {

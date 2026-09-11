@@ -128,4 +128,17 @@
     if (img.complete && img.naturalWidth) start();
     else img.addEventListener('load', start, {once: true});
   });
+
+  // Re-size canvases on viewport changes (rotate, resize) so ripples stay
+  // correctly scaled. Only touches elements that have already been sized.
+  let resizeTimer = null;
+  window.addEventListener('resize', () => {
+    if (resizeTimer) clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      resizeTimer = null;
+      document.querySelectorAll('.journey-interstitial, [data-ripple]').forEach(el => {
+        if (el._sized) el._sized = sizeCanvas(el);
+      });
+    }, 200);
+  });
 })();
