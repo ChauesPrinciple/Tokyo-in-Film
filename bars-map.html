@@ -81,7 +81,7 @@
     .masthead nav a:hover { color: var(--mark-ink); text-decoration: underline; }
 
     .page-header {
-      position: relative; padding: 60px 0 40px; margin: 0 -20px; padding-left: 20px; padding-right: 20px;
+      position: relative; padding: 60px 0 120px; margin: 0 -20px; padding-left: 20px; padding-right: 20px;
       border-radius: 0 0 12px 12px; overflow: hidden;
     }
     .page-header::before {
@@ -364,7 +364,7 @@
       .page-shell { padding: 0 16px 24px; }
       .masthead { gap: 14px; padding: 16px 0 12px; }
       .masthead nav { gap: 14px; font-size: 12px; }
-      .page-header { padding: 20px 0 6px; }
+      .page-header { padding: 20px 0 90px; }
       .list-controls { grid-template-columns: 1fr; }
       .shop-card { padding: 13px 14px 14px; }
       .shop-select { font-size: 15px; }
@@ -395,19 +395,11 @@
     .map-view.is-active { display: block; }
 
     .journey-scroll { max-width: 760px; margin: 0 auto; padding: 0 0 40px; }
+    .journey-view.is-active .journey-scroll { margin-top: -90px; position: relative; z-index: 1; }
     .journey-intro {
-      position: relative; margin: 0 0 40px; color: rgba(245,240,232,.92); font-size: 15px; line-height: 1.7;
-      max-width: 62ch; padding: 28px 24px 26px; border-bottom: 1px solid var(--line);
-      font-family: 'Shippori Mincho', serif; border-radius: 10px; overflow: hidden;
-    }
-    .journey-intro::before {
-      content: ''; position: absolute; inset: 0; z-index: -1;
-      background: url('assets/imgs/bars/whiskey-glass.jpg') center 60% / cover no-repeat;
-      filter: brightness(.7) saturate(1.15);
-    }
-    .journey-intro::after {
-      content: ''; position: absolute; inset: 0; z-index: -1;
-      background: linear-gradient(to bottom, rgba(20,18,28,.45), rgba(20,18,28,.7));
+      margin: 0 0 40px; color: rgba(245,240,232,.92); font-size: 15px; line-height: 1.7;
+      max-width: 62ch; padding: 0 0 22px; border-bottom: 1px solid rgba(245,240,232,.2);
+      font-family: 'Shippori Mincho', serif;
     }
     .journey-leg {
       margin: 48px 0 24px; padding: 0 0 8px; border-bottom: 1px solid var(--line);
@@ -704,6 +696,7 @@
       .page-header { padding: 2mm 0; }
       .page-header { padding: 10mm 0 5mm; display: block; }
       .page-header::before, .page-header::after { display: none; }
+      .journey-view.is-active .journey-scroll { margin-top: 0; }
       .page-header h1 { font-size: 24pt; color: #14121c; }
       .lede { font-size: 8pt; }
       .epigraph { max-width: none; }
