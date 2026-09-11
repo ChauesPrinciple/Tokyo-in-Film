@@ -416,9 +416,9 @@
        rather than an interruption.
 
        Stages by scroll progress through the spacer:
-         .is-entering  (15-40%):  video fades in behind the cards
-         .is-active    (40-60%):  video covers the cards briefly, ripple fires
-         .is-exiting   (60-85%):  video recedes behind the cards, fades out
+         .is-entering  (5-35%):   video fades in behind the previous card
+         .is-active    (35-65%):  video covers the cards, full screen between
+         .is-exiting   (65-95%):  video recedes behind the next card, fades out
        Outside those ranges no class is set, so media stays hidden. */
     .journey-interstitial {
       position: relative;
@@ -642,7 +642,7 @@
     }
   </style>
   <script src="js/ripple.js?v=cc1458cf" defer></script>
-  <script src="js/bars-map.js?v=e50217a8" defer></script>
+  <script src="js/bars-map.js?v=016c7d72" defer></script>
 </head>
 <body>
   <div class="bars-bg" aria-hidden="true">

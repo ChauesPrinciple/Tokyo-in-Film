@@ -442,9 +442,9 @@
   // flow. Its video/overlay are position: fixed (covering the full viewport).
   // A scroll listener computes progress (0→1) through each spacer and applies
   // stage classes that drive CSS opacity transitions:
-  //   .is-entering  (0.15–0.40):  media fading in, video loads & plays
-  //   .is-active    (0.40–0.60):  media fully visible, ripple fires once
-  //   .is-exiting   (0.60–0.85):  media fading out
+  //   .is-entering  (0.05–0.35):  media fading in behind the previous card
+  //   .is-active    (0.35–0.65):  media covers the cards, full screen between
+  //   .is-exiting   (0.65–0.95):  media recedes behind the next card, fades out
   // Outside those ranges no class is set, so media stays hidden and video
   // is paused. The interstitial videos are controlled here (not by
   // initStopVideos) because they are position:fixed and would otherwise
@@ -475,9 +475,9 @@
         const range = rect.height + h;
         const progress = Math.max(0, Math.min(1, traveled / range));
         let stage = '';
-        if (progress >= 0.15 && progress < 0.40) stage = 'is-entering';
-        else if (progress >= 0.40 && progress < 0.60) stage = 'is-active';
-        else if (progress >= 0.60 && progress < 0.85) stage = 'is-exiting';
+        if (progress >= 0.05 && progress < 0.35) stage = 'is-entering';
+        else if (progress >= 0.35 && progress < 0.65) stage = 'is-active';
+        else if (progress >= 0.65 && progress < 0.95) stage = 'is-exiting';
         if (el.dataset.stage !== stage) {
           el.dataset.stage = stage;
           el.classList.remove('is-entering', 'is-active', 'is-exiting');
