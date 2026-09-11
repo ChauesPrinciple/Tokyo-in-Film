@@ -526,19 +526,20 @@
       width: 100%; height: 100%; object-fit: cover; display: block;
     }
     /* Text body on top of the media. The sakura tint (a subtle magenta shift
-       in the dark panel) gives every card the warm hue the user asked for,
-       and the opacity lets the background media show through at the edges
-       so the card reads as text-on-footage, not text-on-solid. */
+       in the dark panel) gives every card the warm hue the user asked for.
+       Opacity is low enough that the background video/photo shows through
+       clearly — the card reads as text-on-footage, not text-on-solid.
+       Stops without media still get the tint on .stop's panel background. */
     .stop-body {
       position: relative; z-index: 1;
       padding: 28px 30px 24px;
       /* Right gutter reserved for the vertical alias spine. build.py sets
          --alias-cols to the columns the spine actually needs. */
       padding-right: calc(30px + var(--alias-cols, 0) * 24px);
-      background: linear-gradient(135deg, rgba(18, 12, 22, 0.92), rgba(28, 16, 30, 0.94));
+      background: linear-gradient(180deg, rgba(18, 12, 22, 0.72), rgba(18, 12, 22, 0.85));
     }
     .stop.is-spotlight .stop-body {
-      background: linear-gradient(135deg, rgba(42, 24, 32, 0.93), rgba(52, 28, 40, 0.95));
+      background: linear-gradient(180deg, rgba(42, 24, 32, 0.72), rgba(42, 24, 32, 0.85));
     }
     .stop-head { margin: 0 0 16px; display: flex; align-items: flex-start; gap: 18px; }
     .stop-number {
