@@ -146,14 +146,14 @@ def _render_stop(bar):
     parts.append(f'      <p class="stop-number">{num}</p>')
     parts.append(f'      <div class="stop-head-text">')
     parts.append(f'        <h3 class="stop-name">{_esc(bar["name"])}</h3>')
+    parts.append(f'      </div>')
     aliases = bar.get('aliases') or []
     if aliases:
         # Each alias becomes its own vertical column (writing-mode: vertical-rl);
         # <br> moves to the next column to the left, the way multiple lantern
-        # cards sit beside a sign.
+        # cards sit beside a sign. Pinned to the far right of the stop head.
         alias_html = '<br>'.join(_esc(a) for a in aliases)
-        parts.append(f'        <p class="stop-aliases">{alias_html}</p>')
-    parts.append(f'      </div>')
+        parts.append(f'      <p class="stop-aliases">{alias_html}</p>')
     parts.append(f'    </header>')
     # 2. Neighborhood, type, floor — a compact "where it sits" line
     summary_bits = [_locality(bar)]
