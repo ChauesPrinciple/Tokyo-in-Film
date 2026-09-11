@@ -93,21 +93,26 @@
       content: ''; position: absolute; inset: 0; z-index: -1;
       background: linear-gradient(to bottom, rgba(20,18,28,.35), rgba(20,18,28,.6));
     }
+    .page-header {
+      display: flex; align-items: flex-end; gap: 48px;
+    }
+    .page-header-text { flex: 1 1 auto; min-width: 0; }
+    .page-header .epigraph { flex: 0 0 auto; max-width: 36ch; }
     .page-header h1 {
-      margin: 0; font-size: clamp(32px, 4vw, 48px); font-weight: 700; letter-spacing: -.025em; line-height: 1.1;
+      margin: 0; font-size: clamp(40px, 5.5vw, 64px); font-weight: 700; letter-spacing: -.025em; line-height: 1.05;
       color: #f5f0e8;
     }
     .page-header .lede, .page-header .eyebrow { color: rgba(245,240,232,.85); }
     .page-header .epigraph p, .page-header .epigraph figcaption { color: rgba(245,240,232,.7); }
-    .lede { margin: 10px 0 0; color: var(--ink-soft); font-size: 15px; max-width: 62ch; line-height: 1.55; }
+    .lede { margin: 14px 0 0; color: var(--ink-soft); font-size: 18px; max-width: 62ch; line-height: 1.55; }
 
     .epigraph {
-      margin: 18px 0 0; padding: 0 0 0 16px; border-left: 3px solid var(--mark);
-      max-width: 56ch;
+      margin: 0; padding: 0 0 0 16px; border-left: 3px solid var(--mark);
+      max-width: 36ch;
     }
     .epigraph blockquote { margin: 0; }
-    .epigraph p { margin: 0; font-size: 14.5px; line-height: 1.6; color: var(--ink-soft); font-style: italic; }
-    .epigraph figcaption { margin-top: 6px; font-size: 12px; color: var(--muted); letter-spacing: .03em; }
+    .epigraph p { margin: 0; font-size: 16px; line-height: 1.6; color: var(--ink-soft); font-style: italic; }
+    .epigraph figcaption { margin-top: 8px; font-size: 13px; color: var(--muted); letter-spacing: .03em; }
 
     .films { margin-top: 34px; border-top: 1px solid var(--line); padding-top: 22px; }
     .films h2 {
@@ -651,6 +656,8 @@
         writing-mode: horizontal-tb; font-size: 13px;
         margin: 0 0 12px;
       }
+      .page-header { flex-direction: column; gap: 20px; }
+      .page-header .epigraph { max-width: none; }
     }
 
     @page { size: A4 landscape; margin: 10mm; }
@@ -698,10 +705,11 @@
       .epigraph figcaption { font-size: 7pt; margin-top: 1mm; }
       .masthead { padding: 0 0 2mm; border-bottom-color: var(--line); }
       .page-header { padding: 2mm 0; }
-      .page-header { padding: 10mm 0 5mm; }
+      .page-header { padding: 10mm 0 5mm; display: block; }
       .page-header::before, .page-header::after { display: none; }
       .page-header h1 { font-size: 24pt; color: #14121c; }
       .lede { font-size: 8pt; }
+      .epigraph { max-width: none; }
       .layout { display: block; }
       .map-stage { display: block !important; position: static; }
       .map-frame { border-radius: 0; }
@@ -739,13 +747,15 @@
         </nav>
       </div>
       <div class="page-header">
-        <h1>Tokyo After Dark</h1>
-        <p class="lede">Across Tokyo, <span id="bar-count">30</span> late-night places: Ginza counters where the ice is carved by hand, an Ebisu basement that calls itself a coffee shop, a Shimokitazawa jazz room named after a Mingus record, and the bar from <cite>Lost in Translation</cite>. Tell the bartender what you're in the mood for and let them build it.</p>
+        <div class="page-header-text">
+          <h1>Tokyo After Dark</h1>
+          <p class="lede">Across Tokyo, <span id="bar-count">30</span> late-night places: Ginza counters where the ice is carved by hand, an Ebisu basement that calls itself a coffee shop, a Shimokitazawa jazz room named after a Mingus record, and the bar from <cite>Lost in Translation</cite>. Tell the bartender what you're in the mood for and let them build it.</p>
+        </div>
         <figure class="epigraph">
           <blockquote>
             <p>In this world, there are things you can only do alone, and things you can only do with somebody else. It's important to combine the two in just the right amount.</p>
           </blockquote>
-          <figcaption>Haruki Murakami (trans. Jay Rubin), <cite>After Dark</cite></figcaption>
+          <figcaption>Haruki Murakami, <cite>After Dark</cite></figcaption>
         </figure>
       </div>
     </header>
