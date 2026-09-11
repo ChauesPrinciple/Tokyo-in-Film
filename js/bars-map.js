@@ -437,60 +437,28 @@
     });
   }
 
-  // --- Interstitial staged transitions (unified Journey timeline) ---
+  // --- Interstitial staged transitions ---
   // Each .journey-interstitial is a transparent 100vh spacer in the scroll
   // flow. Its video/overlay are position: fixed (covering the full viewport).
   // A scroll listener computes progress (0→1) through each spacer and applies
   // stage classes that drive CSS opacity transitions:
-  //   .is-entering  (0.15–0.40):  media fading in
+  //   .is-entering  (0.15–0.40):  media fading in, video loads & plays
   //   .is-active    (0.40–0.60):  media fully visible, ripple fires once
   //   .is-exiting   (0.60–0.85):  media fading out
-  // Outside those ranges no class is set, so media stays hidden.
-  //
-  // This same timeline drives the map idle behavior: the map overlay hides
-  // immediately when any interstitial is in a transition stage, and only
-  // reappears after the reader has been idle on a stop for ~2s. This unifies
-  // what was previously two independent systems (scroll listener + idle timer)
-  // into a single timeline that knows the difference between "reading a stop"
-  // and "traveling between stops."
+  // Outside those ranges no class is set, so media stays hidden and video
+  // is paused. The interstitial videos are controlled here (not by
+  // initStopVideos) because they are position:fixed and would otherwise
+  // be treated as always-visible by an IntersectionObserver.
   function initInterstitialFade() {
     const interstitials = Array.from(document.querySelectorAll('.journey-interstitial'));
     if (!interstitials.length) return;
-    const mapStage = document.querySelector('.map-stage');
-    const layout = document.querySelector('.layout');
     const vh = () => window.innerHeight;
     let ticking = false;
-    let idleTimer = null;
-    const IDLE_MS = 2000;
-    let inTransition = false;
-
-    function isJourney() {
-      return layout && layout.getAttribute('data-view') === 'journey';
-    }
-    function showMap() { if (mapStage) mapStage.classList.add('is-idle'); }
-    function hideMap() { if (mapStage) mapStage.classList.remove('is-idle'); }
-    function armIdle() {
-      if (idleTimer) clearTimeout(idleTimer);
-      idleTimer = setTimeout(() => {
-        idleTimer = null;
-        if (!inTransition && isJourney()) showMap();
-      }, IDLE_MS);
-    }
-    function setTransition(active) {
-      if (active === inTransition) return;
-      inTransition = active;
-      if (active) {
-        hideMap();
-        if (idleTimer) { clearTimeout(idleTimer); idleTimer = null; }
-      } else {
-        armIdle();
-      }
-    }
+    const loaded = new WeakSet();
 
     function update() {
       ticking = false;
       const h = vh();
-      let anyStage = false;
       for (const el of interstitials) {
         const rect = el.getBoundingClientRect();
         // Progress: how far has the spacer scrolled through the viewport?
@@ -503,37 +471,35 @@
         if (progress >= 0.15 && progress < 0.40) stage = 'is-entering';
         else if (progress >= 0.40 && progress < 0.60) stage = 'is-active';
         else if (progress >= 0.60 && progress < 0.85) stage = 'is-exiting';
-        if (stage) anyStage = true;
         // Only update if the stage actually changed (avoids redundant writes).
         if (el.dataset.stage !== stage) {
           el.dataset.stage = stage;
           el.classList.remove('is-entering', 'is-active', 'is-exiting');
           if (stage) el.classList.add(stage);
+          // Control the interstitial video based on the stage.
+          const v = el.querySelector('video');
+          if (v) {
+            if (stage === 'is-entering' || stage === 'is-active') {
+              if (!loaded.has(v)) { v.load(); loaded.add(v); }
+              v.play().catch(() => {});
+            } else {
+              v.pause();
+            }
+          }
         }
       }
-      // Unify: the map hides during any transition stage and only re-arms
-      // its idle timer when no interstitial is staging.
-      if (isJourney()) setTransition(anyStage);
     }
     function onScroll() {
       if (!ticking) { ticking = true; requestAnimationFrame(update); }
     }
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onScroll, { passive: true });
-    // When switching to Map view, hide the overlay and cancel timers.
-    if (layout) {
-      const viewObserver = new MutationObserver(() => {
-        if (!isJourney()) { hideMap(); if (idleTimer) { clearTimeout(idleTimer); idleTimer = null; } }
-      });
-      viewObserver.observe(layout, { attributes: true, attributeFilter: ['data-view'] });
-    }
     update();
   }
 
-  // --- Map idle overlay ---
-  // Now merged into initInterstitialFade's unified timeline. This stub
-  // remains so the init() call sequence doesn't break if the function is
-  // referenced elsewhere. The real logic lives in initInterstitialFade.
+  // --- Map idle overlay (removed) ---
+  // The map is now hidden entirely in Journey view via CSS display:none.
+  // This stub remains so the init() call sequence doesn't break.
   function initMapIdle() {}
 
   function scrollToStop(id) {
@@ -861,7 +827,9 @@
   // Each stop-card video plays (muted) when it scrolls into view and pauses
   // when it leaves. Respects prefers-reduced-motion (videos stay paused).
   (function initStopVideos() {
-    const videos = document.querySelectorAll('.stop-video');
+    // Only observe stop-card videos. Interstitial videos are position:fixed
+    // (always "intersecting") and are controlled by initInterstitialFade.
+    const videos = document.querySelectorAll('.stop-media .stop-video');
     if (!videos.length) return;
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduced) return;

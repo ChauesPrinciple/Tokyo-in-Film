@@ -138,41 +138,15 @@
       padding-top: 16px;
       align-items: start;
     }
-    /* Journey is a full-width editorial experience. The map is not a grid
-       column — it becomes a fixed overlay panel that fades in when the
-       reader pauses scrolling, and fades out when they resume. This gives
-       the Journey the full viewport for storytelling without losing the
-       geographic context entirely. */
+    /* Journey is a full-width editorial experience. The map is hidden
+       entirely in Journey view — it lives in Map & list view only. This
+       gives the Journey the full viewport for storytelling. */
     .layout[data-view="journey"] {
       grid-template-columns: 1fr;
     }
     .layout[data-view="journey"] .map-stage {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      width: min(380px, calc(100vw - 48px));
-      max-height: 60vh;
-      z-index: 40;
-      opacity: 0;
-      transform: translateY(12px);
-      pointer-events: none;
-      transition: opacity .5s ease, transform .5s ease;
-      overflow: auto;
-      background: var(--paper);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 14px;
-      box-shadow: 0 8px 32px rgba(0,0,0,.4);
+      display: none;
     }
-    .layout[data-view="journey"] .map-stage.is-idle {
-      opacity: 1;
-      transform: none;
-      pointer-events: auto;
-    }
-    .layout[data-view="journey"] .map-stage .map-frame { border-radius: 8px; }
-    .layout[data-view="journey"] .map-stage #bars-map { height: min(40vh, 360px); }
-    .layout[data-view="journey"] .map-stage .map-foot,
-    .layout[data-view="journey"] .map-stage .map-status { display: none; }
     @media (max-width: 1040px) { .layout, .layout[data-view="journey"] { grid-template-columns: 1fr; } }
 
     .map-stage { position: sticky; top: 20px; }
@@ -646,9 +620,7 @@
       .page-header h1 { font-size: 24pt; color: #14121c; }
       .lede { font-size: 8pt; }
       .layout { display: block; }
-      .map-stage { position: static; opacity: 1 !important; transform: none !important; pointer-events: auto !important; }
-      .layout[data-view="journey"] .map-stage { position: static; width: auto; max-height: none; padding: 0; box-shadow: none; }
-      .layout[data-view="journey"] .map-stage #bars-map { height: 110mm; }
+      .map-stage { display: block !important; position: static; }
       .map-frame { border-radius: 0; }
       #bars-map { height: 110mm; }
       .scale-bar { bottom: 3mm; left: 3mm; font-size: 7pt; }
@@ -662,7 +634,7 @@
     }
   </style>
   <script src="js/ripple.js?v=cc1458cf" defer></script>
-  <script src="js/bars-map.js?v=e7d912cf" defer></script>
+  <script src="js/bars-map.js?v=221ad190" defer></script>
 </head>
 <body>
   <div class="bars-bg" aria-hidden="true">
