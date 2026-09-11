@@ -63,6 +63,19 @@ def _locality(bar):
     return "Tokyo"
 
 
+def _alias_columns(aliases, font=13, usable=118):
+    """Columns the vertical alias spine needs.
+
+    Each alias starts its own column (writing-mode: vertical-rl), and a long
+    alias wraps into further columns. `usable` is a deliberately pessimistic
+    spine height in px, taken from the shortest card we can expect (one with
+    no media and a one-line description), so the reserved gutter is never
+    too narrow. Over-reserving on tall cards costs a little whitespace;
+    under-reserving would put vertical text over the copy.
+    """
+    return sum(max(1, math.ceil(len(a) * font / usable)) for a in aliases)
+
+
 def _floor_label(bar):
     """Pull a short floor/building label out of the address, when present."""
     addr = bar.get('address', '')
@@ -139,22 +152,29 @@ def _render_stop(bar):
     floor_attr = f' data-floor="{_esc(floor)}"' if floor else ''
     category = _category(bar)
     cat_attr = f' data-category="{_esc(category)}"' if category else ''
+    aliases = bar.get('aliases') or []
+    # Reserve the right-hand gutter the vertical alias spine will occupy.
+    # One column per alias is not enough: a long alias wraps into extra
+    # columns, so count the columns each alias actually needs. Reserving the
+    # real width is what keeps the spine off the horizontal text.
+    cols_attr = f' style="--alias-cols:{_alias_columns(aliases)}"' if aliases else ''
     parts = []
-    parts.append(f'  <section class="stop{spotlight}" id="stop-{bid}" data-stop="{bid}" data-number="{num}"{floor_attr}{cat_attr}>')
-    # 1. Name + Japanese aliases
+    parts.append(f'  <section class="stop{spotlight}" id="stop-{bid}" data-stop="{bid}" data-number="{num}"{floor_attr}{cat_attr}{cols_attr}>')
+    # 1. Name
     parts.append(f'    <header class="stop-head">')
     parts.append(f'      <p class="stop-number">{num}</p>')
     parts.append(f'      <div class="stop-head-text">')
     parts.append(f'        <h3 class="stop-name">{_esc(bar["name"])}</h3>')
     parts.append(f'      </div>')
-    aliases = bar.get('aliases') or []
-    if aliases:
-        # Each alias becomes its own vertical column (writing-mode: vertical-rl);
-        # <br> moves to the next column to the left, the way multiple lantern
-        # cards sit beside a sign. Pinned to the far right of the stop head.
-        alias_html = '<br>'.join(_esc(a) for a in aliases)
-        parts.append(f'      <p class="stop-aliases">{alias_html}</p>')
     parts.append(f'    </header>')
+    if aliases:
+        # Each alias is its own vertical column (writing-mode: vertical-rl);
+        # <br> starts the next column to the left, the way several lantern
+        # cards sit beside a sign. Kept here in the flow, directly after the
+        # name, so narrow screens read name then Japanese name. On wide
+        # screens CSS lifts it into the reserved gutter on the right.
+        alias_html = '<br>'.join(_esc(a) for a in aliases)
+        parts.append(f'    <p class="stop-aliases">{alias_html}</p>')
     # 2. Neighborhood, type, floor — a compact "where it sits" line
     summary_bits = [_locality(bar)]
     if bar.get('style'):
