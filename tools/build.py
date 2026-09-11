@@ -207,6 +207,9 @@ def _render_stop(bar):
     # 3. Description — why to go
     if bar.get('description'):
         parts.append(f'      <p class="stop-description">{_esc(bar["description"])}</p>')
+    # 3b. Editorial note — hours, access warnings, status caveats
+    if bar.get('note'):
+        parts.append(f'      <p class="stop-note">{_esc(bar["note"])}</p>')
     # 4. Practical details for finding the entrance
     parts.append(f'      <dl class="stop-facts">')
     if bar.get('station'):

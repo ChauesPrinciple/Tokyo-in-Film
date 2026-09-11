@@ -60,7 +60,7 @@
       "ward": "Chuo",
       "lat": 35.670667,
       "lng": 139.763242,
-      "mapsUrl": "https://www.google.com/maps/place/LAMP+BAR/data=!4m2!3m1!1s0x60013a29c590c9eb:0xa45e576f05e2ccc5",
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=LAMP+BAR+6-6-19+Ginza+Chuo+Tokyo",
       "address": "4F Wakamatsu Building, 6-6-19 Ginza, Chuo-ku, Tokyo",
       "station": "Ginza (Tokyo Metro Ginza/Marunouchi/Hibiya), 4 min walk",
       "style": "Bar",
@@ -68,7 +68,7 @@
       "sources": [
         {
           "label": "Open in Maps",
-          "url": "https://www.google.com/maps/place/LAMP+BAR/data=!4m2!3m1!1s0x60013a29c590c9eb:0xa45e576f05e2ccc5"
+          "url": "https://www.google.com/maps/search/?api=1&query=LAMP+BAR+6-6-19+Ginza+Chuo+Tokyo"
         }
       ]
     },
@@ -88,7 +88,9 @@
       "address": "3F Ryushin Building, 8-7-9 Ginza, Chuo-ku, Tokyo",
       "station": "Shimbashi (JR / Tokyo Metro), 5 min walk",
       "style": "Authentic bar",
+      "status": "Possibly closed",
       "description": "An authentic bar on the 3rd floor of the Ryushin Building in Ginza, near Shimbashi. A quiet counter with a master who knows his cocktails and his regulars. The kind of Ginza bar where the elevator entrance is hard to find. That is the point.",
+      "note": "Tabelog has put this listing on hold and it has only two reviews. Check whether it is still operating before you make the trip.",
       "sources": [
         {
           "label": "Tabelog",
@@ -139,7 +141,7 @@
       "address": "Park Hyatt Tokyo, 52F, 3-7-1-2 Nishishinjuku, Shinjuku-ku, Tokyo",
       "station": "Shinjuku (JR / Tokyo Metro / Odakyu / Keio), 10 min walk",
       "style": "Hotel bar · high-end",
-      "description": "The bar from Lost in Translation. Fifty-second floor of the Park Hyatt, floor-to-ceiling windows, a live jazz trio, and a whisky list that runs deep. Expensive, and worth it once. Go early on a weeknight for a seat by the window.",
+      "description": "The bar from Lost in Translation. Fifty-second floor of the Park Hyatt, floor-to-ceiling windows, a live jazz trio, and a whisky list that runs deep. Reopened in December 2025. Cocktails start at ¥2,000, and there is a ¥2,500 cover charge once the jazz starts. Arrive between 17:00 and 18:30 to get a seat by the window and avoid the cover.",
       "sources": [
         {
           "label": "Open in Maps",
@@ -450,7 +452,7 @@
       "ward": "Meguro",
       "lat": 35.645924,
       "lng": 139.696854,
-      "mapsUrl": "https://www.google.com/maps/place/Bar+sawa/data=!4m2!3m1!1s0x80c2c78f35b274cd:0xf372ecbef3bf0575",
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Bar+sawa+1-6-7+Higashiyama+Meguro+Tokyo",
       "address": "1F Forum Nakameguro, 1-6-7 Higashiyama, Meguro-ku, Tokyo",
       "station": "Nakameguro (Tokyo Metro Hibiya), 5 min walk",
       "style": "Bar",
@@ -458,7 +460,7 @@
       "sources": [
         {
           "label": "Open in Maps",
-          "url": "https://www.google.com/maps/place/Bar+sawa/data=!4m2!3m1!1s0x80c2c78f35b274cd:0xf372ecbef3bf0575"
+          "url": "https://www.google.com/maps/search/?api=1&query=Bar+sawa+1-6-7+Higashiyama+Meguro+Tokyo"
         }
       ]
     },
@@ -501,6 +503,7 @@
       "station": "Azabujuban (Toei Oedo), 3 min walk",
       "style": "Cocktail bar · high-end",
       "description": "A reservation-only cocktail bar in Azabujuban. One bartender, a short counter, and a tasting-menu-style flight of seasonal cocktails built on Japanese ingredients. Sit, watch, do not rush.",
+      "note": "Last entry is 21:00. This is an earlier stop than its position on the list suggests. Plan it before the late-night crawl.",
       "sources": [
         {
           "label": "Open in Maps",
@@ -536,7 +539,7 @@
       "number": 21,
       "name": "Rokusan Angel (Burlesque Tokyo)",
       "aliases": [
-        "六三アングル"
+        "ロクサンエンジェル"
       ],
       "area": "Roppongi",
       "ward": "Minato",
@@ -569,7 +572,8 @@
       "address": "B1F Sotokanda Kanemura Building, 2-6-4 Sotokanda, Chiyoda-ku, Tokyo",
       "station": "Akihabara (JR / Tokyo Metro Hibiya), 5 min walk",
       "style": "Bar",
-      "description": "A basement bar in Kanda, near Akihabara. The name tells you where to look. Go down. A good late-night stop in a neighborhood that shuts early.",
+      "description": "A basement bar in Kanda, near Akihabara. The name tells you where to look. Go down. A good stop in a neighborhood that shuts early.",
+      "note": "Closes at 23:00. Earlier than its position on the list suggests. Go before, not after, the late-night stretch.",
       "sources": [
         {
           "label": "Open in Maps",
@@ -665,7 +669,7 @@
       "lng": 139.778671,
       "mapsUrl": "https://www.google.com/maps/place/Rock+Bar+Sakebi/data=!4m2!3m1!1s0x60188f79659e8de5:0xf831bb430ca98480",
       "address": "1F, 2-16-11 Negishi, Taito-ku, Tokyo",
-      "station": "Nippori (JR Yamanote / Keisei), 8 min walk",
+      "station": "Uguisudani (JR Yamanote), 5 min walk",
       "style": "Rock bar",
       "description": "A rock bar in Negishi, north of Ueno. Loud music, strong drinks, and a crowd that came for both. Not the place for a quiet conversation.",
       "sources": [
@@ -714,6 +718,7 @@
       "station": "Hakusan (Toei Mita Line A3), 1 min walk",
       "style": "Jazz bar",
       "description": "A jazz kissa in Hakusan, down a narrow staircase from street level. The name means 'cinema.' Vinyl on the turntable, dim light below ground, and a room that has been spinning records for decades. Cash only. Closed Sundays, Mondays, and holidays.",
+      "note": "Closes at 22:00. Earlier than its position on the list suggests. Go in the early evening, not late.",
       "sources": [
         {
           "label": "Official site",

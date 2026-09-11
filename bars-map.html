@@ -586,6 +586,7 @@
     .stop.is-spotlight .stop-facts dd { color: var(--glow-ink); }
 
     .stop-description { margin: 0 0 16px; font-size: 15.5px; line-height: 1.75; color: var(--ink); max-width: 60ch; font-family: 'Shippori Mincho', serif; font-weight: 400; }
+    .stop-note { margin: 0 0 16px; padding: 10px 14px; font-size: 13.5px; line-height: 1.6; color: var(--ink-soft); max-width: 60ch; border-left: 3px solid var(--mark); background: rgba(242, 193, 78, 0.08); border-radius: 0 4px 4px 0; }
 
     /* Per-stop background video: subtle fade-in when it scrolls into view.
        The IntersectionObserver in bars-map.js handles the is-playing class;
@@ -862,7 +863,7 @@
       <dt>Address</dt><dd>4F Wakamatsu Building, 6-6-19 Ginza, Chuo-ku, Tokyo</dd>
       </dl>
       <p class="stop-links">
-        <a class="stop-link stop-link-primary" href="https://www.google.com/maps/place/LAMP+BAR/data=!4m2!3m1!1s0x60013a29c590c9eb:0xa45e576f05e2ccc5" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+        <a class="stop-link stop-link-primary" href="https://www.google.com/maps/search/?api=1&amp;query=LAMP+BAR+6-6-19+Ginza+Chuo+Tokyo" target="_blank" rel="noopener noreferrer">Open in Maps</a>
       </p>
     </div>
   </section>
@@ -878,9 +879,11 @@
       <p class="stop-aliases">ノクターン<br>オーセンティックバー Nocturne</p>
       <p class="stop-summary">Chuo ward, Tokyo · Authentic bar · 3F</p>
       <p class="stop-description">An authentic bar on the 3rd floor of the Ryushin Building in Ginza, near Shimbashi. A quiet counter with a master who knows his cocktails and his regulars. The kind of Ginza bar where the elevator entrance is hard to find. That is the point.</p>
+      <p class="stop-note">Tabelog has put this listing on hold and it has only two reviews. Check whether it is still operating before you make the trip.</p>
       <dl class="stop-facts">
         <dt>Station</dt><dd>Shimbashi (JR / Tokyo Metro), 5 min walk</dd>
       <dt>Address</dt><dd>3F Ryushin Building, 8-7-9 Ginza, Chuo-ku, Tokyo</dd>
+        <dt>Access</dt><dd>Possibly closed</dd>
       </dl>
       <p class="stop-links">
         <a class="stop-link stop-link-primary" href="https://www.google.com/maps/search/?api=1&amp;query=NOCTURNE+Ginza+8-7-9+Tokyo" target="_blank" rel="noopener noreferrer">Open in Maps</a>
@@ -919,7 +922,7 @@
       </header>
       <p class="stop-aliases">ニューヨークバー<br>Park Hyatt Tokyo</p>
       <p class="stop-summary">Shinjuku ward, Tokyo · Hotel bar · high-end</p>
-      <p class="stop-description">The bar from Lost in Translation. Fifty-second floor of the Park Hyatt, floor-to-ceiling windows, a live jazz trio, and a whisky list that runs deep. Expensive, and worth it once. Go early on a weeknight for a seat by the window.</p>
+      <p class="stop-description">The bar from Lost in Translation. Fifty-second floor of the Park Hyatt, floor-to-ceiling windows, a live jazz trio, and a whisky list that runs deep. Reopened in December 2025. Cocktails start at ¥2,000, and there is a ¥2,500 cover charge once the jazz starts. Arrive between 17:00 and 18:30 to get a seat by the window and avoid the cover.</p>
       <dl class="stop-facts">
         <dt>Station</dt><dd>Shinjuku (JR / Tokyo Metro / Odakyu / Keio), 10 min walk</dd>
       <dt>Address</dt><dd>Park Hyatt Tokyo, 52F, 3-7-1-2 Nishishinjuku, Shinjuku-ku, Tokyo</dd>
@@ -1194,7 +1197,7 @@
       <dt>Address</dt><dd>1F Forum Nakameguro, 1-6-7 Higashiyama, Meguro-ku, Tokyo</dd>
       </dl>
       <p class="stop-links">
-        <a class="stop-link stop-link-primary" href="https://www.google.com/maps/place/Bar+sawa/data=!4m2!3m1!1s0x80c2c78f35b274cd:0xf372ecbef3bf0575" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+        <a class="stop-link stop-link-primary" href="https://www.google.com/maps/search/?api=1&amp;query=Bar+sawa+1-6-7+Higashiyama+Meguro+Tokyo" target="_blank" rel="noopener noreferrer">Open in Maps</a>
       </p>
     </div>
   </section>
@@ -1231,6 +1234,7 @@
       <p class="stop-aliases">ゲン ヤマモト</p>
       <p class="stop-summary">Minato ward, Tokyo · Cocktail bar · high-end · 1F</p>
       <p class="stop-description">A reservation-only cocktail bar in Azabujuban. One bartender, a short counter, and a tasting-menu-style flight of seasonal cocktails built on Japanese ingredients. Sit, watch, do not rush.</p>
+      <p class="stop-note">Last entry is 21:00. This is an earlier stop than its position on the list suggests. Plan it before the late-night crawl.</p>
       <dl class="stop-facts">
         <dt>Station</dt><dd>Azabujuban (Toei Oedo), 3 min walk</dd>
       <dt>Address</dt><dd>1F Anniversary Building, 1-6-4 Azabujuban, Minato-ku, Tokyo</dd>
@@ -1268,7 +1272,7 @@
           <h3 class="stop-name">Rokusan Angel (Burlesque Tokyo)</h3>
         </div>
       </header>
-      <p class="stop-aliases">六三アングル</p>
+      <p class="stop-aliases">ロクサンエンジェル</p>
       <p class="stop-summary">Minato ward, Tokyo · Burlesque bar · B2F</p>
       <p class="stop-description">A Roppongi burlesque bar. Live performances, cocktails, and a stage that is close enough to touch. Book ahead.</p>
       <dl class="stop-facts">
@@ -1292,7 +1296,8 @@
       </header>
       <p class="stop-aliases">バー アンドアンダー</p>
       <p class="stop-summary">Chiyoda ward, Tokyo · Bar · B1F</p>
-      <p class="stop-description">A basement bar in Kanda, near Akihabara. The name tells you where to look. Go down. A good late-night stop in a neighborhood that shuts early.</p>
+      <p class="stop-description">A basement bar in Kanda, near Akihabara. The name tells you where to look. Go down. A good stop in a neighborhood that shuts early.</p>
+      <p class="stop-note">Closes at 23:00. Earlier than its position on the list suggests. Go before, not after, the late-night stretch.</p>
       <dl class="stop-facts">
         <dt>Station</dt><dd>Akihabara (JR / Tokyo Metro Hibiya), 5 min walk</dd>
       <dt>Address</dt><dd>B1F Sotokanda Kanemura Building, 2-6-4 Sotokanda, Chiyoda-ku, Tokyo</dd>
@@ -1382,7 +1387,7 @@
       <p class="stop-summary">Taito ward, Tokyo · Rock bar · 1F</p>
       <p class="stop-description">A rock bar in Negishi, north of Ueno. Loud music, strong drinks, and a crowd that came for both. Not the place for a quiet conversation.</p>
       <dl class="stop-facts">
-        <dt>Station</dt><dd>Nippori (JR Yamanote / Keisei), 8 min walk</dd>
+        <dt>Station</dt><dd>Uguisudani (JR Yamanote), 5 min walk</dd>
       <dt>Address</dt><dd>1F, 2-16-11 Negishi, Taito-ku, Tokyo</dd>
       </dl>
       <p class="stop-links">
@@ -1422,6 +1427,7 @@
       <p class="stop-aliases">映画館ジャズ</p>
       <p class="stop-summary">Bunkyo ward, Tokyo · Jazz bar · B1F</p>
       <p class="stop-description">A jazz kissa in Hakusan, down a narrow staircase from street level. The name means &#x27;cinema.&#x27; Vinyl on the turntable, dim light below ground, and a room that has been spinning records for decades. Cash only. Closed Sundays, Mondays, and holidays.</p>
+      <p class="stop-note">Closes at 22:00. Earlier than its position on the list suggests. Go in the early evening, not late.</p>
       <dl class="stop-facts">
         <dt>Station</dt><dd>Hakusan (Toei Mita Line A3), 1 min walk</dd>
       <dt>Address</dt><dd>B1F, 5-33-19 Hakusan, Bunkyo-ku, Tokyo 112-0001</dd>
@@ -1464,6 +1470,7 @@
       <p class="stop-aliases">酒バー O<br>Sakebaro<br>SAKEBARO 青山店</p>
       <p class="stop-summary">Minato ward, Tokyo · Exclusive sake club · 1F</p>
       <p class="stop-description">The one that is not like the others. A members-only sake club in Minami-Aoyama, an extension of the original Naka-Meguro SAKEBARO. A tin cube counter, an auto-playing piano, LED light that shifts from deep blue to red. A curated cellar of rare and seasonal brews, and staff who can tell you the brewery, the yeast strain, and the rice polish rate for every pour. Everything else on this map you can walk into. This one you have to be let into.</p>
+      <p class="stop-note">Reservation or membership required. Arrange access well before you travel.</p>
       <dl class="stop-facts">
         <dt>Station</dt><dd>Omotesando (Tokyo Metro Ginza/Hanzomon/Chiyoda), 8 min walk</dd>
       <dt>Address</dt><dd>1F MD Aoyama, 2-10-8 Minami-Aoyama, Minato-ku, Tokyo 107-0062</dd>
