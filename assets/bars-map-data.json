@@ -417,25 +417,31 @@
       ]
     },
     {
-      "id": "bundan",
+      "id": "never-never-land",
       "number": 16,
-      "name": "BUNDAN Coffee & Beer",
+      "name": "Never Never Land",
       "aliases": [
-        "文旦"
+        "ネバーネバーランド",
+        "ネヴァーネヴァーランド",
+        "下北沢ネバーネバーランド"
       ],
-      "area": "Komaba",
-      "ward": "Meguro",
-      "lat": 35.663353,
-      "lng": 139.679703,
-      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=BUNDAN+Coffee+Beer+Komaba+Meguro+Tokyo",
-      "address": "Inside the Museum of Modern Japanese Literature, 4-3-55 Komaba, Meguro-ku, Tokyo",
-      "station": "Komaba-Todaimae (Keio Inokashira), 3 min walk",
-      "style": "Coffee & beer bar",
-      "description": "Know the hours before you go: this is a café inside the Museum of Modern Japanese Literature, open Tuesday to Saturday until about 4:20, so it's a daytime stop. Over ten thousand books to browse, a menu built from dishes in novels (one is a breakfast from Murakami's Hard-Boiled Wonderland and the End of the World), beer and wine, and a patio on Komaba Park. Reviewers describe it as a quiet retreat, the kind of place you go by yourself with a book.",
+      "area": "Kitazawa",
+      "ward": "Setagaya",
+      "lat": 35.663409,
+      "lng": 139.669755,
+      "mapsUrl": "https://maps.app.goo.gl/diHoc2mUNNjko9FT6",
+      "address": "2F Iwano Heights, 3-19-3 Kitazawa, Setagaya-ku, Tokyo 155-0031",
+      "station": "Shimokitazawa (Odakyu / Keio Inokashira), 3 min walk",
+      "style": "Izakaya · music bar",
+      "description": "A Shimokitazawa institution, open since 1978. Never Never Land is an Okinawan izakaya and live music bar: goya champuru, awamori, Heartland beer on draft, and gigs or jam sessions that run into the small hours. The walls are a patchwork of fliers and photos from decades of underground shows, and the crowd is the kind of bohemian Shimokita was before the developers arrived. Reviewers describe it as the real Shimokita: loose, creative, and the kind of place where you miss the last train. 4.4 on Google across 71 reviews. Open daily 18:00 to 2:00, midnight on Sundays. Budget \u00a52,000 to \u00a53,000.",
       "sources": [
         {
+          "label": "Official site",
+          "url": "http://www.shimokita-never.tokyo/"
+        },
+        {
           "label": "Open in Maps",
-          "url": "https://www.google.com/maps/search/?api=1&query=BUNDAN+Coffee+Beer+Komaba+Meguro+Tokyo"
+          "url": "https://maps.app.goo.gl/diHoc2mUNNjko9FT6"
         }
       ]
     },
