@@ -166,7 +166,7 @@
       display: flex; gap: 8px; align-items: center; margin-bottom: 12px; flex-wrap: wrap;
     }
     .map-toolbar button {
-      font: 500 13.5px/1 inherit; padding: 8px 13px; border: 1px solid var(--line);
+      font-size: 13.5px; font-weight: 500; line-height: 1; padding: 8px 13px; border: 1px solid var(--line);
       background: var(--panel); border-radius: 7px; cursor: pointer; color: var(--ink-soft);
       transition: border-color .12s, color .12s;
     }
@@ -221,7 +221,7 @@
     }
     .field { display: grid; gap: 5px; font-size: 11px; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
     .field input, .field select {
-      font: 400 14px/1.3 inherit; text-transform: none; letter-spacing: 0; color: var(--ink);
+      font-size: 14px; font-weight: 400; line-height: 1.3; text-transform: none; letter-spacing: 0; color: var(--ink);
       padding: 9px 10px; border: 1px solid var(--line); border-radius: 7px; background: var(--panel);
       transition: border-color .12s;
     }
@@ -247,13 +247,13 @@
     .shop-select {
       display: flex; gap: 10px; align-items: baseline; width: 100%;
       background: none; border: 0; padding: 0; text-align: left; cursor: pointer;
-      font: 600 16.5px/1.3 inherit; letter-spacing: -.005em; color: var(--ink);
+      font-size: 16.5px; font-weight: 600; line-height: 1.3; letter-spacing: -.005em; color: var(--ink);
     }
     .shop-select:hover { color: var(--mark-ink); }
     .shop-number {
       display: inline-grid; place-items: center; width: 23px; height: 23px; flex: none;
       border-radius: 50%; background: var(--accent); color: #fff;
-      font: 600 11.5px/1 inherit; transform: translateY(2px);
+      font-size: 11.5px; font-weight: 600; line-height: 1; transform: translateY(2px);
     }
 
     .shop-area {
@@ -372,7 +372,7 @@
       border-radius: 999px; width: fit-content;
     }
     .view-tab {
-      font: 600 13.5px/1 inherit; padding: 9px 18px; border: 0; border-radius: 999px;
+      font-size: 13.5px; font-weight: 600; line-height: 1; padding: 9px 18px; border: 0; border-radius: 999px;
       background: transparent; color: var(--ink-soft); cursor: pointer;
       transition: background .12s, color .12s;
     }
@@ -481,7 +481,7 @@
     .stop-number {
       display: inline-grid; place-items: center; width: 26px; height: 26px;
       margin: 0; border-radius: 50%; background: var(--accent); color: #fff;
-      font: 700 12px/1 inherit; flex: 0 0 26px;
+      font-size: 12px; font-weight: 700; line-height: 1; flex: 0 0 26px;
     }
     .stop.is-spotlight .stop-number { background: var(--glow); color: #14121c; }
     .stop-name { margin: 0; font-size: 24px; font-weight: 700; letter-spacing: -.015em; line-height: 1.2; }
@@ -610,7 +610,9 @@
       .skip-link, .masthead nav, .map-toolbar, .toggle, .list-controls, #source-notes, #map-status, .map-hint, .shop-note, .shop-links, noscript, .films, .view-switch, .journey-intro, .journey-interstitial, .stop-links, .map-view { display: none !important; }
       .journey-view { display: block !important; }
       .journey-scroll { max-width: none; padding: 0; }
-      .stop { break-inside: avoid; border-radius: 0; margin: 0; padding: 3mm 0; border: 0; border-bottom: 1px solid var(--line); background: #fff; }
+      /* Stops fade in on scroll; unrevealed ones (or all of them, when printing
+         from Map & list) would otherwise print as blank space. */
+      .stop { break-inside: avoid; border-radius: 0; margin: 0; padding: 3mm 0; border: 0; border-bottom: 1px solid var(--line); background: #fff; opacity: 1 !important; transform: none !important; }
       .stop.is-spotlight { background: var(--glow-soft); }
       .stop-head { flex-direction: column; gap: 2mm; }
       .stop-aliases { writing-mode: horizontal-tb; max-height: none; font-size: 8pt; }
@@ -642,7 +644,7 @@
     }
   </style>
   <script src="js/ripple.js?v=cc1458cf" defer></script>
-  <script src="js/bars-map.js?v=016c7d72" defer></script>
+  <script src="js/bars-map.js?v=1a4e6469" defer></script>
 </head>
 <body>
   <div class="bars-bg" aria-hidden="true">
@@ -682,7 +684,7 @@
       <button type="button" id="view-journey" class="view-tab is-active" role="tab" aria-selected="true" aria-controls="journey-view">Journey</button>
       <button type="button" id="view-map" class="view-tab" role="tab" aria-selected="false" aria-controls="map-view">Map & list</button>
     </div>
-    <main class="layout">
+    <main class="layout" data-view="journey">
       <section class="map-stage" aria-label="Map">
         <div class="map-toolbar">
           <button type="button" id="zoom-in" aria-label="Zoom in">+</button>

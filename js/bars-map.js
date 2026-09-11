@@ -396,19 +396,6 @@
 
     stops.forEach(stop => observer.observe(stop));
 
-    // Fade-in: reveal stops softly as they enter the viewport, the way a
-    // late-night walk brings each sign into view. Independent of the camera
-    // observer so it runs in both views and ignores the Follow toggle.
-    const reveal = new IntersectionObserver(entries => {
-      for (const entry of entries) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-revealed');
-          reveal.unobserve(entry.target);
-        }
-      }
-    }, {rootMargin: '-8% 0px -8% 0px', threshold: 0});
-    stops.forEach(stop => reveal.observe(stop));
-
     // Also handle direct clicks on stops — focus the map
     stops.forEach(stop => {
       stop.addEventListener('click', () => {
@@ -471,7 +458,9 @@
       const h = vh();
       for (const el of interstitials) {
         const rect = el.getBoundingClientRect();
-        const traveled = -rect.top;
+        // 0 when the spacer's top reaches the bottom of the viewport, 1 when its
+        // bottom leaves the top; 0.5 is the spacer filling the screen.
+        const traveled = h - rect.top;
         const range = rect.height + h;
         const progress = Math.max(0, Math.min(1, traveled / range));
         let stage = '';
@@ -865,6 +854,25 @@
     videos.forEach(v => io.observe(v));
   })();
 
+  // --- Stop fade-in ---
+  // Reveal stops softly as they enter the viewport, the way a late-night walk
+  // brings each sign into view. Runs before (and regardless of) the map data
+  // fetch: the Journey is server-rendered, so a failed load must not leave it
+  // invisible.
+  (function initReveal() {
+    const stops = document.querySelectorAll('.stop');
+    if (!stops.length) return;
+    const reveal = new IntersectionObserver(entries => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-revealed');
+          reveal.unobserve(entry.target);
+        }
+      }
+    }, {rootMargin: '-8% 0px -8% 0px', threshold: 0});
+    stops.forEach(stop => reveal.observe(stop));
+  })();
+
   async function init() {
     document.body.classList.add('js-active');
     try {
@@ -901,9 +909,13 @@
       const hashMatch = /^#stop-(.+)$/.exec(location.hash);
       const hashBar = hashMatch ? bars.find(b => b.id === hashMatch[1]) : null;
       const journeyView = $('journey-view');
-      if (hashBar) {
-        // A shared selection should land in Map & list so the card is visible
-        // and the marker is selectable, regardless of the saved view.
+      const hashStop = hashBar ? $(`stop-${hashBar.id}`) : null;
+      if (hashBar && hashStop && journeyView && journeyView.classList.contains('is-active')) {
+        // The Journey writes this hash as you scroll, so honor the current view:
+        // reopen the Journey at that stop instead of forcing Map & list.
+        hashStop.scrollIntoView({block: 'start'});
+        focusStop(hashBar, hashStop);
+      } else if (hashBar) {
         if (setViewFn) setViewFn('map');
         select(hashBar, true);
       } else if (journeyView && journeyView.classList.contains('is-active') && bars.length) {
