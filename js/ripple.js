@@ -95,31 +95,38 @@
 
   // Interstitial ripple transitions. The interstitial itself is a transparent
   // 100vh spacer in the scroll flow; the video/canvas/overlay are position:fixed
-  // and faded in/out via an .is-active class (handled in bars-map.js). Here we
-  // size the canvas to the viewport and spawn a ripple burst on enter/exit.
+  // and faded in/out via staged classes (is-entering → is-active → is-exiting)
+  // driven by bars-map.js. Here we size the canvas to the viewport on first
+  // intersection, then fire a ripple burst when .is-active is added (the
+  // moment the transition is at full visibility) and again when it's removed.
   const interstitials = document.querySelectorAll('.journey-interstitial');
   if (interstitials.length) {
     interstitials.forEach(el => {
       let sized = false;
-      let hasBurstIn = false;
-      const io = new IntersectionObserver((entries) => {
+      let hasBurst = false;
+      // Size the canvas the first time the spacer enters the viewport.
+      const sizeIo = new IntersectionObserver((entries) => {
         for (const e of entries) {
-          if (!sized && e.isIntersecting) {
+          if (e.isIntersecting && !sized) {
             sized = true;
             el._sized = sizeCanvas(el, true);
           }
-          if (e.isIntersecting && e.intersectionRatio > 0.3 && !hasBurstIn && el._sized) {
-            hasBurstIn = true;
-            const {canvas, ctx, rect} = el._sized;
-            spawnBurst(canvas, ctx, rect);
-          } else if (!e.isIntersecting && hasBurstIn && el._sized) {
-            hasBurstIn = false;
-            const {canvas, ctx, rect} = el._sized;
-            spawnBurst(canvas, ctx, rect);
-          }
         }
-      }, {threshold: [0, 0.3, 0.6, 0.9]});
-      io.observe(el);
+      }, {threshold: [0]});
+      sizeIo.observe(el);
+      // Fire ripple bursts when the .is-active stage class is toggled.
+      const classIo = new MutationObserver(() => {
+        if (!el._sized) return;
+        const {canvas, ctx, rect} = el._sized;
+        if (el.classList.contains('is-active') && !hasBurst) {
+          hasBurst = true;
+          spawnBurst(canvas, ctx, rect);
+        } else if (!el.classList.contains('is-active') && hasBurst) {
+          hasBurst = false;
+          spawnBurst(canvas, ctx, rect);
+        }
+      });
+      classIo.observe(el, { attributes: true, attributeFilter: ['class'] });
     });
   }
 

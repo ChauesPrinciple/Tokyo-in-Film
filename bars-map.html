@@ -435,8 +435,13 @@
        (height: 100vh) that creates scroll space in the flow. The video,
        gradient overlay, and ripple canvas are all position: fixed so they
        cover the entire viewport regardless of the grid column they live in.
-       An IntersectionObserver (bars-map.js) toggles .is-active to fade
-       them in/out as the spacer scrolls through the viewport. */
+
+       The transition is staged by scroll progress through the spacer:
+         .is-entering  (15-40%):  video/overlay fade IN  (0 → 1)
+         .is-active    (40-60%):  video fully visible, ripple fires once
+         .is-exiting   (60-85%):  video/overlay fade OUT (1 → 0)
+       Outside those ranges the media is hidden. CSS transitions on opacity
+       handle the smooth dissolve between stages. */
     .journey-interstitial {
       position: relative;
       height: 100vh;
@@ -448,7 +453,7 @@
       position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
       object-fit: cover; display: block;
       filter: brightness(.6) contrast(1.15) saturate(1.1);
-      opacity: 1; transition: opacity .8s ease;
+      opacity: 0; transition: opacity 1s ease;
       z-index: 50;
     }
     .journey-interstitial canvas {
@@ -459,13 +464,21 @@
       content: ''; position: fixed; inset: 0; z-index: 50;
       background: linear-gradient(to bottom, rgba(10,8,16,.5), rgba(10,8,16,.7));
       pointer-events: none;
-      opacity: 1; transition: opacity .8s ease;
+      opacity: 0; transition: opacity 1s ease;
     }
-    /* When JS is active, hide interstitial media until the observer adds .is-active */
-    body.js-active .journey-interstitial video,
-    body.js-active .journey-interstitial::after { opacity: 0; }
-    body.js-active .journey-interstitial.is-active video,
-    body.js-active .journey-interstitial.is-active::after { opacity: 1; }
+    /* Staged opacity: entering and active both show the media, exiting
+       starts the fade out. No class = hidden. */
+    .journey-interstitial.is-entering video,
+    .journey-interstitial.is-entering::after,
+    .journey-interstitial.is-active video,
+    .journey-interstitial.is-active::after { opacity: 1; }
+    .journey-interstitial.is-exiting video,
+    .journey-interstitial.is-exiting::after { opacity: 0; }
+    /* Under reduced motion, skip transitions entirely. */
+    @media (prefers-reduced-motion: reduce) {
+      .journey-interstitial video,
+      .journey-interstitial::after { transition: none; }
+    }
 
     /* Fade-in: stops start dimmed and lifted, then settle as they enter. */
     .stop {
@@ -648,8 +661,8 @@
       .sources a { text-decoration: none; }
     }
   </style>
-  <script src="js/ripple.js?v=d0c2ccd9" defer></script>
-  <script src="js/bars-map.js?v=cc136f1e" defer></script>
+  <script src="js/ripple.js?v=ee73f8a2" defer></script>
+  <script src="js/bars-map.js?v=e1d70554" defer></script>
 </head>
 <body>
   <div class="bars-bg" aria-hidden="true">

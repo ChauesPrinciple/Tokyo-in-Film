@@ -437,25 +437,49 @@
     });
   }
 
-  // --- Interstitial fade in/out ---
+  // --- Interstitial staged transitions ---
   // Each .journey-interstitial is a transparent 100vh spacer in the scroll
   // flow. Its video/overlay are position: fixed (covering the full viewport).
-  // This observer toggles .is-active to fade them in when the spacer is
-  // centered in the viewport and out when it leaves. Runs independently of
-  // ripple.js so the fade works even under reduced-motion (ripple.js no-ops).
+  // A scroll listener computes progress (0→1) through each spacer and applies
+  // stage classes that drive CSS opacity transitions:
+  //   .is-entering  (0.15–0.40):  media fading in
+  //   .is-active    (0.40–0.60):  media fully visible, ripple fires once
+  //   .is-exiting   (0.60–0.85):  media fading out
+  // Outside those ranges no class is set, so media stays hidden.
   function initInterstitialFade() {
-    const interstitials = document.querySelectorAll('.journey-interstitial');
+    const interstitials = Array.from(document.querySelectorAll('.journey-interstitial'));
     if (!interstitials.length) return;
-    const io = new IntersectionObserver(entries => {
-      for (const e of entries) {
-        if (e.isIntersecting && e.intersectionRatio > 0.3) {
-          e.target.classList.add('is-active');
-        } else {
-          e.target.classList.remove('is-active');
+    const vh = () => window.innerHeight;
+    let ticking = false;
+    function update() {
+      ticking = false;
+      const h = vh();
+      for (const el of interstitials) {
+        const rect = el.getBoundingClientRect();
+        // Progress: how far has the spacer scrolled through the viewport?
+        // 0 = top of spacer at bottom of viewport (just entering)
+        // 1 = bottom of spacer at top of viewport (just left)
+        const traveled = -rect.top;
+        const range = rect.height + h;
+        const progress = Math.max(0, Math.min(1, traveled / range));
+        let stage = '';
+        if (progress >= 0.15 && progress < 0.40) stage = 'is-entering';
+        else if (progress >= 0.40 && progress < 0.60) stage = 'is-active';
+        else if (progress >= 0.60 && progress < 0.85) stage = 'is-exiting';
+        // Only update if the stage actually changed (avoids redundant writes).
+        if (el.dataset.stage !== stage) {
+          el.dataset.stage = stage;
+          el.classList.remove('is-entering', 'is-active', 'is-exiting');
+          if (stage) el.classList.add(stage);
         }
       }
-    }, { threshold: [0, 0.3, 0.6, 0.9] });
-    interstitials.forEach(el => io.observe(el));
+    }
+    function onScroll() {
+      if (!ticking) { ticking = true; requestAnimationFrame(update); }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    update();
   }
 
   // --- Map idle overlay ---
