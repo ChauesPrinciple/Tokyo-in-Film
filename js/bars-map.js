@@ -484,13 +484,18 @@
           // while the spacer is genuinely leaving the viewport.
           const covered = Math.max(0, Math.min(h, rect.bottom) - Math.max(0, rect.top));
           const ratio = h > 0 ? covered / h : 0;
-          // Reach full opacity as soon as the spacer owns a quarter of the
+          // The coda (final storm quote) fades in sooner and holds longer
+          // than the regular interstitials so the closing quote lingers.
+          const isCoda = el.classList.contains('journey-coda');
+          const fadeThreshold = isCoda ? 0.15 : 0.25;
+          const coverThreshold = isCoda ? 0.50 : 0.75;
+          // Reach full opacity as soon as the spacer owns a fraction of the
           // screen, so the fade happens only across a thin leading/trailing
           // sliver and never while the spacer dominates the viewport.
-          reveal = Math.max(0, Math.min(1, ratio / 0.25));
+          reveal = Math.max(0, Math.min(1, ratio / fadeThreshold));
           // Covering: media comes forward over the cards once the spacer owns
           // most of the viewport. Ripple bursts key off this class.
-          covering = ratio >= 0.75;
+          covering = ratio >= coverThreshold;
         }
         // Track the last written value on a JS property rather than a data
         // attribute: this runs every scroll frame, and attribute writes would
