@@ -454,15 +454,23 @@
     if (!interstitials.length) return;
     const vh = () => window.innerHeight;
     let ticking = false;
+    const loaded = new WeakSet();
+
+    function playInterstitial(v) {
+      if (!loaded.has(v)) {
+        loaded.add(v);
+        v.load();
+        v.addEventListener('canplay', () => v.play().catch(() => {}), { once: true });
+      } else {
+        v.play().catch(() => {});
+      }
+    }
 
     function update() {
       ticking = false;
       const h = vh();
       for (const el of interstitials) {
         const rect = el.getBoundingClientRect();
-        // Progress: how far has the spacer scrolled through the viewport?
-        // 0 = top of spacer at bottom of viewport (just entering)
-        // 1 = bottom of spacer at top of viewport (just left)
         const traveled = -rect.top;
         const range = rect.height + h;
         const progress = Math.max(0, Math.min(1, traveled / range));
@@ -470,16 +478,14 @@
         if (progress >= 0.15 && progress < 0.40) stage = 'is-entering';
         else if (progress >= 0.40 && progress < 0.60) stage = 'is-active';
         else if (progress >= 0.60 && progress < 0.85) stage = 'is-exiting';
-        // Only update if the stage actually changed (avoids redundant writes).
         if (el.dataset.stage !== stage) {
           el.dataset.stage = stage;
           el.classList.remove('is-entering', 'is-active', 'is-exiting');
           if (stage) el.classList.add(stage);
-          // Control the interstitial video based on the stage.
           const v = el.querySelector('video');
           if (v) {
             if (stage === 'is-entering' || stage === 'is-active') {
-              v.play().catch(() => {});
+              playInterstitial(v);
             } else {
               v.pause();
             }
@@ -831,20 +837,26 @@
     if (!videos.length) return;
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduced) return;
-    // Lazy-load: don't fetch any video media until it first scrolls into view.
-    // We don't call v.load() — that resets the element and interrupts play().
-    // Instead, v.play() triggers loading automatically. The preload="metadata"
-    // attribute loads only the first frame until play() is called.
-    const started = new WeakSet();
+    // Robust loading: call load() once, wait for canplay, then play().
+    // Calling play() immediately after load() races and fails silently.
+    const loaded = new WeakSet();
+    function startVideo(v) {
+      if (!loaded.has(v)) {
+        loaded.add(v);
+        v.load();
+        v.addEventListener('canplay', () => {
+          v.play().then(() => v.classList.add('is-playing')).catch(() => {});
+        }, { once: true });
+      } else {
+        v.play().then(() => v.classList.add('is-playing')).catch(() => {});
+      }
+    }
     const io = new IntersectionObserver((entries) => {
       for (const e of entries) {
         const v = e.target;
         if (e.isIntersecting && e.intersectionRatio > 0.1) {
-          v.play().then(() => {
-            v.classList.add('is-playing');
-            started.add(v);
-          }).catch(() => {});
-        } else if (!e.isIntersecting && started.has(v)) {
+          startVideo(v);
+        } else if (!e.isIntersecting && loaded.has(v)) {
           v.pause();
           v.classList.remove('is-playing');
         }

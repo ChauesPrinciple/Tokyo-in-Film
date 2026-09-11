@@ -399,28 +399,31 @@
       margin: 48px 0 24px; padding: 0 0 8px; border-bottom: 1px solid var(--line);
       font-size: 18px; font-weight: 700; letter-spacing: -.01em; color: var(--mark-ink);
       display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap;
+      position: relative; z-index: 10;
     }
     .journey-leg-sub {
       font-size: 12px; font-weight: 400; letter-spacing: .04em; color: var(--muted);
       text-transform: uppercase;
     }
-    /* Full-screen interstitial transitions between journey legs.
-       The .journey-interstitial element itself is a transparent spacer
-       (height: 100vh) that creates scroll space in the flow. The video,
-       gradient overlay, and ripple canvas are all position: fixed so they
-       cover the entire viewport regardless of the grid column they live in.
+    /* Interstitial transitions between journey legs.
+       The .journey-interstitial element is a transparent 100vh spacer in
+       the scroll flow. The video/overlay/canvas are position: fixed so they
+       cover the viewport, but they live BEHIND the stop cards (z-index 0)
+       so the cards remain readable on top. During .is-active the video
+       briefly comes forward (z-index 50) to cover the cards, then during
+       .is-exiting it recedes back behind them and fades away. This makes
+       the transition feel like the world shifting behind the content
+       rather than an interruption.
 
-       The transition is staged by scroll progress through the spacer:
-         .is-entering  (15-40%):  video/overlay fade IN  (0 → 1)
-         .is-active    (40-60%):  video fully visible, ripple fires once
-         .is-exiting   (60-85%):  video/overlay fade OUT (1 → 0)
-       Outside those ranges the media is hidden. CSS transitions on opacity
-       handle the smooth dissolve between stages. */
+       Stages by scroll progress through the spacer:
+         .is-entering  (15-40%):  video fades in behind the cards
+         .is-active    (40-60%):  video covers the cards briefly, ripple fires
+         .is-exiting   (60-85%):  video recedes behind the cards, fades out
+       Outside those ranges no class is set, so media stays hidden. */
     .journey-interstitial {
       position: relative;
       height: 100vh;
       margin: 0;
-      z-index: 50;
       pointer-events: none;
     }
     .journey-interstitial video {
@@ -428,37 +431,42 @@
       object-fit: cover; display: block;
       filter: brightness(.6) contrast(1.15) saturate(1.1);
       opacity: 0; transition: opacity 1s ease;
-      z-index: 50;
+      z-index: 0;
     }
     .journey-interstitial canvas {
       position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-      pointer-events: none; z-index: 51;
+      pointer-events: none; z-index: 1;
     }
     .journey-interstitial::after {
-      content: ''; position: fixed; inset: 0; z-index: 50;
+      content: ''; position: fixed; inset: 0; z-index: 0;
       background: linear-gradient(to bottom, rgba(10,8,16,.5), rgba(10,8,16,.7));
       pointer-events: none;
       opacity: 0; transition: opacity 1s ease;
     }
-    /* Staged opacity: entering and active both show the media, exiting
-       starts the fade out. No class = hidden. */
+    /* Entering: video fades in behind the cards (z-index 0). */
     .journey-interstitial.is-entering video,
-    .journey-interstitial.is-entering::after,
+    .journey-interstitial.is-entering::after { opacity: 1; }
+    /* Active: video comes forward to briefly cover the cards. */
     .journey-interstitial.is-active video,
-    .journey-interstitial.is-active::after { opacity: 1; }
+    .journey-interstitial.is-active::after { opacity: 1; z-index: 50; }
+    .journey-interstitial.is-active canvas { z-index: 51; }
+    /* Exiting: video recedes back behind the cards and fades out. */
     .journey-interstitial.is-exiting video,
-    .journey-interstitial.is-exiting::after { opacity: 0; }
+    .journey-interstitial.is-exiting::after { opacity: 0; z-index: 0; }
     /* Under reduced motion, skip transitions entirely. */
     @media (prefers-reduced-motion: reduce) {
       .journey-interstitial video,
       .journey-interstitial::after { transition: none; }
     }
 
-    /* Fade-in: stops start dimmed and lifted, then settle as they enter. */
+    /* Fade-in: stops start dimmed and lifted, then settle as they enter.
+       position: relative + z-index keeps stop cards above the interstitial
+       background layer (z-index 0) so they remain readable. */
     .stop {
       margin: 0 0 36px; padding: 28px 30px 24px;
       background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
       scroll-margin: 24px;
+      position: relative; z-index: 10;
       opacity: 0; transform: translateY(14px);
       transition: opacity .7s ease, transform .7s ease;
     }
@@ -634,7 +642,7 @@
     }
   </style>
   <script src="js/ripple.js?v=cc1458cf" defer></script>
-  <script src="js/bars-map.js?v=671f45a2" defer></script>
+  <script src="js/bars-map.js?v=e50217a8" defer></script>
 </head>
 <body>
   <div class="bars-bg" aria-hidden="true">
