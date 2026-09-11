@@ -83,6 +83,7 @@
     .page-header {
       position: relative; padding: 60px 0 120px; margin: 0 -20px; padding-left: 20px; padding-right: 20px;
       border-radius: 0 0 12px 12px; overflow: hidden;
+      display: flex; align-items: flex-end; gap: 48px;
     }
     .page-header::before {
       content: ''; position: absolute; inset: 0; z-index: -1;
@@ -92,9 +93,6 @@
     .page-header::after {
       content: ''; position: absolute; inset: 0; z-index: -1;
       background: linear-gradient(to bottom, rgba(20,18,28,.35), rgba(20,18,28,.6));
-    }
-    .page-header {
-      display: flex; align-items: flex-end; gap: 48px;
     }
     .page-header-text { flex: 1 1 auto; min-width: 0; }
     .page-header .epigraph { flex: 0 0 auto; max-width: 48ch; }
@@ -108,7 +106,6 @@
 
     .epigraph {
       margin: 0; padding: 0 0 0 16px; border-left: 3px solid var(--mark);
-      max-width: 36ch;
     }
     .epigraph blockquote { margin: 0; }
     .epigraph p { margin: 0; font-size: 20px; line-height: 1.6; color: var(--ink-soft); font-style: italic; }
@@ -317,7 +314,7 @@
 
     #empty-state { color: var(--muted); font-size: 14px; padding: 20px 0; }
 
-    .page-footer { margin-top: 32px; padding-top: 16px; border-top: 1px solid var(--line); }
+    .page-footer { margin-top: 32px; padding-top: 16px; border-top: 1px solid var(--line); position: relative; z-index: 10; }
     .print-note { margin: 0; font-size: 13px; color: var(--ink-soft); }
     .sources { margin: 8px 0 0; color: var(--muted); font-size: 11px; line-height: 1.6; }
     .sources a { color: var(--ink-soft); }
@@ -364,7 +361,7 @@
       .page-shell { padding: 0 16px 24px; }
       .masthead { gap: 14px; padding: 16px 0 12px; }
       .masthead nav { gap: 14px; font-size: 12px; }
-      .page-header { padding: 20px 0 90px; }
+      .page-header { padding: 20px 0 90px; margin: 0 -16px; padding-left: 16px; padding-right: 16px; }
       .list-controls { grid-template-columns: 1fr; }
       .shop-card { padding: 13px 14px 14px; }
       .shop-select { font-size: 15px; }
@@ -486,8 +483,11 @@
 
     /* Closing quote after the final stop (SAKEBARO spotlight). Now a
        full-screen interstitial with the door-open video behind the
-       storm quote, same prominence as the other interstitials. */
-    .journey-coda .interstitial-quote { z-index: 52; }
+       storm quote, same prominence as the other interstitials.
+       Shorter than a regular interstitial (60vh, not 100vh) so the
+       footer and source-notes below it aren't covered by the fixed
+       video when the reader scrolls past (issue #2). */
+    .journey-coda { height: 60vh; }
 
     /* Fade-in: stops start dimmed and lifted, then settle as they enter.
        position: relative + z-index keeps stop cards above the interstitial
@@ -536,9 +536,11 @@
     }
     .stop-head { margin: 0 0 16px; display: flex; align-items: flex-start; gap: 18px; }
     .stop-number {
-      display: inline-grid; place-items: center; width: 26px; height: 26px;
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 26px; height: 26px;
       margin: 0; border-radius: 50%; background: var(--accent); color: #fff;
       font-size: 12px; font-weight: 700; line-height: 1; flex: 0 0 26px;
+      position: relative;
     }
     .stop.is-spotlight .stop-number { background: var(--glow); color: #14121c; }
     .stop-name { margin: 0; font-size: 24px; font-weight: 700; letter-spacing: -.015em; line-height: 1.2; }
@@ -611,23 +613,20 @@
     .stop.is-spotlight .stop-link { border-color: var(--glow-line); }
     .stop.is-spotlight .stop-link:hover { color: var(--glow-ink); border-color: var(--glow); }
 
-    /* Category visual cues — small floor/transfer indicators */
-    .stop[data-category*="basement"] .stop-number::after {
-      content: " ↓"; font-size: 10px; font-weight: 700; opacity: .7;
+    /* Category visual cues — small floor/transfer indicators.
+       Positioned absolutely to the right of the number circle so they
+       don't stack as a second grid/flex row inside the 26px badge. */
+    .stop-number::after {
+      position: absolute; left: 100%; top: 50%; transform: translateY(-50%);
+      margin-left: 4px; font-size: 10px; font-weight: 700; opacity: .7;
+      white-space: nowrap;
     }
-    .stop[data-category*="highrise"] .stop-number::after {
-      content: " ↑"; font-size: 10px; font-weight: 700; opacity: .7;
-    }
-    .stop[data-category*="distant"] .stop-number::after {
-      content: " ⟷"; font-size: 10px; font-weight: 700; opacity: .7;
-    }
-    .stop[data-category*="golden-gai"] .stop-number::after {
-      content: " ⋮"; font-size: 10px; font-weight: 700; opacity: .7;
-    }
+    .stop[data-category*="basement"] .stop-number::after { content: "↓"; }
+    .stop[data-category*="highrise"] .stop-number::after { content: "↑"; }
+    .stop[data-category*="distant"] .stop-number::after { content: "⟷"; }
+    .stop[data-category*="golden-gai"] .stop-number::after { content: "⋮"; }
     /* Spotlight already has the magenta treatment; add a final-stop marker */
-    .stop[data-category*="spotlight"] .stop-number::after {
-      content: " ◆"; font-size: 9px; font-weight: 700; opacity: .8;
-    }
+    .stop[data-category*="spotlight"] .stop-number::after { content: "◆"; font-size: 9px; opacity: .8; }
 
     /* Golden Gai subvenues: make them feel individually selectable */
     .subvenue { cursor: pointer; transition: border-color .12s, background .12s; }
@@ -714,8 +713,8 @@
       .sources a { text-decoration: none; }
     }
   </style>
-  <script src="js/ripple.js?v=8f768271" defer></script>
-  <script src="js/bars-map.js?v=d5ce9e1b" defer></script>
+  <script src="js/ripple.js?v=72736e8d" defer></script>
+  <script src="js/bars-map.js?v=6f069d94" defer></script>
 </head>
 <body>
   <div class="bars-bg" aria-hidden="true">
@@ -739,7 +738,7 @@
       <div class="page-header">
         <div class="page-header-text">
           <h1>Tokyo After Dark</h1>
-          <p class="lede">Across Tokyo, <span id="bar-count">30</span> late-night places: Ginza counters where the ice is carved by hand, an Ebisu basement that calls itself a coffee shop, a Shimokitazawa jazz room named after a Mingus record, and the bar from <cite>Lost in Translation</cite>. Tell the bartender what you're in the mood for and let them build it.</p>
+          <p class="lede">Across Tokyo, <span id="bar-count">30</span> late-night places: Ginza counters where the ice is carved by hand, an Ebisu basement that calls itself a coffee shop, a Shimokitazawa jazz room named after a Hank Mobley record, and the bar from <cite>Lost in Translation</cite>. Tell the bartender what you're in the mood for and let them build it.</p>
         </div>
         <figure class="epigraph">
           <blockquote>
@@ -857,6 +856,7 @@
     </div>
   </section>
 <figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline autoplay preload="metadata"><source src="assets/movie/interstitial-1.webm" type="video/webm"><source src="assets/movie/interstitial-1.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>If you only read the books that everyone else is reading, you can only think what everyone else is thinking.</blockquote><cite>Norwegian Wood</cite></figcaption></figure>
+<h3 class="journey-leg">Shinjuku<span class="journey-leg-sub">Late evening: hotel bars, speakeasies, Golden Gai</span></h3>
   <section class="stop" id="stop-nocturne" data-stop="nocturne" data-number="4" style="--alias-cols:2">
     <div class="stop-body">
       <header class="stop-head">
@@ -898,7 +898,6 @@
       </p>
     </div>
   </section>
-<h3 class="journey-leg">Shinjuku<span class="journey-leg-sub">Late evening: hotel bars, speakeasies, Golden Gai</span></h3>
   <section class="stop" id="stop-new-york-bar" data-stop="new-york-bar" data-number="6" data-category="highrise" style="--alias-cols:3">
     <div class="stop-body">
       <header class="stop-head">
@@ -1016,7 +1015,7 @@
       <p class="stop-summary">Shinjuku ward, Tokyo · Bar · B1F</p>
       <p class="stop-description">There&#x27;s no menu. Toshi asks what you like, checks what&#x27;s in season, and makes you something; the peanut-butter Old Fashioned is the drink people talk about. The room is a basement done up like medieval Europe, with vintage glassware and only counter seats, so you watch him work the whole time. Right-hand door at B1F, near Shinjuku Gyoemmae Station. Closed Wednesdays.</p>
       <dl class="stop-facts">
-        <dt>Station</dt><dd>Shinjuku (JR / Tokyo Metro / Odakyu / Keio), 5 min walk</dd>
+        <dt>Station</dt><dd>Shinjuku-Gyoemmae (Tokyo Metro Marunouchi), 3 min walk</dd>
       <dt>Address</dt><dd>B1F (right door) Towa Shinjuku Gyoen Co-op II, 2-1-14 Shinjuku, Shinjuku-ku, Tokyo</dd>
       </dl>
       <p class="stop-links">
@@ -1040,7 +1039,7 @@
       <dt>Address</dt><dd>1-1-6 to 1-1-8 Kabukicho, Shinjuku-ku, Tokyo</dd>
       </dl>
       <div class="subvenues" role="list">
-            <article class="subvenue" data-floor="3F" tabindex="0" aria-label="Happy (Rockin&#x27; Soul Bar) - focus on map">
+            <article class="subvenue" role="listitem" data-floor="3F" tabindex="0" aria-label="Happy (Rockin&#x27; Soul Bar)">
         <h4 class="subvenue-name">Happy (Rockin&#x27; Soul Bar)</h4>
         <p class="subvenue-aliases">ハッピー · ロッキンソールバー</p>
         <p class="subvenue-floor">3F · Maruha Building</p>
@@ -1048,7 +1047,7 @@
         <p class="subvenue-description">Climb to the third floor of the Maruha Building for rock and soul from the sixties through the eighties, played at full volume, with a wall of vinyl you&#x27;re welcome to pick from. The cover is about ¥900, there are more than a hundred bottles, and the last Friday of each month is disco night.</p>
         <a class="subvenue-link" href="https://www.google.com/maps/search/?api=1&amp;query=Happy+Rockin+Soul+Bar+1-1-7+Kabukicho+Shinjuku+Tokyo" target="_blank" rel="noopener noreferrer">Open in Maps</a>
       </article>
-            <article class="subvenue" data-floor="1F" tabindex="0" aria-label="BAR COO - focus on map">
+            <article class="subvenue" role="listitem" data-floor="1F" tabindex="0" aria-label="BAR COO">
         <h4 class="subvenue-name">BAR COO</h4>
         <p class="subvenue-aliases">バー 空 · BAR COO 空</p>
         <p class="subvenue-floor">1F</p>
@@ -1056,7 +1055,7 @@
         <p class="subvenue-description">Five or six seats at street level on Golden Gai&#x27;s third lane, with Miya running things in fluent English. Snacks are whatever she&#x27;s made: miso soup, seaweed salad, a slice of Gouda. You end up talking with regulars and other travelers, which makes it a good bar to walk into alone. Get there early. Closed Sundays.</p>
         <a class="subvenue-link" href="https://www.google.com/maps/search/?api=1&amp;query=BAR+COO+1-1-8+Kabukicho+Shinjuku+Tokyo" target="_blank" rel="noopener noreferrer">Open in Maps</a>
       </article>
-            <article class="subvenue" data-floor="Ground floor" tabindex="0" aria-label="OPEN BOOK - focus on map">
+            <article class="subvenue" role="listitem" data-floor="Ground floor" tabindex="0" aria-label="OPEN BOOK">
         <h4 class="subvenue-name">OPEN BOOK</h4>
         <p class="subvenue-aliases">オープンブック</p>
         <p class="subvenue-floor">Ground floor</p>
@@ -1158,10 +1157,10 @@
       </header>
       <p class="stop-aliases">ネバーネバーランド<br>ネヴァーネヴァーランド<br>下北沢ネバーネバーランド</p>
       <p class="stop-summary">Setagaya ward, Tokyo · Izakaya · music bar · 2F</p>
-      <p class="stop-description">A Shimokitazawa rock bar that has been open since 1978, now on the second floor of a building across from Studio Noah, five minutes from the station. The walls are covered in posters and fliers for gigs and underground theater, and there are DJ nights and live sets. The kitchen does spiced Asian food; the Burmese chicken curry is the signature, at ¥1,300. No cover charge, about twenty-four seats, non-smoking, and solo diners are welcome. Expect ¥2,000 to ¥3,000. Open 6:00 to 1:00, with irregular days off.</p>
+      <p class="stop-description">A Shimokitazawa rock bar that has been open since 1978, now on the second floor of a building across from Studio Noah, three minutes from the station. The walls are covered in posters and fliers for gigs and underground theater, and there are DJ nights and live sets. The kitchen does spiced Asian food; the Burmese chicken curry is the signature, at ¥1,300. No cover charge, about twenty-four seats, non-smoking, and solo diners are welcome. Expect ¥2,000 to ¥3,000. Open 6:00 to 1:00, with irregular days off.</p>
       <dl class="stop-facts">
         <dt>Station</dt><dd>Shimokitazawa (Odakyu / Keio Inokashira), 3 min walk</dd>
-      <dt>Address</dt><dd>2F Iwano Heights, 3-19-3 Kitazawa, Setagaya-ku, Tokyo 155-0031</dd>
+      <dt>Address</dt><dd>2F Yoshino Heights, 3-19-3 Kitazawa, Setagaya-ku, Tokyo 155-0031</dd>
       </dl>
       <p class="stop-links">
         <a class="stop-link stop-link-primary" href="https://maps.app.goo.gl/diHoc2mUNNjko9FT6" target="_blank" rel="noopener noreferrer">Open in Maps</a>
@@ -1261,7 +1260,7 @@
       </header>
       <p class="stop-aliases">ロクサンエンジェル</p>
       <p class="stop-summary">Minato ward, Tokyo · Burlesque bar · B2F</p>
-      <p class="stop-description">Formerly Burlesque Tokyo, two floors below street level, three minutes from Roppongi Station. The themed shows change every week and run seventy to ninety minutes, and the performers work the crowd. It&#x27;s booked for birthdays and celebrations, so bring people, and reserve early for front seats. Expect ¥8,000 to ¥10,000 each after the 15% service charge, and limited English.</p>
+      <p class="stop-description">Formerly Burlesque Tokyo, two floors below street level, five minutes from Roppongi Station. The themed shows change every week and run seventy to ninety minutes, and the performers work the crowd. It&#x27;s booked for birthdays and celebrations, so bring people, and reserve early for front seats. Expect ¥8,000 to ¥10,000 each after the 15% service charge, and limited English.</p>
       <dl class="stop-facts">
         <dt>Station</dt><dd>Roppongi (Toei Oedo / Tokyo Metro Hibiya), 5 min walk</dd>
       <dt>Address</dt><dd>B2F Roppongi Nittaku Building, 3-8-15 Roppongi, Minato-ku, Tokyo</dd>

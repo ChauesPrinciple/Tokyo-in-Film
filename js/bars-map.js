@@ -36,6 +36,10 @@
       if (skip) skip.setAttribute('href', isJourney ? '#journey-view' : '#shop-search');
       try { localStorage.setItem('bars-view', mode); } catch (e) {}
       if (!isJourney && typeof onShowMap === 'function') onShowMap();
+      // Force an interstitial update on view switch (issue #4: otherwise a
+      // playing interstitial keeps playing hidden in Map & list, and the
+      // coda video can cover the footer when switching back).
+      if (typeof window._interstitialUpdate === 'function') window._interstitialUpdate();
     }
     setViewFn = setView;
 
@@ -71,13 +75,13 @@
   // Group the granular per-venue styles into a handful of useful buckets so
   // the Type filter stays practical (8 options, not 18 near-synonyms).
   const STYLE_CATEGORIES = [
-    ['Cocktail bars', ['Classic cocktail bar', 'Cocktail bar', 'Cocktail bar · high-end', 'Whisky & cocktail bar']],
+    ['Cocktail bars', ['Classic cocktail bar', 'Cocktail bar', 'Cocktail bar · high-end', 'Whisky & cocktail bar', 'Whisky bar']],
     ['Hotel bars', ['Hotel bar · high-end']],
     ['Jazz & listening', ['Jazz bar', 'Jazz livehouse']],
     ['Speakeasy', ['Speakeasy']],
     ['Sake bars', ['Sake bar', 'Exclusive sake club']],
     ['Snack & authentic bars', ['Snack bar', 'Bar', 'Authentic bar']],
-    ['Themed bars', ['Game bar', 'Shooting bar', 'Rock bar', 'Burlesque bar', 'Coffee & beer bar']],
+    ['Themed bars', ['Game bar', 'Shooting bar', 'Rock bar', 'Burlesque bar', 'Izakaya · music bar']],
     ['Golden Gai', ['Golden Gai bars']],
   ];
   const _styleToCategory = new Map(STYLE_CATEGORIES.flatMap(([cat, styles]) => styles.map(s => [s, cat])));
@@ -237,7 +241,7 @@
       if (mapView && !mapView.classList.contains('is-active')) scrollToStop(bar.id);
       else scrollToCard(bar.id);
     }
-    $('map-status').textContent = `${bar.number}. ${bar.name} — ${bar.area}, ${locality(bar)}${bar.status ? ` · ${bar.status}` : ''}`;
+    $('map-status').textContent = `${bar.number}. ${bar.name} · ${bar.area}, ${locality(bar)}${bar.status ? ` · ${bar.status}` : ''}`;
     try { history.replaceState(null, '', `#stop-${bar.id}`); } catch (e) {}
     render();
   }
@@ -340,7 +344,7 @@
       animateCameraTo(bar.point[0], bar.point[1], targetWidth, duration);
     }
 
-    $('map-status').textContent = `${bar.number}. ${bar.name} — ${bar.area}, ${locality(bar)}${bar.status ? ` · ${bar.status}` : ''}`;
+    $('map-status').textContent = `${bar.number}. ${bar.name} · ${bar.area}, ${locality(bar)}${bar.status ? ` · ${bar.status}` : ''}`;
 
     // Scroll-driven focus keeps the URL hash in sync so the active stop is
     // shareable; manual stop/subvenue clicks are transient and don't update it.
@@ -436,6 +440,12 @@
   // in front of the stop cards (and ripple.js keys its bursts off that class).
   // These videos are controlled here rather than by initStopVideos because
   // position:fixed makes an IntersectionObserver treat them as always visible.
+  //
+  // Exposed as window._interstitialUpdate so the view-switch handler can
+  // force an update when switching to/from Map & list (issue #4: otherwise
+  // a playing interstitial keeps playing hidden after the switch).
+  let _interstitialUpdate = null;
+
   function initInterstitialFade() {
     const interstitials = Array.from(document.querySelectorAll('.journey-interstitial'));
     if (!interstitials.length) return;
@@ -456,18 +466,32 @@
     function update() {
       ticking = false;
       const h = vh();
+      // Only drive interstitials when the Journey view is active. When Map &
+      // list is showing, force all interstitials to reveal=0 and pause their
+      // videos (issue #4: a playing interstitial kept playing hidden after
+      // switching views because the window never scrolls in the list panel).
+      const journeyActive = document.body.hasAttribute('data-journey-active');
       for (const el of interstitials) {
-        const rect = el.getBoundingClientRect();
-        // How much of the viewport the spacer actually covers, 0→1. Driving
-        // opacity from real coverage (rather than a fixed progress band) is
-        // what keeps the screen from going blank: the media can only fade
-        // while the spacer is genuinely leaving the viewport.
-        const covered = Math.max(0, Math.min(h, rect.bottom) - Math.max(0, rect.top));
-        const ratio = h > 0 ? covered / h : 0;
-        // Reach full opacity as soon as the spacer owns a quarter of the
-        // screen, so the fade happens only across a thin leading/trailing
-        // sliver and never while the spacer dominates the viewport.
-        const reveal = Math.max(0, Math.min(1, ratio / 0.25));
+        let reveal, covering;
+        if (!journeyActive) {
+          reveal = 0;
+          covering = false;
+        } else {
+          const rect = el.getBoundingClientRect();
+          // How much of the viewport the spacer actually covers, 0→1. Driving
+          // opacity from real coverage (rather than a fixed progress band) is
+          // what keeps the screen from going blank: the media can only fade
+          // while the spacer is genuinely leaving the viewport.
+          const covered = Math.max(0, Math.min(h, rect.bottom) - Math.max(0, rect.top));
+          const ratio = h > 0 ? covered / h : 0;
+          // Reach full opacity as soon as the spacer owns a quarter of the
+          // screen, so the fade happens only across a thin leading/trailing
+          // sliver and never while the spacer dominates the viewport.
+          reveal = Math.max(0, Math.min(1, ratio / 0.25));
+          // Covering: media comes forward over the cards once the spacer owns
+          // most of the viewport. Ripple bursts key off this class.
+          covering = ratio >= 0.75;
+        }
         // Track the last written value on a JS property rather than a data
         // attribute: this runs every scroll frame, and attribute writes would
         // churn the DOM and wake the class MutationObserver in ripple.js.
@@ -476,9 +500,6 @@
           el._reveal = next;
           el.style.setProperty('--reveal', next);
         }
-        // Covering: media comes forward over the cards once the spacer owns
-        // most of the viewport. Ripple bursts key off this class.
-        const covering = ratio >= 0.75;
         if (el.classList.contains('is-active') !== covering) {
           el.classList.toggle('is-active', covering);
         }
@@ -495,6 +516,7 @@
     }
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onScroll, { passive: true });
+    _interstitialUpdate = update;
     update();
   }
 
@@ -542,7 +564,7 @@
       'data-shop': bar.id, tabindex: 0, role: 'button', 'aria-pressed': String(selected === bar.id),
       'aria-label': `${bar.number}. ${bar.name}, ${bar.area}, ${locality(bar)}.${bar.status ? ` ${bar.status}.` : ''} Show bar details.`
     });
-    group.append(el('title', {}, `${bar.number}. ${bar.name}${bar.status ? ` — ${bar.status}` : ''}`));
+    group.append(el('title', {}, `${bar.number}. ${bar.name}${bar.status ? ` · ${bar.status}` : ''}`));
     group.append(el('line', {x1: x, y1: y, x2: cx, y2: cy, class: 'marker-leader'}));
     group.append(el('circle', {cx: x, cy: y, r: 2.6, class: 'location-dot'}));
     group.append(el('circle', {cx, cy, r: 20, fill: 'transparent', class: 'marker-hit'}));
@@ -638,6 +660,16 @@
       // never focuses a venue whose marker is hidden on the map.
       const stop = $(`stop-${bar.id}`);
       if (stop) stop.hidden = !ids.has(bar.id);
+    });
+    // Hide interstitials whose neighboring stops are all filtered out
+    // (issue #6: otherwise filtered-down Journey shows full-screen videos
+    // stacked back to back with almost nothing between them).
+    document.querySelectorAll('.journey-interstitial').forEach(el => {
+      const prev = el.previousElementSibling;
+      const next = el.nextElementSibling;
+      const prevVisible = prev && prev.classList.contains('stop') && !prev.hidden;
+      const nextVisible = next && next.classList.contains('stop') && !next.hidden;
+      el.hidden = !(prevVisible || nextVisible);
     });
     $('empty-state').hidden = visible.length > 0;
     $('shop-count').textContent = `${visible.length} / ${bars.length}`;
@@ -881,6 +913,12 @@
     stops.forEach(stop => reveal.observe(stop));
   })();
 
+  // Initialize interstitial fade as early as possible (issue #3: previously
+  // this only ran after the map data fetch completed, so if that failed the
+  // quotes never appeared and all autoplay videos kept playing invisibly).
+  // The Journey is server-rendered, so this needs no map data.
+  initInterstitialFade();
+
   async function init() {
     document.body.classList.add('js-active');
     try {
@@ -910,7 +948,6 @@
       $('print-map').disabled = false;
       // Wire scroll-driven camera for Journey view
       initScrollObserver();
-      initInterstitialFade();
       initMapIdle();
       // Restore a venue from the URL hash (#stop-<id>) if present and valid;
       // otherwise start on the first stop in Journey view, or fit() in Map view.

@@ -23,7 +23,7 @@
     if (canvas) return canvas;
     canvas = document.createElement('canvas');
     if (fixed) {
-      canvas.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:51';
+      canvas.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none';
     } else {
       canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2';
     }

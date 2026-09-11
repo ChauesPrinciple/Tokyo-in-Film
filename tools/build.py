@@ -118,7 +118,7 @@ def _category(bar):
 
 def _render_subvenue(sv):
     parts = []
-    parts.append(f'      <article class="subvenue" data-floor="{_esc(sv.get("floor") or "")}" tabindex="0" aria-label="{_esc(sv["name"])} - focus on map">')
+    parts.append(f'      <article class="subvenue" role="listitem" data-floor="{_esc(sv.get("floor") or "")}" tabindex="0" aria-label="{_esc(sv["name"])}">')
     parts.append(f'        <h4 class="subvenue-name">{_esc(sv["name"])}</h4>')
     aliases = sv.get('aliases') or []
     if aliases:
@@ -258,7 +258,9 @@ def render_journey(data_path):
         ('The outer reaches', 'The far outliers and the locked door'),
     ]
     # Map bar numbers to leg indices (1-based numbering, 0-based legs).
-    leg_bounds = [5, 12, 18, 21, 28, 30]  # last number in each leg
+    # Boundaries: stop 3 ends Ginza (Apollo, Star, Lamp); stop 4 (NOCTURNE,
+    # Yotsuya/Shinjuku) starts the Shinjuku leg.
+    leg_bounds = [3, 12, 18, 21, 28, 30]  # last number in each leg
     leg_of = {}
     li = 0
     for n in range(1, len(bars) + 1):
@@ -353,8 +355,9 @@ def render_journey(data_path):
             parts.append(f'<h3 class="journey-leg">{title}<span class="journey-leg-sub">{subtitle}</span></h3>')
             prev_leg = leg
         parts.append(_render_stop(bar))
-        # Insert an interstitial every 3 stops (but not after the last stop —
-        # the coda goes there instead).
+        # Insert an interstitial every 3 stops (not between legs — this gives
+        # 9 evenly-spaced transitions across the 30-stop journey). The coda
+        # goes after the last stop instead of a 10th interstitial.
         if n < total and n % 3 == 0:
             parts.append(_interstitial(interstitial_idx))
             interstitial_idx += 1
@@ -422,10 +425,13 @@ def _assert_bars_consistency():
         return
     text = html_path.read_text(encoding='utf-8')
     errors = []
-    # data-category must be single-valued
+    # data-category may be multi-valued (space-separated, e.g. "basement distant");
+    # _category() deliberately builds these and the JS/CSS read them as lists.
+    # Only flag values that contain characters that would break attribute parsing.
     for m in re.finditer(r'data-category="([^"]+)"', text):
-        if len(m.group(1).split()) > 1:
-            errors.append(f"Multi-valued data-category: '{m.group(1)}'")
+        val = m.group(1)
+        if '"' in val or '<' in val:
+            errors.append(f"Invalid data-category: '{val}'")
     # stop count == bar-count == max data-number == JSON count
     stop_count = len(re.findall(r'class="stop(?: is-spotlight)?"\s', text))
     data_numbers = [int(n) for n in re.findall(r'data-number="(\d+)"', text)]
