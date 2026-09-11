@@ -398,25 +398,42 @@
       font-size: 12px; font-weight: 400; letter-spacing: .04em; color: var(--muted);
       text-transform: uppercase;
     }
+    /* Full-screen interstitial transitions between journey legs.
+       The .journey-interstitial element itself is a transparent spacer
+       (height: 100vh) that creates scroll space in the flow. The video,
+       gradient overlay, and ripple canvas are all position: fixed so they
+       cover the entire viewport regardless of the grid column they live in.
+       An IntersectionObserver (bars-map.js) toggles .is-active to fade
+       them in/out as the spacer scrolls through the viewport. */
     .journey-interstitial {
-      position: sticky; top: 0; left: 0; width: 100vw; height: 100vh;
-      margin-left: calc(-50vw + 50%); margin-right: calc(-50vw + 50%);
-      margin-top: 0; margin-bottom: 0; z-index: 50;
-      overflow: hidden; background: #0a0810;
-    }
-    .journey-interstitial video {
-      width: 100%; height: 100%; object-fit: cover; display: block;
-      filter: brightness(.6) contrast(1.15) saturate(1.1);
-    }
-    .journey-interstitial canvas {
-      position: absolute; inset: 0; width: 100%; height: 100%;
-      pointer-events: none; z-index: 2;
-    }
-    .journey-interstitial::after {
-      content: ''; position: absolute; inset: 0; z-index: 1;
-      background: linear-gradient(to bottom, rgba(10,8,16,.5), rgba(10,8,16,.7));
+      position: relative;
+      height: 100vh;
+      margin: 0;
+      z-index: 50;
       pointer-events: none;
     }
+    .journey-interstitial video {
+      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+      object-fit: cover; display: block;
+      filter: brightness(.6) contrast(1.15) saturate(1.1);
+      opacity: 1; transition: opacity .8s ease;
+      z-index: 50;
+    }
+    .journey-interstitial canvas {
+      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+      pointer-events: none; z-index: 51;
+    }
+    .journey-interstitial::after {
+      content: ''; position: fixed; inset: 0; z-index: 50;
+      background: linear-gradient(to bottom, rgba(10,8,16,.5), rgba(10,8,16,.7));
+      pointer-events: none;
+      opacity: 1; transition: opacity .8s ease;
+    }
+    /* When JS is active, hide interstitial media until the observer adds .is-active */
+    body.js-active .journey-interstitial video,
+    body.js-active .journey-interstitial::after { opacity: 0; }
+    body.js-active .journey-interstitial.is-active video,
+    body.js-active .journey-interstitial.is-active::after { opacity: 1; }
 
     /* Fade-in: stops start dimmed and lifted, then settle as they enter. */
     .stop {
@@ -595,8 +612,8 @@
       .sources a { text-decoration: none; }
     }
   </style>
-  <script src="js/ripple.js?v=3de68f98" defer></script>
-  <script src="js/bars-map.js?v=d45eb545" defer></script>
+  <script src="js/ripple.js?v=d0c2ccd9" defer></script>
+  <script src="js/bars-map.js?v=fef50310" defer></script>
 </head>
 <body>
   <div class="bars-bg" aria-hidden="true">
@@ -680,7 +697,7 @@
     <p class="stop-summary">Chuo ward, Tokyo · Cocktail bar · B1F</p>
     <p class="stop-description">A Ginza cocktail bar with a modern, relaxed feel compared to the old-school counters nearby. Good for a long evening that starts here and moves.</p>
     <figure class="stop-media">
-      <video class="stop-video" muted loop playsinline preload="metadata">
+      <video class="stop-video" muted loop playsinline autoplay preload="metadata">
         <source src="assets/movie/apollo-bar.webm" type="video/webm">
         <source src="assets/movie/apollo-bar.mp4" type="video/mp4">
       </video>
@@ -766,7 +783,7 @@
       <a class="stop-link stop-link-primary" href="https://www.google.com/maps/place/The+Pizza+Bar+On+38th/data=!4m2!3m1!1s0x6018895562e77a3b:0xe3c077a9dbbe0dcd" target="_blank" rel="noopener noreferrer">Open in Maps</a>
     </p>
   </section>
-<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline preload="metadata"><source src="assets/movie/interstitial-1.webm" type="video/webm"><source src="assets/movie/interstitial-1.mp4" type="video/mp4"></video></figure>
+<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline autoplay preload="metadata"><source src="assets/movie/interstitial-1.webm" type="video/webm"><source src="assets/movie/interstitial-1.mp4" type="video/mp4"></video></figure>
 <h3 class="journey-leg">Shinjuku<span class="journey-leg-sub">Late evening: hotel bars, speakeasies, Golden Gai</span></h3>
   <section class="stop" id="stop-new-york-bar" data-stop="new-york-bar" data-number="6" data-category="highrise">
     <header class="stop-head">
@@ -926,7 +943,7 @@
       <a class="stop-link" href="https://www.openbook.tokyo/en" target="_blank" rel="noopener noreferrer">OPEN BOOK at openbook.tokyo</a>
     </p>
   </section>
-<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline preload="metadata"><source src="assets/movie/interstitial-2.webm" type="video/webm"><source src="assets/movie/interstitial-2.mp4" type="video/mp4"></video></figure>
+<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline autoplay preload="metadata"><source src="assets/movie/interstitial-2.webm" type="video/webm"><source src="assets/movie/interstitial-2.mp4" type="video/mp4"></video></figure>
 <h3 class="journey-leg">Shibuya &amp; Ebisu &amp; Meguro<span class="journey-leg-sub">Midnight: coffee shops that aren’t, jazz rooms</span></h3>
   <section class="stop" id="stop-fightclub" data-stop="fightclub" data-number="13" data-floor="1F">
     <header class="stop-head">
@@ -957,7 +974,7 @@
     <p class="stop-summary">Shibuya ward, Tokyo · Speakeasy · B1F</p>
     <p class="stop-description">It is called a coffee shop. It is not a coffee shop. JANAI means &#x27;not this&#x27;. the door is a speakeasy entrance, and what is behind it is a bar. Go down the stairs, find the door, and order a drink. The coffee is a cover story.</p>
     <figure class="stop-media">
-      <video class="stop-video" muted loop playsinline preload="metadata">
+      <video class="stop-video" muted loop playsinline autoplay preload="metadata">
         <source src="assets/movie/janai-coffee.webm" type="video/webm">
         <source src="assets/movie/janai-coffee.mp4" type="video/mp4">
       </video>
@@ -981,7 +998,7 @@
     <p class="stop-summary">Shibuya ward, Tokyo · Bar · B1F</p>
     <p class="stop-description">An Ebisu bar around the corner from JANAI. Small, focused, and easy to miss if you are not looking for it.</p>
     <figure class="stop-media">
-      <video class="stop-video" muted loop playsinline preload="metadata">
+      <video class="stop-video" muted loop playsinline autoplay preload="metadata">
         <source src="assets/movie/a10.webm" type="video/webm">
         <source src="assets/movie/a10.mp4" type="video/mp4">
       </video>
@@ -1048,7 +1065,7 @@
       <a class="stop-link stop-link-primary" href="http://maps.google.com/?cid=911402204683980032" target="_blank" rel="noopener noreferrer">Open in Maps</a>
     </p>
   </section>
-<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline preload="metadata"><source src="assets/movie/interstitial-3.webm" type="video/webm"><source src="assets/movie/interstitial-3.mp4" type="video/mp4"></video></figure>
+<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline autoplay preload="metadata"><source src="assets/movie/interstitial-3.webm" type="video/webm"><source src="assets/movie/interstitial-3.mp4" type="video/mp4"></video></figure>
 <h3 class="journey-leg">Minato &amp; Roppongi<span class="journey-leg-sub">Deep night: Azabujuban counters and Roppongi basements</span></h3>
   <section class="stop" id="stop-gen-yamamoto" data-stop="gen-yamamoto" data-number="19" data-floor="1F">
     <header class="stop-head">
@@ -1104,7 +1121,7 @@
       <a class="stop-link stop-link-primary" href="https://www.google.com/maps/place/ROKUSAN+ANGEL%EF%BC%88Burlesque+Tokyo%EF%BC%89/data=!4m2!3m1!1s0x60188b78685d2fcb:0x949f91afc7f95845" target="_blank" rel="noopener noreferrer">Open in Maps</a>
     </p>
   </section>
-<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline preload="metadata"><source src="assets/movie/interstitial-4.webm" type="video/webm"><source src="assets/movie/interstitial-4.mp4" type="video/mp4"></video></figure>
+<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline autoplay preload="metadata"><source src="assets/movie/interstitial-4.webm" type="video/webm"><source src="assets/movie/interstitial-4.mp4" type="video/mp4"></video></figure>
 <h3 class="journey-leg">East Tokyo<span class="journey-leg-sub">After hours: Kanda to Ueno to Bunkyo</span></h3>
   <section class="stop" id="stop-bar-under" data-stop="bar-under" data-number="22" data-floor="B1F" data-category="basement">
     <header class="stop-head">
@@ -1172,7 +1189,7 @@
     <p class="stop-summary">Taito ward, Tokyo · Bar · 6F-E</p>
     <p class="stop-description">A bar on the 6th floor of the 88 Building in Ueno. Antique chairs, a long cocktail and whisky list, and a counter that welcomes first-timers. The kind of hidden-floor Tokyo bar you have to know the elevator for.</p>
     <figure class="stop-media">
-      <video class="stop-video" muted loop playsinline preload="metadata">
+      <video class="stop-video" muted loop playsinline autoplay preload="metadata">
         <source src="assets/movie/bar-willows.webm" type="video/webm">
         <source src="assets/movie/bar-willows.mp4" type="video/mp4">
       </video>
@@ -1240,7 +1257,7 @@
       <a class="stop-link" href="http://www.jazzeigakan.com/" target="_blank" rel="noopener noreferrer">Official site</a>
     </p>
   </section>
-<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline preload="metadata"><source src="assets/movie/interstitial-5.webm" type="video/webm"><source src="assets/movie/interstitial-5.mp4" type="video/mp4"></video></figure>
+<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline autoplay preload="metadata"><source src="assets/movie/interstitial-5.webm" type="video/webm"><source src="assets/movie/interstitial-5.mp4" type="video/mp4"></video></figure>
 <h3 class="journey-leg">The outer reaches<span class="journey-leg-sub">The far outliers and the locked door</span></h3>
   <section class="stop" id="stop-shooting-bar-ea" data-stop="shooting-bar-ea" data-number="29" data-floor="2F" data-category="distant">
     <header class="stop-head">

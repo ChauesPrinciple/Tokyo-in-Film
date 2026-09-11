@@ -8,26 +8,38 @@
 
   const ripples = [];
 
-  function ensureCanvas(el) {
+  function ensureCanvas(el, fixed) {
     let canvas = el.querySelector('canvas');
     if (canvas) return canvas;
     canvas = document.createElement('canvas');
-    canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2';
+    if (fixed) {
+      canvas.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:51';
+    } else {
+      canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2';
+    }
     el.appendChild(canvas);
     return canvas;
   }
 
-  function sizeCanvas(el) {
-    const canvas = ensureCanvas(el);
-    const rect = el.getBoundingClientRect();
+  function sizeCanvas(el, viewport = false) {
+    const canvas = ensureCanvas(el, viewport);
     const dpr = window.devicePixelRatio || 1;
-    canvas.width = rect.width * dpr;
-    canvas.height = rect.height * dpr;
-    canvas.style.width = rect.width + 'px';
-    canvas.style.height = rect.height + 'px';
+    let w, h;
+    if (viewport) {
+      w = window.innerWidth;
+      h = window.innerHeight;
+    } else {
+      const rect = el.getBoundingClientRect();
+      w = rect.width;
+      h = rect.height;
+    }
+    canvas.width = w * dpr;
+    canvas.height = h * dpr;
+    canvas.style.width = w + 'px';
+    canvas.style.height = h + 'px';
     const ctx = canvas.getContext('2d');
     if (ctx) ctx.scale(dpr, dpr);
-    return {canvas, ctx, rect};
+    return {canvas, ctx, rect: {width: w, height: h}};
   }
 
   function spawnRipple(canvas, ctx, rect, x, y, opts = {}) {
@@ -81,7 +93,10 @@
     if (ripples.length) requestAnimationFrame(animate);
   }
 
-  // Interstitial ripple transitions
+  // Interstitial ripple transitions. The interstitial itself is a transparent
+  // 100vh spacer in the scroll flow; the video/canvas/overlay are position:fixed
+  // and faded in/out via an .is-active class (handled in bars-map.js). Here we
+  // size the canvas to the viewport and spawn a ripple burst on enter/exit.
   const interstitials = document.querySelectorAll('.journey-interstitial');
   if (interstitials.length) {
     interstitials.forEach(el => {
@@ -91,7 +106,7 @@
         for (const e of entries) {
           if (!sized && e.isIntersecting) {
             sized = true;
-            el._sized = sizeCanvas(el);
+            el._sized = sizeCanvas(el, true);
           }
           if (e.isIntersecting && e.intersectionRatio > 0.3 && !hasBurstIn && el._sized) {
             hasBurstIn = true;
@@ -136,7 +151,10 @@
     if (resizeTimer) clearTimeout(resizeTimer);
     resizeTimer = setTimeout(() => {
       resizeTimer = null;
-      document.querySelectorAll('.journey-interstitial, [data-ripple]').forEach(el => {
+      document.querySelectorAll('.journey-interstitial').forEach(el => {
+        if (el._sized) el._sized = sizeCanvas(el, true);
+      });
+      document.querySelectorAll('[data-ripple]').forEach(el => {
         if (el._sized) el._sized = sizeCanvas(el);
       });
     }, 200);

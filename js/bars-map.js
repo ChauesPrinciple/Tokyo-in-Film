@@ -437,6 +437,27 @@
     });
   }
 
+  // --- Interstitial fade in/out ---
+  // Each .journey-interstitial is a transparent 100vh spacer in the scroll
+  // flow. Its video/overlay are position: fixed (covering the full viewport).
+  // This observer toggles .is-active to fade them in when the spacer is
+  // centered in the viewport and out when it leaves. Runs independently of
+  // ripple.js so the fade works even under reduced-motion (ripple.js no-ops).
+  function initInterstitialFade() {
+    const interstitials = document.querySelectorAll('.journey-interstitial');
+    if (!interstitials.length) return;
+    const io = new IntersectionObserver(entries => {
+      for (const e of entries) {
+        if (e.isIntersecting && e.intersectionRatio > 0.3) {
+          e.target.classList.add('is-active');
+        } else {
+          e.target.classList.remove('is-active');
+        }
+      }
+    }, { threshold: [0, 0.3, 0.6, 0.9] });
+    interstitials.forEach(el => io.observe(el));
+  }
+
   function scrollToStop(id) {
     const stop = $(`stop-${id}`);
     if (stop) stop.scrollIntoView({block: 'start', behavior: 'smooth'});
@@ -813,6 +834,7 @@
       $('print-map').disabled = false;
       // Wire scroll-driven camera for Journey view
       initScrollObserver();
+      initInterstitialFade();
       // Restore a venue from the URL hash (#stop-<id>) if present and valid;
       // otherwise start on the first stop in Journey view, or fit() in Map view.
       const hashMatch = /^#stop-(.+)$/.exec(location.hash);
