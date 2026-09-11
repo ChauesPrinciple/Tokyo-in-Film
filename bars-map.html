@@ -81,7 +81,7 @@
     .masthead nav a:hover { color: var(--mark-ink); text-decoration: underline; }
 
     .page-header {
-      position: relative; padding: 60px 0 120px; margin: 0 -20px; padding-left: 20px; padding-right: 20px;
+      position: relative; padding: 60px 0 60px; margin: 0 -20px; padding-left: 20px; padding-right: 20px;
       border-radius: 0 0 12px 12px; overflow: hidden;
       display: flex; align-items: flex-end; gap: 48px;
     }
@@ -95,7 +95,7 @@
       background: linear-gradient(to bottom, rgba(20,18,28,.35), rgba(20,18,28,.6));
     }
     .page-header-text { flex: 1 1 auto; min-width: 0; }
-    .page-header .epigraph { flex: 0 0 80ch; max-width: 80ch; }
+    .page-header .epigraph { flex: 1 1 60ch; max-width: 80ch; min-width: 0; }
     .page-header h1 {
       margin: 0; font-size: clamp(40px, 5.5vw, 64px); font-weight: 700; letter-spacing: -.025em; line-height: 1.05;
       color: #f5f0e8;
@@ -111,7 +111,7 @@
     .epigraph p { margin: 0; font-size: 26px; line-height: 1.55; color: var(--ink-soft); font-style: italic; }
     .epigraph figcaption { margin-top: 12px; font-size: 16px; color: var(--muted); letter-spacing: .03em; }
 
-    .films { margin-top: 34px; border-top: 1px solid var(--line); padding-top: 22px; }
+    .films { margin-top: 34px; border-top: 1px solid var(--line); padding-top: 22px; position: relative; z-index: 10; }
     .films h2 {
       margin: 0 0 16px; font-size: 12px; font-weight: 700;
       letter-spacing: .14em; text-transform: uppercase; color: var(--mark-ink);
@@ -361,7 +361,7 @@
       .page-shell { padding: 0 16px 24px; }
       .masthead { gap: 14px; padding: 16px 0 12px; }
       .masthead nav { gap: 14px; font-size: 12px; }
-      .page-header { padding: 20px 0 90px; margin: 0 -16px; padding-left: 16px; padding-right: 16px; }
+      .page-header { padding: 20px 0 40px; margin: 0 -16px; padding-left: 16px; padding-right: 16px; }
       .list-controls { grid-template-columns: 1fr; }
       .shop-card { padding: 13px 14px 14px; }
       .shop-select { font-size: 15px; }
@@ -369,7 +369,7 @@
 
     /* View switch — Journey vs Map & list. Both views share the sticky map. */
     .view-switch {
-      display: flex; gap: 4px; margin: 14px 0 18px;
+      display: flex; align-items: center; gap: 4px; margin: 14px 0 18px;
       padding: 4px; background: var(--panel); border: 1px solid var(--line);
       border-radius: 999px; width: fit-content;
     }
@@ -381,6 +381,9 @@
     .view-tab:hover { color: var(--ink); }
     .view-tab.is-active { background: var(--accent); color: #fff; }
     .view-tab:focus-visible { outline: 2px solid var(--mark-ink); outline-offset: 2px; }
+    .toggle-follow { font-size: 12px; color: var(--muted); padding: 0 10px; cursor: pointer; user-select: none; }
+    .toggle-follow input { margin-right: 4px; }
+    .layout[data-view="map"] .toggle-follow { display: none; }
 
     /* Journey view — an ethereal scroll through the night.
        Japanese aliases run vertically (縦書き) in Shippori Mincho, the way a
@@ -392,7 +395,7 @@
     .map-view.is-active { display: block; }
 
     .journey-scroll { max-width: 760px; margin: 0 auto; padding: 0 0 40px; }
-    .journey-view.is-active .journey-scroll { margin-top: -90px; position: relative; z-index: 1; }
+    .journey-view.is-active .journey-scroll { position: relative; z-index: 1; }
     .journey-leg {
       margin: 48px 0 24px; padding: 0 0 8px; border-bottom: 1px solid var(--line);
       font-size: 18px; font-weight: 700; letter-spacing: -.01em; color: var(--mark-ink);
@@ -641,7 +644,7 @@
         margin: 0 0 12px;
       }
       .page-header { flex-direction: column; gap: 20px; }
-      .page-header .epigraph { max-width: none; }
+      .page-header .epigraph { max-width: none; flex-basis: auto; }
       .page-header .lede { max-width: none; }
     }
 
@@ -668,7 +671,7 @@
       .map-marker.is-spotlight .marker-number { color: #fff; fill: #fff; }
       .shop-card.is-spotlight .shop-status { background: var(--glow); color: #fff; }
       .page-shell { max-width: none; margin: 0; padding: 0 12px; }
-      .skip-link, .masthead nav, .map-toolbar, .toggle, .list-controls, #source-notes, #map-status, .map-hint, .shop-note, .shop-links, noscript, .films, .view-switch, .journey-intro, .journey-interstitial, .journey-coda, .stop-links, .map-view { display: none !important; }
+      .skip-link, .masthead nav, .map-toolbar, .toggle, .list-controls, #source-notes, #map-status, .map-hint, .shop-note, .shop-links, noscript, .films, .view-switch, .journey-interstitial, .journey-coda, .stop-links, .map-view, .toggle-follow { display: none !important; }
       .journey-view { display: block !important; }
       .journey-scroll { max-width: none; padding: 0; }
       /* Stops fade in on scroll; unrevealed ones (or all of them, when printing
@@ -686,9 +689,8 @@
       .stop-facts { font-size: 8.5pt; }
       .subvenue { border-color: var(--line); }
       .masthead { padding: 0 0 2mm; border-bottom-color: var(--line); }
-      .page-header { padding: 10mm 0 5mm; display: block; }
+      .page-header { padding: 10mm 0 5mm; display: block; margin: 0; }
       .page-header::before, .page-header::after { display: none; }
-      .journey-view.is-active .journey-scroll { margin-top: 0; }
       .page-header h1 { font-size: 24pt; color: #14121c; }
       .lede { font-size: 8pt; }
       .epigraph { margin: 2mm 0 0; padding-left: 3mm; border-left-width: 2px; break-inside: avoid; max-width: none; }
@@ -709,7 +711,7 @@
     }
   </style>
   <script src="js/ripple.js?v=72736e8d" defer></script>
-  <script src="js/bars-map.js?v=304d53c1" defer></script>
+  <script src="js/bars-map.js?v=60e43b12" defer></script>
 </head>
 <body>
   <div class="bars-bg" aria-hidden="true">
@@ -750,6 +752,7 @@
     <div class="view-switch" role="tablist" aria-label="View mode">
       <button type="button" id="view-journey" class="view-tab is-active" role="tab" aria-selected="true" aria-controls="journey-view">Journey</button>
       <button type="button" id="view-map" class="view-tab" role="tab" aria-selected="false" aria-controls="map-view">Map & list</button>
+      <label class="toggle toggle-follow"><input type="checkbox" id="follow-reading" checked> Follow map</label>
     </div>
     <main class="layout" data-view="journey">
       <section class="map-stage" aria-label="Map">
@@ -758,7 +761,6 @@
           <button type="button" id="zoom-out" aria-label="Zoom out">&minus;</button>
           <button type="button" id="fit-map">Fit</button>
           <label class="toggle"><input type="checkbox" id="show-transit" checked> Subway</label>
-          <label class="toggle"><input type="checkbox" id="follow-reading" checked> Follow</label>
           <button type="button" id="print-map" disabled>Print</button>
         </div>
         <div class="map-frame">
@@ -850,7 +852,7 @@
     </div>
   </section>
 <figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline autoplay preload="metadata"><source src="assets/movie/interstitial-1.webm" type="video/webm"><source src="assets/movie/interstitial-1.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>If you only read the books that everyone else is reading, you can only think what everyone else is thinking.</blockquote><cite>Norwegian Wood</cite></figcaption></figure>
-<h3 class="journey-leg">Shinjuku<span class="journey-leg-sub">Late evening: hotel bars, speakeasies, Golden Gai</span></h3>
+<h3 class="journey-leg">Shinjuku<span class="journey-leg-sub">Late evening: Yotsuya whisky, a Nihonbashi counter, hotel bars, speakeasies, Golden Gai</span></h3>
   <section class="stop" id="stop-nocturne" data-stop="nocturne" data-number="4" style="--alias-cols:2">
     <div class="stop-body">
       <header class="stop-head">

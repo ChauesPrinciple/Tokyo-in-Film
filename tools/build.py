@@ -251,7 +251,7 @@ def render_journey(data_path):
     # night. Each leg gets a header so the reader can see the structure.
     legs = [
         ('Ginza &amp; Nihonbashi', 'Early evening: cocktails and counters'),
-        ('Shinjuku', 'Late evening: hotel bars, speakeasies, Golden Gai'),
+        ('Shinjuku', 'Late evening: Yotsuya whisky, a Nihonbashi counter, hotel bars, speakeasies, Golden Gai'),
         ('Shibuya &amp; Ebisu &amp; Meguro', 'Midnight: coffee shops that aren\u2019t, jazz rooms'),
         ('Minato &amp; Roppongi', 'Deep night: Azabujuban counters and Roppongi basements'),
         ('East Tokyo', 'After hours: Kanda to Ueno to Bunkyo'),

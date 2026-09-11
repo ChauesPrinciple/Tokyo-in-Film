@@ -522,6 +522,7 @@
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onScroll, { passive: true });
     _interstitialUpdate = update;
+    window._interstitialUpdate = update;
     update();
   }
 
@@ -675,6 +676,17 @@
       const prevVisible = prev && prev.classList.contains('stop') && !prev.hidden;
       const nextVisible = next && next.classList.contains('stop') && !next.hidden;
       el.hidden = !(prevVisible || nextVisible);
+    });
+    // Hide leg headings when every stop in that leg is filtered out,
+    // so they don't sit between two visible interstitials as dead space.
+    document.querySelectorAll('.journey-leg').forEach(leg => {
+      let sib = leg.nextElementSibling;
+      let anyVisible = false;
+      while (sib && !sib.classList.contains('journey-leg') && sib.tagName !== 'FIGURE') {
+        if (sib.classList.contains('stop') && !sib.hidden) { anyVisible = true; break; }
+        sib = sib.nextElementSibling;
+      }
+      leg.hidden = !anyVisible;
     });
     $('empty-state').hidden = visible.length > 0;
     $('shop-count').textContent = `${visible.length} / ${bars.length}`;
