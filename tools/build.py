@@ -274,12 +274,11 @@ def render_journey(data_path):
     # Interstitial transit clips — stairwell footage spliced from the
     # JANAI COFFEE approach video (3-second increments). Inserted every
     # 3 stops so the reader scrolls through movement between neighborhoods.
-    # Clip order goes warm → neon: start with the soft-lit stairwell,
-    # end with the dark neon, cycling through the 5 available clips.
-    # Raw brightness values (clip 5=71, 3=51, 4=48, 1=42, 2=29) did not
-    # match perceived character: clip 5 reads as neon, clip 3 as warm.
-    # Reversed so the first interstitial is soft and the last is neon.
-    CLIP_ORDER = [2, 4, 3, 5, 1, 2, 4, 3, 5]
+    # 9 unique 3-second clips from the JANAI source (15-40s range), each from
+    # a different offset so every interstitial feels distinct. Order goes
+    # warm → neon: early clips are the soft-lit stairwell approach, later
+    # clips descend into darker neon-lit sections.
+    CLIP_ORDER = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
     # Murakami quotes flashed on the full-screen interstitials. Dropped the
     # two least relevant to the night-journey arc: the books/reading quote
