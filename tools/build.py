@@ -281,11 +281,11 @@ def render_journey(data_path):
     CLIP_ORDER = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
     # Murakami quotes flashed on the full-screen interstitials. Dropped the
-    # two least relevant to the night-journey arc: the books/reading quote
-    # (Norwegian Wood) and the unverified suffering quote (widely attributed
-    # to Norwegian Wood but not confirmable in the text). The remaining 8
-    # go on interstitials 1-8; the storm quote is the coda after SAKEBARO.
+    # unverified suffering quote (widely attributed to Norwegian Wood but not
+    # confirmable in the text). The remaining 10 go on interstitials 1-9;
+    # the storm quote is the coda after SAKEBARO.
     INTERSTITIAL_QUOTES = [
+        ('If you only read the books that everyone else is reading, you can only think what everyone else is thinking.', 'Norwegian Wood'),
         ('I dream. Sometimes I think that\u2019s the only right thing to do.', 'Sputnik Sweetheart'),
         ('Even in the smallest events there\u2019s no such thing as coincidence.', 'Kafka on the Shore'),
         ('In this world, there are things you can only do alone, and things you can only do with somebody else.', 'After Dark'),
