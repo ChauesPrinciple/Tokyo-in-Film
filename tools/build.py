@@ -247,22 +247,23 @@ def render_journey(data_path):
         'with its floor, its address, and a note on what it is. '
         'Switch to Map &amp; list to see them all at once.</p>'
     ]
-    # Interstitial transit clips inserted between legs — walking footage
-    # that gives the feeling of moving through Tokyo between neighborhoods.
-    # Keyed by the leg index they appear BEFORE (0 = before leg 0, etc.)
+    # Interstitial transit clips inserted between legs — stairwell footage
+    # spliced from the JANAI COFFEE approach video (3-second increments).
+    # Keyed by the leg index they appear BEFORE (1 = before leg 1, etc.)
     interstitials = {
-        1: ('assets/movie/interstitial-hallway.webm', 'assets/movie/interstitial-hallway.mp4',
-            'Walking down a narrow hallway'),
-        2: ('assets/movie/interstitial-stairs.webm', 'assets/movie/interstitial-stairs.mp4',
-            'Descending stairs'),
+        1: ('assets/movie/interstitial-1.webm', 'assets/movie/interstitial-1.mp4'),
+        2: ('assets/movie/interstitial-2.webm', 'assets/movie/interstitial-2.mp4'),
+        3: ('assets/movie/interstitial-3.webm', 'assets/movie/interstitial-3.mp4'),
+        4: ('assets/movie/interstitial-4.webm', 'assets/movie/interstitial-4.mp4'),
+        5: ('assets/movie/interstitial-5.webm', 'assets/movie/interstitial-5.mp4'),
     }
 
     def _interstitial(leg_idx):
         if leg_idx not in interstitials:
             return ''
-        webm, mp4, alt = interstitials[leg_idx]
+        webm, mp4 = interstitials[leg_idx]
         return (
-            f'<figure class="journey-interstitial" aria-label="{_esc(alt)}">'
+            f'<figure class="journey-interstitial" aria-label="Stairwell transition">'
             f'<video class="stop-video" muted loop playsinline autoplay preload="metadata">'
             f'<source src="{_esc(webm)}" type="video/webm">'
             f'<source src="{_esc(mp4)}" type="video/mp4">'
