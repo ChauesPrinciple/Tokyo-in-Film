@@ -1,12 +1,21 @@
 // Ripple transition effect for interstitials.
-// When a .journey-interstitial enters the viewport, a ripple burst plays
-// from the center outward. When it leaves, another burst plays.
-// Also adds hover ripples to any [data-ripple] figures that still exist.
+// Uses normalized animation progress (0 → 1) with easing curves so radius,
+// opacity, and line width are each controlled independently. This replaces
+// the old asymptotic-growth model that died from opacity before reaching
+// its intended size.
+//
+// Interstitial ripples fire when the .is-active stage class is toggled
+// (the transition is at full visibility). Hover ripples on [data-ripple]
+// figures are also supported for legacy stop-image figures.
 (() => {
   'use strict';
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   const ripples = [];
+
+  // --- Easing functions ---
+  const easeOutCubic = t => 1 - Math.pow(1 - t, 3);
+  const easeInOutCubic = t => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
 
   function ensureCanvas(el, fixed) {
     let canvas = el.querySelector('canvas');
@@ -39,52 +48,80 @@
     canvas.style.height = h + 'px';
     const ctx = canvas.getContext('2d');
     if (ctx) ctx.scale(dpr, dpr);
-    return {canvas, ctx, rect: {width: w, height: h}};
+    return {canvas, ctx, w, h};
   }
 
-  function spawnRipple(canvas, ctx, rect, x, y, opts = {}) {
-    const maxR = opts.maxRadius || Math.max(rect.width, rect.height) * 0.8;
+  // Create a ripple with normalized progress. The ripple expands from 0 to
+  // maxRadius over `duration` ms, with opacity and line width derived from
+  // the same progress value via independent curves.
+  function spawnRipple(canvas, ctx, w, h, x, y, opts = {}) {
+    const maxR = opts.maxRadius || Math.max(w, h) * 0.85;
+    const duration = opts.duration || 1400;
+    const peakAlpha = opts.alpha || 0.55;
+    const startWidth = opts.lineWidth || 2.5;
     ripples.push({
-      canvas, ctx, rect,
+      canvas, ctx,
       x, y,
-      radius: 0, maxRadius: maxR,
-      alpha: opts.alpha || 0.5,
-      lineWidth: opts.lineWidth || 2,
-      decay: opts.decay || 0.97,
-      growth: opts.growth || 0.06
+      startTime: performance.now(),
+      duration,
+      maxRadius: maxR,
+      peakAlpha,
+      startWidth,
+      color: opts.color || '200, 190, 235'
     });
     if (ripples.length === 1) requestAnimationFrame(animate);
   }
 
-  function spawnBurst(canvas, ctx, rect) {
-    // Multiple ripples from center for a richer effect
-    const cx = rect.width / 2;
-    const cy = rect.height / 2;
-    spawnRipple(canvas, ctx, rect, cx, cy, {alpha: 0.6, lineWidth: 2.5, growth: 0.05});
-    setTimeout(() => spawnRipple(canvas, ctx, rect, cx, cy, {alpha: 0.4, lineWidth: 2, growth: 0.07}), 150);
-    setTimeout(() => spawnRipple(canvas, ctx, rect, cx, cy, {alpha: 0.3, lineWidth: 1.5, growth: 0.09}), 300);
+  // A cinematic burst: 3 staggered ripples from center, each larger and
+  // longer than the last, creating a layered expansion effect.
+  function spawnBurst(canvas, ctx, w, h) {
+    const cx = w / 2;
+    const cy = h / 2;
+    const base = Math.max(w, h);
+    spawnRipple(canvas, ctx, w, h, cx, cy, {
+      alpha: 0.65, lineWidth: 3, duration: 1600,
+      maxRadius: base * 0.7
+    });
+    setTimeout(() => spawnRipple(canvas, ctx, w, h, cx, cy, {
+      alpha: 0.45, lineWidth: 2, duration: 1800,
+      maxRadius: base * 0.85
+    }), 200);
+    setTimeout(() => spawnRipple(canvas, ctx, w, h, cx, cy, {
+      alpha: 0.3, lineWidth: 1.5, duration: 2000,
+      maxRadius: base
+    }), 450);
   }
 
   function animate() {
+    const now = performance.now();
     const alive = [];
     const byCanvas = new Map();
     for (const r of ripples) {
-      r.radius += (r.maxRadius - r.radius) * r.growth;
-      r.alpha *= r.decay;
-      if (r.alpha > 0.02) {
-        alive.push(r);
+      const elapsed = now - r.startTime;
+      const t = Math.min(1, elapsed / r.duration);
+      if (t < 1) alive.push(r);
+      // Eased progress for radius (ease-out: fast expansion, slow settle)
+      const easedR = easeOutCubic(t);
+      // Opacity: hold near peak early, then fade out (ease-in-out)
+      const alphaT = easeInOutCubic(t);
+      const alpha = r.peakAlpha * (1 - alphaT);
+      // Line width: thins as it expands
+      const width = r.startWidth * (1 - t * 0.6);
+      if (alpha > 0.01 && width > 0.1) {
         if (!byCanvas.has(r.canvas)) byCanvas.set(r.canvas, []);
-        byCanvas.get(r.canvas).push(r);
+        byCanvas.get(r.canvas).push({r, easedR, alpha, width});
       }
     }
     for (const [canvas, group] of byCanvas) {
-      const ctx = group[0].ctx;
+      const ctx = group[0].r.ctx;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      for (const r of group) {
+      for (const item of group) {
+        const {r, easedR, alpha, width} = item;
+        const radius = easedR * r.maxRadius;
         ctx.beginPath();
-        ctx.arc(r.x, r.y, r.radius, 0, Math.PI * 2);
-        ctx.strokeStyle = `rgba(200, 190, 235, ${r.alpha})`;
-        ctx.lineWidth = r.lineWidth;
+        ctx.arc(r.x, r.y, radius, 0, Math.PI * 2);
+        ctx.strokeStyle = `rgba(${r.color}, ${alpha})`;
+        ctx.lineWidth = width;
         ctx.stroke();
       }
     }
@@ -98,7 +135,7 @@
   // and faded in/out via staged classes (is-entering → is-active → is-exiting)
   // driven by bars-map.js. Here we size the canvas to the viewport on first
   // intersection, then fire a ripple burst when .is-active is added (the
-  // moment the transition is at full visibility) and again when it's removed.
+  // moment the transition reaches full visibility) and again when it leaves.
   const interstitials = document.querySelectorAll('.journey-interstitial');
   if (interstitials.length) {
     interstitials.forEach(el => {
@@ -117,13 +154,13 @@
       // Fire ripple bursts when the .is-active stage class is toggled.
       const classIo = new MutationObserver(() => {
         if (!el._sized) return;
-        const {canvas, ctx, rect} = el._sized;
+        const {canvas, ctx, w, h} = el._sized;
         if (el.classList.contains('is-active') && !hasBurst) {
           hasBurst = true;
-          spawnBurst(canvas, ctx, rect);
+          spawnBurst(canvas, ctx, w, h);
         } else if (!el.classList.contains('is-active') && hasBurst) {
           hasBurst = false;
-          spawnBurst(canvas, ctx, rect);
+          spawnBurst(canvas, ctx, w, h);
         }
       });
       classIo.observe(el, { attributes: true, attributeFilter: ['class'] });
@@ -142,9 +179,11 @@
         figure._lastRipple = performance.now();
         if (!sized) { figure._sized = sizeCanvas(figure); sized = true; }
         if (!figure._sized) return;
-        const {canvas, ctx, rect} = figure._sized;
-        spawnRipple(canvas, ctx, rect, e.clientX - rect.left, e.clientY - rect.top,
-                    {alpha: 0.35, lineWidth: 1.5, growth: 0.04, decay: 0.96});
+        const {canvas, ctx, w, h} = figure._sized;
+        const rect = figure.getBoundingClientRect();
+        spawnRipple(canvas, ctx, w, h, e.clientX - rect.left, e.clientY - rect.top,
+                    {alpha: 0.35, lineWidth: 1.5, duration: 800,
+                     maxRadius: Math.max(w, h) * 0.3});
       });
     };
     if (img.complete && img.naturalWidth) start();
