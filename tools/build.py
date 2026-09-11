@@ -255,8 +255,6 @@ def render_journey(data_path):
             'Walking down a narrow hallway'),
         2: ('assets/movie/interstitial-stairs.webm', 'assets/movie/interstitial-stairs.mp4',
             'Descending stairs'),
-        3: ('assets/movie/janai-coffee.webm', 'assets/movie/janai-coffee.mp4',
-            'Finding the door'),
     }
 
     def _interstitial(leg_idx):
