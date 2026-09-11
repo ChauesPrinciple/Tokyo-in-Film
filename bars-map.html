@@ -483,24 +483,10 @@
       color: rgba(255, 200, 210, 0.75);
     }
 
-    /* Closing quote after the final stop (SAKEBARO spotlight). Same
-       prominence as the interstitial quotes: large mincho text, centered,
-       framed by sakura lines. The final word of the journey. */
-    .journey-coda {
-      margin: 0 0 64px; padding: 80px 24px; text-align: center;
-      border-top: 1px solid var(--glow-line);
-      border-bottom: 1px solid var(--glow-line);
-      background: linear-gradient(180deg, rgba(42, 24, 32, 0.4), rgba(42, 24, 32, 0.7));
-    }
-    .journey-coda blockquote {
-      font-family: 'Shippori Mincho', serif; font-weight: 400;
-      font-size: clamp(20px, 4vw, 32px); line-height: 1.5; color: var(--glow-ink);
-      margin: 0 auto; max-width: 56ch;
-      text-shadow: 0 2px 24px rgba(0, 0, 0, 0.5);
-    }
-    .journey-coda cite {
-      display: block; margin-top: 18px;
-      font-size: 13px; font-style: normal; letter-spacing: .12em;
+    /* Closing quote after the final stop (SAKEBARO spotlight). Now a
+       full-screen interstitial with the door-open video behind the
+       storm quote, same prominence as the other interstitials. */
+    .journey-coda .interstitial-quote { z-index: 52; }
       text-transform: uppercase; color: var(--muted);
     }
 
@@ -1483,7 +1469,7 @@
       </p>
     </div>
   </section>
-<aside class="journey-coda"><blockquote>And once the storm is over you won’t remember how you made it through. That’s what the storm is all about.</blockquote><cite>Kafka on the Shore</cite></aside>
+<figure class="journey-interstitial journey-coda" aria-label="The storm"><video class="stop-video" muted loop playsinline autoplay preload="metadata"><source src="assets/movie/coda.webm" type="video/webm"><source src="assets/movie/coda.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>And once the storm is over you won’t remember how you made it through. That’s what the storm is all about.</blockquote><cite>Kafka on the Shore</cite></figcaption></figure>
 <!-- /build:journey -->
         </div>
       </section>

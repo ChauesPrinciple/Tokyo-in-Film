@@ -330,10 +330,16 @@ def render_journey(data_path):
     def _coda():
         text, source = CODA_QUOTE
         return (
-            f'<aside class="journey-coda">'
+            f'<figure class="journey-interstitial journey-coda" aria-label="The storm">'
+            f'<video class="stop-video" muted loop playsinline autoplay preload="metadata">'
+            f'<source src="assets/movie/coda.webm" type="video/webm">'
+            f'<source src="assets/movie/coda.mp4" type="video/mp4">'
+            f'</video>'
+            f'<figcaption class="interstitial-quote">'
             f'<blockquote>{_esc(text)}</blockquote>'
             f'<cite>{_esc(source)}</cite>'
-            f'</aside>'
+            f'</figcaption>'
+            f'</figure>'
         )
 
     prev_leg = -1
