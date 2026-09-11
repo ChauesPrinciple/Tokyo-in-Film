@@ -78,27 +78,25 @@
       "name": "NOCTURNE",
       "aliases": [
         "ノクターン",
-        "オーセンティックバー Nocturne"
+        "バーノクターン"
       ],
-      "area": "Ginza",
-      "ward": "Chuo",
-      "lat": 35.666698,
-      "lng": 139.763463,
-      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=NOCTURNE+Ginza+8-7-9+Tokyo",
-      "address": "3F Ryushin Building, 8-7-9 Ginza, Chuo-ku, Tokyo",
-      "station": "Shimbashi (JR / Tokyo Metro), 5 min walk",
-      "style": "Authentic bar",
-      "status": "Possibly closed",
-      "description": "An authentic bar on the 3rd floor of the Ryushin Building in Ginza, near Shimbashi. A quiet counter with a master who knows his cocktails and his regulars. The kind of Ginza bar where the elevator entrance is hard to find. That is the point.",
-      "note": "Tabelog has put this listing on hold and it has only two reviews. Check whether it is still operating before you make the trip.",
+      "area": "Yotsuya",
+      "ward": "Shinjuku",
+      "lat": 35.6857,
+      "lng": 139.7317,
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=NOCTURNE+bar+Yotsuya+Shinjuku+Tokyo",
+      "address": "Yotsuya, Shinjuku-ku, Tokyo",
+      "station": "Yotsuya (JR / Tokyo Metro Marunouchi), 5 min walk",
+      "style": "Whisky bar",
+      "description": "A whisky-focused bar in Yotsuya, 5 minutes from the station. Seasonal fruit cocktails alongside the main whisky list. A quiet counter with a master who knows his cocktails and his regulars. Open weekdays until 2:00, Saturday until midnight, closed Sundays and holidays.",
       "sources": [
         {
-          "label": "Tabelog",
-          "url": "https://tabelog.com/tokyo/A1301/A130103/13058173/"
+          "label": "X / Twitter",
+          "url": "https://x.com/bar__nocturne"
         },
         {
           "label": "Open in Maps",
-          "url": "https://www.google.com/maps/search/?api=1&query=NOCTURNE+Ginza+8-7-9+Tokyo"
+          "url": "https://www.google.com/maps/search/?api=1&query=NOCTURNE+bar+Yotsuya+Shinjuku+Tokyo"
         }
       ]
     },
