@@ -458,6 +458,37 @@
     interstitials.forEach(el => io.observe(el));
   }
 
+  // --- Map idle overlay ---
+  // In Journey view the map is a fixed overlay that fades in when the reader
+  // pauses scrolling (~2s idle) and fades out when they resume. In Map & list
+  // view the map is a normal sticky grid column and this is a no-op.
+  function initMapIdle() {
+    const mapStage = document.querySelector('.map-stage');
+    const layout = document.querySelector('.layout');
+    if (!mapStage || !layout) return;
+    let idleTimer = null;
+    const IDLE_MS = 2000;
+    function isJourney() {
+      return layout.getAttribute('data-view') === 'journey';
+    }
+    function showMap() { mapStage.classList.add('is-idle'); }
+    function hideMap() { mapStage.classList.remove('is-idle'); }
+    function onScroll() {
+      if (!isJourney()) return;
+      hideMap();
+      if (idleTimer) clearTimeout(idleTimer);
+      idleTimer = setTimeout(showMap, IDLE_MS);
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    // Also hide when switching away from Journey; show immediately in Map view.
+    const observer = new MutationObserver(() => {
+      if (!isJourney()) { hideMap(); if (idleTimer) clearTimeout(idleTimer); }
+    });
+    observer.observe(layout, { attributes: true, attributeFilter: ['data-view'] });
+    // Initial state: if we start in Journey, arm the first idle timer.
+    if (isJourney()) idleTimer = setTimeout(showMap, IDLE_MS);
+  }
+
   function scrollToStop(id) {
     const stop = $(`stop-${id}`);
     if (stop) stop.scrollIntoView({block: 'start', behavior: 'smooth'});
@@ -835,6 +866,7 @@
       // Wire scroll-driven camera for Journey view
       initScrollObserver();
       initInterstitialFade();
+      initMapIdle();
       // Restore a venue from the URL hash (#stop-<id>) if present and valid;
       // otherwise start on the first stop in Journey view, or fit() in Map view.
       const hashMatch = /^#stop-(.+)$/.exec(location.hash);
