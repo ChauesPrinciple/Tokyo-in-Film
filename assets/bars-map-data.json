@@ -1,6 +1,6 @@
 {
   "reviewed": "2026-09-08",
-  "coordinateNote": "Coordinates verified against official venue pages, Tabelog, the GSI address-search API, and the saved-place export. Floor and building data added from official sources. Some pins are address-level approximations — check opening hours and reservations directly with each bar.",
+  "coordinateNote": "Coordinates verified against official venue pages, Tabelog, the GSI address-search API, and the saved-place export. Floor and building data added from official sources. Some pins are address-level approximations. check opening hours and reservations directly with each bar.",
   "bars": [
     {
       "id": "apollo-bar",
@@ -88,7 +88,7 @@
       "address": "3F Ryushin Building, 8-7-9 Ginza, Chuo-ku, Tokyo",
       "station": "Shimbashi (JR / Tokyo Metro) — 5 min walk",
       "style": "Authentic bar",
-      "description": "An authentic bar on the 3rd floor of the Ryushin Building in Ginza, near Shimbashi. A quiet counter with a master who knows his cocktails and his regulars. The kind of Ginza bar where the elevator entrance is hard to find — that is the point.",
+      "description": "An authentic bar on the 3rd floor of the Ryushin Building in Ginza, near Shimbashi. A quiet counter with a master who knows his cocktails and his regulars. The kind of Ginza bar where the elevator entrance is hard to find. that is the point.",
       "sources": [
         {
           "label": "Tabelog",
@@ -115,7 +115,7 @@
       "address": "38F Mandarin Oriental Tokyo, 2-1-1 Nihonbashi Muromachi, Chuo-ku, Tokyo",
       "station": "Mitsukoshimae (Tokyo Metro Ginza/Hanzomon) — 2 min walk",
       "style": "Hotel bar · high-end",
-      "description": "A pizza bar on the 38th floor of the Mandarin Oriental. Yes, pizza — wood-fired, counter seating, and a view that rivals New York Bar's. Expensive, and the pizza is better than it has any right to be at that altitude.",
+      "description": "A pizza bar on the 38th floor of the Mandarin Oriental. Yes, pizza. wood-fired, counter seating, and a view that rivals New York Bar's. Expensive, and the pizza is better than it has any right to be at that altitude.",
       "sources": [
         {
           "label": "Open in Maps",
@@ -186,7 +186,7 @@
       "address": "B1F Nakabayashi Building, 1-2 Arakicho, Shinjuku-ku, Tokyo",
       "station": "Yotsuya-Sanchome (Tokyo Metro Marunouchi) — 2 min walk",
       "style": "Speakeasy",
-      "description": "A hidden speakeasy in Arakicho, down an unmarked basement entrance. Owner Yuta crafts seasonal cocktails with Japanese fruits — the strawberry margarita and Earl Grey tea sake are standouts. Cheese-and-mouse decor, J-Pop playlists, sometimes a live DJ. A cozy hideout that treats regulars and first-timers the same. Closed weekends.",
+      "description": "A hidden speakeasy in Arakicho, down an unmarked basement entrance. Owner Yuta crafts seasonal cocktails with Japanese fruits. the strawberry margarita and Earl Grey tea sake are standouts. Cheese-and-mouse decor, J-Pop playlists, sometimes a live DJ. A cozy hideout that treats regulars and first-timers the same. Closed weekends.",
       "sources": [
         {
           "label": "Tabelog",
@@ -292,7 +292,7 @@
       "address": "1-1-6 to 1-1-8 Kabukicho, Shinjuku-ku, Tokyo",
       "station": "Shinjuku (JR / Tokyo Metro / Toei) — 5 min walk",
       "style": "Golden Gai bars",
-      "description": "Three bars in Shinjuku Golden Gai, the dense cluster of 200-plus tiny drinking dens off Kabukicho — each on a different floor of the same narrow alley. Happy (Rockin' Soul Bar) is up on the 3rd floor of the Maruha Building at 1-1-7 — a soul-and-rock counter with a 4.8 rating. BAR COO (バー 空) is at street level (1F) at 1-1-8, on Golden Gai 3rd street — six seats, drinks and snacks at the owner's discretion, like drinking in a friend's kitchen. OPEN BOOK is on Golden Gai 5th street at 1-1-6, ground floor, no signboard — a lemon sour bar founded in 2015, shelves lined with books inherited from the owner's grandfather, poet Tanaka Kojimasa. Pick any of the three, or bar-hop between them.",
+      "description": "Three bars in Shinjuku Golden Gai, the dense cluster of 200-plus tiny drinking dens off Kabukicho. each on a different floor of the same narrow alley. Happy (Rockin' Soul Bar) is up on the 3rd floor of the Maruha Building at 1-1-7. a soul-and-rock counter with a 4.8 rating. BAR COO (バー 空) is at street level (1F) at 1-1-8, on Golden Gai 3rd street. six seats, drinks and snacks at the owner's discretion, like drinking in a friend's kitchen. OPEN BOOK is on Golden Gai 5th street at 1-1-6, ground floor, no signboard. a lemon sour bar founded in 2015, shelves lined with books inherited from the owner's grandfather, poet Tanaka Kojimasa. Pick any of the three, or bar-hop between them.",
       "sources": [
         {
           "label": "Happy on Maps",
@@ -329,7 +329,7 @@
           "address": "1F, 1-1-8 Kabukicho, Shinjuku-ku, Tokyo",
           "floor": "1F",
           "building": null,
-          "description": "A six-seat casual bar on Golden Gai 3rd street. Drinks and snacks at the owner's discretion — like drinking in a friend's kitchen.",
+          "description": "A six-seat casual bar on Golden Gai 3rd street. Drinks and snacks at the owner's discretion. like drinking in a friend's kitchen.",
           "mapsUrl": "https://www.google.com/maps/search/?api=1&query=BAR+COO+1-1-8+Kabukicho+Shinjuku+Tokyo"
         },
         {
@@ -340,7 +340,7 @@
           "address": "1-1-6 Kabukicho, Shinjuku-ku, Tokyo",
           "floor": "Ground floor",
           "building": null,
-          "description": "A lemon sour bar on Golden Gai 5th street, founded in 2015. No signboard — third door from the outside. Shelves lined with books inherited from the owner's grandfather, poet Tanaka Kojimasa.",
+          "description": "A lemon sour bar on Golden Gai 5th street, founded in 2015. No signboard. third door from the outside. Shelves lined with books inherited from the owner's grandfather, poet Tanaka Kojimasa.",
           "mapsUrl": "https://www.google.com/maps/search/?api=1&query=OPEN+BOOK+1-1-6+Kabukicho+Golden+Gai+Shinjuku+Tokyo"
         }
       ]
@@ -360,7 +360,7 @@
       "address": "1F Towa Dogenzaka Building, 2-27-2 Dogenzaka, Shibuya-ku, Tokyo",
       "station": "Shibuya (JR / Tokyo Metro / Tokyu / Keio Inokashira) — 3 min walk",
       "style": "Bar",
-      "description": "A kickboxing gym and bar on Dogenzaka in Shibuya. Fight training upstairs, drinks after. Not a cocktail bar — a place where the crowd came to hit things and then order a round. Loud, young, and exactly what the name says.",
+      "description": "A kickboxing gym and bar on Dogenzaka in Shibuya. Fight training upstairs, drinks after. Not a cocktail bar. a place where the crowd came to hit things and then order a round. Loud, young, and exactly what the name says.",
       "sources": [
         {
           "label": "Open in Maps",
@@ -383,7 +383,7 @@
       "address": "B1F Yamanen Building, 2-3-13 Ebisuminami, Shibuya-ku, Tokyo",
       "station": "Ebisu (JR Yamanote / Tokyo Metro Hibiya) — 3 min walk",
       "style": "Speakeasy",
-      "description": "It is called a coffee shop. It is not a coffee shop. JANAI means 'not this' — the door is a speakeasy entrance, and what is behind it is a bar. Go down the stairs, find the door, and order a drink. The coffee is a cover story.",
+      "description": "It is called a coffee shop. It is not a coffee shop. JANAI means 'not this'. the door is a speakeasy entrance, and what is behind it is a bar. Go down the stairs, find the door, and order a drink. The coffee is a cover story.",
       "video": "assets/movie/janai-coffee.webm",
       "sources": [
         {
@@ -569,7 +569,7 @@
       "address": "B1F Sotokanda Kanemura Building, 2-6-4 Sotokanda, Chiyoda-ku, Tokyo",
       "station": "Akihabara (JR / Tokyo Metro Hibiya) — 5 min walk",
       "style": "Bar",
-      "description": "A basement bar in Kanda, near Akihabara. The name tells you where to look — go down. A good late-night stop in a neighborhood that shuts early.",
+      "description": "A basement bar in Kanda, near Akihabara. The name tells you where to look. go down. A good late-night stop in a neighborhood that shuts early.",
       "sources": [
         {
           "label": "Open in Maps",
@@ -741,7 +741,7 @@
       "address": "2F Sawada Building, 1-5-5 Gotenyama, Musashino, Tokyo",
       "station": "Kichijoji (JR Chuo / Keio Inokashira) — 8 min walk",
       "style": "Shooting bar",
-      "description": "A shooting bar in Kichijoji, in the city of Musashino west of the 23 wards. Airsoft rifles, a target range, and drinks. Not a cocktail bar, but a uniquely Tokyo evening out — reachable on the Chuo line from Shinjuku in about 20 minutes.",
+      "description": "A shooting bar in Kichijoji, in the city of Musashino west of the 23 wards. Airsoft rifles, a target range, and drinks. Not a cocktail bar, but a uniquely Tokyo evening out. reachable on the Chuo line from Shinjuku in about 20 minutes.",
       "sources": [
         {
           "label": "Open in Maps",
@@ -768,7 +768,7 @@
       "station": "Omotesando (Tokyo Metro Ginza/Hanzomon/Chiyoda) — 8 min walk",
       "style": "Exclusive sake club",
       "status": "Members only",
-      "description": "The one that is not like the others. A members-only sake club in Minami-Aoyama — an extension of the original Naka-Meguro SAKEBARO. A tin cube counter, an auto-playing piano, LED light that shifts from deep blue to red. A curated cellar of rare and seasonal brews, and staff who can tell you the brewery, the yeast strain, and the rice polish rate for every pour. Everything else on this map you can walk into. This one you have to be let into.",
+      "description": "The one that is not like the others. A members-only sake club in Minami-Aoyama. an extension of the original Naka-Meguro SAKEBARO. A tin cube counter, an auto-playing piano, LED light that shifts from deep blue to red. A curated cellar of rare and seasonal brews, and staff who can tell you the brewery, the yeast strain, and the rice polish rate for every pour. Everything else on this map you can walk into. This one you have to be let into.",
       "note": "Reservation or membership required. Arrange access well before you travel.",
       "sources": [
         {

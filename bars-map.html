@@ -399,17 +399,22 @@
       text-transform: uppercase;
     }
     .journey-interstitial {
-      position: relative; margin: 0 0 48px; overflow: hidden;
-      height: 80vh; min-height: 400px;
-      border-radius: 10px;
+      position: sticky; top: 0; left: 0; width: 100vw; height: 100vh;
+      margin-left: calc(-50vw + 50%); margin-right: calc(-50vw + 50%);
+      margin-top: 0; margin-bottom: 0; z-index: 50;
+      overflow: hidden; background: #0a0810;
     }
     .journey-interstitial video {
       width: 100%; height: 100%; object-fit: cover; display: block;
-      filter: brightness(.55) contrast(1.15) saturate(1.1);
+      filter: brightness(.6) contrast(1.15) saturate(1.1);
+    }
+    .journey-interstitial canvas {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      pointer-events: none; z-index: 2;
     }
     .journey-interstitial::after {
-      content: ''; position: absolute; inset: 0;
-      background: linear-gradient(to bottom, rgba(20,18,28,.4), rgba(20,18,28,.7));
+      content: ''; position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(to bottom, rgba(10,8,16,.5), rgba(10,8,16,.7));
       pointer-events: none;
     }
 
@@ -590,7 +595,7 @@
       .sources a { text-decoration: none; }
     }
   </style>
-  <script src="js/ripple.js?v=b3d90ef0" defer></script>
+  <script src="js/ripple.js?v=ec382b24" defer></script>
   <script src="js/bars-map.js?v=869db5d2" defer></script>
 </head>
 <body>
@@ -662,8 +667,8 @@
       <section id="journey-view" class="journey-view is-active" role="tabpanel" aria-labelledby="view-journey" tabindex="-1">
         <div class="journey-scroll">
 <!-- build:journey -->
-<p class="journey-intro">A night in order: Ginza cocktails, then Shinjuku’s hidden floors, then the midnight shift south through Ebisu and Roppongi, and the east-side after-hours crawl, and the far outliers — ending at a door you have to be let into. Each stop is a place — with its floor, its address, and a note on what it is. Switch to Map &amp; list to see them all at once.</p>
-<h3 class="journey-leg">Ginza &amp; Nihonbashi<span class="journey-leg-sub">Early evening — cocktails and counters</span></h3>
+<p class="journey-intro">A night in order: Ginza cocktails, then Shinjuku’s hidden floors, then the midnight shift south through Ebisu and Roppongi, and the east-side after-hours crawl, and the far outliers, ending at a door you have to be let into. Each stop is a place with its floor, its address, and a note on what it is. Switch to Map &amp; list to see them all at once.</p>
+<h3 class="journey-leg">Ginza &amp; Nihonbashi<span class="journey-leg-sub">Early evening: cocktails and counters</span></h3>
   <section class="stop" id="stop-apollo-bar" data-stop="apollo-bar" data-number="1" data-floor="B1F" data-category="basement">
     <header class="stop-head">
       <p class="stop-number">1</p>
@@ -733,7 +738,7 @@
       <p class="stop-aliases">ノクターン<br>オーセンティックバー Nocturne</p>
     </header>
     <p class="stop-summary">Chuo ward, Tokyo · Authentic bar · 3F</p>
-    <p class="stop-description">An authentic bar on the 3rd floor of the Ryushin Building in Ginza, near Shimbashi. A quiet counter with a master who knows his cocktails and his regulars. The kind of Ginza bar where the elevator entrance is hard to find — that is the point.</p>
+    <p class="stop-description">An authentic bar on the 3rd floor of the Ryushin Building in Ginza, near Shimbashi. A quiet counter with a master who knows his cocktails and his regulars. The kind of Ginza bar where the elevator entrance is hard to find. that is the point.</p>
     <dl class="stop-facts">
       <dt>Station</dt><dd>Shimbashi (JR / Tokyo Metro) — 5 min walk</dd>
       <dt>Address</dt><dd>3F Ryushin Building, 8-7-9 Ginza, Chuo-ku, Tokyo</dd>
@@ -752,7 +757,7 @@
       <p class="stop-aliases">ザ ピザバー オン 38th</p>
     </header>
     <p class="stop-summary">Chuo ward, Tokyo · Hotel bar · high-end · 38F</p>
-    <p class="stop-description">A pizza bar on the 38th floor of the Mandarin Oriental. Yes, pizza — wood-fired, counter seating, and a view that rivals New York Bar&#x27;s. Expensive, and the pizza is better than it has any right to be at that altitude.</p>
+    <p class="stop-description">A pizza bar on the 38th floor of the Mandarin Oriental. Yes, pizza. wood-fired, counter seating, and a view that rivals New York Bar&#x27;s. Expensive, and the pizza is better than it has any right to be at that altitude.</p>
     <dl class="stop-facts">
       <dt>Station</dt><dd>Mitsukoshimae (Tokyo Metro Ginza/Hanzomon) — 2 min walk</dd>
       <dt>Address</dt><dd>38F Mandarin Oriental Tokyo, 2-1-1 Nihonbashi Muromachi, Chuo-ku, Tokyo</dd>
@@ -762,7 +767,7 @@
     </p>
   </section>
 <figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline autoplay preload="metadata"><source src="assets/movie/interstitial-1.webm" type="video/webm"><source src="assets/movie/interstitial-1.mp4" type="video/mp4"></video></figure>
-<h3 class="journey-leg">Shinjuku<span class="journey-leg-sub">Late evening — hotel bars, speakeasies, Golden Gai</span></h3>
+<h3 class="journey-leg">Shinjuku<span class="journey-leg-sub">Late evening: hotel bars, speakeasies, Golden Gai</span></h3>
   <section class="stop" id="stop-new-york-bar" data-stop="new-york-bar" data-number="6" data-category="highrise">
     <header class="stop-head">
       <p class="stop-number">6</p>
@@ -808,7 +813,7 @@
       <p class="stop-aliases">かくれたい<br>KAKURETAI Speakeasy Bar</p>
     </header>
     <p class="stop-summary">Shinjuku ward, Tokyo · Speakeasy · B1F</p>
-    <p class="stop-description">A hidden speakeasy in Arakicho, down an unmarked basement entrance. Owner Yuta crafts seasonal cocktails with Japanese fruits — the strawberry margarita and Earl Grey tea sake are standouts. Cheese-and-mouse decor, J-Pop playlists, sometimes a live DJ. A cozy hideout that treats regulars and first-timers the same. Closed weekends.</p>
+    <p class="stop-description">A hidden speakeasy in Arakicho, down an unmarked basement entrance. Owner Yuta crafts seasonal cocktails with Japanese fruits. the strawberry margarita and Earl Grey tea sake are standouts. Cheese-and-mouse decor, J-Pop playlists, sometimes a live DJ. A cozy hideout that treats regulars and first-timers the same. Closed weekends.</p>
     <dl class="stop-facts">
       <dt>Station</dt><dd>Yotsuya-Sanchome (Tokyo Metro Marunouchi) — 2 min walk</dd>
       <dt>Address</dt><dd>B1F Nakabayashi Building, 1-2 Arakicho, Shinjuku-ku, Tokyo</dd>
@@ -883,13 +888,13 @@
       <p class="stop-aliases">新宿ゴールデン街<br>ハッピー ロッキンソールバー<br>BAR COO<br>バー 空<br>OPEN BOOK<br>オープンブック</p>
     </header>
     <p class="stop-summary">Shinjuku ward, Tokyo · Golden Gai bars</p>
-    <p class="stop-description">Three bars in Shinjuku Golden Gai, the dense cluster of 200-plus tiny drinking dens off Kabukicho — each on a different floor of the same narrow alley. Happy (Rockin&#x27; Soul Bar) is up on the 3rd floor of the Maruha Building at 1-1-7 — a soul-and-rock counter with a 4.8 rating. BAR COO (バー 空) is at street level (1F) at 1-1-8, on Golden Gai 3rd street — six seats, drinks and snacks at the owner&#x27;s discretion, like drinking in a friend&#x27;s kitchen. OPEN BOOK is on Golden Gai 5th street at 1-1-6, ground floor, no signboard — a lemon sour bar founded in 2015, shelves lined with books inherited from the owner&#x27;s grandfather, poet Tanaka Kojimasa. Pick any of the three, or bar-hop between them.</p>
+    <p class="stop-description">Three bars in Shinjuku Golden Gai, the dense cluster of 200-plus tiny drinking dens off Kabukicho. each on a different floor of the same narrow alley. Happy (Rockin&#x27; Soul Bar) is up on the 3rd floor of the Maruha Building at 1-1-7. a soul-and-rock counter with a 4.8 rating. BAR COO (バー 空) is at street level (1F) at 1-1-8, on Golden Gai 3rd street. six seats, drinks and snacks at the owner&#x27;s discretion, like drinking in a friend&#x27;s kitchen. OPEN BOOK is on Golden Gai 5th street at 1-1-6, ground floor, no signboard. a lemon sour bar founded in 2015, shelves lined with books inherited from the owner&#x27;s grandfather, poet Tanaka Kojimasa. Pick any of the three, or bar-hop between them.</p>
     <dl class="stop-facts">
       <dt>Station</dt><dd>Shinjuku (JR / Tokyo Metro / Toei) — 5 min walk</dd>
       <dt>Address</dt><dd>1-1-6 to 1-1-8 Kabukicho, Shinjuku-ku, Tokyo</dd>
     </dl>
     <div class="subvenues" role="list">
-      <article class="subvenue" data-floor="3F" tabindex="0" aria-label="Happy (Rockin&#x27; Soul Bar) — focus on map">
+      <article class="subvenue" data-floor="3F" tabindex="0" aria-label="Happy (Rockin&#x27; Soul Bar) - focus on map">
         <h4 class="subvenue-name">Happy (Rockin&#x27; Soul Bar)</h4>
         <p class="subvenue-aliases">ハッピー · ロッキンソールバー</p>
         <p class="subvenue-floor">3F · Maruha Building</p>
@@ -897,20 +902,20 @@
         <p class="subvenue-description">A soul-and-rock counter bar on the 3rd floor of the Maruha Building. 4.8 rating. Go up the stairs.</p>
         <a class="subvenue-link" href="https://www.google.com/maps/search/?api=1&amp;query=Happy+Rockin+Soul+Bar+1-1-7+Kabukicho+Shinjuku+Tokyo" target="_blank" rel="noopener noreferrer">Open in Maps</a>
       </article>
-      <article class="subvenue" data-floor="1F" tabindex="0" aria-label="BAR COO — focus on map">
+      <article class="subvenue" data-floor="1F" tabindex="0" aria-label="BAR COO - focus on map">
         <h4 class="subvenue-name">BAR COO</h4>
         <p class="subvenue-aliases">バー 空 · BAR COO 空</p>
         <p class="subvenue-floor">1F</p>
         <p class="subvenue-address">1F, 1-1-8 Kabukicho, Shinjuku-ku, Tokyo</p>
-        <p class="subvenue-description">A six-seat casual bar on Golden Gai 3rd street. Drinks and snacks at the owner&#x27;s discretion — like drinking in a friend&#x27;s kitchen.</p>
+        <p class="subvenue-description">A six-seat casual bar on Golden Gai 3rd street. Drinks and snacks at the owner&#x27;s discretion. like drinking in a friend&#x27;s kitchen.</p>
         <a class="subvenue-link" href="https://www.google.com/maps/search/?api=1&amp;query=BAR+COO+1-1-8+Kabukicho+Shinjuku+Tokyo" target="_blank" rel="noopener noreferrer">Open in Maps</a>
       </article>
-      <article class="subvenue" data-floor="Ground floor" tabindex="0" aria-label="OPEN BOOK — focus on map">
+      <article class="subvenue" data-floor="Ground floor" tabindex="0" aria-label="OPEN BOOK - focus on map">
         <h4 class="subvenue-name">OPEN BOOK</h4>
         <p class="subvenue-aliases">オープンブック</p>
         <p class="subvenue-floor">Ground floor</p>
         <p class="subvenue-address">1-1-6 Kabukicho, Shinjuku-ku, Tokyo</p>
-        <p class="subvenue-description">A lemon sour bar on Golden Gai 5th street, founded in 2015. No signboard — third door from the outside. Shelves lined with books inherited from the owner&#x27;s grandfather, poet Tanaka Kojimasa.</p>
+        <p class="subvenue-description">A lemon sour bar on Golden Gai 5th street, founded in 2015. No signboard. third door from the outside. Shelves lined with books inherited from the owner&#x27;s grandfather, poet Tanaka Kojimasa.</p>
         <a class="subvenue-link" href="https://www.google.com/maps/search/?api=1&amp;query=OPEN+BOOK+1-1-6+Kabukicho+Golden+Gai+Shinjuku+Tokyo" target="_blank" rel="noopener noreferrer">Open in Maps</a>
       </article>
     </div>
@@ -922,7 +927,7 @@
     </p>
   </section>
 <figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline autoplay preload="metadata"><source src="assets/movie/interstitial-2.webm" type="video/webm"><source src="assets/movie/interstitial-2.mp4" type="video/mp4"></video></figure>
-<h3 class="journey-leg">Shibuya &amp; Ebisu &amp; Meguro<span class="journey-leg-sub">Midnight — coffee shops that aren’t, jazz rooms</span></h3>
+<h3 class="journey-leg">Shibuya &amp; Ebisu &amp; Meguro<span class="journey-leg-sub">Midnight: coffee shops that aren’t, jazz rooms</span></h3>
   <section class="stop" id="stop-fightclub" data-stop="fightclub" data-number="13" data-floor="1F">
     <header class="stop-head">
       <p class="stop-number">13</p>
@@ -932,7 +937,7 @@
       <p class="stop-aliases">ファイトクラブ渋谷</p>
     </header>
     <p class="stop-summary">Shibuya ward, Tokyo · Bar · 1F</p>
-    <p class="stop-description">A kickboxing gym and bar on Dogenzaka in Shibuya. Fight training upstairs, drinks after. Not a cocktail bar — a place where the crowd came to hit things and then order a round. Loud, young, and exactly what the name says.</p>
+    <p class="stop-description">A kickboxing gym and bar on Dogenzaka in Shibuya. Fight training upstairs, drinks after. Not a cocktail bar. a place where the crowd came to hit things and then order a round. Loud, young, and exactly what the name says.</p>
     <dl class="stop-facts">
       <dt>Station</dt><dd>Shibuya (JR / Tokyo Metro / Tokyu / Keio Inokashira) — 3 min walk</dd>
       <dt>Address</dt><dd>1F Towa Dogenzaka Building, 2-27-2 Dogenzaka, Shibuya-ku, Tokyo</dd>
@@ -950,7 +955,7 @@
       <p class="stop-aliases">ジャナイコーヒー</p>
     </header>
     <p class="stop-summary">Shibuya ward, Tokyo · Speakeasy · B1F</p>
-    <p class="stop-description">It is called a coffee shop. It is not a coffee shop. JANAI means &#x27;not this&#x27; — the door is a speakeasy entrance, and what is behind it is a bar. Go down the stairs, find the door, and order a drink. The coffee is a cover story.</p>
+    <p class="stop-description">It is called a coffee shop. It is not a coffee shop. JANAI means &#x27;not this&#x27;. the door is a speakeasy entrance, and what is behind it is a bar. Go down the stairs, find the door, and order a drink. The coffee is a cover story.</p>
     <figure class="stop-media">
       <video class="stop-video" muted loop playsinline autoplay preload="metadata">
         <source src="assets/movie/janai-coffee.webm" type="video/webm">
@@ -1044,7 +1049,7 @@
     </p>
   </section>
 <figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline autoplay preload="metadata"><source src="assets/movie/interstitial-3.webm" type="video/webm"><source src="assets/movie/interstitial-3.mp4" type="video/mp4"></video></figure>
-<h3 class="journey-leg">Minato &amp; Roppongi<span class="journey-leg-sub">Deep night — Azabujuban counters and Roppongi basements</span></h3>
+<h3 class="journey-leg">Minato &amp; Roppongi<span class="journey-leg-sub">Deep night: Azabujuban counters and Roppongi basements</span></h3>
   <section class="stop" id="stop-gen-yamamoto" data-stop="gen-yamamoto" data-number="19" data-floor="1F">
     <header class="stop-head">
       <p class="stop-number">19</p>
@@ -1100,7 +1105,7 @@
     </p>
   </section>
 <figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline autoplay preload="metadata"><source src="assets/movie/interstitial-4.webm" type="video/webm"><source src="assets/movie/interstitial-4.mp4" type="video/mp4"></video></figure>
-<h3 class="journey-leg">East Tokyo<span class="journey-leg-sub">After hours — Kanda to Ueno to Bunkyo</span></h3>
+<h3 class="journey-leg">East Tokyo<span class="journey-leg-sub">After hours: Kanda to Ueno to Bunkyo</span></h3>
   <section class="stop" id="stop-bar-under" data-stop="bar-under" data-number="22" data-floor="B1F" data-category="basement">
     <header class="stop-head">
       <p class="stop-number">22</p>
@@ -1110,7 +1115,7 @@
       <p class="stop-aliases">バー アンドアンダー</p>
     </header>
     <p class="stop-summary">Chiyoda ward, Tokyo · Bar · B1F</p>
-    <p class="stop-description">A basement bar in Kanda, near Akihabara. The name tells you where to look — go down. A good late-night stop in a neighborhood that shuts early.</p>
+    <p class="stop-description">A basement bar in Kanda, near Akihabara. The name tells you where to look. go down. A good late-night stop in a neighborhood that shuts early.</p>
     <dl class="stop-facts">
       <dt>Station</dt><dd>Akihabara (JR / Tokyo Metro Hibiya) — 5 min walk</dd>
       <dt>Address</dt><dd>B1F Sotokanda Kanemura Building, 2-6-4 Sotokanda, Chiyoda-ku, Tokyo</dd>
@@ -1246,7 +1251,7 @@
       <p class="stop-aliases">シューティングバー イーエー</p>
     </header>
     <p class="stop-summary">Musashino, Tokyo · Shooting bar · 2F</p>
-    <p class="stop-description">A shooting bar in Kichijoji, in the city of Musashino west of the 23 wards. Airsoft rifles, a target range, and drinks. Not a cocktail bar, but a uniquely Tokyo evening out — reachable on the Chuo line from Shinjuku in about 20 minutes.</p>
+    <p class="stop-description">A shooting bar in Kichijoji, in the city of Musashino west of the 23 wards. Airsoft rifles, a target range, and drinks. Not a cocktail bar, but a uniquely Tokyo evening out. reachable on the Chuo line from Shinjuku in about 20 minutes.</p>
     <dl class="stop-facts">
       <dt>Station</dt><dd>Kichijoji (JR Chuo / Keio Inokashira) — 8 min walk</dd>
       <dt>Address</dt><dd>2F Sawada Building, 1-5-5 Gotenyama, Musashino, Tokyo</dd>
@@ -1264,7 +1269,7 @@
       <p class="stop-aliases">酒バー O<br>Sakebaro<br>SAKEBARO 青山店</p>
     </header>
     <p class="stop-summary">Minato ward, Tokyo · Exclusive sake club · 1F</p>
-    <p class="stop-description">The one that is not like the others. A members-only sake club in Minami-Aoyama — an extension of the original Naka-Meguro SAKEBARO. A tin cube counter, an auto-playing piano, LED light that shifts from deep blue to red. A curated cellar of rare and seasonal brews, and staff who can tell you the brewery, the yeast strain, and the rice polish rate for every pour. Everything else on this map you can walk into. This one you have to be let into.</p>
+    <p class="stop-description">The one that is not like the others. A members-only sake club in Minami-Aoyama. an extension of the original Naka-Meguro SAKEBARO. A tin cube counter, an auto-playing piano, LED light that shifts from deep blue to red. A curated cellar of rare and seasonal brews, and staff who can tell you the brewery, the yeast strain, and the rice polish rate for every pour. Everything else on this map you can walk into. This one you have to be let into.</p>
     <dl class="stop-facts">
       <dt>Station</dt><dd>Omotesando (Tokyo Metro Ginza/Hanzomon/Chiyoda) — 8 min walk</dd>
       <dt>Address</dt><dd>1F MD Aoyama, 2-10-8 Minami-Aoyama, Minato-ku, Tokyo 107-0062</dd>

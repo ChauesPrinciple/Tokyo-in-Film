@@ -105,7 +105,7 @@ def _category(bar):
 
 def _render_subvenue(sv):
     parts = []
-    parts.append(f'      <article class="subvenue" data-floor="{_esc(sv.get("floor") or "")}" tabindex="0" aria-label="{_esc(sv["name"])} \u2014 focus on map">')
+    parts.append(f'      <article class="subvenue" data-floor="{_esc(sv.get("floor") or "")}" tabindex="0" aria-label="{_esc(sv["name"])} - focus on map">')
     parts.append(f'        <h4 class="subvenue-name">{_esc(sv["name"])}</h4>')
     aliases = sv.get('aliases') or []
     if aliases:
@@ -224,11 +224,11 @@ def render_journey(data_path):
     # Night-journey legs: geographic clusters that progress deeper into the
     # night. Each leg gets a header so the reader can see the structure.
     legs = [
-        ('Ginza &amp; Nihonbashi', 'Early evening — cocktails and counters'),
-        ('Shinjuku', 'Late evening — hotel bars, speakeasies, Golden Gai'),
-        ('Shibuya &amp; Ebisu &amp; Meguro', 'Midnight — coffee shops that aren\u2019t, jazz rooms'),
-        ('Minato &amp; Roppongi', 'Deep night — Azabujuban counters and Roppongi basements'),
-        ('East Tokyo', 'After hours — Kanda to Ueno to Bunkyo'),
+        ('Ginza &amp; Nihonbashi', 'Early evening: cocktails and counters'),
+        ('Shinjuku', 'Late evening: hotel bars, speakeasies, Golden Gai'),
+        ('Shibuya &amp; Ebisu &amp; Meguro', 'Midnight: coffee shops that aren\u2019t, jazz rooms'),
+        ('Minato &amp; Roppongi', 'Deep night: Azabujuban counters and Roppongi basements'),
+        ('East Tokyo', 'After hours: Kanda to Ueno to Bunkyo'),
         ('The outer reaches', 'The far outliers and the locked door'),
     ]
     # Map bar numbers to leg indices (1-based numbering, 0-based legs).
@@ -243,7 +243,7 @@ def render_journey(data_path):
     parts = [
         '<p class="journey-intro">A night in order: Ginza cocktails, then Shinjuku\u2019s '
         'hidden floors, then the midnight shift south through Ebisu and Roppongi, '
-        'and the east-side after-hours crawl, and the far outliers \u2014 ending at a door you have to be let into. Each stop is a place \u2014 '
+        'and the east-side after-hours crawl, and the far outliers, ending at a door you have to be let into. Each stop is a place '
         'with its floor, its address, and a note on what it is. '
         'Switch to Map &amp; list to see them all at once.</p>'
     ]

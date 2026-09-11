@@ -1,27 +1,25 @@
-// Vanilla JS ripple effect for atmospheric images.
-// No jQuery. Adds a canvas overlay to each [data-ripple] figure and draws
-// expanding water ripples on pointer move/touch. Degrades gracefully: if
-// canvas is unavailable or the image hasn't loaded, nothing happens.
+// Ripple transition effect for interstitials.
+// When a .journey-interstitial enters the viewport, a ripple burst plays
+// from the center outward. When it leaves, another burst plays.
+// Also adds hover ripples to any [data-ripple] figures that still exist.
 (() => {
   'use strict';
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-  const targets = document.querySelectorAll('[data-ripple]');
-  if (!targets.length) return;
+  const ripples = [];
 
-  const ripples = []; // active ripple animations
-
-  function ensureCanvas(figure) {
-    let canvas = figure.querySelector('canvas');
+  function ensureCanvas(el) {
+    let canvas = el.querySelector('canvas');
     if (canvas) return canvas;
     canvas = document.createElement('canvas');
-    figure.appendChild(canvas);
+    canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2';
+    el.appendChild(canvas);
     return canvas;
   }
 
-  function resize(figure) {
-    const canvas = ensureCanvas(figure);
-    const rect = figure.getBoundingClientRect();
+  function sizeCanvas(el) {
+    const canvas = ensureCanvas(el);
+    const rect = el.getBoundingClientRect();
     const dpr = window.devicePixelRatio || 1;
     canvas.width = rect.width * dpr;
     canvas.height = rect.height * dpr;
@@ -32,36 +30,35 @@
     return {canvas, ctx, rect};
   }
 
-  function spawnRipple(figure, x, y) {
-    // Only resize the canvas once per figure (on first spawn), not on every
-    // pointermove. getBoundingClientRect + canvas resize is expensive churn
-    // when called ~8x/sec during a hover-drag. A ResizeObserver would be
-    // ideal, but for 1-2 figures a one-shot is fine.
-    if (!figure._sized) {
-      const sized = resize(figure);
-      if (!sized.ctx) return;
-      figure._sized = sized;
-    }
-    const {canvas, ctx, rect} = figure._sized;
+  function spawnRipple(canvas, ctx, rect, x, y, opts = {}) {
+    const maxR = opts.maxRadius || Math.max(rect.width, rect.height) * 0.8;
     ripples.push({
       canvas, ctx, rect,
-      x: x - rect.left, y: y - rect.top,
-      radius: 0, maxRadius: Math.max(rect.width, rect.height) * 0.6,
-      alpha: 0.35, life: 0
+      x, y,
+      radius: 0, maxRadius: maxR,
+      alpha: opts.alpha || 0.5,
+      lineWidth: opts.lineWidth || 2,
+      decay: opts.decay || 0.97,
+      growth: opts.growth || 0.06
     });
     if (ripples.length === 1) requestAnimationFrame(animate);
   }
 
+  function spawnBurst(canvas, ctx, rect) {
+    // Multiple ripples from center for a richer effect
+    const cx = rect.width / 2;
+    const cy = rect.height / 2;
+    spawnRipple(canvas, ctx, rect, cx, cy, {alpha: 0.6, lineWidth: 2.5, growth: 0.05});
+    setTimeout(() => spawnRipple(canvas, ctx, rect, cx, cy, {alpha: 0.4, lineWidth: 2, growth: 0.07}), 150);
+    setTimeout(() => spawnRipple(canvas, ctx, rect, cx, cy, {alpha: 0.3, lineWidth: 1.5, growth: 0.09}), 300);
+  }
+
   function animate() {
     const alive = [];
-    // Group ripples by canvas so we clear each canvas once per frame, then
-    // draw all ripples for that canvas. Without this, each ripple's clearRect
-    // erases the previous ripple on the same canvas.
     const byCanvas = new Map();
     for (const r of ripples) {
-      r.life += 1 / 60;
-      r.radius += (r.maxRadius - r.radius) * 0.04;
-      r.alpha *= 0.96;
+      r.radius += (r.maxRadius - r.radius) * r.growth;
+      r.alpha *= r.decay;
       if (r.alpha > 0.02) {
         alive.push(r);
         if (!byCanvas.has(r.canvas)) byCanvas.set(r.canvas, []);
@@ -74,8 +71,8 @@
       for (const r of group) {
         ctx.beginPath();
         ctx.arc(r.x, r.y, r.radius, 0, Math.PI * 2);
-        ctx.strokeStyle = `rgba(220, 210, 240, ${r.alpha})`;
-        ctx.lineWidth = 1.5;
+        ctx.strokeStyle = `rgba(200, 190, 235, ${r.alpha})`;
+        ctx.lineWidth = r.lineWidth;
         ctx.stroke();
       }
     }
@@ -84,18 +81,49 @@
     if (ripples.length) requestAnimationFrame(animate);
   }
 
+  // Interstitial ripple transitions
+  const interstitials = document.querySelectorAll('.journey-interstitial');
+  if (interstitials.length) {
+    interstitials.forEach(el => {
+      let sized = false;
+      let hasBurstIn = false;
+      const io = new IntersectionObserver((entries) => {
+        for (const e of entries) {
+          if (!sized && e.isIntersecting) {
+            sized = true;
+            el._sized = sizeCanvas(el);
+          }
+          if (e.isIntersecting && e.intersectionRatio > 0.3 && !hasBurstIn && el._sized) {
+            hasBurstIn = true;
+            const {canvas, ctx, rect} = el._sized;
+            spawnBurst(canvas, ctx, rect);
+          } else if (!e.isIntersecting && hasBurstIn && el._sized) {
+            hasBurstIn = false;
+            const {canvas, ctx, rect} = el._sized;
+            spawnBurst(canvas, ctx, rect);
+          }
+        }
+      }, {threshold: [0, 0.3, 0.6, 0.9]});
+      io.observe(el);
+    });
+  }
+
+  // Hover ripples on [data-ripple] figures (legacy support)
+  const targets = document.querySelectorAll('[data-ripple]');
   targets.forEach(figure => {
-    // Only activate once the image has loaded so we know the figure has size.
     const img = figure.querySelector('img');
     if (!img) return;
     const start = () => {
+      let sized = false;
       figure.addEventListener('pointermove', e => {
-        // Throttle: only spawn a ripple every ~120ms per figure.
         if (figure._lastRipple && performance.now() - figure._lastRipple < 120) return;
         figure._lastRipple = performance.now();
-        spawnRipple(figure, e.clientX, e.clientY);
+        if (!sized) { figure._sized = sizeCanvas(figure); sized = true; }
+        if (!figure._sized) return;
+        const {canvas, ctx, rect} = figure._sized;
+        spawnRipple(canvas, ctx, rect, e.clientX - rect.left, e.clientY - rect.top,
+                    {alpha: 0.35, lineWidth: 1.5, growth: 0.04, decay: 0.96});
       });
-      figure.addEventListener('pointerleave', e => spawnRipple(figure, e.clientX, e.clientY));
     };
     if (img.complete && img.naturalWidth) start();
     else img.addEventListener('load', start, {once: true});
