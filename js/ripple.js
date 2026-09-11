@@ -73,8 +73,10 @@
   }
 
   // A cinematic burst: 3 staggered ripples from center, each larger and
-  // longer than the last, creating a layered expansion effect.
-  function spawnBurst(canvas, ctx, w, h) {
+  // longer than the last, creating a layered expansion effect. The generation
+  // token cancels stale scheduled ripples if the user scrolls past before
+  // all three rings have spawned.
+  function spawnBurst(canvas, ctx, w, h, gen) {
     const cx = w / 2;
     const cy = h / 2;
     const base = Math.max(w, h);
@@ -82,21 +84,31 @@
       alpha: 0.65, lineWidth: 3, duration: 1600,
       maxRadius: base * 0.7
     });
-    setTimeout(() => spawnRipple(canvas, ctx, w, h, cx, cy, {
-      alpha: 0.45, lineWidth: 2, duration: 1800,
-      maxRadius: base * 0.85
-    }), 200);
-    setTimeout(() => spawnRipple(canvas, ctx, w, h, cx, cy, {
-      alpha: 0.3, lineWidth: 1.5, duration: 2000,
-      maxRadius: base
-    }), 450);
+    setTimeout(() => {
+      if (gen.current !== gen.token) return;
+      spawnRipple(canvas, ctx, w, h, cx, cy, {
+        alpha: 0.45, lineWidth: 2, duration: 1800,
+        maxRadius: base * 0.85
+      });
+    }, 200);
+    setTimeout(() => {
+      if (gen.current !== gen.token) return;
+      spawnRipple(canvas, ctx, w, h, cx, cy, {
+        alpha: 0.3, lineWidth: 1.5, duration: 2000,
+        maxRadius: base
+      });
+    }, 450);
   }
 
   function animate() {
     const now = performance.now();
     const alive = [];
+    // Track every canvas that has ripples this frame, so we can clear
+    // them all — including the final frame where the last ripple expires.
+    const allCanvases = new Set();
     const byCanvas = new Map();
     for (const r of ripples) {
+      allCanvases.add(r.canvas);
       const elapsed = now - r.startTime;
       const t = Math.min(1, elapsed / r.duration);
       if (t < 1) alive.push(r);
@@ -112,17 +124,23 @@
         byCanvas.get(r.canvas).push({r, easedR, alpha, width});
       }
     }
-    for (const [canvas, group] of byCanvas) {
-      const ctx = group[0].r.ctx;
+    // Clear every canvas that had ripples, even if no visible ripples
+    // remain this frame (the final-frame fix: prevents frozen circles).
+    for (const canvas of allCanvases) {
+      const group = byCanvas.get(canvas);
+      const ctx = group ? group[0].r.ctx : canvas.getContext('2d');
+      if (!ctx) continue;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      for (const item of group) {
-        const {r, easedR, alpha, width} = item;
-        const radius = easedR * r.maxRadius;
-        ctx.beginPath();
-        ctx.arc(r.x, r.y, radius, 0, Math.PI * 2);
-        ctx.strokeStyle = `rgba(${r.color}, ${alpha})`;
-        ctx.lineWidth = width;
-        ctx.stroke();
+      if (group) {
+        for (const item of group) {
+          const {r, easedR, alpha, width} = item;
+          const radius = easedR * r.maxRadius;
+          ctx.beginPath();
+          ctx.arc(r.x, r.y, radius, 0, Math.PI * 2);
+          ctx.strokeStyle = `rgba(${r.color}, ${alpha})`;
+          ctx.lineWidth = width;
+          ctx.stroke();
+        }
       }
     }
     ripples.length = 0;
@@ -141,6 +159,9 @@
     interstitials.forEach(el => {
       let sized = false;
       let hasBurst = false;
+      // Generation token: incremented when the stage changes, so stale
+      // setTimeout callbacks from a previous burst can bail out.
+      const gen = { current: 0, token: 0 };
       // Size the canvas the first time the spacer enters the viewport.
       const sizeIo = new IntersectionObserver((entries) => {
         for (const e of entries) {
@@ -152,15 +173,18 @@
       }, {threshold: [0]});
       sizeIo.observe(el);
       // Fire ripple bursts when the .is-active stage class is toggled.
+      // Incrementing gen.token cancels any pending staggered ripples.
       const classIo = new MutationObserver(() => {
         if (!el._sized) return;
         const {canvas, ctx, w, h} = el._sized;
         if (el.classList.contains('is-active') && !hasBurst) {
           hasBurst = true;
-          spawnBurst(canvas, ctx, w, h);
+          gen.token = ++gen.current;
+          spawnBurst(canvas, ctx, w, h, gen);
         } else if (!el.classList.contains('is-active') && hasBurst) {
           hasBurst = false;
-          spawnBurst(canvas, ctx, w, h);
+          gen.token = ++gen.current;
+          spawnBurst(canvas, ctx, w, h, gen);
         }
       });
       classIo.observe(el, { attributes: true, attributeFilter: ['class'] });

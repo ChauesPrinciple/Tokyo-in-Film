@@ -437,7 +437,7 @@
     });
   }
 
-  // --- Interstitial staged transitions ---
+  // --- Interstitial staged transitions (unified Journey timeline) ---
   // Each .journey-interstitial is a transparent 100vh spacer in the scroll
   // flow. Its video/overlay are position: fixed (covering the full viewport).
   // A scroll listener computes progress (0→1) through each spacer and applies
@@ -446,14 +446,51 @@
   //   .is-active    (0.40–0.60):  media fully visible, ripple fires once
   //   .is-exiting   (0.60–0.85):  media fading out
   // Outside those ranges no class is set, so media stays hidden.
+  //
+  // This same timeline drives the map idle behavior: the map overlay hides
+  // immediately when any interstitial is in a transition stage, and only
+  // reappears after the reader has been idle on a stop for ~2s. This unifies
+  // what was previously two independent systems (scroll listener + idle timer)
+  // into a single timeline that knows the difference between "reading a stop"
+  // and "traveling between stops."
   function initInterstitialFade() {
     const interstitials = Array.from(document.querySelectorAll('.journey-interstitial'));
     if (!interstitials.length) return;
+    const mapStage = document.querySelector('.map-stage');
+    const layout = document.querySelector('.layout');
     const vh = () => window.innerHeight;
     let ticking = false;
+    let idleTimer = null;
+    const IDLE_MS = 2000;
+    let inTransition = false;
+
+    function isJourney() {
+      return layout && layout.getAttribute('data-view') === 'journey';
+    }
+    function showMap() { if (mapStage) mapStage.classList.add('is-idle'); }
+    function hideMap() { if (mapStage) mapStage.classList.remove('is-idle'); }
+    function armIdle() {
+      if (idleTimer) clearTimeout(idleTimer);
+      idleTimer = setTimeout(() => {
+        idleTimer = null;
+        if (!inTransition && isJourney()) showMap();
+      }, IDLE_MS);
+    }
+    function setTransition(active) {
+      if (active === inTransition) return;
+      inTransition = active;
+      if (active) {
+        hideMap();
+        if (idleTimer) { clearTimeout(idleTimer); idleTimer = null; }
+      } else {
+        armIdle();
+      }
+    }
+
     function update() {
       ticking = false;
       const h = vh();
+      let anyStage = false;
       for (const el of interstitials) {
         const rect = el.getBoundingClientRect();
         // Progress: how far has the spacer scrolled through the viewport?
@@ -466,6 +503,7 @@
         if (progress >= 0.15 && progress < 0.40) stage = 'is-entering';
         else if (progress >= 0.40 && progress < 0.60) stage = 'is-active';
         else if (progress >= 0.60 && progress < 0.85) stage = 'is-exiting';
+        if (stage) anyStage = true;
         // Only update if the stage actually changed (avoids redundant writes).
         if (el.dataset.stage !== stage) {
           el.dataset.stage = stage;
@@ -473,45 +511,30 @@
           if (stage) el.classList.add(stage);
         }
       }
+      // Unify: the map hides during any transition stage and only re-arms
+      // its idle timer when no interstitial is staging.
+      if (isJourney()) setTransition(anyStage);
     }
     function onScroll() {
       if (!ticking) { ticking = true; requestAnimationFrame(update); }
     }
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onScroll, { passive: true });
+    // When switching to Map view, hide the overlay and cancel timers.
+    if (layout) {
+      const viewObserver = new MutationObserver(() => {
+        if (!isJourney()) { hideMap(); if (idleTimer) { clearTimeout(idleTimer); idleTimer = null; } }
+      });
+      viewObserver.observe(layout, { attributes: true, attributeFilter: ['data-view'] });
+    }
     update();
   }
 
   // --- Map idle overlay ---
-  // In Journey view the map is a fixed overlay that fades in when the reader
-  // pauses scrolling (~2s idle) and fades out when they resume. In Map & list
-  // view the map is a normal sticky grid column and this is a no-op.
-  function initMapIdle() {
-    const mapStage = document.querySelector('.map-stage');
-    const layout = document.querySelector('.layout');
-    if (!mapStage || !layout) return;
-    let idleTimer = null;
-    const IDLE_MS = 2000;
-    function isJourney() {
-      return layout.getAttribute('data-view') === 'journey';
-    }
-    function showMap() { mapStage.classList.add('is-idle'); }
-    function hideMap() { mapStage.classList.remove('is-idle'); }
-    function onScroll() {
-      if (!isJourney()) return;
-      hideMap();
-      if (idleTimer) clearTimeout(idleTimer);
-      idleTimer = setTimeout(showMap, IDLE_MS);
-    }
-    window.addEventListener('scroll', onScroll, { passive: true });
-    // Also hide when switching away from Journey; show immediately in Map view.
-    const observer = new MutationObserver(() => {
-      if (!isJourney()) { hideMap(); if (idleTimer) clearTimeout(idleTimer); }
-    });
-    observer.observe(layout, { attributes: true, attributeFilter: ['data-view'] });
-    // Initial state: if we start in Journey, arm the first idle timer.
-    if (isJourney()) idleTimer = setTimeout(showMap, IDLE_MS);
-  }
+  // Now merged into initInterstitialFade's unified timeline. This stub
+  // remains so the init() call sequence doesn't break if the function is
+  // referenced elsewhere. The real logic lives in initInterstitialFade.
+  function initMapIdle() {}
 
   function scrollToStop(id) {
     const stop = $(`stop-${id}`);
