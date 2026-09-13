@@ -41,7 +41,7 @@
       "address": "B1F MODERNS GINZA, 1-5-13 Ginza, Chuo-ku, Tokyo",
       "station": "Ginza (Tokyo Metro Ginza/Marunouchi/Hibiya), 3 min walk",
       "style": "Classic cocktail bar",
-      "description": "Hisashi Kishi was the first Japanese bartender to win the IBA world cocktail championship, and the government has named him a master craftsman. His Ginza basement is hushed and low-lit, the Sidecar is the drink he's known for, and the ice is cut by hand until it nearly disappears. The counter suits a solo visit as well as a celebration. Table charge ¥1,100; plan on ¥6,000 or more. Open 5:00 to 11:30 nightly.",
+      "description": "Down a flight of stairs in Ginza, Hisashi Kishi hand-cuts each cube until it's nearly transparent, and the Sidecar is what people come for. He was the first Japanese bartender to win the IBA world cocktail title and the government calls him a master craftsman, but the room doesn't trade on that. Hushed, low-lit, and it works for one person at the counter as well as a celebration. ¥1,100 table charge, plan on ¥6,000 or more. Open 5:00 to 11:30 nightly.",
       "sources": [
         {
           "label": "Open in Maps",
@@ -64,7 +64,7 @@
       "address": "4F Wakamatsu Building, 6-6-19 Ginza, Chuo-ku, Tokyo",
       "station": "Ginza (Tokyo Metro Ginza/Marunouchi/Hibiya), 4 min walk",
       "style": "Bar",
-      "description": "Think rum, not lamps: about three hundred bottles, plus cigars, on the fourth floor of the Wakamatsu Building after a move from Ginza 4-chome. For a bar at this address, it's relaxed, more neighborhood regular than stiff Ginza. Open until 2:00, closed Sundays and holidays; budget at least ¥5,000.",
+      "description": "The name says lamp, but think rum. About three hundred bottles behind the counter, plus cigars, up on the fourth floor of the Wakamatsu Building. The bar moved here from Ginza 4-chome, and it still feels like a neighborhood spot that ended up in the wrong neighborhood: relaxed, easy, more regular than tourist. Open until 2:00, closed Sundays and holidays. Budget at least ¥5,000.",
       "sources": [
         {
           "label": "Open in Maps",
@@ -73,59 +73,8 @@
       ]
     },
     {
-      "id": "nocturne",
-      "number": 4,
-      "name": "NOCTURNE",
-      "aliases": [
-        "ノクターン",
-        "バーノクターン"
-      ],
-      "area": "Yotsuya",
-      "ward": "Shinjuku",
-      "lat": 35.6857,
-      "lng": 139.7317,
-      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=NOCTURNE+bar+Yotsuya+Shinjuku+Tokyo",
-      "address": "Yotsuya, Shinjuku-ku, Tokyo",
-      "station": "Yotsuya (JR / Tokyo Metro Marunouchi), 5 min walk",
-      "style": "Whisky bar",
-      "description": "A whisky bar in Yotsuya, five minutes from the station. The X account (@bar__nocturne) posts current hours and the master's updates. Whisky is the focus, with seasonal fruit cocktails alongside. Weekdays 19:00 to 2:00, Saturday 19:00 to midnight, closed Sundays and holidays. A quiet counter with a master who knows his regulars.",
-      "sources": [
-        {
-          "label": "X / Twitter",
-          "url": "https://x.com/bar__nocturne"
-        },
-        {
-          "label": "Open in Maps",
-          "url": "https://www.google.com/maps/search/?api=1&query=NOCTURNE+bar+Yotsuya+Shinjuku+Tokyo"
-        }
-      ]
-    },
-    {
-      "id": "pizza-bar-38th",
-      "number": 5,
-      "name": "The Pizza Bar On 38th",
-      "aliases": [
-        "ザ ピザバー オン 38th"
-      ],
-      "area": "Nihonbashi",
-      "ward": "Chuo",
-      "lat": 35.686972,
-      "lng": 139.77306,
-      "mapsUrl": "https://www.google.com/maps/place/The+Pizza+Bar+On+38th/data=!4m2!3m1!1s0x6018895562e77a3b:0xe3c077a9dbbe0dcd",
-      "address": "38F Mandarin Oriental Tokyo, 2-1-1 Nihonbashi Muromachi, Chuo-ku, Tokyo",
-      "station": "Mitsukoshimae (Tokyo Metro Ginza/Hanzomon), 2 min walk",
-      "style": "Hotel bar · high-end",
-      "description": "Book this like a sushi counter, not a bar. Eight seats face a wood-fired oven on the 38th floor of the Mandarin Oriental, reservations open two months out and go in minutes, and once a booking is confirmed you can't change or cancel it. Plan on ¥20,000 to ¥30,000 a person with service and tax. The 48-hour dough keeps a full pizza course from sitting heavy, and on a clear evening Fuji is in the window. It was ranked the second-best pizzeria in the world in 2025. Smart casual.",
-      "sources": [
-        {
-          "label": "Open in Maps",
-          "url": "https://www.google.com/maps/place/The+Pizza+Bar+On+38th/data=!4m2!3m1!1s0x6018895562e77a3b:0xe3c077a9dbbe0dcd"
-        }
-      ]
-    },
-    {
       "id": "new-york-bar",
-      "number": 6,
+      "number": 4,
       "name": "New York Bar",
       "aliases": [
         "ニューヨークバー",
@@ -149,7 +98,7 @@
     },
     {
       "id": "bar-cocktailbook",
-      "number": 7,
+      "number": 5,
       "name": "Bar Cocktailbook Shinjuku",
       "aliases": [
         "バー カクテルブック 新宿"
@@ -162,7 +111,7 @@
       "address": "2F Plaza Nishishinjuku, 7-5-5 Nishishinjuku, Shinjuku-ku, Tokyo",
       "station": "Shinjuku (JR / Tokyo Metro / Odakyu / Keio), 5 min walk",
       "style": "Cocktail bar",
-      "description": "Akira holds cocktail competition titles, put in twelve years at a Shinjuku hotel bar, and opened this second-floor room in 2011. The menu follows the season and changes monthly, and some of his originals never got names. One reviewer was poured a taste of each spirit alongside the drink, which is the kind of detail people keep mentioning. Thirteen seats, ¥600 charge, closed Sundays and Mondays, near Seibu-Shinjuku.",
+      "description": "Akira holds cocktail competition titles, put in twelve years at a Shinjuku hotel bar, and opened this second-floor room in 2011. The menu follows the season and changes monthly, and some of his originals never got names. When I ordered, he set a small pour of each spirit next to the drink so I could taste them on their own first. Thirteen seats, ¥600 charge, closed Sundays and Mondays, near Seibu-Shinjuku.",
       "sources": [
         {
           "label": "Open in Maps",
@@ -172,7 +121,7 @@
     },
     {
       "id": "kakuretai",
-      "number": 8,
+      "number": 6,
       "name": "KAKURETAI",
       "aliases": [
         "かくれたい",
@@ -186,7 +135,7 @@
       "address": "B1F Nakabayashi Building, 1-2 Arakicho, Shinjuku-ku, Tokyo",
       "station": "Yotsuya-Sanchome (Tokyo Metro Marunouchi), 2 min walk",
       "style": "Speakeasy",
-      "description": "An unmarked basement in Arakicho with a cheese-and-mouse theme, J-pop on the speakers, and Yuta behind the bar making seasonal fruit cocktails and pouring Japanese whiskey. First-timers get treated like regulars. It's openly LGBTQ+ friendly. Weeknights only, 8:00 to 1:00, with DJs on Fridays. It's small and fills up, so reserve.",
+      "description": "An unmarked basement in Arakicho with a cheese-and-mouse theme running through the décor, J-pop on the speakers, and Yuta behind the bar. He makes seasonal fruit cocktails and pours Japanese whiskey, and treats first-timers like they've been coming for years. It's openly LGBTQ+ friendly. Weeknights only, 8:00 to 1:00, with DJs on Fridays. It's small and fills up, so reserve.",
       "sources": [
         {
           "label": "Tabelog",
@@ -200,7 +149,7 @@
     },
     {
       "id": "bar-rest",
-      "number": 9,
+      "number": 7,
       "name": "Bar rest",
       "aliases": [
         "歌舞伎町 rest",
@@ -227,31 +176,8 @@
       ]
     },
     {
-      "id": "sake-market",
-      "number": 10,
-      "name": "SAKE MARKET Shinjuku",
-      "aliases": [
-        "サケマーケット新宿"
-      ],
-      "area": "Shinjuku",
-      "ward": "Shinjuku",
-      "lat": 35.6911998,
-      "lng": 139.7068416,
-      "mapsUrl": "http://maps.google.com/?cid=7870946726099253627",
-      "address": "6F Shinjuku Watassei-Tama Building, 3-9-9 Shinjuku, Shinjuku-ku, Tokyo",
-      "station": "Shinjuku (JR / Tokyo Metro / Odakyu / Keio), 3 min walk",
-      "style": "Sake bar",
-      "description": "No bartender and no pressure. You pay first, ¥2,700 for ninety minutes or ¥3,800 with no limit, grab three cups, and help yourself from fridges stocked with more than 150 sakes, fruit liqueurs, and shochu. Online booking only, cashless, and outside food is fine. It works for a solo drinker and for a group, and it's an easy place to learn what you like before you sit at a counter where the bartender expects you to know.",
-      "sources": [
-        {
-          "label": "Open in Maps",
-          "url": "http://maps.google.com/?cid=7870946726099253627"
-        }
-      ]
-    },
-    {
       "id": "a-bar-sleeping-tales",
-      "number": 11,
+      "number": 8,
       "name": "a BAR Sleeping Tales",
       "aliases": [
         "ア バー スリーピング テイルズ"
@@ -264,7 +190,7 @@
       "address": "B1F (right door) Towa Shinjuku Gyoen Co-op II, 2-1-14 Shinjuku, Shinjuku-ku, Tokyo",
       "station": "Shinjuku-Gyoemmae (Tokyo Metro Marunouchi), 3 min walk",
       "style": "Bar",
-      "description": "There's no menu. Toshi asks what you like, checks what's in season, and makes you something; the peanut-butter Old Fashioned is the drink people talk about. The room is a basement done up like medieval Europe, with vintage glassware and only counter seats, so you watch him work the whole time. Right-hand door at B1F, near Shinjuku Gyoemmae Station. Closed Wednesdays.",
+      "description": "There's no menu. Toshi asks what you like, checks what's in season, and makes you something. The peanut-butter Old Fashioned is the one that gets brought up. The room is a basement done up like medieval Europe, with vintage glassware and only counter seats, so you watch him work the whole time. Right-hand door at B1F, near Shinjuku Gyoemmae Station. Closed Wednesdays.",
       "sources": [
         {
           "label": "Open in Maps",
@@ -274,7 +200,7 @@
     },
     {
       "id": "golden-gai-trio",
-      "number": 12,
+      "number": 9,
       "name": "Golden Gai: Happy, BAR COO & OPEN BOOK",
       "aliases": [
         "新宿ゴールデン街",
@@ -292,7 +218,7 @@
       "address": "1-1-6 to 1-1-8 Kabukicho, Shinjuku-ku, Tokyo",
       "station": "Shinjuku (JR / Tokyo Metro / Toei), 5 min walk",
       "style": "Golden Gai bars",
-      "description": "Three bars in Shinjuku Golden Gai, the dense cluster of 200-plus tiny drinking dens off Kabukicho. Happy (Rockin' Soul Bar) is up on the 3rd floor of the Maruha Building at 1-1-7, a soul-and-rock counter. BAR COO is at street level on Golden Gai 3rd street at 1-1-8, five or six seats with Miya behind the counter in fluent English. OPEN BOOK is on Golden Gai 5th street at 1-1-6, no signboard, a lemon sour bar opened in March 2016. Pick any of the three, or bar-hop between them.",
+      "description": "Three bars in Shinjuku Golden Gai, the dense cluster of 200-plus tiny drinking dens off Kabukicho. Pick any of the three, or bar-hop between them. Happy is up on the 3rd floor of the Maruha Building, a soul-and-rock counter with a wall of vinyl. BAR COO is at street level on the third lane, five or six seats with Miya behind the counter in fluent English. OPEN BOOK is on the fifth lane, no signboard, just a wooden board that slides open. A lemon sour bar.",
       "sources": [
         {
           "label": "Happy on Maps",
@@ -346,31 +272,8 @@
       ]
     },
     {
-      "id": "fightclub",
-      "number": 13,
-      "name": "FIGHTCLUB Shibuya",
-      "aliases": [
-        "ファイトクラブ渋谷"
-      ],
-      "area": "Dogenzaka",
-      "ward": "Shibuya",
-      "lat": 35.659412,
-      "lng": 139.697601,
-      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=FIGHTCLUB+Shibuya+2-27-2+Dogenzaka+Tokyo",
-      "address": "1F Towa Dogenzaka Building, 2-27-2 Dogenzaka, Shibuya-ku, Tokyo",
-      "station": "Shibuya (JR / Tokyo Metro / Tokyu / Keio Inokashira), 3 min walk",
-      "style": "Bar",
-      "description": "Half gym, half bar, on one floor on Dogenzaka: a caged ring, a DJ booth, and free drop-in training. After 6:00 people spar, then drink. One reviewer came twice and made new sparring partners both times. Drinks are cheap. Hours vary, so check before you go.",
-      "sources": [
-        {
-          "label": "Open in Maps",
-          "url": "https://www.google.com/maps/search/?api=1&query=FIGHTCLUB+Shibuya+2-27-2+Dogenzaka+Tokyo"
-        }
-      ]
-    },
-    {
       "id": "janai-coffee",
-      "number": 14,
+      "number": 10,
       "name": "JANAI COFFEE",
       "aliases": [
         "ジャナイコーヒー"
@@ -394,7 +297,7 @@
     },
     {
       "id": "a10",
-      "number": 15,
+      "number": 11,
       "name": "A10",
       "aliases": [
         "エーテン"
@@ -407,7 +310,7 @@
       "address": "B1F Bios Building, 1-12-11 Ebisunishi, Shibuya-ku, Tokyo",
       "station": "Ebisu (JR Yamanote / Tokyo Metro Hibiya), 3 min walk",
       "style": "Bar",
-      "description": "Walk past what looks like a row of green lockers and you're in a record bar: a DJ on vinyl, soul and jazz on a serious sound system, and original cocktails overseen by mixologist Munenori Nagumo. It's a bar for dates. ¥1,320 charge. Open 7:00 to 2:30; book ahead for Fridays and weekends.",
+      "description": "Walk past what looks like a row of green lockers and you're in a record bar. A DJ on vinyl, soul and jazz on a serious sound system, and original cocktails overseen by Munenori Nagumo. ¥1,320 charge. Open 7:00 to 2:30. Book ahead for Fridays and weekends.",
       "video": "assets/movie/a10.webm",
       "sources": [
         {
@@ -418,7 +321,7 @@
     },
     {
       "id": "never-never-land",
-      "number": 16,
+      "number": 12,
       "name": "Never Never Land",
       "aliases": [
         "ネバーネバーランド",
@@ -433,7 +336,7 @@
       "address": "2F Yoshino Heights, 3-19-3 Kitazawa, Setagaya-ku, Tokyo 155-0031",
       "station": "Shimokitazawa (Odakyu / Keio Inokashira), 3 min walk",
       "style": "Izakaya · music bar",
-      "description": "A Shimokitazawa rock bar that has been open since 1978, now on the second floor of a building across from Studio Noah, three minutes from the station. The walls are covered in posters and fliers for gigs and underground theater, and there are DJ nights and live sets. The kitchen does spiced Asian food; the Burmese chicken curry is the signature, at ¥1,300. No cover charge, about twenty-four seats, non-smoking, and solo diners are welcome. Expect ¥2,000 to ¥3,000. Open 6:00 to 1:00, with irregular days off.",
+      "description": "A Shimokitazawa rock bar open since 1978, up on the second floor across from Studio Noah, three minutes from the station. The walls are covered in posters and fliers for gigs and underground theater, and there are DJ nights and live sets. The kitchen does spiced Asian food; the Burmese chicken curry is the one to order, at ¥1,300. No cover charge, about twenty-four seats, non-smoking, solo diners welcome. Expect ¥2,000 to ¥3,000. Open 6:00 to 1:00, with irregular days off.",
       "sources": [
         {
           "label": "Official site",
@@ -446,8 +349,31 @@
       ]
     },
     {
+      "id": "no-room-squares",
+      "number": 13,
+      "name": "No Room For Squares",
+      "aliases": [
+        "ノー・ルーム・フォー・スクエアーズ"
+      ],
+      "area": "Kitazawa",
+      "ward": "Setagaya",
+      "lat": 35.6591442,
+      "lng": 139.6676007,
+      "mapsUrl": "http://maps.google.com/?cid=911402204683980032",
+      "address": "4F Housing Kitazawa Building II, 2-1-7 Kitazawa, Setagaya-ku, Tokyo",
+      "station": "Shimokitazawa (Odakyu / Keio Inokashira), 3 min walk",
+      "style": "Jazz bar",
+      "description": "Named after the Hank Mobley album. It's on a fourth floor in Shimokitazawa, and you enter through the front of an old Coca-Cola vending machine. More than a thousand records, huge speakers on the walls, and no menu; tell the owner what you like. Weekends bring live jazz, and during a set the room is too small for conversation. A good bar to walk into nervous. Cash only, 2:00 p.m. to 2:00 a.m.",
+      "sources": [
+        {
+          "label": "Open in Maps",
+          "url": "http://maps.google.com/?cid=911402204683980032"
+        }
+      ]
+    },
+    {
       "id": "bar-sawa",
-      "number": 17,
+      "number": 14,
       "name": "Bar sawa",
       "aliases": [
         "バー サワ"
@@ -469,31 +395,8 @@
       ]
     },
     {
-      "id": "no-room-squares",
-      "number": 18,
-      "name": "No Room For Squares",
-      "aliases": [
-        "ノー・ルーム・フォー・スクエアーズ"
-      ],
-      "area": "Kitazawa",
-      "ward": "Setagaya",
-      "lat": 35.6591442,
-      "lng": 139.6676007,
-      "mapsUrl": "http://maps.google.com/?cid=911402204683980032",
-      "address": "4F Housing Kitazawa Building II, 2-1-7 Kitazawa, Setagaya-ku, Tokyo",
-      "station": "Shimokitazawa (Odakyu / Keio Inokashira), 3 min walk",
-      "style": "Jazz bar",
-      "description": "Named after the Hank Mobley album. It's on a fourth floor in Shimokitazawa, and you enter through the front of an old Coca-Cola vending machine. More than a thousand records, huge speakers on the walls, and no menu; tell the owner what you like. Weekends bring live jazz, and during a set the room is too small for conversation. One first-time bar-goer came in nervous and left feeling welcome. Cash only, 2:00 p.m. to 2:00 a.m.",
-      "sources": [
-        {
-          "label": "Open in Maps",
-          "url": "http://maps.google.com/?cid=911402204683980032"
-        }
-      ]
-    },
-    {
       "id": "gen-yamamoto",
-      "number": 19,
+      "number": 15,
       "name": "Gen Yamamoto",
       "aliases": [
         "ゲン ヤマモト"
@@ -508,7 +411,7 @@
       "style": "Cocktail bar · high-end",
       "image": "assets/imgs/bars/gen-yamamoto.jpg",
       "imageAlt": "Gen Yamamoto counter",
-      "description": "One bartender, eight seats, and a tasting course of small cocktails made from seasonal Japanese produce that changes almost every week. Plan on ¥8,000 to ¥10,000. The pours are small and the alcohol is light; the flavors make up for it. Book by phone up to a week ahead. Tuesday to Saturday, last entry 9:00, so this is an early evening stop.",
+      "description": "One bartender, eight seats, and a tasting course of small cocktails built from seasonal Japanese produce that changes almost every week. Plan on ¥8,000 to ¥10,000. The pours are small and the alcohol is light; the flavors make up for it. Book by phone up to a week ahead. Tuesday to Saturday, last entry 9:00, so this is an early-evening stop, not a late one.",
       "sources": [
         {
           "label": "Open in Maps",
@@ -518,7 +421,7 @@
     },
     {
       "id": "bar-centifolia",
-      "number": 20,
+      "number": 16,
       "name": "Bar Centifolia",
       "aliases": [
         "バー センティフォリア"
@@ -540,31 +443,8 @@
       ]
     },
     {
-      "id": "rokusan-angel",
-      "number": 21,
-      "name": "Rokusan Angel (Burlesque Tokyo)",
-      "aliases": [
-        "ロクサンエンジェル"
-      ],
-      "area": "Roppongi",
-      "ward": "Minato",
-      "lat": 35.6633285,
-      "lng": 139.7341877,
-      "mapsUrl": "https://www.google.com/maps/place/ROKUSAN+ANGEL%EF%BC%88Burlesque+Tokyo%EF%BC%89/data=!4m2!3m1!1s0x60188b78685d2fcb:0x949f91afc7f95845",
-      "address": "B2F Roppongi Nittaku Building, 3-8-15 Roppongi, Minato-ku, Tokyo",
-      "station": "Roppongi (Toei Oedo / Tokyo Metro Hibiya), 5 min walk",
-      "style": "Burlesque bar",
-      "description": "Formerly Burlesque Tokyo, two floors below street level, five minutes from Roppongi Station. The themed shows change every week and run seventy to ninety minutes, and the performers work the crowd. It's booked for birthdays and celebrations, so bring people, and reserve early for front seats. Expect ¥8,000 to ¥10,000 each after the 15% service charge, and limited English.",
-      "sources": [
-        {
-          "label": "Open in Maps",
-          "url": "https://www.google.com/maps/place/ROKUSAN+ANGEL%EF%BC%88Burlesque+Tokyo%EF%BC%89/data=!4m2!3m1!1s0x60188b78685d2fcb:0x949f91afc7f95845"
-        }
-      ]
-    },
-    {
       "id": "bar-under",
-      "number": 22,
+      "number": 17,
       "name": "BAR &UNDER",
       "aliases": [
         "バー アンドアンダー"
@@ -587,7 +467,7 @@
     },
     {
       "id": "naru-jazz",
-      "number": 23,
+      "number": 18,
       "name": "NARU Jazz Livehouse",
       "aliases": [
         "ジャズハウスナル",
@@ -601,7 +481,7 @@
       "address": "B1 Jujiya Building, 2-1 Kanda Surugadai, Chiyoda-ku, Tokyo 101-0062",
       "station": "Ochanomizu (JR Chuo/Sobu, Tokyo Metro Marunouchi), 1 min walk",
       "style": "Jazz livehouse",
-      "description": "Open since 1969, a minute from Ochanomizu Station. About thirty seats crowded around a grand piano, working Tokyo musicians every night, a ¥2,500 cover plus drinks, and generous food that doesn't cost much, most of it Italian. English menu. It's tight in there, and that's what makes it feel intimate. Solo diners and groups both get a good welcome.",
+      "description": "Open since 1969, a minute from Ochanomizu Station. About thirty seats crowded around a grand piano, working Tokyo musicians every night, a ¥2,500 cover plus drinks, and generous food that doesn't cost much, most of it Italian. English menu. It's tight in there, and that's what makes it intimate. Solo or with a group, you get a good welcome.",
       "sources": [
         {
           "label": "Open in Maps",
@@ -615,7 +495,7 @@
     },
     {
       "id": "game-bar-abutton",
-      "number": 24,
+      "number": 19,
       "name": "Game Bar A-Button",
       "aliases": [
         "ゲームバー エーボタン"
@@ -628,7 +508,7 @@
       "address": "1F Dai-5 Mitsumasa Building, 1-13-9 Taito, Taito-ku, Tokyo",
       "station": "Inaricho (Tokyo Metro Ginza), 4 min walk",
       "style": "Game bar",
-      "description": "Don't come to play games; the owner pulled most of the playable machines after copyright letters. What's left is a thirteen-seat bar in an old ramen shop packed with consoles, controllers, and figures, run by Nagamine, a former Sega arcade worker. It works as a gathering spot for people who love this stuff. Reviews are mixed: drinks are on the expensive side and English is limited. Open until 11:00.",
+      "description": "Don't come to play games; the owner pulled most of the playable machines after copyright letters. What's left is a thirteen-seat bar in an old ramen shop packed with consoles, controllers, and figures, run by Nagamine, a former Sega arcade worker. It's a gathering spot for people who love this stuff. Drinks are on the expensive side and English is limited. Open until 11:00.",
       "sources": [
         {
           "label": "Open in Maps",
@@ -638,7 +518,7 @@
     },
     {
       "id": "bar-willows",
-      "number": 25,
+      "number": 20,
       "name": "BAR Willow's",
       "aliases": [
         "バー ウィローズ"
@@ -651,7 +531,7 @@
       "address": "6F-E, 88 Building, 2-1-3 Ueno, Taito-ku, Tokyo",
       "station": "Okachimachi (JR), 3 min walk; Ueno-Hirokoji (Tokyo Metro Ginza), 1 min walk",
       "style": "Bar",
-      "description": "I don't visit Tokyo without coming here, usually several times a trip. Yanagisawa owns the bar, ran the bar at the Yokohama Royal Park Hotel before this, and is about as attentive as a bartender gets; his English is excellent. The ice is hand-crafted and priced like it, and that is what good service costs. Antique chairs line the counter, and the chair in the logo means there's always a seat waiting for you. After enough trips, there is. Two hundred whiskeys, good non-alcoholic drinks, open until 3:00 most nights.",
+      "description": "I don't visit Tokyo without coming here, usually several times a trip. Yanagisawa owns the bar, ran the bar at the Yokohama Royal Park Hotel before this, and is about as attentive as a bartender gets; his English is excellent. The ice is hand-crafted and priced like it, and that is what good service costs. Each chair at the counter was chosen by hand, and the chair in the logo means there's always a seat waiting for you. After enough trips, there is. Two hundred whiskeys, good non-alcoholic drinks, open until 3:00 most nights.",
       "video": "assets/movie/bar-willows.webm",
       "sources": [
         {
@@ -662,7 +542,7 @@
     },
     {
       "id": "rock-bar-sakebi",
-      "number": 26,
+      "number": 21,
       "name": "Rock Bar Sakebi",
       "aliases": [
         "ロックバー さけび"
@@ -684,31 +564,8 @@
       ]
     },
     {
-      "id": "the-trad",
-      "number": 27,
-      "name": "The TRAD whisky & cocktails",
-      "aliases": [
-        "ザ トラッド"
-      ],
-      "area": "Yushima",
-      "ward": "Bunkyo",
-      "lat": 35.708847,
-      "lng": 139.77121,
-      "mapsUrl": "https://www.google.com/maps/place/The+TRAD+whisky+%26+cocktails+%E6%B9%AF%E5%B3%B6+%E5%BE%A1%E5%BE%92%E7%94%BA+%E4%B8%8A%E9%87%8E%E3%83%90%E3%83%BC/data=!4m2!3m1!1s0x60188c20f66448e3:0xca25a905c1abddc1",
-      "address": "1F Fukase Building, 3-43-9 Yushima, Bunkyo-ku, Tokyo",
-      "station": "Ueno-Hirokoji (Tokyo Metro Ginza), 3 min walk",
-      "style": "Whisky & cocktail bar",
-      "description": "A ground-floor whiskey and cocktail bar in Yushima, fitted out like a small European castle full of antiques. Deep whiskey shelf, cigars, comfortable chairs. It works for one person or a small group. Closes at 11:30, midnight on weekends; smoking allowed; around ¥3,000 to ¥4,000.",
-      "sources": [
-        {
-          "label": "Open in Maps",
-          "url": "https://www.google.com/maps/place/The+TRAD+whisky+%26+cocktails+%E6%B9%AF%E5%B3%B6+%E5%BE%A1%E5%BE%92%E7%94%BA+%E4%B8%8A%E9%87%8E%E3%83%90%E3%83%BC/data=!4m2!3m1!1s0x60188c20f66448e3:0xca25a905c1abddc1"
-        }
-      ]
-    },
-    {
       "id": "eigakan-jazz",
-      "number": 28,
+      "number": 22,
       "name": "Eigakan Jazz",
       "aliases": [
         "映画館ジャズ"
@@ -734,32 +591,8 @@
       ]
     },
     {
-      "id": "shooting-bar-ea",
-      "number": 29,
-      "name": "Shooting Bar EA",
-      "aliases": [
-        "シューティングバー イーエー"
-      ],
-      "area": "Kichijoji",
-      "municipality": "Musashino",
-      "prefecture": "Tokyo",
-      "lat": 35.7019815,
-      "lng": 139.5759106,
-      "mapsUrl": "http://maps.google.com/?cid=3696340728203653624",
-      "address": "2F Sawada Building, 1-5-5 Gotenyama, Musashino, Tokyo",
-      "station": "Kichijoji (JR Chuo / Keio Inokashira), 8 min walk",
-      "style": "Shooting bar",
-      "description": "Past the 23 wards, eight minutes from Kichijoji: three hundred airsoft guns on the wall, three ten-meter lanes, and staff who are serious about safety and good with beginners. Cocktails are named after guns, and the favorite is the SPAS-12, rum, fruit juice, and brown sugar, lit on fire. Prices are reasonable. Reservations required; closed Tuesdays.",
-      "sources": [
-        {
-          "label": "Open in Maps",
-          "url": "http://maps.google.com/?cid=3696340728203653624"
-        }
-      ]
-    },
-    {
       "id": "sake-bar-o",
-      "number": 30,
+      "number": 23,
       "name": "SAKEBARO Aoyama",
       "aliases": [
         "酒バー O",
@@ -771,6 +604,8 @@
       "spotlight": true,
       "lat": 35.669693,
       "lng": 139.725235,
+      "image": "assets/imgs/bars/sake-bar-o.jpg",
+      "imageAlt": "Sake and wine bottles behind two metal sake cups and a small dish of almonds on the SAKEBARO counter",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=SAKEBARO+Aoyama+2-10-8+Minami-Aoyama+Tokyo",
       "address": "1F MD Aoyama, 2-10-8 Minami-Aoyama, Minato-ku, Tokyo 107-0062",
       "station": "Omotesando (Tokyo Metro Ginza/Hanzomon/Chiyoda), 8 min walk",
@@ -788,6 +623,25 @@
           "url": "https://www.google.com/maps/search/?api=1&query=SAKEBARO+Aoyama+2-10-8+Minami-Aoyama+Tokyo"
         }
       ]
+    },
+    {
+      "id": "rokusan-angel",
+      "number": 24,
+      "name": "Rokusan Angel (Burlesque Tokyo)",
+      "aliases": [
+        "ロクサンエンジェル"
+      ],
+      "area": "Roppongi",
+      "ward": "Minato",
+      "lat": 35.6633285,
+      "lng": 139.7341877,
+      "mapsUrl": "https://www.google.com/maps/place/ROKUSAN+ANGEL%EF%BC%88Burlesque+Tokyo%EF%BC%89/data=!4m2!3m1!1s0x60188b78685d2fcb:0x949f91afc7f95845",
+      "address": "B2F Roppongi Nittaku Building, 3-8-15 Roppongi, Minato-ku, Tokyo",
+      "station": "Roppongi (Toei Oedo / Tokyo Metro Hibiya), 5 min walk",
+      "style": "Burlesque bar",
+      "description": "Formerly Burlesque Tokyo, two floors below street level in Roppongi. The themed shows change every week and run seventy to ninety minutes, and the performers work the crowd. It's booked for birthdays and celebrations, so bring people, and reserve early for front seats. Expect ¥8,000 to ¥10,000 each after the 15% service charge. Limited English.",
+      "epilogue": true,
+      "sources": []
     }
   ]
 }

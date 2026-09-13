@@ -160,8 +160,10 @@ def _render_stop(bar):
     # columns, so count the columns each alias actually needs. Reserving the
     # real width is what keeps the spine off the horizontal text.
     cols_attr = f' style="--alias-cols:{_alias_columns(aliases)}"' if aliases else ''
+    epilogue_cls = ' epilogue' if bar.get('epilogue') else ''
+    num_attr = '' if bar.get('epilogue') else f' data-number="{num}"'
     parts = []
-    parts.append(f'  <section class="stop{spotlight}" id="stop-{bid}" data-stop="{bid}" data-number="{num}"{floor_attr}{cat_attr}{cols_attr}>')
+    parts.append(f'  <section class="stop{spotlight}{epilogue_cls}" id="stop-{bid}" data-stop="{bid}"{num_attr}{floor_attr}{cat_attr}{cols_attr}>')
     # Media as a background layer — video or image covers the full card.
     video = bar.get('video')
     image = bar.get('image')
@@ -170,7 +172,7 @@ def _render_stop(bar):
         poster_attr = f' poster="{_esc(poster)}"' if poster else ''
         mp4 = bar.get('videoMp4') or video.replace('.webm', '.mp4')
         parts.append(f'    <div class="stop-media-bg">')
-        parts.append(f'      <video class="stop-video" muted loop playsinline autoplay preload="metadata"{poster_attr}>')
+        parts.append(f'      <video class="stop-video" muted loop playsinline autoplay preload="none"{poster_attr}>')
         parts.append(f'        <source src="{_esc(video)}" type="video/webm">')
         parts.append(f'        <source src="{_esc(mp4)}" type="video/mp4">')
         parts.append(f'      </video>')
@@ -182,9 +184,16 @@ def _render_stop(bar):
         parts.append(f'    </div>')
     # Text body on top of the media, with a sakura-tinted panel.
     parts.append(f'    <div class="stop-body">')
+    # Epilogue veil: a reveal button over the "naughty" card. bars-map.js
+    # shows it and makes the content behind it inert until it's opened.
+    if bar.get('epilogue'):
+        parts.append(f'      <button type="button" class="stop-veil">18+ · reveal</button>')
     # 1. Name
     parts.append(f'      <header class="stop-head">')
-    parts.append(f'        <p class="stop-number">{num}</p>')
+    if bar.get('epilogue'):
+        parts.append(f'        <p class="stop-number" aria-hidden="true"></p>')
+    else:
+        parts.append(f'        <p class="stop-number">{num}</p>')
     parts.append(f'        <div class="stop-head-text">')
     parts.append(f'          <h3 class="stop-name">{_esc(bar["name"])}</h3>')
     parts.append(f'        </div>')
@@ -250,17 +259,16 @@ def render_journey(data_path):
     # Night-journey legs: geographic clusters that progress deeper into the
     # night. Each leg gets a header so the reader can see the structure.
     legs = [
-        ('Ginza &amp; Nihonbashi', 'Early evening: cocktails and counters'),
-        ('Shinjuku', 'Late evening: Yotsuya whisky, a Nihonbashi counter, hotel bars, speakeasies, Golden Gai'),
-        ('Shibuya &amp; Ebisu &amp; Meguro', 'Midnight: coffee shops that aren\u2019t, jazz rooms'),
-        ('Minato &amp; Roppongi', 'Deep night: Azabujuban counters and Roppongi basements'),
+        ('Ginza', 'Early evening: cocktails and counters'),
+        ('Shinjuku', 'Late evening: hotel bars, speakeasies, Golden Gai'),
+        ('Shibuya & Setagaya & Meguro & Minato', 'Midnight: coffee shops that aren\u2019t, jazz rooms, Azabujuban counters'),
         ('East Tokyo', 'After hours: Kanda to Ueno to Bunkyo'),
-        ('The outer reaches', 'The far outliers and the locked door'),
+        ('The locked door', 'The one place you can\u2019t walk into'),
     ]
     # Map bar numbers to leg indices (1-based numbering, 0-based legs).
-    # Boundaries: stop 3 ends Ginza (Apollo, Star, Lamp); stop 4 (NOCTURNE,
-    # Yotsuya/Shinjuku) starts the Shinjuku leg.
-    leg_bounds = [3, 12, 18, 21, 28, 30]  # last number in each leg
+    # 23 bars across 5 legs: Ginza (3), Shinjuku (6), Shibuya/Ebisu/Meguro/Minato (7),
+    # East Tokyo (6), The locked door (1).
+    leg_bounds = [3, 9, 16, 22, 23]  # last number in each leg
     leg_of = {}
     li = 0
     for n in range(1, len(bars) + 1):
@@ -271,8 +279,8 @@ def render_journey(data_path):
     parts = []
 
     # Interstitial transit clips — stairwell footage spliced from the
-    # JANAI COFFEE approach video (3-second increments). Inserted every
-    # 3 stops so the reader scrolls through movement between neighborhoods.
+    # JANAI COFFEE approach video (3-second increments). Inserted at fixed
+    # positions so the reader scrolls through movement between neighborhoods.
     # 9 unique 3-second clips from the JANAI source (15-40s range), each from
     # a different offset so every interstitial feels distinct. Order goes
     # warm → neon: early clips are the soft-lit stairwell approach, later
@@ -317,7 +325,7 @@ def render_journey(data_path):
             )
         return (
             f'<figure class="journey-interstitial" aria-label="Stairwell transition">'
-            f'<video class="stop-video" muted loop playsinline autoplay preload="metadata">'
+            f'<video class="stop-video" muted loop playsinline autoplay preload="none">'
             f'<source src="{_esc(webm)}" type="video/webm">'
             f'<source src="{_esc(mp4)}" type="video/mp4">'
             f'</video>{quote_html}</figure>'
@@ -327,7 +335,7 @@ def render_journey(data_path):
         text, source = CODA_QUOTE
         return (
             f'<figure class="journey-interstitial journey-coda" aria-label="The storm">'
-            f'<video class="stop-video" muted loop playsinline autoplay preload="metadata">'
+            f'<video class="stop-video" muted loop playsinline autoplay preload="none">'
             f'<source src="assets/movie/coda.webm" type="video/webm">'
             f'<source src="assets/movie/coda.mp4" type="video/mp4">'
             f'</video>'
@@ -342,6 +350,8 @@ def render_journey(data_path):
     interstitial_idx = 0
     total = len(bars)
     for bar in bars:
+        if bar.get('epilogue'):
+            continue
         n = bar['number']
         leg = leg_of.get(n, 0)
         if leg != prev_leg:
@@ -349,14 +359,20 @@ def render_journey(data_path):
             parts.append(f'<h3 class="journey-leg">{title}<span class="journey-leg-sub">{subtitle}</span></h3>')
             prev_leg = leg
         parts.append(_render_stop(bar))
-        # Insert an interstitial every 3 stops (not between legs — this gives
-        # 9 evenly-spaced transitions across the 30-stop journey). The coda
-        # goes after the last stop instead of a 10th interstitial.
-        if n < total and n % 3 == 0:
+        # Insert interstitials at fixed positions so all 9 clips and quotes
+        # are used across the 23-stop journey. Gaps of 2-3 stops throughout
+        # so no stop is isolated between two interstitials. The coda goes
+        # after the last stop instead of a 10th interstitial.
+        INTERSTITIAL_AFTER = {3, 6, 9, 12, 14, 16, 18, 20, 22}
+        if n in INTERSTITIAL_AFTER:
             parts.append(_interstitial(interstitial_idx))
             interstitial_idx += 1
     # Closing quote after the final stop (SAKEBARO spotlight).
     parts.append(_coda())
+    # Epilogue: the "naughty" stop after the storm, outside the night journey.
+    epilogue = next((b for b in bars if b.get('epilogue')), None)
+    if epilogue:
+        parts.append(_render_stop(epilogue))
     return '\n'.join(parts)
 
 
@@ -427,6 +443,8 @@ def _assert_bars_consistency():
         if '"' in val or '<' in val:
             errors.append(f"Invalid data-category: '{val}'")
     # stop count == bar-count == max data-number == JSON count
+    # Epilogue stops (class="stop epilogue") are excluded from the count
+    # because the regex only matches class="stop" or class="stop is-spotlight".
     stop_count = len(re.findall(r'class="stop(?: is-spotlight)?"\s', text))
     data_numbers = [int(n) for n in re.findall(r'data-number="(\d+)"', text)]
     max_number = max(data_numbers) if data_numbers else 0
@@ -434,7 +452,8 @@ def _assert_bars_consistency():
     static_count = int(count_match.group(1)) if count_match else 0
     json_path = Path('assets/bars-map-data.json')
     if json_path.exists():
-        json_count = len(json.loads(json_path.read_text(encoding='utf-8'))['bars'])
+        all_bars = json.loads(json_path.read_text(encoding='utf-8'))['bars']
+        json_count = len([b for b in all_bars if not b.get('epilogue')])
     else:
         json_count = -1
     if static_count != stop_count:

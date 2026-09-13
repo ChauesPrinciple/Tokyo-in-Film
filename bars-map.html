@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <script>document.documentElement.classList.add('js')</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="A field guide to cocktail counters, jazz bars, and late-night spots across Tokyo, with an interactive map, neighborhood details, and a printable place index.">
   <meta name="theme-color" content="#14121c">
@@ -190,6 +191,12 @@
       font-size: 11px; letter-spacing: .05em; pointer-events: none;
       background: rgba(20,18,28,0.85); padding: 3px 7px; border-radius: 4px;
     }
+    .osm-credit {
+      position: absolute; right: 10px; bottom: 10px; margin: 0;
+      font-size: 10px; color: var(--ink-soft); pointer-events: auto;
+      background: rgba(20,18,28,0.85); padding: 2px 6px; border-radius: 4px;
+    }
+    .osm-credit a { color: var(--ink-soft); text-decoration: underline; }
     .map-status {
       margin: 11px 2px 0; color: var(--ink-soft); font-size: 13px;
       min-height: 20px; max-width: 80ch;
@@ -383,7 +390,7 @@
     .view-tab:focus-visible { outline: 2px solid var(--mark-ink); outline-offset: 2px; }
     .toggle-follow { font-size: 12px; color: var(--muted); padding: 0 10px; cursor: pointer; user-select: none; }
     .toggle-follow input { margin-right: 4px; }
-    .layout[data-view="map"] .toggle-follow { display: none; }
+    body:not([data-journey-active]) .toggle-follow { display: none; }
 
     /* Journey view — an ethereal scroll through the night.
        Japanese aliases run vertically (縦書き) in Shippori Mincho, the way a
@@ -482,11 +489,50 @@
     /* Closing quote after the final stop (SAKEBARO spotlight). Now a
        full-screen interstitial with the door-open video behind the
        storm quote, same prominence as the other interstitials.
-       80vh (not 100vh) so the footer below it isn't covered by the fixed
+       80vh (not 100vh) so the epilogue below it isn't covered by the fixed
        video when the reader scrolls past, but still tall enough to
-       trigger the .is-active covering threshold (75vh) so the quote
+       trigger the .is-active covering threshold (50vh) so the quote
        actually appears. */
     .journey-coda { height: 80vh; }
+
+    /* Epilogue stop: the "naughty" card after the storm. No number badge,
+       no floor arrow, and lifted above the coda's fixed video so it's
+       readable as soon as the reader scrolls past the storm. The coda's
+       media jumps to z-index 50 (quote 52) while it covers half the screen,
+       so the card needs to sit above that, not at the default 10.
+       Smaller than a normal stop, deep red, and blurred until clicked. */
+    .stop.epilogue {
+      position: relative; z-index: 60;
+      border-color: #5c1a1a; background: #1a0808;
+      margin: 0 auto 24px; max-width: 460px;
+    }
+    /* Fades out once "Before you go" is a quarter in view (bars-map.js adds
+       .is-faded). visibility waits for the fade, then takes the card out of
+       clicks and Tab. */
+    html.js .stop.epilogue { transition: opacity .6s ease, transform .6s ease, visibility 0s; }
+    html.js .stop.epilogue.is-faded { opacity: 0; visibility: hidden; transition: opacity .6s ease, transform .6s ease, visibility 0s linear .6s; }
+    .stop.epilogue .stop-number { display: none; }
+    .stop.epilogue .stop-body { position: relative; padding: 12px 16px; }
+    .stop.epilogue .stop-name { font-size: 15px; }
+    .stop.epilogue .stop-aliases { font-size: 11px; }
+    .stop.epilogue .stop-summary { font-size: 12px; }
+    .stop.epilogue .stop-description { font-size: 13px; line-height: 1.5; }
+    .stop.epilogue .stop-facts { font-size: 12px; }
+    .stop.epilogue .stop-links { font-size: 12px; }
+    /* The veil is a real button, so keyboard users can open it. It only
+       shows once bars-map.js marks the card .is-veiled and makes the content
+       behind it inert; without the script the card is simply open. */
+    .stop.epilogue .stop-veil {
+      position: absolute; inset: 0; z-index: 5; cursor: pointer;
+      width: 100%; margin: 0; padding: 0; border: 0; border-radius: 0; font: inherit;
+      background: rgba(26,8,8,.92); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      display: flex; align-items: center; justify-content: center;
+      color: #c44; font-size: 13px; letter-spacing: .08em; text-transform: uppercase;
+      opacity: 0; visibility: hidden; pointer-events: none;
+      transition: opacity .4s ease, visibility 0s linear .4s;
+    }
+    .stop.epilogue.is-veiled .stop-veil { opacity: 1; visibility: visible; pointer-events: auto; transition: opacity .4s ease; }
+    .stop.epilogue .stop-veil:focus-visible { outline: 2px solid #c44; outline-offset: -4px; }
 
     /* Fade-in: stops start dimmed and lifted, then settle as they enter.
        position: relative + z-index keeps stop cards above the interstitial
@@ -498,12 +544,12 @@
       scroll-margin: 24px;
       position: relative; z-index: 10;
       overflow: hidden;
-      opacity: 0; transform: translateY(14px);
-      transition: opacity .7s ease, transform .7s ease;
     }
-    .stop.is-revealed { opacity: 1; transform: none; }
+    html.js .stop { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+    html.js .stop.is-revealed { opacity: 1; transform: none; }
     @media (prefers-reduced-motion: reduce) {
-      .stop { opacity: 1; transform: none; transition: none; }
+      html.js .stop { opacity: 1; transform: none; transition: none; }
+      html.js .stop.epilogue, html.js .stop.epilogue.is-faded { transition: none; }
     }
     .stop.is-spotlight {
       border-color: var(--glow-line); background: var(--glow-soft);
@@ -671,12 +717,12 @@
       .map-marker.is-spotlight .marker-number { color: #fff; fill: #fff; }
       .shop-card.is-spotlight .shop-status { background: var(--glow); color: #fff; }
       .page-shell { max-width: none; margin: 0; padding: 0 12px; }
-      .skip-link, .masthead nav, .map-toolbar, .toggle, .list-controls, #source-notes, #map-status, .map-hint, .shop-note, .shop-links, noscript, .films, .view-switch, .journey-interstitial, .journey-coda, .stop-links, .map-view, .toggle-follow { display: none !important; }
+      .skip-link, .masthead nav, .map-toolbar, .toggle, .list-controls, #source-notes, #map-status, .map-hint, .shop-note, .shop-links, noscript, .films, .view-switch, .journey-interstitial, .journey-coda, .stop-links, .map-view, .toggle-follow, .stop-veil { display: none !important; }
       .journey-view { display: block !important; }
       .journey-scroll { max-width: none; padding: 0; }
       /* Stops fade in on scroll; unrevealed ones (or all of them, when printing
          from Map & list) would otherwise print as blank space. */
-      .stop { break-inside: avoid; border-radius: 0; margin: 0; border: 0; border-bottom: 1px solid var(--line); background: #fff; opacity: 1 !important; transform: none !important; overflow: visible; }
+      .stop { break-inside: avoid; border-radius: 0; margin: 0; border: 0; border-bottom: 1px solid var(--line); background: #fff; opacity: 1 !important; visibility: visible !important; transform: none !important; overflow: visible; }
       .stop-body { padding: 3mm 0; background: #fff; }
       .stop.is-spotlight .stop-body { background: var(--glow-soft); }
       .stop.is-spotlight { background: var(--glow-soft); }
@@ -711,7 +757,7 @@
     }
   </style>
   <script src="js/ripple.js?v=72736e8d" defer></script>
-  <script src="js/bars-map.js?v=60e43b12" defer></script>
+  <script src="js/bars-map.js?v=1e405004" defer></script>
 </head>
 <body>
   <div class="bars-bg" aria-hidden="true">
@@ -735,7 +781,7 @@
       <div class="page-header">
         <div class="page-header-text">
           <h1>Tokyo After Dark</h1>
-          <p class="lede">A night in order: Ginza cocktails, then Shinjuku's hidden floors, then the midnight shift south through Ebisu and Roppongi, and the east-side after-hours crawl, and the far outliers, ending at a door you have to be let into. Across Tokyo, <span id="bar-count">30</span> late-night places: Ginza counters where the ice is carved by hand, an Ebisu basement that calls itself a coffee shop, a Shimokitazawa jazz room named after a Hank Mobley record, and the bar from <cite>Lost in Translation</cite>. Each stop is a place with its floor, its address, and a note on what it is. Tell the bartender what you're in the mood for and let them build it. Switch to Map & list to see them all at once.</p>
+          <p class="lede">A night in order: Ginza cocktails, then Shinjuku's hidden floors, then the midnight shift south through Ebisu and Azabujuban, and the east-side after-hours crawl, ending at a door you have to be let into. Across Tokyo, <span id="bar-count">23</span> late-night places and one after-hours encore: Ginza counters where the ice is carved by hand, an Ebisu basement that calls itself a coffee shop, a Shimokitazawa jazz room named after a Hank Mobley record, and the bar from <cite>Lost in Translation</cite>. Each stop is a place with its floor, its address, and a note on what it is. Tell the bartender what you're in the mood for and let them build it. Switch to Map & list to see them all at once.</p>
         </div>
         <figure class="epigraph">
           <blockquote>
@@ -746,14 +792,13 @@
       </div>
     </header>
     <noscript>
-      <style>.stop { opacity: 1 !important; transform: none !important; }</style>
       <p>This interactive map needs JavaScript to load the bars, map details, and the printable guide. The journey view below is fully readable without JavaScript.</p>
     </noscript>
     <div class="view-switch" role="tablist" aria-label="View mode">
       <button type="button" id="view-journey" class="view-tab is-active" role="tab" aria-selected="true" aria-controls="journey-view">Journey</button>
       <button type="button" id="view-map" class="view-tab" role="tab" aria-selected="false" aria-controls="map-view">Map & list</button>
-      <label class="toggle toggle-follow"><input type="checkbox" id="follow-reading" checked> Follow map</label>
     </div>
+    <label class="toggle toggle-follow"><input type="checkbox" id="follow-reading" checked> Follow map</label>
     <main class="layout" data-view="journey">
       <section class="map-stage" aria-label="Map">
         <div class="map-toolbar">
@@ -766,6 +811,7 @@
         <div class="map-frame">
           <svg id="bars-map" role="group" aria-label="Map of bars in Tokyo"></svg>
           <div id="scale-bar" class="scale-bar" aria-hidden="true"></div>
+          <p class="osm-credit">Subway &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> contributors</p>
         </div>
         <p id="map-status" class="map-status" role="status" aria-live="polite">Loading map data.</p>
         <div class="map-foot">
@@ -773,7 +819,7 @@
             <h2 class="key-heading" id="map-legend-heading">Reading the map</h2>
             <ul id="map-legend" aria-labelledby="map-legend-heading">
               <li class="legend-item"><span class="legend-symbol legend-pin" aria-hidden="true">1</span> Number matches the place index</li>
-              <li class="legend-item"><span id="legend-spotlight" class="legend-symbol legend-pin legend-spotlight" aria-hidden="true">30</span> Members only, so arrange access before you travel</li>
+              <li class="legend-item"><span id="legend-spotlight" class="legend-symbol legend-pin legend-spotlight" aria-hidden="true">23</span> Members only, so arrange access before you travel</li>
               <li class="legend-item"><span class="legend-symbol legend-dot" aria-hidden="true"></span> Dot: saved location; numbered badge may be offset</li>
               <li class="legend-item"><span class="legend-symbol legend-line" aria-hidden="true"></span> Subway context, not walking directions</li>
             </ul>
@@ -784,10 +830,10 @@
       <section id="journey-view" class="journey-view is-active" role="tabpanel" aria-labelledby="view-journey" tabindex="-1">
         <div class="journey-scroll">
 <!-- build:journey -->
-<h3 class="journey-leg">Ginza &amp; Nihonbashi<span class="journey-leg-sub">Early evening: cocktails and counters</span></h3>
+<h3 class="journey-leg">Ginza<span class="journey-leg-sub">Early evening: cocktails and counters</span></h3>
   <section class="stop" id="stop-apollo-bar" data-stop="apollo-bar" data-number="1" data-floor="B1F" data-category="basement" style="--alias-cols:1">
     <div class="stop-media-bg">
-      <video class="stop-video" muted loop playsinline autoplay preload="metadata">
+      <video class="stop-video" muted loop playsinline autoplay preload="none">
         <source src="assets/movie/apollo-bar.webm" type="video/webm">
         <source src="assets/movie/apollo-bar.mp4" type="video/mp4">
       </video>
@@ -821,7 +867,7 @@
       </header>
       <p class="stop-aliases">スターバー銀座</p>
       <p class="stop-summary">Chuo ward, Tokyo · Classic cocktail bar · B1F</p>
-      <p class="stop-description">Hisashi Kishi was the first Japanese bartender to win the IBA world cocktail championship, and the government has named him a master craftsman. His Ginza basement is hushed and low-lit, the Sidecar is the drink he&#x27;s known for, and the ice is cut by hand until it nearly disappears. The counter suits a solo visit as well as a celebration. Table charge ¥1,100; plan on ¥6,000 or more. Open 5:00 to 11:30 nightly.</p>
+      <p class="stop-description">Down a flight of stairs in Ginza, Hisashi Kishi hand-cuts each cube until it&#x27;s nearly transparent, and the Sidecar is what people come for. He was the first Japanese bartender to win the IBA world cocktail title and the government calls him a master craftsman, but the room doesn&#x27;t trade on that. Hushed, low-lit, and it works for one person at the counter as well as a celebration. ¥1,100 table charge, plan on ¥6,000 or more. Open 5:00 to 11:30 nightly.</p>
       <dl class="stop-facts">
         <dt>Station</dt><dd>Ginza (Tokyo Metro Ginza/Marunouchi/Hibiya), 3 min walk</dd>
       <dt>Address</dt><dd>B1F MODERNS GINZA, 1-5-13 Ginza, Chuo-ku, Tokyo</dd>
@@ -841,7 +887,7 @@
       </header>
       <p class="stop-aliases">ランプバー</p>
       <p class="stop-summary">Chuo ward, Tokyo · Bar · 4F</p>
-      <p class="stop-description">Think rum, not lamps: about three hundred bottles, plus cigars, on the fourth floor of the Wakamatsu Building after a move from Ginza 4-chome. For a bar at this address, it&#x27;s relaxed, more neighborhood regular than stiff Ginza. Open until 2:00, closed Sundays and holidays; budget at least ¥5,000.</p>
+      <p class="stop-description">The name says lamp, but think rum. About three hundred bottles behind the counter, plus cigars, up on the fourth floor of the Wakamatsu Building. The bar moved here from Ginza 4-chome, and it still feels like a neighborhood spot that ended up in the wrong neighborhood: relaxed, easy, more regular than tourist. Open until 2:00, closed Sundays and holidays. Budget at least ¥5,000.</p>
       <dl class="stop-facts">
         <dt>Station</dt><dd>Ginza (Tokyo Metro Ginza/Marunouchi/Hibiya), 4 min walk</dd>
       <dt>Address</dt><dd>4F Wakamatsu Building, 6-6-19 Ginza, Chuo-ku, Tokyo</dd>
@@ -851,53 +897,12 @@
       </p>
     </div>
   </section>
-<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline autoplay preload="metadata"><source src="assets/movie/interstitial-1.webm" type="video/webm"><source src="assets/movie/interstitial-1.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>If you only read the books that everyone else is reading, you can only think what everyone else is thinking.</blockquote><cite>Norwegian Wood</cite></figcaption></figure>
-<h3 class="journey-leg">Shinjuku<span class="journey-leg-sub">Late evening: Yotsuya whisky, a Nihonbashi counter, hotel bars, speakeasies, Golden Gai</span></h3>
-  <section class="stop" id="stop-nocturne" data-stop="nocturne" data-number="4" style="--alias-cols:2">
+<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline autoplay preload="none"><source src="assets/movie/interstitial-1.webm" type="video/webm"><source src="assets/movie/interstitial-1.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>If you only read the books that everyone else is reading, you can only think what everyone else is thinking.</blockquote><cite>Norwegian Wood</cite></figcaption></figure>
+<h3 class="journey-leg">Shinjuku<span class="journey-leg-sub">Late evening: hotel bars, speakeasies, Golden Gai</span></h3>
+  <section class="stop" id="stop-new-york-bar" data-stop="new-york-bar" data-number="4" data-category="highrise" style="--alias-cols:3">
     <div class="stop-body">
       <header class="stop-head">
         <p class="stop-number">4</p>
-        <div class="stop-head-text">
-          <h3 class="stop-name">NOCTURNE</h3>
-        </div>
-      </header>
-      <p class="stop-aliases">ノクターン<br>バーノクターン</p>
-      <p class="stop-summary">Shinjuku ward, Tokyo · Whisky bar</p>
-      <p class="stop-description">A whisky bar in Yotsuya, five minutes from the station. The X account (@bar__nocturne) posts current hours and the master&#x27;s updates. Whisky is the focus, with seasonal fruit cocktails alongside. Weekdays 19:00 to 2:00, Saturday 19:00 to midnight, closed Sundays and holidays. A quiet counter with a master who knows his regulars.</p>
-      <dl class="stop-facts">
-        <dt>Station</dt><dd>Yotsuya (JR / Tokyo Metro Marunouchi), 5 min walk</dd>
-      <dt>Address</dt><dd>Yotsuya, Shinjuku-ku, Tokyo</dd>
-      </dl>
-      <p class="stop-links">
-        <a class="stop-link stop-link-primary" href="https://www.google.com/maps/search/?api=1&amp;query=NOCTURNE+bar+Yotsuya+Shinjuku+Tokyo" target="_blank" rel="noopener noreferrer">Open in Maps</a>
-        <a class="stop-link" href="https://x.com/bar__nocturne" target="_blank" rel="noopener noreferrer">X / Twitter</a>
-      </p>
-    </div>
-  </section>
-  <section class="stop" id="stop-pizza-bar-38th" data-stop="pizza-bar-38th" data-number="5" data-floor="38F" data-category="highrise" style="--alias-cols:2">
-    <div class="stop-body">
-      <header class="stop-head">
-        <p class="stop-number">5</p>
-        <div class="stop-head-text">
-          <h3 class="stop-name">The Pizza Bar On 38th</h3>
-        </div>
-      </header>
-      <p class="stop-aliases">ザ ピザバー オン 38th</p>
-      <p class="stop-summary">Chuo ward, Tokyo · Hotel bar · high-end · 38F</p>
-      <p class="stop-description">Book this like a sushi counter, not a bar. Eight seats face a wood-fired oven on the 38th floor of the Mandarin Oriental, reservations open two months out and go in minutes, and once a booking is confirmed you can&#x27;t change or cancel it. Plan on ¥20,000 to ¥30,000 a person with service and tax. The 48-hour dough keeps a full pizza course from sitting heavy, and on a clear evening Fuji is in the window. It was ranked the second-best pizzeria in the world in 2025. Smart casual.</p>
-      <dl class="stop-facts">
-        <dt>Station</dt><dd>Mitsukoshimae (Tokyo Metro Ginza/Hanzomon), 2 min walk</dd>
-      <dt>Address</dt><dd>38F Mandarin Oriental Tokyo, 2-1-1 Nihonbashi Muromachi, Chuo-ku, Tokyo</dd>
-      </dl>
-      <p class="stop-links">
-        <a class="stop-link stop-link-primary" href="https://www.google.com/maps/place/The+Pizza+Bar+On+38th/data=!4m2!3m1!1s0x6018895562e77a3b:0xe3c077a9dbbe0dcd" target="_blank" rel="noopener noreferrer">Open in Maps</a>
-      </p>
-    </div>
-  </section>
-  <section class="stop" id="stop-new-york-bar" data-stop="new-york-bar" data-number="6" data-category="highrise" style="--alias-cols:3">
-    <div class="stop-body">
-      <header class="stop-head">
-        <p class="stop-number">6</p>
         <div class="stop-head-text">
           <h3 class="stop-name">New York Bar</h3>
         </div>
@@ -914,18 +919,17 @@
       </p>
     </div>
   </section>
-<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline autoplay preload="metadata"><source src="assets/movie/interstitial-2.webm" type="video/webm"><source src="assets/movie/interstitial-2.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>I dream. Sometimes I think that’s the only right thing to do.</blockquote><cite>Sputnik Sweetheart</cite></figcaption></figure>
-  <section class="stop" id="stop-bar-cocktailbook" data-stop="bar-cocktailbook" data-number="7" data-floor="2F" style="--alias-cols:2">
+  <section class="stop" id="stop-bar-cocktailbook" data-stop="bar-cocktailbook" data-number="5" data-floor="2F" style="--alias-cols:2">
     <div class="stop-body">
       <header class="stop-head">
-        <p class="stop-number">7</p>
+        <p class="stop-number">5</p>
         <div class="stop-head-text">
           <h3 class="stop-name">Bar Cocktailbook Shinjuku</h3>
         </div>
       </header>
       <p class="stop-aliases">バー カクテルブック 新宿</p>
       <p class="stop-summary">Shinjuku ward, Tokyo · Cocktail bar · 2F</p>
-      <p class="stop-description">Akira holds cocktail competition titles, put in twelve years at a Shinjuku hotel bar, and opened this second-floor room in 2011. The menu follows the season and changes monthly, and some of his originals never got names. One reviewer was poured a taste of each spirit alongside the drink, which is the kind of detail people keep mentioning. Thirteen seats, ¥600 charge, closed Sundays and Mondays, near Seibu-Shinjuku.</p>
+      <p class="stop-description">Akira holds cocktail competition titles, put in twelve years at a Shinjuku hotel bar, and opened this second-floor room in 2011. The menu follows the season and changes monthly, and some of his originals never got names. When I ordered, he set a small pour of each spirit next to the drink so I could taste them on their own first. Thirteen seats, ¥600 charge, closed Sundays and Mondays, near Seibu-Shinjuku.</p>
       <dl class="stop-facts">
         <dt>Station</dt><dd>Shinjuku (JR / Tokyo Metro / Odakyu / Keio), 5 min walk</dd>
       <dt>Address</dt><dd>2F Plaza Nishishinjuku, 7-5-5 Nishishinjuku, Shinjuku-ku, Tokyo</dd>
@@ -935,17 +939,17 @@
       </p>
     </div>
   </section>
-  <section class="stop" id="stop-kakuretai" data-stop="kakuretai" data-number="8" data-floor="B1F" data-category="basement" style="--alias-cols:4">
+  <section class="stop" id="stop-kakuretai" data-stop="kakuretai" data-number="6" data-floor="B1F" data-category="basement" style="--alias-cols:4">
     <div class="stop-body">
       <header class="stop-head">
-        <p class="stop-number">8</p>
+        <p class="stop-number">6</p>
         <div class="stop-head-text">
           <h3 class="stop-name">KAKURETAI</h3>
         </div>
       </header>
       <p class="stop-aliases">かくれたい<br>KAKURETAI Speakeasy Bar</p>
       <p class="stop-summary">Shinjuku ward, Tokyo · Speakeasy · B1F</p>
-      <p class="stop-description">An unmarked basement in Arakicho with a cheese-and-mouse theme, J-pop on the speakers, and Yuta behind the bar making seasonal fruit cocktails and pouring Japanese whiskey. First-timers get treated like regulars. It&#x27;s openly LGBTQ+ friendly. Weeknights only, 8:00 to 1:00, with DJs on Fridays. It&#x27;s small and fills up, so reserve.</p>
+      <p class="stop-description">An unmarked basement in Arakicho with a cheese-and-mouse theme running through the décor, J-pop on the speakers, and Yuta behind the bar. He makes seasonal fruit cocktails and pours Japanese whiskey, and treats first-timers like they&#x27;ve been coming for years. It&#x27;s openly LGBTQ+ friendly. Weeknights only, 8:00 to 1:00, with DJs on Fridays. It&#x27;s small and fills up, so reserve.</p>
       <dl class="stop-facts">
         <dt>Station</dt><dd>Yotsuya-Sanchome (Tokyo Metro Marunouchi), 2 min walk</dd>
       <dt>Address</dt><dd>B1F Nakabayashi Building, 1-2 Arakicho, Shinjuku-ku, Tokyo</dd>
@@ -957,10 +961,11 @@
       </p>
     </div>
   </section>
-  <section class="stop" id="stop-bar-rest" data-stop="bar-rest" data-number="9" data-floor="3F" style="--alias-cols:3">
+<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline autoplay preload="none"><source src="assets/movie/interstitial-2.webm" type="video/webm"><source src="assets/movie/interstitial-2.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>I dream. Sometimes I think that’s the only right thing to do.</blockquote><cite>Sputnik Sweetheart</cite></figcaption></figure>
+  <section class="stop" id="stop-bar-rest" data-stop="bar-rest" data-number="7" data-floor="3F" style="--alias-cols:3">
     <div class="stop-body">
       <header class="stop-head">
-        <p class="stop-number">9</p>
+        <p class="stop-number">7</p>
         <div class="stop-head-text">
           <h3 class="stop-name">Bar rest</h3>
         </div>
@@ -978,38 +983,17 @@
       </p>
     </div>
   </section>
-<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline autoplay preload="metadata"><source src="assets/movie/interstitial-3.webm" type="video/webm"><source src="assets/movie/interstitial-3.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>Even in the smallest events there’s no such thing as coincidence.</blockquote><cite>Kafka on the Shore</cite></figcaption></figure>
-  <section class="stop" id="stop-sake-market" data-stop="sake-market" data-number="10" data-floor="6F" style="--alias-cols:1">
+  <section class="stop" id="stop-a-bar-sleeping-tales" data-stop="a-bar-sleeping-tales" data-number="8" data-floor="B1F" data-category="basement" style="--alias-cols:2">
     <div class="stop-body">
       <header class="stop-head">
-        <p class="stop-number">10</p>
-        <div class="stop-head-text">
-          <h3 class="stop-name">SAKE MARKET Shinjuku</h3>
-        </div>
-      </header>
-      <p class="stop-aliases">サケマーケット新宿</p>
-      <p class="stop-summary">Shinjuku ward, Tokyo · Sake bar · 6F</p>
-      <p class="stop-description">No bartender and no pressure. You pay first, ¥2,700 for ninety minutes or ¥3,800 with no limit, grab three cups, and help yourself from fridges stocked with more than 150 sakes, fruit liqueurs, and shochu. Online booking only, cashless, and outside food is fine. It works for a solo drinker and for a group, and it&#x27;s an easy place to learn what you like before you sit at a counter where the bartender expects you to know.</p>
-      <dl class="stop-facts">
-        <dt>Station</dt><dd>Shinjuku (JR / Tokyo Metro / Odakyu / Keio), 3 min walk</dd>
-      <dt>Address</dt><dd>6F Shinjuku Watassei-Tama Building, 3-9-9 Shinjuku, Shinjuku-ku, Tokyo</dd>
-      </dl>
-      <p class="stop-links">
-        <a class="stop-link stop-link-primary" href="http://maps.google.com/?cid=7870946726099253627" target="_blank" rel="noopener noreferrer">Open in Maps</a>
-      </p>
-    </div>
-  </section>
-  <section class="stop" id="stop-a-bar-sleeping-tales" data-stop="a-bar-sleeping-tales" data-number="11" data-floor="B1F" data-category="basement" style="--alias-cols:2">
-    <div class="stop-body">
-      <header class="stop-head">
-        <p class="stop-number">11</p>
+        <p class="stop-number">8</p>
         <div class="stop-head-text">
           <h3 class="stop-name">a BAR Sleeping Tales</h3>
         </div>
       </header>
       <p class="stop-aliases">ア バー スリーピング テイルズ</p>
       <p class="stop-summary">Shinjuku ward, Tokyo · Bar · B1F</p>
-      <p class="stop-description">There&#x27;s no menu. Toshi asks what you like, checks what&#x27;s in season, and makes you something; the peanut-butter Old Fashioned is the drink people talk about. The room is a basement done up like medieval Europe, with vintage glassware and only counter seats, so you watch him work the whole time. Right-hand door at B1F, near Shinjuku Gyoemmae Station. Closed Wednesdays.</p>
+      <p class="stop-description">There&#x27;s no menu. Toshi asks what you like, checks what&#x27;s in season, and makes you something. The peanut-butter Old Fashioned is the one that gets brought up. The room is a basement done up like medieval Europe, with vintage glassware and only counter seats, so you watch him work the whole time. Right-hand door at B1F, near Shinjuku Gyoemmae Station. Closed Wednesdays.</p>
       <dl class="stop-facts">
         <dt>Station</dt><dd>Shinjuku-Gyoemmae (Tokyo Metro Marunouchi), 3 min walk</dd>
       <dt>Address</dt><dd>B1F (right door) Towa Shinjuku Gyoen Co-op II, 2-1-14 Shinjuku, Shinjuku-ku, Tokyo</dd>
@@ -1019,17 +1003,17 @@
       </p>
     </div>
   </section>
-  <section class="stop" id="stop-golden-gai-trio" data-stop="golden-gai-trio" data-number="12" data-category="golden-gai" style="--alias-cols:7">
+  <section class="stop" id="stop-golden-gai-trio" data-stop="golden-gai-trio" data-number="9" data-category="golden-gai" style="--alias-cols:7">
     <div class="stop-body">
       <header class="stop-head">
-        <p class="stop-number">12</p>
+        <p class="stop-number">9</p>
         <div class="stop-head-text">
           <h3 class="stop-name">Golden Gai: Happy, BAR COO &amp; OPEN BOOK</h3>
         </div>
       </header>
       <p class="stop-aliases">新宿ゴールデン街<br>ハッピー ロッキンソールバー<br>BAR COO<br>バー 空<br>OPEN BOOK<br>オープンブック</p>
       <p class="stop-summary">Shinjuku ward, Tokyo · Golden Gai bars</p>
-      <p class="stop-description">Three bars in Shinjuku Golden Gai, the dense cluster of 200-plus tiny drinking dens off Kabukicho. Happy (Rockin&#x27; Soul Bar) is up on the 3rd floor of the Maruha Building at 1-1-7, a soul-and-rock counter. BAR COO is at street level on Golden Gai 3rd street at 1-1-8, five or six seats with Miya behind the counter in fluent English. OPEN BOOK is on Golden Gai 5th street at 1-1-6, no signboard, a lemon sour bar opened in March 2016. Pick any of the three, or bar-hop between them.</p>
+      <p class="stop-description">Three bars in Shinjuku Golden Gai, the dense cluster of 200-plus tiny drinking dens off Kabukicho. Pick any of the three, or bar-hop between them. Happy is up on the 3rd floor of the Maruha Building, a soul-and-rock counter with a wall of vinyl. BAR COO is at street level on the third lane, five or six seats with Miya behind the counter in fluent English. OPEN BOOK is on the fifth lane, no signboard, just a wooden board that slides open. A lemon sour bar.</p>
       <dl class="stop-facts">
         <dt>Station</dt><dd>Shinjuku (JR / Tokyo Metro / Toei), 5 min walk</dd>
       <dt>Address</dt><dd>1-1-6 to 1-1-8 Kabukicho, Shinjuku-ku, Tokyo</dd>
@@ -1068,38 +1052,18 @@
       </p>
     </div>
   </section>
-<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline autoplay preload="metadata"><source src="assets/movie/interstitial-4.webm" type="video/webm"><source src="assets/movie/interstitial-4.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>In this world, there are things you can only do alone, and things you can only do with somebody else.</blockquote><cite>After Dark</cite></figcaption></figure>
-<h3 class="journey-leg">Shibuya &amp; Ebisu &amp; Meguro<span class="journey-leg-sub">Midnight: coffee shops that aren’t, jazz rooms</span></h3>
-  <section class="stop" id="stop-fightclub" data-stop="fightclub" data-number="13" data-floor="1F" style="--alias-cols:1">
-    <div class="stop-body">
-      <header class="stop-head">
-        <p class="stop-number">13</p>
-        <div class="stop-head-text">
-          <h3 class="stop-name">FIGHTCLUB Shibuya</h3>
-        </div>
-      </header>
-      <p class="stop-aliases">ファイトクラブ渋谷</p>
-      <p class="stop-summary">Shibuya ward, Tokyo · Bar · 1F</p>
-      <p class="stop-description">Half gym, half bar, on one floor on Dogenzaka: a caged ring, a DJ booth, and free drop-in training. After 6:00 people spar, then drink. One reviewer came twice and made new sparring partners both times. Drinks are cheap. Hours vary, so check before you go.</p>
-      <dl class="stop-facts">
-        <dt>Station</dt><dd>Shibuya (JR / Tokyo Metro / Tokyu / Keio Inokashira), 3 min walk</dd>
-      <dt>Address</dt><dd>1F Towa Dogenzaka Building, 2-27-2 Dogenzaka, Shibuya-ku, Tokyo</dd>
-      </dl>
-      <p class="stop-links">
-        <a class="stop-link stop-link-primary" href="https://www.google.com/maps/search/?api=1&amp;query=FIGHTCLUB+Shibuya+2-27-2+Dogenzaka+Tokyo" target="_blank" rel="noopener noreferrer">Open in Maps</a>
-      </p>
-    </div>
-  </section>
-  <section class="stop" id="stop-janai-coffee" data-stop="janai-coffee" data-number="14" data-floor="B1F" data-category="basement" style="--alias-cols:1">
+<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline autoplay preload="none"><source src="assets/movie/interstitial-3.webm" type="video/webm"><source src="assets/movie/interstitial-3.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>Even in the smallest events there’s no such thing as coincidence.</blockquote><cite>Kafka on the Shore</cite></figcaption></figure>
+<h3 class="journey-leg">Shibuya & Setagaya & Meguro & Minato<span class="journey-leg-sub">Midnight: coffee shops that aren’t, jazz rooms, Azabujuban counters</span></h3>
+  <section class="stop" id="stop-janai-coffee" data-stop="janai-coffee" data-number="10" data-floor="B1F" data-category="basement" style="--alias-cols:1">
     <div class="stop-media-bg">
-      <video class="stop-video" muted loop playsinline autoplay preload="metadata">
+      <video class="stop-video" muted loop playsinline autoplay preload="none">
         <source src="assets/movie/janai-coffee.webm" type="video/webm">
         <source src="assets/movie/janai-coffee.mp4" type="video/mp4">
       </video>
     </div>
     <div class="stop-body">
       <header class="stop-head">
-        <p class="stop-number">14</p>
+        <p class="stop-number">10</p>
         <div class="stop-head-text">
           <h3 class="stop-name">JANAI COFFEE</h3>
         </div>
@@ -1116,23 +1080,23 @@
       </p>
     </div>
   </section>
-  <section class="stop" id="stop-a10" data-stop="a10" data-number="15" data-floor="B1F" data-category="basement" style="--alias-cols:1">
+  <section class="stop" id="stop-a10" data-stop="a10" data-number="11" data-floor="B1F" data-category="basement" style="--alias-cols:1">
     <div class="stop-media-bg">
-      <video class="stop-video" muted loop playsinline autoplay preload="metadata">
+      <video class="stop-video" muted loop playsinline autoplay preload="none">
         <source src="assets/movie/a10.webm" type="video/webm">
         <source src="assets/movie/a10.mp4" type="video/mp4">
       </video>
     </div>
     <div class="stop-body">
       <header class="stop-head">
-        <p class="stop-number">15</p>
+        <p class="stop-number">11</p>
         <div class="stop-head-text">
           <h3 class="stop-name">A10</h3>
         </div>
       </header>
       <p class="stop-aliases">エーテン</p>
       <p class="stop-summary">Shibuya ward, Tokyo · Bar · B1F</p>
-      <p class="stop-description">Walk past what looks like a row of green lockers and you&#x27;re in a record bar: a DJ on vinyl, soul and jazz on a serious sound system, and original cocktails overseen by mixologist Munenori Nagumo. It&#x27;s a bar for dates. ¥1,320 charge. Open 7:00 to 2:30; book ahead for Fridays and weekends.</p>
+      <p class="stop-description">Walk past what looks like a row of green lockers and you&#x27;re in a record bar. A DJ on vinyl, soul and jazz on a serious sound system, and original cocktails overseen by Munenori Nagumo. ¥1,320 charge. Open 7:00 to 2:30. Book ahead for Fridays and weekends.</p>
       <dl class="stop-facts">
         <dt>Station</dt><dd>Ebisu (JR Yamanote / Tokyo Metro Hibiya), 3 min walk</dd>
       <dt>Address</dt><dd>B1F Bios Building, 1-12-11 Ebisunishi, Shibuya-ku, Tokyo</dd>
@@ -1142,18 +1106,17 @@
       </p>
     </div>
   </section>
-<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline autoplay preload="metadata"><source src="assets/movie/interstitial-5.webm" type="video/webm"><source src="assets/movie/interstitial-5.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>A certain type of perfection can only be realized through a limitless accumulation of the imperfect.</blockquote><cite>Kafka on the Shore</cite></figcaption></figure>
-  <section class="stop" id="stop-never-never-land" data-stop="never-never-land" data-number="16" data-floor="2F" style="--alias-cols:5">
+  <section class="stop" id="stop-never-never-land" data-stop="never-never-land" data-number="12" data-floor="2F" style="--alias-cols:5">
     <div class="stop-body">
       <header class="stop-head">
-        <p class="stop-number">16</p>
+        <p class="stop-number">12</p>
         <div class="stop-head-text">
           <h3 class="stop-name">Never Never Land</h3>
         </div>
       </header>
       <p class="stop-aliases">ネバーネバーランド<br>ネヴァーネヴァーランド<br>下北沢ネバーネバーランド</p>
       <p class="stop-summary">Setagaya ward, Tokyo · Izakaya · music bar · 2F</p>
-      <p class="stop-description">A Shimokitazawa rock bar that has been open since 1978, now on the second floor of a building across from Studio Noah, three minutes from the station. The walls are covered in posters and fliers for gigs and underground theater, and there are DJ nights and live sets. The kitchen does spiced Asian food; the Burmese chicken curry is the signature, at ¥1,300. No cover charge, about twenty-four seats, non-smoking, and solo diners are welcome. Expect ¥2,000 to ¥3,000. Open 6:00 to 1:00, with irregular days off.</p>
+      <p class="stop-description">A Shimokitazawa rock bar open since 1978, up on the second floor across from Studio Noah, three minutes from the station. The walls are covered in posters and fliers for gigs and underground theater, and there are DJ nights and live sets. The kitchen does spiced Asian food; the Burmese chicken curry is the one to order, at ¥1,300. No cover charge, about twenty-four seats, non-smoking, solo diners welcome. Expect ¥2,000 to ¥3,000. Open 6:00 to 1:00, with irregular days off.</p>
       <dl class="stop-facts">
         <dt>Station</dt><dd>Shimokitazawa (Odakyu / Keio Inokashira), 3 min walk</dd>
       <dt>Address</dt><dd>2F Yoshino Heights, 3-19-3 Kitazawa, Setagaya-ku, Tokyo 155-0031</dd>
@@ -1164,10 +1127,31 @@
       </p>
     </div>
   </section>
-  <section class="stop" id="stop-bar-sawa" data-stop="bar-sawa" data-number="17" data-floor="1F" style="--alias-cols:1">
+<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline autoplay preload="none"><source src="assets/movie/interstitial-4.webm" type="video/webm"><source src="assets/movie/interstitial-4.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>In this world, there are things you can only do alone, and things you can only do with somebody else.</blockquote><cite>After Dark</cite></figcaption></figure>
+  <section class="stop" id="stop-no-room-squares" data-stop="no-room-squares" data-number="13" data-floor="4F" data-category="distant" style="--alias-cols:2">
     <div class="stop-body">
       <header class="stop-head">
-        <p class="stop-number">17</p>
+        <p class="stop-number">13</p>
+        <div class="stop-head-text">
+          <h3 class="stop-name">No Room For Squares</h3>
+        </div>
+      </header>
+      <p class="stop-aliases">ノー・ルーム・フォー・スクエアーズ</p>
+      <p class="stop-summary">Setagaya ward, Tokyo · Jazz bar · 4F</p>
+      <p class="stop-description">Named after the Hank Mobley album. It&#x27;s on a fourth floor in Shimokitazawa, and you enter through the front of an old Coca-Cola vending machine. More than a thousand records, huge speakers on the walls, and no menu; tell the owner what you like. Weekends bring live jazz, and during a set the room is too small for conversation. A good bar to walk into nervous. Cash only, 2:00 p.m. to 2:00 a.m.</p>
+      <dl class="stop-facts">
+        <dt>Station</dt><dd>Shimokitazawa (Odakyu / Keio Inokashira), 3 min walk</dd>
+      <dt>Address</dt><dd>4F Housing Kitazawa Building II, 2-1-7 Kitazawa, Setagaya-ku, Tokyo</dd>
+      </dl>
+      <p class="stop-links">
+        <a class="stop-link stop-link-primary" href="http://maps.google.com/?cid=911402204683980032" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+      </p>
+    </div>
+  </section>
+  <section class="stop" id="stop-bar-sawa" data-stop="bar-sawa" data-number="14" data-floor="1F" style="--alias-cols:1">
+    <div class="stop-body">
+      <header class="stop-head">
+        <p class="stop-number">14</p>
         <div class="stop-head-text">
           <h3 class="stop-name">Bar sawa</h3>
         </div>
@@ -1184,42 +1168,21 @@
       </p>
     </div>
   </section>
-  <section class="stop" id="stop-no-room-squares" data-stop="no-room-squares" data-number="18" data-floor="4F" data-category="distant" style="--alias-cols:2">
-    <div class="stop-body">
-      <header class="stop-head">
-        <p class="stop-number">18</p>
-        <div class="stop-head-text">
-          <h3 class="stop-name">No Room For Squares</h3>
-        </div>
-      </header>
-      <p class="stop-aliases">ノー・ルーム・フォー・スクエアーズ</p>
-      <p class="stop-summary">Setagaya ward, Tokyo · Jazz bar · 4F</p>
-      <p class="stop-description">Named after the Hank Mobley album. It&#x27;s on a fourth floor in Shimokitazawa, and you enter through the front of an old Coca-Cola vending machine. More than a thousand records, huge speakers on the walls, and no menu; tell the owner what you like. Weekends bring live jazz, and during a set the room is too small for conversation. One first-time bar-goer came in nervous and left feeling welcome. Cash only, 2:00 p.m. to 2:00 a.m.</p>
-      <dl class="stop-facts">
-        <dt>Station</dt><dd>Shimokitazawa (Odakyu / Keio Inokashira), 3 min walk</dd>
-      <dt>Address</dt><dd>4F Housing Kitazawa Building II, 2-1-7 Kitazawa, Setagaya-ku, Tokyo</dd>
-      </dl>
-      <p class="stop-links">
-        <a class="stop-link stop-link-primary" href="http://maps.google.com/?cid=911402204683980032" target="_blank" rel="noopener noreferrer">Open in Maps</a>
-      </p>
-    </div>
-  </section>
-<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline autoplay preload="metadata"><source src="assets/movie/interstitial-6.webm" type="video/webm"><source src="assets/movie/interstitial-6.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>What lasts, lasts; what doesn’t, doesn’t. Time solves most things. And what time can’t solve, you have to solve yourself.</blockquote><cite>Dance Dance Dance</cite></figcaption></figure>
-<h3 class="journey-leg">Minato &amp; Roppongi<span class="journey-leg-sub">Deep night: Azabujuban counters and Roppongi basements</span></h3>
-  <section class="stop" id="stop-gen-yamamoto" data-stop="gen-yamamoto" data-number="19" data-floor="1F" style="--alias-cols:1">
+<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline autoplay preload="none"><source src="assets/movie/interstitial-5.webm" type="video/webm"><source src="assets/movie/interstitial-5.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>A certain type of perfection can only be realized through a limitless accumulation of the imperfect.</blockquote><cite>Kafka on the Shore</cite></figcaption></figure>
+  <section class="stop" id="stop-gen-yamamoto" data-stop="gen-yamamoto" data-number="15" data-floor="1F" style="--alias-cols:1">
     <div class="stop-media-bg">
       <img src="assets/imgs/bars/gen-yamamoto.jpg" alt="Gen Yamamoto counter" loading="lazy" decoding="async">
     </div>
     <div class="stop-body">
       <header class="stop-head">
-        <p class="stop-number">19</p>
+        <p class="stop-number">15</p>
         <div class="stop-head-text">
           <h3 class="stop-name">Gen Yamamoto</h3>
         </div>
       </header>
       <p class="stop-aliases">ゲン ヤマモト</p>
       <p class="stop-summary">Minato ward, Tokyo · Cocktail bar · high-end · 1F</p>
-      <p class="stop-description">One bartender, eight seats, and a tasting course of small cocktails made from seasonal Japanese produce that changes almost every week. Plan on ¥8,000 to ¥10,000. The pours are small and the alcohol is light; the flavors make up for it. Book by phone up to a week ahead. Tuesday to Saturday, last entry 9:00, so this is an early evening stop.</p>
+      <p class="stop-description">One bartender, eight seats, and a tasting course of small cocktails built from seasonal Japanese produce that changes almost every week. Plan on ¥8,000 to ¥10,000. The pours are small and the alcohol is light; the flavors make up for it. Book by phone up to a week ahead. Tuesday to Saturday, last entry 9:00, so this is an early-evening stop, not a late one.</p>
       <dl class="stop-facts">
         <dt>Station</dt><dd>Azabujuban (Toei Oedo), 3 min walk</dd>
       <dt>Address</dt><dd>1F Anniversary Building, 1-6-4 Azabujuban, Minato-ku, Tokyo</dd>
@@ -1229,10 +1192,10 @@
       </p>
     </div>
   </section>
-  <section class="stop" id="stop-bar-centifolia" data-stop="bar-centifolia" data-number="20" data-floor="6F" style="--alias-cols:2">
+  <section class="stop" id="stop-bar-centifolia" data-stop="bar-centifolia" data-number="16" data-floor="6F" style="--alias-cols:2">
     <div class="stop-body">
       <header class="stop-head">
-        <p class="stop-number">20</p>
+        <p class="stop-number">16</p>
         <div class="stop-head-text">
           <h3 class="stop-name">Bar Centifolia</h3>
         </div>
@@ -1249,32 +1212,12 @@
       </p>
     </div>
   </section>
-  <section class="stop" id="stop-rokusan-angel" data-stop="rokusan-angel" data-number="21" data-floor="B2F" data-category="basement" style="--alias-cols:1">
-    <div class="stop-body">
-      <header class="stop-head">
-        <p class="stop-number">21</p>
-        <div class="stop-head-text">
-          <h3 class="stop-name">Rokusan Angel (Burlesque Tokyo)</h3>
-        </div>
-      </header>
-      <p class="stop-aliases">ロクサンエンジェル</p>
-      <p class="stop-summary">Minato ward, Tokyo · Burlesque bar · B2F</p>
-      <p class="stop-description">Formerly Burlesque Tokyo, two floors below street level, five minutes from Roppongi Station. The themed shows change every week and run seventy to ninety minutes, and the performers work the crowd. It&#x27;s booked for birthdays and celebrations, so bring people, and reserve early for front seats. Expect ¥8,000 to ¥10,000 each after the 15% service charge, and limited English.</p>
-      <dl class="stop-facts">
-        <dt>Station</dt><dd>Roppongi (Toei Oedo / Tokyo Metro Hibiya), 5 min walk</dd>
-      <dt>Address</dt><dd>B2F Roppongi Nittaku Building, 3-8-15 Roppongi, Minato-ku, Tokyo</dd>
-      </dl>
-      <p class="stop-links">
-        <a class="stop-link stop-link-primary" href="https://www.google.com/maps/place/ROKUSAN+ANGEL%EF%BC%88Burlesque+Tokyo%EF%BC%89/data=!4m2!3m1!1s0x60188b78685d2fcb:0x949f91afc7f95845" target="_blank" rel="noopener noreferrer">Open in Maps</a>
-      </p>
-    </div>
-  </section>
-<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline autoplay preload="metadata"><source src="assets/movie/interstitial-7.webm" type="video/webm"><source src="assets/movie/interstitial-7.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>No matter how far you travel, you can never get away from yourself.</blockquote><cite>After the Quake</cite></figcaption></figure>
+<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline autoplay preload="none"><source src="assets/movie/interstitial-6.webm" type="video/webm"><source src="assets/movie/interstitial-6.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>What lasts, lasts; what doesn’t, doesn’t. Time solves most things. And what time can’t solve, you have to solve yourself.</blockquote><cite>Dance Dance Dance</cite></figcaption></figure>
 <h3 class="journey-leg">East Tokyo<span class="journey-leg-sub">After hours: Kanda to Ueno to Bunkyo</span></h3>
-  <section class="stop" id="stop-bar-under" data-stop="bar-under" data-number="22" data-floor="B1F" data-category="basement" style="--alias-cols:2">
+  <section class="stop" id="stop-bar-under" data-stop="bar-under" data-number="17" data-floor="B1F" data-category="basement" style="--alias-cols:2">
     <div class="stop-body">
       <header class="stop-head">
-        <p class="stop-number">22</p>
+        <p class="stop-number">17</p>
         <div class="stop-head-text">
           <h3 class="stop-name">BAR &amp;UNDER</h3>
         </div>
@@ -1291,17 +1234,17 @@
       </p>
     </div>
   </section>
-  <section class="stop" id="stop-naru-jazz" data-stop="naru-jazz" data-number="23" style="--alias-cols:3">
+  <section class="stop" id="stop-naru-jazz" data-stop="naru-jazz" data-number="18" style="--alias-cols:3">
     <div class="stop-body">
       <header class="stop-head">
-        <p class="stop-number">23</p>
+        <p class="stop-number">18</p>
         <div class="stop-head-text">
           <h3 class="stop-name">NARU Jazz Livehouse</h3>
         </div>
       </header>
       <p class="stop-aliases">ジャズハウスナル<br>Jazz House Naru</p>
       <p class="stop-summary">Chiyoda ward, Tokyo · Jazz livehouse</p>
-      <p class="stop-description">Open since 1969, a minute from Ochanomizu Station. About thirty seats crowded around a grand piano, working Tokyo musicians every night, a ¥2,500 cover plus drinks, and generous food that doesn&#x27;t cost much, most of it Italian. English menu. It&#x27;s tight in there, and that&#x27;s what makes it feel intimate. Solo diners and groups both get a good welcome.</p>
+      <p class="stop-description">Open since 1969, a minute from Ochanomizu Station. About thirty seats crowded around a grand piano, working Tokyo musicians every night, a ¥2,500 cover plus drinks, and generous food that doesn&#x27;t cost much, most of it Italian. English menu. It&#x27;s tight in there, and that&#x27;s what makes it intimate. Solo or with a group, you get a good welcome.</p>
       <dl class="stop-facts">
         <dt>Station</dt><dd>Ochanomizu (JR Chuo/Sobu, Tokyo Metro Marunouchi), 1 min walk</dd>
       <dt>Address</dt><dd>B1 Jujiya Building, 2-1 Kanda Surugadai, Chiyoda-ku, Tokyo 101-0062</dd>
@@ -1312,17 +1255,18 @@
       </p>
     </div>
   </section>
-  <section class="stop" id="stop-game-bar-abutton" data-stop="game-bar-abutton" data-number="24" data-floor="1F" style="--alias-cols:2">
+<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline autoplay preload="none"><source src="assets/movie/interstitial-7.webm" type="video/webm"><source src="assets/movie/interstitial-7.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>No matter how far you travel, you can never get away from yourself.</blockquote><cite>After the Quake</cite></figcaption></figure>
+  <section class="stop" id="stop-game-bar-abutton" data-stop="game-bar-abutton" data-number="19" data-floor="1F" style="--alias-cols:2">
     <div class="stop-body">
       <header class="stop-head">
-        <p class="stop-number">24</p>
+        <p class="stop-number">19</p>
         <div class="stop-head-text">
           <h3 class="stop-name">Game Bar A-Button</h3>
         </div>
       </header>
       <p class="stop-aliases">ゲームバー エーボタン</p>
       <p class="stop-summary">Taito ward, Tokyo · Game bar · 1F</p>
-      <p class="stop-description">Don&#x27;t come to play games; the owner pulled most of the playable machines after copyright letters. What&#x27;s left is a thirteen-seat bar in an old ramen shop packed with consoles, controllers, and figures, run by Nagamine, a former Sega arcade worker. It works as a gathering spot for people who love this stuff. Reviews are mixed: drinks are on the expensive side and English is limited. Open until 11:00.</p>
+      <p class="stop-description">Don&#x27;t come to play games; the owner pulled most of the playable machines after copyright letters. What&#x27;s left is a thirteen-seat bar in an old ramen shop packed with consoles, controllers, and figures, run by Nagamine, a former Sega arcade worker. It&#x27;s a gathering spot for people who love this stuff. Drinks are on the expensive side and English is limited. Open until 11:00.</p>
       <dl class="stop-facts">
         <dt>Station</dt><dd>Inaricho (Tokyo Metro Ginza), 4 min walk</dd>
       <dt>Address</dt><dd>1F Dai-5 Mitsumasa Building, 1-13-9 Taito, Taito-ku, Tokyo</dd>
@@ -1332,24 +1276,23 @@
       </p>
     </div>
   </section>
-<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline autoplay preload="metadata"><source src="assets/movie/interstitial-8.webm" type="video/webm"><source src="assets/movie/interstitial-8.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>People’s memories are maybe the fuel they burn to stay alive.</blockquote><cite>After Dark</cite></figcaption></figure>
-  <section class="stop" id="stop-bar-willows" data-stop="bar-willows" data-number="25" data-floor="6F-E" style="--alias-cols:1">
+  <section class="stop" id="stop-bar-willows" data-stop="bar-willows" data-number="20" data-floor="6F-E" style="--alias-cols:1">
     <div class="stop-media-bg">
-      <video class="stop-video" muted loop playsinline autoplay preload="metadata">
+      <video class="stop-video" muted loop playsinline autoplay preload="none">
         <source src="assets/movie/bar-willows.webm" type="video/webm">
         <source src="assets/movie/bar-willows.mp4" type="video/mp4">
       </video>
     </div>
     <div class="stop-body">
       <header class="stop-head">
-        <p class="stop-number">25</p>
+        <p class="stop-number">20</p>
         <div class="stop-head-text">
           <h3 class="stop-name">BAR Willow&#x27;s</h3>
         </div>
       </header>
       <p class="stop-aliases">バー ウィローズ</p>
       <p class="stop-summary">Taito ward, Tokyo · Bar · 6F-E</p>
-      <p class="stop-description">I don&#x27;t visit Tokyo without coming here, usually several times a trip. Yanagisawa owns the bar, ran the bar at the Yokohama Royal Park Hotel before this, and is about as attentive as a bartender gets; his English is excellent. The ice is hand-crafted and priced like it, and that is what good service costs. Antique chairs line the counter, and the chair in the logo means there&#x27;s always a seat waiting for you. After enough trips, there is. Two hundred whiskeys, good non-alcoholic drinks, open until 3:00 most nights.</p>
+      <p class="stop-description">I don&#x27;t visit Tokyo without coming here, usually several times a trip. Yanagisawa owns the bar, ran the bar at the Yokohama Royal Park Hotel before this, and is about as attentive as a bartender gets; his English is excellent. The ice is hand-crafted and priced like it, and that is what good service costs. Each chair at the counter was chosen by hand, and the chair in the logo means there&#x27;s always a seat waiting for you. After enough trips, there is. Two hundred whiskeys, good non-alcoholic drinks, open until 3:00 most nights.</p>
       <dl class="stop-facts">
         <dt>Station</dt><dd>Okachimachi (JR), 3 min walk; Ueno-Hirokoji (Tokyo Metro Ginza), 1 min walk</dd>
       <dt>Address</dt><dd>6F-E, 88 Building, 2-1-3 Ueno, Taito-ku, Tokyo</dd>
@@ -1359,10 +1302,11 @@
       </p>
     </div>
   </section>
-  <section class="stop" id="stop-rock-bar-sakebi" data-stop="rock-bar-sakebi" data-number="26" data-floor="1F" style="--alias-cols:1">
+<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline autoplay preload="none"><source src="assets/movie/interstitial-8.webm" type="video/webm"><source src="assets/movie/interstitial-8.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>People’s memories are maybe the fuel they burn to stay alive.</blockquote><cite>After Dark</cite></figcaption></figure>
+  <section class="stop" id="stop-rock-bar-sakebi" data-stop="rock-bar-sakebi" data-number="21" data-floor="1F" style="--alias-cols:1">
     <div class="stop-body">
       <header class="stop-head">
-        <p class="stop-number">26</p>
+        <p class="stop-number">21</p>
         <div class="stop-head-text">
           <h3 class="stop-name">Rock Bar Sakebi</h3>
         </div>
@@ -1379,31 +1323,10 @@
       </p>
     </div>
   </section>
-  <section class="stop" id="stop-the-trad" data-stop="the-trad" data-number="27" data-floor="1F" style="--alias-cols:1">
+  <section class="stop" id="stop-eigakan-jazz" data-stop="eigakan-jazz" data-number="22" data-floor="B1F" data-category="basement" style="--alias-cols:1">
     <div class="stop-body">
       <header class="stop-head">
-        <p class="stop-number">27</p>
-        <div class="stop-head-text">
-          <h3 class="stop-name">The TRAD whisky &amp; cocktails</h3>
-        </div>
-      </header>
-      <p class="stop-aliases">ザ トラッド</p>
-      <p class="stop-summary">Bunkyo ward, Tokyo · Whisky &amp; cocktail bar · 1F</p>
-      <p class="stop-description">A ground-floor whiskey and cocktail bar in Yushima, fitted out like a small European castle full of antiques. Deep whiskey shelf, cigars, comfortable chairs. It works for one person or a small group. Closes at 11:30, midnight on weekends; smoking allowed; around ¥3,000 to ¥4,000.</p>
-      <dl class="stop-facts">
-        <dt>Station</dt><dd>Ueno-Hirokoji (Tokyo Metro Ginza), 3 min walk</dd>
-      <dt>Address</dt><dd>1F Fukase Building, 3-43-9 Yushima, Bunkyo-ku, Tokyo</dd>
-      </dl>
-      <p class="stop-links">
-        <a class="stop-link stop-link-primary" href="https://www.google.com/maps/place/The+TRAD+whisky+%26+cocktails+%E6%B9%AF%E5%B3%B6+%E5%BE%A1%E5%BE%92%E7%94%BA+%E4%B8%8A%E9%87%8E%E3%83%90%E3%83%BC/data=!4m2!3m1!1s0x60188c20f66448e3:0xca25a905c1abddc1" target="_blank" rel="noopener noreferrer">Open in Maps</a>
-      </p>
-    </div>
-  </section>
-<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline autoplay preload="metadata"><source src="assets/movie/interstitial-9.webm" type="video/webm"><source src="assets/movie/interstitial-9.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>Memories warm you up from the inside. But they also tear you apart.</blockquote><cite>Kafka on the Shore</cite></figcaption></figure>
-  <section class="stop" id="stop-eigakan-jazz" data-stop="eigakan-jazz" data-number="28" data-floor="B1F" data-category="basement" style="--alias-cols:1">
-    <div class="stop-body">
-      <header class="stop-head">
-        <p class="stop-number">28</p>
+        <p class="stop-number">22</p>
         <div class="stop-head-text">
           <h3 class="stop-name">Eigakan Jazz</h3>
         </div>
@@ -1421,31 +1344,15 @@
       </p>
     </div>
   </section>
-<h3 class="journey-leg">The outer reaches<span class="journey-leg-sub">The far outliers and the locked door</span></h3>
-  <section class="stop" id="stop-shooting-bar-ea" data-stop="shooting-bar-ea" data-number="29" data-floor="2F" data-category="distant" style="--alias-cols:2">
-    <div class="stop-body">
-      <header class="stop-head">
-        <p class="stop-number">29</p>
-        <div class="stop-head-text">
-          <h3 class="stop-name">Shooting Bar EA</h3>
-        </div>
-      </header>
-      <p class="stop-aliases">シューティングバー イーエー</p>
-      <p class="stop-summary">Musashino, Tokyo · Shooting bar · 2F</p>
-      <p class="stop-description">Past the 23 wards, eight minutes from Kichijoji: three hundred airsoft guns on the wall, three ten-meter lanes, and staff who are serious about safety and good with beginners. Cocktails are named after guns, and the favorite is the SPAS-12, rum, fruit juice, and brown sugar, lit on fire. Prices are reasonable. Reservations required; closed Tuesdays.</p>
-      <dl class="stop-facts">
-        <dt>Station</dt><dd>Kichijoji (JR Chuo / Keio Inokashira), 8 min walk</dd>
-      <dt>Address</dt><dd>2F Sawada Building, 1-5-5 Gotenyama, Musashino, Tokyo</dd>
-      </dl>
-      <p class="stop-links">
-        <a class="stop-link stop-link-primary" href="http://maps.google.com/?cid=3696340728203653624" target="_blank" rel="noopener noreferrer">Open in Maps</a>
-      </p>
+<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline autoplay preload="none"><source src="assets/movie/interstitial-9.webm" type="video/webm"><source src="assets/movie/interstitial-9.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>Memories warm you up from the inside. But they also tear you apart.</blockquote><cite>Kafka on the Shore</cite></figcaption></figure>
+<h3 class="journey-leg">The locked door<span class="journey-leg-sub">The one place you can’t walk into</span></h3>
+  <section class="stop is-spotlight" id="stop-sake-bar-o" data-stop="sake-bar-o" data-number="23" data-floor="1F" data-category="spotlight" style="--alias-cols:4">
+    <div class="stop-media-bg">
+      <img src="assets/imgs/bars/sake-bar-o.jpg" alt="Sake and wine bottles behind two metal sake cups and a small dish of almonds on the SAKEBARO counter" loading="lazy" decoding="async">
     </div>
-  </section>
-  <section class="stop is-spotlight" id="stop-sake-bar-o" data-stop="sake-bar-o" data-number="30" data-floor="1F" data-category="spotlight" style="--alias-cols:4">
     <div class="stop-body">
       <header class="stop-head">
-        <p class="stop-number">30</p>
+        <p class="stop-number">23</p>
         <div class="stop-head-text">
           <h3 class="stop-name">SAKEBARO Aoyama</h3>
         </div>
@@ -1465,7 +1372,28 @@
       </p>
     </div>
   </section>
-<figure class="journey-interstitial journey-coda" aria-label="The storm"><video class="stop-video" muted loop playsinline autoplay preload="metadata"><source src="assets/movie/coda.webm" type="video/webm"><source src="assets/movie/coda.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>And once the storm is over you won’t remember how you made it through. That’s what the storm is all about.</blockquote><cite>Kafka on the Shore</cite></figcaption></figure>
+<figure class="journey-interstitial journey-coda" aria-label="The storm"><video class="stop-video" muted loop playsinline autoplay preload="none"><source src="assets/movie/coda.webm" type="video/webm"><source src="assets/movie/coda.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>And once the storm is over you won’t remember how you made it through. That’s what the storm is all about.</blockquote><cite>Kafka on the Shore</cite></figcaption></figure>
+  <section class="stop epilogue" id="stop-rokusan-angel" data-stop="rokusan-angel" data-floor="B2F" data-category="basement" style="--alias-cols:1">
+    <div class="stop-body">
+      <button type="button" class="stop-veil">18+ · reveal</button>
+      <header class="stop-head">
+        <p class="stop-number" aria-hidden="true"></p>
+        <div class="stop-head-text">
+          <h3 class="stop-name">Rokusan Angel (Burlesque Tokyo)</h3>
+        </div>
+      </header>
+      <p class="stop-aliases">ロクサンエンジェル</p>
+      <p class="stop-summary">Minato ward, Tokyo · Burlesque bar · B2F</p>
+      <p class="stop-description">Formerly Burlesque Tokyo, two floors below street level in Roppongi. The themed shows change every week and run seventy to ninety minutes, and the performers work the crowd. It&#x27;s booked for birthdays and celebrations, so bring people, and reserve early for front seats. Expect ¥8,000 to ¥10,000 each after the 15% service charge. Limited English.</p>
+      <dl class="stop-facts">
+        <dt>Station</dt><dd>Roppongi (Toei Oedo / Tokyo Metro Hibiya), 5 min walk</dd>
+      <dt>Address</dt><dd>B2F Roppongi Nittaku Building, 3-8-15 Roppongi, Minato-ku, Tokyo</dd>
+      </dl>
+      <p class="stop-links">
+        <a class="stop-link stop-link-primary" href="https://www.google.com/maps/place/ROKUSAN+ANGEL%EF%BC%88Burlesque+Tokyo%EF%BC%89/data=!4m2!3m1!1s0x60188b78685d2fcb:0x949f91afc7f95845" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+      </p>
+    </div>
+  </section>
 <!-- /build:journey -->
         </div>
       </section>
@@ -1506,15 +1434,7 @@
         </li>
       </ul>
     </section>
-    <footer class="page-footer">
-      <p class="print-note">Ordered by neighborhood, evening to dawn. Check opening hours before travelling.</p>
-      <p class="sources">Source: Saved-place exports; boundaries reused from Anime Ward Map. Subway geometry &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>.</p>
-      <details id="source-notes">
-        <summary>Map notes</summary>
-        <p>Locations reflect saved-place records, not verified entrances. Some pins are address-level approximations from web research or the GSI address-search API. Use the saved map links to check current details before setting out.</p>
-        <p>Subway lines provide geographic context only. They are not walking directions or a journey planner.</p>
-      </details>
-    </footer>
+
   </div>
 </body>
 </html>

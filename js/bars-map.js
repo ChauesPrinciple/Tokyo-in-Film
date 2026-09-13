@@ -3,6 +3,61 @@
 
   const $ = id => document.getElementById(id);
 
+  // --- Stop fade-in ---
+  // Reveal stops softly as they enter the viewport, the way a late-night walk
+  // brings each sign into view. The <head> script hides stops as soon as JS
+  // is on, so this runs first: nothing further down can throw and leave the
+  // whole Journey invisible, and it needs no map data.
+  (function initReveal() {
+    const stops = document.querySelectorAll('.stop');
+    if (!stops.length) return;
+    if (!('IntersectionObserver' in window)) {
+      stops.forEach(stop => stop.classList.add('is-revealed'));
+      return;
+    }
+    const reveal = new IntersectionObserver(entries => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-revealed');
+          reveal.unobserve(entry.target);
+        }
+      }
+    }, {rootMargin: '-8% 0px -8% 0px', threshold: 0});
+    stops.forEach(stop => reveal.observe(stop));
+
+    // Fade the epilogue out once the "Before you go" films section enters view.
+    // A class rather than inline styles, so the stylesheet keeps control of
+    // the transition (reduced motion included) and can take the faded card
+    // out of clicks and Tab.
+    const epilogue = document.querySelector('.stop.epilogue');
+    const films = document.querySelector('.films');
+    if (epilogue && films) {
+      new IntersectionObserver(entries => {
+        for (const entry of entries) epilogue.classList.toggle('is-faded', entry.isIntersecting);
+      }, {threshold: 0.25}).observe(films);
+    }
+  })();
+
+  // --- Epilogue veil ---
+  // The 18+ card sits behind a real button. The content behind it is inert
+  // until it's opened, so Tab and screen readers can't reach past the veil
+  // either.
+  document.querySelectorAll('.stop-veil').forEach(veil => {
+    const stop = veil.closest('.stop');
+    if (!stop) return;
+    const behind = [...veil.parentElement.children].filter(node => node !== veil);
+    stop.classList.add('is-veiled');
+    behind.forEach(node => node.setAttribute('inert', ''));
+    veil.addEventListener('click', event => {
+      event.stopPropagation();
+      stop.classList.remove('is-veiled');
+      behind.forEach(node => node.removeAttribute('inert'));
+      // The button hides itself, so hand focus to the card it was covering.
+      const name = stop.querySelector('.stop-name');
+      if (name) { name.tabIndex = -1; name.focus({preventScroll: true}); }
+    });
+  });
+
   // --- View switch: Journey vs Map & list ---
   // The journey content is server-rendered (build:journey region), so this
   // toggle only controls visibility. No data fetching required.
@@ -451,16 +506,12 @@
     if (!interstitials.length) return;
     const vh = () => window.innerHeight;
     let ticking = false;
-    const loaded = new WeakSet();
 
+    // play() on its own fetches a preload="none" video and resumes one that
+    // autoplay already started. No load() first: on an autoplayed video it
+    // throws the buffer away and restarts it, and it aborts a pending play().
     function playInterstitial(v) {
-      if (!loaded.has(v)) {
-        loaded.add(v);
-        v.load();
-        v.addEventListener('canplay', () => v.play().catch(() => {}), { once: true });
-      } else {
-        v.play().catch(() => {});
-      }
+      v.play().catch(() => {});
     }
 
     function update() {
@@ -667,27 +718,41 @@
       const stop = $(`stop-${bar.id}`);
       if (stop) stop.hidden = !ids.has(bar.id);
     });
-    // Hide interstitials whose neighboring stops are all filtered out
-    // (issue #6: otherwise filtered-down Journey shows full-screen videos
-    // stacked back to back with almost nothing between them).
-    document.querySelectorAll('.journey-interstitial').forEach(el => {
-      const prev = el.previousElementSibling;
-      const next = el.nextElementSibling;
-      const prevVisible = prev && prev.classList.contains('stop') && !prev.hidden;
-      const nextVisible = next && next.classList.contains('stop') && !next.hidden;
-      el.hidden = !(prevVisible || nextVisible);
+    // Hide interstitials that no longer sit between two visible stops
+    // (issue #6: otherwise a filtered-down Journey plays full-screen videos
+    // back to back). Walk the Journey in order: an interstitial is kept only
+    // if a visible stop appeared since the last kept interstitial and another
+    // visible stop follows it. The coda closes the night, so it only needs a
+    // visible stop before it.
+    const journeyItems = [...document.querySelectorAll('.journey-scroll > .stop, .journey-scroll > .journey-interstitial')];
+    const isVisibleStop = el => el.classList.contains('stop') && !el.hidden && !el.classList.contains('epilogue');
+    let lastVisibleStop = -1;
+    journeyItems.forEach((el, i) => { if (isVisibleStop(el)) lastVisibleStop = i; });
+    let stopSinceKept = false;
+    journeyItems.forEach((el, i) => {
+      if (el.classList.contains('stop')) {
+        if (isVisibleStop(el)) stopSinceKept = true;
+        return;
+      }
+      const keep = stopSinceKept && (el.classList.contains('journey-coda') || i < lastVisibleStop);
+      el.hidden = !keep;
+      if (keep) stopSinceKept = false;
     });
-    // Hide leg headings when every stop in that leg is filtered out,
-    // so they don't sit between two visible interstitials as dead space.
+    // Hide leg headings when every stop in that leg is filtered out.
+    // Walk past interstitials (FIGURE) to check all stops until the next leg.
     document.querySelectorAll('.journey-leg').forEach(leg => {
       let sib = leg.nextElementSibling;
       let anyVisible = false;
-      while (sib && !sib.classList.contains('journey-leg') && sib.tagName !== 'FIGURE') {
-        if (sib.classList.contains('stop') && !sib.hidden) { anyVisible = true; break; }
+      while (sib && !sib.classList.contains('journey-leg')) {
+        if (sib.classList.contains('stop') && !sib.hidden && !sib.classList.contains('epilogue')) { anyVisible = true; break; }
         sib = sib.nextElementSibling;
       }
       leg.hidden = !anyVisible;
     });
+    // The epilogue is always visible — it's one card, it harms nothing,
+    // and it closes the night regardless of filter.
+    const epilogue = document.querySelector('.stop.epilogue');
+    if (epilogue) epilogue.hidden = false;
     $('empty-state').hidden = visible.length > 0;
     $('shop-count').textContent = `${visible.length} / ${bars.length}`;
     $('map-status').textContent = visible.length ? `${visible.length} places shown.${transitAvailable ? '' : ' Subway context unavailable.'}` : 'No matching places. Clear the search or choose another area.';
@@ -792,9 +857,9 @@
     const group = $('bars-transit');
     if (group) group.style.display = $('show-transit').checked ? '' : 'none';
   });
-  $('follow-reading').addEventListener('change', () => {
-    followReading = $('follow-reading').checked;
-  });
+  // setFollow, not a bare flag write, so unchecking also cancels a camera
+  // move that's already under way.
+  $('follow-reading').addEventListener('change', () => setFollow($('follow-reading').checked));
   $('print-map').addEventListener('click', () => window.print());
   window.addEventListener('beforeprint', beforePrint);
   window.addEventListener('afterprint', afterPrint);
@@ -870,6 +935,9 @@
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduced) return;
     video.addEventListener('loadeddata', () => video.classList.add('is-loaded'), {once: true});
+    // The markup says preload="none" so reduced-motion visitors never fetch
+    // it; load() alone honors that and would never fire loadeddata.
+    video.preload = 'auto';
     video.load();
   })();
 
@@ -883,51 +951,24 @@
     if (!videos.length) return;
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduced) return;
-    // Robust loading: call load() once, wait for canplay, then play().
-    // Calling play() immediately after load() races and fails silently.
-    const loaded = new WeakSet();
+    // play() fetches a preload="none" video by itself and simply resumes one
+    // autoplay already started. load() isn't called: it would restart an
+    // autoplayed video mid-loop and abort a pending play().
     function startVideo(v) {
-      if (!loaded.has(v)) {
-        loaded.add(v);
-        v.load();
-        v.addEventListener('canplay', () => {
-          v.play().then(() => v.classList.add('is-playing')).catch(() => {});
-        }, { once: true });
-      } else {
-        v.play().then(() => v.classList.add('is-playing')).catch(() => {});
-      }
+      v.play().then(() => v.classList.add('is-playing')).catch(() => {});
     }
     const io = new IntersectionObserver((entries) => {
       for (const e of entries) {
         const v = e.target;
         if (e.isIntersecting && e.intersectionRatio > 0.1) {
           startVideo(v);
-        } else if (!e.isIntersecting && loaded.has(v)) {
+        } else if (!e.isIntersecting) {
           v.pause();
           v.classList.remove('is-playing');
         }
       }
     }, { threshold: [0, 0.1, 0.25, 0.5, 0.75] });
     videos.forEach(v => io.observe(v));
-  })();
-
-  // --- Stop fade-in ---
-  // Reveal stops softly as they enter the viewport, the way a late-night walk
-  // brings each sign into view. Runs before (and regardless of) the map data
-  // fetch: the Journey is server-rendered, so a failed load must not leave it
-  // invisible.
-  (function initReveal() {
-    const stops = document.querySelectorAll('.stop');
-    if (!stops.length) return;
-    const reveal = new IntersectionObserver(entries => {
-      for (const entry of entries) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-revealed');
-          reveal.unobserve(entry.target);
-        }
-      }
-    }, {rootMargin: '-8% 0px -8% 0px', threshold: 0});
-    stops.forEach(stop => reveal.observe(stop));
   })();
 
   // Initialize interstitial fade as early as possible (issue #3: previously
@@ -941,6 +982,7 @@
     try {
       const [data, boundaries] = await Promise.all([getJSON('assets/bars-map-data.json'), getJSON('assets/tokyo-wards.geojson')]);
       bars = data.bars
+        .filter(bar => !bar.epilogue)
         .map(bar => ({
           ...bar,
           point: project(bar.lng, bar.lat),
