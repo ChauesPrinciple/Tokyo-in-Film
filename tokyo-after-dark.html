@@ -224,7 +224,7 @@
     @media (max-width: 1040px) { .list-panel { max-height: none; overflow: visible; } }
 
     .list-controls {
-      display: grid; grid-template-columns: 1fr 140px 140px; gap: 10px 12px; align-items: end;
+      display: grid; grid-template-columns: minmax(0, 1fr) 140px 140px; gap: 10px 12px; align-items: end;
       position: sticky; top: 0; z-index: 2; background: var(--paper);
       padding: 2px 0 12px; margin-bottom: 4px;
     }
@@ -232,6 +232,7 @@
     .field input, .field select {
       font-size: 14px; font-weight: 400; line-height: 1.3; text-transform: none; letter-spacing: 0; color: var(--ink);
       padding: 9px 10px; border: 1px solid var(--line); border-radius: 7px; background: var(--panel);
+      min-width: 0; width: 100%;
       transition: border-color .12s;
     }
     .field input:focus, .field select:focus { border-color: var(--mark-ink); outline: 2px solid var(--mark-ink); outline-offset: -1px; }
@@ -566,7 +567,10 @@
     /* No-media cards: a leg-tinted gradient with the Japanese name set large
        and faint as a vertical watermark, so text-only stops read as designed
        rather than as cards whose photo is missing. The watermark sits on the
-       left because .stop-aliases owns the right gutter on wide screens. */
+       left because .stop-aliases owns the right gutter on wide screens.
+       The body's dark gradient is dropped on no-media cards so the tinted
+       background actually shows; the epilogue keeps its own body treatment. */
+    .stop.no-media:not(.epilogue) .stop-body { background: none; }
     .stop-media-bg--type {
       background:
         radial-gradient(120% 90% at 100% 0%, var(--leg-tint, rgba(120, 80, 160, .28)), transparent 60%),
@@ -577,16 +581,16 @@
       writing-mode: vertical-rl; text-orientation: upright;
       font-family: 'Shippori Mincho', serif; font-weight: 700;
       font-size: clamp(56px, 9vw, 96px); line-height: 1; letter-spacing: .08em;
-      color: rgba(245,240,232,.055); white-space: nowrap;
+      color: rgba(245,240,232,.09); white-space: nowrap;
       max-height: calc(100% - 28px); overflow: hidden;
       user-select: none; pointer-events: none;
     }
-    .stop[data-leg="ginza"]       { --leg-tint: rgba(196, 140, 60, .22); }
-    .stop[data-leg="shinjuku"]    { --leg-tint: rgba(190, 70, 140, .24); }
-    .stop[data-leg="west"]        { --leg-tint: rgba(90, 110, 190, .24); }
-    .stop[data-leg="east"]        { --leg-tint: rgba(70, 150, 130, .22); }
-    .stop[data-leg="locked-door"] { --leg-tint: rgba(200, 60, 60, .22); }
-    .stop[data-leg="epilogue"]    { --leg-tint: rgba(160, 30, 50, .30); }
+    .stop[data-leg="ginza"]       { --leg-tint: rgba(196, 140, 60, .30); }
+    .stop[data-leg="shinjuku"]    { --leg-tint: rgba(190, 70, 140, .32); }
+    .stop[data-leg="west"]        { --leg-tint: rgba(90, 110, 190, .32); }
+    .stop[data-leg="east"]        { --leg-tint: rgba(70, 150, 130, .30); }
+    .stop[data-leg="locked-door"] { --leg-tint: rgba(200, 60, 60, .30); }
+    .stop[data-leg="epilogue"]    { --leg-tint: rgba(160, 30, 50, .38); }
     @media (max-width: 600px) { .stop-watermark { font-size: 48px; top: 10px; left: 10px; } }
     /* Text body on top of the media. The sakura tint (a subtle magenta shift
        in the dark panel) gives every card the warm hue the user asked for.
@@ -749,6 +753,7 @@
          from Map & list) would otherwise print as blank space. */
       .stop { break-inside: avoid; border-radius: 0; margin: 0; border: 0; border-bottom: 1px solid var(--line); background: #fff; opacity: 1 !important; visibility: visible !important; transform: none !important; overflow: visible; }
       .stop-body { padding: 3mm 0; background: #fff; }
+      .stop.no-media:not(.epilogue) .stop-body { background: #fff; }
       .stop.is-spotlight .stop-body { background: var(--glow-soft); }
       .stop.is-spotlight { background: var(--glow-soft); }
       .stop-head { flex-direction: column; gap: 2mm; }
@@ -882,7 +887,7 @@
       </p>
     </div>
   </section>
-  <section class="stop" id="stop-star-bar" data-stop="star-bar" data-number="2" data-floor="B1F" data-category="basement" data-leg="ginza" style="--alias-cols:1">
+  <section class="stop no-media" id="stop-star-bar" data-stop="star-bar" data-number="2" data-floor="B1F" data-category="basement" data-leg="ginza" style="--alias-cols:1">
     <div class="stop-media-bg stop-media-bg--type" aria-hidden="true"><span class="stop-watermark">スターバー銀座</span></div>
     <div class="stop-body">
       <header class="stop-head">
@@ -903,7 +908,7 @@
       </p>
     </div>
   </section>
-  <section class="stop" id="stop-lamp-bar" data-stop="lamp-bar" data-number="3" data-floor="4F" data-leg="ginza" style="--alias-cols:1">
+  <section class="stop no-media" id="stop-lamp-bar" data-stop="lamp-bar" data-number="3" data-floor="4F" data-leg="ginza" style="--alias-cols:1">
     <div class="stop-media-bg stop-media-bg--type" aria-hidden="true"><span class="stop-watermark">ランプバー</span></div>
     <div class="stop-body">
       <header class="stop-head">
@@ -926,7 +931,7 @@
   </section>
 <figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline autoplay preload="none"><source src="assets/movie/interstitial-1.webm" type="video/webm"><source src="assets/movie/interstitial-1.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>If you only read the books that everyone else is reading, you can only think what everyone else is thinking.</blockquote><cite>Norwegian Wood</cite></figcaption></figure>
 <h3 class="journey-leg">Shinjuku<span class="journey-leg-sub">Late evening: hotel bars, speakeasies, Golden Gai</span></h3>
-  <section class="stop" id="stop-new-york-bar" data-stop="new-york-bar" data-number="4" data-floor="52F" data-category="highrise" data-leg="shinjuku" style="--alias-cols:3">
+  <section class="stop no-media" id="stop-new-york-bar" data-stop="new-york-bar" data-number="4" data-floor="52F" data-category="highrise" data-leg="shinjuku" style="--alias-cols:3">
     <div class="stop-media-bg stop-media-bg--type" aria-hidden="true"><span class="stop-watermark">ニューヨークバー</span></div>
     <div class="stop-body">
       <header class="stop-head">
@@ -947,7 +952,7 @@
       </p>
     </div>
   </section>
-  <section class="stop" id="stop-bar-cocktailbook" data-stop="bar-cocktailbook" data-number="5" data-floor="2F" data-leg="shinjuku" style="--alias-cols:2">
+  <section class="stop no-media" id="stop-bar-cocktailbook" data-stop="bar-cocktailbook" data-number="5" data-floor="2F" data-leg="shinjuku" style="--alias-cols:2">
     <div class="stop-media-bg stop-media-bg--type" aria-hidden="true"><span class="stop-watermark">バー カクテルブック 新宿</span></div>
     <div class="stop-body">
       <header class="stop-head">
@@ -968,7 +973,7 @@
       </p>
     </div>
   </section>
-  <section class="stop" id="stop-kakuretai" data-stop="kakuretai" data-number="6" data-floor="B1F" data-category="basement" data-leg="shinjuku" style="--alias-cols:4">
+  <section class="stop no-media" id="stop-kakuretai" data-stop="kakuretai" data-number="6" data-floor="B1F" data-category="basement" data-leg="shinjuku" style="--alias-cols:4">
     <div class="stop-media-bg stop-media-bg--type" aria-hidden="true"><span class="stop-watermark">かくれたい</span></div>
     <div class="stop-body">
       <header class="stop-head">
@@ -992,7 +997,7 @@
     </div>
   </section>
 <figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline autoplay preload="none"><source src="assets/movie/interstitial-2.webm" type="video/webm"><source src="assets/movie/interstitial-2.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>I dream. Sometimes I think that’s the only right thing to do.</blockquote><cite>Sputnik Sweetheart</cite></figcaption></figure>
-  <section class="stop" id="stop-bar-rest" data-stop="bar-rest" data-number="7" data-floor="3F" data-leg="shinjuku" style="--alias-cols:3">
+  <section class="stop no-media" id="stop-bar-rest" data-stop="bar-rest" data-number="7" data-floor="3F" data-leg="shinjuku" style="--alias-cols:3">
     <div class="stop-media-bg stop-media-bg--type" aria-hidden="true"><span class="stop-watermark">歌舞伎町 rest</span></div>
     <div class="stop-body">
       <header class="stop-head">
@@ -1014,7 +1019,7 @@
       </p>
     </div>
   </section>
-  <section class="stop" id="stop-a-bar-sleeping-tales" data-stop="a-bar-sleeping-tales" data-number="8" data-floor="B1F" data-category="basement" data-leg="shinjuku" style="--alias-cols:2">
+  <section class="stop no-media" id="stop-a-bar-sleeping-tales" data-stop="a-bar-sleeping-tales" data-number="8" data-floor="B1F" data-category="basement" data-leg="shinjuku" style="--alias-cols:2">
     <div class="stop-media-bg stop-media-bg--type" aria-hidden="true"><span class="stop-watermark">ア バー スリーピング テイルズ</span></div>
     <div class="stop-body">
       <header class="stop-head">
@@ -1035,7 +1040,7 @@
       </p>
     </div>
   </section>
-  <section class="stop" id="stop-golden-gai-trio" data-stop="golden-gai-trio" data-number="9" data-category="golden-gai" data-leg="shinjuku" style="--alias-cols:7">
+  <section class="stop no-media" id="stop-golden-gai-trio" data-stop="golden-gai-trio" data-number="9" data-category="golden-gai" data-leg="shinjuku" style="--alias-cols:7">
     <div class="stop-media-bg stop-media-bg--type" aria-hidden="true"><span class="stop-watermark">新宿ゴールデン街</span></div>
     <div class="stop-body">
       <header class="stop-head">
@@ -1139,7 +1144,7 @@
       </p>
     </div>
   </section>
-  <section class="stop" id="stop-never-never-land" data-stop="never-never-land" data-number="12" data-floor="2F" data-leg="west" style="--alias-cols:5">
+  <section class="stop no-media" id="stop-never-never-land" data-stop="never-never-land" data-number="12" data-floor="2F" data-leg="west" style="--alias-cols:5">
     <div class="stop-media-bg stop-media-bg--type" aria-hidden="true"><span class="stop-watermark">ネバーネバーランド</span></div>
     <div class="stop-body">
       <header class="stop-head">
@@ -1162,7 +1167,7 @@
     </div>
   </section>
 <figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline autoplay preload="none"><source src="assets/movie/interstitial-4.webm" type="video/webm"><source src="assets/movie/interstitial-4.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>In this world, there are things you can only do alone, and things you can only do with somebody else.</blockquote><cite>After Dark</cite></figcaption></figure>
-  <section class="stop" id="stop-no-room-squares" data-stop="no-room-squares" data-number="13" data-floor="4F" data-category="distant" data-leg="west" style="--alias-cols:2">
+  <section class="stop no-media" id="stop-no-room-squares" data-stop="no-room-squares" data-number="13" data-floor="4F" data-category="distant" data-leg="west" style="--alias-cols:2">
     <div class="stop-media-bg stop-media-bg--type" aria-hidden="true"><span class="stop-watermark">ノー・ルーム・フォー・スクエアーズ</span></div>
     <div class="stop-body">
       <header class="stop-head">
@@ -1183,7 +1188,7 @@
       </p>
     </div>
   </section>
-  <section class="stop" id="stop-bar-sawa" data-stop="bar-sawa" data-number="14" data-floor="1F" data-leg="west" style="--alias-cols:1">
+  <section class="stop no-media" id="stop-bar-sawa" data-stop="bar-sawa" data-number="14" data-floor="1F" data-leg="west" style="--alias-cols:1">
     <div class="stop-media-bg stop-media-bg--type" aria-hidden="true"><span class="stop-watermark">バー サワ</span></div>
     <div class="stop-body">
       <header class="stop-head">
@@ -1228,7 +1233,7 @@
       </p>
     </div>
   </section>
-  <section class="stop" id="stop-bar-centifolia" data-stop="bar-centifolia" data-number="16" data-floor="6F" data-leg="west" style="--alias-cols:2">
+  <section class="stop no-media" id="stop-bar-centifolia" data-stop="bar-centifolia" data-number="16" data-floor="6F" data-leg="west" style="--alias-cols:2">
     <div class="stop-media-bg stop-media-bg--type" aria-hidden="true"><span class="stop-watermark">バー センティフォリア</span></div>
     <div class="stop-body">
       <header class="stop-head">
@@ -1251,7 +1256,7 @@
   </section>
 <figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline autoplay preload="none"><source src="assets/movie/interstitial-6.webm" type="video/webm"><source src="assets/movie/interstitial-6.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>What lasts, lasts; what doesn’t, doesn’t. Time solves most things. And what time can’t solve, you have to solve yourself.</blockquote><cite>Dance Dance Dance</cite></figcaption></figure>
 <h3 class="journey-leg">East Tokyo<span class="journey-leg-sub">After hours: Kanda to Ueno to Bunkyo</span></h3>
-  <section class="stop" id="stop-bar-under" data-stop="bar-under" data-number="17" data-floor="B1F" data-category="basement" data-leg="east" style="--alias-cols:2">
+  <section class="stop no-media" id="stop-bar-under" data-stop="bar-under" data-number="17" data-floor="B1F" data-category="basement" data-leg="east" style="--alias-cols:2">
     <div class="stop-media-bg stop-media-bg--type" aria-hidden="true"><span class="stop-watermark">バー アンドアンダー</span></div>
     <div class="stop-body">
       <header class="stop-head">
@@ -1272,7 +1277,7 @@
       </p>
     </div>
   </section>
-  <section class="stop" id="stop-naru-jazz" data-stop="naru-jazz" data-number="18" data-floor="B1F" data-category="basement" data-leg="east" style="--alias-cols:3">
+  <section class="stop no-media" id="stop-naru-jazz" data-stop="naru-jazz" data-number="18" data-floor="B1F" data-category="basement" data-leg="east" style="--alias-cols:3">
     <div class="stop-media-bg stop-media-bg--type" aria-hidden="true"><span class="stop-watermark">ジャズハウスナル</span></div>
     <div class="stop-body">
       <header class="stop-head">
@@ -1295,7 +1300,7 @@
     </div>
   </section>
 <figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline autoplay preload="none"><source src="assets/movie/interstitial-7.webm" type="video/webm"><source src="assets/movie/interstitial-7.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>No matter how far you travel, you can never get away from yourself.</blockquote><cite>After the Quake</cite></figcaption></figure>
-  <section class="stop" id="stop-game-bar-abutton" data-stop="game-bar-abutton" data-number="19" data-floor="1F" data-leg="east" style="--alias-cols:2">
+  <section class="stop no-media" id="stop-game-bar-abutton" data-stop="game-bar-abutton" data-number="19" data-floor="1F" data-leg="east" style="--alias-cols:2">
     <div class="stop-media-bg stop-media-bg--type" aria-hidden="true"><span class="stop-watermark">ゲームバー エーボタン</span></div>
     <div class="stop-body">
       <header class="stop-head">
@@ -1343,7 +1348,7 @@
     </div>
   </section>
 <figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline autoplay preload="none"><source src="assets/movie/interstitial-8.webm" type="video/webm"><source src="assets/movie/interstitial-8.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>People’s memories are maybe the fuel they burn to stay alive.</blockquote><cite>After Dark</cite></figcaption></figure>
-  <section class="stop" id="stop-rock-bar-sakebi" data-stop="rock-bar-sakebi" data-number="21" data-floor="1F" data-leg="east" style="--alias-cols:1">
+  <section class="stop no-media" id="stop-rock-bar-sakebi" data-stop="rock-bar-sakebi" data-number="21" data-floor="1F" data-leg="east" style="--alias-cols:1">
     <div class="stop-media-bg stop-media-bg--type" aria-hidden="true"><span class="stop-watermark">ロックバー さけび</span></div>
     <div class="stop-body">
       <header class="stop-head">
@@ -1364,7 +1369,7 @@
       </p>
     </div>
   </section>
-  <section class="stop" id="stop-eigakan-jazz" data-stop="eigakan-jazz" data-number="22" data-floor="B1F" data-category="basement" data-leg="east" style="--alias-cols:1">
+  <section class="stop no-media" id="stop-eigakan-jazz" data-stop="eigakan-jazz" data-number="22" data-floor="B1F" data-category="basement" data-leg="east" style="--alias-cols:1">
     <div class="stop-media-bg stop-media-bg--type" aria-hidden="true"><span class="stop-watermark">映画館ジャズ</span></div>
     <div class="stop-body">
       <header class="stop-head">
@@ -1414,8 +1419,8 @@
       </p>
     </div>
   </section>
-<figure class="journey-interstitial journey-coda" aria-label="The storm"><video class="stop-video" muted loop playsinline autoplay preload="none"><source src="assets/movie/coda.webm" type="video/webm"><source src="assets/movie/coda.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>And once the storm is over you won’t remember how you made it through. That’s what the storm is all about.</blockquote><cite>Kafka on the Shore</cite></figcaption></figure>
-  <section class="stop epilogue" id="stop-rokusan-angel" data-stop="rokusan-angel" data-floor="B2F" data-category="basement" data-leg="epilogue" style="--alias-cols:1">
+<figure class="journey-interstitial journey-coda" aria-label="The storm"><video class="stop-video" muted loop playsinline autoplay preload="none"><source src="assets/movie/coda.webm" type="video/webm"><source src="assets/movie/coda.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>And once the storm is over, you won’t remember how you made it through, how you managed to survive… That’s what this storm’s all about.</blockquote><cite>Kafka on the Shore</cite></figcaption></figure>
+  <section class="stop epilogue no-media" id="stop-rokusan-angel" data-stop="rokusan-angel" data-floor="B2F" data-category="basement" data-leg="epilogue" style="--alias-cols:1">
     <div class="stop-media-bg stop-media-bg--type" aria-hidden="true"><span class="stop-watermark">ロクサンエンジェル</span></div>
     <div class="stop-body">
       <button type="button" class="stop-veil">18+ · reveal</button>

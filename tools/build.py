@@ -161,10 +161,12 @@ def _render_stop(bar):
     # real width is what keeps the spine off the horizontal text.
     cols_attr = f' style="--alias-cols:{_alias_columns(aliases)}"' if aliases else ''
     epilogue_cls = ' epilogue' if bar.get('epilogue') else ''
+    no_media = not (bar.get('video') or bar.get('image'))
+    no_media_cls = ' no-media' if no_media else ''
     num_attr = '' if bar.get('epilogue') else f' data-number="{num}"'
     leg_attr = f' data-leg="{_esc(bar["leg"])}"' if bar.get('leg') else ''
     parts = []
-    parts.append(f'  <section class="stop{spotlight}{epilogue_cls}" id="stop-{bid}" data-stop="{bid}"{num_attr}{floor_attr}{cat_attr}{leg_attr}{cols_attr}>')
+    parts.append(f'  <section class="stop{spotlight}{epilogue_cls}{no_media_cls}" id="stop-{bid}" data-stop="{bid}"{num_attr}{floor_attr}{cat_attr}{leg_attr}{cols_attr}>')
     # Media as a background layer — video or image covers the full card.
     video = bar.get('video')
     image = bar.get('image')
@@ -373,8 +375,8 @@ def render_journey(data_path):
         ('Memories warm you up from the inside. But they also tear you apart.', 'Kafka on the Shore'),
     ]
     CODA_QUOTE = (
-        'And once the storm is over you won\u2019t remember how you made it through. '
-        'That\u2019s what the storm is all about.',
+        'And once the storm is over, you won\u2019t remember how you made it through, '
+        'how you managed to survive\u2026 That\u2019s what this storm\u2019s all about.',
         'Kafka on the Shore',
     )
 
@@ -512,9 +514,11 @@ def _assert_bars_consistency():
         if '"' in val or '<' in val:
             errors.append(f"Invalid data-category: '{val}'")
     # stop count == bar-count == max data-number == JSON count
-    # Epilogue stops (class="stop epilogue") are excluded from the count
-    # because the regex only matches class="stop" or class="stop is-spotlight".
-    stop_count = len(re.findall(r'class="stop(?: is-spotlight)?"\s', text))
+    # The regex matches class="stop" plus any combination of modifier
+    # classes (is-spotlight, no-media) that build.py may add, but NOT
+    # epilogue (which is a separate count — the epilogue card has no
+    # data-number and is excluded from the numbered-stop total).
+    stop_count = len(re.findall(r'class="stop(?: is-spotlight| no-media)*"\s', text))
     data_numbers = [int(n) for n in re.findall(r'data-number="(\d+)"', text)]
     max_number = max(data_numbers) if data_numbers else 0
     count_match = re.search(r'id="bar-count"[^>]*>(\d+)<', text)
