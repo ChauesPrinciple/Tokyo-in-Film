@@ -507,9 +507,9 @@
       border-color: #5c1a1a; background: #1a0808;
       margin: 0 auto 24px; max-width: 460px;
     }
-    /* Fades out once "Before you go" is a quarter in view (tokyo-after-dark.js adds
-       .is-faded). visibility waits for the fade, then takes the card out of
-       clicks and Tab. */
+    /* Fades out once the "Before you go" films section crosses above the
+       45% line (tokyo-after-dark.js adds .is-faded). visibility waits for
+       the fade, then takes the card out of clicks and Tab. */
     html.js .stop.epilogue { transition: opacity .6s ease, transform .6s ease, visibility 0s; }
     html.js .stop.epilogue.is-faded { opacity: 0; visibility: hidden; transition: opacity .6s ease, transform .6s ease, visibility 0s linear .6s; }
     .stop.epilogue .stop-number { display: none; }
@@ -787,7 +787,7 @@
     }
   </style>
   <script src="js/ripple.js?v=d74dd0fe" defer></script>
-  <script src="js/tokyo-after-dark.js?v=b53c6584" defer></script>
+  <script src="js/tokyo-after-dark.js?v=1f5288b1" defer></script>
 </head>
 <body>
   <div class="bars-bg" aria-hidden="true">
@@ -1419,11 +1419,11 @@
       </p>
     </div>
   </section>
-<figure class="journey-interstitial journey-coda" aria-label="The storm"><video class="stop-video" muted loop playsinline autoplay preload="none"><source src="assets/movie/coda.webm" type="video/webm"><source src="assets/movie/coda.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>And once the storm is over, you won’t remember how you made it through, how you managed to survive… That’s what this storm’s all about.</blockquote><cite>Kafka on the Shore</cite></figcaption></figure>
+<figure class="journey-interstitial journey-coda" aria-label="The storm"><video class="stop-video" muted loop playsinline autoplay preload="none"><source src="assets/movie/coda.webm" type="video/webm"><source src="assets/movie/coda.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>And once the storm is over, you won’t remember how you made it through, how you managed to survive... That’s what this storm’s all about.</blockquote><cite>Kafka on the Shore</cite></figcaption></figure>
   <section class="stop epilogue no-media" id="stop-rokusan-angel" data-stop="rokusan-angel" data-floor="B2F" data-category="basement" data-leg="epilogue" style="--alias-cols:1">
     <div class="stop-media-bg stop-media-bg--type" aria-hidden="true"><span class="stop-watermark">ロクサンエンジェル</span></div>
     <div class="stop-body">
-      <button type="button" class="stop-veil">18+ · reveal</button>
+      <button type="button" class="stop-veil">20+ · reveal</button>
       <header class="stop-head">
         <p class="stop-number" aria-hidden="true"></p>
         <div class="stop-head-text">

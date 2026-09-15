@@ -195,7 +195,7 @@ def _render_stop(bar):
     # Epilogue veil: a reveal button over the "naughty" card. tokyo-after-dark.js
     # shows it and makes the content behind it inert until it's opened.
     if bar.get('epilogue'):
-        parts.append(f'      <button type="button" class="stop-veil">18+ · reveal</button>')
+        parts.append(f'      <button type="button" class="stop-veil">20+ · reveal</button>')
     # 1. Name
     parts.append(f'      <header class="stop-head">')
     if bar.get('epilogue'):
@@ -376,7 +376,7 @@ def render_journey(data_path):
     ]
     CODA_QUOTE = (
         'And once the storm is over, you won\u2019t remember how you made it through, '
-        'how you managed to survive\u2026 That\u2019s what this storm\u2019s all about.',
+        'how you managed to survive... That\u2019s what this storm\u2019s all about.',
         'Kafka on the Shore',
     )
 

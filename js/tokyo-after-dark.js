@@ -25,21 +25,26 @@
     }, {rootMargin: '-8% 0px -8% 0px', threshold: 0});
     stops.forEach(stop => reveal.observe(stop));
 
-    // Fade the epilogue out once the "Before you go" films section enters view.
-    // A class rather than inline styles, so the stylesheet keeps control of
-    // the transition (reduced motion included) and can take the faded card
-    // out of clicks and Tab.
+    // Fade the epilogue out only once the "Before you go" films section has
+    // taken over the upper portion of the screen — its top crosses above the
+    // 45% line. The old threshold (films a quarter in view) fired while the
+    // epilogue was still the main thing on a phone. The root is clipped to
+    // the top 45% of the viewport so a tall films section can't trigger the
+    // fade while its top is still in the lower half. A class rather than
+    // inline styles, so the stylesheet keeps control of the transition
+    // (reduced motion included) and can take the faded card out of clicks
+    // and Tab.
     const epilogue = document.querySelector('.stop.epilogue');
     const films = document.querySelector('.films');
     if (epilogue && films) {
       new IntersectionObserver(entries => {
         for (const entry of entries) epilogue.classList.toggle('is-faded', entry.isIntersecting);
-      }, {threshold: 0.25}).observe(films);
+      }, {rootMargin: '0px 0px -55% 0px', threshold: 0}).observe(films);
     }
   })();
 
   // --- Epilogue veil ---
-  // The 18+ card sits behind a real button. The content behind it is inert
+  // The 20+ card sits behind a real button. The content behind it is inert
   // until it's opened, so Tab and screen readers can't reach past the veil
   // either.
   document.querySelectorAll('.stop-veil').forEach(veil => {
