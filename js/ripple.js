@@ -5,7 +5,7 @@
 // its intended size.
 //
 // Interstitial ripples fire when the .is-active class is toggled, which
-// bars-map.js does as the spacer takes over / releases the viewport, so a
+// tokyo-after-dark.js does as the spacer takes over / releases the viewport, so a
 // burst marks both the entry and the exit of the transition. Hover ripples
 // on [data-ripple] figures are also supported for legacy stop-image figures.
 (() => {
@@ -152,7 +152,7 @@
   // Interstitial ripple transitions. The interstitial itself is a transparent
   // 100vh spacer in the scroll flow; the video/canvas/overlay are position:fixed
   // and their opacity is scroll-linked through the --reveal custom property set
-  // by bars-map.js. Here we size the canvas to the viewport on first
+  // by tokyo-after-dark.js. Here we size the canvas to the viewport on first
   // intersection, then fire a ripple burst when .is-active is added (the media
   // takes over the screen) and again when it is removed (the media releases it).
   const interstitials = document.querySelectorAll('.journey-interstitial');

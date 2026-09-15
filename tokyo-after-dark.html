@@ -1,0 +1,1483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script>document.documentElement.classList.add('js')</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A field guide to cocktail counters, jazz bars, and late-night spots across Tokyo, with an interactive map, neighborhood details, and a printable place index.">
+  <meta name="theme-color" content="#14121c">
+  <title>Tokyo After Dark - Tokyo in Film</title>
+  <link rel="icon" href="assets/images/image07.png">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&display=swap');
+    :root {
+      color-scheme: dark;
+      --ink: #eceaf2;
+      --ink-soft: #a9a4bb;
+      --muted: #837d97;
+      --line: #2c2839;
+      --paper: #14121c;
+      --panel: #1c1926;
+      --sea: #0e0d15;
+      --land: #211d2d;
+      --land-line: #322d43;
+      --context: #191622;
+      --context-line: #272235;
+      --accent: #6f5ce0;
+      --accent-ink: #d8d2f5;
+      --mark: #f2c14e;
+      --mark-soft: #2e2716;
+      --mark-ink: #f7d685;
+      --transit: #4a4460;
+      /* Sake Bar O: members-only spotlight, sakura pink instead of the standard amber. */
+      --glow: #ffb7c5;
+      --glow-soft: #2a1820;
+      --glow-line: #6b3d4f;
+      --glow-ink: #ffd0db;
+      --radius: 10px;
+    }
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font: 400 15px/1.55 ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-feature-settings: "kern" 1;
+      text-rendering: optimizeLegibility;
+    }
+    /* Atmospheric background video — a muted, looping night loop sits behind
+       everything. A dark veil keeps it from competing with the content. If
+       no video file exists, the element stays empty and the page works as
+       before. Only the Journey view shows it; Map & list stays opaque so
+       the map stays readable. */
+    .bars-bg { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; background: var(--paper); transition: opacity .8s ease; }
+    .bars-bg-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1.2s ease; }
+    .bars-bg-video.is-loaded { opacity: .35; }
+    .bars-bg-veil { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(20,18,28,.55), rgba(20,18,28,.78)); }
+    /* Only show the video behind the Journey view. */
+    body:not([data-journey-active]) .bars-bg { opacity: 0; }
+    @media (prefers-reduced-motion: reduce) { .bars-bg-video { display: none; } }
+    button, input, select { font: inherit; }
+    button, select, input { accent-color: var(--mark-ink); }
+    button, a, input, select, summary { -webkit-tap-highlight-color: transparent; }
+    a { color: var(--ink); text-underline-offset: 4px; }
+    a:hover { color: var(--mark-ink); }
+    button { cursor: pointer; }
+    button:disabled { cursor: not-allowed; opacity: .4; }
+    :focus-visible { outline: 2px solid var(--mark-ink); outline-offset: 2px; }
+    [hidden], .hidden { display: none !important; }
+    .skip-link { position: absolute; top: -100px; left: 20px; z-index: 10; background: var(--panel); padding: 12px; border: 1px solid var(--line); border-radius: 7px; }
+    .skip-link:focus { top: 12px; }
+
+    .page-shell { max-width: 1540px; margin: 0 auto; padding: 0 32px 48px; }
+
+    .masthead {
+      display: flex; align-items: center; justify-content: space-between; gap: 24px;
+      padding: 22px 0 18px; border-bottom: 1px solid var(--line);
+    }
+    .eyebrow { margin: 0; color: var(--mark-ink); font-size: 11px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; }
+    .masthead nav { display: flex; flex-wrap: wrap; gap: 22px; font-size: 13px; }
+    .masthead nav a { text-decoration: none; color: var(--ink-soft); }
+    .masthead nav a:hover { color: var(--mark-ink); text-decoration: underline; }
+
+    .page-header {
+      position: relative; padding: 60px 0 60px; margin: 0 -20px; padding-left: 20px; padding-right: 20px;
+      border-radius: 0 0 12px 12px; overflow: hidden;
+      display: flex; align-items: flex-end; gap: 48px;
+    }
+    .page-header::before {
+      content: ''; position: absolute; inset: 0; z-index: -1;
+      background: url('assets/imgs/bars/whiskey-glass.jpg') left 65% / cover no-repeat;
+      filter: brightness(.75) saturate(1.15);
+    }
+    .page-header::after {
+      content: ''; position: absolute; inset: 0; z-index: -1;
+      background: linear-gradient(to bottom, rgba(20,18,28,.35), rgba(20,18,28,.6));
+    }
+    .page-header-text { flex: 1 1 auto; min-width: 0; }
+    .page-header .epigraph { flex: 1 1 60ch; max-width: 80ch; min-width: 0; }
+    .page-header h1 {
+      margin: 0; font-size: clamp(40px, 5.5vw, 64px); font-weight: 700; letter-spacing: -.025em; line-height: 1.05;
+      color: #f5f0e8;
+    }
+    .page-header .lede, .page-header .eyebrow { color: rgba(245,240,232,.85); }
+    .page-header .epigraph p, .page-header .epigraph figcaption { color: rgba(245,240,232,.7); }
+    .lede { margin: 14px 0 0; color: var(--ink-soft); font-size: 15px; max-width: 42ch; line-height: 1.55; }
+
+    .epigraph {
+      margin: 0; padding: 0 0 0 16px; border-left: 3px solid var(--mark);
+    }
+    .epigraph blockquote { margin: 0; }
+    .epigraph p { margin: 0; font-size: 26px; line-height: 1.55; color: var(--ink-soft); font-style: italic; }
+    .epigraph figcaption { margin-top: 12px; font-size: 16px; color: var(--muted); letter-spacing: .03em; }
+
+    .films { margin-top: 34px; border-top: 1px solid var(--line); padding-top: 22px; position: relative; z-index: 10; }
+    .films h2 {
+      margin: 0 0 16px; font-size: 12px; font-weight: 700;
+      letter-spacing: .14em; text-transform: uppercase; color: var(--mark-ink);
+    }
+    .film-list {
+      list-style: none; margin: 0; padding: 0;
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;
+    }
+    .film-card {
+      background: var(--panel); border: 1px solid var(--line);
+      border-radius: var(--radius); padding: 15px 17px 16px;
+    }
+    .film-title { margin: 0; font-size: 16px; font-weight: 700; letter-spacing: -.01em; }
+    .film-title span { color: var(--muted); font-weight: 400; font-size: 13px; font-variant-numeric: tabular-nums; }
+    .film-credit {
+      margin: 5px 0 0; font-size: 11px; font-weight: 600;
+      letter-spacing: .05em; text-transform: uppercase; color: var(--muted);
+    }
+    .film-note { margin: 10px 0 0; font-size: 13.5px; line-height: 1.6; color: var(--ink-soft); }
+    @media (max-width: 1040px) { .film-list { grid-template-columns: 1fr; } }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 420px;
+      gap: 24px;
+      padding-top: 16px;
+      align-items: start;
+    }
+    /* Journey is a full-width editorial experience. The map is hidden
+       entirely in Journey view — it lives in Map & list view only. This
+       gives the Journey the full viewport for storytelling. */
+    .layout[data-view="journey"] {
+      grid-template-columns: 1fr;
+    }
+    .layout[data-view="journey"] .map-stage {
+      display: none;
+    }
+    @media (max-width: 1040px) { .layout, .layout[data-view="journey"] { grid-template-columns: 1fr; } }
+
+    .map-stage { position: sticky; top: 20px; }
+    @media (max-width: 1040px) {
+      .map-stage {
+        position: sticky; top: 0; z-index: 100;
+        background: var(--paper); border-bottom: 1px solid var(--line);
+        padding: 10px 0 12px;
+      }
+      .map-stage .map-toolbar { margin-bottom: 8px; }
+      .map-stage .map-frame { border-radius: 8px; }
+      .map-stage .map-foot,
+      .map-stage .map-status { display: none; }
+    }
+
+    .map-toolbar {
+      display: flex; gap: 8px; align-items: center; margin-bottom: 12px; flex-wrap: wrap;
+    }
+    .map-toolbar button {
+      font-size: 13.5px; font-weight: 500; line-height: 1; padding: 8px 13px; border: 1px solid var(--line);
+      background: var(--panel); border-radius: 7px; cursor: pointer; color: var(--ink-soft);
+      transition: border-color .12s, color .12s;
+    }
+    .map-toolbar button:hover:not(:disabled) { border-color: var(--ink); color: var(--ink); }
+    .map-toolbar button:disabled { opacity: .4; cursor: default; }
+    .toggle { display: inline-flex; gap: 7px; align-items: center; color: var(--ink-soft); font-size: 13.5px; }
+    .toggle input { width: 15px; height: 15px; margin: 0; }
+
+    .map-frame {
+      position: relative; background: var(--panel);
+      border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden;
+    }
+    #bars-map { display: block; width: 100%; height: min(76vh, 720px); background: var(--sea); outline: none; cursor: grab; touch-action: none; }
+    #bars-map:active { cursor: grabbing; }
+    #bars-map:focus-visible { outline: 2px solid var(--mark-ink); outline-offset: -2px; }
+
+    .scale-bar {
+      position: absolute; left: 16px; bottom: 14px; color: var(--ink-soft);
+      font-size: 11px; letter-spacing: .05em; pointer-events: none;
+      background: rgba(20,18,28,0.85); padding: 3px 7px; border-radius: 4px;
+    }
+    .osm-credit {
+      position: absolute; right: 10px; bottom: 10px; margin: 0;
+      font-size: 10px; color: var(--ink-soft); pointer-events: auto;
+      background: rgba(20,18,28,0.85); padding: 2px 6px; border-radius: 4px;
+    }
+    .osm-credit a { color: var(--ink-soft); text-decoration: underline; }
+    .map-status {
+      margin: 11px 2px 0; color: var(--ink-soft); font-size: 13px;
+      min-height: 20px; max-width: 80ch;
+    }
+
+    .map-foot { padding-top: 12px; }
+    .map-key { padding: 4px 0; }
+    .key-heading { margin: 0 0 10px; font-size: 11px; letter-spacing: .08em; font-weight: 700; text-transform: uppercase; color: var(--muted); }
+    #map-legend { display: grid; gap: 8px; font-size: 12px; color: var(--ink-soft); list-style: none; margin: 0; padding: 0; }
+    .legend-item { display: flex; gap: 10px; align-items: center; }
+    .legend-symbol { flex: 0 0 22px; display: inline-flex; align-items: center; justify-content: center; height: 22px; }
+    .legend-pin { background: var(--accent); color: #fff; border-radius: 50%; font-size: 10px; font-weight: 700; }
+    .legend-spotlight { background: var(--glow); color: #14121c; font-size: 9px; }
+    .legend-dot::before { content: ""; width: 5px; height: 5px; background: var(--accent-ink); border-radius: 50%; }
+    .legend-line::before { content: ""; width: 22px; height: 1px; background: var(--transit); }
+    .map-hint { margin: 12px 0 0; max-width: 380px; font-size: 11px; color: var(--muted); line-height: 1.5; }
+
+    .list-panel {
+      max-height: calc(100vh - 64px); overflow: auto; padding-right: 6px; scroll-padding-top: 104px;
+      scrollbar-width: thin; scrollbar-color: var(--line) transparent;
+    }
+    .list-panel::-webkit-scrollbar { width: 6px; }
+    .list-panel::-webkit-scrollbar-track { background: transparent; }
+    .list-panel::-webkit-scrollbar-thumb { background: var(--line); border-radius: 3px; }
+    @media (max-width: 1040px) { .list-panel { max-height: none; overflow: visible; } }
+
+    .list-controls {
+      display: grid; grid-template-columns: 1fr 140px 140px; gap: 10px 12px; align-items: end;
+      position: sticky; top: 0; z-index: 2; background: var(--paper);
+      padding: 2px 0 12px; margin-bottom: 4px;
+    }
+    .field { display: grid; gap: 5px; font-size: 11px; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+    .field input, .field select {
+      font-size: 14px; font-weight: 400; line-height: 1.3; text-transform: none; letter-spacing: 0; color: var(--ink);
+      padding: 9px 10px; border: 1px solid var(--line); border-radius: 7px; background: var(--panel);
+      transition: border-color .12s;
+    }
+    .field input:focus, .field select:focus { border-color: var(--mark-ink); outline: 2px solid var(--mark-ink); outline-offset: -1px; }
+    .field input::placeholder { color: var(--muted); }
+    .count { grid-column: 1 / -1; margin: 0; font-size: 12.5px; color: var(--muted); }
+    .count span { color: var(--mark-ink); font-weight: 600; }
+
+    .shop-list { display: grid; gap: 10px; }
+
+    .shop-card {
+      border: 1px solid var(--line); border-radius: var(--radius);
+      background: var(--panel); padding: 14px 16px 15px;
+      transition: border-color .12s, box-shadow .12s;
+      scroll-margin: 8px;
+    }
+    .shop-card:hover { border-color: #b9c2ca; cursor: pointer; }
+    .shop-card.is-selected {
+      border-color: var(--ink); box-shadow: inset 3px 0 0 var(--mark), 0 6px 18px -12px rgba(0,0,0,.35);
+      background: #221d30;
+    }
+
+    .shop-select {
+      display: flex; gap: 10px; align-items: baseline; width: 100%;
+      background: none; border: 0; padding: 0; text-align: left; cursor: pointer;
+      font-size: 16.5px; font-weight: 600; line-height: 1.3; letter-spacing: -.005em; color: var(--ink);
+    }
+    .shop-select:hover { color: var(--mark-ink); }
+    .shop-number {
+      display: inline-grid; place-items: center; width: 23px; height: 23px; flex: none;
+      border-radius: 50%; background: var(--accent); color: #fff;
+      font-size: 11.5px; font-weight: 600; line-height: 1; transform: translateY(2px);
+    }
+
+    .shop-area {
+      margin: 7px 0 0 33px; font-size: 11px; letter-spacing: .05em;
+      text-transform: uppercase; color: var(--muted); font-weight: 600;
+    }
+    .shop-style { margin: 6px 0 0 33px; font-size: 13.5px; color: var(--mark-ink); font-weight: 600; }
+    .shop-address { margin: 3px 0 0 33px; font-size: 13.5px; color: var(--ink-soft); overflow-wrap: anywhere; }
+    .shop-station { margin: 4px 0 0 33px; font-size: 12px; color: var(--mark-ink); font-weight: 500; }
+
+    .shop-description {
+      margin: 10px 0 0 33px; font-size: 14px; line-height: 1.62; max-width: 56ch;
+      color: var(--ink); display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; line-clamp: 3; overflow: hidden;
+    }
+    .shop-note {
+      margin: 9px 0 0 33px; font-size: 12.5px; line-height: 1.5; color: var(--muted); max-width: 56ch;
+      display: none;
+    }
+    .shop-status {
+      margin: 10px 0 0 33px; font-size: 11.5px; letter-spacing: .03em; display: inline-block;
+      background: var(--mark-soft); color: var(--mark-ink); padding: 3px 9px; border-radius: 999px;
+      font-weight: 600;
+    }
+    .shop-links { margin: 11px 0 0 33px; display: none; flex-wrap: wrap; gap: 7px; }
+    .shop-link {
+      font-size: 12px; color: var(--ink-soft); text-decoration: none;
+      border: 1px solid var(--line); border-radius: 999px; padding: 4px 10px; background: var(--paper);
+      transition: border-color .12s, color .12s;
+    }
+    .shop-link:hover { color: var(--ink); border-color: var(--ink); }
+    /* Primary Maps action is always visible on list cards; secondary sources
+       stay tucked away inside .shop-links until the card is selected. */
+    .shop-link-primary {
+      display: inline-block; margin: 11px 0 0 33px; font-size: 12px; color: var(--ink-soft);
+      text-decoration: none; border: 1px solid var(--line); border-radius: 999px;
+      padding: 4px 10px; background: var(--paper); transition: border-color .12s, color .12s;
+    }
+    .shop-link-primary:hover { color: var(--ink); border-color: var(--ink); }
+
+    .shop-card.is-selected .shop-description { -webkit-line-clamp: unset; line-clamp: unset; display: block; }
+    .shop-card.is-selected .shop-note { display: block; }
+    .shop-card.is-selected .shop-links { display: flex; }
+
+    /* Sake Bar O: the members-only entry, magenta instead of the standard amber. */
+    .shop-card.is-spotlight { border-color: var(--glow-line); background: var(--glow-soft); }
+    .shop-card.is-spotlight:hover { border-color: var(--glow); }
+    .shop-card.is-spotlight.is-selected {
+      border-color: var(--glow); background: #241a1e;
+      box-shadow: inset 3px 0 0 var(--glow), 0 6px 22px -12px rgba(255,183,197,.6);
+    }
+    .shop-card.is-spotlight .shop-number { background: var(--glow); color: #14121c; }
+    .shop-card.is-spotlight .shop-select:hover { color: var(--glow-ink); }
+    .shop-card.is-spotlight .shop-style,
+    .shop-card.is-spotlight .shop-station { color: var(--glow-ink); }
+    .shop-card.is-spotlight .shop-status { background: var(--glow); color: #14121c; }
+
+    #empty-state { color: var(--muted); font-size: 14px; padding: 20px 0; }
+
+    .page-footer { margin-top: 32px; padding-top: 16px; border-top: 1px solid var(--line); position: relative; z-index: 10; }
+    .print-note { margin: 0; font-size: 13px; color: var(--ink-soft); }
+    .sources { margin: 8px 0 0; color: var(--muted); font-size: 11px; line-height: 1.6; }
+    .sources a { color: var(--ink-soft); }
+    #source-notes { margin-top: 12px; max-width: 850px; color: var(--muted); font-size: 12px; line-height: 1.6; }
+    #source-notes summary { width: fit-content; color: var(--ink-soft); cursor: pointer; font-weight: 600; }
+    #source-notes summary:hover { color: var(--mark-ink); }
+    #source-notes p { margin: 10px 0; }
+    noscript p { padding: 16px; border: 1px solid var(--mark); background: var(--mark-soft); color: var(--mark-ink); border-radius: 7px; }
+
+    svg text { font-family: inherit; pointer-events: none; }
+    .ward-shape { fill: var(--land); stroke: var(--land-line); stroke-width: .8; vector-effect: non-scaling-stroke; pointer-events: none; }
+    .ward-shape[data-context] { fill: var(--context); stroke: var(--context-line); }
+    .ward-name { fill: #7a868f; font-size: 9.5px; letter-spacing: .16em; text-anchor: middle; pointer-events: none; }
+    .transit-line { fill: none; stroke: var(--transit); stroke-width: 1.1; opacity: .55; stroke-linejoin: round; stroke-linecap: round; vector-effect: non-scaling-stroke; pointer-events: none; }
+    .place-label { fill: var(--muted); font-size: 11px; font-weight: 600; pointer-events: none; }
+
+    .map-marker { cursor: pointer; outline: none; pointer-events: auto; }
+    .marker-leader { stroke: var(--accent-ink); stroke-width: 1; vector-effect: non-scaling-stroke; opacity: .5; }
+    .location-dot { fill: var(--accent-ink); }
+    .marker-disc { fill: var(--accent); stroke: var(--paper); stroke-width: 2; transition: fill .12s; }
+    text.marker-number, .marker-number text { fill: #fff; stroke: none; font-size: 12px; font-weight: 700; text-anchor: middle; dominant-baseline: central; pointer-events: none; }
+    .map-marker.is-selected .marker-disc { fill: var(--mark); stroke: var(--ink); stroke-width: 3; }
+    .map-marker.is-selected .marker-number { fill: #14121c; }
+    .map-marker:hover .marker-disc, .map-marker:focus-visible .marker-disc { fill: var(--accent-ink); }
+    .map-marker:hover .marker-number, .map-marker:focus-visible .marker-number { fill: #fff; }
+    .map-marker.is-selected:hover .marker-disc, .map-marker.is-selected:focus-visible .marker-disc { fill: var(--mark); }
+    .map-marker.is-selected:hover .marker-number, .map-marker.is-selected:focus-visible .marker-number { fill: #14121c; }
+    .map-marker:focus-visible { outline: 2px solid var(--mark-ink); outline-offset: 4px; }
+    .map-marker.is-spotlight .marker-disc { fill: var(--glow); stroke: var(--paper); }
+    .map-marker.is-spotlight .marker-number { fill: #14121c; }
+    .map-marker.is-spotlight .location-dot { fill: var(--glow-ink); }
+    .map-marker.is-spotlight .marker-leader { stroke: var(--glow-ink); }
+    .map-marker.is-spotlight:hover .marker-disc, .map-marker.is-spotlight:focus-visible .marker-disc { fill: var(--glow-ink); }
+    .map-marker.is-spotlight:focus-visible { outline-color: var(--glow); }
+    .map-marker.is-spotlight.is-selected .marker-disc { fill: var(--glow); stroke: var(--glow-ink); stroke-width: 3; }
+    .map-marker.is-spotlight.is-selected .marker-number { fill: #14121c; }
+
+    @media (max-width: 1040px) {
+      .page-shell { padding: 0 20px 32px; }
+      .list-controls { grid-template-columns: 1fr 1fr; }
+      #bars-map { height: 220px; }
+    }
+    @media (max-width: 600px) {
+      .page-shell { padding: 0 16px 24px; }
+      .masthead { gap: 14px; padding: 16px 0 12px; }
+      .masthead nav { gap: 14px; font-size: 12px; }
+      .page-header { padding: 20px 0 40px; margin: 0 -16px; padding-left: 16px; padding-right: 16px; }
+      .list-controls { grid-template-columns: 1fr; }
+      .shop-card { padding: 13px 14px 14px; }
+      .shop-select { font-size: 15px; }
+    }
+
+    /* View switch — Journey vs Map & list. Both views share the sticky map. */
+    .view-switch {
+      display: flex; align-items: center; gap: 4px; margin: 14px 0 18px;
+      padding: 4px; background: var(--panel); border: 1px solid var(--line);
+      border-radius: 999px; width: fit-content;
+    }
+    .view-tab {
+      font-size: 13.5px; font-weight: 600; line-height: 1; padding: 9px 18px; border: 0; border-radius: 999px;
+      background: transparent; color: var(--ink-soft); cursor: pointer;
+      transition: background .12s, color .12s;
+    }
+    .view-tab:hover { color: var(--ink); }
+    .view-tab.is-active { background: var(--accent); color: #fff; }
+    .view-tab:focus-visible { outline: 2px solid var(--mark-ink); outline-offset: 2px; }
+    .toggle-follow { font-size: 12px; color: var(--muted); padding: 0 10px; cursor: pointer; user-select: none; }
+    .toggle-follow input { margin-right: 4px; }
+    body:not([data-journey-active]) .toggle-follow { display: none; }
+
+    /* Journey view — an ethereal scroll through the night.
+       Japanese aliases run vertically (縦書き) in Shippori Mincho, the way a
+       late-night reader would find them on a lantern or a card. Stops
+       materialize softly as they enter the viewport. */
+    .journey-view { display: none; }
+    .journey-view.is-active { display: block; }
+    .map-view { display: none; }
+    .map-view.is-active { display: block; }
+
+    .journey-scroll { max-width: 760px; margin: 0 auto; padding: 0 0 40px; }
+    .journey-view.is-active .journey-scroll { position: relative; z-index: 1; }
+    .journey-leg {
+      margin: 48px 0 24px; padding: 0 0 8px; border-bottom: 1px solid var(--line);
+      font-size: 18px; font-weight: 700; letter-spacing: -.01em; color: var(--mark-ink);
+      display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap;
+      position: relative; z-index: 10;
+    }
+    .journey-leg-sub {
+      font-size: 12px; font-weight: 400; letter-spacing: .04em; color: var(--muted);
+      text-transform: uppercase;
+    }
+    /* Interstitial transitions between journey legs.
+       The .journey-interstitial element is a transparent 100vh spacer in
+       the scroll flow. The video/overlay/canvas are position: fixed so they
+       cover the viewport, sitting behind the stop cards (z-index 0) until
+       the spacer owns most of the screen, at which point .is-active brings
+       them forward (z-index 50) so the world fully takes over between legs.
+
+       Opacity is scroll-linked through --reveal, which tokyo-after-dark.js sets from
+       how much of the viewport the spacer actually covers. It must follow
+       real coverage rather than a fixed scroll band: fading the media out at
+       a set progress point left the spacer covering most of the screen with
+       nothing drawn on it, which read as a large blank gap above the next
+       card. --reveal now only drops across the thin leading/trailing sliver
+       where the spacer is genuinely entering or leaving the viewport. */
+    .journey-interstitial {
+      position: relative;
+      height: 100vh;
+      margin: 0;
+      pointer-events: none;
+    }
+    /* Opacity is scroll-linked, not transitioned: tokyo-after-dark.js sets --reveal
+       from how much of the viewport the spacer actually covers. A fixed
+       stage that fades out early leaves a blank hole where the spacer still
+       covers the screen, so --reveal only drops as the spacer leaves. */
+    .journey-interstitial video {
+      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+      object-fit: cover; display: block;
+      filter: brightness(.6) contrast(1.15) saturate(1.1);
+      opacity: var(--reveal, 0);
+      z-index: 0;
+    }
+    .journey-interstitial canvas {
+      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+      pointer-events: none; z-index: 1;
+      opacity: var(--reveal, 0);
+    }
+    .journey-interstitial::after {
+      content: ''; position: fixed; inset: 0; z-index: 0;
+      background: linear-gradient(to bottom, rgba(10,8,16,.5), rgba(10,8,16,.7));
+      pointer-events: none;
+      opacity: var(--reveal, 0);
+    }
+    /* Covering: the spacer owns most of the viewport, so the media comes
+       forward over the stop cards. Otherwise it sits behind them. */
+    .journey-interstitial.is-active video,
+    .journey-interstitial.is-active::after { z-index: 50; }
+    .journey-interstitial.is-active canvas { z-index: 51; }
+
+    /* Murakami quote flashed on the full-screen interstitial. Only visible
+       when the interstitial owns most of the viewport (.is-active), so it
+       appears as a full-screen flash, not a gradual fade. */
+    .interstitial-quote {
+      position: fixed; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 52; text-align: center; max-width: 80vw;
+      opacity: 0; pointer-events: none;
+      transition: opacity .5s ease;
+    }
+    .journey-interstitial.is-active .interstitial-quote { opacity: 1; }
+    .interstitial-quote blockquote {
+      font-family: 'Shippori Mincho', serif; font-weight: 400;
+      font-size: clamp(20px, 4vw, 32px); line-height: 1.5;
+      color: rgba(255, 240, 245, 0.95);
+      text-shadow: 0 2px 24px rgba(0, 0, 0, 0.85);
+      margin: 0;
+    }
+    .interstitial-quote cite {
+      display: block; margin-top: 18px;
+      font-size: 13px; font-style: normal; letter-spacing: .12em;
+      text-transform: uppercase;
+      color: rgba(255, 200, 210, 0.75);
+    }
+
+    /* Closing quote after the final stop (SAKEBARO spotlight). Now a
+       full-screen interstitial with the door-open video behind the
+       storm quote, same prominence as the other interstitials.
+       80vh (not 100vh) so the epilogue below it isn't covered by the fixed
+       video when the reader scrolls past, but still tall enough to
+       trigger the .is-active covering threshold (50vh) so the quote
+       actually appears. */
+    .journey-coda { height: 80vh; }
+
+    /* Epilogue stop: the "naughty" card after the storm. No number badge,
+       no floor arrow, and lifted above the coda's fixed video so it's
+       readable as soon as the reader scrolls past the storm. The coda's
+       media jumps to z-index 50 (quote 52) while it covers half the screen,
+       so the card needs to sit above that, not at the default 10.
+       Smaller than a normal stop, deep red, and blurred until clicked. */
+    .stop.epilogue {
+      position: relative; z-index: 60;
+      border-color: #5c1a1a; background: #1a0808;
+      margin: 0 auto 24px; max-width: 460px;
+    }
+    /* Fades out once "Before you go" is a quarter in view (tokyo-after-dark.js adds
+       .is-faded). visibility waits for the fade, then takes the card out of
+       clicks and Tab. */
+    html.js .stop.epilogue { transition: opacity .6s ease, transform .6s ease, visibility 0s; }
+    html.js .stop.epilogue.is-faded { opacity: 0; visibility: hidden; transition: opacity .6s ease, transform .6s ease, visibility 0s linear .6s; }
+    .stop.epilogue .stop-number { display: none; }
+    .stop.epilogue .stop-body { position: relative; padding: 12px 16px; }
+    .stop.epilogue .stop-name { font-size: 15px; }
+    .stop.epilogue .stop-aliases { font-size: 11px; }
+    .stop.epilogue .stop-summary { font-size: 12px; }
+    .stop.epilogue .stop-description { font-size: 13px; line-height: 1.5; }
+    .stop.epilogue .stop-facts { font-size: 12px; }
+    .stop.epilogue .stop-links { font-size: 12px; }
+    /* The veil is a real button, so keyboard users can open it. It only
+       shows once tokyo-after-dark.js marks the card .is-veiled and makes the content
+       behind it inert; without the script the card is simply open. */
+    .stop.epilogue .stop-veil {
+      position: absolute; inset: 0; z-index: 5; cursor: pointer;
+      width: 100%; margin: 0; padding: 0; border: 0; border-radius: 0; font: inherit;
+      background: rgba(26,8,8,.92); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      display: flex; align-items: center; justify-content: center;
+      color: #c44; font-size: 13px; letter-spacing: .08em; text-transform: uppercase;
+      opacity: 0; visibility: hidden; pointer-events: none;
+      transition: opacity .4s ease, visibility 0s linear .4s;
+    }
+    .stop.epilogue.is-veiled .stop-veil { opacity: 1; visibility: visible; pointer-events: auto; transition: opacity .4s ease; }
+    .stop.epilogue .stop-veil:focus-visible { outline: 2px solid #c44; outline-offset: -4px; }
+
+    /* Fade-in: stops start dimmed and lifted, then settle as they enter.
+       position: relative + z-index keeps stop cards above the interstitial
+       background layer (z-index 0) so they remain readable. overflow: hidden
+       clips the media background to the card's rounded border. */
+    .stop {
+      margin: 0 0 36px;
+      background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
+      scroll-margin: 24px;
+      position: relative; z-index: 10;
+      overflow: hidden;
+    }
+    html.js .stop { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+    html.js .stop.is-revealed { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      html.js .stop { opacity: 1; transform: none; transition: none; }
+      html.js .stop.epilogue, html.js .stop.epilogue.is-faded { transition: none; }
+    }
+    .stop.is-spotlight {
+      border-color: var(--glow-line); background: var(--glow-soft);
+    }
+    /* Media background: video or image covers the full card behind the text.
+       Absence of a .stop-media-bg means the stop has no media, and .stop-body
+       sits directly on .stop's panel background. */
+    .stop-media-bg {
+      position: absolute; inset: 0; z-index: 0; overflow: hidden;
+    }
+    .stop-media-bg video, .stop-media-bg img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+    /* No-media cards: a leg-tinted gradient with the Japanese name set large
+       and faint as a vertical watermark, so text-only stops read as designed
+       rather than as cards whose photo is missing. The watermark sits on the
+       left because .stop-aliases owns the right gutter on wide screens. */
+    .stop-media-bg--type {
+      background:
+        radial-gradient(120% 90% at 100% 0%, var(--leg-tint, rgba(120, 80, 160, .28)), transparent 60%),
+        linear-gradient(160deg, rgba(255,255,255,.03), transparent 50%);
+    }
+    .stop-watermark {
+      position: absolute; top: 14px; left: 18px;
+      writing-mode: vertical-rl; text-orientation: upright;
+      font-family: 'Shippori Mincho', serif; font-weight: 700;
+      font-size: clamp(56px, 9vw, 96px); line-height: 1; letter-spacing: .08em;
+      color: rgba(245,240,232,.055); white-space: nowrap;
+      max-height: calc(100% - 28px); overflow: hidden;
+      user-select: none; pointer-events: none;
+    }
+    .stop[data-leg="ginza"]       { --leg-tint: rgba(196, 140, 60, .22); }
+    .stop[data-leg="shinjuku"]    { --leg-tint: rgba(190, 70, 140, .24); }
+    .stop[data-leg="west"]        { --leg-tint: rgba(90, 110, 190, .24); }
+    .stop[data-leg="east"]        { --leg-tint: rgba(70, 150, 130, .22); }
+    .stop[data-leg="locked-door"] { --leg-tint: rgba(200, 60, 60, .22); }
+    .stop[data-leg="epilogue"]    { --leg-tint: rgba(160, 30, 50, .30); }
+    @media (max-width: 600px) { .stop-watermark { font-size: 48px; top: 10px; left: 10px; } }
+    /* Text body on top of the media. The sakura tint (a subtle magenta shift
+       in the dark panel) gives every card the warm hue the user asked for.
+       Opacity is low enough that the background video/photo shows through
+       clearly — the card reads as text-on-footage, not text-on-solid.
+       Stops without media still get the tint on .stop's panel background. */
+    .stop-body {
+      position: relative; z-index: 1;
+      padding: 28px 30px 24px;
+      /* Right gutter reserved for the vertical alias spine. build.py sets
+         --alias-cols to the columns the spine actually needs. */
+      padding-right: calc(30px + var(--alias-cols, 0) * 24px);
+      background: linear-gradient(180deg, rgba(18, 12, 22, 0.72), rgba(18, 12, 22, 0.85));
+    }
+    .stop.is-spotlight .stop-body {
+      background: linear-gradient(180deg, rgba(42, 24, 32, 0.72), rgba(42, 24, 32, 0.85));
+    }
+    .stop-head { margin: 0 0 16px; display: flex; align-items: flex-start; gap: 18px; }
+    .stop-number {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 26px; height: 26px;
+      margin: 0; border-radius: 50%; background: var(--accent); color: #fff;
+      font-size: 12px; font-weight: 700; line-height: 1; flex: 0 0 26px;
+      position: relative;
+    }
+    .stop.is-spotlight .stop-number { background: var(--glow); color: #14121c; }
+    .stop-name { margin: 0; font-size: 24px; font-weight: 700; letter-spacing: -.015em; line-height: 1.2; }
+    .stop-head-text { min-width: 0; flex: 1 1 auto; }
+    /* Vertical Japanese aliases: 縦書き in Shippori Mincho, lifted out of the
+       flow and run down the gutter reserved by .stop's padding-right, so the
+       spine spans the whole card instead of living inside the header.
+       Two earlier attempts kept the aliases in the header, where max-height
+       clipped 20 of 36 aliases (one by 225px) and the tall vertical text
+       inflated the header, leaving up to 92px of dead space under the name.
+       No max-height here, so nothing is ever cut off; the reserved gutter is
+       what keeps the spine off the horizontal copy. In the source the spine
+       still sits right after the name, so narrow screens (where it becomes
+       horizontal again) read name then Japanese name. */
+    .stop-aliases {
+      position: absolute; top: 28px; right: 30px; bottom: 24px;
+      width: calc(var(--alias-cols, 1) * 24px);
+      margin: 0; padding: 0;
+      writing-mode: vertical-rl; text-orientation: mixed;
+      font-family: 'Shippori Mincho', serif; font-weight: 500;
+      font-size: 13px; line-height: 1.85; letter-spacing: .08em;
+      color: var(--ink-soft);
+    }
+    .stop.is-spotlight .stop-aliases { color: var(--glow-ink); }
+
+    .stop-summary { margin: 0 0 14px; font-size: 12.5px; color: var(--muted); letter-spacing: .06em; text-transform: uppercase; }
+    .stop-summary strong { color: var(--ink); font-weight: 600; }
+    .stop.is-spotlight .stop-summary strong { color: var(--glow-ink); }
+
+    .stop-facts { margin: 0 0 14px; display: grid; grid-template-columns: max-content 1fr; gap: 6px 16px; font-size: 14px; }
+    .stop-facts dt { color: var(--muted); font-weight: 600; letter-spacing: .04em; text-transform: uppercase; font-size: 11px; padding-top: 2px; }
+    .stop-facts dd { margin: 0; color: var(--ink); line-height: 1.5; }
+    .stop.is-spotlight .stop-facts dd { color: var(--glow-ink); }
+
+    .stop-description { margin: 0 0 16px; font-size: 15.5px; line-height: 1.75; color: var(--ink); max-width: 60ch; font-family: 'Shippori Mincho', serif; font-weight: 400; }
+    .stop-note { margin: 0 0 16px; padding: 10px 14px; font-size: 13.5px; line-height: 1.6; color: var(--ink-soft); max-width: 60ch; border-left: 3px solid var(--mark); background: rgba(242, 193, 78, 0.08); border-radius: 0 4px 4px 0; }
+
+    /* Per-stop background video: subtle fade-in when it scrolls into view.
+       The IntersectionObserver in tokyo-after-dark.js handles the is-playing class;
+       we also autoplay muted when visible. These target .stop-media-bg
+       videos, not interstitial videos (which are position:fixed and
+       controlled by initInterstitialFade). */
+    .stop-video { opacity: 1; transition: opacity .8s ease; }
+    body.js-active .stop-media-bg .stop-video { opacity: .4; }
+    body.js-active .stop-media-bg .stop-video.is-playing { opacity: 1; }
+    @media (prefers-reduced-motion: reduce) { .stop-video { opacity: 1; transition: none; } }
+    .stop.is-spotlight .stop-description { color: var(--ink); }
+
+    .subvenues { margin: 0 0 14px; display: grid; gap: 10px; }
+    .subvenue {
+      padding: 14px 16px; background: var(--paper); border: 1px solid var(--line); border-radius: 8px;
+    }
+    .subvenue-name { margin: 0; font-size: 15.5px; font-weight: 700; }
+    .subvenue-aliases { margin: 3px 0 0; font-size: 12px; color: var(--muted); }
+    .subvenue-floor { margin: 4px 0 0; font-size: 12.5px; color: var(--mark-ink); font-weight: 600; }
+    .subvenue-address { margin: 4px 0 0; font-size: 13px; color: var(--ink-soft); }
+    .subvenue-description { margin: 8px 0 0; font-size: 13.5px; line-height: 1.55; color: var(--ink); }
+    .subvenue-link { display: inline-block; margin: 8px 0 0; font-size: 12px; color: var(--ink-soft); text-decoration: none; border: 1px solid var(--line); border-radius: 999px; padding: 3px 10px; }
+    .subvenue-link:hover { color: var(--ink); border-color: var(--ink); }
+
+    .stop-links { margin: 0; display: flex; flex-wrap: wrap; gap: 7px; }
+    .stop-link {
+      font-size: 12.5px; color: var(--ink-soft); text-decoration: none;
+      border: 1px solid var(--line); border-radius: 999px; padding: 5px 12px; background: var(--paper);
+      transition: border-color .12s, color .12s;
+    }
+    .stop-link:hover { color: var(--ink); border-color: var(--ink); }
+    .stop-link-primary { color: var(--ink); border-color: var(--mark); background: rgba(242, 193, 78, 0.12); }
+    .stop-link-primary:hover { background: rgba(242, 193, 78, 0.22); }
+    .stop.is-spotlight .stop-link { border-color: var(--glow-line); }
+    .stop.is-spotlight .stop-link:hover { color: var(--glow-ink); border-color: var(--glow); }
+
+    /* Category visual cues — small floor/transfer indicators.
+       Positioned absolutely to the right of the number circle so they
+       don't stack as a second grid/flex row inside the 26px badge. */
+    .stop-number::after {
+      position: absolute; left: 100%; top: 50%; transform: translateY(-50%);
+      margin-left: 4px; font-size: 10px; font-weight: 700; opacity: .7;
+      white-space: nowrap;
+    }
+    .stop[data-category*="basement"] .stop-number::after { content: "↓"; }
+    .stop[data-category*="highrise"] .stop-number::after { content: "↑"; }
+    .stop[data-category*="distant"] .stop-number::after { content: "⟷"; }
+    .stop[data-category*="golden-gai"] .stop-number::after { content: "⋮"; }
+    /* Spotlight already has the magenta treatment; add a final-stop marker */
+    .stop[data-category*="spotlight"] .stop-number::after { content: "◆"; font-size: 9px; opacity: .8; }
+
+    /* Golden Gai subvenues: make them feel individually selectable */
+    .subvenue { cursor: pointer; transition: border-color .12s, background .12s; }
+    .subvenue:hover { border-color: var(--accent); background: var(--panel); }
+
+    @media (max-width: 600px) {
+      /* Narrow screens have no room for a side gutter, so the spine returns
+         to the normal flow and runs horizontally under the name. */
+      .stop-body { padding: 18px 18px 16px; }
+      .stop-name { font-size: 21px; }
+      .stop-description { font-size: 14.5px; }
+      .stop-head { flex-direction: column; gap: 8px; }
+      .stop-aliases {
+        position: static; width: auto;
+        writing-mode: horizontal-tb; font-size: 13px;
+        margin: 0 0 12px;
+      }
+      .page-header { flex-direction: column; gap: 20px; }
+      .page-header .epigraph { max-width: none; flex-basis: auto; }
+      .page-header .lede { max-width: none; }
+    }
+
+    @page { size: A4 landscape; margin: 10mm; }
+    @media print {
+      /* Flip back to ink-on-paper: the dark screen palette would flood a printer. */
+      :root {
+        color-scheme: light;
+        --ink: #12171c; --ink-soft: #3f4650; --muted: #5c6570;
+        --line: #ccd2d8; --paper: #fff; --panel: #fff;
+        --sea: #eef1f4; --land: #fff; --land-line: #c3cad1;
+        --context: #f4f6f7; --context-line: #dde2e7;
+        --accent: #1c2126; --accent-ink: #000;
+        --mark: #8a6300; --mark-soft: #f6efdc; --mark-ink: #6b4b00;
+        --transit: #7b838d;
+        --glow: #c2185b; --glow-soft: #fff0f5; --glow-line: #f0c8d4; --glow-ink: #a01850;
+      }
+      * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      body { background: #fff; color: #14121c; font-size: 9pt; }
+      .bars-bg { display: none; }
+      .stop-media-bg { display: none; }
+      .scale-bar { background: none; }
+      .shop-card.is-spotlight .shop-number,
+      .map-marker.is-spotlight .marker-number { color: #fff; fill: #fff; }
+      .shop-card.is-spotlight .shop-status { background: var(--glow); color: #fff; }
+      .page-shell { max-width: none; margin: 0; padding: 0 12px; }
+      .skip-link, .masthead nav, .map-toolbar, .toggle, .list-controls, #source-notes, #map-status, .map-hint, .shop-note, .shop-links, noscript, .films, .view-switch, .journey-interstitial, .journey-coda, .stop-links, .map-view, .toggle-follow, .stop-veil { display: none !important; }
+      .journey-view { display: block !important; }
+      .journey-scroll { max-width: none; padding: 0; }
+      /* Stops fade in on scroll; unrevealed ones (or all of them, when printing
+         from Map & list) would otherwise print as blank space. */
+      .stop { break-inside: avoid; border-radius: 0; margin: 0; border: 0; border-bottom: 1px solid var(--line); background: #fff; opacity: 1 !important; visibility: visible !important; transform: none !important; overflow: visible; }
+      .stop-body { padding: 3mm 0; background: #fff; }
+      .stop.is-spotlight .stop-body { background: var(--glow-soft); }
+      .stop.is-spotlight { background: var(--glow-soft); }
+      .stop-head { flex-direction: column; gap: 2mm; }
+      /* No side gutter on paper: the spine returns to the flow and runs
+         horizontally, otherwise vertical text would spill across the page. */
+      .stop-aliases { position: static; width: auto; writing-mode: horizontal-tb; font-size: 8pt; margin: 0 0 2mm; }
+      .stop-name { font-size: 12pt; }
+      .stop-description { font-size: 9pt; }
+      .stop-facts { font-size: 8.5pt; }
+      .subvenue { border-color: var(--line); }
+      .masthead { padding: 0 0 2mm; border-bottom-color: var(--line); }
+      .page-header { padding: 10mm 0 5mm; display: block; margin: 0; }
+      .page-header::before, .page-header::after { display: none; }
+      .page-header h1 { font-size: 24pt; color: #14121c; }
+      .lede { font-size: 8pt; }
+      .epigraph { margin: 2mm 0 0; padding-left: 3mm; border-left-width: 2px; break-inside: avoid; max-width: none; }
+      .epigraph p { font-size: 8pt; }
+      .epigraph figcaption { font-size: 7pt; margin-top: 1mm; }
+      .layout { display: block; }
+      .map-stage { display: block !important; position: static; }
+      .map-frame { border-radius: 0; }
+      #bars-map { height: 110mm; }
+      .scale-bar { bottom: 3mm; left: 3mm; font-size: 7pt; }
+      .map-foot { padding-top: 2mm; }
+      .key-heading { margin-bottom: 2mm; font-size: 7pt; }
+      #map-legend { display: flex; flex-wrap: wrap; gap: 3mm; font-size: 7pt; }
+      .page-footer { margin-top: 3mm; padding-top: 2mm; break-inside: avoid; }
+      .print-note { font-size: 8pt; }
+      .sources { font-size: 6pt; }
+      .sources a { text-decoration: none; }
+    }
+  </style>
+  <script src="js/ripple.js?v=d74dd0fe" defer></script>
+  <script src="js/tokyo-after-dark.js?v=b53c6584" defer></script>
+</head>
+<body>
+  <div class="bars-bg" aria-hidden="true">
+    <video class="bars-bg-video" muted loop playsinline preload="none">
+      <source src="assets/movie/bars-bg.webm" type="video/webm">
+      <source src="assets/movie/bars-bg.mp4" type="video/mp4">
+    </video>
+    <div class="bars-bg-veil"></div>
+  </div>
+  <a class="skip-link" href="#journey-view">Skip to content</a>
+  <div class="page-shell">
+    <header>
+      <div class="masthead">
+        <p class="eyebrow">Tokyo in Film</p>
+        <nav aria-label="Related pages">
+          <a href="ramen-map.html">Ramen Challenge</a>
+          <a href="anime-map.html">Anime Ward Map</a>
+          <a href="index.html">Home</a>
+        </nav>
+      </div>
+      <div class="page-header">
+        <div class="page-header-text">
+          <h1>Tokyo After Dark</h1>
+          <p class="lede">A night in order: Ginza cocktails, then Shinjuku's hidden floors, then the midnight shift south through Ebisu and Azabujuban, and the east-side after-hours crawl, ending at a door you have to be let into. Across Tokyo, <span id="bar-count">23</span> late-night places and one after-hours encore: Ginza counters where the ice is carved by hand, an Ebisu basement that calls itself a coffee shop, a Shimokitazawa jazz room named after a Hank Mobley record, and the bar from <cite>Lost in Translation</cite>. Each stop is a place with its floor, its address, and a note on what it is. Tell the bartender what you're in the mood for and let them build it. Switch to Map & list to see them all at once.</p>
+        </div>
+        <figure class="epigraph">
+          <blockquote>
+            <p>In this world, there are things you can only do alone, and things you can only do with somebody else. It's important to combine the two in just the right amount.</p>
+          </blockquote>
+          <figcaption>Haruki Murakami, <cite>After Dark</cite></figcaption>
+        </figure>
+      </div>
+    </header>
+    <noscript>
+      <p>This interactive map needs JavaScript to load the bars, map details, and the printable guide. The journey view below is fully readable without JavaScript.</p>
+    </noscript>
+    <div class="view-switch" role="tablist" aria-label="View mode">
+      <button type="button" id="view-journey" class="view-tab is-active" role="tab" aria-selected="true" aria-controls="journey-view">Journey</button>
+      <button type="button" id="view-map" class="view-tab" role="tab" aria-selected="false" aria-controls="map-view">Map & list</button>
+    </div>
+    <label class="toggle toggle-follow"><input type="checkbox" id="follow-reading" checked> Follow map</label>
+    <main class="layout" data-view="journey">
+      <section class="map-stage" aria-label="Map">
+        <div class="map-toolbar">
+          <button type="button" id="zoom-in" aria-label="Zoom in">+</button>
+          <button type="button" id="zoom-out" aria-label="Zoom out">&minus;</button>
+          <button type="button" id="fit-map">Fit</button>
+          <label class="toggle"><input type="checkbox" id="show-transit" checked> Subway</label>
+          <button type="button" id="print-map" disabled>Print</button>
+        </div>
+        <div class="map-frame">
+          <svg id="bars-map" role="group" aria-label="Tokyo After Dark: map of the stops"></svg>
+          <div id="scale-bar" class="scale-bar" aria-hidden="true"></div>
+          <p class="osm-credit">Subway &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> contributors</p>
+        </div>
+        <p id="map-status" class="map-status" role="status" aria-live="polite">Loading map data.</p>
+        <div class="map-foot">
+          <div class="map-key">
+            <h2 class="key-heading" id="map-legend-heading">Reading the map</h2>
+            <ul id="map-legend" aria-labelledby="map-legend-heading">
+              <li class="legend-item"><span class="legend-symbol legend-pin" aria-hidden="true">1</span> Number matches the place index</li>
+              <li class="legend-item"><span id="legend-spotlight" class="legend-symbol legend-pin legend-spotlight" aria-hidden="true">23</span> Members only, so arrange access before you travel</li>
+              <li class="legend-item"><span class="legend-symbol legend-dot" aria-hidden="true"></span> Dot: saved location; numbered badge may be offset</li>
+              <li class="legend-item"><span class="legend-symbol legend-line" aria-hidden="true"></span> Subway context, not walking directions</li>
+            </ul>
+            <p class="map-hint">Drag to explore. Use + and &minus; to zoom. Select a numbered marker or a place in the index for details. Keyboard: Tab to a marker, then Enter or Space.</p>
+          </div>
+        </div>
+      </section>
+      <section id="journey-view" class="journey-view is-active" role="tabpanel" aria-labelledby="view-journey" tabindex="-1">
+        <div class="journey-scroll">
+<!-- build:journey -->
+<h3 class="journey-leg">Ginza<span class="journey-leg-sub">Early evening: cocktails and counters</span></h3>
+  <section class="stop" id="stop-apollo-bar" data-stop="apollo-bar" data-number="1" data-floor="B1F" data-category="basement" data-leg="ginza" style="--alias-cols:1">
+    <div class="stop-media-bg">
+      <video class="stop-video" muted loop playsinline autoplay preload="none">
+        <source src="assets/movie/apollo-bar.webm" type="video/webm">
+        <source src="assets/movie/apollo-bar.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="stop-body">
+      <header class="stop-head">
+        <p class="stop-number">1</p>
+        <div class="stop-head-text">
+          <h3 class="stop-name">Apollo Bar Ginza</h3>
+        </div>
+      </header>
+      <p class="stop-aliases">アポロバー銀座</p>
+      <p class="stop-summary">Chuo ward, Tokyo · Cocktail bar · B1F</p>
+      <p class="stop-description">I went down to this basement alone and ended up spending hours with the bartender on samurai films, whiskey, and music. By now he&#x27;s an old friend: a man who loves old movies and, as far as I&#x27;m concerned, a modern-day samurai. The room is dim and New York in style, the tonic is house-made, and the whiskey shelf is worth the trip by itself. Expect a ¥1,000 cover and very little English. It&#x27;s a bar you walk into alone, and it doesn&#x27;t leave you that way.</p>
+      <dl class="stop-facts">
+        <dt>Station</dt><dd>Shimbashi (JR / Tokyo Metro), 5 min walk</dd>
+      <dt>Address</dt><dd>B1F MEIKO Building, 8-2-15 Ginza, Chuo-ku, Tokyo</dd>
+      </dl>
+      <p class="stop-links">
+        <a class="stop-link stop-link-primary" href="https://www.google.com/maps/search/?api=1&amp;query=%E3%82%A2%E3%83%9D%E3%83%AD%E3%83%90%E3%83%BC%E9%8A%80%E5%BA%A7+%E6%9D%B1%E4%BA%AC%E9%83%BD%E4%B8%AD%E5%A4%AE%E5%8C%BA%E9%8A%80%E5%BA%A78-2-15+%E6%98%8E%E8%88%88%E3%83%93%E3%83%ABB1F" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+      </p>
+    </div>
+  </section>
+  <section class="stop" id="stop-star-bar" data-stop="star-bar" data-number="2" data-floor="B1F" data-category="basement" data-leg="ginza" style="--alias-cols:1">
+    <div class="stop-media-bg stop-media-bg--type" aria-hidden="true"><span class="stop-watermark">スターバー銀座</span></div>
+    <div class="stop-body">
+      <header class="stop-head">
+        <p class="stop-number">2</p>
+        <div class="stop-head-text">
+          <h3 class="stop-name">Star Bar Ginza</h3>
+        </div>
+      </header>
+      <p class="stop-aliases">スターバー銀座</p>
+      <p class="stop-summary">Chuo ward, Tokyo · Classic cocktail bar · B1F</p>
+      <p class="stop-description">Down a flight of stairs in Ginza, Hisashi Kishi hand-cuts each cube until it&#x27;s nearly transparent, and the Sidecar is what people come for. He was the first Japanese bartender to win the IBA world cocktail title and the government calls him a master craftsman, but the room doesn&#x27;t trade on that. Hushed, low-lit, and it works for one person at the counter as well as a celebration. ¥1,100 table charge, plan on ¥6,000 or more. Open 5:00 to 11:30 nightly.</p>
+      <dl class="stop-facts">
+        <dt>Station</dt><dd>Ginza (Tokyo Metro Ginza/Marunouchi/Hibiya), 3 min walk</dd>
+      <dt>Address</dt><dd>B1F MODERNS GINZA, 1-5-13 Ginza, Chuo-ku, Tokyo</dd>
+      </dl>
+      <p class="stop-links">
+        <a class="stop-link stop-link-primary" href="https://www.google.com/maps/place/Star+Bar+Ginza/data=!4m2!3m1!1s0x60188be462541b4f:0xd175d7d502838db3" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+      </p>
+    </div>
+  </section>
+  <section class="stop" id="stop-lamp-bar" data-stop="lamp-bar" data-number="3" data-floor="4F" data-leg="ginza" style="--alias-cols:1">
+    <div class="stop-media-bg stop-media-bg--type" aria-hidden="true"><span class="stop-watermark">ランプバー</span></div>
+    <div class="stop-body">
+      <header class="stop-head">
+        <p class="stop-number">3</p>
+        <div class="stop-head-text">
+          <h3 class="stop-name">Lamp Bar</h3>
+        </div>
+      </header>
+      <p class="stop-aliases">ランプバー</p>
+      <p class="stop-summary">Chuo ward, Tokyo · Rum &amp; cigar bar · 4F</p>
+      <p class="stop-description">The name says lamp, but think rum. About three hundred bottles behind the counter, plus cigars, up on the fourth floor of the Wakamatsu Building. The bar moved here from Ginza 4-chome, and it still feels like a neighborhood spot that ended up in the wrong neighborhood: relaxed, easy, more regular than tourist. Open until 2:00, closed Sundays and holidays. Budget at least ¥5,000.</p>
+      <dl class="stop-facts">
+        <dt>Station</dt><dd>Ginza (Tokyo Metro Ginza/Marunouchi/Hibiya), 4 min walk</dd>
+      <dt>Address</dt><dd>4F Wakamatsu Building, 6-6-19 Ginza, Chuo-ku, Tokyo</dd>
+      </dl>
+      <p class="stop-links">
+        <a class="stop-link stop-link-primary" href="https://www.google.com/maps/search/?api=1&amp;query=%E3%83%A9%E3%83%B3%E3%83%97%E3%83%90%E3%83%BC+%E6%9D%B1%E4%BA%AC%E9%83%BD%E4%B8%AD%E5%A4%AE%E5%8C%BA%E9%8A%80%E5%BA%A76-6-19+4F" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+      </p>
+    </div>
+  </section>
+<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline autoplay preload="none"><source src="assets/movie/interstitial-1.webm" type="video/webm"><source src="assets/movie/interstitial-1.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>If you only read the books that everyone else is reading, you can only think what everyone else is thinking.</blockquote><cite>Norwegian Wood</cite></figcaption></figure>
+<h3 class="journey-leg">Shinjuku<span class="journey-leg-sub">Late evening: hotel bars, speakeasies, Golden Gai</span></h3>
+  <section class="stop" id="stop-new-york-bar" data-stop="new-york-bar" data-number="4" data-floor="52F" data-category="highrise" data-leg="shinjuku" style="--alias-cols:3">
+    <div class="stop-media-bg stop-media-bg--type" aria-hidden="true"><span class="stop-watermark">ニューヨークバー</span></div>
+    <div class="stop-body">
+      <header class="stop-head">
+        <p class="stop-number">4</p>
+        <div class="stop-head-text">
+          <h3 class="stop-name">New York Bar</h3>
+        </div>
+      </header>
+      <p class="stop-aliases">ニューヨークバー<br>Park Hyatt Tokyo</p>
+      <p class="stop-summary">Shinjuku ward, Tokyo · Hotel bar · high-end · 52F</p>
+      <p class="stop-description">The Park Hyatt spent nineteen months renovating, reopened in December 2025, and had the sense to leave this bar alone: same fifty-second floor, same windows, same live jazz, with better acoustics and a cocktail list that nods to Lost in Translation, the film where two strangers meet at this bar. Cocktails start at ¥2,000. The ¥2,500 jazz cover begins with the music, so arrive between 5:00 and 6:30 if you&#x27;d rather not pay it. Go early on a weeknight for a window seat.</p>
+      <dl class="stop-facts">
+        <dt>Station</dt><dd>Shinjuku (JR / Tokyo Metro / Odakyu / Keio), 10 min walk</dd>
+      <dt>Address</dt><dd>52F Park Hyatt Tokyo, 3-7-1-2 Nishishinjuku, Shinjuku-ku, Tokyo</dd>
+      </dl>
+      <p class="stop-links">
+        <a class="stop-link stop-link-primary" href="http://maps.google.com/?cid=7415215759206413780" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+      </p>
+    </div>
+  </section>
+  <section class="stop" id="stop-bar-cocktailbook" data-stop="bar-cocktailbook" data-number="5" data-floor="2F" data-leg="shinjuku" style="--alias-cols:2">
+    <div class="stop-media-bg stop-media-bg--type" aria-hidden="true"><span class="stop-watermark">バー カクテルブック 新宿</span></div>
+    <div class="stop-body">
+      <header class="stop-head">
+        <p class="stop-number">5</p>
+        <div class="stop-head-text">
+          <h3 class="stop-name">Bar Cocktailbook Shinjuku</h3>
+        </div>
+      </header>
+      <p class="stop-aliases">バー カクテルブック 新宿</p>
+      <p class="stop-summary">Shinjuku ward, Tokyo · Cocktail bar · 2F</p>
+      <p class="stop-description">Akira holds cocktail competition titles, put in twelve years at a Shinjuku hotel bar, and opened this second-floor room in 2011. The menu follows the season and changes monthly, and some of his originals never got names. When I ordered, he set a small pour of each spirit next to the drink so I could taste them on their own first. Thirteen seats, ¥600 charge, closed Sundays and Mondays, near Seibu-Shinjuku.</p>
+      <dl class="stop-facts">
+        <dt>Station</dt><dd>Shinjuku (JR / Tokyo Metro / Odakyu / Keio), 5 min walk</dd>
+      <dt>Address</dt><dd>2F Plaza Nishishinjuku, 7-5-5 Nishishinjuku, Shinjuku-ku, Tokyo</dd>
+      </dl>
+      <p class="stop-links">
+        <a class="stop-link stop-link-primary" href="https://www.google.com/maps/place/Bar+Cocktailbook+Shinjuku/data=!4m2!3m1!1s0x60188d29c95985c9:0x54f5ec36ecff12c" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+      </p>
+    </div>
+  </section>
+  <section class="stop" id="stop-kakuretai" data-stop="kakuretai" data-number="6" data-floor="B1F" data-category="basement" data-leg="shinjuku" style="--alias-cols:4">
+    <div class="stop-media-bg stop-media-bg--type" aria-hidden="true"><span class="stop-watermark">かくれたい</span></div>
+    <div class="stop-body">
+      <header class="stop-head">
+        <p class="stop-number">6</p>
+        <div class="stop-head-text">
+          <h3 class="stop-name">KAKURETAI</h3>
+        </div>
+      </header>
+      <p class="stop-aliases">かくれたい<br>KAKURETAI Speakeasy Bar</p>
+      <p class="stop-summary">Shinjuku ward, Tokyo · Speakeasy · B1F</p>
+      <p class="stop-description">An unmarked basement in Arakicho with a cheese-and-mouse theme running through the décor, J-pop on the speakers, and Yuta behind the bar. He makes seasonal fruit cocktails and pours Japanese whiskey, and treats first-timers like they&#x27;ve been coming for years. It&#x27;s openly LGBTQ+ friendly. Weeknights only, 8:00 to 1:00, with DJs on Fridays. It&#x27;s small and fills up, so reserve.</p>
+      <dl class="stop-facts">
+        <dt>Station</dt><dd>Yotsuya-Sanchome (Tokyo Metro Marunouchi), 2 min walk</dd>
+      <dt>Address</dt><dd>B1F Nakabayashi Building, 1-2 Arakicho, Shinjuku-ku, Tokyo</dd>
+      </dl>
+      <p class="stop-links">
+        <a class="stop-link stop-link-primary" href="https://www.google.com/maps/place/KAKURETAI-+Speakeasy+Bar/data=!4m2!3m1!1s0x60188dfe7fa3624d:0x6179cc8341bd4c44" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+        <a class="stop-link" href="https://tabelog.com/en/tokyo/A1309/A130903/13282157/" target="_blank" rel="noopener noreferrer">Tabelog</a>
+        <a class="stop-link" href="https://www.instagram.com/kakuretai_tokyo" target="_blank" rel="noopener noreferrer">Instagram</a>
+      </p>
+    </div>
+  </section>
+<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline autoplay preload="none"><source src="assets/movie/interstitial-2.webm" type="video/webm"><source src="assets/movie/interstitial-2.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>I dream. Sometimes I think that’s the only right thing to do.</blockquote><cite>Sputnik Sweetheart</cite></figcaption></figure>
+  <section class="stop" id="stop-bar-rest" data-stop="bar-rest" data-number="7" data-floor="3F" data-leg="shinjuku" style="--alias-cols:3">
+    <div class="stop-media-bg stop-media-bg--type" aria-hidden="true"><span class="stop-watermark">歌舞伎町 rest</span></div>
+    <div class="stop-body">
+      <header class="stop-head">
+        <p class="stop-number">7</p>
+        <div class="stop-head-text">
+          <h3 class="stop-name">Bar rest</h3>
+        </div>
+      </header>
+      <p class="stop-aliases">歌舞伎町 rest<br>スナックバー rest</p>
+      <p class="stop-summary">Shinjuku ward, Tokyo · Snack bar · 3F</p>
+      <p class="stop-description">I couldn&#x27;t find a single independent review, only the bar&#x27;s own description, so consider this a lead. Third floor, a minute from Seibu-Shinjuku. Seven counter seats line the window and look straight onto the Seibu and JR tracks, where a train passes about once a minute until the last one, and then the maintenance cars come out. Take the window if you came alone; the box seat holds six if you didn&#x27;t. No food, smoking allowed, Tuesday to Saturday until midnight.</p>
+      <dl class="stop-facts">
+        <dt>Station</dt><dd>Shinjuku (JR / Tokyo Metro / Odakyu / Keio), 5 min walk</dd>
+      <dt>Address</dt><dd>3F Dai-san Hirasawa Building, 2-46-7 Kabukicho, Shinjuku-ku, Tokyo</dd>
+      </dl>
+      <p class="stop-links">
+        <a class="stop-link stop-link-primary" href="https://www.google.com/maps/search/?api=1&amp;query=%E3%82%B9%E3%83%8A%E3%83%83%E3%82%AF+rest+%E6%9D%B1%E4%BA%AC%E9%83%BD%E6%96%B0%E5%AE%BF%E5%8C%BA%E6%AD%8C%E8%88%9E%E4%BC%8E%E7%94%BA2-46-7+3F" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+        <a class="stop-link" href="https://bar-rest.shop/" target="_blank" rel="noopener noreferrer">Official site</a>
+      </p>
+    </div>
+  </section>
+  <section class="stop" id="stop-a-bar-sleeping-tales" data-stop="a-bar-sleeping-tales" data-number="8" data-floor="B1F" data-category="basement" data-leg="shinjuku" style="--alias-cols:2">
+    <div class="stop-media-bg stop-media-bg--type" aria-hidden="true"><span class="stop-watermark">ア バー スリーピング テイルズ</span></div>
+    <div class="stop-body">
+      <header class="stop-head">
+        <p class="stop-number">8</p>
+        <div class="stop-head-text">
+          <h3 class="stop-name">a BAR Sleeping Tales</h3>
+        </div>
+      </header>
+      <p class="stop-aliases">ア バー スリーピング テイルズ</p>
+      <p class="stop-summary">Shinjuku ward, Tokyo · Cocktail bar · B1F</p>
+      <p class="stop-description">There&#x27;s no menu. Toshi asks what you like, checks what&#x27;s in season, and makes you something. The peanut-butter Old Fashioned is the one that gets brought up. The room is a basement done up like medieval Europe, with vintage glassware and only counter seats, so you watch him work the whole time. Right-hand door at B1F, near Shinjuku Gyoemmae Station. Closed Wednesdays.</p>
+      <dl class="stop-facts">
+        <dt>Station</dt><dd>Shinjuku-Gyoemmae (Tokyo Metro Marunouchi), 3 min walk</dd>
+      <dt>Address</dt><dd>B1F (right door) Towa Shinjuku Gyoen Co-op II, 2-1-14 Shinjuku, Shinjuku-ku, Tokyo</dd>
+      </dl>
+      <p class="stop-links">
+        <a class="stop-link stop-link-primary" href="https://www.google.com/maps/place/a+BAR+Sleeping+Tales/data=!4m2!3m1!1s0x60188d0016ef28d1:0xc10f48326e234d67" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+      </p>
+    </div>
+  </section>
+  <section class="stop" id="stop-golden-gai-trio" data-stop="golden-gai-trio" data-number="9" data-category="golden-gai" data-leg="shinjuku" style="--alias-cols:7">
+    <div class="stop-media-bg stop-media-bg--type" aria-hidden="true"><span class="stop-watermark">新宿ゴールデン街</span></div>
+    <div class="stop-body">
+      <header class="stop-head">
+        <p class="stop-number">9</p>
+        <div class="stop-head-text">
+          <h3 class="stop-name">Golden Gai: Happy, BAR COO &amp; OPEN BOOK</h3>
+        </div>
+      </header>
+      <p class="stop-aliases">新宿ゴールデン街<br>ハッピー ロッキンソールバー<br>BAR COO<br>バー 空<br>OPEN BOOK<br>オープンブック</p>
+      <p class="stop-summary">Shinjuku ward, Tokyo · Golden Gai bars</p>
+      <p class="stop-description">Three bars in Shinjuku Golden Gai, the dense cluster of 200-plus tiny drinking dens off Kabukicho. Pick any of the three, or bar-hop between them. Happy is up on the 3rd floor of the Maruha Building, a soul-and-rock counter with a wall of vinyl. BAR COO is at street level on the third lane, five or six seats with Miya behind the counter in fluent English. OPEN BOOK is on the fifth lane, no signboard, just a wooden board that slides open. A lemon sour bar.</p>
+      <dl class="stop-facts">
+        <dt>Station</dt><dd>Shinjuku (JR / Tokyo Metro / Toei), 5 min walk</dd>
+      <dt>Address</dt><dd>1-1-6 to 1-1-8 Kabukicho, Shinjuku-ku, Tokyo</dd>
+      </dl>
+      <div class="subvenues" role="list">
+            <article class="subvenue" role="listitem" data-floor="3F" tabindex="0" aria-label="Happy (Rockin&#x27; Soul Bar)">
+        <h4 class="subvenue-name">Happy (Rockin&#x27; Soul Bar)</h4>
+        <p class="subvenue-aliases">ハッピー · ロッキンソールバー</p>
+        <p class="subvenue-floor">3F · Maruha Building</p>
+        <p class="subvenue-address">3F Maruha Building, 1-1-7 Kabukicho, Shinjuku-ku, Tokyo</p>
+        <p class="subvenue-description">Climb to the third floor of the Maruha Building for rock and soul from the sixties through the eighties, played at full volume, with a wall of vinyl you&#x27;re welcome to pick from. The cover is about ¥900, there are more than a hundred bottles, and the last Friday of each month is disco night.</p>
+        <a class="subvenue-link" href="https://www.google.com/maps/search/?api=1&amp;query=Happy+Rockin+Soul+Bar+1-1-7+Kabukicho+Shinjuku+Tokyo" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+      </article>
+            <article class="subvenue" role="listitem" data-floor="1F" tabindex="0" aria-label="BAR COO">
+        <h4 class="subvenue-name">BAR COO</h4>
+        <p class="subvenue-aliases">バー 空 · BAR COO 空</p>
+        <p class="subvenue-floor">1F</p>
+        <p class="subvenue-address">1F, 1-1-8 Kabukicho, Shinjuku-ku, Tokyo</p>
+        <p class="subvenue-description">Five or six seats at street level on Golden Gai&#x27;s third lane, with Miya running things in fluent English. Snacks are whatever she&#x27;s made: miso soup, seaweed salad, a slice of Gouda. You end up talking with regulars and other travelers, which makes it a good bar to walk into alone. Get there early. Closed Sundays.</p>
+        <a class="subvenue-link" href="https://www.google.com/maps/search/?api=1&amp;query=BAR+COO+1-1-8+Kabukicho+Shinjuku+Tokyo" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+      </article>
+            <article class="subvenue" role="listitem" data-floor="Ground floor" tabindex="0" aria-label="OPEN BOOK">
+        <h4 class="subvenue-name">OPEN BOOK</h4>
+        <p class="subvenue-aliases">オープンブック</p>
+        <p class="subvenue-floor">Ground floor</p>
+        <p class="subvenue-address">1-1-6 Kabukicho, Shinjuku-ku, Tokyo</p>
+        <p class="subvenue-description">No signboard, just a wooden board that slides open on Golden Gai&#x27;s fifth lane. You come for the lemon sour: brown-sugar shochu, house lime syrup, Hiroshima lemons, big ice. The books on the shelves belonged to the owner&#x27;s grandfather, the Naoki Prize-winning novelist Tanaka Komimasa. About fifteen people fit, mostly standing, and it&#x27;s always full. ¥300 charge, 8:00 to midnight.</p>
+        <a class="subvenue-link" href="https://www.google.com/maps/search/?api=1&amp;query=OPEN+BOOK+1-1-6+Kabukicho+Golden+Gai+Shinjuku+Tokyo" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+      </article>
+      </div>
+      <p class="stop-links">
+        <a class="stop-link stop-link-primary" href="https://www.google.com/maps/search/?api=1&amp;query=%E6%96%B0%E5%AE%BF%E3%82%B4%E3%83%BC%E3%83%AB%E3%83%87%E3%83%B3%E8%A1%97+%E6%9D%B1%E4%BA%AC%E9%83%BD%E6%96%B0%E5%AE%BF%E5%8C%BA%E6%AD%8C%E8%88%9E%E4%BC%8E%E7%94%BA1-1" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+        <a class="stop-link" href="https://www.google.com/maps/search/?api=1&amp;query=Happy+Rockin+Soul+Bar+%E6%9D%B1%E4%BA%AC%E9%83%BD%E6%96%B0%E5%AE%BF%E5%8C%BA%E6%AD%8C%E8%88%9E%E4%BC%8E%E7%94%BA1-1-7" target="_blank" rel="noopener noreferrer">Happy on Maps</a>
+        <a class="stop-link" href="https://bar-quest.com/en/bars/265ceb06b92a" target="_blank" rel="noopener noreferrer">BAR COO on bar-quest.com</a>
+        <a class="stop-link" href="https://www.openbook.tokyo/en" target="_blank" rel="noopener noreferrer">OPEN BOOK at openbook.tokyo</a>
+      </p>
+    </div>
+  </section>
+<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline autoplay preload="none"><source src="assets/movie/interstitial-3.webm" type="video/webm"><source src="assets/movie/interstitial-3.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>Even in the smallest events there’s no such thing as coincidence.</blockquote><cite>Kafka on the Shore</cite></figcaption></figure>
+<h3 class="journey-leg">Shibuya & Setagaya & Meguro & Minato<span class="journey-leg-sub">Midnight: coffee shops that aren’t, jazz rooms, Azabujuban counters</span></h3>
+  <section class="stop" id="stop-janai-coffee" data-stop="janai-coffee" data-number="10" data-floor="B1F" data-category="basement" data-leg="west" style="--alias-cols:1">
+    <div class="stop-media-bg">
+      <video class="stop-video" muted loop playsinline autoplay preload="none">
+        <source src="assets/movie/janai-coffee.webm" type="video/webm">
+        <source src="assets/movie/janai-coffee.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="stop-body">
+      <header class="stop-head">
+        <p class="stop-number">10</p>
+        <div class="stop-head-text">
+          <h3 class="stop-name">JANAI COFFEE</h3>
+        </div>
+      </header>
+      <p class="stop-aliases">ジャナイコーヒー</p>
+      <p class="stop-summary">Shibuya ward, Tokyo · Speakeasy · B1F</p>
+      <p class="stop-description">Getting in is the gimmick. You solve a puzzle on their website to reach the booking page, reservations are online only, and the door at the bottom of the stairs is a bookcase. Inside, coffee cocktails and craft cocktails cost ¥1,400 to ¥1,600, or ¥3,500 for three. The staff speak English, the playlist is R&amp;B, and you leave with a cup of decaf. It works as well solo as it does with a group. Open 6:00 to midnight.</p>
+      <dl class="stop-facts">
+        <dt>Station</dt><dd>Ebisu (JR Yamanote / Tokyo Metro Hibiya), 3 min walk</dd>
+      <dt>Address</dt><dd>B1F Yamanen Building, 2-3-13 Ebisuminami, Shibuya-ku, Tokyo</dd>
+      </dl>
+      <p class="stop-links">
+        <a class="stop-link stop-link-primary" href="https://www.google.com/maps/place/JANAI+COFFEE/data=!4m2!3m1!1s0x60188b40c1000001:0xf21b512300945656" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+      </p>
+    </div>
+  </section>
+  <section class="stop" id="stop-a10" data-stop="a10" data-number="11" data-floor="B1F" data-category="basement" data-leg="west" style="--alias-cols:1">
+    <div class="stop-media-bg">
+      <video class="stop-video" muted loop playsinline autoplay preload="none">
+        <source src="assets/movie/a10.webm" type="video/webm">
+        <source src="assets/movie/a10.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="stop-body">
+      <header class="stop-head">
+        <p class="stop-number">11</p>
+        <div class="stop-head-text">
+          <h3 class="stop-name">A10</h3>
+        </div>
+      </header>
+      <p class="stop-aliases">エーテン</p>
+      <p class="stop-summary">Shibuya ward, Tokyo · Record bar · B1F</p>
+      <p class="stop-description">Walk past what looks like a row of green lockers and you&#x27;re in a record bar. A DJ on vinyl, soul and jazz on a serious sound system, and original cocktails overseen by Munenori Nagumo. ¥1,320 charge. Open 7:00 to 2:30. Book ahead for Fridays and weekends.</p>
+      <dl class="stop-facts">
+        <dt>Station</dt><dd>Ebisu (JR Yamanote / Tokyo Metro Hibiya), 3 min walk</dd>
+      <dt>Address</dt><dd>B1F Bios Building, 1-12-11 Ebisunishi, Shibuya-ku, Tokyo</dd>
+      </dl>
+      <p class="stop-links">
+        <a class="stop-link stop-link-primary" href="https://www.google.com/maps/place/A10/data=!4m2!3m1!1s0x60188b8d0bbc998d:0xdbdb6eb72400c38f" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+      </p>
+    </div>
+  </section>
+  <section class="stop" id="stop-never-never-land" data-stop="never-never-land" data-number="12" data-floor="2F" data-leg="west" style="--alias-cols:5">
+    <div class="stop-media-bg stop-media-bg--type" aria-hidden="true"><span class="stop-watermark">ネバーネバーランド</span></div>
+    <div class="stop-body">
+      <header class="stop-head">
+        <p class="stop-number">12</p>
+        <div class="stop-head-text">
+          <h3 class="stop-name">Never Never Land</h3>
+        </div>
+      </header>
+      <p class="stop-aliases">ネバーネバーランド<br>ネヴァーネヴァーランド<br>下北沢ネバーネバーランド</p>
+      <p class="stop-summary">Setagaya ward, Tokyo · Izakaya · music bar · 2F</p>
+      <p class="stop-description">A Shimokitazawa rock bar open since 1978, up on the second floor across from Studio Noah, three minutes from the station. The walls are covered in posters and fliers for gigs and underground theater, and there are DJ nights and live sets. The kitchen does spiced Asian food; the Burmese chicken curry is the one to order, at ¥1,300. No cover charge, about twenty-four seats, non-smoking, solo diners welcome. Expect ¥2,000 to ¥3,000. Open 6:00 to 1:00, with irregular days off.</p>
+      <dl class="stop-facts">
+        <dt>Station</dt><dd>Shimokitazawa (Odakyu / Keio Inokashira), 3 min walk</dd>
+      <dt>Address</dt><dd>2F Yoshino Heights, 3-19-3 Kitazawa, Setagaya-ku, Tokyo 155-0031</dd>
+      </dl>
+      <p class="stop-links">
+        <a class="stop-link stop-link-primary" href="https://maps.app.goo.gl/diHoc2mUNNjko9FT6" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+        <a class="stop-link" href="http://www.shimokita-never.tokyo/" target="_blank" rel="noopener noreferrer">Official site</a>
+      </p>
+    </div>
+  </section>
+<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline autoplay preload="none"><source src="assets/movie/interstitial-4.webm" type="video/webm"><source src="assets/movie/interstitial-4.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>In this world, there are things you can only do alone, and things you can only do with somebody else.</blockquote><cite>After Dark</cite></figcaption></figure>
+  <section class="stop" id="stop-no-room-squares" data-stop="no-room-squares" data-number="13" data-floor="4F" data-category="distant" data-leg="west" style="--alias-cols:2">
+    <div class="stop-media-bg stop-media-bg--type" aria-hidden="true"><span class="stop-watermark">ノー・ルーム・フォー・スクエアーズ</span></div>
+    <div class="stop-body">
+      <header class="stop-head">
+        <p class="stop-number">13</p>
+        <div class="stop-head-text">
+          <h3 class="stop-name">No Room For Squares</h3>
+        </div>
+      </header>
+      <p class="stop-aliases">ノー・ルーム・フォー・スクエアーズ</p>
+      <p class="stop-summary">Setagaya ward, Tokyo · Jazz bar · 4F</p>
+      <p class="stop-description">Named after the Hank Mobley album. It&#x27;s on a fourth floor in Shimokitazawa, and you enter through the front of an old Coca-Cola vending machine. More than a thousand records, huge speakers on the walls, and no menu; tell the owner what you like. Weekends bring live jazz, and during a set the room is too small for conversation. A good bar to walk into nervous. Cash only, 2:00 p.m. to 2:00 a.m.</p>
+      <dl class="stop-facts">
+        <dt>Station</dt><dd>Shimokitazawa (Odakyu / Keio Inokashira), 3 min walk</dd>
+      <dt>Address</dt><dd>4F Housing Kitazawa Building II, 2-1-7 Kitazawa, Setagaya-ku, Tokyo</dd>
+      </dl>
+      <p class="stop-links">
+        <a class="stop-link stop-link-primary" href="http://maps.google.com/?cid=911402204683980032" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+      </p>
+    </div>
+  </section>
+  <section class="stop" id="stop-bar-sawa" data-stop="bar-sawa" data-number="14" data-floor="1F" data-leg="west" style="--alias-cols:1">
+    <div class="stop-media-bg stop-media-bg--type" aria-hidden="true"><span class="stop-watermark">バー サワ</span></div>
+    <div class="stop-body">
+      <header class="stop-head">
+        <p class="stop-number">14</p>
+        <div class="stop-head-text">
+          <h3 class="stop-name">Bar sawa</h3>
+        </div>
+      </header>
+      <p class="stop-aliases">バー サワ</p>
+      <p class="stop-summary">Meguro ward, Tokyo · Whisky bar · 1F</p>
+      <p class="stop-description">Shigeko Shintani opened this Nakameguro whiskey bar in 1985 and has visited more than 130 distilleries since. Behind the counter are over eight hundred whiskeys, including bottles like a Dalmore Sirius and a 1948 Macallan. Open every night until 5:00 a.m., with half-price drinks from 5:00 to 8:00 p.m. You will probably spend more than you meant to. Look for the yellow light over the door.</p>
+      <dl class="stop-facts">
+        <dt>Station</dt><dd>Nakameguro (Tokyo Metro Hibiya), 5 min walk</dd>
+      <dt>Address</dt><dd>1F Forum Nakameguro, 1-6-7 Higashiyama, Meguro-ku, Tokyo</dd>
+      </dl>
+      <p class="stop-links">
+        <a class="stop-link stop-link-primary" href="https://www.google.com/maps/search/?api=1&amp;query=%E3%83%90%E3%83%BC+%E3%82%B5%E3%83%AF+%E6%9D%B1%E4%BA%AC%E9%83%BD%E7%9B%AE%E9%BB%92%E5%8C%BA%E6%9D%B1%E5%B1%B11-6-7" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+      </p>
+    </div>
+  </section>
+<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline autoplay preload="none"><source src="assets/movie/interstitial-5.webm" type="video/webm"><source src="assets/movie/interstitial-5.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>A certain type of perfection can only be realized through a limitless accumulation of the imperfect.</blockquote><cite>Kafka on the Shore</cite></figcaption></figure>
+  <section class="stop" id="stop-gen-yamamoto" data-stop="gen-yamamoto" data-number="15" data-floor="1F" data-leg="west" style="--alias-cols:1">
+    <div class="stop-media-bg">
+      <img src="assets/imgs/bars/gen-yamamoto.jpg" alt="Gen Yamamoto counter" loading="lazy" decoding="async">
+    </div>
+    <div class="stop-body">
+      <header class="stop-head">
+        <p class="stop-number">15</p>
+        <div class="stop-head-text">
+          <h3 class="stop-name">Gen Yamamoto</h3>
+        </div>
+      </header>
+      <p class="stop-aliases">ゲン ヤマモト</p>
+      <p class="stop-summary">Minato ward, Tokyo · Cocktail bar · high-end · 1F</p>
+      <p class="stop-description">One bartender, eight seats, and a tasting course of small cocktails built from seasonal Japanese produce that changes almost every week. Plan on ¥8,000 to ¥10,000. The pours are small and the alcohol is light; the flavors make up for it. Book by phone up to a week ahead. Tuesday to Saturday, last entry 9:00, so this is an early-evening stop, not a late one.</p>
+      <dl class="stop-facts">
+        <dt>Station</dt><dd>Azabujuban (Toei Oedo), 3 min walk</dd>
+      <dt>Address</dt><dd>1F Anniversary Building, 1-6-4 Azabujuban, Minato-ku, Tokyo</dd>
+      </dl>
+      <p class="stop-links">
+        <a class="stop-link stop-link-primary" href="http://maps.google.com/?cid=9087814451927436466" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+      </p>
+    </div>
+  </section>
+  <section class="stop" id="stop-bar-centifolia" data-stop="bar-centifolia" data-number="16" data-floor="6F" data-leg="west" style="--alias-cols:2">
+    <div class="stop-media-bg stop-media-bg--type" aria-hidden="true"><span class="stop-watermark">バー センティフォリア</span></div>
+    <div class="stop-body">
+      <header class="stop-head">
+        <p class="stop-number">16</p>
+        <div class="stop-head-text">
+          <h3 class="stop-name">Bar Centifolia</h3>
+        </div>
+      </header>
+      <p class="stop-aliases">バー センティフォリア</p>
+      <p class="stop-summary">Minato ward, Tokyo · Cocktail bar · high-end · 6F</p>
+      <p class="stop-description">Yuzo Komai makes cocktails as a performance. Some of it is art, some of it is Instagram hype. The menu is fixed, with no classics and no substitutions. Drinks run about ¥4,000 each, plus a ¥1,000 charge and tax. Not a place to get drunk. Fourteen seats, open until 3:00.</p>
+      <dl class="stop-facts">
+        <dt>Station</dt><dd>Azabujuban (Toei Oedo), 3 min walk</dd>
+      <dt>Address</dt><dd>6F La Muse Azabujuban Building, 1-6-5 Azabujuban, Minato-ku, Tokyo</dd>
+      </dl>
+      <p class="stop-links">
+        <a class="stop-link stop-link-primary" href="https://www.google.com/maps/place/Bar+Centifolia/data=!4m2!3m1!1s0x60188b9fa69c033f:0xc44593ba0ccc4863" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+      </p>
+    </div>
+  </section>
+<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline autoplay preload="none"><source src="assets/movie/interstitial-6.webm" type="video/webm"><source src="assets/movie/interstitial-6.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>What lasts, lasts; what doesn’t, doesn’t. Time solves most things. And what time can’t solve, you have to solve yourself.</blockquote><cite>Dance Dance Dance</cite></figcaption></figure>
+<h3 class="journey-leg">East Tokyo<span class="journey-leg-sub">After hours: Kanda to Ueno to Bunkyo</span></h3>
+  <section class="stop" id="stop-bar-under" data-stop="bar-under" data-number="17" data-floor="B1F" data-category="basement" data-leg="east" style="--alias-cols:2">
+    <div class="stop-media-bg stop-media-bg--type" aria-hidden="true"><span class="stop-watermark">バー アンドアンダー</span></div>
+    <div class="stop-body">
+      <header class="stop-head">
+        <p class="stop-number">17</p>
+        <div class="stop-head-text">
+          <h3 class="stop-name">BAR &amp;UNDER</h3>
+        </div>
+      </header>
+      <p class="stop-aliases">バー アンドアンダー</p>
+      <p class="stop-summary">Chiyoda ward, Tokyo · Sake cocktail bar · B1F</p>
+      <p class="stop-description">A basement bar in Sotokanda, about seven minutes from Akihabara. Koji Yamamoto quit TV production to tend bar and has since come up with more than two hundred sake cocktails, many based on characters, plus collaboration nights with anime and YouTubers every couple of weeks. He says the ampersand in the name means doing something together. About thirty seats, a young crowd, board games, a ¥700 seat charge, and a one-drink minimum; the whole idea is to make bars less intimidating for newcomers. Closes at 11:00, closed Mondays.</p>
+      <dl class="stop-facts">
+        <dt>Station</dt><dd>Akihabara (JR / Tokyo Metro Hibiya), 5 min walk</dd>
+      <dt>Address</dt><dd>B1F Sotokanda Kanemura Building, 2-6-4 Sotokanda, Chiyoda-ku, Tokyo</dd>
+      </dl>
+      <p class="stop-links">
+        <a class="stop-link stop-link-primary" href="https://www.google.com/maps/place/BAR+%26UNDER/data=!4m2!3m1!1s0x60188d5ee280613d:0xfda3db99d25dd786" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+      </p>
+    </div>
+  </section>
+  <section class="stop" id="stop-naru-jazz" data-stop="naru-jazz" data-number="18" data-floor="B1F" data-category="basement" data-leg="east" style="--alias-cols:3">
+    <div class="stop-media-bg stop-media-bg--type" aria-hidden="true"><span class="stop-watermark">ジャズハウスナル</span></div>
+    <div class="stop-body">
+      <header class="stop-head">
+        <p class="stop-number">18</p>
+        <div class="stop-head-text">
+          <h3 class="stop-name">NARU Jazz Livehouse</h3>
+        </div>
+      </header>
+      <p class="stop-aliases">ジャズハウスナル<br>Jazz House Naru</p>
+      <p class="stop-summary">Chiyoda ward, Tokyo · Jazz livehouse · B1F</p>
+      <p class="stop-description">Open since 1969, a minute from Ochanomizu Station. About thirty seats crowded around a grand piano, working Tokyo musicians every night, a ¥2,500 cover plus drinks, and generous food that doesn&#x27;t cost much, most of it Italian. English menu. It&#x27;s tight in there, and that&#x27;s what makes it intimate. Solo or with a group, you get a good welcome.</p>
+      <dl class="stop-facts">
+        <dt>Station</dt><dd>Ochanomizu (JR Chuo/Sobu, Tokyo Metro Marunouchi), 1 min walk</dd>
+      <dt>Address</dt><dd>B1F Jujiya Building, 2-1 Kanda Surugadai, Chiyoda-ku, Tokyo 101-0062</dd>
+      </dl>
+      <p class="stop-links">
+        <a class="stop-link stop-link-primary" href="https://www.google.com/maps/search/?api=1&amp;query=%E3%82%B8%E3%83%A3%E3%82%BA%E3%83%8F%E3%82%A6%E3%82%B9%E3%83%8A%E3%83%AB+%E6%9D%B1%E4%BA%AC%E9%83%BD%E5%8D%83%E4%BB%A3%E7%94%B0%E5%8C%BA%E7%A5%9E%E7%94%B0%E9%A7%BF%E6%B2%B3%E5%8F%B02-1" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+        <a class="stop-link" href="http://ocha-naru.com/" target="_blank" rel="noopener noreferrer">ocha-naru.com</a>
+      </p>
+    </div>
+  </section>
+<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline autoplay preload="none"><source src="assets/movie/interstitial-7.webm" type="video/webm"><source src="assets/movie/interstitial-7.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>No matter how far you travel, you can never get away from yourself.</blockquote><cite>After the Quake</cite></figcaption></figure>
+  <section class="stop" id="stop-game-bar-abutton" data-stop="game-bar-abutton" data-number="19" data-floor="1F" data-leg="east" style="--alias-cols:2">
+    <div class="stop-media-bg stop-media-bg--type" aria-hidden="true"><span class="stop-watermark">ゲームバー エーボタン</span></div>
+    <div class="stop-body">
+      <header class="stop-head">
+        <p class="stop-number">19</p>
+        <div class="stop-head-text">
+          <h3 class="stop-name">Game Bar A-Button</h3>
+        </div>
+      </header>
+      <p class="stop-aliases">ゲームバー エーボタン</p>
+      <p class="stop-summary">Taito ward, Tokyo · Game bar · 1F</p>
+      <p class="stop-description">Don&#x27;t come to play games; the owner pulled most of the playable machines after copyright letters. What&#x27;s left is a thirteen-seat bar in an old ramen shop packed with consoles, controllers, and figures, run by Nagamine, a former Sega arcade worker. It&#x27;s a gathering spot for people who love this stuff. Drinks are on the expensive side and English is limited. Open until 11:00.</p>
+      <dl class="stop-facts">
+        <dt>Station</dt><dd>Inaricho (Tokyo Metro Ginza), 4 min walk</dd>
+      <dt>Address</dt><dd>1F Dai-5 Mitsumasa Building, 1-13-9 Taito, Taito-ku, Tokyo</dd>
+      </dl>
+      <p class="stop-links">
+        <a class="stop-link stop-link-primary" href="https://www.google.com/maps/place/Game+Bar+A-Button/data=!4m2!3m1!1s0x60188ea671e4cfdd:0xe02deb3793822519" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+      </p>
+    </div>
+  </section>
+  <section class="stop" id="stop-bar-willows" data-stop="bar-willows" data-number="20" data-floor="6F-E" data-leg="east" style="--alias-cols:1">
+    <div class="stop-media-bg">
+      <video class="stop-video" muted loop playsinline autoplay preload="none">
+        <source src="assets/movie/bar-willows.webm" type="video/webm">
+        <source src="assets/movie/bar-willows.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="stop-body">
+      <header class="stop-head">
+        <p class="stop-number">20</p>
+        <div class="stop-head-text">
+          <h3 class="stop-name">BAR Willow&#x27;s</h3>
+        </div>
+      </header>
+      <p class="stop-aliases">バー ウィローズ</p>
+      <p class="stop-summary">Taito ward, Tokyo · Whisky &amp; cocktail bar · 6F-E</p>
+      <p class="stop-description">I don&#x27;t visit Tokyo without coming here, usually several times a trip. Yanagisawa owns the bar, ran the bar at the Yokohama Royal Park Hotel before this, and is about as attentive as a bartender gets; his English is excellent. The ice is hand-crafted and priced like it, and that is what good service costs. Each chair at the counter was chosen by hand, and the chair in the logo means there&#x27;s always a seat waiting for you. After enough trips, there is. Two hundred whiskeys, good non-alcoholic drinks, open until 3:00 most nights.</p>
+      <dl class="stop-facts">
+        <dt>Station</dt><dd>Okachimachi (JR), 3 min walk; Ueno-Hirokoji (Tokyo Metro Ginza), 1 min walk</dd>
+      <dt>Address</dt><dd>6F-E, 88 Building, 2-1-3 Ueno, Taito-ku, Tokyo</dd>
+      </dl>
+      <p class="stop-links">
+        <a class="stop-link stop-link-primary" href="https://www.google.com/maps/place/BAR+Willow&#x27;s/data=!4m2!3m1!1s0x60188d3e5e0018b3:0xe2bda4fa0a3810c4" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+      </p>
+    </div>
+  </section>
+<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline autoplay preload="none"><source src="assets/movie/interstitial-8.webm" type="video/webm"><source src="assets/movie/interstitial-8.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>People’s memories are maybe the fuel they burn to stay alive.</blockquote><cite>After Dark</cite></figcaption></figure>
+  <section class="stop" id="stop-rock-bar-sakebi" data-stop="rock-bar-sakebi" data-number="21" data-floor="1F" data-leg="east" style="--alias-cols:1">
+    <div class="stop-media-bg stop-media-bg--type" aria-hidden="true"><span class="stop-watermark">ロックバー さけび</span></div>
+    <div class="stop-body">
+      <header class="stop-head">
+        <p class="stop-number">21</p>
+        <div class="stop-head-text">
+          <h3 class="stop-name">Rock Bar Sakebi</h3>
+        </div>
+      </header>
+      <p class="stop-aliases">ロックバー さけび</p>
+      <p class="stop-summary">Taito ward, Tokyo · Rock bar · 1F</p>
+      <p class="stop-description">Sakebi means scream. The room is nearly pitch dark, lit by a few odd lights, with ten counter seats and a sound system that stands out. The owner mixes rock with jazz, blues, and techno. Drinks are cheap, snacks run a couple hundred yen, you can smoke, and you can&#x27;t reserve. It&#x27;s comfortable for drinking alone. Five minutes from the north exit of Uguisudani Station. Closed Sundays and Mondays.</p>
+      <dl class="stop-facts">
+        <dt>Station</dt><dd>Uguisudani (JR Yamanote), 5 min walk</dd>
+      <dt>Address</dt><dd>1F, 2-16-11 Negishi, Taito-ku, Tokyo</dd>
+      </dl>
+      <p class="stop-links">
+        <a class="stop-link stop-link-primary" href="https://www.google.com/maps/place/Rock+Bar+Sakebi/data=!4m2!3m1!1s0x60188f79659e8de5:0xf831bb430ca98480" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+      </p>
+    </div>
+  </section>
+  <section class="stop" id="stop-eigakan-jazz" data-stop="eigakan-jazz" data-number="22" data-floor="B1F" data-category="basement" data-leg="east" style="--alias-cols:1">
+    <div class="stop-media-bg stop-media-bg--type" aria-hidden="true"><span class="stop-watermark">映画館ジャズ</span></div>
+    <div class="stop-body">
+      <header class="stop-head">
+        <p class="stop-number">22</p>
+        <div class="stop-head-text">
+          <h3 class="stop-name">Eigakan Jazz</h3>
+        </div>
+      </header>
+      <p class="stop-aliases">映画館ジャズ</p>
+      <p class="stop-summary">Bunkyo ward, Tokyo · Jazz bar · B1F</p>
+      <p class="stop-description">Eigakan means cinema. Yoshida-san, a former film director, opened this jazz kissa in 1978, a minute from Hakusan Station and down a flight of stairs. The sound is clear and full without being loud, and the room is for listening. About twenty seats, cash only, smoking allowed, no reservations. Tuesday to Saturday, 4:00 to 10:00.</p>
+      <dl class="stop-facts">
+        <dt>Station</dt><dd>Hakusan (Toei Mita Line A3), 1 min walk</dd>
+      <dt>Address</dt><dd>B1F, 5-33-19 Hakusan, Bunkyo-ku, Tokyo 112-0001</dd>
+      </dl>
+      <p class="stop-links">
+        <a class="stop-link stop-link-primary" href="https://www.google.com/maps/search/?api=1&amp;query=%E6%98%A0%E7%94%BB%E9%A4%A8%E3%82%B8%E3%83%A3%E3%82%BA+%E6%9D%B1%E4%BA%AC%E9%83%BD%E6%96%87%E4%BA%AC%E5%8C%BA%E7%99%BD%E5%B1%B15-33-19" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+        <a class="stop-link" href="http://www.jazzeigakan.com/" target="_blank" rel="noopener noreferrer">Official site</a>
+      </p>
+    </div>
+  </section>
+<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline autoplay preload="none"><source src="assets/movie/interstitial-9.webm" type="video/webm"><source src="assets/movie/interstitial-9.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>Memories warm you up from the inside. But they also tear you apart.</blockquote><cite>Kafka on the Shore</cite></figcaption></figure>
+<h3 class="journey-leg">The locked door<span class="journey-leg-sub">The one place you can’t walk into</span></h3>
+  <section class="stop is-spotlight" id="stop-sake-bar-o" data-stop="sake-bar-o" data-number="23" data-floor="1F" data-category="spotlight" data-leg="locked-door" style="--alias-cols:4">
+    <div class="stop-media-bg">
+      <img src="assets/imgs/bars/sake-bar-o.jpg" alt="Sake and wine bottles behind two metal sake cups and a small dish of almonds on the SAKEBARO counter" loading="lazy" decoding="async">
+    </div>
+    <div class="stop-body">
+      <header class="stop-head">
+        <p class="stop-number">23</p>
+        <div class="stop-head-text">
+          <h3 class="stop-name">SAKEBARO Aoyama</h3>
+        </div>
+      </header>
+      <p class="stop-aliases">酒バー O<br>Sakebaro<br>SAKEBARO 青山店</p>
+      <p class="stop-summary">Minato ward, Tokyo · Exclusive sake club · 1F</p>
+      <p class="stop-description">Members only, with screening to get in. Inside are a tin-cube counter, a tin piano that plays itself, LED walls that move from blue to red, and staff who can give you the brewery, yeast, and polish rate of every pour. Conversation stays hushed. Now and then there&#x27;s a ticketed dinner for non-members; book online and they email you the address. You can walk into everything else in this guide. Not this one.</p>
+      <p class="stop-note">Reservation or membership required. Arrange access well before you travel.</p>
+      <dl class="stop-facts">
+        <dt>Station</dt><dd>Omotesando (Tokyo Metro Ginza/Hanzomon/Chiyoda), 8 min walk</dd>
+      <dt>Address</dt><dd>1F MD Aoyama, 2-10-8 Minami-Aoyama, Minato-ku, Tokyo 107-0062</dd>
+        <dt>Access</dt><dd>Members only</dd>
+      </dl>
+      <p class="stop-links">
+        <a class="stop-link stop-link-primary" href="https://www.google.com/maps/search/?api=1&amp;query=SAKEBARO+%E9%9D%92%E5%B1%B1%E5%BA%97+%E6%9D%B1%E4%BA%AC%E9%83%BD%E6%B8%AF%E5%8C%BA%E5%8D%97%E9%9D%92%E5%B1%B12-10-8" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+        <a class="stop-link" href="https://www.sakebaro.biz/location-aoyama" target="_blank" rel="noopener noreferrer">Official site</a>
+      </p>
+    </div>
+  </section>
+<figure class="journey-interstitial journey-coda" aria-label="The storm"><video class="stop-video" muted loop playsinline autoplay preload="none"><source src="assets/movie/coda.webm" type="video/webm"><source src="assets/movie/coda.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>And once the storm is over you won’t remember how you made it through. That’s what the storm is all about.</blockquote><cite>Kafka on the Shore</cite></figcaption></figure>
+  <section class="stop epilogue" id="stop-rokusan-angel" data-stop="rokusan-angel" data-floor="B2F" data-category="basement" data-leg="epilogue" style="--alias-cols:1">
+    <div class="stop-media-bg stop-media-bg--type" aria-hidden="true"><span class="stop-watermark">ロクサンエンジェル</span></div>
+    <div class="stop-body">
+      <button type="button" class="stop-veil">18+ · reveal</button>
+      <header class="stop-head">
+        <p class="stop-number" aria-hidden="true"></p>
+        <div class="stop-head-text">
+          <h3 class="stop-name">Rokusan Angel (Burlesque Tokyo)</h3>
+        </div>
+      </header>
+      <p class="stop-aliases">ロクサンエンジェル</p>
+      <p class="stop-summary">Minato ward, Tokyo · Burlesque bar · B2F</p>
+      <p class="stop-description">Formerly Burlesque Tokyo, two floors below street level in Roppongi. The themed shows change every week and run seventy to ninety minutes, and the performers work the crowd. It&#x27;s booked for birthdays and celebrations, so bring people, and reserve early for front seats. Expect ¥8,000 to ¥10,000 each after the 15% service charge. Limited English.</p>
+      <dl class="stop-facts">
+        <dt>Station</dt><dd>Roppongi (Toei Oedo / Tokyo Metro Hibiya), 5 min walk</dd>
+      <dt>Address</dt><dd>B2F Roppongi Nittaku Building, 3-8-15 Roppongi, Minato-ku, Tokyo</dd>
+      </dl>
+      <p class="stop-links">
+        <a class="stop-link stop-link-primary" href="https://www.google.com/maps/place/ROKUSAN+ANGEL%EF%BC%88Burlesque+Tokyo%EF%BC%89/data=!4m2!3m1!1s0x60188b78685d2fcb:0x949f91afc7f95845" target="_blank" rel="noopener noreferrer">Open in Maps</a>
+      </p>
+    </div>
+  </section>
+<!-- /build:journey -->
+        </div>
+      </section>
+      <section id="map-view" class="map-view" role="tabpanel" aria-labelledby="view-map">
+      <section class="list-panel" aria-label="Places">
+        <div class="list-controls">
+          <label class="field">
+            <span>Search</span>
+            <input type="search" id="shop-search" placeholder="Name, area, address" autocomplete="off">
+          </label>
+          <label class="field">
+            <span>Area</span>
+            <select id="area-filter"><option value="">All areas</option></select>
+          </label>
+          <label class="field">
+            <span>Type</span>
+            <select id="type-filter"><option value="">All types</option></select>
+          </label>
+          <p class="count">Showing <span id="shop-count">0 / 0</span></p>
+        </div>
+        <div id="shop-list" class="shop-list"></div>
+        <p id="empty-state" hidden>No matching places.</p>
+      </section>
+      </section>
+    </main>
+    <section class="films" aria-labelledby="films-heading">
+      <h2 id="films-heading">Before you go</h2>
+      <ul class="film-list">
+        <li class="film-card">
+          <h3 class="film-title">Lost in Translation <span>2003</span></h3>
+          <p class="film-credit">Directed by Sofia Coppola</p>
+          <p class="film-note">The New York Bar on the 52nd floor of the Park Hyatt is where Bob and Charlotte meet and drink through the night. It is on this map, and you can walk in and order what they had. Watch it before you go. The film will tell you what the room feels like at 2 a.m. better than any description here.</p>
+        </li>
+        <li class="film-card">
+          <h3 class="film-title">After Dark <span>Novel, 2007</span></h3>
+          <p class="film-credit">Haruki Murakami (trans. Jay Rubin)</p>
+          <p class="film-note">A novel that lives entirely between midnight and dawn in Tokyo: a love hotel, a Denny's, a back-office bar, a musician playing a trombone at 4 a.m. Quoted at the top of this page. Read it on the train out and the city will look different when you surface.</p>
+        </li>
+      </ul>
+    </section>
+
+  </div>
+</body>
+</html>

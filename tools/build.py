@@ -15,11 +15,11 @@ to a content hash so browsers pick up changes without manual version bumps.
 
 --check exits non-zero if any page would change (useful before deploying).
 
-bars-map.html also has a generated region:
+tokyo-after-dark.html also has a generated region:
 
     <!-- build:journey --> ... <!-- /build:journey -->
 
-This is filled from assets/bars-map-data.json with one <section class="stop">
+This is filled from assets/tokyo-after-dark.json with one <section class="stop">
 per venue, so the journey view is readable even without JavaScript.
 """
 import html as _html
@@ -37,7 +37,7 @@ REGIONS = ('head', 'nav', 'footer')
 JS_WITH_ASSETS = ('js/glossary.js',)
 # Pages with a generated journey region (built from a JSON data file).
 JOURNEY_PAGES = {
-    'bars-map.html': 'assets/bars-map-data.json',
+    'tokyo-after-dark.html': 'assets/tokyo-after-dark.json',
 }
 
 
@@ -190,7 +190,7 @@ def _render_stop(bar):
         parts.append(f'    <div class="stop-media-bg stop-media-bg--type" aria-hidden="true"><span class="stop-watermark">{_esc(wm)}</span></div>')
     # Text body on top of the media, with a sakura-tinted panel.
     parts.append(f'    <div class="stop-body">')
-    # Epilogue veil: a reveal button over the "naughty" card. bars-map.js
+    # Epilogue veil: a reveal button over the "naughty" card. tokyo-after-dark.js
     # shows it and makes the content behind it inert until it's opened.
     if bar.get('epilogue'):
         parts.append(f'      <button type="button" class="stop-veil">18+ · reveal</button>')
@@ -269,12 +269,12 @@ LEGS = {
 
 
 def _known_styles():
-    """Styles the Type filter in js/bars-map.js knows about.
+    """Styles the Type filter in js/tokyo-after-dark.js knows about.
 
     Parsed out of STYLE_CATEGORIES so the JSON can't drift into a style
     the filter would silently drop.
     """
-    js = s.read(Path('js/bars-map.js'))
+    js = s.read(Path('js/tokyo-after-dark.js'))
     m = re.search(r'STYLE_CATEGORIES\s*=\s*\[(.*?)\];', js, re.S)
     if not m:
         return None
@@ -326,7 +326,7 @@ def _validate_journey(bars, interstitial_count):
 
     known = _known_styles()
     if known is None:
-        errors.append('could not parse STYLE_CATEGORIES from js/bars-map.js')
+        errors.append('could not parse STYLE_CATEGORIES from js/tokyo-after-dark.js')
     else:
         for b in bars:
             style = b.get('style')
@@ -334,7 +334,7 @@ def _validate_journey(bars, interstitial_count):
                 errors.append(f"{label(b)}: style '{style}' maps to no Type category")
 
     if errors:
-        print('ERROR: bars-map journey data is inconsistent:')
+        print('ERROR: tokyo-after-dark journey data is inconsistent:')
         for e in errors:
             print(f'  {e}')
         sys.exit(1)
@@ -458,7 +458,7 @@ def build_page(rel, text):
         body = s.indent_block(s.render_partial(name, rel), indent, eol)
         block = s.MARK.format(name=name) + eol + body + eol + indent + s.END_MARK.format(name=name)
         text = text[:m.start()] + block + text[m.end():]
-    # Generated journey region (bars-map.html only).
+    # Generated journey region (tokyo-after-dark.html only).
     journey_src = JOURNEY_PAGES.get(rel.as_posix())
     if journey_src:
         rx = s.region_re('journey')
@@ -492,14 +492,14 @@ def main(argv):
         print('All pages up to date.')
         return 0
     print(f'Updated {len(changed)} page(s).' + (('\n  ' + '\n  '.join(changed)) if changed else ''))
-    # Post-build consistency checks for bars-map.html
+    # Post-build consistency checks for tokyo-after-dark.html
     _assert_bars_consistency()
     return 0
 
 
 def _assert_bars_consistency():
-    """Verify bars-map.html is internally consistent after build."""
-    html_path = Path('bars-map.html')
+    """Verify tokyo-after-dark.html is internally consistent after build."""
+    html_path = Path('tokyo-after-dark.html')
     if not html_path.exists():
         return
     text = html_path.read_text(encoding='utf-8')
@@ -519,7 +519,7 @@ def _assert_bars_consistency():
     max_number = max(data_numbers) if data_numbers else 0
     count_match = re.search(r'id="bar-count"[^>]*>(\d+)<', text)
     static_count = int(count_match.group(1)) if count_match else 0
-    json_path = Path('assets/bars-map-data.json')
+    json_path = Path('assets/tokyo-after-dark.json')
     if json_path.exists():
         all_bars = json.loads(json_path.read_text(encoding='utf-8'))['bars']
         json_count = len([b for b in all_bars if not b.get('epilogue')])
@@ -532,7 +532,7 @@ def _assert_bars_consistency():
     if json_count != stop_count:
         errors.append(f"JSON bar count ({json_count}) != .stop count ({stop_count})")
     if errors:
-        print("WARNING: bars-map consistency check failed:")
+        print("WARNING: tokyo-after-dark consistency check failed:")
         for e in errors:
             print(f"  {e}")
         sys.exit(1)
