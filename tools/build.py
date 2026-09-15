@@ -162,8 +162,9 @@ def _render_stop(bar):
     cols_attr = f' style="--alias-cols:{_alias_columns(aliases)}"' if aliases else ''
     epilogue_cls = ' epilogue' if bar.get('epilogue') else ''
     num_attr = '' if bar.get('epilogue') else f' data-number="{num}"'
+    leg_attr = f' data-leg="{_esc(bar["leg"])}"' if bar.get('leg') else ''
     parts = []
-    parts.append(f'  <section class="stop{spotlight}{epilogue_cls}" id="stop-{bid}" data-stop="{bid}"{num_attr}{floor_attr}{cat_attr}{cols_attr}>')
+    parts.append(f'  <section class="stop{spotlight}{epilogue_cls}" id="stop-{bid}" data-stop="{bid}"{num_attr}{floor_attr}{cat_attr}{leg_attr}{cols_attr}>')
     # Media as a background layer — video or image covers the full card.
     video = bar.get('video')
     image = bar.get('image')
@@ -182,6 +183,11 @@ def _render_stop(bar):
         parts.append(f'    <div class="stop-media-bg">')
         parts.append(f'      <img src="{_esc(image)}" alt="{alt}" loading="lazy" decoding="async">')
         parts.append(f'    </div>')
+    else:
+        # No footage: a designed background instead — leg-tinted gradient
+        # with the first Japanese alias as a faint vertical watermark.
+        wm = aliases[0] if aliases else bar.get('name', '')
+        parts.append(f'    <div class="stop-media-bg stop-media-bg--type" aria-hidden="true"><span class="stop-watermark">{_esc(wm)}</span></div>')
     # Text body on top of the media, with a sakura-tinted panel.
     parts.append(f'    <div class="stop-body">')
     # Epilogue veil: a reveal button over the "naughty" card. bars-map.js
@@ -250,31 +256,95 @@ def _render_stop(bar):
     return '\n'.join(parts)
 
 
+# Night-journey legs: geographic clusters that progress deeper into the
+# night. Each bar declares its leg via the 'leg' key in the JSON; this
+# dict fixes the order the legs appear and their header text.
+LEGS = {
+    'ginza':       ('Ginza', 'Early evening: cocktails and counters'),
+    'shinjuku':    ('Shinjuku', 'Late evening: hotel bars, speakeasies, Golden Gai'),
+    'west':        ('Shibuya & Setagaya & Meguro & Minato', 'Midnight: coffee shops that aren\u2019t, jazz rooms, Azabujuban counters'),
+    'east':        ('East Tokyo', 'After hours: Kanda to Ueno to Bunkyo'),
+    'locked-door': ('The locked door', 'The one place you can\u2019t walk into'),
+}
+
+
+def _known_styles():
+    """Styles the Type filter in js/bars-map.js knows about.
+
+    Parsed out of STYLE_CATEGORIES so the JSON can't drift into a style
+    the filter would silently drop.
+    """
+    js = s.read(Path('js/bars-map.js'))
+    m = re.search(r'STYLE_CATEGORIES\s*=\s*\[(.*?)\];', js, re.S)
+    if not m:
+        return None
+    # Inner lists hold the styles; the outer pairs also contain the label.
+    styles = set()
+    for inner in re.findall(r"\[('[^']*'(?:\s*,\s*'[^']*')*)\]", m.group(1)):
+        styles.update(re.findall(r"'([^']*)'", inner))
+    return styles
+
+
+def _validate_journey(bars, interstitial_count):
+    """Fail loudly when the JSON's leg/interstitial declarations drift."""
+    def label(b):
+        return f"bar #{b.get('number')} ({b.get('id', '?')})"
+
+    errors = []
+    order = list(LEGS)
+    seen = []
+    numbered = [b for b in bars if not b.get('epilogue')]
+    for b in numbered:
+        leg = b.get('leg')
+        if leg is None:
+            errors.append(f"{label(b)}: missing 'leg'")
+            continue
+        if leg not in LEGS:
+            errors.append(f"{label(b)}: unknown leg '{leg}' (expected one of: {', '.join(order)})")
+            continue
+        if not seen or leg != seen[-1]:
+            if leg in seen:
+                errors.append(f"{label(b)}: leg '{leg}' reappears after a later leg - legs must be contiguous")
+            elif len(seen) >= len(order) or order[len(seen)] != leg:
+                want = order[len(seen)] if len(seen) < len(order) else '(no further legs)'
+                errors.append(f"{label(b)}: leg '{leg}' out of order - next expected leg is '{want}'")
+            else:
+                seen.append(leg)
+
+    flagged = [b for b in numbered if b.get('interstitialAfter')]
+    if len(flagged) != interstitial_count:
+        errors.append(f"{len(flagged)} 'interstitialAfter' flag(s) but {interstitial_count} interstitial clips - counts must match")
+    if numbered and numbered[-1].get('interstitialAfter'):
+        errors.append(f"{label(numbered[-1])}: 'interstitialAfter' on the last numbered stop - the coda goes there instead")
+    for b in bars:
+        if not b.get('epilogue'):
+            continue
+        if b.get('interstitialAfter'):
+            errors.append(f"{label(b)}: 'interstitialAfter' on the epilogue")
+        if b.get('leg') != 'epilogue':
+            errors.append(f"{label(b)}: epilogue must have \"leg\": \"epilogue\"")
+
+    known = _known_styles()
+    if known is None:
+        errors.append('could not parse STYLE_CATEGORIES from js/bars-map.js')
+    else:
+        for b in bars:
+            style = b.get('style')
+            if style and style not in known:
+                errors.append(f"{label(b)}: style '{style}' maps to no Type category")
+
+    if errors:
+        print('ERROR: bars-map journey data is inconsistent:')
+        for e in errors:
+            print(f'  {e}')
+        sys.exit(1)
+
+
 def render_journey(data_path):
     """Generate the inner HTML for the <!-- build:journey --> region."""
     with open(s.ROOT / data_path, 'r', encoding='utf-8') as f:
         data = json.load(f)
     bars = data['bars']
-
-    # Night-journey legs: geographic clusters that progress deeper into the
-    # night. Each leg gets a header so the reader can see the structure.
-    legs = [
-        ('Ginza', 'Early evening: cocktails and counters'),
-        ('Shinjuku', 'Late evening: hotel bars, speakeasies, Golden Gai'),
-        ('Shibuya & Setagaya & Meguro & Minato', 'Midnight: coffee shops that aren\u2019t, jazz rooms, Azabujuban counters'),
-        ('East Tokyo', 'After hours: Kanda to Ueno to Bunkyo'),
-        ('The locked door', 'The one place you can\u2019t walk into'),
-    ]
-    # Map bar numbers to leg indices (1-based numbering, 0-based legs).
-    # 23 bars across 5 legs: Ginza (3), Shinjuku (6), Shibuya/Ebisu/Meguro/Minato (7),
-    # East Tokyo (6), The locked door (1).
-    leg_bounds = [3, 9, 16, 22, 23]  # last number in each leg
-    leg_of = {}
-    li = 0
-    for n in range(1, len(bars) + 1):
-        if li < len(leg_bounds) and n > leg_bounds[li]:
-            li += 1
-        leg_of[n] = li
 
     parts = []
 
@@ -346,25 +416,24 @@ def render_journey(data_path):
             f'</figure>'
         )
 
-    prev_leg = -1
+    _validate_journey(bars, len(CLIP_ORDER))
+
+    prev_leg = None
     interstitial_idx = 0
-    total = len(bars)
     for bar in bars:
         if bar.get('epilogue'):
             continue
-        n = bar['number']
-        leg = leg_of.get(n, 0)
+        leg = bar['leg']
         if leg != prev_leg:
-            title, subtitle = legs[leg]
+            title, subtitle = LEGS[leg]
             parts.append(f'<h3 class="journey-leg">{title}<span class="journey-leg-sub">{subtitle}</span></h3>')
             prev_leg = leg
         parts.append(_render_stop(bar))
-        # Insert interstitials at fixed positions so all 9 clips and quotes
-        # are used across the 23-stop journey. Gaps of 2-3 stops throughout
-        # so no stop is isolated between two interstitials. The coda goes
-        # after the last stop instead of a 10th interstitial.
-        INTERSTITIAL_AFTER = {3, 6, 9, 12, 14, 16, 18, 20, 22}
-        if n in INTERSTITIAL_AFTER:
+        # Interstitials are flagged per-bar in the JSON ('interstitialAfter'),
+        # spaced so all 9 clips and quotes are used across the journey and no
+        # stop is isolated between two interstitials. The coda goes after
+        # the last stop instead of a 10th interstitial.
+        if bar.get('interstitialAfter'):
             parts.append(_interstitial(interstitial_idx))
             interstitial_idx += 1
     # Closing quote after the final stop (SAKEBARO spotlight).

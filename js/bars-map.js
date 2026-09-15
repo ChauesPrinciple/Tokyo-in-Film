@@ -130,13 +130,13 @@
   // Group the granular per-venue styles into a handful of useful buckets so
   // the Type filter stays practical (8 options, not 18 near-synonyms).
   const STYLE_CATEGORIES = [
-    ['Cocktail bars', ['Classic cocktail bar', 'Cocktail bar', 'Cocktail bar · high-end', 'Whisky & cocktail bar', 'Whisky bar']],
+    ['Cocktail bars', ['Classic cocktail bar', 'Cocktail bar', 'Cocktail bar · high-end']],
+    ['Whisky & spirits', ['Whisky bar', 'Whisky & cocktail bar', 'Rum & cigar bar']],
     ['Hotel bars', ['Hotel bar · high-end']],
-    ['Jazz & listening', ['Jazz bar', 'Jazz livehouse']],
+    ['Jazz, rock & records', ['Jazz bar', 'Jazz livehouse', 'Record bar', 'Rock bar']],
     ['Speakeasy', ['Speakeasy']],
-    ['Sake bars', ['Sake bar', 'Exclusive sake club']],
-    ['Snack & authentic bars', ['Snack bar', 'Bar', 'Authentic bar']],
-    ['Themed bars', ['Game bar', 'Shooting bar', 'Rock bar', 'Burlesque bar', 'Izakaya · music bar']],
+    ['Sake', ['Sake bar', 'Sake cocktail bar', 'Exclusive sake club']],
+    ['Themed & snack bars', ['Game bar', 'Burlesque bar', 'Izakaya · music bar', 'Snack bar']],
     ['Golden Gai', ['Golden Gai bars']],
   ];
   const _styleToCategory = new Map(STYLE_CATEGORIES.flatMap(([cat, styles]) => styles.map(s => [s, cat])));
