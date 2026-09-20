@@ -12,6 +12,8 @@ dist
 *.py
 *.ps1
 *.bak
+*.bak*
+.claude/
 # ...except the site build/check tooling
 !tools/*.py
 

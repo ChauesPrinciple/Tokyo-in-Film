@@ -80,6 +80,14 @@
     .masthead nav { display: flex; flex-wrap: wrap; gap: 22px; font-size: 13px; }
     .masthead nav a { text-decoration: none; color: var(--ink-soft); }
     .masthead nav a:hover { color: var(--mark-ink); text-decoration: underline; }
+    .masthead nav [aria-current] { color: var(--ink); font-weight: 700; }
+    .ig-link {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 34px; height: 34px; flex: none; border-radius: 9px;
+      color: var(--ink-soft); text-decoration: none; transition: color .12s, background .12s;
+    }
+    .ig-link:hover { color: var(--mark-ink); background: var(--mark-soft); }
+    .ig-link svg { width: 21px; height: 21px; display: block; }
 
     .page-header {
       position: relative; padding: 60px 0 60px; margin: 0 -20px; padding-left: 20px; padding-right: 20px;
@@ -802,11 +810,13 @@
     <header>
       <div class="masthead">
         <p class="eyebrow">Tokyo in Film</p>
-        <nav aria-label="Related pages">
+        <nav aria-label="The maps">
           <a href="ramen-map.html">Ramen Challenge</a>
-          <a href="anime-map.html">Anime Ward Map</a>
-          <a href="index.html">Home</a>
+          <span aria-current="page">Tokyo After Dark</span>
+          <a href="koenji-walk.html">Koenji Walk</a>
         </nav>
+        <a class="ig-link" href="https://www.instagram.com/chaues/" target="_blank" rel="noopener noreferrer"
+           aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.2" cy="6.75" r="1.25" fill="currentColor"/></svg></a>
       </div>
       <div class="page-header">
         <div class="page-header-text">

@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A walking map of Koenji, Suginami: vintage shops down the Pal arcade and Look, cafes and curry along the way, and two shrines to finish at depending on which bar ends your night.">
+  <meta name="theme-color" content="#f4f0ea">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap" rel="stylesheet">
+  <title>Koenji Walk — Tokyo in Film</title>
+  <link rel="icon" href="assets/images/image07.png">
+  <style>
+    :root {
+      color-scheme: dark;
+      /* DAY - under the arcade roof. Pal is covered; it is dim in daylight.
+         Warm brown-black, painted-signboard red, sodium gold. */
+      --ink: #f1e6d3;
+      --ink-soft: #c4b49a;
+      --muted: #927f66;
+      --line: #3b3025;
+      --paper: #1c1712;
+      --panel: #272019;
+      --sea: #221b15;
+      --land: #2a2219;
+      --land-line: #392f24;
+      --accent: #f1e6d3;
+      --accent-ink: #f1e6d3;
+      --signboard: #d94436;
+      --gold: #e0a93c;
+      --mark: #d94436;
+      --mark-soft: #3b211b;
+      --mark-ink: #f0907c;
+      --transit: #6d5f49;
+      --junjo: #e0685a;
+      --daiichi: #a58e6e;
+      --pal: #e0a340;
+      --etoile: #d98aa8;
+      --look: #6f9ad6;
+      --konan: #ae8cc9;
+      --shrine: #ff6a48;
+      --start: #93a7b7;
+      --ctx-road: #2f2820;
+      --ctx-major: #443929;
+      --ctx-rail: #52452f;
+      --ctx-station: #927f66;
+      --break-bg: #251e16;
+      --break-line: #3c3023;
+      --break-ink: #d2b78b;
+      --st-foot: #2e2720; --st-street: #362d24; --st-tertiary: #40362a;
+      --st-major: #4d4133; --st-rail: #605240; --st-shopping: #3d3328;
+      --walk-core: #f1e6d3;
+      --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.06'/%3E%3C/svg%3E");
+      --radius: 10px;
+      --display: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", "Yu Gothic",
+                 ui-sans-serif, -apple-system, "Segoe UI", Roboto, sans-serif;
+    }
+
+    /* NIGHT - shutters down, live houses open. Cold black, hot pink, violet. */
+    :root[data-mode="night"] {
+      --ink: #eae7f3;
+      --ink-soft: #aba4c2;
+      --muted: #7d7591;
+      --line: #272338;
+      --paper: #0c0b10;
+      --panel: #15131d;
+      --sea: #0a0910;
+      --land: #121019;
+      --land-line: #241f33;
+      --accent: #eae7f3;
+      --accent-ink: #eae7f3;
+      --signboard: #ff4d5e;
+      --gold: #ffd166;
+      --mark: #ff4d5e;
+      --mark-soft: #2b1926;
+      --mark-ink: #ff8c9c;
+      --transit: #4f4763;
+      --junjo: #ff6b7a;
+      --daiichi: #9089ac;
+      --pal: #ffb54d;
+      --etoile: #e88ad4;
+      --look: #5fa8ff;
+      --konan: #bd8cff;
+      --shrine: #ff5a3c;
+      --start: #92b3cb;
+      --ctx-road: #1e1b2a;
+      --ctx-major: #2b2639;
+      --ctx-rail: #39324e;
+      --ctx-station: #7d7591;
+      --break-bg: #17141f;
+      --break-line: #282238;
+      --break-ink: #bbb0d2;
+      --st-foot: #1c1a28; --st-street: #232030; --st-tertiary: #2b2739;
+      --st-major: #363146; --st-rail: #423b56; --st-shopping: #262233;
+      --walk-core: #eae7f3;
+      --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.09'/%3E%3C/svg%3E");
+    }
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      background: transparent;
+      color: var(--ink);
+      font: 400 15px/1.6 var(--display);
+      font-feature-settings: "kern" 1;
+      text-rendering: optimizeLegibility;
+    }
+    button, input, select { font: inherit; }
+    button, select, input { accent-color: var(--mark-ink); }
+    button, a, input, select, summary { -webkit-tap-highlight-color: transparent; }
+    a { color: var(--ink); text-underline-offset: 4px; }
+    a:hover { color: var(--mark-ink); }
+    button { cursor: pointer; }
+    button:disabled { cursor: not-allowed; opacity: .4; }
+    :focus-visible { outline: 2px solid var(--mark-ink); outline-offset: 2px; }
+    [hidden], .hidden { display: none !important; }
+    .skip-link { position: absolute; top: -100px; left: 20px; z-index: 10; background: var(--panel); padding: 12px; border: 1px solid var(--line); border-radius: 7px; }
+    .skip-link:focus { top: 12px; }
+
+    .page-shell { max-width: 1540px; margin: 0 auto; padding: 0 32px 48px; position: relative; }
+
+    header { position: relative; }
+    header::before {
+      content: ""; position: absolute; left: -32px; right: -32px; top: -20px; bottom: -28px;
+      background: linear-gradient(180deg, color-mix(in srgb, var(--paper) 92%, transparent) 0%,
+                                          color-mix(in srgb, var(--paper) 78%, transparent) 62%,
+                                          transparent 100%);
+      z-index: -1; pointer-events: none;
+    }
+    .masthead {
+      display: flex; align-items: center; justify-content: space-between; gap: 24px;
+      padding: 22px 0 18px; border-bottom: 1px solid var(--line);
+    }
+    .eyebrow { margin: 0; color: var(--signboard); font-size: 11px; font-weight: 900; letter-spacing: .24em; text-transform: uppercase; }
+    .masthead nav { display: flex; flex-wrap: wrap; gap: 22px; font-size: 13px; }
+    .masthead nav a { text-decoration: none; color: var(--ink-soft); }
+    .masthead nav a:hover { color: var(--mark-ink); text-decoration: underline; }
+    .masthead nav [aria-current] { color: var(--ink); font-weight: 700; }
+    .ig-link {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 34px; height: 34px; flex: none; border-radius: 9px;
+      color: var(--ink-soft); text-decoration: none; transition: color .12s, background .12s;
+    }
+    .ig-link:hover { color: var(--mark-ink); background: var(--mark-soft); }
+    .ig-link svg { width: 21px; height: 21px; display: block; }
+
+    .page-header { padding: 28px 0 8px; }
+    .page-header h1 {
+      margin: 0; font-family: var(--display); font-weight: 900;
+      font-size: clamp(34px, 4.6vw, 56px); letter-spacing: -.03em; line-height: 1.02;
+      color: var(--signboard); text-transform: uppercase;
+    }
+    .lede { margin: 10px 0 0; color: var(--ink-soft); font-size: 15px; max-width: 62ch; line-height: 1.55; }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 410px;
+      gap: 38px;
+      padding-top: 16px;
+      align-items: start;
+    }
+    @media (max-width: 1040px) { .layout { grid-template-columns: 1fr; } }
+
+    .map-panel { position: sticky; top: 20px; }
+    @media (max-width: 1040px) { .map-panel { position: static; } }
+
+    .map-toolbar {
+      display: flex; gap: 8px; align-items: center; margin-bottom: 12px; flex-wrap: wrap;
+    }
+    .map-toolbar button {
+      font: 500 13.5px/1 inherit; padding: 8px 13px; border: 1px solid var(--line);
+      background: var(--panel); border-radius: 7px; cursor: pointer; color: var(--ink-soft);
+      transition: border-color .12s, color .12s;
+    }
+    .map-toolbar button:hover:not(:disabled) { border-color: var(--ink); color: var(--ink); }
+    .map-toolbar button:disabled { opacity: .4; cursor: default; }
+
+    /* The sky the page sits in. Scroll is the clock. */
+    #sky { position: fixed; inset: 0; z-index: -2; pointer-events: none; overflow: hidden; }
+    #grain { position: fixed; inset: 0; z-index: -1; pointer-events: none; background-image: var(--grain); }
+    #dawn-glow {
+      position: absolute; left: -18%; top: 0; bottom: 0; width: 62%;
+      background: radial-gradient(60% 52% at 22% 34%,
+        rgba(255, 138, 74, .48) 0%, rgba(214, 74, 96, .22) 45%, transparent 76%);
+      pointer-events: none;
+    }
+    #sun, #moon {
+      position: absolute; width: 96px; height: 96px; border-radius: 50%;
+      transform: translate(-50%, -50%); will-change: left, top, opacity;
+    }
+    #sun { background: #ffd88a; box-shadow: 0 0 90px 42px rgba(255, 190, 110, .40); }
+    #moon {
+      background: radial-gradient(circle at 36% 34%, #f2eeff 0%, #cfc7e8 62%, #a79ec9 100%);
+      width: 72px; height: 72px; box-shadow: 0 0 70px 26px rgba(190, 180, 235, .26); opacity: 0;
+    }
+    @media (max-width: 600px) {
+      #sun { width: 78px; height: 78px; box-shadow: 0 0 78px 34px rgba(255, 190, 110, .42); }
+      #moon { width: 60px; height: 60px; }
+      #dawn-glow { width: 86%; left: -26%; }
+    }
+    @media (prefers-reduced-motion: reduce) { #sun, #moon { transition: none; } }
+
+    .time-readout {
+      display: inline-flex; align-items: center; gap: 8px; margin: 0 0 0 auto;
+      font: 700 11px/1 inherit; letter-spacing: .14em; text-transform: uppercase;
+      padding: 8px 13px; border: 1px solid var(--line); background: var(--panel);
+      border-radius: 999px; color: var(--ink-soft);
+    }
+    .mode-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--gold); box-shadow: 0 0 0 3px var(--mark-soft);
+    }
+
+    .map-frame {
+      position: relative; background: transparent;
+      border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden;
+    }
+    #koenji-map {
+      display: block; width: 100%; height: min(76vh, 720px); outline: none;
+      cursor: grab; touch-action: none;
+      background: color-mix(in srgb, var(--sea) 91%, transparent);
+    }
+    #koenji-map:active { cursor: grabbing; }
+    #koenji-map:focus-visible { outline: 2px solid var(--mark-ink); outline-offset: -2px; }
+
+    .scale-bar {
+      position: absolute; left: 16px; bottom: 14px; z-index: 2; color: var(--ink-soft);
+      font-size: 11px; letter-spacing: .05em; pointer-events: none;
+      background: color-mix(in srgb, var(--panel) 88%, transparent); padding: 3px 7px; border-radius: 4px;
+    }
+    .map-status {
+      margin: 11px 2px 0; color: var(--ink-soft); font-size: 13px;
+      min-height: 20px; max-width: 80ch;
+    }
+
+    .map-foot { padding-top: 12px; position: relative; }
+    .map-key {
+      background: color-mix(in srgb, var(--paper) 82%, transparent);
+      backdrop-filter: blur(8px);
+      border-radius: var(--radius); padding: 10px 12px;
+    }
+    .key-heading { margin: 0 0 10px; font-size: 11px; letter-spacing: .08em; font-weight: 700; text-transform: uppercase; color: var(--muted); }
+    .map-hint { margin: 12px 0 0; max-width: 380px; font-size: 11px; color: var(--muted); line-height: 1.5; }
+
+    .list-panel {
+      max-height: calc(100vh - 64px); overflow: auto; padding-right: 6px; scroll-padding-top: 104px;
+      scrollbar-width: thin; scrollbar-color: var(--line) transparent;
+    }
+    .list-panel::-webkit-scrollbar { width: 6px; }
+    .list-panel::-webkit-scrollbar-track { background: transparent; }
+    .list-panel::-webkit-scrollbar-thumb { background: var(--line); border-radius: 3px; }
+    @media (max-width: 1040px) { .list-panel { max-height: none; overflow: visible; } }
+
+    .list-controls {
+      background: color-mix(in srgb, var(--paper) 80%, transparent);
+      backdrop-filter: blur(10px);
+      display: grid; grid-template-columns: 1fr 150px 190px; gap: 10px 12px; align-items: end;
+      position: sticky; top: 0; z-index: 2;
+      padding: 8px 10px 12px; margin-bottom: 4px; border-radius: var(--radius);
+    }
+    .field { display: grid; gap: 5px; font-size: 11px; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+    .field input, .field select {
+      font: 400 14px/1.3 inherit; text-transform: none; letter-spacing: 0; color: var(--ink);
+      padding: 9px 10px; border: 1px solid var(--line); border-radius: 7px; background: var(--panel);
+      transition: border-color .12s;
+    }
+    .field input:focus, .field select:focus { border-color: var(--mark-ink); outline: 2px solid var(--mark-ink); outline-offset: -1px; }
+    .field input::placeholder { color: var(--muted); }
+    .count { grid-column: 1 / -1; margin: 0; font-size: 12.5px; color: var(--muted); }
+    .count span { color: var(--mark-ink); font-weight: 600; }
+
+    .shop-list { display: grid; gap: 10px; }
+
+    .section-header {
+      margin: 20px 0 6px; padding: 10px 0 6px; border-bottom: 2px solid var(--mark);
+      scroll-margin: 8px;
+    }
+    .section-header:first-child { margin-top: 0; }
+    .section-header h2 {
+      margin: 0; font-family: var(--display); font-size: 19px; font-weight: 900;
+      letter-spacing: -.01em; color: var(--ink); text-transform: uppercase;
+    }
+    .section-header p {
+      margin: 4px 0 0; font-size: 12px; color: var(--muted); font-weight: 500;
+      letter-spacing: .03em; text-transform: uppercase;
+    }
+    .section-header.is-hidden { display: none; }
+
+    .shop-card {
+      border: 1px solid var(--line); border-radius: var(--radius);
+      background: color-mix(in srgb, var(--panel) 90%, transparent);
+      backdrop-filter: blur(6px); padding: 14px 16px 15px;
+      transition: border-color .12s, box-shadow .12s;
+      scroll-margin: 8px;
+    }
+    .shop-card:hover { border-color: var(--signboard); cursor: pointer; }
+    .shop-card.is-selected {
+      background: var(--panel); backdrop-filter: none;
+      border-color: var(--ink); box-shadow: inset 3px 0 0 var(--mark), 0 6px 18px -12px rgba(0,0,0,.45);
+    }
+
+    .shop-select {
+      display: flex; gap: 10px; align-items: baseline; width: 100%;
+      background: none; border: 0; padding: 0; text-align: left; cursor: pointer;
+      font: 600 16.5px/1.3 inherit; letter-spacing: -.005em; color: var(--ink);
+    }
+    .shop-select:hover { color: var(--mark-ink); }
+    .shop-number {
+      display: inline-grid; place-items: center; width: 23px; height: 23px; flex: none;
+      border-radius: 50%; background: var(--ink); color: var(--paper);
+      font: 700 11.5px/1 inherit; transform: translateY(2px);
+    }
+
+    .shop-badges { margin: 7px 0 0 33px; display: flex; flex-wrap: wrap; gap: 6px; }
+    .shop-badge {
+      font-size: 10px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase;
+      padding: 2px 8px; border-radius: 999px;
+    }
+
+    .shop-style { margin: 6px 0 0 33px; font-size: 13.5px; color: var(--mark-ink); font-weight: 600; }
+    .shop-rating { margin: 2px 0 0 33px; font-size: 12px; color: var(--muted); }
+    .shop-address { margin: 3px 0 0 33px; font-size: 13.5px; color: var(--ink-soft); overflow-wrap: anywhere; }
+    .shop-station { margin: 4px 0 0 33px; font-size: 12px; color: var(--mark-ink); font-weight: 500; }
+
+    .shop-description {
+      margin: 10px 0 0 33px; font-size: 14px; line-height: 1.62; max-width: 56ch;
+      color: var(--ink); display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden;
+    }
+    .shop-note {
+      margin: 9px 0 0 33px; font-size: 12.5px; line-height: 1.5; color: var(--muted); max-width: 56ch;
+      display: none;
+    }
+    .shop-links { margin: 11px 0 0 33px; display: none; flex-wrap: wrap; gap: 7px; }
+    .shop-link {
+      font-size: 12px; color: var(--ink-soft); text-decoration: none;
+      border: 1px solid var(--line); border-radius: 999px; padding: 4px 10px; background: var(--paper);
+      transition: border-color .12s, color .12s;
+    }
+    .shop-link:hover { color: var(--ink); border-color: var(--ink); }
+
+    .shop-card.is-selected .shop-description { -webkit-line-clamp: unset; display: block; }
+    .shop-card.is-selected .shop-note { display: block; }
+    .shop-card.is-selected .shop-links { display: flex; }
+
+    #empty-state { color: var(--muted); font-size: 14px; padding: 20px 0; }
+
+    .page-footer {
+      margin-top: 32px; padding: 16px 16px 12px; border-top: 1px solid var(--line);
+      background: color-mix(in srgb, var(--paper) 88%, transparent); border-radius: var(--radius);
+    }
+    .print-note { margin: 0; font-size: 13px; color: var(--ink-soft); }
+    .sources { margin: 8px 0 0; color: var(--muted); font-size: 11px; line-height: 1.6; }
+    .sources a { color: var(--ink-soft); }
+    #source-notes { margin-top: 12px; max-width: 850px; color: var(--muted); font-size: 12px; line-height: 1.6; }
+    #source-notes summary { width: fit-content; color: var(--ink-soft); cursor: pointer; font-weight: 600; }
+    #source-notes summary:hover { color: var(--mark-ink); }
+    #source-notes p { margin: 10px 0; }
+    noscript p { padding: 16px; border: 1px solid var(--mark); background: var(--mark-soft); color: var(--mark-ink); border-radius: 7px; }
+
+    svg text { font-family: inherit; pointer-events: none; }
+    .place-label { fill: var(--muted); font-size: 11px; font-weight: 600; pointer-events: none; }
+
+    /* ---- Street identity ------------------------------------------------
+       Colour says which street you are standing on. Nothing on this map
+       encodes where the data came from; that belongs in the notes, not here. */
+    /* Wide context: only legible once you zoom past the neighbourhood. */
+    .ctx-line { fill: none; stroke-linejoin: round; stroke-linecap: round; }
+    .ctx-road { stroke: var(--ctx-road); stroke-width: 1; opacity: .7; }
+    .ctx-major { stroke: var(--ctx-major); stroke-width: 1.8; }
+    .ctx-rail { stroke: var(--ctx-rail); stroke-width: 1.6; stroke-dasharray: 7 4; }
+    #koenji-context { transition: opacity .2s; }
+    .ctx-station-dot { fill: var(--ctx-station); }
+    .ctx-station-name {
+      fill: var(--ctx-station); font-weight: 700; letter-spacing: .04em;
+      paint-order: stroke; stroke: var(--paper); stroke-width: 3px; stroke-linejoin: round;
+    }
+    svg.is-wide .street-foot { display: none; }
+    svg.is-wide .street-street { opacity: .3; }
+
+    .street-line { fill: none; stroke-linejoin: round; stroke-linecap: round; }
+    .street-foot { stroke: var(--st-foot); stroke-width: 1; opacity: .5; }
+    .street-street { stroke: var(--st-street); stroke-width: 1.3; opacity: .55; }
+    .street-tertiary { stroke: var(--st-tertiary); stroke-width: 2; opacity: .6; }
+    .street-major { stroke: var(--st-major); stroke-width: 3; opacity: .7; }
+    .street-rail { stroke: var(--st-rail); stroke-width: 3.4; opacity: .75; }
+    .street-shopping { stroke: var(--st-shopping); stroke-width: 1.8; opacity: .6; }
+
+    .street-route { stroke-width: 10; opacity: .16; }
+    .street-core { stroke-width: 2; opacity: .7; }
+    .street-is-junjo  { stroke: var(--junjo); }
+    .street-is-pal    { stroke: var(--pal); }
+    .street-is-etoile { stroke: var(--etoile); }
+    .street-is-look   { stroke: var(--look); }
+    .street-is-konan  { stroke: var(--konan); }
+    svg.has-selection .street-route { opacity: .14; }
+    svg.has-selection .street-core { opacity: .6; }
+
+    #street-labels { font-weight: 700; letter-spacing: .1em; }
+    .walk-casing { stroke: var(--paper); stroke-width: 9; stroke-linejoin: round; stroke-linecap: round; opacity: .9; }
+    .walk-core { stroke: var(--walk-core); stroke-width: 3.2; stroke-linejoin: round; stroke-linecap: round; }
+    .walk-leg.is-branch .walk-core { stroke: var(--shrine); stroke-dasharray: 9 5; stroke-width: 3.4; }
+    .walk-leg { transition: opacity .18s; }
+    .walk-leg.is-muted { opacity: .2; }
+    svg.has-selection .walk-core { opacity: .78; }
+    svg.has-selection .walk-leg.is-branch .walk-core { opacity: .5; }
+
+    .street-label {
+      text-transform: uppercase; paint-order: stroke;
+      stroke: var(--paper); stroke-linejoin: round;
+    }
+    .street-label-junjo { fill: var(--junjo); }
+    .street-label-pal { fill: var(--pal); }
+    .street-label-etoile { fill: var(--etoile); }
+    .street-label-look { fill: var(--look); }
+    .street-label-konan { fill: var(--konan); }
+
+    /* ---- Place marks ----------------------------------------------------
+       Shape says what kind of place: disc = vintage & shops, square = coffee
+       and food, diamond = bars & live houses, torii = one of the two endings. */
+    /* One variable, resolved by the cascade. No calc(): if either operand ever
+       substitutes empty, the whole declaration is invalid at computed-value
+       time and opacity silently snaps back to 1. */
+    .map-marker {
+      cursor: pointer; outline: none; pointer-events: auto;
+      opacity: var(--fade, 1);
+      transition: opacity .25s;
+    }
+    .map-marker.kind-shop, .map-marker.kind-food { --fade: var(--day-fade, 1); }
+    .map-marker.is-muted { --fade: .24; }
+    .map-marker.is-selected { --fade: 1; }
+    .map-marker .marker-shape {
+      stroke: var(--paper); stroke-width: 2;
+      transition: fill .12s, stroke .12s;
+    }
+    .marker-leader { stroke: var(--ink-soft); stroke-width: 1.2; opacity: .55; }
+    .marker-number {
+      fill: var(--paper); stroke: none; font-size: 12px; font-weight: 700;
+      text-anchor: middle; dominant-baseline: central; pointer-events: none;
+    }
+    .marker-torii { stroke: var(--paper); stroke-width: 2; fill: none; stroke-linecap: round; pointer-events: none; }
+
+    .street-junjo   .marker-shape { fill: var(--junjo); }
+    .street-daiichi .marker-shape { fill: var(--daiichi); }
+    .street-pal     .marker-shape { fill: var(--pal); }
+    .street-etoile  .marker-shape { fill: var(--etoile); }
+    .street-look    .marker-shape { fill: var(--look); }
+    .street-konan   .marker-shape { fill: var(--konan); }
+    .street-shrine  .marker-shape { fill: var(--shrine); stroke-width: 2.5; }
+    .street-start   .marker-shape { fill: var(--start); }
+    .marker-hole { fill: var(--paper); pointer-events: none; }
+    /* A pin we placed by hand should not look as certain as a geocoded one. */
+    .map-marker.is-approximate .marker-shape { stroke-dasharray: 3 2.5; stroke-width: 2.5; }
+
+    /* No drop-shadow here: two shrines plus a selected marker meant three live
+       filters recomputing on every pan. A baked ring costs nothing. */
+    .map-marker.kind-shrine .marker-shape { fill: var(--shrine); stroke-width: 2.5; }
+    .marker-halo { fill: none; stroke: var(--shrine); stroke-width: 2; opacity: .3; }
+
+    .map-marker.is-selected .marker-shape { stroke: var(--ink); stroke-width: 3.5; }
+    .map-marker.is-selected { filter: drop-shadow(0 3px 7px rgba(0,0,0,.3)); }
+    .map-marker:hover .marker-shape, .map-marker:focus-visible .marker-shape { stroke: var(--ink); stroke-width: 3; }
+    .map-marker:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+
+    .been-badge { fill: var(--gold); stroke: var(--paper); stroke-width: 1.5; display: none; }
+    .been-check { fill: var(--paper); font-size: 8px; font-weight: 700; display: none; }
+    .map-marker.is-been .been-badge, .map-marker.is-been .been-check { display: block; }
+
+    /* ---- Legend ---------------------------------------------------------- */
+    #map-legend { display: grid; gap: 14px; font-size: 12px; color: var(--ink-soft); list-style: none; margin: 0; padding: 0; }
+    .legend-row { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; }
+    .legend-item { display: flex; gap: 7px; align-items: center; }
+    .legend-glyph { flex: none; width: 17px; height: 17px; background: var(--muted); }
+    .legend-glyph.is-shop { border-radius: 50%; }
+    .legend-glyph.is-food { border-radius: 4px; }
+    .legend-glyph.is-night { transform: rotate(45deg) scale(.86); border-radius: 2px; }
+    .legend-glyph.is-shrine { border-radius: 50%; background: var(--shrine); }
+    .legend-glyph.is-start { border-radius: 50%; background: var(--start); box-shadow: inset 0 0 0 4px var(--paper); }
+    .legend-swatch { flex: none; width: 22px; height: 5px; border-radius: 3px; }
+    .legend-swatch.is-junjo { background: var(--junjo); }
+    .legend-swatch.is-daiichi { background: var(--daiichi); }
+    .legend-swatch.is-pal { background: var(--pal); }
+    .legend-swatch.is-etoile { background: var(--etoile); }
+    .legend-swatch.is-look { background: var(--look); }
+    .legend-swatch.is-konan { background: var(--konan); }
+
+    /* ---- Cards ----------------------------------------------------------- */
+    .shop-number.kind-food { border-radius: 5px; }
+    .shop-number.kind-night { border-radius: 3px; transform: translateY(2px) rotate(45deg); }
+    .shop-number.kind-night::first-line { transform: rotate(-45deg); }
+    .shop-badge.badge-kind { background: var(--ink); color: var(--paper); }
+    .shop-badge.badge-kind.kind-food { background: var(--break-ink); color: var(--paper); }
+    .shop-badge.badge-kind.kind-night { background: var(--konan); color: var(--paper); }
+    .shop-badge.badge-street { color: var(--paper); }
+    .badge-street.street-junjo { background: var(--junjo); }
+    .badge-street.street-daiichi { background: var(--daiichi); }
+    .badge-street.street-pal { background: var(--pal); }
+    .badge-street.street-etoile { background: var(--etoile); }
+    .badge-street.street-look { background: var(--look); }
+    .badge-street.street-konan { background: var(--konan); }
+    .shop-badge.is-been { background: var(--mark-soft); color: var(--gold); }
+    .shop-badge.is-closed { background: var(--mark-soft); color: var(--mark-ink); }
+    .shop-badge.badge-detour { background: var(--panel); color: var(--muted); box-shadow: inset 0 0 0 1px var(--line); }
+    .shop-card.is-muted { opacity: .45; }
+
+    .section-header.street-junjo { border-bottom-color: var(--junjo); }
+    .section-header.street-daiichi { border-bottom-color: var(--daiichi); }
+    .section-header.street-pal { border-bottom-color: var(--pal); }
+    .section-header.street-etoile { border-bottom-color: var(--etoile); }
+    .section-header.street-look { border-bottom-color: var(--look); }
+    .section-header.street-konan { border-bottom-color: var(--konan); }
+    .section-header.street-shrine { border-bottom-color: var(--shrine); }
+
+    /* ---- The start -------------------------------------------------------- */
+    .origin {
+      border: 1px solid var(--line); border-left: 4px solid var(--start);
+      border-radius: var(--radius); background: color-mix(in srgb, var(--panel) 90%, transparent);
+      backdrop-filter: blur(6px); padding: 14px 16px 15px; margin-bottom: 4px;
+    }
+    .origin-head {
+      display: flex; gap: 10px; align-items: center; width: 100%;
+      background: none; border: 0; padding: 0; text-align: left; cursor: pointer;
+      font: 700 17px/1.25 inherit; letter-spacing: -.01em; color: var(--ink);
+    }
+    .origin-head:hover { color: var(--start); }
+    .origin-ring {
+      flex: none; width: 17px; height: 17px; border-radius: 50%;
+      background: var(--start); box-shadow: inset 0 0 0 4px var(--panel);
+    }
+    .origin-heading {
+      margin: 7px 0 0; font-size: 11px; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--start);
+    }
+    .origin-blurb { margin: 7px 0 0; font-size: 13.5px; line-height: 1.55; color: var(--ink-soft); max-width: 56ch; }
+
+    /* ---- The two endings -------------------------------------------------- */
+    .endings { display: grid; gap: 12px; margin-top: 10px; }
+    .endings.is-hidden { display: none; }
+    .ending {
+      border: 1px solid var(--line); border-left: 4px solid var(--shrine);
+      border-radius: var(--radius); background: color-mix(in srgb, var(--panel) 90%, transparent);
+      backdrop-filter: blur(6px); padding: 15px 17px 16px;
+      transition: opacity .15s, border-color .15s, box-shadow .15s;
+    }
+    .ending.is-chosen { box-shadow: 0 6px 20px -14px rgba(150,40,20,.6); border-color: var(--shrine); }
+    .ending.is-dimmed { opacity: .5; }
+    .ending-head {
+      display: flex; gap: 9px; align-items: center; width: 100%;
+      background: none; border: 0; padding: 0; text-align: left; cursor: pointer;
+      font: 700 18px/1.25 inherit; letter-spacing: -.01em; color: var(--ink);
+    }
+    .ending-head:hover { color: var(--shrine); }
+    .ending-torii { color: var(--shrine); font-size: 21px; line-height: 1; }
+    .ending-heading {
+      margin: 8px 0 0; font-size: 11px; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--shrine);
+    }
+    .ending-cost {
+      margin: 5px 0 0; font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums;
+    }
+    .ending-blurb { margin: 8px 0 0; font-size: 14px; line-height: 1.6; color: var(--ink); max-width: 56ch; }
+    .ending-desc { margin: 8px 0 0; font-size: 13px; line-height: 1.55; color: var(--muted); max-width: 56ch; }
+    .ending-bars { margin: 10px 0 0; font-size: 13px; color: var(--ink-soft); }
+    .ending-bars-label { font-weight: 700; color: var(--muted); text-transform: uppercase; font-size: 11px; letter-spacing: .06em; }
+    .ending-bar {
+      background: none; border: 0; padding: 0; font: inherit; color: var(--konan);
+      text-decoration: underline; text-underline-offset: 3px; cursor: pointer;
+    }
+    .ending-bar:hover { color: var(--shrine); }
+    .branch-pick {
+      font: 600 12px/1 inherit; padding: 6px 13px; border: 1px solid var(--shrine);
+      background: var(--panel); border-radius: 999px; cursor: pointer; color: var(--shrine);
+      transition: background .12s, color .12s;
+    }
+    .branch-pick:hover { background: var(--mark-soft); }
+    .branch-pick.is-on { background: var(--shrine); color: #fff; }
+
+    .break-group {
+      display: grid; gap: 10px; margin: 14px 0 6px;
+      padding: 14px 15px 15px; border-radius: var(--radius);
+      background: color-mix(in srgb, var(--break-bg) 88%, transparent);
+      backdrop-filter: blur(6px); box-shadow: inset 0 0 0 1px var(--break-line);
+    }
+    .break-group.is-hidden { display: none; }
+    .break-head { display: flex; align-items: center; gap: 9px; }
+    .break-mark {
+      flex: none; width: 15px; height: 15px; border-radius: 4px; background: var(--break-ink);
+    }
+    .break-title {
+      margin: 0; font-size: 15.5px; font-weight: 700; letter-spacing: -.01em; color: var(--ink);
+    }
+    .break-sub {
+      margin: 5px 0 0; font-size: 11px; font-weight: 700; letter-spacing: .06em;
+      text-transform: uppercase; color: var(--break-ink);
+    }
+    .break-blurb { margin: 7px 0 2px; font-size: 13.5px; line-height: 1.55; color: var(--ink-soft); max-width: 56ch; }
+    .break-group .shop-card { background: color-mix(in srgb, var(--panel) 92%, transparent); }
+
+    .night-group { display: grid; gap: 10px; margin-top: 10px; transition: opacity .15s; }
+    .night-group.is-muted { opacity: .45; }
+    .night-group.is-hidden { display: none; }
+    .night-also { margin: 10px 0 0; font-size: 12.5px; color: var(--muted); line-height: 1.6; }
+    .night-also-label { font-weight: 700; text-transform: uppercase; font-size: 10.5px; letter-spacing: .06em; }
+    .night-label {
+      margin: 6px 0 0; font-size: 11px; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--konan);
+      display: flex; align-items: center; gap: 9px;
+    }
+    .night-label::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
+    /* Been-here toggle in card */
+    .been-toggle {
+      font: 500 12px/1 inherit; padding: 5px 11px; border: 1px solid var(--line);
+      background: var(--paper); border-radius: 999px; cursor: pointer; color: var(--ink-soft);
+      transition: border-color .12s, color .12s, background .12s;
+    }
+    .been-toggle:hover { border-color: var(--ink); color: var(--ink); }
+    .been-toggle.is-on { background: var(--mark-soft); border-color: var(--gold); color: var(--gold); font-weight: 700; }
+
+    @media (max-width: 1040px) {
+      .page-shell { padding: 0 20px 32px; }
+      .list-controls { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .page-shell { padding: 0 16px 24px; }
+      .page-header { padding: 14px 0 4px; }
+      .lede { font-size: 14px; line-height: 1.5; }
+      .map-toolbar { margin-bottom: 9px; }
+      #koenji-map { height: min(64vh, 520px); }
+      .masthead nav { gap: 12px 14px; font-size: 11.5px; }
+      .masthead { gap: 14px; padding: 16px 0 12px; }
+      .masthead nav { gap: 14px; font-size: 12px; }
+      .page-header { padding: 20px 0 6px; }
+      .list-controls { grid-template-columns: 1fr; }
+      .shop-card { padding: 13px 14px 14px; }
+      .shop-select { font-size: 15px; }
+    }
+
+    @page { size: A4 landscape; margin: 10mm; }
+    @media print {
+      * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      body { background: #fff; font-size: 9pt; }
+      #sky, #grain, .time-readout { display: none !important; }
+      .page-shell, .map-frame { background: #fff; }
+      #koenji-map { background: var(--sea); }
+      .shop-card, .ending, .origin, .break-group, .map-key, .list-controls {
+        background: #fff !important; backdrop-filter: none !important;
+      }
+      .map-marker { opacity: 1 !important; }
+      .page-shell { max-width: none; margin: 0; padding: 0 12px; }
+      .skip-link, .masthead nav, .map-toolbar, .list-controls, #source-notes, #map-status, .map-hint, .shop-note, .shop-links, .been-toggle, noscript { display: none !important; }
+      .masthead { padding: 0 0 2mm; border-bottom-color: var(--line); }
+      .page-header { padding: 2mm 0; }
+      .page-header h1 { font-size: 24pt; }
+      .lede { font-size: 8pt; }
+      .layout { display: block; }
+      .map-panel { position: static; }
+      .map-frame { border-radius: 0; }
+      #koenji-map { height: 110mm; }
+      .street-foot { stroke-width: 0.6; }
+      .street-street { stroke-width: 0.9; }
+      .street-tertiary { stroke-width: 1.4; }
+      .street-major { stroke-width: 2; }
+      .street-rail { stroke-width: 2.4; }
+      .street-shopping { stroke-width: 1.4; opacity: .5; }
+      .street-route { stroke-width: 4; opacity: .75; }
+      .scale-bar { bottom: 3mm; left: 3mm; font-size: 7pt; }
+      .map-foot { padding-top: 2mm; }
+      .key-heading { margin-bottom: 2mm; font-size: 7pt; }
+      #map-legend { display: flex; flex-wrap: wrap; gap: 3mm; font-size: 7pt; }
+      .list-panel { max-height: none; overflow: visible; }
+      .shop-list { display: block; }
+      .section-header { break-inside: avoid; }
+      .shop-card { break-inside: avoid; border-radius: 0; border: 0; border-bottom: 1px solid var(--line); padding: 3mm 0; box-shadow: none; }
+      .shop-card.is-selected { box-shadow: none; background: #fff; }
+      .shop-description, .shop-note, .shop-links { display: block; -webkit-line-clamp: unset; }
+      .shop-links { display: flex !important; }
+      .shop-select { font-size: 10pt; }
+      .shop-number { width: 5mm; height: 5mm; font-size: 8pt; }
+      .shop-area { margin: 1mm 0 0 7mm; font-size: 8pt; }
+      .shop-style { margin: 0.5mm 0 0 7mm; font-size: 8pt; }
+      .shop-rating { margin: 0.5mm 0 0 7mm; font-size: 7.5pt; }
+      .shop-address { margin: 0.5mm 0 0 7mm; font-size: 8pt; }
+      .shop-station { margin: 0.5mm 0 0 7mm; font-size: 7.5pt; }
+      .shop-description { margin: 1mm 0 0 7mm; font-size: 8.5pt; line-height: 1.4; }
+      .shop-note { margin: 1mm 0 0 7mm; font-size: 7.5pt; }
+      .page-footer { margin-top: 3mm; padding-top: 2mm; break-inside: avoid; }
+      .print-note { font-size: 8pt; }
+      .sources { font-size: 6pt; }
+      .sources a { text-decoration: none; }
+    }
+  </style>
+  <script src="js/koenji-walk.js?v=20260921z" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#shop-search">Skip to Koenji places</a>
+  <div id="sky" aria-hidden="true"><span id="dawn-glow"></span><span id="sun"></span><span id="moon"></span></div>
+  <div id="grain" aria-hidden="true"></div>
+  <div class="page-shell">
+    <header>
+      <div class="masthead">
+        <p class="eyebrow">Tokyo in Film</p>
+        <nav aria-label="The maps">
+          <a href="ramen-map.html">Ramen Challenge</a>
+          <a href="tokyo-after-dark.html">Tokyo After Dark</a>
+          <span aria-current="page">Koenji Walk</span>
+        </nav>
+        <a class="ig-link" href="https://www.instagram.com/chaues/" target="_blank" rel="noopener noreferrer"
+           aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.2" cy="6.75" r="1.25" fill="currentColor"/></svg></a>
+      </div>
+      <div class="page-header">
+        <h1>Koenji Walk</h1>
+        <p class="lede">Koenji has the densest concentration of secondhand clothing in Tokyo, about ten live houses within a few minutes of the station, and a postwar food market you enter through a greengrocer. This walk runs south from the north exit down Junjō, through Daiichi Market, along the Pal arcade into Look, and ends at a shrine — which one depends on where you want to drink.</p>
+      </div>
+    </header>
+    <noscript><p>This interactive map needs JavaScript to load places and map details. Please enable JavaScript and reload this page.</p></noscript>
+    <main class="layout">
+      <section class="map-panel" aria-label="Map">
+        <div class="map-toolbar">
+          <button type="button" id="zoom-in" aria-label="Zoom in">+</button>
+          <button type="button" id="zoom-out" aria-label="Zoom out">&minus;</button>
+          <button type="button" id="fit-map">Fit</button>
+          <button type="button" id="print-map" disabled>Print</button>
+          <p class="time-readout" aria-live="polite">
+            <span class="mode-dot" aria-hidden="true"></span><span id="mode-label">Dawn</span>
+          </p>
+        </div>
+        <div class="map-frame">
+          <svg id="koenji-map" role="group" aria-label="Map of places in Koenji, Suginami"></svg>
+          <div id="scale-bar" class="scale-bar" aria-hidden="true"></div>
+        </div>
+        <p id="map-status" class="map-status" role="status" aria-live="polite">Loading map data.</p>
+        <div class="map-foot">
+          <div class="map-key">
+            <h2 class="key-heading" id="map-legend-heading">Shape is what it is. Colour is which street.</h2>
+            <ul id="map-legend" aria-labelledby="map-legend-heading">
+              <li class="legend-row">
+                <span class="legend-item"><span class="legend-glyph is-start" aria-hidden="true"></span> Koenji Station &mdash; the start</span>
+                <span class="legend-item"><span class="legend-glyph is-shop" aria-hidden="true"></span> Vintage &amp; shops</span>
+                <span class="legend-item"><span class="legend-glyph is-food" aria-hidden="true"></span> Coffee, lunch &amp; snacks</span>
+                <span class="legend-item"><span class="legend-glyph is-night" aria-hidden="true"></span> Bars &amp; live houses</span>
+                <span class="legend-item"><span class="legend-glyph is-shrine" aria-hidden="true"></span> Shrine &mdash; the two endings</span>
+              </li>
+              <li class="legend-row">
+                <span class="legend-item"><span class="legend-swatch is-junjo" aria-hidden="true"></span> Junj&#333; &mdash; north side, everyday</span>
+                <span class="legend-item"><span class="legend-swatch is-daiichi" aria-hidden="true"></span> Daiichi &mdash; postwar food market</span>
+                <span class="legend-item"><span class="legend-swatch is-pal" aria-hidden="true"></span> Pal &mdash; the covered arcade</span>
+                <span class="legend-item"><span class="legend-swatch is-etoile" aria-hidden="true"></span> Etoile &mdash; older, quieter</span>
+                <span class="legend-item"><span class="legend-swatch is-look" aria-hidden="true"></span> Look &mdash; the vintage spine</span>
+                <span class="legend-item"><span class="legend-swatch is-konan" aria-hidden="true"></span> K&#333;nan-d&#333;ri &mdash; live houses</span>
+              </li>
+            </ul>
+            <p class="map-hint">Drag to explore. Use + and &minus; to zoom. Select a mark or a place in the index for details. Keyboard: Tab to a mark, then Enter or Space.</p>
+          </div>
+        </div>
+      </section>
+      <section class="list-panel" aria-label="Places">
+        <div class="list-controls">
+          <label class="field">
+            <span>Search</span>
+            <input type="search" id="shop-search" placeholder="Name, area, address" autocomplete="off">
+          </label>
+          <label class="field">
+            <span>Section</span>
+            <select id="section-filter"><option value="">All sections</option></select>
+          </label>
+          <label class="field">
+            <span>When</span>
+            <select id="when-filter">
+              <option value="">Whole walk</option>
+              <option value="day">Daytime &mdash; shops &amp; cafes</option>
+              <option value="night">Evening &mdash; shrine &amp; bars</option>
+            </select>
+          </label>
+          <p class="count">Showing <span id="shop-count">0 / 0</span></p>
+        </div>
+        <div id="shop-list" class="shop-list"></div>
+        <p id="empty-state" hidden>No matching places.</p>
+      </section>
+    </main>
+    <footer class="page-footer">
+      <p class="print-note">Numbers identify places, not visit order. Check opening hours before travelling.</p>
+      <p class="sources">Coordinates from XLSX export, GSI geocoder, Wikipedia, and manual approximation. Street & rail geometry &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>.</p>
+      <details id="source-notes">
+        <summary>Map notes</summary>
+        <p>Locations reflect saved-place records and geocoded addresses, not verified entrances. Each place has a Google Maps link in its card. Use those links to check current details before setting out.</p>
+        <p>Marks carry two things and nothing else: shape for what kind of place it is, colour for which street it stands on. The two shrines are drawn as torii because they are endings rather than stops &mdash; pick one based on where you want the night to finish.</p>
+        <p>The five named streets &mdash; Junj&#333;, Pal, Etoile, Look and K&#333;nan-d&#333;ri &mdash; are drawn in their own colours and labelled along their own lines. Other shopping streets get a neutral highlight. Street and rail geometry from OpenStreetMap contributors.</p>
+        <p>"Mark as visited" stores your progress locally in your browser (localStorage). It persists across sessions on this device. Clearing browser data will reset it.</p>
+        <p>Coordinates from three sources: the exported XLSX data (13 places), the GSI address-search API (23 places), and Wikipedia (1 place). Pins are address-level approximations.</p>
+      </details>
+    </footer>
+  </div>
+</body>
+</html>

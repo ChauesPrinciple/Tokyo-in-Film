@@ -1,0 +1,1060 @@
+{
+  "reviewed": "2026-09-14",
+  "coordinateNote": "Coordinates from three sources: the exported XLSX data (13 places), the GSI address-search API (23 places), and Wikipedia (1 place). Pins are address-level approximations, not verified entrances. Check opening hours and reservations directly with each shop.",
+  "start": {
+    "id": "koenji-station",
+    "name": "Koenji Station",
+    "lat": 35.7052,
+    "lng": 139.6493,
+    "heading": "Start at the north exit",
+    "blurb": "Six minutes from Shinjuku on the Chuo Line. Koenji skipped the bubble-era rebuild and fought off the 2022 redevelopment plans, so the streets still look like the seventies left them. North side first, bakery in hand, then under the tracks and down the arcades. Two endings at the bottom; pick by where you want to drink."
+  },
+  "branches": [
+    {
+      "id": "mabashi",
+      "name": "Mabashi Inari",
+      "heading": "The small-rooms ending",
+      "blurb": "The village shrine with the twin-dragon basin, west of everything and usually empty. Inari is the kami of commerce, which makes it the right one to thank after a day of buying things. Then back north into Daiichi Market, where every room is tiny: six counter seats at Metal Meshi, a rock bar next door to a shop selling ornamental fish and open until 2am, and Baka Doshi further up the north side.",
+      "shrine": 36,
+      "legMetres": 700,
+      "legMinutes": 9
+    },
+    {
+      "id": "hikawa",
+      "name": "Koenji Hikawa",
+      "heading": "The Weathering with You ending",
+      "blurb": "The weather shrine at the far south edge. Kisho Shrine sits inside the grounds — the only shrine in Japan dedicated to weather, where the ema are shaped like clogs because clogs were once used to forecast it, and where Weathering with You put its prayer for clear skies. Then the climb back north into the big rooms: Jirokichi, Koenji High at around 250 capacity, and PI Stand if you would rather have a glass of wine than a support act.",
+      "shrine": 37,
+      "legMetres": 532,
+      "legMinutes": 7
+    }
+  ],
+  "sections": [
+    {
+      "id": "station",
+      "name": "Koenji Station & North Side",
+      "subtitle": "The everyday side: bakery, cat shop, sento. Get oriented before you cross under the tracks."
+    },
+    {
+      "id": "daiichi",
+      "name": "Daiichi Market",
+      "subtitle": "A postwar food market you enter through a greengrocer. Spice curry, used clothes, a rock bar that sells fish."
+    },
+    {
+      "id": "pal",
+      "name": "Koenji Pal Shopping Street",
+      "subtitle": "The covered arcade: vintage by the storefront, zakka in the corners, two cafes worth sitting down in."
+    },
+    {
+      "id": "etoile",
+      "name": "Etoile Shopping Street",
+      "subtitle": "East of the tracks, the older arcade. Burgers, serious coffee, and the temple cluster behind."
+    },
+    {
+      "id": "look",
+      "name": "Look Shopping Street",
+      "subtitle": "The vintage spine. Nearly one in four storefronts sells secondhand, all the way to Shin-Koenji."
+    },
+    {
+      "id": "konan-dori",
+      "name": "Kōnan-dōri",
+      "subtitle": "The parallel street east of the arcade — a night street, not a shopping one"
+    },
+    {
+      "id": "hikawa",
+      "name": "Koenji Hikawa Shrine",
+      "subtitle": "The southern edge of the walk."
+    }
+  ],
+  "spots": [
+    {
+      "id": "riyusu",
+      "number": 1,
+      "name": "Reuse Select Tifana Koenji",
+      "aliases": [
+        "リユースセレクト ティファナ 高円寺店",
+        "Riyususerekutotifana"
+      ],
+      "section": "station",
+      "daypart": "day",
+      "area": "Koenji",
+      "ward": "Suginami",
+      "lat": 35.7072836,
+      "lng": 139.6500332,
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=35.7072836,139.6500332",
+      "address": "Koenji-kita, Suginami, Tokyo",
+      "station": "Koenji (JR Chuo / Sobu)",
+      "style": "Thrift store",
+      "description": "Reuse shop on the north side. Worth a fast pass on the way to the market; the stock turns over constantly.",
+      "note": "Coordinates from the exported XLSX data.",
+      "saved": true,
+      "transcript": false,
+      "coordinateSource": "XLSX export",
+      "street": "junjo"
+    },
+    {
+      "id": "kosugiyu",
+      "number": 2,
+      "name": "Kosugiyu",
+      "aliases": [
+        "小杉湯"
+      ],
+      "section": "station",
+      "daypart": "day",
+      "area": "Koenji",
+      "ward": "Suginami",
+      "lat": 35.70807,
+      "lng": 139.64877,
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=35.70807,139.64877",
+      "address": "Koenji-kita, Suginami, Tokyo",
+      "station": "Koenji (JR Chuo / Sobu)",
+      "style": "Sento (public bath)",
+      "description": "The neighborhood sento. A working public bathhouse, not a tourist version of one.",
+      "note": "Coordinates from the exported XLSX data.",
+      "saved": true,
+      "transcript": false,
+      "coordinateSource": "XLSX export",
+      "street": "junjo"
+    },
+    {
+      "id": "floresta",
+      "number": 3,
+      "name": "Floresta Koenji",
+      "aliases": [
+        "フォレスタ高円寺"
+      ],
+      "section": "station",
+      "daypart": "refuel",
+      "area": "Koenji",
+      "ward": "Suginami",
+      "lat": 35.7083429,
+      "lng": 139.6496176,
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=35.7083429,139.6496176",
+      "address": "Koenji-kita, Suginami, Tokyo",
+      "station": "Koenji (JR Chuo / Sobu)",
+      "style": "Cafe / doughnuts",
+      "description": "The animal-doughnut shop: organic ingredients, cute shapes, and doughnuts that actually taste good. An easy sugar stop on the north side.",
+      "note": "Coordinates from the exported XLSX data.",
+      "saved": true,
+      "transcript": false,
+      "coordinateSource": "XLSX export",
+      "street": "junjo",
+      "break": "first"
+    },
+    {
+      "id": "nekonohaitai",
+      "number": 4,
+      "name": "Nekonohaitai",
+      "aliases": [
+        "猫のはいたい"
+      ],
+      "section": "station",
+      "daypart": "day",
+      "area": "Koenji",
+      "ward": "Suginami",
+      "lat": 35.70927,
+      "lng": 139.649719,
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=35.70927,139.649719",
+      "address": "Koenji-kita, Suginami, Tokyo",
+      "station": "Koenji (JR Chuo / Sobu)",
+      "style": "Cat-goods shop",
+      "description": "A narrow cat-goods shop on Junjo street, packed floor to ceiling with cat art and bric-a-brac. You will know it when you see it.",
+      "note": "Coordinates from GSI geocoder.",
+      "saved": false,
+      "transcript": false,
+      "coordinateSource": "GSI geocoder",
+      "street": "junjo"
+    },
+    {
+      "id": "hattifnatt",
+      "number": 5,
+      "name": "Hattifnatt",
+      "aliases": [
+        "ハティフナット高円寺"
+      ],
+      "section": "station",
+      "daypart": "refuel",
+      "area": "Koenji",
+      "ward": "Suginami",
+      "lat": 35.709549,
+      "lng": 139.649872,
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=35.709549,139.649872",
+      "address": "3-45-15 Koenji-kita, Suginami, Tokyo",
+      "station": "Koenji (JR Chuo / Sobu), 4 min walk from north exit",
+      "style": "Cafe",
+      "description": "A cafe wrapped floor to ceiling in Marini Monteany's animal murals. The vegetarian taco rice and a cassis float make a good lunch before the vintage stretch. Cute without being precious about it.",
+      "note": "Coordinates from GSI geocoder.",
+      "saved": false,
+      "transcript": false,
+      "coordinateSource": "GSI geocoder",
+      "street": "junjo",
+      "break": "first"
+    },
+    {
+      "id": "baka-doshi",
+      "number": 6,
+      "name": "Koenji Baka Doshi",
+      "aliases": [
+        "高円寺バカ同士"
+      ],
+      "section": "station",
+      "daypart": "night",
+      "area": "Koenji",
+      "ward": "Suginami",
+      "lat": 35.7086881,
+      "lng": 139.6500914,
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=35.7086881,139.6500914",
+      "address": "Koenji-kita, Suginami, Tokyo",
+      "station": "Koenji (JR Chuo / Sobu)",
+      "style": "Bar",
+      "description": "A north-side bar. The name translates roughly to 'a bunch of idiots,' which is about right for a last drink after you come back across the tracks.",
+      "note": "Coordinates from the exported XLSX data.",
+      "saved": true,
+      "transcript": false,
+      "coordinateSource": "XLSX export",
+      "branch": "mabashi",
+      "shortlist": true,
+      "street": "junjo"
+    },
+    {
+      "id": "shigekuniya",
+      "number": 7,
+      "name": "Shigekuniya 55 Bakery",
+      "aliases": [
+        "重國屋 55 Bakery",
+        "Shigekuniya 55"
+      ],
+      "section": "daiichi",
+      "daypart": "refuel",
+      "area": "Koenji",
+      "ward": "Suginami",
+      "lat": 35.70613,
+      "lng": 139.64899,
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=35.70613,139.64899",
+      "address": "3-22-9 Koenji-kita, Suginami, Tokyo",
+      "station": "Koenji (JR Chuo / Sobu), 2 min walk from north exit",
+      "style": "Bakery",
+      "description": "The bakery everyone points you at, on the market block northwest of the north exit. The bread really is that light and fluffy, and the morning queue is real. Regularly ranked among the best in the city, and it earns it.",
+      "note": "Coordinates from the exported XLSX data.",
+      "saved": true,
+      "transcript": false,
+      "coordinateSource": "XLSX export",
+      "street": "daiichi",
+      "break": "lunch"
+    },
+    {
+      "id": "kujira",
+      "number": 8,
+      "name": "Curry Shop Kujira",
+      "aliases": [
+        "カリーショップくじら 高円寺",
+        "CURRY SHOP KUJIRA"
+      ],
+      "section": "daiichi",
+      "daypart": "refuel",
+      "area": "Koenji",
+      "ward": "Suginami",
+      "lat": 35.705994,
+      "lng": 139.648849,
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=35.705994,139.648849",
+      "address": "1F Daiichi Market, 3-22-8 Koenji-kita, Suginami, Tokyo",
+      "station": "Koenji (JR Chuo / Sobu), 1.5 min walk from north exit",
+      "style": "Spice curry restaurant",
+      "description": "Spice curry hidden inside the market. The entrance runs through a green grocer down a back alley, which is about as Koenji as it gets. Nine counter seats and a line at lunch. The three-curry plate is the move: chicken, beef keema, and pork vindaloo on one tray. Tabelog's Curry 100 six years running, founded 2011.",
+      "note": "Named in the walking video transcript as 'Kuira Kuji' (transcription error). Coordinates from GSI geocoder.",
+      "saved": false,
+      "transcript": true,
+      "coordinateSource": "GSI geocoder",
+      "street": "daiichi",
+      "break": "lunch"
+    },
+    {
+      "id": "beestore",
+      "number": 9,
+      "name": "ibeestore",
+      "aliases": [
+        "アイビーストア",
+        "beestore"
+      ],
+      "section": "daiichi",
+      "daypart": "day",
+      "area": "Koenji",
+      "ward": "Suginami",
+      "lat": 35.706264,
+      "lng": 139.649445,
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=35.706264,139.649445",
+      "address": "1F, 3-23-2 Koenji-kita, Suginami, Tokyo",
+      "station": "Koenji (JR Chuo / Sobu), 1 min from the north exit",
+      "style": "Select brand vintage",
+      "description": "Designer secondhand rather than general used clothing — Burberry, Kenzo and the like, selected rather than racked by the metre. Buy-and-sell, ten years in Koenji this year, and three branches in the area, so what does not fit one shop turns up in another. A minute from the north exit.",
+      "note": "Speciality confirmed from the shop’s own Instagram.",
+      "saved": true,
+      "transcript": false,
+      "coordinateSource": "GSI geocoder",
+      "rating": "4.8 (424)",
+      "street": "daiichi",
+      "sources": [
+        {
+          "label": "ibeestore on Instagram",
+          "url": "https://www.instagram.com/ibeestore.buy_and_sell/"
+        }
+      ]
+    },
+    {
+      "id": "rock-bar-heaven",
+      "number": 10,
+      "name": "Rock Bar Heaven",
+      "aliases": [
+        "ロックバーへヴン"
+      ],
+      "section": "daiichi",
+      "daypart": "night",
+      "area": "Koenji",
+      "ward": "Suginami",
+      "lat": 35.705891,
+      "lng": 139.648758,
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=35.705891,139.648758",
+      "address": "3-22-7 Koenji-kita, Suginami, Tokyo",
+      "station": "Koenji (JR Chuo / Sobu), 1.5 min walk from north exit",
+      "style": "Rock bar",
+      "description": "The medaka pub. A rock bar beside a shop selling ornamental killifish, because Koenji. Open until 2am, which makes it the honest last stop.",
+      "note": "Coordinates from GSI geocoder.",
+      "saved": true,
+      "transcript": false,
+      "coordinateSource": "GSI geocoder",
+      "branch": "mabashi",
+      "rating": "4.9 (61)",
+      "shortlist": true,
+      "street": "daiichi"
+    },
+    {
+      "id": "ripcel",
+      "number": 11,
+      "name": "Ripcel Koenji Station Front",
+      "aliases": [
+        "リプセル 高円寺駅前店"
+      ],
+      "section": "pal",
+      "daypart": "day",
+      "area": "Koenji",
+      "ward": "Suginami",
+      "lat": 35.705002,
+      "lng": 139.6492,
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=35.705002,139.6492",
+      "address": "4-25-9 Koenjiminami, Suginami, Tokyo",
+      "station": "Koenji (JR Chuo / Sobu)",
+      "style": "Brand buyback shop",
+      "description": "A buyback counter for brand bags, watches and jewelry just south of the gates, at the top of the Pal block. Saved it, still have not been inside.",
+      "note": "Despite the 'station front' name the shop is on the south side; an earlier geocode attempt with a bad address string resolved roughly a kilometre east-southeast of the station. Coordinates from GSI geocoder with the correct address.",
+      "saved": true,
+      "transcript": false,
+      "coordinateSource": "GSI geocoder",
+      "street": "pal"
+    },
+    {
+      "id": "jirokichi",
+      "number": 12,
+      "name": "Live Music JIROKICHI",
+      "aliases": [
+        "JIROKICHI",
+        "ジロキチ"
+      ],
+      "section": "pal",
+      "daypart": "night",
+      "area": "Koenji",
+      "ward": "Suginami",
+      "lat": 35.70566,
+      "lng": 139.65139,
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=35.70566,139.65139",
+      "address": "Koenji-minami, Suginami, Tokyo",
+      "station": "Koenji (JR Chuo / Sobu)",
+      "style": "Live music venue",
+      "description": "One of the ten or so live houses packed around the station. The scene started in the sixties on cheap rent and a six-minute ride to Shinjuku, and it never really left.",
+      "note": "Coordinates from the exported XLSX data.",
+      "saved": true,
+      "transcript": true,
+      "coordinateSource": "XLSX export",
+      "branch": "hikawa",
+      "shortlist": true,
+      "street": "pal"
+    },
+    {
+      "id": "atlantis",
+      "number": 13,
+      "name": "Atlantis Vintage Tokyo",
+      "aliases": [],
+      "section": "pal",
+      "daypart": "day",
+      "area": "Koenji",
+      "ward": "Suginami",
+      "lat": 35.704273,
+      "lng": 139.648972,
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=35.704273,139.648972",
+      "address": "1F Takaminami Building, 4-25-3 Koenjiminami, Suginami, Tokyo",
+      "station": "Koenji (JR Chuo / Sobu), 4 min walk",
+      "style": "Vintage bags",
+      "description": "Vintage luxury bags inside the arcade. Deep stock, clean condition, staff who leave you alone until you need them. The kind of shop people come to Koenji specifically for.",
+      "note": "Located in Koenji Pal Shopping Street. Coordinates from GSI geocoder.",
+      "saved": true,
+      "transcript": false,
+      "coordinateSource": "GSI geocoder",
+      "rating": "4.9 (462)",
+      "street": "pal"
+    },
+    {
+      "id": "bazzstore",
+      "number": 14,
+      "name": "BAZZSTORE Koenji Pal",
+      "aliases": [
+        "バズストア 高円寺パル商店街店"
+      ],
+      "section": "pal",
+      "daypart": "day",
+      "area": "Koenji",
+      "ward": "Suginami",
+      "lat": 35.70495,
+      "lng": 139.64912,
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=35.70495,139.64912",
+      "address": "2F ARISTO Koenji, 3-58-22 Koenjiminami, Suginami, Tokyo",
+      "station": "Koenji (JR Chuo / Sobu), 2 min from the south exit",
+      "style": "Brand & everyday secondhand",
+      "description": "Brand secondhand alongside plain casual and fast fashion, about 5,000 pieces over one floor up. The buyback counter is the point: this is where the neighbourhood sells its clothes, so stock turns constantly. Open noon to 10pm every day of the year, buyback until 9:30.",
+      "note": "Coordinates from the exported XLSX data.",
+      "saved": true,
+      "transcript": false,
+      "coordinateSource": "XLSX export",
+      "sources": [
+        {
+          "label": "BAZZSTORE (official)",
+          "url": "https://www.bazzstore.com/shop013/"
+        }
+      ],
+      "street": "pal"
+    },
+    {
+      "id": "trefac-2",
+      "number": 15,
+      "name": "TreFac Style Koenji 3",
+      "aliases": [
+        "トレファクスタイル 高円寺3号店"
+      ],
+      "section": "pal",
+      "daypart": "day",
+      "area": "Koenji",
+      "ward": "Suginami",
+      "lat": 35.703953,
+      "lng": 139.649475,
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=35.703953,139.649475",
+      "address": "4-26-1 Koenjiminami, Suginami, Tokyo",
+      "station": "Koenji (JR Chuo / Sobu), 5 min walk",
+      "style": "Fashion-only reuse chain",
+      "description": "Treasure Factory's clothing-only format, a few steps east of the Pal arcade on the parallel street. Organised racks and fixed prices rather than a dig, which makes it a useful calibration stop before the small shops. Stays open past 8pm when most of Pal has shut.",
+      "note": "Coordinates geocoded from the official branch address.",
+      "saved": true,
+      "transcript": false,
+      "coordinateSource": "GSI geocoder (4-26-1 Koenjiminami)",
+      "rating": "4.7 (832)",
+      "sources": [
+        {
+          "label": "TreFac Style Koenji 3 (official)",
+          "url": "https://www.tf-style.com/shop/405/"
+        }
+      ],
+      "street": "konan"
+    },
+    {
+      "id": "r-za",
+      "number": 16,
+      "name": "R-za Dokushokan",
+      "aliases": [
+        "アール座読書館",
+        "Reading Cafe R-za"
+      ],
+      "section": "pal",
+      "daypart": "refuel",
+      "area": "Koenji",
+      "ward": "Suginami",
+      "lat": 35.704025,
+      "lng": 139.648422,
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=35.704025,139.648422",
+      "address": "2F, 3-57-6 Koenjiminami, Suginami, Tokyo",
+      "station": "Koenji (JR Chuo / Sobu), 4 min walk from south exit",
+      "style": "Reading cafe",
+      "description": "A reading cafe with a strict no-talking rule: fifteen hundred books, plants everywhere, nine seats and each one is different. One has a fish tank. One has crystals. One hides a diorama in the drawer. The stairwell is nothing, then the second floor opens up like a Ghibli set. Noon to 10pm, closed Mondays.",
+      "note": "Named in the walking video transcript as 'Arza Douan' (transcription error). Coordinates from GSI geocoder.",
+      "saved": false,
+      "transcript": true,
+      "coordinateSource": "GSI geocoder",
+      "closedDays": "Monday",
+      "street": "pal",
+      "break": "kissa"
+    },
+    {
+      "id": "renaissance",
+      "number": 17,
+      "name": "Meikyoku Kissa Renaissance",
+      "aliases": [
+        "名曲喫茶ルネッサンス"
+      ],
+      "section": "look",
+      "daypart": "refuel",
+      "area": "Koenji",
+      "ward": "Suginami",
+      "lat": 35.702583,
+      "lng": 139.648361,
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=35.702583,139.648361",
+      "address": "B1F, 2-48-11 Koenjiminami, Suginami, Tokyo",
+      "station": "Koenji (JR Chuo / Sobu), 7 min walk",
+      "style": "Classical music cafe (meikyoku kissa)",
+      "description": "A meikyoku kissa, the classical-record cafe Japan does better than anyone. Twenty-five hundred LPs; you write your request on a blackboard and the owner plays it. The coffee is called Highlight Coffee because it is strong. She took over the records and fittings when the original Meikyoku Kissa Classic closed in 2005 and has run it since 2007. Noon to 7:30pm (weekends to 9:30), closed Mon-Tue.",
+      "note": "Named in the walking video transcript as the 'classical record cafe.' Coordinates from Wikipedia.",
+      "saved": false,
+      "transcript": true,
+      "coordinateSource": "Wikipedia",
+      "closedDays": "Mon-Tue",
+      "street": "look",
+      "break": "kissa"
+    },
+    {
+      "id": "hachimakura",
+      "number": 18,
+      "name": "Hachimakura",
+      "aliases": [
+        "ハチマクラ"
+      ],
+      "section": "pal",
+      "daypart": "day",
+      "area": "Koenji",
+      "ward": "Suginami",
+      "lat": 35.704388,
+      "lng": 139.64743,
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=35.704388,139.64743",
+      "address": "3-59-4 Koenjiminami, Suginami, Tokyo",
+      "station": "Koenji (JR Chuo / Sobu), 3 min walk from south exit",
+      "style": "Vintage paper shop",
+      "description": "A shop devoted entirely to vintage paper: old labels, tickets, postcards and packaging from Japan and abroad, treated like the design objects they are. The owner buys in Europe and also commissions reproductions made with traditional craftsmen. 1 to 9pm (8pm Sundays), closed Mon-Tue.",
+      "note": "Named in the walking video transcript as the 'vintage paper shop.' Coordinates from GSI geocoder.",
+      "saved": false,
+      "transcript": true,
+      "coordinateSource": "GSI geocoder",
+      "closedDays": "Mon-Tue",
+      "street": "pal"
+    },
+    {
+      "id": "razani-ya",
+      "number": 19,
+      "name": "Razani-ya Koenji",
+      "aliases": [
+        "ラザニ屋 高円寺店",
+        "Lasagna Koenji Ten"
+      ],
+      "section": "etoile",
+      "daypart": "refuel",
+      "area": "Koenji",
+      "ward": "Suginami",
+      "lat": 35.703735,
+      "lng": 139.646576,
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=35.703735,139.646576",
+      "address": "1F Kobayashi Building, 3-49-1 Koenjiminami, Suginami, Tokyo",
+      "station": "Koenji (JR Chuo / Sobu), 6 min walk",
+      "style": "Lasagna specialty restaurant",
+      "description": "Seven kinds of lasagna, which is a strange hill to die on and a good one. The signature runs a three-day meat sauce under bechamel on chewy fresh pasta; there is also gorgonzola-duck, a green lasagna, and one under an omelet. 1,340 yen, eat in or take away.",
+      "note": "Named in the walking video transcript as the 'lasagna restaurant.' Coordinates from GSI geocoder.",
+      "saved": false,
+      "transcript": true,
+      "coordinateSource": "GSI geocoder",
+      "street": "etoile",
+      "break": "late"
+    },
+    {
+      "id": "dealer-ship",
+      "number": 20,
+      "name": "Dealer Ship",
+      "aliases": [
+        "ディーラーシップ"
+      ],
+      "section": "look",
+      "daypart": "day",
+      "area": "Koenji",
+      "ward": "Suginami",
+      "lat": 35.702873,
+      "lng": 139.648239,
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=35.702873,139.648239",
+      "address": "2F, 3-45-18 Koenjiminami, Suginami, Tokyo",
+      "station": "Koenji (JR Chuo / Sobu)",
+      "style": "Vintage home goods store",
+      "description": "Second-floor vintage housewares. A serious Fire-King and Pyrex collection, American glass in rare shapes and clean condition.",
+      "note": "Coordinates from GSI geocoder.",
+      "saved": true,
+      "transcript": false,
+      "coordinateSource": "GSI geocoder",
+      "rating": "4.6 (102)",
+      "street": "look"
+    },
+    {
+      "id": "don-don-down",
+      "number": 21,
+      "name": "Don Don Down on Wednesday",
+      "aliases": [
+        "ドンドンダウン オン ウェンズデイ"
+      ],
+      "section": "pal",
+      "daypart": "day",
+      "area": "Koenji",
+      "ward": "Suginami",
+      "lat": 35.7039,
+      "lng": 139.64896,
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=35.7039,139.64896",
+      "address": "Koenjiminami, Suginami, Tokyo",
+      "station": "Koenji (JR Chuo / Sobu)",
+      "style": "Weekly markdown secondhand",
+      "description": "Nothing here has a price tag. Every piece carries a vegetable sticker that you match against a board on the wall, and every Wednesday each sticker drops a tier: 2,000 yen becomes 1,500, then 900, and eventually 100. Come on a Wednesday or don't bother.",
+      "note": "Coordinates from the exported XLSX data.",
+      "saved": true,
+      "transcript": false,
+      "coordinateSource": "XLSX export",
+      "sources": [
+        {
+          "label": "Don Don Down — how the markdown works",
+          "url": "http://www.dondondown.com/don/nesagari/"
+        }
+      ],
+      "street": "pal"
+    },
+    {
+      "id": "menosuyama",
+      "number": 22,
+      "name": "Menosuyama",
+      "aliases": [
+        "芽の巣山"
+      ],
+      "section": "pal",
+      "daypart": "day",
+      "area": "Koenji",
+      "ward": "Suginami",
+      "lat": 35.703819,
+      "lng": 139.648926,
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=35.703819,139.648926",
+      "address": "1F Dai-2 Shimoda Building, 4-24-1 Koenjiminami, Suginami, Tokyo",
+      "station": "Koenji (JR Chuo / Sobu)",
+      "style": "Agave and succulent shop",
+      "description": "Rare agave and collector plants plus artist-made pots, with a repotting service. A shop this specific is the whole point of the back streets. 1 to 6pm, closed Wednesdays.",
+      "note": "Named in the walking video transcript as the 'agave shop.' Coordinates from GSI geocoder.",
+      "saved": false,
+      "transcript": true,
+      "coordinateSource": "GSI geocoder",
+      "closedDays": "Wednesday",
+      "street": "pal"
+    },
+    {
+      "id": "be-in-records",
+      "number": 23,
+      "name": "BE-IN RECORDS",
+      "aliases": [
+        "ビーイン・レコーズ"
+      ],
+      "section": "pal",
+      "daypart": "day",
+      "area": "Koenji",
+      "ward": "Suginami",
+      "lat": 35.704967,
+      "lng": 139.651901,
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=35.704967,139.651901",
+      "address": "4-42-2 Koenjiminami, Suginami, Tokyo",
+      "station": "Koenji (JR Chuo / Sobu)",
+      "style": "Record store",
+      "description": "Blues and classic rock vinyl with a whole section set aside for the British sixties and seventies. Stones and Beatles people will be here a while.",
+      "note": "Coordinates from GSI geocoder.",
+      "saved": false,
+      "transcript": false,
+      "coordinateSource": "GSI geocoder",
+      "street": "pal"
+    },
+    {
+      "id": "substore-base",
+      "number": 24,
+      "name": "Substore Base",
+      "aliases": [
+        "サブストア・ベース"
+      ],
+      "section": "pal",
+      "daypart": "day",
+      "area": "Koenji",
+      "ward": "Suginami",
+      "lat": 35.702862,
+      "lng": 139.647018,
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=35.702862,139.647018",
+      "address": "3-44-3 Koenjiminami, Suginami, Tokyo",
+      "station": "Koenji (JR Chuo / Sobu)",
+      "style": "Record store",
+      "description": "The stripped-back counterpart to BE-IN: a lifetime of punk and metal condensed into one small room, from the canon to the truly obscure.",
+      "note": "Coordinates from GSI geocoder.",
+      "saved": false,
+      "transcript": false,
+      "coordinateSource": "GSI geocoder",
+      "street": "pal"
+    },
+    {
+      "id": "metal-meshi",
+      "number": 25,
+      "name": "Koenji Metal Meshi",
+      "aliases": [
+        "高円寺メタルめし",
+        "METAL MESHI"
+      ],
+      "section": "etoile",
+      "daypart": "night",
+      "area": "Koenji",
+      "ward": "Suginami",
+      "lat": 35.703873,
+      "lng": 139.646698,
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=35.703873,139.646698",
+      "address": "3-49-12 Koenjiminami, Suginami, Tokyo",
+      "station": "Koenji (JR Chuo / Sobu)",
+      "style": "Heavy metal dining bar",
+      "description": "A heavy metal dining bar where every dish is named after a band: Master of Nuggets, Avocado Dry Curry, Saba Bloody Saba. One chef, six counter seats, cash only, 6 to 9pm, closed Thursdays. Works as dinner if the west shrine is your ending.",
+      "note": "Named in the walking video transcript as the 'heavy metal restaurant.' Coordinates from GSI geocoder.",
+      "saved": false,
+      "transcript": true,
+      "coordinateSource": "GSI geocoder",
+      "branch": "mabashi",
+      "shortlist": true,
+      "closedDays": "Thursday",
+      "street": "etoile"
+    },
+    {
+      "id": "awaji-burger",
+      "number": 26,
+      "name": "Awajishima Burger Koenji",
+      "aliases": [
+        "淡路島バーガー高円寺店"
+      ],
+      "section": "etoile",
+      "daypart": "refuel",
+      "area": "Koenji",
+      "ward": "Suginami",
+      "lat": 35.703899,
+      "lng": 139.646118,
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=35.703899,139.646118",
+      "address": "1A Kitaichi Building B, 3-49-5 Koenjiminami, Suginami, Tokyo",
+      "station": "Koenji (JR Chuo / Sobu)",
+      "style": "Hamburger restaurant",
+      "description": "Burgers built on sweet Awaji Island onions, inside the old arcade. Crispy onion rings, four small tables. The street was named for a theater that used to stand here; the burger shop is its own landmark now.",
+      "note": "Located in the Etoile Shopping Arcade. Coordinates from GSI geocoder.",
+      "saved": true,
+      "transcript": false,
+      "coordinateSource": "GSI geocoder",
+      "rating": "4.4 (191)",
+      "street": "etoile",
+      "break": "late"
+    },
+    {
+      "id": "rad-bros",
+      "number": 27,
+      "name": "RAD BROS CAFE",
+      "aliases": [
+        "ラッドブロスカフェ"
+      ],
+      "section": "etoile",
+      "daypart": "refuel",
+      "area": "Koenji",
+      "ward": "Suginami",
+      "lat": 35.703678,
+      "lng": 139.651764,
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=35.703678,139.651764",
+      "address": "4-31-11 Koenjiminami, Suginami, Tokyo",
+      "station": "Koenji (JR Chuo / Sobu)",
+      "style": "Specialty coffee",
+      "description": "The best find on the east side. Single-origin coffee, lovely staff, and a cherry-chocolate cheesecake that is honestly one of the best slices I have had in Tokyo. Small room; go before the afternoon rush.",
+      "note": "Coordinates from GSI geocoder.",
+      "saved": false,
+      "transcript": false,
+      "coordinateSource": "GSI geocoder",
+      "street": "etoile",
+      "break": "late"
+    },
+    {
+      "id": "pi-stand",
+      "number": 28,
+      "name": "PI Stand",
+      "aliases": [
+        "パイスタンド"
+      ],
+      "section": "etoile",
+      "daypart": "night",
+      "area": "Koenji",
+      "ward": "Suginami",
+      "lat": 35.703865,
+      "lng": 139.650223,
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=35.703865,139.650223",
+      "address": "4-28-2 Koenjiminami, Suginami, Tokyo",
+      "station": "Koenji (JR Chuo / Sobu)",
+      "style": "Bistro / wine bar",
+      "description": "A compact bistro and wine bar with a rotating pan-Asian menu: sea bream carpaccio with kumquat, tiny banh mi sliders. Light plates, relaxed room, friendly staff. The right palate cleanser after a day of vintage shops.",
+      "note": "Coordinates from GSI geocoder.",
+      "saved": false,
+      "transcript": false,
+      "coordinateSource": "GSI geocoder",
+      "branch": "hikawa",
+      "shortlist": true,
+      "street": "etoile"
+    },
+    {
+      "id": "small-change",
+      "number": 29,
+      "name": "Small Change Koenji",
+      "aliases": [
+        "Small Change kōenji"
+      ],
+      "section": "look",
+      "daypart": "night",
+      "area": "Koenji",
+      "ward": "Suginami",
+      "lat": 35.70303,
+      "lng": 139.650787,
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=35.70303,139.650787",
+      "address": "4-9 Koenjiminami, Suginami, Tokyo",
+      "station": "Koenji (JR Chuo / Sobu)",
+      "style": "Bar",
+      "description": "A bar near the top of Look. The natural landing after the long vintage stretch, especially coming back east from Mabashi.",
+      "note": "Coordinates from GSI geocoder.",
+      "saved": true,
+      "transcript": false,
+      "coordinateSource": "GSI geocoder",
+      "branch": "hikawa",
+      "shortlist": false,
+      "street": "look"
+    },
+    {
+      "id": "treasure-factory",
+      "number": 30,
+      "name": "TreFac Style Koenji",
+      "aliases": [
+        "トレファクスタイル 高円寺店"
+      ],
+      "section": "look",
+      "daypart": "day",
+      "area": "Koenji",
+      "ward": "Suginami",
+      "lat": 35.702564,
+      "lng": 139.651901,
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=35.702564,139.651901",
+      "address": "4-4-15 Koenjiminami, Suginami, Tokyo",
+      "station": "Koenji (JR Chuo / Sobu)",
+      "style": "Fashion-only reuse chain",
+      "description": "The original Koenji branch of the same chain, and the one people mean when they say TreFac. Bigger floor than the Pal branch. It sits about 250m east of Look, so it is a deliberate detour rather than something you pass.",
+      "note": "Off the walking spine — roughly four minutes east of Look.",
+      "saved": true,
+      "transcript": false,
+      "coordinateSource": "GSI geocoder (4-4-15 Koenjiminami)",
+      "sources": [
+        {
+          "label": "TreFac Style Koenji (official)",
+          "url": "https://www.tf-style.com/shop/33/"
+        }
+      ],
+      "offRoute": "About 4 min east of Look",
+      "street": "look"
+    },
+    {
+      "id": "koenji-high",
+      "number": 32,
+      "name": "Koenji High",
+      "aliases": [
+        "KOENJI HIGH",
+        "高円寺HIGH"
+      ],
+      "section": "konan-dori",
+      "daypart": "night",
+      "area": "Koenji",
+      "ward": "Suginami",
+      "lat": 35.703564,
+      "lng": 139.651047,
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=35.703564,139.651047",
+      "address": "4-30-1 Koenjiminami, Suginami, Tokyo",
+      "station": "Koenji (JR Chuo / Sobu)",
+      "style": "Live music venue",
+      "description": "The biggest live house in Koenji, open since 2008. Shoegaze and indie are home turf and Tokyo Shoegazer is a fixture. About 280 capacity, proper sound, and a cafe called AMP on the ground floor.",
+      "note": "Named in the walking video transcript. Coordinates from GSI geocoder.",
+      "saved": false,
+      "transcript": true,
+      "coordinateSource": "GSI geocoder",
+      "branch": "hikawa",
+      "shortlist": true,
+      "street": "konan"
+    },
+    {
+      "id": "kiki",
+      "number": 33,
+      "name": "KIKI",
+      "aliases": [
+        "KIKI 本店"
+      ],
+      "section": "look",
+      "daypart": "day",
+      "area": "Koenji",
+      "ward": "Suginami",
+      "lat": 35.70105,
+      "lng": 139.64761,
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=35.70105,139.64761",
+      "address": "Koenjiminami, Suginami, Tokyo",
+      "station": "Koenji (JR Chuo / Sobu)",
+      "style": "70s American ladies' vintage",
+      "description": "The original shop, and the more focused of the pair: 70s American ladies' vintage, dresses and separates with the bric-a-brac to match. It sits far enough down Look to prove the point that the street runs all the way to Shin-Koenji — most people turn back long before.",
+      "note": "Coordinates from the exported XLSX data.",
+      "saved": true,
+      "transcript": false,
+      "coordinateSource": "XLSX export",
+      "street": "look",
+      "sources": [
+        {
+          "label": "Koenji Look Shōtengai — KIKI",
+          "url": "https://koenjilook.com/kiki/"
+        }
+      ]
+    },
+    {
+      "id": "kiki2",
+      "number": 34,
+      "name": "KIKI2",
+      "aliases": [
+        "KIKI2 キキツー"
+      ],
+      "section": "look",
+      "daypart": "day",
+      "area": "Koenji",
+      "ward": "Suginami",
+      "lat": 35.70215,
+      "lng": 139.64786,
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=35.70215,139.64786",
+      "address": "1F Sakaeya Building, 2-22-12 Koenjiminami, Suginami, Tokyo",
+      "station": "Koenji (JR Chuo / Sobu)",
+      "style": "Vintage clothing & American toys",
+      "description": "Vintage clothing shelved in among American toys, which is exactly as chaotic as it sounds. The first of the two KIKI shops you reach walking south down Look.",
+      "note": "Coordinates from the exported XLSX data.",
+      "saved": true,
+      "transcript": false,
+      "coordinateSource": "XLSX export",
+      "street": "look",
+      "sources": [
+        {
+          "label": "Koenji Look Shōtengai — KIKI2",
+          "url": "https://koenjilook.com/kiki2/"
+        }
+      ]
+    },
+    {
+      "id": "top-of-the-hill",
+      "number": 35,
+      "name": "Top of the Hill Koenji",
+      "aliases": [],
+      "section": "konan-dori",
+      "daypart": "night",
+      "area": "Koenji",
+      "ward": "Suginami",
+      "lat": 35.697979,
+      "lng": 139.647171,
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=35.697979,139.647171",
+      "address": "3-1 Koenjiminami, Suginami, Tokyo",
+      "station": "Koenji (JR Chuo / Sobu)",
+      "style": "Bar",
+      "description": "The far south bar. If you end at Hikawa, this is where the climb back north starts.",
+      "note": "Coordinates from GSI geocoder.",
+      "saved": true,
+      "transcript": false,
+      "coordinateSource": "GSI geocoder",
+      "branch": "hikawa",
+      "shortlist": false,
+      "street": "konan"
+    },
+    {
+      "id": "mabashi-inari",
+      "number": 36,
+      "name": "Mabashi Inari Shrine",
+      "aliases": [
+        "馬橋稲荷神社"
+      ],
+      "section": "konan-dori",
+      "daypart": "shrine",
+      "area": "Koenji",
+      "ward": "Suginami",
+      "lat": 35.70325,
+      "lng": 139.64271,
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=35.70325,139.64271",
+      "address": "Koenjiminami, Suginami, Tokyo",
+      "station": "Koenji (JR Chuo / Sobu)",
+      "style": "Shrine",
+      "description": "A small Inari shrine that feels borrowed from a village: a long sheltered approach, portable shrines stored behind glass, and one of only three torii in Tokyo with dragons climbing and descending the pillars. This corner was farmland until 1923, when farmers subdivided it for laborers and merchants displaced by the Great Kanto Earthquake.",
+      "note": "Coordinates from the exported XLSX data.",
+      "saved": true,
+      "transcript": false,
+      "coordinateSource": "XLSX export",
+      "street": "shrine"
+    },
+    {
+      "id": "hikawa-shrine",
+      "number": 37,
+      "name": "Koenji Hikawa Shrine",
+      "aliases": [
+        "高円寺氷川神社"
+      ],
+      "section": "hikawa",
+      "daypart": "shrine",
+      "area": "Koenji",
+      "ward": "Suginami",
+      "lat": 35.700142,
+      "lng": 139.649536,
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=35.700142,139.649536",
+      "address": "2-25 Koenjiminami, Suginami, Tokyo",
+      "station": "Koenji (JR Chuo / Sobu)",
+      "style": "Shrine",
+      "description": "Inside the grounds sits Kisho Jinja, Tokyo's only weather shrine, the one Makoto Shinkai drew for Weathering with You. The Imperial Army's forecasters founded it during the war; after 1945 it should have been dissolved with the other state shrines, so it was quietly moved here instead. The ema are painted with sandals, a nod to the old ritual of forecasting the weather by throwing them.",
+      "note": "Coordinates from GSI geocoder.",
+      "saved": true,
+      "transcript": true,
+      "coordinateSource": "GSI geocoder",
+      "sources": [
+        {
+          "label": "Anime locations guide",
+          "url": "https://blog.gaijinpot.com/anime-locations-in-tokyo/"
+        },
+        {
+          "label": "Shrine walkthrough",
+          "url": "https://www.youtube.com/watch?v=XCiPWynDET4&t=67"
+        }
+      ],
+      "street": "shrine"
+    }
+  ],
+  "walkMetres": 1332,
+  "breaks": [
+    {
+      "id": "first",
+      "after": "station",
+      "title": "First stop — coffee at the top",
+      "subtitle": "About 500m in, where Junjō runs out and you turn back",
+      "blurb": "You have walked the north side and the shops thin out. Both of these are cafes rather than anything heavier — sit down before you commit to the market."
+    },
+    {
+      "id": "lunch",
+      "after": "daiichi",
+      "title": "Lunch — in the market",
+      "subtitle": "Back down among the stalls, before you cross the tracks",
+      "blurb": "The one meal on this walk worth planning around. Nine counter seats and a queue; the bakery is the fallback if the queue is long."
+    },
+    {
+      "id": "kissa",
+      "after": "pal",
+      "title": "Sit down properly — the kissa",
+      "subtitle": "Roughly 1.2km in, at the bottom of the arcade",
+      "blurb": "Neither of these is a coffee you take away. One bans talking and hands you a book; the other plays whatever record you write on the blackboard. Budget an hour."
+    },
+    {
+      "id": "late",
+      "after": "etoile",
+      "title": "Late lunch — heading west",
+      "subtitle": "On Etoile, the last proper food before the shrine",
+      "blurb": "Etoile is where the walk turns west. Eat here or you are going to the shrine hungry."
+    }
+  ]
+}
