@@ -504,6 +504,10 @@
        actually appears. */
     .journey-coda { height: 80vh; }
 
+    /* The overture: the drive in, before the first counter. No quote on this
+       one, so it plays a little shorter than a full screen-height scroll. */
+    .journey-overture { height: 85vh; }
+
     /* Epilogue stop: the "naughty" card after the storm. No number badge,
        no floor arrow, and lifted above the coda's fixed video so it's
        readable as soon as the reader scrolls past the storm. The coda's
@@ -800,7 +804,7 @@
     }
   </style>
   <script src="js/ripple.js?v=d74dd0fe" defer></script>
-  <script src="js/tokyo-after-dark.js?v=75e1d8dd" defer></script>
+  <script src="js/tokyo-after-dark.js?v=40c1c6bd" defer></script>
 </head>
 <body>
   <div class="bars-bg" aria-hidden="true">
@@ -875,6 +879,7 @@
       <section id="journey-view" class="journey-view is-active" role="tabpanel" aria-labelledby="view-journey" tabindex="-1">
         <div class="journey-scroll">
 <!-- build:journey -->
+<figure class="journey-interstitial journey-overture" aria-label="Driving in"><video class="stop-video" muted loop playsinline autoplay preload="none"><source src="assets/movie/interstitial-0.webm" type="video/webm"><source src="assets/movie/interstitial-0.mp4" type="video/mp4"></video></figure>
 <h3 class="journey-leg">Ginza<span class="journey-leg-sub">Early evening: cocktails and counters</span></h3>
   <section class="stop" id="stop-apollo-bar" data-stop="apollo-bar" data-number="1" data-floor="B1F" data-category="basement" data-leg="ginza" style="--alias-cols:1">
     <div class="stop-media-bg">

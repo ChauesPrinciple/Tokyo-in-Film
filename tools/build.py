@@ -403,6 +403,19 @@ def render_journey(data_path):
             f'</video>{quote_html}</figure>'
         )
 
+    def _overture():
+        # Opening clip: the drive into the city, before the first counter.
+        # Same scroll-linked treatment as the transit interstitials, but it
+        # sits ahead of every stop, so tokyo-after-dark.js keeps it visible
+        # under filters the way it keeps the coda.
+        return (
+            f'<figure class="journey-interstitial journey-overture" aria-label="Driving in">'
+            f'<video class="stop-video" muted loop playsinline autoplay preload="none">'
+            f'<source src="assets/movie/interstitial-0.webm" type="video/webm">'
+            f'<source src="assets/movie/interstitial-0.mp4" type="video/mp4">'
+            f'</video></figure>'
+        )
+
     def _coda():
         text, source = CODA_QUOTE
         return (
@@ -419,6 +432,9 @@ def render_journey(data_path):
         )
 
     _validate_journey(bars, len(CLIP_ORDER))
+
+    # The drive in, before the Ginza heading and the first stop.
+    parts.append(_overture())
 
     prev_leg = None
     interstitial_idx = 0

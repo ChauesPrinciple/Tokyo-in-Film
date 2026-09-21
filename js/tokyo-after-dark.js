@@ -739,9 +739,13 @@
         if (isVisibleStop(el)) stopSinceKept = true;
         return;
       }
-      const keep = stopSinceKept && (el.classList.contains('journey-coda') || i < lastVisibleStop);
+      // The overture is the drive in: it opens the night, so it has no stop
+      // before it and stays as long as the journey has anything to show.
+      const keep = el.classList.contains('journey-overture')
+        ? lastVisibleStop >= 0
+        : stopSinceKept && (el.classList.contains('journey-coda') || i < lastVisibleStop);
       el.hidden = !keep;
-      if (keep) stopSinceKept = false;
+      if (keep && !el.classList.contains('journey-overture')) stopSinceKept = false;
     });
     // Hide leg headings when every stop in that leg is filtered out.
     // Walk past interstitials (FIGURE) to check all stops until the next leg.
