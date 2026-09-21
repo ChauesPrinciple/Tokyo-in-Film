@@ -141,7 +141,7 @@
     ['Jazz, rock & records', ['Jazz bar', 'Jazz livehouse', 'Record bar', 'Rock bar']],
     ['Speakeasy', ['Speakeasy']],
     ['Sake', ['Sake bar', 'Sake cocktail bar', 'Exclusive sake club']],
-    ['Themed & snack bars', ['Game bar', 'Burlesque bar', 'Izakaya · music bar', 'Snack bar']],
+    ['Themed & snack bars', ['Game bar', 'Burlesque bar', 'Izakaya · music bar', 'Snack bar', 'Monk bar']],
     ['Golden Gai', ['Golden Gai bars']],
   ];
   const _styleToCategory = new Map(STYLE_CATEGORIES.flatMap(([cat, styles]) => styles.map(s => [s, cat])));

@@ -159,7 +159,7 @@ shinkai: {
   subtitle: "Sacred Sites · Door-scapes · Cityscape Poetry",
   theme: {
     accent:'#7c3aed', accentBright:'#a855f7', border:'rgba(168,85,247,0.4)', glow:'rgba(168,85,247,0.3)',
-    tileBase:'https://a.basemaps.cartocdn.com/rastertiles/voyager',
+    tileStyle:'voyager', // the bright basemap, under the twilight gradient
     tileOpacity:0.55, // semi-transparent so the twilight gradient shows through
     background:'linear-gradient(180deg,#1e3a5f 0%,#5a4a7a 35%,#d4698c 70%,#f4a988 100%)'
   },

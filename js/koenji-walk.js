@@ -15,10 +15,10 @@
   let markerNodes = new Map(), branch = '', dataRef = {}, startSpot = null, contextLayer;
   let width = 800, height = 600, ready = false;
   let frame = 0;
-  let lastSection = '', lastWhen = '';
+  let lastSection = '';
   const pointers = new Map();
   let gesture = null, suppressClick = false;
-  const DATA_VERSION = '20260921z';
+  const DATA_VERSION = '20260922c';
   const STORAGE_KEY = 'koenji-walk-state';
   const BEEN_KEY = 'koenji-been-here';
   let beenHere = new Set();
@@ -95,6 +95,15 @@
         btn.classList.toggle('is-on', on);
         btn.setAttribute('aria-pressed', String(on));
         btn.textContent = on ? '✓ Been here' : 'Mark as visited';
+      }
+      // The stamp on the card was only ever applied when the card was built,
+      // so it did not appear until a reload. Stamp it here too.
+      const badges = card.querySelector('.shop-badges');
+      const existing = card.querySelector('.shop-badge.is-been');
+      if (beenHere.has(id) && badges && !existing) {
+        badges.append(html('span', 'shop-badge is-been', '✓ Visited'));
+      } else if (!beenHere.has(id) && existing) {
+        existing.remove();
       }
     }
     render();
@@ -401,10 +410,9 @@
         if (names) {
           const k = 1 / scale;
           names.style.fontSize = (11 * k).toFixed(2) + 'px';
+          names.style.strokeWidth = (3 * k).toFixed(2) + 'px';
           names.style.display = wide > 4200 ? '' : 'none';
           names.querySelectorAll('circle').forEach(c => c.setAttribute('r', (3 * k).toFixed(2)));
-          names.querySelectorAll('text').forEach(t => t.setAttribute('x',
-            (parseFloat(t.getAttribute('x')) || 0)));
         }
       }
     }
@@ -505,17 +513,12 @@
   function filter(refit = false) {
     const query = normalize($('shop-search').value.trim());
     const section = $('section-filter').value;
-    const when = $('when-filter').value;
     // Choosing the evening implies the evening palette; the toggle can still
     // override it either way.
-    const sectionChanged = section !== lastSection || when !== lastWhen;
+    const sectionChanged = section !== lastSection;
     lastSection = section;
-    lastWhen = when;
-    const inWhen = s => !when
-      || (when === 'day' && (s.daypart === 'day' || s.daypart === 'refuel'))
-      || (when === 'night' && (s.daypart === 'night' || s.daypart === 'shrine'));
     visible = spots.filter(s => s.daypart === 'start' ||
-      ((!section || s.section === section) && inWhen(s) && s.haystack.includes(query)));
+      ((!section || s.section === section) && s.haystack.includes(query)));
     const ids = new Set(visible.map(s => s.id));
     spots.forEach(s => { const c = $(`shop-${s.id}`); if (c) c.hidden = !ids.has(s.id); });
     $('empty-state').hidden = visible.length > 0;
@@ -725,9 +728,13 @@
       moon.style.top = (92 - Math.sin(mt * 0.56 * Math.PI) * 64).toFixed(1) + '%';
       moon.style.opacity = (t < 0.66 ? 0 : Math.min(1, (t - 0.66) / 0.15)).toFixed(2);
     }
+    // The readout is an aria-live region: rewriting it with the same text on
+    // every scroll tick makes a screen reader repeat it. Write only on change.
     const label = $('mode-label');
-    if (label) label.textContent = phaseName(t);
-    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', paper);
+    const name = phaseName(t);
+    if (label && label.textContent !== name) label.textContent = name;
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta && meta.getAttribute('content') !== paper) meta.setAttribute('content', paper);
     timeNow = t;
   }
 
@@ -786,6 +793,9 @@
   // the page is hidden or backgrounded, and the clock has to survive that.
   // Throttled by timestamp so a fast scroll costs at most one update a frame.
   function scheduleTime() {
+    // Print relayout can move scrollHeight and fire resize; that must not
+    // repaint the day over the print palette.
+    if (savedPrint) return;
     const now = performance.now();
     if (now - timeLast >= 16) {
       timeLast = now;
@@ -797,6 +807,7 @@
     timeQueued = true;
     setTimeout(() => {
       timeQueued = false;
+      if (savedPrint) return;
       timeLast = performance.now();
       const t = scrollTime();
       if (Math.abs(t - timeNow) > 0.0015) applyTime(t);
@@ -926,7 +937,6 @@
     card.append(html('p', 'shop-address', spot.address));
     if (spot.station && /\d/.test(spot.station)) card.append(html('p', 'shop-station', spot.station));
     if (spot.description) card.append(html('p', 'shop-description', spot.description));
-    if (spot.note) card.append(html('p', 'shop-note', spot.note));
     const links = html('div', 'shop-links');
     links.append(link('Open in Maps', mapUrl(spot)));
     (spot.sources || []).forEach(source => links.append(link(source.label, source.url)));
@@ -1065,14 +1075,11 @@
 
   function beforePrint() {
     if (!ready || savedPrint) return;
-    savedPrint = {camera: {...camera}, search: $('shop-search').value, section: $('section-filter').value,
-                  when: $('when-filter').value, selected, time: timeNow};
+    savedPrint = {camera: {...camera}, search: $('shop-search').value, section: $('section-filter').value, selected, time: timeNow};
     Object.entries(PRINT_TOKENS).forEach(([k, v]) => document.documentElement.style.setProperty(k, v));
     $('shop-search').value = '';
     $('section-filter').value = '';
-    $('when-filter').value = '';
     lastSection = '';
-    lastWhen = '';
     filter(true);
     resize();
   }
@@ -1083,9 +1090,7 @@
     savedPrint = null;
     $('shop-search').value = previous.search;
     $('section-filter').value = previous.section;
-    $('when-filter').value = previous.when || '';
     lastSection = previous.section;
-    lastWhen = previous.when || '';
     selected = previous.selected;
     applyTime(previous.time || 0);
     filter();
@@ -1098,7 +1103,6 @@
   $('fit-map').addEventListener('click', () => fit());
   $('shop-search').addEventListener('input', () => filter(false));
   $('section-filter').addEventListener('change', () => filter(true));
-  $('when-filter').addEventListener('change', () => filter(true));
   $('print-map').addEventListener('click', () => window.print());
   startTime();
   window.addEventListener('beforeprint', beforePrint);

@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="An otaku's dream trip through Japan, compiled from a decade of saved pins: Akihabara to Awaji Island, through Osaka and Universal Studios Japan.">
+  <meta name="theme-color" content="#0a0a13">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap" rel="stylesheet">
+  <title>Otaku Japan — Tokyo in Film</title>
+  <link rel="icon" href="assets/images/image07.png">
+  <style>
+    :root {
+      color-scheme: dark;
+      /* Akihabara at night. Blue-black glass, neon signage, arcade glow. */
+      --ink: #eae7ff;
+      --ink-soft: #b4acce;
+      --muted: #7d7699;
+      --line: #2c2740;
+      --paper: #0a0a13;
+      --panel: #151325;
+      --sea: #06060c;
+      --accent: #34e0ff;
+      --signboard: #ff3d7f;
+      --gold: #ffd24a;
+      --mark: #ff3d7f;
+      --mark-soft: #2a1226;
+      --mark-ink: #ff85ac;
+      --radius: 10px;
+      --display: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", "Yu Gothic",
+                 ui-sans-serif, -apple-system, "Segoe UI", Roboto, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    /* The Gundam key visual, running as the sky the page sits in. */
+    #bg-video {
+      position: fixed; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; z-index: -2; pointer-events: none;
+      opacity: 0; transition: opacity .9s ease;
+      filter: saturate(.85) brightness(.62);
+    }
+    #bg-video.is-live { opacity: .28; }
+    #bg-scrim {
+      position: fixed; inset: 0; z-index: -1; pointer-events: none;
+      background: linear-gradient(180deg,
+        rgba(10,10,19,.82) 0%, rgba(10,10,19,.68) 45%, rgba(10,10,19,.9) 100%);
+    }
+    body {
+      margin: 0; background: var(--paper); color: var(--ink);
+      font: 400 15px/1.6 var(--display);
+      font-feature-settings: "kern" 1; text-rendering: optimizeLegibility;
+    }
+    button, input, select { font: inherit; }
+    button, select, input { accent-color: var(--mark-ink); }
+    button, a, input, select { -webkit-tap-highlight-color: transparent; }
+    a { color: var(--ink); text-underline-offset: 4px; }
+    a:hover { color: var(--mark-ink); }
+    button { cursor: pointer; }
+    :focus-visible { outline: 2px solid var(--mark-ink); outline-offset: 2px; }
+    .skip-link { position: absolute; top: -100px; left: 20px; z-index: 10; background: var(--panel); padding: 12px; border: 1px solid var(--line); border-radius: 7px; }
+    .skip-link:focus { top: 12px; }
+
+    .page-shell { max-width: 1560px; margin: 0 auto; padding: 0 32px 48px; }
+
+    .masthead {
+      display: flex; align-items: center; justify-content: space-between; gap: 24px;
+      padding: 22px 0 18px; border-bottom: 1px solid var(--line);
+    }
+    .eyebrow { margin: 0; color: var(--signboard); font-size: 11px; font-weight: 900; letter-spacing: .24em; text-transform: uppercase; }
+    .masthead nav { display: flex; flex-wrap: wrap; gap: 22px; font-size: 13px; }
+    .masthead nav a { text-decoration: none; color: var(--ink-soft); }
+    .masthead nav a:hover { color: var(--mark-ink); text-decoration: underline; }
+    .masthead nav [aria-current] { color: var(--ink); font-weight: 700; }
+    .ig-link {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 34px; height: 34px; flex: none; border-radius: 9px;
+      color: var(--ink-soft); text-decoration: none; transition: color .12s, background .12s;
+    }
+    .ig-link:hover { color: var(--mark-ink); background: var(--mark-soft); }
+    .ig-link svg { width: 21px; height: 21px; display: block; }
+
+    .page-header { padding: 28px 0 8px; }
+    .page-header h1 {
+      margin: 0; font-weight: 900; font-size: clamp(34px, 4.6vw, 56px);
+      letter-spacing: -.03em; line-height: 1.02; color: var(--signboard); text-transform: uppercase;
+    }
+    .lede { margin: 10px 0 0; color: var(--ink-soft); font-size: 15px; max-width: 66ch; line-height: 1.55; }
+
+    .layout {
+      display: grid; grid-template-columns: minmax(0, 1fr) 420px;
+      gap: 38px; padding-top: 16px; align-items: start;
+    }
+    @media (max-width: 1040px) { .layout { grid-template-columns: 1fr; } }
+    .map-panel { position: sticky; top: 20px; }
+    @media (max-width: 1040px) { .map-panel { position: sticky; top: 0; z-index: 5; } }
+
+    .map-toolbar { display: flex; gap: 8px; align-items: center; margin-bottom: 12px; flex-wrap: wrap; }
+    .map-toolbar button {
+      font: 500 13.5px/1 inherit; padding: 8px 13px; border: 1px solid var(--line);
+      background: var(--panel); border-radius: 7px; color: var(--ink-soft);
+      transition: border-color .12s, color .12s;
+    }
+    .map-toolbar button:hover { border-color: var(--ink); color: var(--ink); }
+
+    .kind-chips { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
+    .kind-chip {
+      font: 600 11.5px/1 inherit; letter-spacing: .05em; text-transform: uppercase;
+      padding: 7px 12px; border: 1px solid var(--line); background: var(--panel);
+      border-radius: 999px; color: var(--ink-soft); cursor: pointer;
+      transition: border-color .12s, color .12s, background .12s;
+    }
+    .kind-chip:hover { border-color: var(--ink); color: var(--ink); }
+    .kind-chip.is-on { background: var(--mark-soft); border-color: var(--gold); color: var(--gold); }
+
+    .map-frame {
+      position: relative; border: 1px solid var(--line); border-radius: var(--radius);
+      overflow: hidden; background: var(--sea);
+    }
+    #map-wrap {
+      position: relative; height: min(74vh, 760px); overflow: hidden;
+      cursor: grab; touch-action: none;
+    }
+    #map-wrap.dragging { cursor: grabbing; }
+    /* Screen-space overlay: fills the wrap, never CSS-scaled — pins and
+       trails are positioned in CSS px every frame so they stay constant-size. */
+    #otaku-svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+    /* Tiles live in a plain div, positioned in screen px each frame — the
+       browser rasterizes <img> at native resolution instead of stretching an
+       SVG bitmap. Retina pulls @2x where the provider serves it. */
+    #tile-canvas { position: absolute; inset: 0; overflow: hidden; }
+    /* Each zoom level is a grid of natural-size tiles that moves as one
+       transform; the images inside never get repositioned individually. */
+    .tile-level { position: absolute; left: 0; top: 0; transform-origin: 0 0; will-change: transform; }
+    .tile-layer { position: absolute; left: 0; top: 0; }
+    #tile-canvas img {
+      position: absolute; display: block; width: 256px; height: 256px;
+      user-select: none; -webkit-user-drag: none;
+    }
+    /* Esri's dark canvas is a mid grey — darker than its name, lighter than
+       this page. Bring it down to the ink so the neon pins carry. */
+    #tile-canvas.is-esri img { filter: brightness(.55) contrast(1.08); }
+
+    /* The name of the map currently in frame — each themed map announces itself. */
+    #map-title {
+      position: absolute; left: 14px; top: 12px; z-index: 5; pointer-events: none;
+      font-size: 13px; font-weight: 900; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--gold); text-shadow: 0 1px 8px rgba(0,0,0,.85), 0 0 22px rgba(0,0,0,.6);
+      opacity: 0; transition: opacity .3s;
+    }
+    #map-title.is-on { opacity: 1; }
+    #trail-key {
+      position: absolute; top: 46px; left: 14px; z-index: 6;
+      display: none; flex-direction: column; gap: 4px;
+      padding: 8px 11px; border: 1px solid var(--line); border-radius: 6px;
+      background: rgba(8,8,14,.78); backdrop-filter: blur(4px);
+      font: 600 10.5px/1.4 var(--display); letter-spacing: .04em;
+      text-transform: uppercase; pointer-events: none;
+    }
+    #trail-key.is-on { display: flex; }
+    .trail-key-item { display: flex; align-items: center; gap: 7px; color: var(--ink-soft); }
+    .trail-key-item i { width: 14px; height: 3px; border-radius: 2px; display: inline-block; }
+
+    #poi-popup {
+      position: fixed; z-index: 30; display: none; max-width: 300px;
+      background: var(--panel); border: 1px solid var(--line); border-radius: 9px;
+      padding: 12px 14px; font-size: 13px; line-height: 1.5; color: var(--ink);
+      box-shadow: 0 12px 34px -12px rgba(0,0,0,.7);
+    }
+    .popup-meta { margin-top: 3px; font-size: 10.5px; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+    .popup-body { margin-top: 7px; font-size: 12.5px; color: var(--ink-soft); }
+    .popup-link { display: inline-block; margin-top: 8px; font-size: 12px; color: var(--gold); text-decoration: none; }
+    .popup-link:hover { text-decoration: underline; }
+    .popup-cluster-row { display: block; padding: 2px 0; font-size: 12.5px; font-weight: 600; text-decoration: none; cursor: pointer; }
+
+    .pin { outline: none; }
+    .pin:focus-visible { stroke-width: 4px; }
+    .pin-cluster { fill: rgba(10,9,14,.85); }
+    .cluster-num { text-anchor: middle; dominant-baseline: central; font-weight: 700; pointer-events: none; font-family: inherit; }
+    .been-dot { fill: var(--gold); stroke: var(--paper); stroke-width: 1.2; pointer-events: none; }
+
+    .trail-line { fill: none; stroke-width: 2.2; stroke-dasharray: 5 5; stroke-linejoin: round; stroke-linecap: round; opacity: .55; }
+
+    .map-status { margin: 11px 2px 0; color: var(--ink-soft); font-size: 13px; min-height: 20px; }
+
+    .map-key {
+      margin-top: 12px; padding: 12px 14px; border-radius: var(--radius);
+      background: var(--panel); font-size: 12px; color: var(--ink-soft);
+    }
+    .key-heading { margin: 0 0 8px; font-size: 11px; letter-spacing: .08em; font-weight: 700; text-transform: uppercase; color: var(--muted); }
+    .key-row { display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: center; margin: 4px 0; }
+    .key-item { display: inline-flex; gap: 7px; align-items: center; }
+    .key-glyph { width: 15px; height: 15px; border-radius: 50%; flex: none; }
+    .key-glyph.is-go { background: var(--accent); }
+    .key-glyph.is-eat { background: var(--accent); border-radius: 2px; width: 13px; height: 13px; }
+    .key-glyph.is-drink { background: var(--accent); border-radius: 2px; width: 12px; height: 12px; transform: rotate(45deg); }
+    .key-glyph.is-film { background: none; border-radius: 50%; box-shadow: inset 0 0 0 2px var(--accent); }
+    .key-glyph.is-been { background: var(--gold); width: 9px; height: 9px; margin-left: 3px; }
+    .key-attr { margin-top: 9px; padding-top: 8px; border-top: 1px solid var(--line); font-size: 10.5px; color: var(--muted); }
+    .key-attr a { color: var(--ink-soft); }
+
+    .list-panel {
+      max-height: calc(100vh - 64px); overflow: auto; padding-right: 6px; scroll-padding-top: 100px;
+      scrollbar-width: thin; scrollbar-color: var(--line) transparent;
+    }
+    .list-panel::-webkit-scrollbar { width: 6px; }
+    .list-panel::-webkit-scrollbar-thumb { background: var(--line); border-radius: 3px; }
+    @media (max-width: 1040px) { .list-panel { max-height: none; overflow: visible; } }
+
+    .list-controls {
+      display: grid; grid-template-columns: 1fr 170px; gap: 10px 12px; align-items: end;
+      position: sticky; top: 0; z-index: 2; background: var(--paper);
+      padding: 8px 0 12px;
+    }
+    .field { display: grid; gap: 5px; font-size: 11px; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+    .field input, .field select {
+      font: 400 14px/1.3 inherit; text-transform: none; letter-spacing: 0; color: var(--ink);
+      padding: 9px 10px; border: 1px solid var(--line); border-radius: 7px; background: var(--panel);
+    }
+    .field input:focus, .field select:focus { border-color: var(--mark-ink); outline: none; }
+    .field input::placeholder { color: var(--muted); }
+    #list-count { grid-column: 1 / -1; margin: 0; font-size: 12.5px; color: var(--muted); }
+
+    .leg-header {
+      margin: 30px 0 10px; padding: 12px 0 8px; border-bottom: 2px solid var(--accent);
+      scroll-margin: 8px;
+    }
+    .leg-header h2 {
+      margin: 0; font-size: 21px; font-weight: 900; letter-spacing: -.01em;
+      text-transform: uppercase; color: var(--ink);
+      text-shadow: 0 0 18px currentColor;
+    }
+    .leg-header p { margin: 4px 0 0; font-size: 11.5px; color: var(--muted); font-weight: 600; letter-spacing: .05em; text-transform: uppercase; }
+    .leg-story { margin: 10px 0 4px !important; font-size: 14px; line-height: 1.65; color: var(--ink-soft); text-transform: none !important; letter-spacing: 0 !important; font-weight: 400 !important; max-width: 60ch; }
+    .trail-header {
+      display: flex; align-items: baseline; justify-content: space-between;
+      margin: 18px 0 2px; padding: 6px 0 5px; border-bottom: 2px solid var(--line);
+      font-size: 12px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase;
+    }
+    .trail-header em { font-style: normal; font-size: 10.5px; color: var(--muted); letter-spacing: .05em; }
+
+    .interlude {
+      margin: 34px 0 18px; padding: 18px 20px; border-radius: var(--radius);
+      border: 1px solid var(--line); border-left: 4px solid var(--accent);
+      background: linear-gradient(135deg, var(--panel), rgba(52,224,255,.06));
+      scroll-margin: 20vh;
+    }
+    .interlude h3 {
+      margin: 0 0 8px; font-size: 13px; font-weight: 900; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--accent);
+    }
+    .interlude p { margin: 0; font-size: 14px; line-height: 1.65; color: var(--ink-soft); max-width: 60ch; }
+
+    /* The slim "back to the overview" beat between themed maps. */
+    .beat-reset {
+      display: flex; align-items: center; gap: 12px; margin: 26px 0 14px;
+      color: var(--muted); font-size: 10.5px; font-weight: 800;
+      letter-spacing: .22em; text-transform: uppercase;
+      scroll-margin: 20vh;
+    }
+    .beat-reset::before, .beat-reset::after {
+      content: ''; flex: 1; border-top: 1px dashed var(--line); opacity: .8;
+    }
+
+    .spot-card {
+      border: 1px solid var(--line); border-radius: var(--radius);
+      background: var(--panel); padding: 13px 15px 14px; margin-bottom: 10px;
+      scroll-margin: 8px; transition: border-color .12s;
+    }
+    .spot-card:hover { border-color: var(--ink-soft); }
+    .spot-card.is-selected { border-color: var(--ink); box-shadow: inset 3px 0 0 var(--mark); }
+    .spot-select {
+      display: flex; gap: 10px; align-items: baseline; width: 100%;
+      background: none; border: 0; padding: 0; text-align: left;
+      font: 700 15.5px/1.35 inherit; letter-spacing: -.005em; color: var(--ink);
+    }
+    .spot-select:hover { color: var(--mark-ink); }
+    .spot-dot { flex: none; width: 11px; height: 11px; border-radius: 50%; transform: translateY(1px); }
+    .spot-badges { margin: 7px 0 0 21px; display: flex; flex-wrap: wrap; gap: 6px; }
+    .spot-badge {
+      font-size: 10px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase;
+      padding: 2px 8px; border-radius: 999px;
+    }
+    .spot-badge[class*="kind-"] { background: var(--paper); color: var(--ink-soft); box-shadow: inset 0 0 0 1px var(--line); }
+    .spot-badge.kind-film { color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+    .spot-badge.kind-eat, .spot-badge.kind-drink { color: var(--gold); box-shadow: inset 0 0 0 1px var(--gold); }
+    .spot-badge.is-been { background: var(--gold); color: var(--paper); }
+    .spot-blurb { margin: 8px 0 0 21px; font-size: 13.5px; line-height: 1.6; color: var(--ink-soft); max-width: 58ch; }
+    .spot-links { margin: 10px 0 0 21px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+    .spot-link {
+      font-size: 12px; color: var(--ink-soft); text-decoration: none;
+      border: 1px solid var(--line); border-radius: 999px; padding: 4px 10px; background: var(--paper);
+    }
+    .spot-link:hover { color: var(--ink); border-color: var(--ink); }
+    .been-toggle {
+      font: 500 12px/1 inherit; padding: 5px 11px; border: 1px solid var(--line);
+      background: var(--paper); border-radius: 999px; color: var(--ink-soft);
+    }
+    .been-toggle:hover { border-color: var(--ink); color: var(--ink); }
+    .been-toggle.is-on { background: var(--mark-soft); border-color: var(--gold); color: var(--gold); font-weight: 700; }
+
+    .page-footer {
+      margin-top: 34px; padding: 16px; border-top: 1px solid var(--line);
+      background: var(--panel); border-radius: var(--radius);
+    }
+    .print-note { margin: 0; font-size: 13px; color: var(--ink-soft); }
+    .sources { margin: 8px 0 0; color: var(--muted); font-size: 11.5px; line-height: 1.65; }
+
+    @media (max-width: 600px) {
+      .page-shell { padding: 0 16px 24px; }
+      #map-wrap { height: min(60vh, 480px); }
+      .list-controls { grid-template-columns: 1fr; }
+      .masthead nav { gap: 12px 14px; font-size: 12px; }
+    }
+
+    @media print {
+      * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      body { background: #fff; }
+      .map-toolbar, .kind-chips, .list-controls, .been-toggle, .masthead nav, .ig-link, #poi-popup, #bg-video, #bg-scrim { display: none !important; }
+      .layout { display: block; }
+      .map-panel { position: static; }
+      #map-wrap { height: 120mm; }
+      .list-panel { max-height: none; overflow: visible; }
+      .spot-card { break-inside: avoid; }
+      .spot-blurb, .spot-links { display: block; }
+    }
+  </style>
+  <script src="js/otaku-japan.js" defer></script>
+</head>
+<body>
+  <video id="bg-video" autoplay muted loop playsinline aria-hidden="true"
+         title="Gundam key visual loop, decorative background" poster="assets/gundamkey-poster.jpg">
+    <source src="assets/gundamkey.mp4" type="video/mp4">
+  </video>
+  <div id="bg-scrim" aria-hidden="true"></div>
+  <a class="skip-link" href="#spot-search">Skip to the stop list</a>
+  <div class="page-shell">
+    <header>
+      <div class="masthead">
+        <p class="eyebrow">Tokyo in Film</p>
+        <nav aria-label="The maps">
+          <a href="ramen-map.html">Ramen Challenge</a>
+          <a href="tokyo-after-dark.html">Tokyo After Dark</a>
+          <a href="koenji-walk.html">Koenji B-Side</a>
+          <span aria-current="page">Otaku Japan</span>
+        </nav>
+        <a class="ig-link" href="https://www.instagram.com/chaues/" target="_blank" rel="noopener noreferrer"
+           aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.2" cy="6.75" r="1.25" fill="currentColor"/></svg></a>
+      </div>
+      <div class="page-header">
+        <h1>Otaku Japan</h1>
+        <p class="lede">The dream trip, compiled from a decade of saved pins. Akihabara for the shops, Ikebukuro for Otome Road, Nakano for the Broadway. Then the shinkansen west: Fuji-Q's Hidden Leaf, Ghibli Park, Kyoto's JoJo bar, Osaka's Denden Town, a day inside Super Nintendo World, and finally Awaji Island, where a park in the forest lets you zipline into Godzilla's mouth. Then home the smart way: bags couriered ahead, a short flight back to Tokyo, and one last shopping day, because you never shop at the beginning.</p>
+      </div>
+    </header>
+    <noscript><p>This map needs JavaScript to load the stops. Please enable it and reload.</p></noscript>
+    <main class="layout">
+      <section class="map-panel" aria-label="Map">
+        <div class="map-toolbar">
+          <button type="button" id="zoom-in" aria-label="Zoom in">+</button>
+          <button type="button" id="zoom-out" aria-label="Zoom out">&minus;</button>
+          <button type="button" id="fit-map">Fit route</button>
+        </div>
+        <div class="kind-chips" role="group" aria-label="Filter by kind of place">
+          <button type="button" class="kind-chip" data-kind="shop">Shops</button>
+          <button type="button" class="kind-chip" data-kind="play">Arcades</button>
+          <button type="button" class="kind-chip" data-kind="eat">Eat &amp; drink</button>
+          <button type="button" class="kind-chip" data-kind="see">Sights</button>
+          <button type="button" class="kind-chip" data-kind="film">Film locations</button>
+        </div>
+        <div class="map-frame">
+          <div id="map-title" aria-hidden="true"></div>
+          <div id="trail-key" aria-hidden="true"></div>
+          <div id="map-wrap" role="group" aria-label="Interactive map of the route"><div id="tile-canvas" aria-hidden="true"></div></div>
+          <div id="poi-popup" role="dialog" aria-live="polite"></div>
+        </div>
+        <p id="map-status" class="map-status" role="status" aria-live="polite">Loading map data.</p>
+        <div class="map-key">
+          <h2 class="key-heading">Shape is what it is. Colour is which map.</h2>
+          <div class="key-row">
+            <span class="key-item"><span class="key-glyph is-go" aria-hidden="true"></span> Shops, arcades, sights</span>
+            <span class="key-item"><span class="key-glyph is-eat" aria-hidden="true"></span> Food &amp; cafes</span>
+            <span class="key-item"><span class="key-glyph is-drink" aria-hidden="true"></span> Bars</span>
+            <span class="key-item"><span class="key-glyph is-film" aria-hidden="true"></span> Film location</span>
+            <span class="key-item"><span class="key-glyph is-been" aria-hidden="true"></span> Your stamp</span>
+          </div>
+          <div class="key-row" style="margin-top:8px;">
+            <span>Click a pin to peek at the note; click a name in the list to dive to that street. The stamp is yours: mark where you have been and it stays on this browser.</span>
+          </div>
+          <div class="key-row key-attr">
+            <span>Basemap: Esri Dark Gray Canvas &mdash; Esri, HERE, Garmin, &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors, and the GIS user community</span>
+          </div>
+        </div>
+      </section>
+      <section class="list-panel" aria-label="Stops">
+        <div class="list-controls">
+          <div class="field">
+            <label for="spot-search">Search stops</label>
+            <input type="search" id="spot-search" placeholder="anime, curry, arcade, shrine&hellip;" autocomplete="off">
+          </div>
+          <div class="field">
+            <label for="leg-filter">Leg</label>
+            <select id="leg-filter"><option value="">All legs</option></select>
+          </div>
+          <p id="list-count"></p>
+        </div>
+        <div id="spot-list"></div>
+      </section>
+    </main>
+    <footer class="page-footer">
+      <p class="print-note">Legs are the shape of the trip, not a schedule. Check opening days, reservation lotteries and Express Pass availability before booking anything.</p>
+      <p class="sources">Coordinates from the saved-place export and the GSI geocoder; film locations from this site's own anime maps. Basemap: Esri Dark Gray Canvas &mdash; Esri, HERE, Garmin, © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors, and the GIS user community.</p>
+    </footer>
+  </div>
+</body>
+</html>

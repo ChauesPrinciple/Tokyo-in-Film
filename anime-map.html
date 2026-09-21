@@ -27,6 +27,9 @@
     #map-svg-wrap{position:absolute;inset:0;overflow:hidden;cursor:grab;}
     #map-svg-wrap.dragging{cursor:grabbing;}
     #map-svg-wrap svg{position:absolute;transform-origin:0 0;}
+    /* Esri's dark canvas is a mid grey — darker than its name, lighter than
+       this page. Bring it down to the ink so the ward colours carry. */
+    #tile-group.is-esri-dark{filter:brightness(.55) contrast(1.08);}
 
     .ward-path{stroke:#2d2d2d;stroke-width:0.8;cursor:pointer;transition:fill-opacity .2s,stroke .2s;}
     .ward-path:hover{fill-opacity:0.85;stroke:var(--accent-bright);stroke-width:1.5;}
@@ -133,6 +136,10 @@
     .search-empty{padding:10px 12px;font-size:.75rem;color:var(--muted);font-style:italic;}
 
     /* ── Click Hint ── */
+    /* Esri asks for a credit line, and the page never had one. */
+    #map-credit{position:absolute;bottom:3px;left:10px;z-index:400;font-size:.62rem;color:rgba(255,255,255,0.32);pointer-events:auto;}
+    #map-credit a{color:inherit;text-decoration:none;}
+    #map-credit a:hover{color:rgba(255,255,255,0.6);text-decoration:underline;}
     #click-hint{position:absolute;bottom:20px;left:20px;z-index:400;background:rgba(14,14,14,0.95);border:1px solid var(--border);padding:10px 14px;border-radius:4px;font-size:.78rem;color:var(--muted);pointer-events:none;transition:opacity .5s;}
 
     /* ── Tooltip ── */
@@ -237,6 +244,7 @@
   </div>
 
   <div id="click-hint">Click any ward to explore</div>
+  <div id="map-credit">Basemap: Esri Canvas &mdash; Esri, HERE, Garmin, &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors. Subway geometry from OpenStreetMap.</div>
   <div id="map-svg-wrap"></div>
 
   <div class="custom-zoom">
@@ -266,8 +274,14 @@
 const CONFIG = {
   SVG_W: 960, SVG_H: 760,
   BOUNDS: {minLng:139.56, maxLng:139.93, minLat:35.51, maxLat:35.83},
-  TILE_Z: 12,
-  TILE_BASE: 'https://a.basemaps.cartocdn.com/dark_all',
+  // Basemap. CARTO's open tiles now come back stamped "API KEY REQUIRED"
+  // across the image, so both styles below come from Esri's Canvas set:
+  // keyless, and drawn in two layers — land underneath, names on top.
+  // Paste a CARTO key into CARTO_KEY and the original two styles come back
+  // as single @2x layers.
+  CARTO_KEY: '',
+  TILE_Z: 12,        // with CARTO's @2x tiles; Esri has none, so it takes z+1
+  TILE_STYLE: 'dark',
   CLUSTER_SCREEN_PX: 28,          // POIs closer than this (in screen px) cluster
   CLUSTER_ZOOM_DELTA: 0.02,       // Re-run clustering only when scale changes by > this
   CLUSTER_ZOOM_IN_RATIO: 3.5,     // How far to zoom when a cluster is clicked
@@ -293,10 +307,30 @@ function project(lng,lat){
 function metersToSvg(m){return m/((BOUNDS.maxLng-BOUNDS.minLng)*111320/SVG_W);}
 
 // ══════════════════════════════════════════════════════════
-// TILE LAYER — CartoDB dark base map under ward polygons
+// TILE LAYER — dark base map under ward polygons
 // ══════════════════════════════════════════════════════════
-const TILE_Z=CONFIG.TILE_Z;
-const TILE_BASE=CONFIG.TILE_BASE;
+// Two named styles: the dark canvas this map is built on, and the bright
+// one a theme can ask for. Each is an Esri Canvas pair — a land layer and a
+// names layer — or a single CARTO style when a key is set.
+const TILE_STYLES={
+  dark:   {carto:'dark_all',            esri:'Canvas/World_Dark_Gray',  tone:true},
+  voyager:{carto:'rastertiles/voyager', esri:'Canvas/World_Light_Gray', tone:false}
+};
+const ESRI_BASE='https://services.arcgisonline.com/ArcGIS/rest/services';
+const usingCarto=()=>!!CONFIG.CARTO_KEY;
+// Esri serves no @2x, so it takes a finer z to land on the same pixel density.
+const tileZ=()=>usingCarto()?CONFIG.TILE_Z:CONFIG.TILE_Z+1;
+// Esri numbers its tiles row first — /tile/{z}/{y}/{x}, not {x}/{y}.
+function tileHref(style,z,x,y,layer){
+  const st=TILE_STYLES[style]||TILE_STYLES.dark;
+  if(usingCarto()){
+    return layer==='ref'?null
+      :`https://a.basemaps.cartocdn.com/${st.carto}/${z}/${x}/${y}@2x.png`+
+       `?api_key=${encodeURIComponent(CONFIG.CARTO_KEY)}`;
+  }
+  const svc=layer==='ref'?'_Reference':'_Base';
+  return `${ESRI_BASE}/${st.esri}${svc}/MapServer/tile/${z}/${y}/${x}`;
+}
 function lng2tile(lng,z){return Math.floor((lng+180)/360*(1<<z));}
 function lat2tile(lat,z){const r=lat*Math.PI/180;return Math.floor((1-Math.log(Math.tan(r)+1/Math.cos(r))/Math.PI)/2*(1<<z));}
 function tile2lng(x,z){return x/(1<<z)*360-180;}
@@ -376,41 +410,48 @@ async function loadSubwayLines(svg){
 
 function loadTiles(svg){
   const g=document.createElementNS('http://www.w3.org/2000/svg','g');g.id='tile-group';
-  g.dataset.base=TILE_BASE;
-  const z=TILE_Z;
+  g.dataset.style=CONFIG.TILE_STYLE;
+  g.classList.toggle('is-esri-dark',!usingCarto()&&TILE_STYLES[CONFIG.TILE_STYLE].tone);
+  const z=tileZ();
   const xMin=lng2tile(BOUNDS.minLng,z),xMax=lng2tile(BOUNDS.maxLng,z);
   const yMin=lat2tile(BOUNDS.maxLat,z),yMax=lat2tile(BOUNDS.minLat,z);
-  for(let tx=xMin;tx<=xMax;tx++){
-    for(let ty=yMin;ty<=yMax;ty++){
-      const[x1,y1]=project(tile2lng(tx,z),tile2lat(ty,z));
-      const[x2,y2]=project(tile2lng(tx+1,z),tile2lat(ty+1,z));
-      const img=document.createElementNS('http://www.w3.org/2000/svg','image');
-      img.dataset.tx=tx; img.dataset.ty=ty; img.dataset.z=z;
-      img.setAttribute('href',`${TILE_BASE}/${z}/${tx}/${ty}@2x.png`);
-      img.setAttribute('x',x1);img.setAttribute('y',y1);
-      img.setAttribute('width',x2-x1);img.setAttribute('height',y2-y1);
-      img.setAttribute('preserveAspectRatio','none');
-      g.appendChild(img);
+  // Land first, then the names over the whole layer of it.
+  ['base','ref'].forEach(layer=>{
+    for(let tx=xMin;tx<=xMax;tx++){
+      for(let ty=yMin;ty<=yMax;ty++){
+        const href=tileHref(CONFIG.TILE_STYLE,z,tx,ty,layer);
+        if(!href) continue; // CARTO bakes its names into the one tile
+        const[x1,y1]=project(tile2lng(tx,z),tile2lat(ty,z));
+        const[x2,y2]=project(tile2lng(tx+1,z),tile2lat(ty+1,z));
+        const img=document.createElementNS('http://www.w3.org/2000/svg','image');
+        img.dataset.tx=tx; img.dataset.ty=ty; img.dataset.z=z; img.dataset.layer=layer;
+        img.setAttribute('href',href);
+        img.setAttribute('x',x1);img.setAttribute('y',y1);
+        img.setAttribute('width',x2-x1);img.setAttribute('height',y2-y1);
+        img.setAttribute('preserveAspectRatio','none');
+        g.appendChild(img);
+      }
     }
-  }
+  });
   svg.insertBefore(g,svg.firstChild);
 }
-// Swap the tile basemap. If base is null/empty, hide the tile layer entirely
-// (Shinkai: the map becomes a sky with wards floating on it).
-function applyTileBase(base){
+// Swap the tile style. If style is null/empty, hide the tile layer entirely
+// (a map that becomes a sky with wards floating on it).
+function applyTileStyle(style){
   const g=document.getElementById('tile-group');
   if(!g) return;
-  if(!base){
+  if(!style){
     g.style.display='none';
-    g.dataset.base='';
+    g.dataset.style='';
     return;
   }
   g.style.display='';
-  if(g.dataset.base===base) return;
-  g.dataset.base=base;
+  g.classList.toggle('is-esri-dark',!usingCarto()&&(TILE_STYLES[style]||TILE_STYLES.dark).tone);
+  if(g.dataset.style===style) return;
+  g.dataset.style=style;
   g.querySelectorAll('image').forEach(img=>{
-    const tx=img.dataset.tx, ty=img.dataset.ty, z=img.dataset.z;
-    img.setAttribute('href',`${base}/${z}/${tx}/${ty}@2x.png`);
+    const href=tileHref(style,img.dataset.z,img.dataset.tx,img.dataset.ty,img.dataset.layer);
+    if(href) img.setAttribute('href',href);
   });
 }
 
@@ -703,19 +744,20 @@ function applyAnimeTheme(){
   const anime=ANIME[currentAnime];
   const root=document.documentElement;
 
-  // Basemap per anime: dark tiles by default; Shinkai uses no tiles + a sky gradient background.
-  // tileBase === null  -> hide tiles
-  // tileBase === undefined -> use default dark tiles
-  // tileBase === <url> -> swap to that tile source
-  const tb = anime.theme.tileBase === undefined ? CONFIG.TILE_BASE : anime.theme.tileBase;
-  applyTileBase(tb);
+  // Basemap per anime: dark tiles by default; a theme can go bright or drop
+  // the basemap for a sky gradient.
+  // tileStyle === undefined -> the default dark tiles
+  // tileStyle === null      -> hide tiles
+  // tileStyle === <name>    -> a style from TILE_STYLES
+  const ts = anime.theme.tileStyle === undefined ? CONFIG.TILE_STYLE : anime.theme.tileStyle;
+  applyTileStyle(ts);
   // Optional tile opacity override (Shinkai uses 0.55 so the sky gradient shows through)
   const tileGroup=document.getElementById('tile-group');
   if(tileGroup) tileGroup.style.opacity = anime.theme.tileOpacity != null ? anime.theme.tileOpacity : '';
   // Background: custom gradient if provided, otherwise the default dark color from CSS.
   wrap.style.background = anime.theme.background || '';
   // 'bright-theme' class flips ward labels to dark text so they stay readable on sky/light backgrounds.
-  document.body.classList.toggle('bright-theme', !!anime.theme.background || !!anime.theme.tileBase);
+  document.body.classList.toggle('bright-theme', !!anime.theme.background || !!anime.theme.tileStyle);
 
   // Header
   document.getElementById('hdr-eyebrow').textContent=anime.eyebrow;

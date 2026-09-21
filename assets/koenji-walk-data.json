@@ -7,7 +7,7 @@
     "lat": 35.7052,
     "lng": 139.6493,
     "heading": "Start at the north exit",
-    "blurb": "Six minutes from Shinjuku on the Chuo Line. Koenji skipped the bubble-era rebuild and fought off the 2022 redevelopment plans, so the streets still look like the seventies left them. North side first, bakery in hand, then under the tracks and down the arcades. Two endings at the bottom; pick by where you want to drink."
+    "blurb": "Six minutes from Shinjuku on the Chūō Line. The student movements of the sixties settled here, punk followed the cheap rent through the seventies, and neither the bubble nor the 2022 redevelopment plans managed to move any of it on — so the streets still look like the seventies left them. North side first, bakery in hand, then under the tracks and down the arcades. Two endings at the bottom; pick by where you want to drink."
   },
   "branches": [
     {
@@ -48,7 +48,7 @@
     {
       "id": "etoile",
       "name": "Etoile Shopping Street",
-      "subtitle": "East of the tracks, the older arcade. Burgers, serious coffee, and the temple cluster behind."
+      "subtitle": "The cross street heading west off the spine. Burgers, serious coffee, lasagna, and a wine bar for when it gets late."
     },
     {
       "id": "look",
@@ -58,7 +58,7 @@
     {
       "id": "konan-dori",
       "name": "Kōnan-dōri",
-      "subtitle": "The parallel street east of the arcade — a night street, not a shopping one"
+      "subtitle": "The live-house strip east of the arcade, and the Awa Odori route — the biggest outside Tokushima, dancing through here the last weekend of August."
     },
     {
       "id": "hikawa",
@@ -369,14 +369,20 @@
       "address": "Koenji-minami, Suginami, Tokyo",
       "station": "Koenji (JR Chuo / Sobu)",
       "style": "Live music venue",
-      "description": "One of the ten or so live houses packed around the station. The scene started in the sixties on cheap rent and a six-minute ride to Shinjuku, and it never really left.",
+      "description": "Opened in 1975 as an izakaya called Namaiki Sakaba Jirokichi and never entirely stopped being one. Blues, jazz and soul cross here rather than any single scene — fifty years of it this year, built on cheap rent and a six-minute ride to Shinjuku.",
       "note": "Coordinates from the exported XLSX data.",
       "saved": true,
       "transcript": true,
       "coordinateSource": "XLSX export",
       "branch": "hikawa",
       "shortlist": true,
-      "street": "pal"
+      "street": "pal",
+      "sources": [
+        {
+          "label": "JIROKICHI (official)",
+          "url": "https://jirokichi.net/"
+        }
+      ]
     },
     {
       "id": "atlantis",

@@ -18,6 +18,27 @@
   const wardPaths = new Map();
   const pointers = new Map();
   let gesture = null, suppressClick = false;
+  // Selection spotlight: the lit marker is drawn above a shade whose mask has a hole around it.
+  let litMarkers, spotShade, spotMaskRect, spotGradient;
+  // A shop with its own footage plays it once when selected and on screen.
+  let bowlVideo = null, bowlInView = false, bowlRestart = false;
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const CJK = /[぀-ヿ㐀-鿿]/;
+  // Card shades from bowl 1 (the page's original white) to Kikanbō's lacquer.
+  // Day shades stay light enough for dark text; night shades start dark
+  // enough for light text, so the list steps across the middle in one move.
+  const CARD_SHADES = ['#ffffff', '#f7f3ee', '#eee7df', '#e3dacf', '#d6cbbe', '#c8bcae',
+                       '#4a3b36', '#3c2e2a', '#30231f', '#261a17', '#1e1311', '#170e0d', '#1a0b0b'];
+  // The map's land and the veil over the mask wall follow the same steps,
+  // warm taupe through brown to lacquer rather than a flat grey. The veil
+  // thins as it darkens, so the masks come up toward bowl 13.
+  const LAND_SHADES = ['#f8f9fa', '#f3efea', '#ebe4dc', '#e0d7cc', '#d4c9bc', '#c8bcae',
+                       '#3a2d29', '#30241f', '#271c18', '#201613', '#1a120f', '#150e0c', '#120a0a'];
+  const VEIL_SHADES = ['rgb(255 255 255 / .94)', 'rgb(250 246 241 / .93)', 'rgb(243 236 228 / .91)',
+                       'rgb(234 225 214 / .89)', 'rgb(222 211 198 / .87)', 'rgb(208 196 182 / .85)',
+                       'rgb(58 44 39 / .8)', 'rgb(48 36 31 / .74)', 'rgb(39 28 24 / .68)',
+                       'rgb(31 22 19 / .62)', 'rgb(24 17 15 / .56)', 'rgb(18 13 12 / .5)', 'rgb(12 10 10 / .44)'];
+  let dusk = -1, duskFrame = 0;
 
   function el(tag, attrs = {}, text) {
     const node = document.createElementNS(NS, tag);
@@ -39,6 +60,27 @@
     node.target = '_blank';
     node.rel = 'noopener noreferrer';
     return node;
+  }
+
+  // The shop's own Japanese name, taken from its aliases: drop Latin words
+  // ("Homemade Ramen 麦苗" -> "麦苗") and prefer the shortest, which is the
+  // name on the noren rather than the full descriptive title.
+  function japaneseName(shop) {
+    return (shop.aliases || [])
+      .filter(alias => CJK.test(alias))
+      .map(alias => alias.split(/\s+/).filter(word => CJK.test(word)).join(' '))
+      .sort((a, b) => a.length - b.length)[0] || '';
+  }
+
+  function emblem(shop, className) {
+    const icon = document.createElementNS(NS, 'svg');
+    icon.setAttribute('class', className);
+    icon.setAttribute('viewBox', '0 0 24 24');
+    icon.setAttribute('aria-hidden', 'true');
+    const use = document.createElementNS(NS, 'use');
+    use.setAttribute('href', `#sym-${shop.pattern}`);
+    icon.append(use);
+    return icon;
   }
 
   function mapUrl(place) {
@@ -91,7 +133,17 @@
     });
     world.append(wards);
     markers = el('g', {id: 'ramen-markers'});
-    svg.append(world, el('g', {id: 'ward-labels', 'aria-hidden': 'true'}), markers);
+    const defs = el('defs');
+    spotGradient = el('radialGradient', {id: 'spot-grad', gradientUnits: 'userSpaceOnUse', cx: 0, cy: 0, r: 150});
+    [['0', '#000'], ['0.4', '#000'], ['1', '#fff']].forEach(([offset, color]) =>
+      spotGradient.append(el('stop', {offset, 'stop-color': color})));
+    const mask = el('mask', {id: 'spot-mask', maskUnits: 'userSpaceOnUse', x: 0, y: 0, width: width, height: height});
+    spotMaskRect = el('rect', {x: 0, y: 0, width: width, height: height, fill: 'url(#spot-grad)'});
+    mask.append(spotMaskRect);
+    defs.append(spotGradient, mask);
+    spotShade = el('rect', {id: 'spot-shade', x: 0, y: 0, width: width, height: height, fill: '#000', mask: 'url(#spot-mask)', 'aria-hidden': 'true'});
+    litMarkers = el('g', {id: 'ramen-marker-lit'});
+    svg.append(defs, world, el('g', {id: 'ward-labels', 'aria-hidden': 'true'}), markers, spotShade, litMarkers);
   }
 
   function patterns() {
@@ -181,9 +233,43 @@
       card.classList.toggle('is-selected', active);
       card.querySelector('button').setAttribute('aria-pressed', String(active));
     });
+    document.querySelectorAll('.bowl').forEach(bowl => {
+      const active = bowl.dataset.shop === selected;
+      bowl.classList.toggle('is-selected', active);
+      bowl.setAttribute('aria-pressed', String(active));
+    });
+    const current = shops.find(shop => shop.id === selected);
+    document.body.classList.toggle('oni-lit', Boolean(current && current.oni));
+    syncBowl();
+  }
+
+  function syncBowl() {
+    if (!bowlVideo) return;
+    const card = bowlVideo.closest('.shop-card');
+    if (!card || !card.classList.contains('is-selected') || !bowlInView) {
+      bowlVideo.pause();
+      return;
+    }
+    if (bowlRestart) {
+      bowlRestart = false;
+      try { bowlVideo.currentTime = 0; } catch (error) { /* not loaded yet; it starts at 0 anyway */ }
+    } else if (bowlVideo.ended) {
+      return;  // It plays once and holds on the last frame.
+    }
+    const playing = bowlVideo.play();
+    if (playing) playing.catch(() => {});
+  }
+
+  function clearSelection() {
+    if (!selected) return;
+    selected = '';
+    updateSelection();
+    $('map-status').textContent = `${visible.length} places shown.`;
+    render();
   }
 
   function select(shop, fromList = false) {
+    if (selected !== shop.id && shop.media && shop.media.video) bowlRestart = true;
     selected = shop.id;
     const [x, y] = screen(shop.point);
     if (fromList || x < 30 || y < 30 || x > width - 30 || y > height - 30) {
@@ -197,15 +283,15 @@
     render();
   }
 
-  function scrollToCard(id) {
+  function scrollToCard(id, behavior = 'smooth') {
     const card = $(`shop-${id}`);
     if (!card) return;
     const panel = document.querySelector('.list-panel');
     const wide = window.matchMedia('(min-width: 1041px)').matches;
-    if (!wide || !panel) { card.scrollIntoView({block: 'start', behavior: 'smooth'}); return; }
+    if (!wide || !panel) { card.scrollIntoView({block: 'start', behavior}); return; }
     const controls = panel.querySelector('.list-controls');
     const header = controls ? controls.getBoundingClientRect().height : 0;
-    panel.scrollTo({top: card.offsetTop - panel.offsetTop - header - 10, behavior: 'smooth'});
+    panel.scrollTo({top: card.offsetTop - panel.offsetTop - header - 10, behavior});
   }
 
   function marker(shop, x, y, placed, bounds, target) {
@@ -235,6 +321,7 @@
     group.append(el('line', {x1: x, y1: y, x2: cx, y2: cy, class: 'marker-leader'}));
     group.append(el('circle', {cx: x, cy: y, r: 2.6, class: 'location-dot'}));
     group.append(el('circle', {cx, cy, r: 20, fill: 'transparent', class: 'marker-hit'}));
+    if (selected === shop.id || shop.oni) group.append(el('circle', {cx, cy, r: r + 6, class: 'marker-halo'}));
     group.append(el('circle', {cx, cy, r, class: 'marker-disc'}));
     group.append(el('text', {x: cx, y: cy, class: 'marker-number', 'text-anchor': 'middle', 'dominant-baseline': 'central'}, shop.number));
     group.addEventListener('click', () => { if (!suppressClick) select(shop); });
@@ -245,20 +332,37 @@
       }
     });
     target.append(group);
+    return [cx, cy];
   }
 
   function render() {
     if (!world) return;
-    const focused = markers.contains(document.activeElement) ? document.activeElement.dataset.shop : null;
+    const active = document.activeElement;
+    const focused = active && active.closest && svg.contains(active) && active.closest('.map-marker') ? active.dataset.shop : null;
     svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
     const scale = width / camera.width;
     world.setAttribute('transform', `translate(${width / 2 - camera.x * scale} ${height / 2 - camera.y * scale}) scale(${scale})`);
     markers.replaceChildren();
+    litMarkers.replaceChildren();
     const placed = [];
+    let spot = null;
     visible.forEach(shop => {
       const [x, y] = screen(shop.point);
-      if (x >= 4 && y >= 4 && x <= width - 4 && y <= height - 4) marker(shop, x, y, placed, [width, height], markers);
+      if (x < 4 || y < 4 || x > width - 4 || y > height - 4) return;
+      const lit = shop.id === selected;
+      const position = marker(shop, x, y, placed, [width, height], lit ? litMarkers : markers);
+      if (lit) spot = position;
     });
+    [spotShade, spotMaskRect, spotMaskRect.parentNode].forEach(node => {
+      node.setAttribute('width', width);
+      node.setAttribute('height', height);
+    });
+    if (spot) {
+      spotGradient.setAttribute('cx', spot[0]);
+      spotGradient.setAttribute('cy', spot[1]);
+      spotGradient.setAttribute('r', Math.max(110, Math.min(width, height) * 0.28));
+    }
+    svg.classList.toggle('is-spotlit', Boolean(spot));
     const labels = $('ward-labels');
     labels.replaceChildren();
     wardLabels.forEach(ward => {
@@ -286,7 +390,7 @@
     const bar = html('span');
     bar.style.cssText = `display:block;width:${distance * scale}px;border:solid currentColor;border-width:0 1px 2px;height:5px;margin-bottom:5px`;
     $('scale-bar').append(bar, document.createTextNode(distance >= 1000 ? `${distance / 1000} km` : `${distance} m`));
-    if (focused) markers.querySelector(`[data-shop="${focused}"]`)?.focus({preventScroll: true});
+    if (focused) svg.querySelector(`.map-marker[data-shop="${focused}"]`)?.focus({preventScroll: true});
   }
 
   function scheduleRender() {
@@ -319,41 +423,47 @@
     $('empty-state').hidden = visible.length > 0;
     $('shop-count').textContent = `${visible.length} / ${shops.length}`;
     $('map-status').textContent = visible.length ? `${visible.length} places shown.${transitAvailable ? '' : ' Subway context unavailable.'}` : 'No matching places. Clear the search or choose another area.';
-    if (!ids.has(selected)) {
+    if (selected && !ids.has(selected)) {
       selected = '';
-      document.querySelectorAll('.shop-card.is-selected').forEach(card => {
-        card.classList.remove('is-selected');
-        card.querySelector('button').setAttribute('aria-pressed', 'false');
-      });
+      updateSelection();
     }
     if (visible.length) fit();
     else render();
+    scheduleDusk();
   }
 
   function cards(data) {
     shops.forEach(shop => {
-      const card = html('article', `shop-card${shop.oni ? ' is-oni' : ''}`);
+      const step = Math.min(CARD_SHADES.length, Math.max(1, shop.number)) - 1;
+      const card = html('article', `shop-card ${step < 6 ? 'is-day' : 'is-night'}${shop.oni ? ' is-oni' : ''}`);
+      card.style.setProperty('--c-bg', CARD_SHADES[step]);
+      card.dataset.number = shop.number;
       card.id = `shop-${shop.id}`;
       const button = html('button', 'shop-select');
       button.type = 'button';
       button.setAttribute('aria-pressed', 'false');
-      if (shop.pattern) {
-        const icon = document.createElementNS(NS, 'svg');
-        icon.setAttribute('class', 'shop-icon');
-        icon.setAttribute('viewBox', '0 0 24 24');
-        icon.setAttribute('aria-hidden', 'true');
-        const use = document.createElementNS(NS, 'use');
-        use.setAttribute('href', `#sym-${shop.pattern}`);
-        icon.append(use);
-        button.append(icon);
-      }
+      if (shop.pattern) button.append(emblem(shop, 'shop-icon'));
       button.append(html('span', 'shop-number', shop.number), document.createTextNode(shop.name));
       button.addEventListener('click', () => select(shop, true));
+      if (shop.media && shop.media.room) {
+        const room = html('div', 'shop-room');
+        room.setAttribute('aria-hidden', 'true');
+        room.style.backgroundImage = `url("${shop.media.room}")`;
+        card.append(room);
+      }
+      card.append(button);
+      const nameJa = japaneseName(shop);
+      if (nameJa) {
+        const line = html('p', 'shop-jp', nameJa);
+        line.lang = 'ja';
+        card.append(line);
+      }
       const areaLine = shop.ward ? `${shop.area} · ${shop.ward} ward` : `${shop.area} · ${shop.municipality}, ${shop.prefecture}`;
-      card.append(button, html('p', 'shop-area', areaLine));
+      card.append(html('p', 'shop-area', areaLine));
       if (shop.style) card.append(html('p', 'shop-style', shop.style));
       card.append(html('p', 'shop-address', shop.address));
       if (shop.station) card.append(html('p', 'shop-station', shop.station));
+      if (shop.media && shop.media.video) card.append(bowlFootage(shop.media));
       if (shop.description) card.append(html('p', 'shop-description', shop.description));
       if (shop.note) card.append(html('p', 'shop-note', shop.note));
       if (shop.status) card.append(html('p', 'shop-status', shop.status));
@@ -374,6 +484,122 @@
 
     const museum = data.excluded.find(place => place.id === 'ramen-museum');
     if (museum && museum.partner) $('partner-block').hidden = false;
+  }
+
+  // The footage never loads until its card is opened: preload none, poster first.
+  function bowlFootage(media) {
+    const frame = html('div', 'shop-bowl');
+    frame.setAttribute('aria-hidden', 'true');
+    const video = document.createElement('video');
+    video.muted = true;
+    video.playsInline = true;
+    video.preload = 'none';
+    video.setAttribute('muted', '');
+    video.setAttribute('playsinline', '');
+    if (media.poster) video.poster = media.poster;
+    media.video.forEach(({src, type}) => {
+      const source = document.createElement('source');
+      source.src = src;
+      source.type = type;
+      video.append(source);
+    });
+    frame.append(video);
+    bowlVideo = video;
+    new IntersectionObserver(entries => {
+      bowlInView = entries[entries.length - 1].isIntersecting;
+      syncBowl();
+    }, {threshold: 0.4}).observe(frame);
+    return frame;
+  }
+
+  // The page darkens bowl by bowl. Dusk is the number of the card sitting on
+  // the reading line (a third of the way down the screen, or just under the
+  // list's search bar), from 0 at bowl 1 to 1 at bowl 13. Above the map and
+  // list it is day; past them it is full lacquer.
+  function measureDusk() {
+    duskFrame = 0;
+    const layout = document.querySelector('.layout').getBoundingClientRect();
+    const controls = document.querySelector('.list-controls').getBoundingClientRect();
+    const line = Math.max(window.innerHeight * 0.33, controls.bottom + 24);
+    const last = CARD_SHADES.length - 1;
+    let step = 0;
+    if (layout.bottom < line) step = last;
+    else if (layout.top < line) {
+      document.querySelectorAll('.shop-card:not([hidden])').forEach(card => {
+        if (card.getBoundingClientRect().top <= line) step = Number(card.dataset.number) - 1;
+      });
+    }
+    step = Math.min(last, Math.max(0, step));
+    if (step === dusk) return;
+    dusk = step;
+    const root = document.documentElement.style;
+    root.setProperty('--dusk', (step / last).toFixed(3));
+    root.setProperty('--land', LAND_SHADES[step]);
+    root.setProperty('--veil', VEIL_SHADES[step]);
+    document.body.classList.toggle('is-night', step >= 6);
+  }
+
+  function scheduleDusk() {
+    if (!duskFrame) duskFrame = requestAnimationFrame(measureDusk);
+  }
+
+  // The hero loop plays by default (a slow bowl turning, no flashing) and
+  // pauses off screen. The pause button stops it for anyone who wants it still.
+  function heroLoop() {
+    const video = document.querySelector('.hero-bowl video');
+    const toggle = $('hero-toggle');
+    if (!video) return;
+    let inView = true, stopped = false;
+    const sync = () => {
+      if (stopped || !inView) video.pause();
+      else { const playing = video.play(); if (playing) playing.catch(() => {}); }
+    };
+    toggle.addEventListener('click', () => {
+      stopped = !stopped;
+      toggle.setAttribute('aria-pressed', String(stopped));
+      toggle.setAttribute('aria-label', stopped ? 'Play the video' : 'Pause the video');
+      sync();
+    });
+    new IntersectionObserver(entries => {
+      inView = entries[entries.length - 1].isIntersecting;
+      sync();
+    }).observe(video);
+    sync();
+  }
+
+  // The header wall: one number per bowl, dim until pointed at. Picking one
+  // brings the map and the shop's card into view.
+  function wall() {
+    shops.forEach(shop => {
+      const item = html('li', shop.oni ? 'is-oni' : '');
+      const button = html('button', `bowl${shop.oni ? ' is-oni' : ''}`);
+      button.type = 'button';
+      button.dataset.shop = shop.id;
+      button.setAttribute('aria-pressed', 'false');
+      const number = String(shop.number).padStart(2, '0'), shortName = shop.name.split(' — ')[0];
+      button.setAttribute('aria-label', `${number} ${shortName}, ${shop.area}. Show on the map.`);
+      button.append(html('span', 'bowl-num', number), html('span', 'bowl-name', shortName));
+      button.addEventListener('click', () => {
+        if (!visible.includes(shop)) {
+          $('shop-search').value = '';
+          $('area-filter').value = '';
+          filter();
+        }
+        select(shop, true);
+        // Two smooth scrolls at once (page and list) cancel each other, so
+        // the list jumps to the card while the page glides down to it.
+        const wide = window.matchMedia('(min-width: 1041px)').matches;
+        const behavior = reducedMotion.matches ? 'auto' : 'smooth';
+        if (wide) {
+          scrollToCard(shop.id, 'auto');
+          document.querySelector('.layout').scrollIntoView({block: 'start', behavior});
+        } else {
+          scrollToCard(shop.id, behavior);
+        }
+      });
+      item.append(button);
+      $('bowl-wall').append(item);
+    });
   }
 
   function beforePrint() {
@@ -415,6 +641,14 @@
     const rect = svg.getBoundingClientRect();
     zoom(Math.exp(Math.max(-200, Math.min(200, event.deltaY)) * 0.002), [event.clientX - rect.left, event.clientY - rect.top]);
   }, {passive: false});
+  // Clicking empty map, or Escape, puts the lights back up.
+  svg.addEventListener('click', event => {
+    if (suppressClick || event.target.closest('.map-marker')) return;
+    clearSelection();
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && selected && svg.contains(document.activeElement)) clearSelection();
+  });
   svg.addEventListener('keydown', event => {
     if (event.target !== svg) return;
     const moves = {ArrowLeft: [-1, 0], ArrowRight: [1, 0], ArrowUp: [0, -1], ArrowDown: [0, 1]};
@@ -481,7 +715,11 @@
       geography(boundaries);
       patterns();
       cards(data);
+      wall();
       resize();
+      window.addEventListener('scroll', scheduleDusk, {passive: true});
+      window.addEventListener('resize', scheduleDusk);
+      document.querySelector('.list-panel').addEventListener('scroll', scheduleDusk, {passive: true});
       filter();
       ready = true;
       document.documentElement.dataset.mapReady = 'true';
@@ -500,5 +738,6 @@
     }
   }
 
+  heroLoop();
   init();
 })();

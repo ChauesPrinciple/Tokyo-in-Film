@@ -153,6 +153,7 @@
     },
     {
       "id": "kikanbo", "number": 13, "name": "Kikanbō — Kanda", "aliases": ["Kikanbo", "鬼金棒", "Karashibi Miso Ramen Kikanbo"], "area": "Kanda", "ward": "Chiyoda", "oni": true, "pattern": "pig",
+      "media": {"room": "assets/imgs/ramen/kikanbo-room-900.jpg", "poster": "assets/imgs/ramen/kikanbo-bowl-poster.jpg", "video": [{"src": "assets/movie/kikanbo-bowl.mp4", "type": "video/mp4"}, {"src": "assets/movie/kikanbo-bowl.webm", "type": "video/webm"}]},
       "lat": 35.6936985, "lng": 139.7724063,
       "address": "2-10-9 Kajicho, Chiyoda-ku, Tokyo",
       "station": "Kanda (JR Yamanote / Chuo / Keihin-Tohoku; Ginza) — 2 min walk",

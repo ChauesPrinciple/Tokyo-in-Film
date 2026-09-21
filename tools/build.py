@@ -195,7 +195,7 @@ def _render_stop(bar):
     # Epilogue veil: a reveal button over the "naughty" card. tokyo-after-dark.js
     # shows it and makes the content behind it inert until it's opened.
     if bar.get('epilogue'):
-        parts.append(f'      <button type="button" class="stop-veil">20+ · reveal</button>')
+        parts.append(f'      <button type="button" class="stop-veil" aria-label="Secret. Reveal this card">SECRET</button>')
     # 1. Name
     parts.append(f'      <header class="stop-head">')
     if bar.get('epilogue'):

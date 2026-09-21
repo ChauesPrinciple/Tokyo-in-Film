@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="A walking map of Koenji, Suginami: vintage shops down the Pal arcade and Look, cafes and curry along the way, and two shrines to finish at depending on which bar ends your night.">
+  <meta name="description" content="Koenji B-Side — a walking map of Tokyo's flip side: vintage down the Pal arcade and Look, curry through a greengrocer, live houses after dark, and two shrines to finish at.">
   <meta name="theme-color" content="#f4f0ea">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap" rel="stylesheet">
-  <title>Koenji Walk — Tokyo in Film</title>
+  <title>Koenji B-Side — a walking map of Tokyo's flip side</title>
   <link rel="icon" href="assets/images/image07.png">
   <style>
     :root {
@@ -56,45 +56,6 @@
                  ui-sans-serif, -apple-system, "Segoe UI", Roboto, sans-serif;
     }
 
-    /* NIGHT - shutters down, live houses open. Cold black, hot pink, violet. */
-    :root[data-mode="night"] {
-      --ink: #eae7f3;
-      --ink-soft: #aba4c2;
-      --muted: #7d7591;
-      --line: #272338;
-      --paper: #0c0b10;
-      --panel: #15131d;
-      --sea: #0a0910;
-      --land: #121019;
-      --land-line: #241f33;
-      --accent: #eae7f3;
-      --accent-ink: #eae7f3;
-      --signboard: #ff4d5e;
-      --gold: #ffd166;
-      --mark: #ff4d5e;
-      --mark-soft: #2b1926;
-      --mark-ink: #ff8c9c;
-      --transit: #4f4763;
-      --junjo: #ff6b7a;
-      --daiichi: #9089ac;
-      --pal: #ffb54d;
-      --etoile: #e88ad4;
-      --look: #5fa8ff;
-      --konan: #bd8cff;
-      --shrine: #ff5a3c;
-      --start: #92b3cb;
-      --ctx-road: #1e1b2a;
-      --ctx-major: #2b2639;
-      --ctx-rail: #39324e;
-      --ctx-station: #7d7591;
-      --break-bg: #17141f;
-      --break-line: #282238;
-      --break-ink: #bbb0d2;
-      --st-foot: #1c1a28; --st-street: #232030; --st-tertiary: #2b2739;
-      --st-major: #363146; --st-rail: #423b56; --st-shopping: #262233;
-      --walk-core: #eae7f3;
-      --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.09'/%3E%3C/svg%3E");
-    }
     * { box-sizing: border-box; }
     html { -webkit-text-size-adjust: 100%; }
     body {
@@ -254,7 +215,7 @@
     .list-controls {
       background: color-mix(in srgb, var(--paper) 80%, transparent);
       backdrop-filter: blur(10px);
-      display: grid; grid-template-columns: 1fr 150px 190px; gap: 10px 12px; align-items: end;
+      display: grid; grid-template-columns: 1fr 190px; gap: 10px 12px; align-items: end;
       position: sticky; top: 0; z-index: 2;
       padding: 8px 10px 12px; margin-bottom: 4px; border-radius: var(--radius);
     }
@@ -326,10 +287,6 @@
       margin: 10px 0 0 33px; font-size: 14px; line-height: 1.62; max-width: 56ch;
       color: var(--ink); display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden;
     }
-    .shop-note {
-      margin: 9px 0 0 33px; font-size: 12.5px; line-height: 1.5; color: var(--muted); max-width: 56ch;
-      display: none;
-    }
     .shop-links { margin: 11px 0 0 33px; display: none; flex-wrap: wrap; gap: 7px; }
     .shop-link {
       font-size: 12px; color: var(--ink-soft); text-decoration: none;
@@ -339,7 +296,6 @@
     .shop-link:hover { color: var(--ink); border-color: var(--ink); }
 
     .shop-card.is-selected .shop-description { -webkit-line-clamp: unset; display: block; }
-    .shop-card.is-selected .shop-note { display: block; }
     .shop-card.is-selected .shop-links { display: flex; }
 
     #empty-state { color: var(--muted); font-size: 14px; padding: 20px 0; }
@@ -358,7 +314,6 @@
     noscript p { padding: 16px; border: 1px solid var(--mark); background: var(--mark-soft); color: var(--mark-ink); border-radius: 7px; }
 
     svg text { font-family: inherit; pointer-events: none; }
-    .place-label { fill: var(--muted); font-size: 11px; font-weight: 600; pointer-events: none; }
 
     /* ---- Street identity ------------------------------------------------
        Colour says which street you are standing on. Nothing on this map
@@ -461,7 +416,7 @@
     .map-marker:hover .marker-shape, .map-marker:focus-visible .marker-shape { stroke: var(--ink); stroke-width: 3; }
     .map-marker:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
 
-    .been-badge { fill: var(--gold); stroke: var(--paper); stroke-width: 1.5; display: none; }
+    .been-badge { fill: var(--signboard); stroke: var(--paper); stroke-width: 1.5; display: none; }
     .been-check { fill: var(--paper); font-size: 8px; font-weight: 700; display: none; }
     .map-marker.is-been .been-badge, .map-marker.is-been .been-check { display: block; }
 
@@ -485,8 +440,10 @@
 
     /* ---- Cards ----------------------------------------------------------- */
     .shop-number.kind-food { border-radius: 5px; }
-    .shop-number.kind-night { border-radius: 3px; transform: translateY(2px) rotate(45deg); }
-    .shop-number.kind-night::first-line { transform: rotate(-45deg); }
+    .shop-number.kind-night {
+      border-radius: 0; width: 25px; height: 25px;
+      clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+    }
     .shop-badge.badge-kind { background: var(--ink); color: var(--paper); }
     .shop-badge.badge-kind.kind-food { background: var(--break-ink); color: var(--paper); }
     .shop-badge.badge-kind.kind-night { background: var(--konan); color: var(--paper); }
@@ -497,7 +454,13 @@
     .badge-street.street-etoile { background: var(--etoile); }
     .badge-street.street-look { background: var(--look); }
     .badge-street.street-konan { background: var(--konan); }
-    .shop-badge.is-been { background: var(--mark-soft); color: var(--gold); }
+    /* Been-here reads as an over-inked rubber stamp rather than a tidy tick. */
+    .shop-badge.is-been {
+      background: transparent; color: var(--signboard);
+      box-shadow: inset 0 0 0 2px var(--signboard); border-radius: 3px;
+      font-weight: 800; letter-spacing: .09em; opacity: .9;
+      transform: rotate(-2deg);
+    }
     .shop-badge.is-closed { background: var(--mark-soft); color: var(--mark-ink); }
     .shop-badge.badge-detour { background: var(--panel); color: var(--muted); box-shadow: inset 0 0 0 1px var(--line); }
     .shop-card.is-muted { opacity: .45; }
@@ -600,12 +563,17 @@
     .night-group.is-hidden { display: none; }
     .night-also { margin: 10px 0 0; font-size: 12.5px; color: var(--muted); line-height: 1.6; }
     .night-also-label { font-weight: 700; text-transform: uppercase; font-size: 10.5px; letter-spacing: .06em; }
+    /* The two night groups sit under their endings like competing flyers. */
     .night-label {
-      margin: 6px 0 0; font-size: 11px; font-weight: 700; letter-spacing: .08em;
-      text-transform: uppercase; color: var(--konan);
-      display: flex; align-items: center; gap: 9px;
+      margin: 14px 0 0; padding-top: 11px; font-size: 12.5px; font-weight: 900;
+      letter-spacing: .17em; text-transform: uppercase; color: var(--signboard);
+      display: flex; align-items: center; gap: 10px;
+      border-top: 2px dashed var(--break-line);
     }
-    .night-label::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+    .night-label::after {
+      content: ""; flex: 1; height: 3px; opacity: .55;
+      background: repeating-linear-gradient(90deg, var(--konan) 0 5px, transparent 5px 10px);
+    }
 
     /* Been-here toggle in card */
     .been-toggle {
@@ -614,7 +582,11 @@
       transition: border-color .12s, color .12s, background .12s;
     }
     .been-toggle:hover { border-color: var(--ink); color: var(--ink); }
-    .been-toggle.is-on { background: var(--mark-soft); border-color: var(--gold); color: var(--gold); font-weight: 700; }
+    .been-toggle.is-on {
+      background: transparent; border: 2px solid var(--signboard); color: var(--signboard);
+      font-weight: 800; letter-spacing: .1em; text-transform: uppercase; font-size: 10.5px;
+      border-radius: 3px; opacity: .9; transform: rotate(-2deg);
+    }
 
     @media (max-width: 1040px) {
       .page-shell { padding: 0 20px 32px; }
@@ -626,10 +598,8 @@
       .lede { font-size: 14px; line-height: 1.5; }
       .map-toolbar { margin-bottom: 9px; }
       #koenji-map { height: min(64vh, 520px); }
+      .masthead { gap: 12px; padding: 16px 0 12px; }
       .masthead nav { gap: 12px 14px; font-size: 11.5px; }
-      .masthead { gap: 14px; padding: 16px 0 12px; }
-      .masthead nav { gap: 14px; font-size: 12px; }
-      .page-header { padding: 20px 0 6px; }
       .list-controls { grid-template-columns: 1fr; }
       .shop-card { padding: 13px 14px 14px; }
       .shop-select { font-size: 15px; }
@@ -689,7 +659,7 @@
       .sources a { text-decoration: none; }
     }
   </style>
-  <script src="js/koenji-walk.js?v=20260921z" defer></script>
+  <script src="js/koenji-walk.js?v=0d1f8bf7" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#shop-search">Skip to Koenji places</a>
@@ -702,14 +672,14 @@
         <nav aria-label="The maps">
           <a href="ramen-map.html">Ramen Challenge</a>
           <a href="tokyo-after-dark.html">Tokyo After Dark</a>
-          <span aria-current="page">Koenji Walk</span>
+          <span aria-current="page">Koenji B-Side</span>
         </nav>
         <a class="ig-link" href="https://www.instagram.com/chaues/" target="_blank" rel="noopener noreferrer"
            aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.2" cy="6.75" r="1.25" fill="currentColor"/></svg></a>
       </div>
       <div class="page-header">
-        <h1>Koenji Walk</h1>
-        <p class="lede">Koenji has the densest concentration of secondhand clothing in Tokyo, about ten live houses within a few minutes of the station, and a postwar food market you enter through a greengrocer. This walk runs south from the north exit down Junjō, through Daiichi Market, along the Pal arcade into Look, and ends at a shrine — which one depends on where you want to drink.</p>
+        <h1>Koenji B-Side</h1>
+        <p class="lede">Koenji grew out of the sixties student movements and stayed cheap enough to hold every wave since — hippie, then punk — while skipping the bubble-era rebuild entirely. It has the densest concentration of secondhand clothing in Tokyo, about ten live houses within a few minutes of the station, and a postwar food market you enter through a greengrocer. This walk runs south from the north exit down Junjō, through Daiichi Market, along the Pal arcade into Look, and ends at a shrine — which one depends on where you want to drink.</p>
       </div>
     </header>
     <noscript><p>This interactive map needs JavaScript to load places and map details. Please enable JavaScript and reload this page.</p></noscript>
@@ -762,14 +732,6 @@
           <label class="field">
             <span>Section</span>
             <select id="section-filter"><option value="">All sections</option></select>
-          </label>
-          <label class="field">
-            <span>When</span>
-            <select id="when-filter">
-              <option value="">Whole walk</option>
-              <option value="day">Daytime &mdash; shops &amp; cafes</option>
-              <option value="night">Evening &mdash; shrine &amp; bars</option>
-            </select>
           </label>
           <p class="count">Showing <span id="shop-count">0 / 0</span></p>
         </div>

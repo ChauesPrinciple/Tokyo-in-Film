@@ -8,59 +8,127 @@
   <title>The 12 Bowl Ramen Challenge — Tokyo in Film</title>
   <link rel="icon" href="assets/images/image07.png">
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&display=swap');
+    /* The mask wall is the background of the whole page. At the top it sits
+       behind a pale veil in the page's original colors; as the list moves
+       toward bowl 13 the veil turns to black lacquer and the masks come up.
+       --dusk (0 to 1) is set by js/ramen-map.js from which bowl you are
+       reading. Text never sits on the bare wall: it sits on panels, so it
+       stays readable at every step of the fade. */
+    @property --dusk { syntax: '<number>'; inherits: true; initial-value: 0; }
+    /* --land and --veil are the shade of the bowl you are on (set with
+       --dusk), so the map and the wall take on the card's color. */
+    @property --land { syntax: '<color>'; inherits: true; initial-value: #f8f9fa; }
+    @property --veil { syntax: '<color>'; inherits: true; initial-value: rgb(255 255 255 / .94); }
     :root {
+      --dusk: 0;
+      --land: #f8f9fa;
+      --veil: rgb(255 255 255 / .94);
+      transition: --dusk .7s ease, --land .7s ease, --veil .7s ease;
       color-scheme: light;
       --ink: #12171c;
       --ink-soft: #4d565f;
-      --muted: #64707a;
+      --muted: #5a636d;
       --line: #dfe4e8;
       --paper: #f4f6f7;
       --panel: #ffffff;
-      --sea: #e3e9ee;
-      --land: #f8f9fa;
-      --land-line: #cfd6dd;
-      --context: #edf0f2;
-      --context-line: #dde2e7;
-      --accent: #1c2126;
-      --accent-ink: #000000;
+      --surface: rgba(248, 249, 250, .93);
       --mark: #f08300;
       --mark-soft: #fdf0dd;
-      --mark-ink: #8a4d00;
+      --mark-ink: #7a4300;
       /* Oni / kara-shibi red, reserved for the bonus 13th bowl. */
       --oni: #cf2118;
       --oni-soft: #fdeceb;
       --oni-line: #f0c4c1;
       --oni-ink: #8f1810;
-      --transit: #6f7b87;
+      --gold: #b86e00;
+      --unlit: #5a1a1c;
+      --unlit-ink: #a0443f;
+      --label: #4d565f;
+      --label-halo: #f8f9fa;
       --radius: 10px;
+      --mincho: 'Shippori Mincho', 'Hiragino Mincho ProN', 'Yu Mincho', serif;
+    }
+    /* Past the midpoint of the list the panels flip to lacquer in one move,
+       so text is never caught on a half-dark panel. */
+    body.is-night {
+      color-scheme: dark;
+      --ink: #f3e9dc;
+      --ink-soft: #cfc3b6;
+      --muted: #a39686;
+      --line: #2e2525;
+      --paper: #0c0a0a;
+      --panel: #161212;
+      --surface: rgba(20, 16, 16, .92);
+      --mark-soft: rgba(240, 131, 0, .14);
+      --mark-ink: #ffc27a;
+      --oni-soft: #1a0b0b;
+      --oni-line: #5a1a1c;
+      --oni-ink: #ff8a7f;
+      --gold: #e8a33c;
+      --label: #cbbfb3;
+      --label-halo: #0c0a0a;
     }
     * { box-sizing: border-box; }
     html { -webkit-text-size-adjust: 100%; }
     body {
       margin: 0;
-      background: var(--paper);
+      background: #0c0a0a;
       color: var(--ink);
       font: 400 15px/1.55 ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       font-feature-settings: "kern" 1;
       text-rendering: optimizeLegibility;
     }
     button, input, select { font: inherit; }
-    button, select, input { accent-color: var(--mark-ink); }
+    button, select, input { accent-color: var(--mark); }
     button, a, input, select, summary { -webkit-tap-highlight-color: transparent; }
     a { color: var(--ink); text-underline-offset: 4px; }
     a:hover { color: var(--mark-ink); }
     button { cursor: pointer; }
     button:disabled { cursor: not-allowed; opacity: .4; }
-    :focus-visible { outline: 2px solid var(--mark-ink); outline-offset: 2px; }
+    :focus-visible { outline: 2px solid var(--mark); outline-offset: 2px; }
     [hidden], .hidden { display: none !important; }
-    .skip-link { position: absolute; top: -100px; left: 20px; z-index: 10; background: var(--panel); padding: 12px; border: 1px solid var(--line); border-radius: 7px; }
+    .skip-link { position: absolute; top: -100px; left: 20px; z-index: 30; background: var(--panel); color: var(--ink); padding: 12px; border-radius: 7px; }
     .skip-link:focus { top: 12px; }
+
+    /* The wall, and the veil over it. */
+    .wall {
+      position: fixed; inset: 0; z-index: -1; pointer-events: none;
+      background: #0c0a0a url('assets/imgs/ramen/mask-wall.jpg') center / cover no-repeat;
+    }
+    .wall::after {
+      content: ""; position: absolute; inset: 0;
+      /* At bowl 1, white at .94 over the black wall lands on the page's
+         original paper color, with the lit masks as faint pale halos. */
+      background: var(--veil);
+    }
+    @media (max-width: 1100px) { .wall { background-image: url('assets/imgs/ramen/mask-wall-1100.jpg'); } }
+    /* Film grain over everything, faint enough to feel rather than see. */
+    .grain {
+      position: fixed; inset: 0; z-index: 20; pointer-events: none;
+      opacity: calc(.03 + var(--dusk) * .05);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    /* Kikanbō's ceiling light while bowl 13 is selected. No blend mode: a
+       fixed blended layer recomposites the page every frame, even at opacity 0. */
+    .oni-wash {
+      position: fixed; inset: 0 0 auto; height: 55vh; z-index: 19; pointer-events: none;
+      background: linear-gradient(to bottom, rgba(207, 33, 24, .2), rgba(207, 33, 24, .06) 40%, transparent);
+      opacity: 0; visibility: hidden; transition: opacity .9s ease, visibility 0s linear .9s;
+    }
+    body.oni-lit .oni-wash { opacity: 1; visibility: visible; transition: opacity .9s ease, visibility 0s; }
+
+    /* Panels: everything with text on it. */
+    .masthead, .map-toolbar, .map-foot, .list-controls, .challenge-plaque, .films, .page-footer, #empty-state, .scale-bar {
+      background: var(--surface);
+      transition: background-color .5s ease, color .5s ease;
+    }
 
     .page-shell { max-width: 1540px; margin: 0 auto; padding: 0 32px 48px; }
 
     .masthead {
       display: flex; align-items: center; justify-content: space-between; gap: 24px;
-      padding: 22px 0 18px; border-bottom: 1px solid var(--line);
+      margin: 0 -32px; padding: 20px 32px 16px;
     }
     .eyebrow { margin: 0; color: var(--mark-ink); font-size: 11px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; }
     .masthead nav { display: flex; flex-wrap: wrap; gap: 22px; font-size: 13px; }
@@ -75,38 +143,109 @@
     .ig-link:hover { color: var(--mark-ink); background: var(--mark-soft); }
     .ig-link svg { width: 21px; height: 21px; display: block; }
 
-    .page-header { padding: 28px 0 8px; }
-    .page-header h1 {
-      margin: 0; font-size: clamp(32px, 4vw, 48px); font-weight: 700; letter-spacing: -.025em; line-height: 1.1;
+    /* Hero: the bowl turning, full width, with the title laid over it. A
+       dark gradient runs under the text side so the type reads on any frame. */
+    .page-header { padding: 0; }
+    .hero {
+      position: relative; isolation: isolate; overflow: hidden;
+      margin: 0 -32px; min-height: clamp(440px, 68vh, 680px);
+      display: flex; align-items: flex-end;
+      background: #0c0a0a;
     }
-    .lede { margin: 10px 0 0; color: var(--ink-soft); font-size: 15px; max-width: 62ch; line-height: 1.55; }
+    .hero-bowl { position: absolute; inset: 0; z-index: -2; margin: 0; }
+    .hero-bowl video { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 62% 50%; }
+    .hero::before {
+      content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+      background:
+        linear-gradient(90deg, rgba(10, 8, 8, .88) 0%, rgba(10, 8, 8, .74) 34%, rgba(10, 8, 8, .22) 62%, rgba(10, 8, 8, 0) 80%),
+        linear-gradient(to top, rgba(10, 8, 8, .7), rgba(10, 8, 8, 0) 45%);
+    }
+    .hero-text { padding: 56px 32px 48px; max-width: 760px; color: #f3e9dc; }
+    .hero-toggle {
+      position: absolute; right: 24px; bottom: 24px; z-index: 1;
+      width: 40px; height: 40px; display: grid; place-items: center; padding: 0;
+      border: 1px solid rgba(243, 233, 220, .35); border-radius: 50%;
+      background: rgba(10, 8, 8, .55); color: #f3e9dc;
+    }
+    .hero-toggle:hover { background: rgba(10, 8, 8, .8); }
+    .hero-toggle svg { width: 18px; height: 18px; }
+    .hero-toggle .icon-play, .hero-toggle[aria-pressed="true"] .icon-pause { display: none; }
+    .hero-toggle[aria-pressed="true"] .icon-play { display: block; }
+    .page-header h1 {
+      margin: 0; max-width: 14ch; color: #fbf6ef;
+      font-family: var(--mincho); font-weight: 700;
+      font-size: clamp(38px, 5.4vw, 72px); letter-spacing: -.005em; line-height: 1.06;
+      text-shadow: 0 2px 24px rgba(0, 0, 0, .5);
+    }
+    .lede { margin: 18px 0 0; color: rgba(243, 233, 220, .92); font-size: 16px; max-width: 52ch; line-height: 1.6; }
+
+    /* The bowl wall: thirteen numbers on a plaque, set like a program. Each is
+       dim until you point at it; 13 hangs apart and is always lit. */
+    .challenge-plaque { margin: 28px 0 0; padding: 18px 22px 22px; border-radius: var(--radius); }
+    .bowl-wall {
+      list-style: none; margin: 0; padding: 0; max-width: 980px;
+      display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 2px 8px;
+    }
+    .bowl-wall li.is-oni { grid-column: -2; }
+    .bowl {
+      position: relative; isolation: isolate; width: 100%;
+      display: grid; justify-items: center; align-content: start; gap: 5px;
+      padding: 12px 4px 10px; border: 0; border-radius: 12px; background: none;
+      color: var(--unlit-ink); cursor: pointer; text-align: center;
+    }
+    .bowl::before {
+      content: ""; position: absolute; inset: -4px -6px; z-index: -1; border-radius: 50%;
+      background: radial-gradient(closest-side, rgba(240, 131, 0, .22), rgba(240, 131, 0, .06) 60%, transparent);
+      opacity: 0; transition: opacity .45s ease;
+    }
+    .bowl-num {
+      font-family: var(--mincho); font-size: 34px; font-weight: 700; line-height: 1;
+      color: var(--unlit-ink); font-variant-numeric: tabular-nums; transition: color .35s, text-shadow .35s;
+    }
+    .bowl-name {
+      font-size: 12px; line-height: 1.3; color: var(--muted); transition: color .35s;
+      display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden;
+    }
+    .bowl:hover::before, .bowl:focus-visible::before, .bowl.is-selected::before { opacity: 1; }
+    .bowl:hover .bowl-num, .bowl:focus-visible .bowl-num, .bowl.is-selected .bowl-num,
+    .bowl:hover .bowl-name, .bowl:focus-visible .bowl-name, .bowl.is-selected .bowl-name { color: var(--ink); }
+    .bowl.is-oni::before { opacity: 1; background: radial-gradient(closest-side, rgba(207, 33, 24, .3), rgba(232, 163, 60, .08) 62%, transparent); }
+    .bowl.is-oni .bowl-num { color: var(--oni); text-shadow: 0 0 16px rgba(207, 33, 24, .45); }
+    .bowl.is-oni .bowl-name { color: var(--oni-ink); }
 
     .challenge-strip {
       list-style: none; margin: 20px 0 0; padding: 0;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 12px; max-width: 1000px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 28px; max-width: 980px;
     }
-    .challenge-card {
-      background: var(--panel); border: 1px solid var(--line);
-      border-radius: var(--radius); padding: 15px 17px 16px;
-      border-top: 3px solid var(--ink);
-    }
-    .challenge-card.is-oni { border-top-color: var(--oni); background: var(--oni-soft); border-color: var(--oni-line); }
+    .challenge-card { padding: 2px 0 2px 16px; border-left: 2px solid var(--line); }
+    .challenge-card.is-oni { border-left-color: var(--oni); }
     .challenge-count {
-      margin: 0; font-size: 21px; font-weight: 700; letter-spacing: -.02em; line-height: 1;
+      margin: 0; font-family: var(--mincho); font-size: 22px; font-weight: 700; line-height: 1;
       font-variant-numeric: tabular-nums;
     }
-    .challenge-count span { color: var(--muted); font-weight: 400; }
+    .challenge-count span { color: var(--muted); font-weight: 500; }
     .challenge-card.is-oni .challenge-count { color: var(--oni); }
     .challenge-name {
       margin: 7px 0 0; font-size: 12px; font-weight: 700;
       letter-spacing: .08em; text-transform: uppercase; color: var(--muted);
     }
     .challenge-card.is-oni .challenge-name { color: var(--oni-ink); }
-    .challenge-note { margin: 9px 0 0; font-size: 13.5px; line-height: 1.55; color: var(--ink-soft); }
-    .challenge-card.is-oni .challenge-note { color: #6d211b; }
-    @media (max-width: 780px) { .challenge-strip { grid-template-columns: 1fr; } }
+    .challenge-note { margin: 9px 0 0; font-size: 13.5px; line-height: 1.6; color: var(--ink-soft); }
+    @media (max-width: 900px) {
+      /* Narrow screens: the bowl fills the band and the text sits low on a
+         gradient that rises from the bottom. */
+      .hero { min-height: clamp(460px, 82vh, 640px); }
+      .hero-bowl video { object-position: 50% 30%; }
+      .hero::before {
+        background: linear-gradient(to top, rgba(10, 8, 8, .92) 0%, rgba(10, 8, 8, .82) 42%, rgba(10, 8, 8, .25) 72%, rgba(10, 8, 8, 0) 90%);
+      }
+    }
+    @media (max-width: 780px) {
+      .challenge-strip { grid-template-columns: 1fr; }
+      .bowl-wall { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    }
 
-    .films { margin-top: 34px; border-top: 1px solid var(--line); padding-top: 22px; }
+    .films { margin: 40px -32px 0; padding: 26px 32px 30px; }
     .films h2 {
       margin: 0 0 16px; font-size: 12px; font-weight: 700;
       letter-spacing: .14em; text-transform: uppercase; color: var(--mark-ink);
@@ -115,12 +254,9 @@
       list-style: none; margin: 0; padding: 0;
       display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;
     }
-    .film-card {
-      background: var(--panel); border: 1px solid var(--line);
-      border-radius: var(--radius); padding: 15px 17px 16px;
-    }
-    .film-title { margin: 0; font-size: 16px; font-weight: 700; letter-spacing: -.01em; }
-    .film-title span { color: var(--muted); font-weight: 400; font-size: 13px; font-variant-numeric: tabular-nums; }
+    .film-card { border-radius: var(--radius); padding: 18px 20px 19px; background: var(--panel); transition: background-color .5s; }
+    .film-title { margin: 0; font-family: var(--mincho); font-size: 19px; font-weight: 700; }
+    .film-title span { font-family: ui-sans-serif, -apple-system, "Segoe UI", sans-serif; color: var(--muted); font-weight: 400; font-size: 13px; font-variant-numeric: tabular-nums; }
     .film-credit {
       margin: 5px 0 0; font-size: 11px; font-weight: 600;
       letter-spacing: .05em; text-transform: uppercase; color: var(--muted);
@@ -129,28 +265,30 @@
     @media (max-width: 1040px) { .film-list { grid-template-columns: 1fr; } }
 
     .partner {
-      margin-top: 22px; border: 1px solid var(--line); border-left: 4px solid var(--mark);
-      border-radius: var(--radius); padding: 16px 20px 18px; background: var(--mark-soft);
+      margin-top: 22px; border-left: 3px solid var(--mark);
+      border-radius: 0 var(--radius) var(--radius) 0; padding: 18px 22px 20px;
+      background: var(--panel); transition: background-color .5s;
     }
     .partner-eyebrow {
       margin: 0 0 4px; font-size: 11px; font-weight: 700;
       letter-spacing: .14em; text-transform: uppercase; color: var(--mark-ink);
     }
-    .partner-name { margin: 0 0 8px; font-size: 17px; font-weight: 700; letter-spacing: -.01em; }
+    .partner-name { margin: 0 0 8px; font-family: var(--mincho); font-size: 20px; font-weight: 700; }
     .partner-note { margin: 0 0 12px; font-size: 13.5px; line-height: 1.6; color: var(--ink-soft); max-width: 70ch; }
     .partner-links { margin: 0; display: flex; flex-wrap: wrap; gap: 10px 20px; }
     .partner-links a {
       font-size: 13.5px; font-weight: 600; text-decoration: none; color: var(--mark-ink);
       border-bottom: 1.5px solid var(--mark); padding-bottom: 1px; transition: color .2s, border-color .2s;
     }
-    .partner-links a:hover { color: var(--ink); border-color: var(--mark-ink); text-decoration: underline; }
+    .partner-links a:hover { color: var(--ink); border-color: var(--ink); }
 
     .layout {
       display: grid;
       grid-template-columns: minmax(0, 1fr) 420px;
       gap: 24px;
-      padding-top: 16px;
+      padding-top: 28px;
       align-items: start;
+      scroll-margin-top: 12px;
     }
     @media (max-width: 1040px) { .layout { grid-template-columns: 1fr; } }
 
@@ -158,46 +296,49 @@
     @media (max-width: 1040px) { .map-panel { position: static; } }
 
     .map-toolbar {
-      display: flex; gap: 8px; align-items: center; margin-bottom: 12px; flex-wrap: wrap;
+      display: flex; gap: 8px; align-items: center; margin-bottom: 10px; flex-wrap: wrap;
+      width: fit-content; max-width: 100%; padding: 6px; border-radius: 12px;
     }
     .map-toolbar button {
       font: 500 13.5px/1 inherit; padding: 8px 13px; border: 1px solid var(--line);
       background: var(--panel); border-radius: 7px; cursor: pointer; color: var(--ink-soft);
-      transition: border-color .12s, color .12s;
+      transition: border-color .12s, color .12s, background-color .5s;
     }
-    .map-toolbar button:hover:not(:disabled) { border-color: var(--ink); color: var(--ink); }
+    .map-toolbar button:hover:not(:disabled) { border-color: var(--ink-soft); color: var(--ink); }
     .map-toolbar button:disabled { opacity: .4; cursor: default; }
-    .toggle { display: inline-flex; gap: 7px; align-items: center; color: var(--ink-soft); font-size: 13.5px; }
+    .toggle { display: inline-flex; gap: 7px; align-items: center; color: var(--ink-soft); font-size: 13.5px; padding: 0 6px; }
     .toggle input { width: 15px; height: 15px; margin: 0; }
 
     .map-frame {
-      position: relative; background: var(--panel);
-      border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden;
+      position: relative; border-radius: var(--radius); overflow: hidden;
+      box-shadow: 0 0 0 1px color-mix(in srgb, var(--land), var(--label) 18%);
     }
-    #ramen-map { display: block; width: 100%; height: min(76vh, 720px); background: var(--sea); outline: none; cursor: grab; touch-action: none; }
+    /* The empty sea around Tokyo goes transparent as it gets dark, so the
+       masks show through the map itself by the time you reach 13. */
+    #ramen-map {
+      display: block; width: 100%; height: min(76vh, 720px); outline: none; cursor: grab; touch-action: none;
+      background: color-mix(in srgb, color-mix(in srgb, var(--land), #5b7b95 12%) calc(100% - var(--dusk) * 75%), transparent);
+    }
     #ramen-map:active { cursor: grabbing; }
-    #ramen-map:focus-visible { outline: 2px solid var(--mark-ink); outline-offset: -2px; }
+    #ramen-map:focus-visible { outline: 2px solid var(--mark); outline-offset: -2px; }
 
     .scale-bar {
       position: absolute; left: 16px; bottom: 14px; color: var(--ink-soft);
       font-size: 11px; letter-spacing: .05em; pointer-events: none;
-      background: rgba(255,255,255,0.85); padding: 3px 7px; border-radius: 4px;
+      padding: 3px 7px; border-radius: 4px;
     }
-    .map-status {
-      margin: 11px 2px 0; color: var(--ink-soft); font-size: 13px;
-      min-height: 20px; max-width: 80ch;
-    }
-
-    .map-foot { padding-top: 12px; }
-    .map-key { padding: 4px 0; }
+    .map-foot { margin-top: 10px; padding: 12px 16px 14px; border-radius: var(--radius); }
+    .map-status { margin: 0 0 10px; color: var(--ink-soft); font-size: 13px; min-height: 20px; max-width: 80ch; }
+    .map-key { padding: 0; }
     .key-heading { margin: 0 0 10px; font-size: 11px; letter-spacing: .08em; font-weight: 700; text-transform: uppercase; color: var(--muted); }
     #map-legend { display: grid; gap: 8px; font-size: 12px; color: var(--ink-soft); list-style: none; margin: 0; padding: 0; }
     .legend-item { display: flex; gap: 10px; align-items: center; }
     .legend-symbol { flex: 0 0 22px; display: inline-flex; align-items: center; justify-content: center; height: 22px; }
-    .legend-pin { background: var(--accent); color: #fff; border-radius: 50%; font-size: 10px; font-weight: 700; }
-    .legend-oni { background: var(--oni); font-size: 9px; }
-    .legend-dot::before { content: ""; width: 5px; height: 5px; background: var(--accent-ink); border-radius: 50%; }
-    .legend-line::before { content: ""; width: 22px; height: 1px; background: var(--transit); }
+    .legend-pin { background: var(--unlit); color: #f3e9dc; border-radius: 50%; font-size: 10px; font-weight: 700; }
+    .legend-lit { background: var(--mark); color: #12171c; box-shadow: 0 0 10px rgba(240, 131, 0, .6); }
+    .legend-oni { background: var(--oni); color: #fff; font-size: 9px; box-shadow: 0 0 10px rgba(232, 163, 60, .6); }
+    .legend-dot::before { content: ""; width: 5px; height: 5px; background: var(--ink-soft); border-radius: 50%; }
+    .legend-line::before { content: ""; width: 22px; height: 1px; background: #6f7b87; }
     .map-hint { margin: 12px 0 0; max-width: 380px; font-size: 11px; color: var(--muted); line-height: 1.5; }
 
     .list-panel {
@@ -211,8 +352,9 @@
 
     .list-controls {
       display: grid; grid-template-columns: 1fr 170px; gap: 10px 12px; align-items: end;
-      position: sticky; top: 0; z-index: 2; background: var(--paper);
-      padding: 2px 0 12px; margin-bottom: 4px;
+      position: sticky; top: 0; z-index: 2;
+      padding: 12px 14px; margin-bottom: 10px; border-radius: var(--radius);
+      background: var(--panel);
     }
     .field { display: grid; gap: 5px; font-size: 11px; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
     .field input, .field select {
@@ -220,88 +362,116 @@
       padding: 9px 10px; border: 1px solid var(--line); border-radius: 7px; background: var(--panel);
       transition: border-color .12s;
     }
-    .field input:focus, .field select:focus { border-color: var(--mark-ink); outline: 2px solid var(--mark-ink); outline-offset: -1px; }
+    .field input:focus, .field select:focus { border-color: var(--mark); outline: 2px solid var(--mark); outline-offset: -1px; }
     .field input::placeholder { color: var(--muted); }
     .count { grid-column: 1 / -1; margin: 0; font-size: 12.5px; color: var(--muted); }
     .count span { color: var(--mark-ink); font-weight: 600; }
 
     .shop-list { display: grid; gap: 10px; }
 
+    /* Each card carries its own shade: bowl 1 is the page's original white,
+       and every bowl after it is a step darker, down to Kikanbō's lacquer.
+       The step (and whether a card reads day or night) is set by
+       js/ramen-map.js from the shop number. Day cards stop above the
+       luminance where dark text can still pass; night cards start below the
+       point where light text can, so no card is ever mid-grey. */
     .shop-card {
-      border: 1px solid var(--line); border-radius: var(--radius);
-      background: var(--panel); padding: 14px 16px 15px;
-      transition: border-color .12s, box-shadow .12s;
+      --c-bg: #ffffff;
+      position: relative; isolation: isolate;
+      border-radius: var(--radius); background: var(--c-bg); color: var(--c-ink);
+      padding: 14px 16px 15px;
+      transition: box-shadow .25s;
       scroll-margin: 8px;
     }
-    .shop-card:hover { border-color: #b9c2ca; cursor: pointer; }
-    .shop-card.is-selected {
-      border-color: var(--ink); box-shadow: inset 3px 0 0 var(--mark), 0 6px 18px -12px rgba(0,0,0,.35);
-      background: #fff;
-    }
+    .shop-card.is-day { --c-ink: #12171c; --c-soft: #3f4650; --c-accent: #5e3300; --c-pill: rgba(18, 23, 28, .06); --c-rule: rgba(18, 23, 28, .16); color-scheme: light; }
+    .shop-card.is-night { --c-ink: #f3e9dc; --c-soft: #cfc3b6; --c-accent: #ffc27a; --c-pill: rgba(243, 233, 220, .08); --c-rule: rgba(243, 233, 220, .18); color-scheme: dark; }
+    .shop-card:hover { cursor: pointer; box-shadow: 0 0 0 1px var(--c-rule); }
+    .shop-card.is-selected { box-shadow: 0 0 0 2px var(--mark), 0 14px 34px -18px rgba(240, 131, 0, .55); }
 
     .shop-select {
       display: flex; gap: 10px; align-items: baseline; width: 100%;
       background: none; border: 0; padding: 0; text-align: left; cursor: pointer;
-      font: 600 16.5px/1.3 inherit; letter-spacing: -.005em; color: var(--ink);
+      font: 600 16.5px/1.3 inherit; letter-spacing: -.005em; color: var(--c-ink);
     }
-    .shop-select:hover { color: var(--mark-ink); }
+    .shop-select:hover { color: var(--c-accent); }
     .shop-number {
       display: inline-grid; place-items: center; width: 23px; height: 23px; flex: none;
-      border-radius: 50%; background: var(--accent); color: #fff;
+      border-radius: 50%; background: var(--c-ink); color: var(--c-bg);
       font: 600 11.5px/1 inherit; transform: translateY(2px);
     }
-    .shop-icon { width: 18px; height: 18px; flex: none; color: var(--muted); transform: translateY(2px); }
-    .shop-card.is-oni .shop-icon { color: var(--oni); }
+    .shop-card.is-selected .shop-number { background: var(--mark); color: #12171c; }
+    .shop-icon { width: 18px; height: 18px; flex: none; color: var(--c-soft); transform: translateY(2px); }
 
+    .shop-jp { margin: 3px 0 0 33px; font-family: var(--mincho); font-weight: 500; font-size: 13px; letter-spacing: .06em; color: var(--c-soft); }
     .shop-area {
       margin: 7px 0 0 33px; font-size: 11px; letter-spacing: .05em;
-      text-transform: uppercase; color: var(--muted); font-weight: 600;
+      text-transform: uppercase; color: var(--c-soft); font-weight: 600;
     }
-    .shop-style { margin: 6px 0 0 33px; font-size: 13.5px; color: var(--mark-ink); font-weight: 600; }
-    .shop-address { margin: 3px 0 0 33px; font-size: 13.5px; color: var(--ink-soft); overflow-wrap: anywhere; }
-    .shop-station { margin: 4px 0 0 33px; font-size: 12px; color: var(--mark-ink); font-weight: 500; }
+    .shop-style { margin: 6px 0 0 33px; font-size: 13.5px; color: var(--c-accent); font-weight: 600; }
+    .shop-address { margin: 3px 0 0 33px; font-size: 13.5px; color: var(--c-soft); overflow-wrap: anywhere; }
+    .shop-station { margin: 4px 0 0 33px; font-size: 12px; color: var(--c-accent); font-weight: 500; }
 
     .shop-description {
       margin: 10px 0 0 33px; font-size: 14px; line-height: 1.62; max-width: 56ch;
-      color: var(--ink); display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden;
+      color: var(--c-ink); display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden;
     }
     .shop-note {
-      margin: 9px 0 0 33px; font-size: 12.5px; line-height: 1.5; color: var(--muted); max-width: 56ch;
+      margin: 9px 0 0 33px; font-size: 12.5px; line-height: 1.5; color: var(--c-soft); max-width: 56ch;
       display: none;
     }
     .shop-status {
       margin: 10px 0 0 33px; font-size: 11.5px; letter-spacing: .03em; display: inline-block;
-      background: var(--mark-soft); color: var(--mark-ink); padding: 3px 9px; border-radius: 999px;
+      background: var(--c-pill); color: var(--c-accent); padding: 3px 9px; border-radius: 999px;
       font-weight: 600;
     }
     .shop-links { margin: 11px 0 0 33px; display: none; flex-wrap: wrap; gap: 7px; }
     .shop-link {
-      font-size: 12px; color: var(--ink-soft); text-decoration: none;
-      border: 1px solid var(--line); border-radius: 999px; padding: 4px 10px; background: var(--paper);
+      font-size: 12px; color: var(--c-soft); text-decoration: none;
+      border: 1px solid var(--c-rule); border-radius: 999px; padding: 4px 10px; background: transparent;
       transition: border-color .12s, color .12s;
     }
-    .shop-link:hover { color: var(--ink); border-color: var(--ink); }
+    .shop-link:hover { color: var(--c-ink); border-color: var(--c-soft); }
 
     .shop-card.is-selected .shop-description { -webkit-line-clamp: unset; display: block; }
     .shop-card.is-selected .shop-note { display: block; }
     .shop-card.is-selected .shop-links { display: flex; }
 
-    /* The bonus 13th bowl: chili red instead of the standard orange accent. */
-    .shop-card.is-oni { border-color: var(--oni-line); background: var(--oni-soft); }
-    .shop-card.is-oni:hover { border-color: var(--oni); }
-    .shop-card.is-oni.is-selected {
-      border-color: var(--oni-ink); background: #fff;
-      box-shadow: inset 3px 0 0 var(--oni), 0 6px 18px -12px rgba(143,24,16,.45);
+    /* A shop with its own room: the photo hangs over the top of the card and
+       opens up when the card is selected; the bowl plays once under it. */
+    .shop-room {
+      position: relative; margin: -14px -16px 12px; height: 92px;
+      border-radius: var(--radius) var(--radius) 0 0;
+      background-size: cover; background-position: center 62%;
+      transition: height .55s ease;
     }
-    .shop-card.is-oni .shop-number { background: var(--oni); }
-    .shop-card.is-oni .shop-select:hover { color: var(--oni); }
-    .shop-card.is-oni .shop-style,
-    .shop-card.is-oni .shop-station { color: var(--oni-ink); }
+    .shop-room::after {
+      content: ""; position: absolute; inset: 0; border-radius: inherit;
+      background: linear-gradient(to bottom, rgba(26, 11, 11, 0) 25%, var(--c-bg));
+    }
+    .shop-card.is-selected .shop-room { height: 180px; }
+    .shop-bowl {
+      display: none; position: relative; margin: 14px 0 0 33px; max-width: 56ch;
+      border-radius: 10px; overflow: hidden; background: #000;
+      box-shadow: 0 0 0 1px rgba(207, 33, 24, .35), 0 22px 46px -22px rgba(207, 33, 24, .6);
+    }
+    .shop-bowl::after {
+      content: ""; position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(ellipse at center, transparent 52%, rgba(0, 0, 0, .6));
+    }
+    .shop-bowl video { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+    .shop-card.is-selected .shop-bowl { display: block; }
+
+    /* The bonus 13th bowl: black lacquer with chili red and gold. */
+    .shop-card.is-oni { --c-accent: #ff8a7f; box-shadow: 0 0 0 1px rgba(207, 33, 24, .45); }
+    .shop-card.is-oni.is-selected { box-shadow: 0 0 0 2px var(--oni), 0 22px 48px -24px rgba(207, 33, 24, .7); }
+    .shop-card.is-oni .shop-number,
+    .shop-card.is-oni.is-selected .shop-number { background: var(--oni); color: #fff; box-shadow: 0 0 10px rgba(232, 163, 60, .55); }
+    .shop-card.is-oni .shop-icon { color: #e8a33c; }
     .shop-card.is-oni .shop-status { background: var(--oni); color: #fff; }
 
-    #empty-state { color: var(--muted); font-size: 14px; padding: 20px 0; }
+    #empty-state { color: var(--muted); font-size: 14px; padding: 16px; border-radius: var(--radius); }
 
-    .page-footer { margin-top: 32px; padding-top: 16px; border-top: 1px solid var(--line); }
+    .page-footer { margin: 0 -32px; padding: 16px 32px 20px; border-top: 1px solid var(--line); }
     .print-note { margin: 0; font-size: 13px; color: var(--ink-soft); }
     .sources { margin: 8px 0 0; color: var(--muted); font-size: 11px; line-height: 1.6; }
     .sources a { color: var(--ink-soft); }
@@ -309,88 +479,154 @@
     #source-notes summary { width: fit-content; color: var(--ink-soft); cursor: pointer; font-weight: 600; }
     #source-notes summary:hover { color: var(--mark-ink); }
     #source-notes p { margin: 10px 0; }
-    noscript p { padding: 16px; border: 1px solid var(--mark); background: var(--mark-soft); color: var(--mark-ink); border-radius: 7px; }
+    noscript p { padding: 16px; border: 1px solid var(--mark); background: var(--panel); color: var(--ink); border-radius: 7px; }
 
+    /* Map: land and water fade with --dusk; labels carry a halo in their own
+       contrasting color, so they read on any shade of land. */
     svg text { font-family: inherit; pointer-events: none; }
-    .ward-shape { fill: var(--land); stroke: var(--land-line); stroke-width: .8; vector-effect: non-scaling-stroke; pointer-events: none; }
-    .ward-shape[data-context] { fill: var(--context); stroke: var(--context-line); }
-    .ward-pattern { color: var(--ink); pointer-events: none; }
+    .ward-shape {
+      fill: var(--land);
+      stroke: color-mix(in srgb, var(--land), var(--label) 22%);
+      stroke-width: .8; vector-effect: non-scaling-stroke; pointer-events: none;
+    }
+    .ward-shape[data-context] {
+      fill: color-mix(in srgb, var(--land) 72%, var(--label-halo));
+      stroke: color-mix(in srgb, var(--land), var(--label) 12%);
+    }
+    .ward-pattern { color: #b8433a; pointer-events: none; }
     .ward-pattern.is-oni { color: var(--oni); }
     .ward-pattern.is-komae { -webkit-mask: radial-gradient(circle, #000 30%, transparent 75%); mask: radial-gradient(circle, #000 30%, transparent 75%); }
-    .ward-name { fill: #7a868f; font-size: 9.5px; letter-spacing: .16em; text-anchor: middle; pointer-events: none; }
-    .transit-line { fill: none; stroke: var(--transit); stroke-width: 1.1; opacity: .55; stroke-linejoin: round; stroke-linecap: round; vector-effect: non-scaling-stroke; pointer-events: none; }
-    .place-label { fill: var(--muted); font-size: 11px; font-weight: 600; pointer-events: none; }
+    .ward-name, .place-label {
+      paint-order: stroke; stroke: var(--label-halo); stroke-width: 3px; stroke-linejoin: round;
+      fill: var(--label); pointer-events: none;
+    }
+    .ward-name { font-size: 9.5px; letter-spacing: .16em; text-anchor: middle; }
+    .place-label { font-size: 11px; font-weight: 600; }
+    .transit-line {
+      fill: none; stroke: color-mix(in srgb, var(--land), var(--label) 55%); stroke-width: 1.1; opacity: .6;
+      stroke-linejoin: round; stroke-linecap: round; vector-effect: non-scaling-stroke; pointer-events: none;
+    }
 
+    /* Selecting a shop throws the rest of the city into shadow; the lit
+       marker is drawn above the shade. */
+    #spot-shade { opacity: 0; transition: opacity .4s ease; pointer-events: none; }
+    #ramen-map.is-spotlit #spot-shade { opacity: .35; }
+
+    /* Markers keep their own contrast (dim red disc, light number) at every
+       shade of the map. */
     .map-marker { cursor: pointer; outline: none; pointer-events: auto; }
-    .marker-leader { stroke: var(--accent-ink); stroke-width: 1; vector-effect: non-scaling-stroke; opacity: .5; }
-    .location-dot { fill: var(--accent-ink); }
-    .marker-disc { fill: var(--accent); stroke: var(--paper); stroke-width: 2; transition: fill .12s; }
-    text.marker-number, .marker-number text { fill: #fff; stroke: none; font-size: 12px; font-weight: 700; text-anchor: middle; dominant-baseline: central; pointer-events: none; }
-    .map-marker.is-selected .marker-disc { fill: var(--mark); stroke: var(--ink); stroke-width: 3; }
-    .map-marker.is-selected .marker-number { fill: var(--ink); }
-    .map-marker:hover .marker-disc, .map-marker:focus-visible .marker-disc { fill: var(--accent-ink); }
-    .map-marker:hover .marker-number, .map-marker:focus-visible .marker-number { fill: #fff; }
-    .map-marker.is-selected:hover .marker-disc, .map-marker.is-selected:focus-visible .marker-disc { fill: var(--mark); }
-    .map-marker.is-selected:hover .marker-number, .map-marker.is-selected:focus-visible .marker-number { fill: var(--ink); }
-    .map-marker:focus-visible { outline: 2px solid var(--mark-ink); outline-offset: 4px; }
+    .marker-leader { stroke: var(--label); stroke-width: 1; vector-effect: non-scaling-stroke; opacity: .5; }
+    .location-dot { fill: var(--label); }
+    .marker-halo { filter: url(#marker-glow); fill: rgba(240, 131, 0, .6); pointer-events: none; }
+    .marker-disc {
+      fill: var(--unlit); stroke: var(--land);
+      stroke-width: 2; transition: fill .15s;
+    }
+    text.marker-number, .marker-number text { fill: #f3e9dc; stroke: none; font-size: 12px; font-weight: 700; text-anchor: middle; dominant-baseline: central; pointer-events: none; }
+    .map-marker:hover .marker-disc, .map-marker:focus-visible .marker-disc { fill: #7a2426; }
+    .map-marker.is-selected .marker-disc { fill: var(--mark); }
+    .map-marker.is-selected .marker-number { fill: #12171c; }
+    .map-marker:focus-visible { outline: 2px solid var(--mark); outline-offset: 4px; }
+    .map-marker.is-oni .marker-halo { fill: rgba(232, 163, 60, .6); }
     .map-marker.is-oni .marker-disc { fill: var(--oni); }
     .map-marker.is-oni .marker-number { fill: #fff; }
-    .map-marker.is-oni .location-dot { fill: var(--oni-ink); }
-    .map-marker.is-oni .marker-leader { stroke: var(--oni-ink); }
-    .map-marker.is-oni:hover .marker-disc, .map-marker.is-oni:focus-visible .marker-disc { fill: var(--oni-ink); }
+    .map-marker.is-oni .location-dot { fill: var(--oni); }
+    .map-marker.is-oni .marker-leader { stroke: var(--oni); }
+    .map-marker.is-oni:hover .marker-disc, .map-marker.is-oni:focus-visible .marker-disc { fill: #e0342a; }
     .map-marker.is-oni:focus-visible { outline-color: var(--oni); }
-    .map-marker.is-oni.is-selected .marker-disc { fill: var(--oni); stroke: var(--oni-ink); stroke-width: 3; }
+    .map-marker.is-oni.is-selected .marker-disc { fill: var(--oni); stroke: #e8a33c; stroke-width: 3; }
     .map-marker.is-oni.is-selected .marker-number { fill: #fff; }
 
     @media (max-width: 1040px) {
       .page-shell { padding: 0 20px 32px; }
+      .masthead, .films, .page-footer, .hero { margin-left: -20px; margin-right: -20px; }
+      .masthead, .films, .page-footer, .hero-text { padding-left: 20px; padding-right: 20px; }
       .list-controls { grid-template-columns: 1fr 140px; }
     }
     @media (max-width: 600px) {
       .page-shell { padding: 0 16px 24px; }
-      .masthead { gap: 14px; padding: 16px 0 12px; }
+      .masthead, .films, .page-footer, .hero { margin-left: -16px; margin-right: -16px; }
+      .masthead, .films, .page-footer, .hero-text { padding-left: 16px; padding-right: 16px; }
+      .masthead { gap: 14px; padding-top: 16px; padding-bottom: 12px; }
       .masthead nav { gap: 14px; font-size: 12px; }
-      .page-header { padding: 20px 0 6px; }
+      .hero-text { padding-top: 32px; padding-bottom: 32px; }
+      .challenge-plaque { padding: 14px 12px 18px; }
       .list-controls { grid-template-columns: 1fr; }
       .shop-card { padding: 13px 14px 14px; }
+      .shop-room { margin: -13px -14px 12px; }
       .shop-select { font-size: 15px; }
+      .bowl-num { font-size: 28px; }
+      .bowl-name { font-size: 11px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      :root { transition: none; }
+      .masthead, .map-toolbar, .map-foot, .list-controls, .challenge-plaque, .films, .page-footer, #empty-state, .scale-bar { transition: none; }
+      .oni-wash, .bowl::before, .bowl-num, .shop-room, #spot-shade { transition: none; }
     }
 
     @page { size: A4 landscape; margin: 10mm; }
     @media print {
+      /* Paper is always day: no wall, no lacquer. */
+      :root { --dusk: 0 !important; --land: #fff !important; }
+      body, body.is-night {
+        color-scheme: light;
+        --ink: #12171c; --ink-soft: #3f4650; --muted: #5c6570; --line: #ccd2d8;
+        --paper: #fff; --panel: #fff; --surface: #fff;
+        --mark-soft: #fdf0dd; --mark-ink: #8a4d00;
+        --oni-soft: #fdeceb; --oni-ink: #8f1810; --gold: #8a4d00;
+        --label: #4d565f; --label-halo: #fff;
+      }
       * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
       body { background: #fff; font-size: 9pt; }
+      .wall, .grain, .oni-wash, #spot-shade, .marker-halo, .shop-bowl, .hero-bowl,
+      .bowl::before, .shop-room::after { display: none !important; }
       .page-shell { max-width: none; margin: 0; padding: 0 12px; }
-      .skip-link, .masthead nav, .map-toolbar, .toggle, .list-controls, #source-notes, #map-status, .map-hint, .shop-note, .shop-links, noscript, .films { display: none !important; }
+      .skip-link, .masthead nav, .ig-link, .map-toolbar, .toggle, .list-controls, #source-notes, #map-status, .map-hint, .shop-note, .shop-links, noscript, .films { display: none !important; }
       .partner { margin-top: 3mm; padding: 2mm 3mm; border-radius: 0; break-inside: avoid; }
       .partner-note { font-size: 8pt; }
       .partner-links { gap: 3mm 6mm; }
       .partner-links a { font-size: 8pt; }
-      .masthead { padding: 0 0 2mm; border-bottom-color: var(--line); }
+      .masthead { margin: 0; padding: 0 0 2mm; border-bottom: 1px solid var(--line); }
       .page-header { padding: 2mm 0; }
-      .challenge-strip { display: flex; gap: 4mm; margin-top: 2mm; break-inside: avoid; }
-      .challenge-card { padding: 2mm 3mm; border-top-width: 2px; border-radius: 0; }
+      .hero { display: block; min-height: 0; margin: 0; background: none; }
+      .hero::before, .hero-toggle { display: none; }
+      .hero-text { padding: 0; color: var(--ink); max-width: none; }
+      .page-header h1 { font-size: 24pt; max-width: none; color: var(--ink); text-shadow: none; }
+      .lede { font-size: 8pt; color: var(--ink-soft); }
+      .challenge-plaque { margin-top: 3mm; padding: 0; break-inside: avoid; }
+      .bowl-wall { grid-template-columns: repeat(13, minmax(0, 1fr)); gap: 1mm; max-width: none; }
+      .bowl-wall li.is-oni { grid-column: auto; }
+      .bowl { padding: 1mm 0; gap: 1mm; }
+      .bowl-num { font-size: 12pt; color: var(--ink) !important; text-shadow: none !important; }
+      .bowl-name { font-size: 6pt; color: var(--ink) !important; }
+      .challenge-strip { display: flex; gap: 4mm; margin-top: 3mm; }
+      .challenge-card { padding: 0 0 0 3mm; }
       .challenge-count { font-size: 12pt; }
       .challenge-name { margin-top: 1mm; font-size: 7pt; }
       .challenge-note { margin-top: 1mm; font-size: 7.5pt; line-height: 1.4; }
-      .page-header h1 { font-size: 24pt; }
-      .lede { font-size: 8pt; }
-      .layout { display: block; }
+      .layout { display: block; padding-top: 3mm; }
       .map-panel { position: static; }
-      .map-frame { border-radius: 0; }
-      #ramen-map { height: 110mm; }
-      .scale-bar { bottom: 3mm; left: 3mm; font-size: 7pt; }
-      .map-foot { padding-top: 2mm; }
+      .map-frame { border-radius: 0; box-shadow: none; }
+      #ramen-map { height: 110mm; background: #eef1f4; }
+      .scale-bar { bottom: 3mm; left: 3mm; font-size: 7pt; background: none; }
+      .map-foot { margin-top: 2mm; padding: 0; }
       .key-heading { margin-bottom: 2mm; font-size: 7pt; }
       #map-legend { display: flex; flex-wrap: wrap; gap: 3mm; font-size: 7pt; }
+      .legend-pin { box-shadow: none; }
       .list-panel { max-height: none; overflow: visible; }
       .shop-list { display: block; }
-      .shop-card { break-inside: avoid; border-radius: 0; border: 0; border-bottom: 1px solid var(--line); padding: 3mm 0; box-shadow: none; }
-      .shop-card.is-selected { box-shadow: none; background: #fff; }
+      .shop-card {
+        --c-bg: #fff !important; --c-ink: #12171c !important; --c-soft: #3f4650 !important; --c-accent: #8a4d00 !important;
+        --c-pill: #f4f6f7 !important; --c-rule: #ccd2d8 !important;
+        break-inside: avoid; border-radius: 0; border-bottom: 1px solid #ccd2d8; padding: 3mm 0; box-shadow: none !important;
+      }
+      .shop-card.is-oni { --c-bg: #fdeceb !important; --c-accent: #8f1810 !important; }
+      .shop-room { height: 14mm !important; margin: -3mm 0 2mm; border-radius: 0; }
       .shop-description, .shop-note, .shop-links { display: block; -webkit-line-clamp: unset; }
       .shop-links { display: flex !important; }
       .shop-select { font-size: 10pt; }
-      .shop-number { width: 5mm; height: 5mm; font-size: 8pt; }
+      .shop-number { width: 5mm; height: 5mm; font-size: 8pt; box-shadow: none !important; }
+      .shop-jp { margin: 0.5mm 0 0 7mm; font-size: 8pt; }
       .shop-area { margin: 1mm 0 0 7mm; font-size: 8pt; }
       .shop-style { margin: 0.5mm 0 0 7mm; font-size: 8pt; }
       .shop-address { margin: 0.5mm 0 0 7mm; font-size: 8pt; }
@@ -398,16 +634,19 @@
       .shop-description { margin: 1mm 0 0 7mm; font-size: 8.5pt; line-height: 1.4; }
       .shop-note { margin: 1mm 0 0 7mm; font-size: 7.5pt; }
       .shop-status { margin: 1mm 0 0 7mm; font-size: 7.5pt; }
-      .page-footer { margin-top: 3mm; padding-top: 2mm; break-inside: avoid; }
+      .page-footer { margin: 3mm 0 0; padding: 2mm 0 0; break-inside: avoid; }
       .print-note { font-size: 8pt; }
       .sources { font-size: 6pt; }
       .sources a { text-decoration: none; }
     }
   </style>
-  <script src="js/ramen-map.js?v=4b0bcd1a" defer></script>
+  <script src="js/ramen-map.js?v=1395da2c" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#shop-search">Skip to ramen places</a>
+  <div class="wall" aria-hidden="true"></div>
+  <div class="oni-wash" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
   <div class="page-shell">
     <header>
       <div class="masthead">
@@ -415,14 +654,26 @@
         <nav aria-label="The maps">
           <span aria-current="page">Ramen Challenge</span>
           <a href="tokyo-after-dark.html">Tokyo After Dark</a>
-          <a href="koenji-walk.html">Koenji Walk</a>
+          <a href="koenji-walk.html">Koenji B-Side</a>
         </nav>
         <a class="ig-link" href="https://www.instagram.com/chaues/" target="_blank" rel="noopener noreferrer"
            aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.2" cy="6.75" r="1.25" fill="currentColor"/></svg></a>
       </div>
       <div class="page-header">
-        <h1>The 12 Bowl Ramen Challenge</h1>
-        <p class="lede">Twelve bowls. Twelve neighborhoods. No two the same. Work through them in whatever order your feet and the trains allow, because this is a map, not a route. Then, if you think you have earned it, there is a thirteenth bowl waiting in Kanda.</p>
+        <div class="hero">
+          <div class="hero-text">
+            <h1>The 12 Bowl Ramen Challenge</h1>
+            <p class="lede">Twelve bowls. Twelve neighborhoods. No two the same. Work through them in whatever order your feet and the trains allow, because this is a map, not a route. Then, if you think you have earned it, there is a thirteenth bowl waiting in Kanda.</p>
+          </div>
+          <figure class="hero-bowl" aria-hidden="true">
+            <video autoplay muted loop playsinline preload="auto" poster="assets/imgs/ramen/kikanbo-hero-poster.jpg">
+              <source src="assets/movie/kikanbo-hero.mp4?v=3" type="video/mp4">
+            </video>
+          </figure>
+          <button type="button" class="hero-toggle" id="hero-toggle" aria-pressed="false" aria-label="Pause the video"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="icon-pause" d="M8 6h3v12H8zM13 6h3v12h-3z" fill="currentColor"/><path class="icon-play" d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></svg></button>
+        </div>
+        <div class="challenge-plaque">
+        <ol class="bowl-wall" id="bowl-wall" aria-label="The thirteen bowls"></ol>
         <ul class="challenge-strip">
           <li class="challenge-card">
             <p class="challenge-count">01 <span>–</span> 12</p>
@@ -435,6 +686,7 @@
             <p class="challenge-note">Kikanbō in Kanda. Kara-shibi miso, which means chili heat (kara) stacked on sanshō numbing (shibi), and you set both dials yourself on a five-point scale. The top setting is oni-mashi. Devil level. It costs extra, and it should. (Come for my Oni level, if you dare.)</p>
           </li>
         </ul>
+        </div>
       </div>
     </header>
     <noscript><p>This interactive map needs JavaScript to load saved ramen places, map details, and the printable guide. Please enable JavaScript and reload this page.</p></noscript>
@@ -532,18 +784,20 @@
                 <path d="M23 24L25 26L27 24" fill="none" stroke="currentColor" stroke-width="1" opacity="0.2"/>
                 <path d="M14 16L10 13M36 16L40 13" fill="none" stroke="currentColor" stroke-width="1" opacity="0.2"/>
               </pattern>
+              <filter id="marker-glow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="5"/></filter>
               <symbol id="sym-pig" viewBox="0 0 24 24"><path d="M5 12C5 7 9 4 14 4C19 4 22 7 22 12C22 17 19 20 14 20C9 20 5 17 5 12Z" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="10" r="1.2" fill="currentColor"/><circle cx="17" cy="10" r="1.2" fill="currentColor"/><path d="M11 14L14 16L17 14" fill="none" stroke="currentColor" stroke-width="1.2"/></symbol>
             </defs>
           </svg>
           <svg id="ramen-map" role="group" aria-label="Map of ramen places in Tokyo"></svg>
           <div id="scale-bar" class="scale-bar" aria-hidden="true"></div>
         </div>
-        <p id="map-status" class="map-status" role="status" aria-live="polite">Loading map data.</p>
         <div class="map-foot">
+          <p id="map-status" class="map-status" role="status" aria-live="polite">Loading map data.</p>
           <div class="map-key">
             <h2 class="key-heading" id="map-legend-heading">Reading the map</h2>
             <ul id="map-legend" aria-labelledby="map-legend-heading">
               <li class="legend-item"><span class="legend-symbol legend-pin" aria-hidden="true">1</span> Number matches the place index</li>
+              <li class="legend-item"><span class="legend-symbol legend-pin legend-lit" aria-hidden="true">1</span> Lit: the place you selected</li>
               <li class="legend-item"><span class="legend-symbol legend-pin legend-oni" aria-hidden="true">13</span> The bonus Oni bowl: Kikanbō, kara-shibi miso</li>
               <li class="legend-item"><span class="legend-symbol legend-dot" aria-hidden="true"></span> Dot: saved location; numbered badge may be offset</li>
               <li class="legend-item"><span class="legend-symbol legend-line" aria-hidden="true"></span> Subway context, not walking directions</li>
