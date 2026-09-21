@@ -361,13 +361,14 @@ def render_journey(data_path):
 
     # Murakami quotes flashed on the full-screen interstitials. Dropped the
     # unverified suffering quote (widely attributed to Norwegian Wood but not
-    # confirmable in the text). The remaining 10 go on interstitials 1-9;
-    # the storm quote is the coda after SAKEBARO.
+    # confirmable in the text), and the "things you can only do alone" line
+    # from After Dark, which is now the page epigraph over the drive-in clip.
+    # That leaves 8 quotes for 9 clips: the last interstitial runs uncaptioned
+    # until a replacement is picked. The storm quote is the coda.
     INTERSTITIAL_QUOTES = [
         ('If you only read the books that everyone else is reading, you can only think what everyone else is thinking.', 'Norwegian Wood'),
         ('I dream. Sometimes I think that\u2019s the only right thing to do.', 'Sputnik Sweetheart'),
         ('Even in the smallest events there\u2019s no such thing as coincidence.', 'Kafka on the Shore'),
-        ('In this world, there are things you can only do alone, and things you can only do with somebody else.', 'After Dark'),
         ('A certain type of perfection can only be realized through a limitless accumulation of the imperfect.', 'Kafka on the Shore'),
         ('What lasts, lasts; what doesn\u2019t, doesn\u2019t. Time solves most things. And what time can\u2019t solve, you have to solve yourself.', 'Dance Dance Dance'),
         ('No matter how far you travel, you can never get away from yourself.', 'After the Quake'),
@@ -403,19 +404,6 @@ def render_journey(data_path):
             f'</video>{quote_html}</figure>'
         )
 
-    def _overture():
-        # Opening clip: the drive into the city, before the first counter.
-        # Same scroll-linked treatment as the transit interstitials, but it
-        # sits ahead of every stop, so tokyo-after-dark.js keeps it visible
-        # under filters the way it keeps the coda.
-        return (
-            f'<figure class="journey-interstitial journey-overture" aria-label="Driving in">'
-            f'<video class="stop-video" muted loop playsinline autoplay preload="none">'
-            f'<source src="assets/movie/interstitial-0.webm" type="video/webm">'
-            f'<source src="assets/movie/interstitial-0.mp4" type="video/mp4">'
-            f'</video></figure>'
-        )
-
     def _coda():
         text, source = CODA_QUOTE
         return (
@@ -433,9 +421,9 @@ def render_journey(data_path):
 
     _validate_journey(bars, len(CLIP_ORDER))
 
-    # The drive in, before the Ginza heading and the first stop.
-    parts.append(_overture())
-
+    # The drive in is not a journey item: it is the page's opening layer,
+    # hardcoded in tokyo-after-dark.html so the masthead and title sit on
+    # top of it. See #overture there.
     prev_leg = None
     interstitial_idx = 0
     for bar in bars:

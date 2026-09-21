@@ -578,7 +578,7 @@
       button.setAttribute('aria-pressed', 'false');
       const number = String(shop.number).padStart(2, '0'), shortName = shop.name.split(' — ')[0];
       button.setAttribute('aria-label', `${number} ${shortName}, ${shop.area}. Show on the map.`);
-      button.append(html('span', 'bowl-num', number), html('span', 'bowl-name', shortName));
+      button.append(html('span', 'bowl-num', number));
       button.addEventListener('click', () => {
         if (!visible.includes(shop)) {
           $('shop-search').value = '';

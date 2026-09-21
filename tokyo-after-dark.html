@@ -89,22 +89,42 @@
     .ig-link:hover { color: var(--mark-ink); background: var(--mark-soft); }
     .ig-link svg { width: 21px; height: 21px; display: block; }
 
+    /* The drive in. A fixed layer under every bit of page content, above the
+       ambient .bars-bg, so the masthead, title, lede and epigraph all read on
+       top of moving footage. Opacity comes from --reveal (initOverture). */
+    #overture {
+      position: fixed; inset: 0; z-index: -2; pointer-events: none; overflow: hidden;
+      opacity: var(--reveal, 1);
+    }
+    #overture video {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; display: block;
+    }
+    .overture-veil {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(10,8,16,.52) 0%, rgba(10,8,16,.62) 55%, rgba(10,8,16,.86) 100%);
+    }
+    @media (prefers-reduced-motion: reduce) { #overture video { display: none; } }
+
     .page-header {
       position: relative; padding: 60px 0 60px; margin: 0 -20px; padding-left: 20px; padding-right: 20px;
       border-radius: 0 0 12px 12px; overflow: hidden;
       display: flex; align-items: flex-end; gap: 48px;
     }
+    /* The still hero stays as the base plate under the video: it shows if the
+       clip is blocked, on reduced motion, and in print. */
     .page-header::before {
-      content: ''; position: absolute; inset: 0; z-index: -1;
+      content: ''; position: absolute; inset: 0; z-index: -3;
       background: url('assets/imgs/bars/whiskey-glass.jpg') left 65% / cover no-repeat;
       filter: brightness(.75) saturate(1.15);
     }
     .page-header::after {
-      content: ''; position: absolute; inset: 0; z-index: -1;
+      content: ''; position: absolute; inset: 0; z-index: -3;
       background: linear-gradient(to bottom, rgba(20,18,28,.35), rgba(20,18,28,.6));
     }
-    .page-header-text { flex: 1 1 auto; min-width: 0; }
-    .page-header .epigraph { flex: 1 1 60ch; max-width: 80ch; min-width: 0; }
+    /* Title left, the night's shape right. */
+    .page-header-text { flex: 0 1 auto; min-width: 0; }
+    .page-header .lede { flex: 1 1 46ch; max-width: 62ch; min-width: 0; margin: 6px 0 0; font-size: 16px; }
     .page-header h1 {
       margin: 0; font-size: clamp(40px, 5.5vw, 64px); font-weight: 700; letter-spacing: -.025em; line-height: 1.05;
       color: #f5f0e8;
@@ -113,12 +133,23 @@
     .page-header .epigraph p, .page-header .epigraph figcaption { color: rgba(245,240,232,.7); }
     .lede { margin: 14px 0 0; color: var(--ink-soft); font-size: 15px; max-width: 42ch; line-height: 1.55; }
 
+    /* The epigraph now sits on the drive-in footage, between the title and the
+       first counter: no panel, no border, just the quote over the road. */
     .epigraph {
-      margin: 0; padding: 0 0 0 16px; border-left: 3px solid var(--mark);
+      margin: 0; padding: 0; border: 0;
+      min-height: 58vh; display: flex; flex-direction: column; justify-content: center;
+      max-width: 34ch;
     }
     .epigraph blockquote { margin: 0; }
-    .epigraph p { margin: 0; font-size: 26px; line-height: 1.55; color: var(--ink-soft); font-style: italic; }
-    .epigraph figcaption { margin-top: 12px; font-size: 16px; color: var(--muted); letter-spacing: .03em; }
+    .epigraph p {
+      margin: 0; font-family: 'Shippori Mincho', serif; font-style: normal;
+      font-size: clamp(22px, 3.2vw, 34px); line-height: 1.5;
+      color: rgba(245,240,232,.95); text-shadow: 0 2px 20px rgba(0,0,0,.8);
+    }
+    .epigraph figcaption {
+      margin-top: 18px; font-size: 13px; color: rgba(245,240,232,.72);
+      letter-spacing: .12em; text-transform: uppercase;
+    }
 
     .films { margin-top: 34px; border-top: 1px solid var(--line); padding-top: 22px; position: relative; z-index: 10; }
     .films h2 {
@@ -453,6 +484,8 @@
       opacity: var(--reveal, 0);
       z-index: 0;
     }
+    /* No <canvas> in the markup by design: ripple.js injects one into each
+       interstitial at runtime and keys its bursts off .is-active. */
     .journey-interstitial canvas {
       position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
       pointer-events: none; z-index: 1;
@@ -503,10 +536,6 @@
        trigger the .is-active covering threshold (50vh) so the quote
        actually appears. */
     .journey-coda { height: 80vh; }
-
-    /* The overture: the drive in, before the first counter. No quote on this
-       one, so it plays a little shorter than a full screen-height scroll. */
-    .journey-overture { height: 85vh; }
 
     /* Epilogue stop: the "naughty" card after the storm. No number badge,
        no floor arrow, and lifted above the coda's fixed video so it's
@@ -736,8 +765,8 @@
         margin: 0 0 12px;
       }
       .page-header { flex-direction: column; gap: 20px; }
-      .page-header .epigraph { max-width: none; flex-basis: auto; }
-      .page-header .lede { max-width: none; }
+      .page-header .lede { max-width: none; flex-basis: auto; }
+      .epigraph { min-height: 42vh; max-width: none; }
     }
 
     @page { size: A4 landscape; margin: 10mm; }
@@ -786,9 +815,13 @@
       .page-header::before, .page-header::after { display: none; }
       .page-header h1 { font-size: 24pt; color: #14121c; }
       .lede { font-size: 8pt; }
-      .epigraph { margin: 2mm 0 0; padding-left: 3mm; border-left-width: 2px; break-inside: avoid; max-width: none; }
-      .epigraph p { font-size: 8pt; }
-      .epigraph figcaption { font-size: 7pt; margin-top: 1mm; }
+      #overture { display: none !important; }
+      .epigraph {
+        margin: 2mm 0 0; padding-left: 3mm; border-left: 2px solid var(--mark);
+        break-inside: avoid; max-width: none; min-height: 0; display: block;
+      }
+      .epigraph p { font-size: 8pt; color: #14121c; text-shadow: none; }
+      .epigraph figcaption { font-size: 7pt; margin-top: 1mm; color: #14121c; letter-spacing: .03em; text-transform: none; }
       .layout { display: block; }
       .map-stage { display: block !important; position: static; }
       .map-frame { border-radius: 0; }
@@ -804,7 +837,7 @@
     }
   </style>
   <script src="js/ripple.js?v=d74dd0fe" defer></script>
-  <script src="js/tokyo-after-dark.js?v=40c1c6bd" defer></script>
+  <script src="js/tokyo-after-dark.js?v=ed3ec55f" defer></script>
 </head>
 <body>
   <div class="bars-bg" aria-hidden="true">
@@ -813,6 +846,16 @@
       <source src="assets/movie/bars-bg.mp4" type="video/mp4">
     </video>
     <div class="bars-bg-veil"></div>
+  </div>
+  <!-- The drive in: the opening clip runs behind the masthead, the title and
+       the epigraph, and holds until Star Bar Ginza has been read. Its opacity
+       comes from --reveal, driven by initOverture() in tokyo-after-dark.js. -->
+  <div id="overture" aria-hidden="true">
+    <video muted loop playsinline autoplay preload="auto" poster="assets/imgs/bars/whiskey-glass.jpg">
+      <source src="assets/movie/interstitial-0.webm" type="video/webm">
+      <source src="assets/movie/interstitial-0.mp4" type="video/mp4">
+    </video>
+    <div class="overture-veil"></div>
   </div>
   <a class="skip-link" href="#journey-view">Skip to content</a>
   <div class="page-shell">
@@ -830,15 +873,15 @@
       <div class="page-header">
         <div class="page-header-text">
           <h1>Tokyo After Dark</h1>
-          <p class="lede">A night in order: Ginza cocktails, then Shinjuku's hidden floors, then the midnight shift south through Ebisu and Azabujuban, and the east-side after-hours crawl, ending at a door you have to be let into. Across Tokyo, <span id="bar-count">23</span> late-night places and one after-hours encore: Ginza counters where the ice is carved by hand, an Ebisu basement that calls itself a coffee shop, a Shimokitazawa jazz room named after a Hank Mobley record, and the bar from <cite>Lost in Translation</cite>. Each stop is a place with its floor, its address, and a note on what it is. Tell the bartender what you're in the mood for and let them build it. Switch to Map & list to see them all at once.</p>
         </div>
-        <figure class="epigraph">
-          <blockquote>
-            <p>In this world, there are things you can only do alone, and things you can only do with somebody else. It's important to combine the two in just the right amount.</p>
-          </blockquote>
-          <figcaption>Haruki Murakami, <cite>After Dark</cite></figcaption>
-        </figure>
+        <p class="lede"><span id="bar-count">23</span> places, in the order I would drink them. Ginza counters early, where the ice is carved by hand. Shinjuku's hidden floors once it gets late. Then south, to a basement in Ebisu that calls itself a coffee shop and a Shimokitazawa jazz room named after a Hank Mobley record. The east side after hours. It ends at a door you have to be let into. Every stop lists its floor, because in Tokyo the floor is the address. Tell the bartender what you are in the mood for and let him build it.</p>
       </div>
+      <figure class="epigraph">
+        <blockquote>
+          <p>In this world, there are things you can only do alone, and things you can only do with somebody else. It's important to combine the two in just the right amount.</p>
+        </blockquote>
+        <figcaption>Haruki Murakami, <cite>After Dark</cite></figcaption>
+      </figure>
     </header>
     <noscript>
       <p>This interactive map needs JavaScript to load the bars, map details, and the printable guide. The journey view below is fully readable without JavaScript.</p>
@@ -879,7 +922,6 @@
       <section id="journey-view" class="journey-view is-active" role="tabpanel" aria-labelledby="view-journey" tabindex="-1">
         <div class="journey-scroll">
 <!-- build:journey -->
-<figure class="journey-interstitial journey-overture" aria-label="Driving in"><video class="stop-video" muted loop playsinline autoplay preload="none"><source src="assets/movie/interstitial-0.webm" type="video/webm"><source src="assets/movie/interstitial-0.mp4" type="video/mp4"></video></figure>
 <h3 class="journey-leg">Ginza<span class="journey-leg-sub">Early evening: cocktails and counters</span></h3>
   <section class="stop" id="stop-apollo-bar" data-stop="apollo-bar" data-number="1" data-floor="B1F" data-category="basement" data-leg="ginza" style="--alias-cols:1">
     <div class="stop-media-bg">
@@ -1188,7 +1230,7 @@
       </p>
     </div>
   </section>
-<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline autoplay preload="none"><source src="assets/movie/interstitial-4.webm" type="video/webm"><source src="assets/movie/interstitial-4.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>In this world, there are things you can only do alone, and things you can only do with somebody else.</blockquote><cite>After Dark</cite></figcaption></figure>
+<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline autoplay preload="none"><source src="assets/movie/interstitial-4.webm" type="video/webm"><source src="assets/movie/interstitial-4.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>A certain type of perfection can only be realized through a limitless accumulation of the imperfect.</blockquote><cite>Kafka on the Shore</cite></figcaption></figure>
   <section class="stop no-media" id="stop-no-room-squares" data-stop="no-room-squares" data-number="13" data-floor="4F" data-category="distant" data-leg="west" style="--alias-cols:2">
     <div class="stop-media-bg stop-media-bg--type" aria-hidden="true"><span class="stop-watermark">ノー・ルーム・フォー・スクエアーズ</span></div>
     <div class="stop-body">
@@ -1231,7 +1273,7 @@
       </p>
     </div>
   </section>
-<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline autoplay preload="none"><source src="assets/movie/interstitial-5.webm" type="video/webm"><source src="assets/movie/interstitial-5.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>A certain type of perfection can only be realized through a limitless accumulation of the imperfect.</blockquote><cite>Kafka on the Shore</cite></figcaption></figure>
+<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline autoplay preload="none"><source src="assets/movie/interstitial-5.webm" type="video/webm"><source src="assets/movie/interstitial-5.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>What lasts, lasts; what doesn’t, doesn’t. Time solves most things. And what time can’t solve, you have to solve yourself.</blockquote><cite>Dance Dance Dance</cite></figcaption></figure>
   <section class="stop" id="stop-gen-yamamoto" data-stop="gen-yamamoto" data-number="15" data-floor="1F" data-leg="west" style="--alias-cols:1">
     <div class="stop-media-bg">
       <img src="assets/imgs/bars/gen-yamamoto.jpg" alt="Gen Yamamoto counter" loading="lazy" decoding="async">
@@ -1276,7 +1318,7 @@
       </p>
     </div>
   </section>
-<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline autoplay preload="none"><source src="assets/movie/interstitial-6.webm" type="video/webm"><source src="assets/movie/interstitial-6.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>What lasts, lasts; what doesn’t, doesn’t. Time solves most things. And what time can’t solve, you have to solve yourself.</blockquote><cite>Dance Dance Dance</cite></figcaption></figure>
+<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline autoplay preload="none"><source src="assets/movie/interstitial-6.webm" type="video/webm"><source src="assets/movie/interstitial-6.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>No matter how far you travel, you can never get away from yourself.</blockquote><cite>After the Quake</cite></figcaption></figure>
 <h3 class="journey-leg">East Tokyo<span class="journey-leg-sub">After hours: Kanda to Ueno to Bunkyo</span></h3>
   <section class="stop no-media" id="stop-bar-under" data-stop="bar-under" data-number="17" data-floor="B1F" data-category="basement" data-leg="east" style="--alias-cols:2">
     <div class="stop-media-bg stop-media-bg--type" aria-hidden="true"><span class="stop-watermark">バー アンドアンダー</span></div>
@@ -1321,7 +1363,7 @@
       </p>
     </div>
   </section>
-<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline autoplay preload="none"><source src="assets/movie/interstitial-7.webm" type="video/webm"><source src="assets/movie/interstitial-7.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>No matter how far you travel, you can never get away from yourself.</blockquote><cite>After the Quake</cite></figcaption></figure>
+<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline autoplay preload="none"><source src="assets/movie/interstitial-7.webm" type="video/webm"><source src="assets/movie/interstitial-7.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>People’s memories are maybe the fuel they burn to stay alive.</blockquote><cite>After Dark</cite></figcaption></figure>
   <section class="stop no-media" id="stop-game-bar-abutton" data-stop="game-bar-abutton" data-number="19" data-floor="1F" data-leg="east" style="--alias-cols:2">
     <div class="stop-media-bg stop-media-bg--type" aria-hidden="true"><span class="stop-watermark">ゲームバー エーボタン</span></div>
     <div class="stop-body">
@@ -1369,7 +1411,7 @@
       </p>
     </div>
   </section>
-<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline autoplay preload="none"><source src="assets/movie/interstitial-8.webm" type="video/webm"><source src="assets/movie/interstitial-8.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>People’s memories are maybe the fuel they burn to stay alive.</blockquote><cite>After Dark</cite></figcaption></figure>
+<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline autoplay preload="none"><source src="assets/movie/interstitial-8.webm" type="video/webm"><source src="assets/movie/interstitial-8.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>Memories warm you up from the inside. But they also tear you apart.</blockquote><cite>Kafka on the Shore</cite></figcaption></figure>
   <section class="stop no-media" id="stop-rock-bar-sakebi" data-stop="rock-bar-sakebi" data-number="21" data-floor="1F" data-leg="east" style="--alias-cols:1">
     <div class="stop-media-bg stop-media-bg--type" aria-hidden="true"><span class="stop-watermark">ロックバー さけび</span></div>
     <div class="stop-body">
@@ -1413,7 +1455,7 @@
       </p>
     </div>
   </section>
-<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline autoplay preload="none"><source src="assets/movie/interstitial-9.webm" type="video/webm"><source src="assets/movie/interstitial-9.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>Memories warm you up from the inside. But they also tear you apart.</blockquote><cite>Kafka on the Shore</cite></figcaption></figure>
+<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline autoplay preload="none"><source src="assets/movie/interstitial-9.webm" type="video/webm"><source src="assets/movie/interstitial-9.mp4" type="video/mp4"></video></figure>
 <h3 class="journey-leg">The locked door<span class="journey-leg-sub">The one place you can’t walk into</span></h3>
   <section class="stop is-spotlight" id="stop-sake-bar-o" data-stop="sake-bar-o" data-number="23" data-floor="1F" data-category="spotlight" data-leg="locked-door" style="--alias-cols:4">
     <div class="stop-media-bg">
@@ -1504,6 +1546,16 @@
         </li>
       </ul>
     </section>
+
+    <footer class="page-footer">
+      <p class="print-note">Ordered by neighborhood, evening to dawn. Check opening hours before travelling.</p>
+      <p class="sources">Source: saved-place exports, checked against official venue pages, Tabelog and the GSI address-search API. Subway geometry &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors</a>.</p>
+      <details id="source-notes">
+        <summary>Map notes</summary>
+        <p>Locations reflect saved-place records, not verified entrances. Some pins are address-level approximations from web research or the GSI address-search API. Use the saved map links to check current details before setting out.</p>
+        <p>Subway lines provide geographic context only. They are not walking directions or a journey planner.</p>
+      </details>
+    </footer>
 
   </div>
 </body>

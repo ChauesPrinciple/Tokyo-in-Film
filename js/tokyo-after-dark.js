@@ -100,6 +100,7 @@
       // playing interstitial keeps playing hidden in Map & list, and the
       // coda video can cover the footer when switching back).
       if (typeof window._interstitialUpdate === 'function') window._interstitialUpdate();
+      if (typeof window._overtureUpdate === 'function') window._overtureUpdate();
     }
     setViewFn = setView;
 
@@ -582,6 +583,55 @@
     update();
   }
 
+  // --- Overture: the drive in ---
+  // The opening clip is a fixed layer behind the whole top of the page, so the
+  // masthead, the title and the epigraph read on top of moving footage. It
+  // holds at full strength from the top of the page until the second stop
+  // (Star Bar Ginza) has been read, then fades across that card's last
+  // stretch so the handoff to the first stairwell interstitial is seamless.
+  function initOverture() {
+    const overture = document.getElementById('overture');
+    if (!overture) return;
+    const video = overture.querySelector('video');
+    const anchor = document.getElementById('stop-star-bar');
+    let ticking = false;
+
+    function update() {
+      ticking = false;
+      const journeyActive = document.body.hasAttribute('data-journey-active');
+      let reveal = 0;
+      if (journeyActive) {
+        if (!anchor) {
+          // No Star Bar card (filtered out): hold through the viewport height.
+          reveal = window.scrollY < window.innerHeight ? 1 : 0;
+        } else {
+          // Fade across the last 70% of a viewport once the card's bottom
+          // rises past the fold — full strength everywhere above that.
+          const bottom = anchor.getBoundingClientRect().bottom;
+          const fade = window.innerHeight * 0.7;
+          reveal = Math.max(0, Math.min(1, bottom / fade));
+        }
+      }
+      const next = reveal.toFixed(3);
+      if (overture._reveal !== next) {
+        overture._reveal = next;
+        overture.style.setProperty('--reveal', next);
+      }
+      if (video) {
+        const shouldPlay = reveal > 0.02;
+        if (shouldPlay && video.paused) video.play().catch(() => {});
+        else if (!shouldPlay && !video.paused) video.pause();
+      }
+    }
+    function onScroll() {
+      if (!ticking) { ticking = true; requestAnimationFrame(update); }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    window._overtureUpdate = update;
+    update();
+  }
+
   // --- Map idle overlay (removed) ---
   // The map is now hidden entirely in Journey view via CSS display:none.
   // This stub remains so the init() call sequence doesn't break.
@@ -739,13 +789,9 @@
         if (isVisibleStop(el)) stopSinceKept = true;
         return;
       }
-      // The overture is the drive in: it opens the night, so it has no stop
-      // before it and stays as long as the journey has anything to show.
-      const keep = el.classList.contains('journey-overture')
-        ? lastVisibleStop >= 0
-        : stopSinceKept && (el.classList.contains('journey-coda') || i < lastVisibleStop);
+      const keep = stopSinceKept && (el.classList.contains('journey-coda') || i < lastVisibleStop);
       el.hidden = !keep;
-      if (keep && !el.classList.contains('journey-overture')) stopSinceKept = false;
+      if (keep) stopSinceKept = false;
     });
     // Hide leg headings when every stop in that leg is filtered out.
     // Walk past interstitials (FIGURE) to check all stops until the next leg.
@@ -985,6 +1031,7 @@
   // quotes never appeared and all autoplay videos kept playing invisibly).
   // The Journey is server-rendered, so this needs no map data.
   initInterstitialFade();
+  initOverture();
 
   async function init() {
     document.body.classList.add('js-active');
