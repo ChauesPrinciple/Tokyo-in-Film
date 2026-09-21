@@ -595,6 +595,10 @@
     const video = overture.querySelector('video');
     const anchor = document.getElementById('stop-star-bar');
     let ticking = false;
+    // Reduced motion keeps the layer and its still frame, just not the motion:
+    // hiding the video outright left the opening as a black hole.
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (video && reduceMotion) video.pause();
 
     function update() {
       ticking = false;
@@ -617,10 +621,15 @@
         overture._reveal = next;
         overture.style.setProperty('--reveal', next);
       }
-      if (video) {
+      if (video && !reduceMotion) {
         const shouldPlay = reveal > 0.02;
-        if (shouldPlay && video.paused) video.play().catch(() => {});
-        else if (!shouldPlay && !video.paused) video.pause();
+        if (shouldPlay && video.paused) {
+          // If autoplay is refused the still behind the video carries the
+          // opening, so this only needs to not throw.
+          video.play().catch(() => {});
+        } else if (!shouldPlay && !video.paused) {
+          video.pause();
+        }
       }
     }
     function onScroll() {

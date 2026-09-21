@@ -99,6 +99,10 @@
     #overture {
       position: fixed; inset: 0; z-index: -2; pointer-events: none; overflow: hidden;
       opacity: var(--reveal, 1);
+      /* The still underneath the clip, so the opening is never a black hole:
+         it shows while the video buffers, if autoplay is blocked, and on
+         reduced motion where the video is paused on its first frame. */
+      background: url('assets/imgs/bars/whiskey-glass.jpg') center 60% / cover no-repeat;
     }
     #overture video {
       position: absolute; inset: 0; width: 100%; height: 100%;
@@ -106,9 +110,8 @@
     }
     .overture-veil {
       position: absolute; inset: 0;
-      background: linear-gradient(to bottom, rgba(10,8,16,.52) 0%, rgba(10,8,16,.62) 55%, rgba(10,8,16,.86) 100%);
+      background: linear-gradient(to bottom, rgba(10,8,16,.34) 0%, rgba(10,8,16,.46) 55%, rgba(10,8,16,.74) 100%);
     }
-    @media (prefers-reduced-motion: reduce) { #overture video { display: none; } }
 
     .page-header {
       position: relative; padding: 60px 0 60px; margin: 0 -20px; padding-left: 20px; padding-right: 20px;
@@ -126,9 +129,9 @@
       content: ''; position: absolute; inset: 0; z-index: -3;
       background: linear-gradient(to bottom, rgba(20,18,28,.35), rgba(20,18,28,.6));
     }
-    /* Title left, the night's shape right. */
-    .page-header-text { flex: 0 1 auto; min-width: 0; }
-    .page-header .lede { flex: 1 1 42ch; max-width: 56ch; min-width: 0; margin: 0; font-size: 16px; }
+    /* Title hard left, the night's shape hard right. */
+    .page-header-text { flex: 0 1 auto; min-width: 0; margin-right: auto; }
+    .page-header .lede { flex: 0 1 46ch; min-width: 0; margin: 0; font-size: 16px; }
     .page-header h1 {
       margin: 0; font-size: clamp(40px, 5.5vw, 64px); font-weight: 700; letter-spacing: -.025em; line-height: 1.05;
       color: #f5f0e8;
@@ -137,24 +140,27 @@
     .page-header .epigraph p, .page-header .epigraph figcaption { color: rgba(245,240,232,.7); }
     .lede { margin: 14px 0 0; color: var(--ink-soft); font-size: 15px; max-width: 42ch; line-height: 1.55; }
 
-    /* The epigraph now sits on the drive-in footage, between the title and the
-       first counter: no panel, no border, just the quote over the road. */
+    /* The epigraph sits on the drive-in footage between the title and the
+       first counter, and reads exactly like the interstitial quotes further
+       down the night: centred, Shippori Mincho, same size and colours. */
     .epigraph {
       margin: 0; padding: 0; border: 0;
       min-height: 52vh; display: flex; flex-direction: column; justify-content: center;
+      align-items: center; text-align: center;
     }
-    .epigraph blockquote { margin: 0; }
+    .epigraph blockquote { margin: 0; max-width: 80vw; }
     /* The measure goes on the quote itself: a ch/em width set on the figure
        would resolve against the figure's small font, not the display type,
        and collapse the quote into a narrow column. */
     .epigraph p {
-      margin: 0; max-width: 24em; font-family: 'Shippori Mincho', serif; font-style: normal;
-      font-size: clamp(21px, 2.6vw, 30px); line-height: 1.5;
-      color: rgba(245,240,232,.95); text-shadow: 0 2px 20px rgba(0,0,0,.8);
+      margin: 0 auto; max-width: 30em;
+      font-family: 'Shippori Mincho', serif; font-weight: 400; font-style: normal;
+      font-size: clamp(20px, 4vw, 32px); line-height: 1.5;
+      color: rgba(255, 240, 245, 0.95); text-shadow: 0 2px 24px rgba(0, 0, 0, 0.85);
     }
     .epigraph figcaption {
-      margin-top: 18px; font-size: 13px; color: rgba(245,240,232,.72);
-      letter-spacing: .12em; text-transform: uppercase;
+      margin-top: 18px; font-size: 13px; letter-spacing: .12em; text-transform: uppercase;
+      color: rgba(255, 200, 210, 0.75);
     }
 
     .films { margin-top: 34px; border-top: 1px solid var(--line); padding-top: 22px; position: relative; z-index: 10; }
@@ -771,9 +777,9 @@
         margin: 0 0 12px;
       }
       .page-header { flex-direction: column; align-items: stretch; gap: 20px; }
+      .page-header-text { margin-right: 0; }
       .page-header .lede { max-width: none; flex-basis: auto; }
       .epigraph { min-height: 40vh; }
-      .epigraph p { max-width: none; }
     }
 
     @page { size: A4 landscape; margin: 10mm; }
@@ -844,7 +850,7 @@
     }
   </style>
   <script src="js/ripple.js?v=d74dd0fe" defer></script>
-  <script src="js/tokyo-after-dark.js?v=ed3ec55f" defer></script>
+  <script src="js/tokyo-after-dark.js?v=b4fc41d1" defer></script>
 </head>
 <body>
   <div class="bars-bg" aria-hidden="true">
