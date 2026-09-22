@@ -23,7 +23,7 @@
   // A shop with its own footage plays it once when selected and on screen.
   let bowlVideo = null, bowlInView = false, bowlRestart = false;
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const CJK = /[぀-ヿ㐀-鿿]/;
+  const CJK = /[\u3040-\u30ff\u3400-\u9fff]/;
   // Card shades from bowl 1 (the page's original white) to Kikanbō's lacquer.
   // Day shades stay light enough for dark text; night shades start dark
   // enough for light text, so the list steps across the middle in one move.
@@ -567,12 +567,12 @@
     sync();
   }
 
-  // The header wall: one number per bowl, dim until pointed at. Picking one
-  // brings the map and the shop's card into view.
+  // The number row under the challenge text: bowls 1 to 12 (the bonus 13th
+  // has its own description). Picking one brings the map and its card into view.
   function wall() {
-    shops.forEach(shop => {
-      const item = html('li', shop.oni ? 'is-oni' : '');
-      const button = html('button', `bowl${shop.oni ? ' is-oni' : ''}`);
+    shops.filter(shop => !shop.oni).forEach(shop => {
+      const item = html('li');
+      const button = html('button', 'bowl');
       button.type = 'button';
       button.dataset.shop = shop.id;
       button.setAttribute('aria-pressed', 'false');

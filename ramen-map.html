@@ -43,7 +43,6 @@
       --oni-ink: #8f1810;
       --gold: #b86e00;
       --unlit: #5a1a1c;
-      --unlit-ink: #a0443f;
       --label: #4d565f;
       --label-halo: #f8f9fa;
       --radius: 10px;
@@ -144,26 +143,26 @@
     .ig-link svg { width: 21px; height: 21px; display: block; }
 
     /* Hero: the bowl turning, full width, with the title laid over it on the
-       right. A dark gradient runs under the text side so the type reads on
+       left. A dark gradient runs under the text side so the type reads on
        any frame. On narrow screens the bowl and the text stack. */
     .page-header { padding: 0; }
     .hero {
       position: relative; isolation: isolate; overflow: hidden;
       margin: 0 -32px; min-height: clamp(440px, 68vh, 680px);
-      display: flex; align-items: flex-end; justify-content: flex-end;
+      display: flex; align-items: flex-end;
       background: #0c0a0a;
     }
     .hero-bowl { position: absolute; inset: 0; z-index: -2; margin: 0; }
-    .hero-bowl video { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 28% 50%; }
+    .hero-bowl video { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 62% 50%; }
     .hero::before {
       content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
       background:
-        linear-gradient(270deg, rgba(10, 8, 8, .88) 0%, rgba(10, 8, 8, .74) 34%, rgba(10, 8, 8, .22) 62%, rgba(10, 8, 8, 0) 80%),
+        linear-gradient(90deg, rgba(10, 8, 8, .88) 0%, rgba(10, 8, 8, .74) 34%, rgba(10, 8, 8, .22) 62%, rgba(10, 8, 8, 0) 80%),
         linear-gradient(to top, rgba(10, 8, 8, .7), rgba(10, 8, 8, 0) 45%);
     }
     .hero-text { padding: 56px 32px 48px; max-width: 680px; color: #f3e9dc; }
     .hero-toggle {
-      position: absolute; left: 24px; bottom: 24px; z-index: 1;
+      position: absolute; right: 24px; bottom: 24px; z-index: 1;
       width: 40px; height: 40px; display: grid; place-items: center; padding: 0;
       border: 1px solid rgba(243, 233, 220, .35); border-radius: 50%;
       background: rgba(10, 8, 8, .55); color: #f3e9dc;
@@ -180,34 +179,22 @@
     }
     .lede { margin: 18px 0 0; color: rgba(243, 233, 220, .92); font-size: 16px; max-width: 52ch; line-height: 1.6; }
 
-    /* The bowl wall: thirteen numbers under the challenge text, set like a
-       program. Each is dim until you point at it; 13 hangs apart and is
-       always lit. */
+    /* Under the challenge text, a quiet row of the twelve bowls. Each number
+       jumps to its shop; the bonus 13th lives in its own description above. */
     .challenge-plaque { margin: 28px 0 0; padding: 18px 22px 22px; border-radius: var(--radius); }
     .bowl-wall {
-      list-style: none; margin: 22px 0 0; padding: 0; max-width: 980px;
-      display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 2px 8px;
+      list-style: none; margin: 18px 0 0; padding: 14px 0 0; border-top: 1px solid var(--line);
+      display: flex; flex-wrap: wrap; gap: 4px;
     }
-    .bowl-wall li.is-oni { grid-column: -2; }
     .bowl {
-      position: relative; isolation: isolate; width: 100%;
-      display: grid; justify-items: center; align-content: start; gap: 5px;
-      padding: 12px 4px 10px; border: 0; border-radius: 12px; background: none;
-      color: var(--unlit-ink); cursor: pointer; text-align: center;
+      min-width: 36px; height: 30px; padding: 0 8px;
+      border: 1px solid transparent; border-radius: 999px; background: none;
+      color: var(--muted); cursor: pointer;
+      transition: color .2s, border-color .2s, background-color .2s;
     }
-    .bowl::before {
-      content: ""; position: absolute; inset: -4px -6px; z-index: -1; border-radius: 50%;
-      background: radial-gradient(closest-side, rgba(240, 131, 0, .22), rgba(240, 131, 0, .06) 60%, transparent);
-      opacity: 0; transition: opacity .45s ease;
-    }
-    .bowl-num {
-      font-family: var(--mincho); font-size: 34px; font-weight: 700; line-height: 1;
-      color: var(--unlit-ink); font-variant-numeric: tabular-nums; transition: color .35s, text-shadow .35s;
-    }
-    .bowl:hover::before, .bowl:focus-visible::before, .bowl.is-selected::before { opacity: 1; }
-    .bowl:hover .bowl-num, .bowl:focus-visible .bowl-num, .bowl.is-selected .bowl-num { color: var(--ink); }
-    .bowl.is-oni::before { opacity: 1; background: radial-gradient(closest-side, rgba(207, 33, 24, .3), rgba(232, 163, 60, .08) 62%, transparent); }
-    .bowl.is-oni .bowl-num { color: var(--oni); text-shadow: 0 0 16px rgba(207, 33, 24, .45); }
+    .bowl-num { font-size: 12.5px; font-weight: 600; letter-spacing: .04em; font-variant-numeric: tabular-nums; }
+    .bowl:hover, .bowl:focus-visible { color: var(--ink); border-color: var(--line); }
+    .bowl.is-selected { color: var(--ink); border-color: var(--mark); background: var(--mark-soft); }
 
     .challenge-strip {
       list-style: none; margin: 0; padding: 0;
@@ -228,17 +215,17 @@
     .challenge-card.is-oni .challenge-name { color: var(--oni-ink); }
     .challenge-note { margin: 9px 0 0; font-size: 13.5px; line-height: 1.6; color: var(--ink-soft); }
     @media (max-width: 900px) {
-      /* Narrow screens: the bowl on top, the text under it on the dark band. */
+      /* Narrow screens: the title first, the bowl stacked under it. */
       .hero { display: block; min-height: 0; }
       .hero-bowl { position: relative; inset: auto; z-index: auto; }
       .hero-bowl video { height: auto; aspect-ratio: 16 / 9; object-position: 50% 50%; }
       .hero::before { display: none; }
       .hero-text { max-width: none; }
-      .hero-toggle { left: auto; right: 12px; top: 12px; bottom: auto; }
+      .hero-toggle { right: 12px; bottom: 12px; }
     }
     @media (max-width: 780px) {
       .challenge-strip { grid-template-columns: 1fr; }
-      .bowl-wall { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .bowl-wall { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); }
     }
 
     .films { margin: 40px -32px 0; padding: 26px 32px 30px; }
@@ -551,12 +538,11 @@
       .shop-card { padding: 13px 14px 14px; }
       .shop-room { margin: -13px -14px 12px; }
       .shop-select { font-size: 15px; }
-      .bowl-num { font-size: 28px; }
     }
     @media (prefers-reduced-motion: reduce) {
       :root { transition: none; }
       .masthead, .map-toolbar, .map-foot, .list-controls, .challenge-plaque, .films, .page-footer, #empty-state, .scale-bar { transition: none; }
-      .oni-wash, .bowl::before, .bowl-num, .shop-room, #spot-shade { transition: none; }
+      .oni-wash, .bowl, .shop-room, #spot-shade { transition: none; }
     }
 
     @page { size: A4 landscape; margin: 10mm; }
@@ -574,7 +560,7 @@
       * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
       body { background: #fff; font-size: 9pt; }
       .wall, .grain, .oni-wash, #spot-shade, .marker-halo, .shop-bowl, .hero-bowl,
-      .bowl::before, .shop-room::after { display: none !important; }
+      .shop-room::after { display: none !important; }
       .page-shell { max-width: none; margin: 0; padding: 0 12px; }
       .skip-link, .masthead nav, .ig-link, .map-toolbar, .toggle, .list-controls, #source-notes, #map-status, .map-hint, .shop-note, .shop-links, noscript, .films { display: none !important; }
       .partner { margin-top: 3mm; padding: 2mm 3mm; border-radius: 0; break-inside: avoid; }
@@ -589,12 +575,8 @@
       .page-header h1 { font-size: 24pt; max-width: none; color: var(--ink); text-shadow: none; }
       .lede { font-size: 8pt; color: var(--ink-soft); }
       .challenge-plaque { margin-top: 3mm; padding: 0; break-inside: avoid; }
-      .bowl-wall { grid-template-columns: repeat(13, minmax(0, 1fr)); gap: 1mm; max-width: none; }
-      .bowl-wall li.is-oni { grid-column: auto; }
-      .bowl { padding: 1mm 0; gap: 1mm; }
-      .bowl-num { font-size: 12pt; color: var(--ink) !important; text-shadow: none !important; }
+      .bowl-wall { display: none; }
       .challenge-strip { display: flex; gap: 4mm; margin-top: 0; }
-      .bowl-wall { margin-top: 3mm; }
       .challenge-card { padding: 0 0 0 3mm; }
       .challenge-count { font-size: 12pt; }
       .challenge-name { margin-top: 1mm; font-size: 7pt; }
@@ -635,7 +617,7 @@
       .sources a { text-decoration: none; }
     }
   </style>
-  <script src="js/ramen-map.js?v=c3e98191" defer></script>
+  <script src="js/ramen-map.js?v=d61ecaa2" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#shop-search">Skip to ramen places</a>
@@ -680,7 +662,7 @@
             <p class="challenge-note">Kikanbō in Kanda. Kara-shibi miso, which means chili heat (kara) stacked on sanshō numbing (shibi), and you set both dials yourself on a five-point scale. The top setting is oni-mashi. Devil level. It costs extra, and it should. (Come for my Oni level, if you dare.)</p>
           </li>
         </ul>
-        <ol class="bowl-wall" id="bowl-wall" aria-label="The thirteen bowls"></ol>
+        <ol class="bowl-wall" id="bowl-wall" aria-label="Jump to a bowl"></ol>
         </div>
       </div>
     </header>
