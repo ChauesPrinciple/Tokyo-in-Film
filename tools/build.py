@@ -175,7 +175,7 @@ def _render_stop(bar):
         poster_attr = f' poster="{_esc(poster)}"' if poster else ''
         mp4 = bar.get('videoMp4') or video.replace('.webm', '.mp4')
         parts.append(f'    <div class="stop-media-bg">')
-        parts.append(f'      <video class="stop-video" muted loop playsinline autoplay preload="none"{poster_attr}>')
+        parts.append(f'      <video class="stop-video" muted loop playsinline preload="none"{poster_attr}>')
         parts.append(f'        <source src="{_esc(video)}" type="video/webm">')
         parts.append(f'        <source src="{_esc(mp4)}" type="video/mp4">')
         parts.append(f'      </video>')
@@ -363,8 +363,9 @@ def render_journey(data_path):
     # unverified suffering quote (widely attributed to Norwegian Wood but not
     # confirmable in the text), and the "things you can only do alone" line
     # from After Dark, which is now the page epigraph over the drive-in clip.
-    # That leaves 8 quotes for 9 clips: the last interstitial runs uncaptioned
-    # until a replacement is picked. The storm quote is the coda.
+    # The ninth quote rides the last interstitial, right before the locked
+    # door: Oshima's seeking line, spoken in the car just ahead of the
+    # Cassandra prophecy. The storm quote is the coda.
     INTERSTITIAL_QUOTES = [
         ('If you only read the books that everyone else is reading, you can only think what everyone else is thinking.', 'Norwegian Wood'),
         ('I dream. Sometimes I think that\u2019s the only right thing to do.', 'Sputnik Sweetheart'),
@@ -374,6 +375,7 @@ def render_journey(data_path):
         ('No matter how far you travel, you can never get away from yourself.', 'After the Quake'),
         ('People\u2019s memories are maybe the fuel they burn to stay alive.', 'After Dark'),
         ('Memories warm you up from the inside. But they also tear you apart.', 'Kafka on the Shore'),
+        ('Whatever it is you\u2019re seeking won\u2019t come in the form you\u2019re expecting.', 'Kafka on the Shore'),
     ]
     CODA_QUOTE = (
         'And once the storm is over, you won\u2019t remember how you made it through, '
@@ -398,7 +400,7 @@ def render_journey(data_path):
             )
         return (
             f'<figure class="journey-interstitial" aria-label="Stairwell transition">'
-            f'<video class="stop-video" muted loop playsinline autoplay preload="none">'
+            f'<video class="stop-video" muted loop playsinline preload="none">'
             f'<source src="{_esc(webm)}" type="video/webm">'
             f'<source src="{_esc(mp4)}" type="video/mp4">'
             f'</video>{quote_html}</figure>'
@@ -408,7 +410,7 @@ def render_journey(data_path):
         text, source = CODA_QUOTE
         return (
             f'<figure class="journey-interstitial journey-coda" aria-label="The storm">'
-            f'<video class="stop-video" muted loop playsinline autoplay preload="none">'
+            f'<video class="stop-video" muted loop playsinline preload="none">'
             f'<source src="assets/movie/coda.webm" type="video/webm">'
             f'<source src="assets/movie/coda.mp4" type="video/mp4">'
             f'</video>'
@@ -432,7 +434,7 @@ def render_journey(data_path):
         leg = bar['leg']
         if leg != prev_leg:
             title, subtitle = LEGS[leg]
-            parts.append(f'<h3 class="journey-leg">{title}<span class="journey-leg-sub">{subtitle}</span></h3>')
+            parts.append(f'<h2 class="journey-leg">{title}<span class="journey-leg-sub">{subtitle}</span></h2>')
             prev_leg = leg
         parts.append(_render_stop(bar))
         # Interstitials are flagged per-bar in the JSON ('interstitialAfter'),

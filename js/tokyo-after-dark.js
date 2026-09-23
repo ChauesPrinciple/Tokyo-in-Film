@@ -513,9 +513,12 @@
     const vh = () => window.innerHeight;
     let ticking = false;
 
-    // play() on its own fetches a preload="none" video and resumes one that
-    // autoplay already started. No load() first: on an autoplayed video it
-    // throws the buffer away and restarts it, and it aborts a pending play().
+    // The markup carries no autoplay attribute: with the media fixed to the
+    // viewport the browser can never treat it as offscreen, so autoplay
+    // fetched and decoded all ten interstitials at once and the journey
+    // stalled partway down. play() alone fetches a preload="none" video, so
+    // each one loads only when its spacer reaches the screen. No load()
+    // first: it throws away the buffer and aborts a pending play().
     function playInterstitial(v) {
       v.play().catch(() => {});
     }
@@ -1014,10 +1017,15 @@
     const videos = document.querySelectorAll('.stop-media-bg .stop-video');
     if (!videos.length) return;
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // These four cards carry no poster, so with preload="none" a reduced-motion
+    // visitor sees the card's own panel instead of footage. Fetching the clip
+    // just to freeze frame one was measured as a bad trade: load() settles at
+    // readyState 1 (metadata), which paints nothing, so it would spend the
+    // download and still show an empty layer. A poster image is the real fix.
     if (reduced) return;
-    // play() fetches a preload="none" video by itself and simply resumes one
-    // autoplay already started. load() isn't called: it would restart an
-    // autoplayed video mid-loop and abort a pending play().
+    // play() fetches a preload="none" video by itself, so each card's clip
+    // downloads only once it scrolls into view. load() isn't called: it would
+    // restart the video mid-loop and abort a pending play().
     function startVideo(v) {
       v.play().then(() => v.classList.add('is-playing')).catch(() => {});
     }

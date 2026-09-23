@@ -8,8 +8,10 @@
   <meta name="theme-color" content="#14121c">
   <title>Tokyo After Dark - Tokyo in Film</title>
   <link rel="icon" href="assets/images/image07.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&display=swap');
     :root {
       color-scheme: dark;
       --ink: #eceaf2;
@@ -711,14 +713,22 @@
     .stop-note { margin: 0 0 16px; padding: 10px 14px; font-size: 13.5px; line-height: 1.6; color: var(--ink-soft); max-width: 60ch; border-left: 3px solid var(--mark); background: rgba(242, 193, 78, 0.08); border-radius: 0 4px 4px 0; }
 
     /* Per-stop background video: subtle fade-in when it scrolls into view.
-       The IntersectionObserver in tokyo-after-dark.js handles the is-playing class;
-       we also autoplay muted when visible. These target .stop-media-bg
-       videos, not interstitial videos (which are position:fixed and
-       controlled by initInterstitialFade). */
+       The IntersectionObserver in tokyo-after-dark.js adds is-playing once the
+       clip is rolling; the markup carries no autoplay, so nothing loads until
+       that observer fires. These target .stop-media-bg videos, not interstitial
+       videos (which are position:fixed and controlled by initInterstitialFade). */
     .stop-video { opacity: 1; transition: opacity .8s ease; }
     body.js-active .stop-media-bg .stop-video { opacity: .4; }
     body.js-active .stop-media-bg .stop-video.is-playing { opacity: 1; }
-    @media (prefers-reduced-motion: reduce) { .stop-video { opacity: 1; transition: none; } }
+    /* Reduced motion never earns is-playing, because the script leaves these
+       clips alone entirely, so the card shows its own panel rather than
+       footage. Matching the dimming rule's specificity keeps that from being
+       an accident of the cascade, and it is what a poster frame would need to
+       show at full strength if one is ever added. */
+    @media (prefers-reduced-motion: reduce) {
+      .stop-video { transition: none; }
+      body.js-active .stop-media-bg .stop-video { opacity: 1; }
+    }
     .stop.is-spotlight .stop-description { color: var(--ink); }
 
     .subvenues { margin: 0 0 14px; display: grid; gap: 10px; }
@@ -764,18 +774,24 @@
     .subvenue { cursor: pointer; transition: border-color .12s, background .12s; }
     .subvenue:hover { border-color: var(--accent); background: var(--panel); }
 
-    @media (max-width: 600px) {
-      /* Narrow screens have no room for a side gutter, so the spine returns
-         to the normal flow and runs horizontally under the name. */
-      .stop-body { padding: 18px 18px 16px; }
-      .stop-name { font-size: 21px; }
-      .stop-description { font-size: 14.5px; }
-      .stop-head { flex-direction: column; gap: 8px; }
+    /* The layout goes one-column at 1040px, and a single-column card has no
+       width for a side gutter: the spine returns to the normal flow and runs
+       horizontally under the name, and .stop-body stops reserving the gutter.
+       Phones pick up their tighter padding from the 600px block below. */
+    @media (max-width: 1040px) {
+      .stop-body { padding-right: 30px; }
       .stop-aliases {
         position: static; width: auto;
         writing-mode: horizontal-tb; font-size: 13px;
         margin: 0 0 12px;
       }
+    }
+
+    @media (max-width: 600px) {
+      .stop-body { padding: 18px 18px 16px; }
+      .stop-name { font-size: 21px; }
+      .stop-description { font-size: 14.5px; }
+      .stop-head { flex-direction: column; gap: 8px; }
       .page-header { flex-direction: column; align-items: stretch; gap: 20px; }
       .page-header-text { margin-right: 0; }
       .page-header .lede { max-width: none; flex-basis: auto; }
@@ -850,7 +866,7 @@
     }
   </style>
   <script src="js/ripple.js?v=d74dd0fe" defer></script>
-  <script src="js/tokyo-after-dark.js?v=b4fc41d1" defer></script>
+  <script src="js/tokyo-after-dark.js?v=390b6259" defer></script>
 </head>
 <body>
   <div class="bars-bg" aria-hidden="true">
@@ -935,10 +951,10 @@
       <section id="journey-view" class="journey-view is-active" role="tabpanel" aria-labelledby="view-journey" tabindex="-1">
         <div class="journey-scroll">
 <!-- build:journey -->
-<h3 class="journey-leg">Ginza<span class="journey-leg-sub">Early evening: cocktails and counters</span></h3>
+<h2 class="journey-leg">Ginza<span class="journey-leg-sub">Early evening: cocktails and counters</span></h2>
   <section class="stop" id="stop-apollo-bar" data-stop="apollo-bar" data-number="1" data-floor="B1F" data-category="basement" data-leg="ginza" style="--alias-cols:1">
     <div class="stop-media-bg">
-      <video class="stop-video" muted loop playsinline autoplay preload="none">
+      <video class="stop-video" muted loop playsinline preload="none">
         <source src="assets/movie/apollo-bar.webm" type="video/webm">
         <source src="assets/movie/apollo-bar.mp4" type="video/mp4">
       </video>
@@ -1005,8 +1021,8 @@
       </p>
     </div>
   </section>
-<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline autoplay preload="none"><source src="assets/movie/interstitial-1.webm" type="video/webm"><source src="assets/movie/interstitial-1.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>If you only read the books that everyone else is reading, you can only think what everyone else is thinking.</blockquote><cite>Norwegian Wood</cite></figcaption></figure>
-<h3 class="journey-leg">Shinjuku<span class="journey-leg-sub">Late evening: hotel bars, speakeasies, Golden Gai</span></h3>
+<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline preload="none"><source src="assets/movie/interstitial-1.webm" type="video/webm"><source src="assets/movie/interstitial-1.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>If you only read the books that everyone else is reading, you can only think what everyone else is thinking.</blockquote><cite>Norwegian Wood</cite></figcaption></figure>
+<h2 class="journey-leg">Shinjuku<span class="journey-leg-sub">Late evening: hotel bars, speakeasies, Golden Gai</span></h2>
   <section class="stop no-media" id="stop-new-york-bar" data-stop="new-york-bar" data-number="4" data-floor="52F" data-category="highrise" data-leg="shinjuku" style="--alias-cols:3">
     <div class="stop-media-bg stop-media-bg--type" aria-hidden="true"><span class="stop-watermark">ニューヨークバー</span></div>
     <div class="stop-body">
@@ -1072,7 +1088,7 @@
       </p>
     </div>
   </section>
-<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline autoplay preload="none"><source src="assets/movie/interstitial-2.webm" type="video/webm"><source src="assets/movie/interstitial-2.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>I dream. Sometimes I think that’s the only right thing to do.</blockquote><cite>Sputnik Sweetheart</cite></figcaption></figure>
+<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline preload="none"><source src="assets/movie/interstitial-2.webm" type="video/webm"><source src="assets/movie/interstitial-2.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>I dream. Sometimes I think that’s the only right thing to do.</blockquote><cite>Sputnik Sweetheart</cite></figcaption></figure>
   <section class="stop no-media" id="stop-vowz-bar" data-stop="vowz-bar" data-number="7" data-floor="2F" data-leg="shinjuku" style="--alias-cols:3">
     <div class="stop-media-bg stop-media-bg--type" aria-hidden="true"><span class="stop-watermark">坊主バー</span></div>
     <div class="stop-body">
@@ -1166,11 +1182,11 @@
       </p>
     </div>
   </section>
-<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline autoplay preload="none"><source src="assets/movie/interstitial-3.webm" type="video/webm"><source src="assets/movie/interstitial-3.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>Even in the smallest events there’s no such thing as coincidence.</blockquote><cite>Kafka on the Shore</cite></figcaption></figure>
-<h3 class="journey-leg">Shibuya & Setagaya & Meguro & Minato<span class="journey-leg-sub">Midnight: coffee shops that aren’t, jazz rooms, Azabujuban counters</span></h3>
+<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline preload="none"><source src="assets/movie/interstitial-3.webm" type="video/webm"><source src="assets/movie/interstitial-3.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>Even in the smallest events there’s no such thing as coincidence.</blockquote><cite>Kafka on the Shore</cite></figcaption></figure>
+<h2 class="journey-leg">Shibuya & Setagaya & Meguro & Minato<span class="journey-leg-sub">Midnight: coffee shops that aren’t, jazz rooms, Azabujuban counters</span></h2>
   <section class="stop" id="stop-janai-coffee" data-stop="janai-coffee" data-number="10" data-floor="B1F" data-category="basement" data-leg="west" style="--alias-cols:1">
     <div class="stop-media-bg">
-      <video class="stop-video" muted loop playsinline autoplay preload="none">
+      <video class="stop-video" muted loop playsinline preload="none">
         <source src="assets/movie/janai-coffee.webm" type="video/webm">
         <source src="assets/movie/janai-coffee.mp4" type="video/mp4">
       </video>
@@ -1196,7 +1212,7 @@
   </section>
   <section class="stop" id="stop-a10" data-stop="a10" data-number="11" data-floor="B1F" data-category="basement" data-leg="west" style="--alias-cols:1">
     <div class="stop-media-bg">
-      <video class="stop-video" muted loop playsinline autoplay preload="none">
+      <video class="stop-video" muted loop playsinline preload="none">
         <source src="assets/movie/a10.webm" type="video/webm">
         <source src="assets/movie/a10.mp4" type="video/mp4">
       </video>
@@ -1243,7 +1259,7 @@
       </p>
     </div>
   </section>
-<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline autoplay preload="none"><source src="assets/movie/interstitial-4.webm" type="video/webm"><source src="assets/movie/interstitial-4.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>A certain type of perfection can only be realized through a limitless accumulation of the imperfect.</blockquote><cite>Kafka on the Shore</cite></figcaption></figure>
+<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline preload="none"><source src="assets/movie/interstitial-4.webm" type="video/webm"><source src="assets/movie/interstitial-4.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>A certain type of perfection can only be realized through a limitless accumulation of the imperfect.</blockquote><cite>Kafka on the Shore</cite></figcaption></figure>
   <section class="stop no-media" id="stop-no-room-squares" data-stop="no-room-squares" data-number="13" data-floor="4F" data-category="distant" data-leg="west" style="--alias-cols:2">
     <div class="stop-media-bg stop-media-bg--type" aria-hidden="true"><span class="stop-watermark">ノー・ルーム・フォー・スクエアーズ</span></div>
     <div class="stop-body">
@@ -1286,7 +1302,7 @@
       </p>
     </div>
   </section>
-<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline autoplay preload="none"><source src="assets/movie/interstitial-5.webm" type="video/webm"><source src="assets/movie/interstitial-5.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>What lasts, lasts; what doesn’t, doesn’t. Time solves most things. And what time can’t solve, you have to solve yourself.</blockquote><cite>Dance Dance Dance</cite></figcaption></figure>
+<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline preload="none"><source src="assets/movie/interstitial-5.webm" type="video/webm"><source src="assets/movie/interstitial-5.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>What lasts, lasts; what doesn’t, doesn’t. Time solves most things. And what time can’t solve, you have to solve yourself.</blockquote><cite>Dance Dance Dance</cite></figcaption></figure>
   <section class="stop" id="stop-gen-yamamoto" data-stop="gen-yamamoto" data-number="15" data-floor="1F" data-leg="west" style="--alias-cols:1">
     <div class="stop-media-bg">
       <img src="assets/imgs/bars/gen-yamamoto.jpg" alt="Gen Yamamoto counter" loading="lazy" decoding="async">
@@ -1331,8 +1347,8 @@
       </p>
     </div>
   </section>
-<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline autoplay preload="none"><source src="assets/movie/interstitial-6.webm" type="video/webm"><source src="assets/movie/interstitial-6.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>No matter how far you travel, you can never get away from yourself.</blockquote><cite>After the Quake</cite></figcaption></figure>
-<h3 class="journey-leg">East Tokyo<span class="journey-leg-sub">After hours: Kanda to Ueno to Bunkyo</span></h3>
+<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline preload="none"><source src="assets/movie/interstitial-6.webm" type="video/webm"><source src="assets/movie/interstitial-6.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>No matter how far you travel, you can never get away from yourself.</blockquote><cite>After the Quake</cite></figcaption></figure>
+<h2 class="journey-leg">East Tokyo<span class="journey-leg-sub">After hours: Kanda to Ueno to Bunkyo</span></h2>
   <section class="stop no-media" id="stop-bar-under" data-stop="bar-under" data-number="17" data-floor="B1F" data-category="basement" data-leg="east" style="--alias-cols:2">
     <div class="stop-media-bg stop-media-bg--type" aria-hidden="true"><span class="stop-watermark">バー アンドアンダー</span></div>
     <div class="stop-body">
@@ -1376,7 +1392,7 @@
       </p>
     </div>
   </section>
-<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline autoplay preload="none"><source src="assets/movie/interstitial-7.webm" type="video/webm"><source src="assets/movie/interstitial-7.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>People’s memories are maybe the fuel they burn to stay alive.</blockquote><cite>After Dark</cite></figcaption></figure>
+<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline preload="none"><source src="assets/movie/interstitial-7.webm" type="video/webm"><source src="assets/movie/interstitial-7.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>People’s memories are maybe the fuel they burn to stay alive.</blockquote><cite>After Dark</cite></figcaption></figure>
   <section class="stop no-media" id="stop-game-bar-abutton" data-stop="game-bar-abutton" data-number="19" data-floor="1F" data-leg="east" style="--alias-cols:2">
     <div class="stop-media-bg stop-media-bg--type" aria-hidden="true"><span class="stop-watermark">ゲームバー エーボタン</span></div>
     <div class="stop-body">
@@ -1400,7 +1416,7 @@
   </section>
   <section class="stop" id="stop-bar-willows" data-stop="bar-willows" data-number="20" data-floor="6F-E" data-leg="east" style="--alias-cols:1">
     <div class="stop-media-bg">
-      <video class="stop-video" muted loop playsinline autoplay preload="none">
+      <video class="stop-video" muted loop playsinline preload="none">
         <source src="assets/movie/bar-willows.webm" type="video/webm">
         <source src="assets/movie/bar-willows.mp4" type="video/mp4">
       </video>
@@ -1424,7 +1440,7 @@
       </p>
     </div>
   </section>
-<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline autoplay preload="none"><source src="assets/movie/interstitial-8.webm" type="video/webm"><source src="assets/movie/interstitial-8.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>Memories warm you up from the inside. But they also tear you apart.</blockquote><cite>Kafka on the Shore</cite></figcaption></figure>
+<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline preload="none"><source src="assets/movie/interstitial-8.webm" type="video/webm"><source src="assets/movie/interstitial-8.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>Memories warm you up from the inside. But they also tear you apart.</blockquote><cite>Kafka on the Shore</cite></figcaption></figure>
   <section class="stop no-media" id="stop-rock-bar-sakebi" data-stop="rock-bar-sakebi" data-number="21" data-floor="1F" data-leg="east" style="--alias-cols:1">
     <div class="stop-media-bg stop-media-bg--type" aria-hidden="true"><span class="stop-watermark">ロックバー さけび</span></div>
     <div class="stop-body">
@@ -1468,8 +1484,8 @@
       </p>
     </div>
   </section>
-<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline autoplay preload="none"><source src="assets/movie/interstitial-9.webm" type="video/webm"><source src="assets/movie/interstitial-9.mp4" type="video/mp4"></video></figure>
-<h3 class="journey-leg">The locked door<span class="journey-leg-sub">The one place you can’t walk into</span></h3>
+<figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline preload="none"><source src="assets/movie/interstitial-9.webm" type="video/webm"><source src="assets/movie/interstitial-9.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>Whatever it is you’re seeking won’t come in the form you’re expecting.</blockquote><cite>Kafka on the Shore</cite></figcaption></figure>
+<h2 class="journey-leg">The locked door<span class="journey-leg-sub">The one place you can’t walk into</span></h2>
   <section class="stop is-spotlight" id="stop-sake-bar-o" data-stop="sake-bar-o" data-number="23" data-floor="1F" data-category="spotlight" data-leg="locked-door" style="--alias-cols:4">
     <div class="stop-media-bg">
       <img src="assets/imgs/bars/sake-bar-o.jpg" alt="Sake and wine bottles behind two metal sake cups and a small dish of almonds on the SAKEBARO counter" loading="lazy" decoding="async">
@@ -1496,7 +1512,7 @@
       </p>
     </div>
   </section>
-<figure class="journey-interstitial journey-coda" aria-label="The storm"><video class="stop-video" muted loop playsinline autoplay preload="none"><source src="assets/movie/coda.webm" type="video/webm"><source src="assets/movie/coda.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>And once the storm is over, you won’t remember how you made it through, how you managed to survive... That’s what this storm’s all about.</blockquote><cite>Kafka on the Shore</cite></figcaption></figure>
+<figure class="journey-interstitial journey-coda" aria-label="The storm"><video class="stop-video" muted loop playsinline preload="none"><source src="assets/movie/coda.webm" type="video/webm"><source src="assets/movie/coda.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>And once the storm is over, you won’t remember how you made it through, how you managed to survive... That’s what this storm’s all about.</blockquote><cite>Kafka on the Shore</cite></figcaption></figure>
   <section class="stop epilogue no-media" id="stop-rokusan-angel" data-stop="rokusan-angel" data-floor="B2F" data-category="basement" data-leg="epilogue" style="--alias-cols:1">
     <div class="stop-media-bg stop-media-bg--type" aria-hidden="true"><span class="stop-watermark">ロクサンエンジェル</span></div>
     <div class="stop-body">
