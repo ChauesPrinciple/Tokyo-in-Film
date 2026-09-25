@@ -264,8 +264,8 @@ def _render_stop(bar):
 LEGS = {
     'ginza':       ('Ginza', 'Early evening: cocktails and counters'),
     'shinjuku':    ('Shinjuku', 'Late evening: hotel bars, speakeasies, Golden Gai'),
-    'west':        ('Shibuya & Setagaya & Meguro & Minato', 'Midnight: coffee shops that aren\u2019t, jazz rooms, Azabujuban counters'),
-    'east':        ('East Tokyo', 'After hours: Kanda to Ueno to Bunkyo'),
+    'west':        ('Shibuya & Setagaya & Meguro & Minato', 'Coffee shops that aren\u2019t, jazz rooms, Azabujuban counters'),
+    'east':        ('East Tokyo', 'Kanda to Ueno to Bunkyo'),
     'locked-door': ('The locked door', 'The one place you can\u2019t walk into'),
 }
 

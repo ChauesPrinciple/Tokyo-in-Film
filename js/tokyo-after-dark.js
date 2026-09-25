@@ -598,10 +598,16 @@
     const video = overture.querySelector('video');
     const anchor = document.getElementById('stop-star-bar');
     let ticking = false;
-    // Reduced motion keeps the layer and its still frame, just not the motion:
-    // hiding the video outright left the opening as a black hole.
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (video && reduceMotion) video.pause();
+    // The drive-in plays for everyone, like the rest of the page's video
+    // (autoplay is deliberate). Pausing it under reduced motion is what hid
+    // it on desktops with Windows animation effects turned off: a paused
+    // video that never started shows its poster, the whiskey-glass still.
+    // If the browser refuses autoplay, retry on the first interaction.
+    if (video) {
+      const retry = () => { if (video.paused && Number(overture._reveal) > 0.02) video.play().catch(() => {}); };
+      ['pointerdown', 'keydown', 'touchstart'].forEach(type =>
+        window.addEventListener(type, retry, { once: true, passive: true }));
+    }
 
     function update() {
       ticking = false;
@@ -624,7 +630,7 @@
         overture._reveal = next;
         overture.style.setProperty('--reveal', next);
       }
-      if (video && !reduceMotion) {
+      if (video) {
         const shouldPlay = reveal > 0.02;
         if (shouldPlay && video.paused) {
           // If autoplay is refused the still behind the video carries the
@@ -1010,19 +1016,14 @@
 
   // --- Per-stop video autoplay/pause ---
   // Each stop-card video plays (muted) when it scrolls into view and pauses
-  // when it leaves. Respects prefers-reduced-motion (videos stay paused).
+  // when it leaves. It plays for everyone, reduced motion included, like the
+  // drive-in and the interstitials: skipping it there hid the footage on
+  // desktops with Windows animation effects turned off.
   (function initStopVideos() {
     // Only observe stop-card videos. Interstitial videos are position:fixed
     // (always "intersecting") and are controlled by initInterstitialFade.
     const videos = document.querySelectorAll('.stop-media-bg .stop-video');
     if (!videos.length) return;
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    // These four cards carry no poster, so with preload="none" a reduced-motion
-    // visitor sees the card's own panel instead of footage. Fetching the clip
-    // just to freeze frame one was measured as a bad trade: load() settles at
-    // readyState 1 (metadata), which paints nothing, so it would spend the
-    // download and still show an empty layer. A poster image is the real fix.
-    if (reduced) return;
     // play() fetches a preload="none" video by itself, so each card's clip
     // downloads only once it scrolls into view. load() isn't called: it would
     // restart the video mid-loop and abort a pending play().

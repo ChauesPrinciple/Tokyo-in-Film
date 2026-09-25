@@ -131,6 +131,12 @@
       content: ''; position: absolute; inset: 0; z-index: -3;
       background: linear-gradient(to bottom, rgba(20,18,28,.35), rgba(20,18,28,.6));
     }
+    /* On a phone the header keeps its own still: lift the hero (and its
+       shade) above the drive-in clip at -2, still under the title and lede.
+       The clip carries on behind the masthead and the epigraph. */
+    @media (max-width: 600px) {
+      .page-header::before, .page-header::after { z-index: -1; }
+    }
     /* Title hard left, the night's shape hard right. */
     .page-header-text { flex: 0 1 auto; min-width: 0; margin-right: auto; }
     .page-header .lede { flex: 0 1 46ch; min-width: 0; margin: 0; font-size: 16px; }
@@ -866,7 +872,7 @@
     }
   </style>
   <script src="js/ripple.js?v=d74dd0fe" defer></script>
-  <script src="js/tokyo-after-dark.js?v=390b6259" defer></script>
+  <script src="js/tokyo-after-dark.js?v=97398348" defer></script>
 </head>
 <body>
   <div class="bars-bg" aria-hidden="true">
@@ -903,7 +909,7 @@
         <div class="page-header-text">
           <h1>Tokyo After Dark</h1>
         </div>
-        <p class="lede"><span id="bar-count">23</span> places, in the order I would drink them. Ginza counters early, where the ice is carved by hand. Shinjuku's hidden floors once it gets late. Then south, to a basement in Ebisu that calls itself a coffee shop and a Shimokitazawa jazz room named after a Hank Mobley record. The east side after hours. It ends at a door you have to be let into. Every stop lists its floor, because in Tokyo the floor is the address. Tell the bartender what you are in the mood for and let him build it.</p>
+        <p class="lede"><span id="bar-count">23</span> places, in the order I would drink them. Ginza counters early, where the ice is carved by hand. Shinjuku's hidden floors once it gets late. Then south, to a basement in Ebisu that calls itself a coffee shop and a Shimokitazawa jazz room named after a Hank Mobley record. Then east, to a jazz kissa in Hakusan that started out screening films. It ends at a door you have to be let into. Every stop lists its floor, because in Tokyo the floor is the address. Tell the bartender what you are in the mood for and let him build it.</p>
       </div>
       <figure class="epigraph">
         <blockquote>
@@ -941,7 +947,7 @@
             <ul id="map-legend" aria-labelledby="map-legend-heading">
               <li class="legend-item"><span class="legend-symbol legend-pin" aria-hidden="true">1</span> Number matches the place index</li>
               <li class="legend-item"><span id="legend-spotlight" class="legend-symbol legend-pin legend-spotlight" aria-hidden="true">23</span> Members only, so arrange access before you travel</li>
-              <li class="legend-item"><span class="legend-symbol legend-dot" aria-hidden="true"></span> Dot: saved location; numbered badge may be offset</li>
+              <li class="legend-item"><span class="legend-symbol legend-dot" aria-hidden="true"></span> Dot: location; numbered badge may be offset</li>
               <li class="legend-item"><span class="legend-symbol legend-line" aria-hidden="true"></span> Subway context, not walking directions</li>
             </ul>
             <p class="map-hint">Drag to explore. Use + and &minus; to zoom. Select a numbered marker or a place in the index for details. Keyboard: Tab to a marker, then Enter or Space.</p>
@@ -1183,7 +1189,7 @@
     </div>
   </section>
 <figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline preload="none"><source src="assets/movie/interstitial-3.webm" type="video/webm"><source src="assets/movie/interstitial-3.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>Even in the smallest events there’s no such thing as coincidence.</blockquote><cite>Kafka on the Shore</cite></figcaption></figure>
-<h2 class="journey-leg">Shibuya & Setagaya & Meguro & Minato<span class="journey-leg-sub">Midnight: coffee shops that aren’t, jazz rooms, Azabujuban counters</span></h2>
+<h2 class="journey-leg">Shibuya & Setagaya & Meguro & Minato<span class="journey-leg-sub">Coffee shops that aren’t, jazz rooms, Azabujuban counters</span></h2>
   <section class="stop" id="stop-janai-coffee" data-stop="janai-coffee" data-number="10" data-floor="B1F" data-category="basement" data-leg="west" style="--alias-cols:1">
     <div class="stop-media-bg">
       <video class="stop-video" muted loop playsinline preload="none">
@@ -1316,7 +1322,7 @@
       </header>
       <p class="stop-aliases">ゲン ヤマモト</p>
       <p class="stop-summary">Minato ward, Tokyo · Cocktail bar · high-end · 1F</p>
-      <p class="stop-description">Eight counter seats and no menu, just a tasting course of small cocktails built on Japanese produce that follows the season. Plan on ¥8,000 to ¥10,000. The pours are small; the flavors are the point. No smoking. Booking is by phone only, up to seven days ahead, roughly noon to 3:00. Tuesday to Saturday, last entry 9:00, so this is where I&#x27;d start the night, alone at the counter.</p>
+      <p class="stop-description">Eight counter seats and no menu, just a tasting course of small cocktails built on Japanese produce that follows the season. Plan on ¥8,000 to ¥10,000. The pours are small; the flavors are the point. No smoking. Booking is by phone only, up to seven days ahead, roughly noon to 3:00. Tuesday to Saturday, last entry 9:00, so come early. I&#x27;d take the counter alone.</p>
       <dl class="stop-facts">
         <dt>Station</dt><dd>Azabujuban (Toei Oedo), 3 min walk</dd>
       <dt>Address</dt><dd>1F Anniversary Building, 1-6-4 Azabujuban, Minato-ku, Tokyo</dd>
@@ -1348,7 +1354,7 @@
     </div>
   </section>
 <figure class="journey-interstitial" aria-label="Stairwell transition"><video class="stop-video" muted loop playsinline preload="none"><source src="assets/movie/interstitial-6.webm" type="video/webm"><source src="assets/movie/interstitial-6.mp4" type="video/mp4"></video><figcaption class="interstitial-quote"><blockquote>No matter how far you travel, you can never get away from yourself.</blockquote><cite>After the Quake</cite></figcaption></figure>
-<h2 class="journey-leg">East Tokyo<span class="journey-leg-sub">After hours: Kanda to Ueno to Bunkyo</span></h2>
+<h2 class="journey-leg">East Tokyo<span class="journey-leg-sub">Kanda to Ueno to Bunkyo</span></h2>
   <section class="stop no-media" id="stop-bar-under" data-stop="bar-under" data-number="17" data-floor="B1F" data-category="basement" data-leg="east" style="--alias-cols:2">
     <div class="stop-media-bg stop-media-bg--type" aria-hidden="true"><span class="stop-watermark">バー アンドアンダー</span></div>
     <div class="stop-body">
@@ -1499,7 +1505,7 @@
       </header>
       <p class="stop-aliases">酒バー O<br>Sakebaro<br>SAKEBARO 青山店</p>
       <p class="stop-summary">Minato ward, Tokyo · Exclusive sake club · 1F</p>
-      <p class="stop-description">Members only, with screening to get in. Inside are a tin-cube counter, a tin piano that plays itself, LED walls that move from blue to red, and staff who can give you the brewery, yeast, and polish rate of every pour. Conversation stays hushed. Now and then there&#x27;s a ticketed dinner for non-members; book online and they email you the address. You can walk into everything else in this guide. Not this one.</p>
+      <p class="stop-description">Members only, with screening and personal authentication at the door. Inside there&#x27;s a tin cube of a counter, a tin-coated player piano that plays itself, one of three in the world, and LED walls that move from deep-sea blue to monochrome to red. They pour sake and natural wine. The night I was there, two Sogga père et fils wines from Obuse stood on the counter next to a Banshu Ikkon and the other sakes, with a pair of metal cups and a few almonds. Now and then there&#x27;s a ticketed evening for non-members, booked online. You can walk into everything else in this guide. Not this one.</p>
       <p class="stop-note">Reservation or membership required. Arrange access well before you travel.</p>
       <dl class="stop-facts">
         <dt>Station</dt><dd>Omotesando (Tokyo Metro Ginza/Hanzomon/Chiyoda), 8 min walk</dd>
@@ -1525,9 +1531,9 @@
       </header>
       <p class="stop-aliases">ロクサンエンジェル</p>
       <p class="stop-summary">Minato ward, Tokyo · Burlesque bar · B2F</p>
-      <p class="stop-description">Formerly Burlesque Tokyo, two floors below street level in Roppongi. The themed shows change every week and run seventy to ninety minutes, and the performers work the crowd. It&#x27;s booked for birthdays and celebrations, so bring people, and reserve early for front seats. Expect ¥8,000 to ¥10,000 each after the 15% service charge. Limited English.</p>
+      <p class="stop-description">Two floors under Roppongi, in the room that used to be Burlesque Tokyo. You don&#x27;t need a word of Japanese for the show, which is lucky, because the staff don&#x27;t have much English. The performers don&#x27;t keep their distance; they&#x27;ll pose for photos and hand hearts with you, and if someone at your table has a birthday, tell the staff and they&#x27;ll make a night of it. I&#x27;d book the front row a few weeks out, if you can stand being that close. It runs ¥8,000 to ¥10,000 a head once the 15% service charge lands, and they don&#x27;t take cards. This is the one place on the map you shouldn&#x27;t go alone.</p>
       <dl class="stop-facts">
-        <dt>Station</dt><dd>Roppongi (Toei Oedo / Tokyo Metro Hibiya), 5 min walk</dd>
+        <dt>Station</dt><dd>Roppongi (Toei Oedo / Tokyo Metro Hibiya), Exit 5, 3 min walk</dd>
       <dt>Address</dt><dd>B2F Roppongi Nittaku Building, 3-8-15 Roppongi, Minato-ku, Tokyo</dd>
       </dl>
       <p class="stop-links">
@@ -1577,11 +1583,11 @@
     </section>
 
     <footer class="page-footer">
-      <p class="print-note">Ordered by neighborhood, evening to dawn. Check opening hours before travelling.</p>
-      <p class="sources">Source: saved-place exports, checked against official venue pages, Tabelog and the GSI address-search API. Subway geometry &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors</a>.</p>
+      <p class="print-note">Ordered by neighborhood. Check opening hours before traveling.</p>
+      <p class="sources">Subway geometry &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors</a>.</p>
       <details id="source-notes">
         <summary>Map notes</summary>
-        <p>Locations reflect saved-place records, not verified entrances. Some pins are address-level approximations from web research or the GSI address-search API. Use the saved map links to check current details before setting out.</p>
+        <p>Pins are approximate and don't mark entrances. Use each place's Maps link to check current details before setting out.</p>
         <p>Subway lines provide geographic context only. They are not walking directions or a journey planner.</p>
       </details>
     </footer>
