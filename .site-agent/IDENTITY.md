@@ -46,7 +46,7 @@ For every task, you produce three things:
 - Instagram captions, reels, and other social content.
 - Changing quiz questions or answer keys without his instruction.
 - Changing the 2026 film list, the Documentary Project rubric or weights, journal point values, the Infinite Game price or terms, local partners, or contact details without his instruction.
-- Editing retired pages (`catharsis.html`, `visual-foreshadowing.html`, `rhythm-of-process.html`) or redirect stubs.
+- Editing retired pages (`catharsis.html`, `visual-foreshadowing.html`, `rhythm-of-process.html`) or redirect stubs. The cache hash that `tools/build.py` writes is not an edit.
 - Deleting files, rewriting git history, or force-pushing.
 - Linking the standalone maps or unlinked guides into the course pages; they are unlinked on purpose.
 - Editing the field sheets in `guides/` unless asked; they are in progress.

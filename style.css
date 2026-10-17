@@ -2390,51 +2390,79 @@ blockquote {
     }
 }
 
-/* Field sheets: laminatable two-sided Letter sheets (guides/field-sheet-*.html) */
+/* Field sheets: laminatable Letter sheets, 12 pt minimum (guides/field-sheet-*.html) */
 .sheet-intro { max-width: 8.5in; margin: 0 auto 2rem; color: #ccc; }
 .sheet {
-    max-width: 8.5in; margin: 0 auto 2.5rem; padding: 0.4in 0.45in;
+    max-width: 8.5in; margin: 0 auto 2.5rem; padding: 0.38in 0.42in;
     background: #fff; color: #111; border-radius: 6px;
-    font-family: 'Inter', sans-serif; font-size: 10pt; line-height: 1.34;
+    font-family: 'Inter', sans-serif; font-size: 12pt; line-height: 1.25;
 }
 .sheet * { color: #111; }
-.sheet .side-tag { float: right; font-size: 8pt; letter-spacing: 0.12em; text-transform: uppercase; color: #666; }
-.sheet .eyebrow { font-size: 8pt; letter-spacing: 0.18em; text-transform: uppercase; color: #a00; font-weight: 600; margin: 0; }
-.sheet h2 { display: block; font-size: 17pt; margin: 0.05in 0 0.04in; padding: 0 0 0.05in; border-bottom: 2px solid #111; }
-.sheet .sub { margin: 0 0 0.1in; font-size: 9pt; color: #333; }
-.sheet h3 { font-size: 10.5pt; margin: 0.07in 0 0.03in; padding: 0.02in 0.06in; background: #111; color: #fff; text-transform: uppercase; letter-spacing: 0.06em; }
-.sheet h3 * { color: #fff; }
-.sheet h4 { font-size: 9.5pt; margin: 0.05in 0 0.01in; }
-.sheet p { margin: 0 0 0.05in; }
-.sheet ul { margin: 0 0 0.05in; padding-left: 0.16in; }
+.sheet .eyebrow { font-size: 12pt; letter-spacing: 0.16em; text-transform: uppercase; color: #a00; font-weight: 600; margin: 0; }
+.sheet .eyebrow .side { float: right; color: #777; font-weight: 400; letter-spacing: 0.1em; }
+.sheet h2 { display: block; font-size: 20pt; margin: 0.02in 0 0.03in; padding: 0 0 0.04in; border-bottom: 3px solid #111; }
+.sheet .sub { margin: 0 0 0.08in; font-size: 12pt; color: #444; }
+.sheet h3 { font-size: 12pt; margin: 0.08in 0 0.04in; padding: 0 0 0.02in; border-bottom: 2px solid #a00; color: #111; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; }
+.sheet h3 * { color: #111; }
+.sheet h4 { font-size: 12pt; margin: 0; }
+.sheet p { margin: 0 0 0.04in; }
+.sheet ul { margin: 0 0 0.04in; padding-left: 0.16in; }
 .sheet li { margin: 0 0 0.02in; }
 .sheet .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 0 0.22in; }
-.sheet .roles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.08in; margin: 0 0 0.04in; }
-.sheet .roles div { border: 1px solid #111; padding: 0.04in 0.06in; font-size: 8.5pt; }
-.sheet .loc { border-left: 3px solid #a00; padding: 0 0 0 0.07in; margin: 0 0 0.07in; }
+.sheet .cols.map-row { grid-template-columns: 1fr 1.08fr; }
+.sheet .map { margin-bottom: 0.08in; }
+.sheet .map-row .panel { margin-top: 0.06in; }
+.sheet .map-row .rule { margin-top: 0.08in; }
+.sheet .roles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.08in; margin: 0 0 0.08in; }
+.sheet .roles div { background: #f3f3f0; border-left: 3px solid #111; padding: 0.04in 0.07in; font-size: 12pt; }
+.sheet .map svg { display: block; width: 100%; height: auto; }
+.sheet .map .cap { font-size: 12pt; color: #444; margin: 0.03in 0 0; }
+.sheet .map .ln { display: inline-block; width: 0.18in; height: 0.06in; border-radius: 2px; margin: 0 0.03in 0 0.02in; vertical-align: middle; }
+.sheet .sheet-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 0.2in; }
+.sheet .sheet-head > div { flex: 1; }
+.sheet .qr { display: flex; align-items: center; gap: 0.08in; text-decoration: none; }
+.sheet .qr svg { width: 0.75in; height: 0.75in; display: block; flex: none; }
+.sheet .qr span { font-size: 12pt; color: #444; text-align: right; line-height: 1.2; }
+.sheet .key { display: grid; grid-template-columns: 1fr 1fr; gap: 0.02in 0.12in; margin: 0.06in 0 0; }
+.sheet .key .k-line { display: flex; align-items: center; gap: 0.07in; font-size: 12pt; white-space: nowrap; }
+.sheet .key .k-line i { display: inline-block; width: 0.32in; height: 0.07in; border-radius: 0.04in; flex: none; }
+.sheet .key-sym { grid-template-columns: repeat(3, auto); justify-content: start; gap: 0.02in 0.18in; padding-top: 0.04in; margin-top: 0.05in; border-top: 1px solid #ddd; }
+.sheet .key-sym span { display: flex; align-items: center; gap: 0.05in; font-size: 12pt; }
+.sheet .key-sym svg { width: 0.19in; height: 0.19in; flex: none; }
+.sheet .credit { font-size: 12pt; color: #888; margin: 0.03in 0 0; }
+.sheet .start { font-size: 12pt; color: #111; margin: 0.05in 0 0; padding-left: 0.2in; text-indent: -0.2in; }
+.sheet .start::before { content: "\2192\00a0"; color: #a00; font-weight: 700; }
+.sheet .loc { display: grid; grid-template-columns: 0.3in 1fr; gap: 0 0.06in; margin: 0 0 0.07in; }
+.sheet .loc .pin { display: inline-block; width: 0.28in; height: 0.28in; border-radius: 50%; background: #a00; color: #fff; font-weight: 700; text-align: center; line-height: 0.28in; font-size: 12pt; margin-top: 0.01in; }
 .sheet .loc h4 { margin: 0; }
+.sheet .loc .meta { margin: 0; }
+.sheet .loc .go { margin: 0.01in 0 0; font-size: 12pt; color: #333; padding-left: 0.2in; text-indent: -0.2in; }
+.sheet .loc .go::before { content: "\2192\00a0"; color: #a00; font-weight: 700; }
 .sheet .jp { font-weight: 400; color: #555; }
-.sheet .meta { font-size: 8.5pt; color: #333; }
-.sheet .shot { display: grid; grid-template-columns: 0.22in 1fr; margin: 0 0 0.03in; }
-.sheet .shot b { font-size: 10.5pt; }
-.sheet .grp { font-size: 8pt; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #a00; margin: 0.05in 0 0.02in; }
-.sheet .rule { border: 1.5px solid #a00; padding: 0.05in 0.08in; margin: 0.06in 0 0; }
-.sheet .why p { margin: 0 0 0.04in; }
-.sheet .why .read { font-size: 8.5pt; color: #a00; font-weight: 600; }
-.sheet table { width: 100%; border-collapse: collapse; font-size: 8.5pt; margin: 0 0 0.04in; display: table; }
-.sheet th, .sheet td { border: 1px solid #111; padding: 0.02in 0.05in; text-align: left; }
-.sheet th { background: #eee; }
-.sheet td { height: 0.19in; }
-.sheet .box { display: inline-block; width: 0.11in; height: 0.11in; border: 1px solid #111; margin-right: 0.05in; vertical-align: -1px; }
-.sheet .checks span { display: block; margin: 0 0 0.03in; }
-.sheet code { font-size: 8.5pt; background: #f1f1f1; padding: 0 0.03in; }
-.sheet .foot { margin-top: 0.08in; font-size: 7.5pt; color: #666; text-align: center; }
+.sheet .meta { font-size: 12pt; color: #333; }
+.sheet .panel { background: #f3f3f0; padding: 0.06in 0.1in 0.02in; }
+.sheet .panel h3 { margin-top: 0; }
+.sheet .shot { display: grid; grid-template-columns: 0.3in 1fr; margin: 0 0 0.035in; }
+.sheet .shot b { display: inline-block; width: 0.25in; height: 0.25in; border-radius: 50%; background: #111; color: #fff; font-size: 12pt; text-align: center; line-height: 0.25in; margin-top: 0.02in; }
+.sheet .grp { font-size: 12pt; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #a00; margin: 0.05in 0 0.02in; }
+.sheet .rule { background: #fff4f4; border-left: 3px solid #a00; padding: 0.06in 0.1in 0.02in; margin: 0; }
+.sheet .rule h4 { margin: 0 0 0.03in; text-transform: uppercase; letter-spacing: 0.08em; color: #a00; }
+.sheet .read { font-size: 12pt; color: #a00; font-weight: 600; }
+.sheet table { width: 100%; border-collapse: collapse; font-size: 12pt; margin: 0 0 0.04in; display: table; }
+.sheet th, .sheet td { border: 1px solid #bbb; padding: 0.02in 0.06in; text-align: left; }
+.sheet th { background: #111; color: #fff; border-color: #111; font-weight: 600; }
+.sheet tbody tr:nth-child(even) td { background: #f6f6f3; }
+.sheet table.log td { height: 0.24in; }
+.sheet table.log.tall td { height: 0.4in; }
+.sheet code { font-size: 12pt; background: #f1f1f1; padding: 0 0.03in; }
+.sheet .files code { font-size: 12pt; }
+.sheet .foot { margin-top: 0.08in; font-size: 12pt; color: #666; text-align: center; }
 @media print {
     nav, footer, .sheet-intro, .sheet-back { display: none !important; }
     main.container { padding: 0 !important; }
     .sheet { margin: 0; padding: 0; max-width: none; border-radius: 0; page-break-after: always; break-after: page; font-family: 'Inter', sans-serif; }
     .sheet:last-of-type { page-break-after: auto; break-after: auto; }
-    .sheet h2 { margin-top: 0.05in; }
-    .sheet h3 { color: #fff !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    .sheet th { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .sheet h2 { margin-top: 0.02in; }
+    .sheet .pin, .sheet .shot b, .sheet th, .sheet .rule, .sheet .panel, .sheet .roles div, .sheet tbody tr:nth-child(even) td, .sheet .map .ln { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
 }

@@ -14,7 +14,7 @@ import sitelib as s
 from build import build_page
 
 LINK_RE = re.compile(r'(?:href|src|poster)="([^"#]+)(?:#[^"]*)?"')
-MOJIBAKE_RE = re.compile('â€|âˆ|â‰|Ã[©¨ ¢´]|Â[½°§·²\xa0]|ï¿½|\ufffd')
+MOJIBAKE_RE = re.compile('â€|âˆ|â‰|Ã[©¨ ¢´]|Â[½°§·²\xa0]|Å[Œ\x8c\x8d]|ï¿½|\ufffd')
 SKIP_SCHEMES = ('http:', 'https:', 'mailto:', 'tel:', 'data:', 'javascript:', '//')
 
 

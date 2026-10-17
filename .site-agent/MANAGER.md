@@ -58,7 +58,7 @@ If your work fails any condition below, fix it before reporting. Do not hand it 
 [ ] Grades or writes feedback on student work
 [ ] Writes screenplay pages or shot lists for his films
 [ ] Changes the film list, a rubric, a point value, a quiz, a price, a partner, or contact details without instruction
-[ ] Edits a retired page or a redirect stub
+[ ] Edits a retired page or a redirect stub (a build-only `?v=` cache-hash change does not count)
 [ ] Commits or pushes above the current trust stage
 [ ] Deletes files or rewrites git history
 ```

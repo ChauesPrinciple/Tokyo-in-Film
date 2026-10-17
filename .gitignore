@@ -63,3 +63,6 @@ assets/images/libretexts/animation-editing-banner.gif
 assets/images/libretexts/art-corner-banner.gif
 
 __pycache__/
+
+# Student copies of the field sheets (show the hostel); never publish
+guides/student/

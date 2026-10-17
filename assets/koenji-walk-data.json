@@ -1,6 +1,6 @@
 {
   "reviewed": "2026-09-14",
-  "coordinateNote": "Coordinates from three sources: the exported XLSX data (13 places), the GSI address-search API (23 places), and Wikipedia (1 place). Pins are address-level approximations, not verified entrances. Check opening hours and reservations directly with each shop.",
+  "coordinateNote": "Coordinates from three sources: the exported XLSX data (11 places), the GSI address-search API (24 places), and Wikipedia (1 place). Pins are address-level approximations, not verified entrances. Check opening hours and reservations directly with each shop.",
   "start": {
     "id": "koenji-station",
     "name": "Koenji Station",

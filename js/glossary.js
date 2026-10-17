@@ -6,7 +6,7 @@
 (function () {
     'use strict';
 
-    const DATA_URL = new URL('glossary-data.json?v=39aec089', document.currentScript.src);
+    const DATA_URL = new URL('glossary-data.json?v=303f7940', document.currentScript.src);
     const domReady = new Promise(resolve => {
         if (document.readyState !== 'loading') resolve();
         else document.addEventListener('DOMContentLoaded', resolve, { once: true });
