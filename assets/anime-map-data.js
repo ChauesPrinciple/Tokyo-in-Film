@@ -43,16 +43,16 @@ tokyo_ghoul: {
   },
   pois: [
     // ── Key story locations ──
-    {name:"Celes Wedding Chapel (Shibuya)",lat:35.6725,lng:139.7256,label:"The Gourmet Arc. Tsukiyama lures Kaneki to a 'dinner party' inside a church — where ghouls bid on the right to eat him. The stained glass. The balcony seats. Kaneki's kagune erupts for the first time in public. The Gourmet gets a taste and becomes obsessed."},
-    {name:"CCG Main HQ (Chiyoda)",lat:35.691,lng:139.7356,label:"The Commission of Counter Ghoul. Every investigator reports here. Washū family runs it from the top floor — and the Washū are ghouls themselves. The building that symbolizes the lie at the center of the entire series."},
+    {name:"Celes Wedding Chapel (Shibuya)",lat:35.6725,lng:139.7256,label:"Tsukiyama holds Nishiki's girlfriend Kimi on the altar of a church and lures Kaneki there. Touka arrives, feeds on Kaneki's flesh to summon her kagune, and holds Tsukiyama off. No guide identifies the church."},
+    {name:"CCG Main HQ (Chiyoda)",lat:35.691,lng:139.7356,label:"The CCG's headquarters are in the 1st Ward, and the Washuu clan that leads the organization is eventually revealed to be a family of ghouls. No guide identifies a real building."},
     {name:"Ginza Station Intersection",lat:35.6719,lng:139.7639,label:"Opening shot of Tokyo Ghoul :re. Haise Sasaki walks through Ginza — a man with no memory, wearing a CCG uniform, leading a squad of half-ghouls. The city moves around him. He doesn't know who he used to be."},
-    {name:"Ueno Station",lat:35.7138,lng:139.777,label:"Shirazu and Urie — the Quinx Squad's dysfunctional heart. They meet contacts here in :re. Shirazu is broke, sending every paycheck to his sister's medical bills. Urie is calculating his next promotion. Neither knows how little time Shirazu has left."},
-    {name:"Museum Café (Model for :re)",lat:35.7329,lng:139.7066,label:"The real café that inspired ':re' — Touka's coffee shop after the timeskip. She builds it as a successor to Anteiku. A place where ghouls and humans can sit together. Haise walks in not knowing why it feels like home."},
-    {name:"JR Shinjuku East Exit",lat:35.6928,lng:139.7024,label:"Touka and Kaneki. The East Exit crowd. She finds him here in Season 1 — or he finds her. Shinjuku at night, neon and noise, two people who shouldn't exist trying to have a normal conversation about nothing."},
+    {name:"Ueno Station",lat:35.7138,lng:139.777,label:"Shirazu joined the Quinx Squad to pay for treatment for his hospitalized sister, Haru. No guide ties Ueno Station to a Tokyo Ghoul scene."},
+    {name:"Museum Café (Model for :re)",lat:35.7329,lng:139.7066,label:"Museum Cafe and Diner, a few minutes from Kanamecho Station, is reported as the real model for :re, the coffee shop Touka runs. In episode 2 of :re, Haise stops in and cries after tasting her coffee."},
+    {name:"JR Shinjuku East Exit",lat:35.6928,lng:139.7024,label:"No published guide ties the Shinjuku East Exit to a Tokyo Ghoul scene."},
     {name:"Kabukichō",lat:35.695,lng:139.702,label:"Kaneki's ghoul instincts surface for the first time. The hunger hits him in Kabukichō's back alleys — surrounded by drunk humans stumbling between bars. He can smell their blood. He runs. This is the scene where the audience realizes he can't go back."},
-    {name:"Yoyogi Park",lat:35.6717,lng:139.6967,label:"Tsukiyama finds Haise here in :re. The Gourmet, emaciated and broken after losing Kaneki, encounters Sasaki in the park. He can smell him — it's Kaneki's body, but the mind is someone else. Tsukiyama weeps. 'It's you. It's really you.' Haise has no idea who this man is."},
-    {name:"Shinagawa Grand Commons",lat:35.6286,lng:139.7386,label:"The Tsukiyama Family Extermination Operation launches from Shinagawa. CCG musters its forces to wipe out the Tsukiyama estate. Haise leads the operation — ordered to kill the family of a man who loved Kaneki more than anyone."},
-    {name:"Milky Way Café (Ikebukuro)",lat:35.7336,lng:139.7156,label:"An Ikebukuro café in Noro's territory. Every café in Tokyo Ghoul is a front, a meeting place, or a memorial. In the 16th Ward, you drink your coffee fast and you don't stay after dark."}
+    {name:"Yoyogi Park",lat:35.6717,lng:139.6967,label:"In :re, Tsukiyama and Kanae come upon Haise with the Quinx Squad on a street, and Tsukiyama runs toward him and falls. Haise hears him say \"Kaneki\" but does not recognize him. No guide places this scene in Yoyogi Park."},
+    {name:"Shinagawa Grand Commons",lat:35.6286,lng:139.7386,label:"Kori Ui leads the CCG's operation to exterminate the Tsukiyama family. Haise fights at the hideout and confronts Tsukiyama on the roof. No guide ties this to Shinagawa."},
+    {name:"Milky Way Café (Ikebukuro)",lat:35.7336,lng:139.7156,label:"In episode 1, Kaneki and Rize have lunch at the Milky Way café in Ikebukuro during their date."}
   ],
   overlays: []
 },
@@ -78,22 +78,22 @@ chainsaw_man: {
   },
   pois: [
     // ── Romance / daily life (Jinbocho) ──
-    {name:"Phone Booth (Kanda Catholic Church)",lat:35.6977,lng:139.7574,label:"A storm. A phone booth. Denji meets a girl named Reze. She's soaked, she's smiling, and she's the most normal person he's ever talked to. She's also a Soviet-trained assassin with a bomb in her neck."},
-    {name:"Aoi Building",lat:35.7001,lng:139.7582,label:"The street Reze walks to work. Quiet, residential Jinbocho. Fans have matched the exact building from the manga panels — down to the facade details."},
-    {name:"Onnazaka (Women's Slope)",lat:35.7003,lng:139.7585,label:"Stone stairs from the 1924 earthquake reconstruction. Reze walks these every day to the café. Fans leave gerbera flowers on the landing — Reze's flower, the symbol of what she and Denji almost had."},
-    {name:"Trois Bagues Vertes (Café Futamichi)",lat:35.7002,lng:139.7573,label:"The real café that inspired Reze's workplace. Also where Denji waits with flowers on the last day. She never shows. Power does. He eats the flowers."},
-    {name:"Kanda Catholic Church",lat:35.6995,lng:139.7575,label:"The church near the phone booth. Its quiet European architecture anchors the Jinbocho pilgrimage cluster — five Reze Arc locations within a two-minute walk of each other."},
+    {name:"Phone Booth (Kanda Catholic Church)",lat:35.6977,lng:139.7574,label:"Fans match this Jinbocho phone booth to the one where Reze runs in out of the rain and meets Denji, who coughs up a flower he had eaten and gives it to her. Guides note that no real booth matches the film exactly."},
+    {name:"Aoi Building",lat:35.7001,lng:139.7582,label:"The Aoi Building on Hakusan-dori appears in the background as Reze walks to her part-time job at the café."},
+    {name:"Onnazaka (Women's Slope)",lat:35.7003,lng:139.7585,label:"Fans say the slope where Denji and Reze walk together in the film is based on Onnazaka, a stone stairway between Jinbocho and Ochanomizu. Visitors have left gerbera flowers on the landing."},
+    {name:"Trois Bagues Vertes (Café Futamichi)",lat:35.7002,lng:139.7573,label:"Fans identify Trois Bagues Vertes near Jinbocho Station as the model for the café where Reze works, though this has not been officially confirmed. At the end of the film, Denji waits there with flowers for Reze, who never arrives, and Power shows up and fights with him over the bouquet."},
+    {name:"Kanda Catholic Church",lat:35.6995,lng:139.7575,label:"Kanda Catholic Church in Nishi-Kanda stands near the Jinbocho streets that fans associate with the Reze arc. No published guide confirms that the church itself appears in the film."},
     // ── Reze Arc battle route ──
-    {name:"Suidobashi / Jinbocho Streets",lat:35.6985,lng:139.7550,label:"Fireworks. A kiss. Then Reze bites out Denji's tongue and transforms. The Bomb Devil. The battle starts in the same streets where they fell for each other."},
-    {name:"Central Chiyoda (Car Chase)",lat:35.6920,lng:139.7560,label:"Division 4 flees by car. Reze pursues on foot — faster than the vehicle. Aki engages her; Future Devil gives him just enough foresight to survive. Violence Fiend pulls him out at the last second."},
-    {name:"Nihonbashi / Chūō District",lat:35.6840,lng:139.7710,label:"Typhoon Devil arrives — a grotesque infant brain surrounded by a cyclone. The storm swallows central Tokyo. Angel Devil is nearly torn away by the wind. Aki grabs his bare hand. Two months of lifespan gone. 'Die when I'm not around to stop it.'"},
+    {name:"Suidobashi / Jinbocho Streets",lat:35.6985,lng:139.7550,label:"At the festival, during the fireworks, Reze kisses Denji, bites off his tongue, and reveals herself as the Bomb hybrid. No guide ties this scene to a specific street."},
+    {name:"Central Chiyoda (Car Chase)",lat:35.6920,lng:139.7560,label:"During the attack on Public Safety, the Future Devil warns Aki of a bad outcome and he stops the car, and Reze arrives carrying the heads of two hunters she has killed. The Violence Fiend tries to stop her, fails, and retreats with Kobeni. No guide places this scene in Chiyoda."},
+    {name:"Nihonbashi / Chūō District",lat:35.6840,lng:139.7710,label:"During the Typhoon Devil's storm, the Angel Devil is nearly swept away, and Aki catches him by the hand, which costs Aki two months of his life. No guide places this scene in Nihonbashi."},
     {name:"Tokyo Tower (Aerial Battle)",lat:35.6586,lng:139.7454,label:"Denji rides Beam through the Tokyo skyline — chain in the shark's mouth like reins. Sharknado. They carve through Typhoon Devil above the city. Tokyo Tower stands in the background of the most insane fight in Part 1."},
-    {name:"Tokyo Bay Waterfront",lat:35.6450,lng:139.7700,label:"Reze blows off Denji's arm. He shoots chains from the stumps, wraps them both together, and falls into Tokyo Bay. Reze can't detonate underwater. They sink to the bottom, tangled in each other."},
-    {name:"Coastline (Morning After)",lat:35.6480,lng:139.7750,label:"Dawn. All three wash ashore. Denji could kill her. He doesn't. 'I would've regretted it.' Reze insists she faked everything. Denji asks: then why didn't you kill me at the school? 'Meet me at the café.'"},
-    {name:"Alley near Café Futamichi",lat:35.6990,lng:139.7565,label:"Reze changes her mind. She turns back toward the café. Rats follow her into the alley and form into Makima. Angel throws spears from the rooftop. The country mouse never made it home."},
+    {name:"Tokyo Bay Waterfront",lat:35.6450,lng:139.7700,label:"After Reze blows off Denji's arms, he wraps her in his chain and drags them both into the sea, where they sink together. No guide identifies the stretch of water."},
+    {name:"Coastline (Morning After)",lat:35.6480,lng:139.7750,label:"On the shore, Denji revives Reze and asks her to run away with him. She insists her feelings were an act, and Denji tells her he will wait for her at the café at noon. No guide identifies the shore."},
+    {name:"Alley near Café Futamichi",lat:35.6990,lng:139.7565,label:"Reze passes up the train, buys a flower, and heads back toward the café. Rats gather at her feet and form Makima, and the Angel Devil impales Reze with a spear. No guide identifies this alley."},
     // ── Season 1 ──
-    {name:"Nerima Station South Exit",lat:35.7378,lng:139.6539,label:"Sea cucumber devil. Denji's first real Tokyo assignment. Power gets scolded by Makima for property damage. The mundane beginning of the worst job in the world."},
-    {name:"Koun Building (Nerima)",lat:35.7371,lng:139.6548,label:"Power leaps off the building to stomp the sea cucumber devil. Excessive force, zero subtlety. Peak Blood Fiend behavior. The building matches the real Koun Building near Nerima Station."}
+    {name:"Nerima Station South Exit",lat:35.7378,lng:139.6539,label:"In episode 2, on Denji's first patrol with Power, a call requests backup in front of Nerima Station for the Sea Cucumber Devil. Power leaps from a building and kills it with a hammer made of blood, claiming the kill as hers."},
+    {name:"Koun Building (Nerima)",lat:35.7371,lng:139.6548,label:"Near Nerima Station in episode 2, Power jumps from a building to kill the Sea Cucumber Devil with a blood hammer. No guide identifies the building she jumps from."}
   ],
   overlays: []
 },
@@ -118,31 +118,31 @@ jjk: {
   },
   pois: [
     // ── Shibuya Incident (Oct 31) ──
-    {name:"Shibuya Station — Hachiko Exit",lat:35.658,lng:139.701,label:"The curtain falls. Civilians are sealed inside the station. Geto's screen sets the trap — Gojo walks in knowing it's a trap, believing he can break it. He's wrong."},
-    {name:"Shibuya Station — Underground B5F",lat:35.6575,lng:139.7015,label:"Prison Realm activates. Gojo freezes — six minutes of memory flashing through his mind. Geto says 'You're my best friend. The only one.' Gojo Satoru is sealed."},
+    {name:"Shibuya Station — Hachiko Exit",lat:35.658,lng:139.701,label:"On October 31 a curtain falls over Shibuya, trapping civilians so that Gojo cannot freely use his domain. Just outside this exit, at the Scramble Crossing, Megumi fights his father, Toji, in episode 40."},
+    {name:"Shibuya Station — Underground B5F",lat:35.6575,lng:139.7015,label:"On the Fukutoshin Line platform at B5F, Kenjaku opens the Prison Realm, and Gojo is stunned at the sight of Geto's body. In the one minute that passes in his mind, the seal completes and Gojo is sealed."},
     {name:"Shibuya Scramble Crossing",lat:35.6595,lng:139.7004,label:"Ground zero. Toji's resurrected body tears through Dagon's domain. Sukuna takes Itadori's body and carves Jogo apart here. The crossing runs red."},
-    {name:"Shibuya Hikarie",lat:35.6591,lng:139.7034,label:"Nanami's last stand. Burned beyond recognition, he walks toward Mahito knowing he's dead. 'You've got it from here.' Mahito touches him. Itadori watches."},
-    {name:"Shibuya Mark City",lat:35.658,lng:139.699,label:"Choso corners Itadori here. A fight Yuji should not survive — until Choso sees a false memory of Yuji as his brother and hesitates. Blood Manipulation vs Divergent Fist."},
+    {name:"Shibuya Hikarie",lat:35.6591,lng:139.7034,label:"Gojo arrives at Shibuya Hikarie B3F in episode 32 and sees the crowd trapped inside the barrier. Below it, inside the Hikarie 1 gate of the Tokyo Metro station, Yuji fights Choso, who stops short of killing him after seeing false memories of Yuji as his brother."},
+    {name:"Shibuya Mark City",lat:35.658,lng:139.699,label:"The Mark City connecting walkway, with Okamoto Taro's mural, is matched to episode 38, where Naobito Zenin, Maki and Nanami face Dagon."},
     {name:"SHIBUYA109",lat:35.6616,lng:139.6985,label:"Sukuna's Malevolent Shrine — 200-meter radius domain expansion. The building, the block, the people inside. All cleaved. Shibuya's most recognizable building, unmade in seconds."},
     // ── First-years origin (Ep.3) ──
-    {name:"Harajuku Station",lat:35.6702,lng:139.7024,label:"Before any of it. Yuji and Megumi sit on the bench waiting for their new teacher. Gojo arrives late, grinning. 'Let's go pick up the third one.' The team that will break the world starts here."},
+    {name:"Harajuku Station",lat:35.6702,lng:139.7024,label:"In episode 3, Yuji and Megumi sit outside Harajuku Station waiting for Gojo, who comes down from the station and waves. The group then meets Nobara by the coin lockers near Takeshita Street."},
     {name:"Takeshita Street",lat:35.671,lng:139.7025,label:"Nobara Kugisaki steps onto Takeshita-dori and stops. 'I'm in Tokyo.' She hasn't seen a cursed spirit yet. She hasn't lost anyone yet. She's just a girl from the countryside seeing the city for the first time."},
     {name:"Alta Harajuku",lat:35.6708,lng:139.7030,label:"Yuji and Megumi spot Nobara arguing with a model scout who didn't pick her. First impression: she's difficult. Later they'll realize that stubbornness is what keeps her alive."},
     {name:"Harajuku Coin Lockers",lat:35.6705,lng:139.7027,label:"All three students together for the first time. Gojo announces their first mission. 'Roppongi.' Nobody knows what's waiting. The audience does."},
     // ── Key locations ──
-    {name:"Roppongi Hills",lat:35.6604,lng:139.7292,label:"First mission. Nobara proves she belongs — hammer and nails against a cursed womb. Tokyo Tower looms behind her in the OP. This is where she decides she's not going home."},
-    {name:"Sendagaya Tunnel",lat:35.678,lng:139.712,label:"Megumi kneels at the tunnel mouth in the OP, shikigami dissolving around him. In-story: a routine investigation that introduces how Grade 2+ curses operate in Tokyo's infrastructure."},
-    {name:"Otaguro Park (Suginami)",lat:35.7049,lng:139.6195,label:"Maki puts on the cursed spirit glasses for the first time. The pond is full of low-grade spirits — invisible to anyone without cursed energy. A quiet, creepy scene that establishes the show's rules."},
-    {name:"Kichijoji Kinema Cinema",lat:35.7034,lng:139.5796,label:"Junpei arc. The rooftop batting cages match the real building. Mahito befriends Junpei here — the cruelest manipulation in the series. Junpei thinks he's found someone who understands him."},
+    {name:"Roppongi Hills",lat:35.6604,lng:139.7292,label:"After meeting at Harajuku, Gojo takes the first-years to Roppongi, where Nobara fights curses with her hammer and nails. In the first opening, Nobara appears in a shot that guides place beside Roppongi Hills."},
+    {name:"Sendagaya Tunnel",lat:35.678,lng:139.712,label:"Sendagaya Tunnel is the setting for Megumi's shot in the first opening sequence."},
+    {name:"Otaguro Park (Suginami)",lat:35.7049,lng:139.6195,label:"In the first opening, Maki appears in Otaguro Park wearing the glasses she uses to see cursed spirits, with a curse rising from the pond."},
+    {name:"Kichijoji Kinema Cinema",lat:35.7034,lng:139.5796,label:"Guides identify Kichijoji Plaza, which has a rooftop batting center, as the model for the Kinema Cinema. There Junpei watches Mahito kill three boys who had bullied him and follows him out, and Mahito later draws him into his hideout and manipulates him."},
     // ── Culling Game ──
-    {name:"TMG Building (Shinjuku)",lat:35.6896,lng:139.6917,label:"Tokyo Colony No.1. The twin towers of the Metropolitan Government Building become the landmark inside the barrier. Megumi and Reggie Star fight here — Megumi's domain expansion debut."},
+    {name:"TMG Building (Shinjuku)",lat:35.6896,lng:139.6917,label:"No published guide ties the Tokyo Metropolitan Government Building to a Jujutsu Kaisen scene."},
     // ── Shinjuku villain scenes ──
-    {name:"Shinjuku Café (Geto meeting)",lat:35.6905,lng:139.7005,label:"Geto, Jogo, Hanami, and Mahito sit in a Shinjuku café planning the Shibuya Incident. The scene mirrors a business meeting — four cursed spirits ordering coffee, discussing genocide."},
-    {name:"Nanami's Former Office (Shinjuku)",lat:35.6930,lng:139.7020,label:"Before Jujutsu High, Nanami was a salaryman. His old office building in Shinjuku. He quit because he realized the mundane world was just as cursed — it just didn't have a name for it."},
+    {name:"Shinjuku Café (Geto meeting)",lat:35.6905,lng:139.7005,label:"Geto crosses a Shinjuku street with the cursed spirits Jogo and Hanami, a crossing guides place at Kabukicho Intersection. At a nearby restaurant, Jogo proposes killing Gojo in exchange for the Prison Realm, and the heat around him kills the people inside."},
+    {name:"Nanami's Former Office (Shinjuku)",lat:35.6930,lng:139.7020,label:"After graduating from Jujutsu High, Nanami left sorcery for an office job before returning to work as a sorcerer. A pilgrimage guide places his old office in Shinjuku but does not name the building."},
     // ── Post-Shibuya ──
-    {name:"Ramla Hall (Iidabashi)",lat:35.7022,lng:139.7436,label:"After Shibuya collapses everything. Yuki Tsukumo, Yuji, and Choso regroup here. Yuki explains the theory of cursed energy optimization. The adults are gone — these three are what's left of the resistance."},
-    {name:"Don Quijote Ginza Bridge",lat:35.6668,lng:139.7624,label:"Naoya Zenin hunts Yuji through the Ginza district. Choso intervenes. The Zenin clan's ugliest son vs two brothers who shouldn't exist. Blood techniques paint the bridge red."},
-    {name:"Kabuki-za Theatre",lat:35.6695,lng:139.7679,label:"Yuta Okkotsu appears — sent to execute Yuji Itadori on Jujutsu High orders. The strongest second-year vs the boy who ate Sukuna's finger. Yuta's been ordered to kill, but he's got a different plan."}
+    {name:"Ramla Hall (Iidabashi)",lat:35.7022,lng:139.7436,label:"No published guide or episode summary ties Iidabashi Ramla to Jujutsu Kaisen."},
+    {name:"Don Quijote Ginza Bridge",lat:35.6668,lng:139.7624,label:"Naoya Zenin's fight with Choso takes place in a tunnel, and no guide links it to Ginza."},
+    {name:"Kabuki-za Theatre",lat:35.6695,lng:139.7679,label:"Yuta Okkotsu, appointed as Yuji's executioner, fights him while secretly working to keep him alive, and their fight ends in a traditional theater. No guide confirms that the theater is modeled on Kabuki-za."}
   ],
   overlays: [
     {type:'circle',lat:35.6895,lng:139.7038,r:3000,color:'#6b21a8',label:'Tokyo Colony No.1 Barrier'},

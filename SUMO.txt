@@ -1,0 +1,46 @@
+You're right on both counts. Let me bring the X5 back in properly and add the wrist mount to the GO Ultra's playbook.
+
+---
+
+**X5 — overhead pole, but actually thought through**
+
+Mount it on a telescoping pole over the center of the dohyo. The shot is genuinely unique to sumo: from directly above, the dohyo reads as a perfect circle — a geometric stage. Two wrestlers entering that circle from opposite sides creates a composition you literally cannot get any other way.
+
+**What the overhead position actually gives you for sumo specifically:**
+
+- **The chiri-chōzu** (water-purification ritual) — wrestlers entering opposite sides of the ring, mirror-image symmetry that only reads from above.
+- **Tachiai geometry** — the exact angle of impact, who got lower, who got inside position. From overhead you see the physics of the collision in a way ringside coverage can't show.
+- **The circling and grip-fighting** — when bouts go long and wrestlers grapple at the center, overhead reveals the footwork choreography, who's controlling center, who's being walked toward the tawara.
+- **Push-outs read radially** — the loser tracking outward from center toward the boundary is a vector you only see from above. It makes the drama of yorikiri legible.
+- **Reframe in post** — because it's 360, you don't have to commit live. You can pull a tight overhead on the wrestlers, then reframe to show the gyoji circling them, then pull a wide showing all four shinpan at the corners — all from the same take.
+
+Run it on the Ultra Battery with Endurance Mode at 8K. That gives you just under 2 hours of continuous record. Pull it once during the break between juryo and makuuchi divisions, fast-charge to 80% in 20 minutes, redeploy for the makuuchi block. If you want zero risk, run a discrete cable down the pole to a bank at the base — cable hidden along the pole reads as part of the rig.
+
+---
+
+**GO Ultra — adding the wrist/hand mount**
+
+The wrist harness completely changes what this camera is for. It's no longer just a placement camera; it's a wearable that puts the shot wherever your hand goes.
+
+**Worn on the back of the hand specifically for sumo:**
+
+- **Reaction shots from the front row** — your hand resting on the railing or your knee, lens pointed across at the dohyo. You're capturing the bout from spectator eye-level, but with subtle hand movement you can pan, follow, react. It reads like found-footage POV rather than coverage.
+- **Pointing at things naturally** — when you gesture toward the dohyo or the judges, the camera follows your attention. This is genuinely how human visual focus works and it's almost impossible to fake with a held camera.
+- **Eating, drinking, clapping between bouts** — the texture of being at sumo. Bento, beer, the program in your lap, applause. The hand doing normal spectator things grounds the whole piece in the experience of being there.
+- **The walk in and out of the venue** — entering the kokugikan, finding your seat, the corridor crowds. Wrist-mount captures the approach naturally because your hand is already moving with you.
+- **Pointing out specific wrestlers during the dohyo-iri** (ring-entering ceremony) — when the makuuchi wrestlers enter together in their kesho-mawashi (ceremonial aprons), gesturing toward one tells the camera who to follow.
+
+**The tactical division of GO Ultra labor:**
+
+The placement shots I described before (tawara level, salt basket, shikiri, gunbai) are about getting *into* the bout from impossible angles. The wrist-mounted shots are about getting *around* the bout — the spectator experience, the venue, the human reactions. Different camera, different job, same body.
+
+**Power for the wrist mount:** FOMO Power Kit's wearable bank routes naturally — bank around the neck or in a jacket pocket, short cable to the wrist. You're already wearing it; the cable run is short and hidden under a sleeve.
+
+---
+
+**Revised stagger:**
+
+- **XT2** locked off wide, never moves, runs the full session.
+- **X5** overhead pole on Ultra Battery, one hot-swap during division break, or tethered to a base-of-pole bank for full uninterrupted session.
+- **Ace Pro 2** in your hands, roaming — hanamichi, salt throws, judges, gunbai, exits.
+- **GO Ultra** alternating between wrist-mount (spectator/venue/reaction) and quick fixed placements (tawara/shikiri/salt basket) during the shikiri windows between bouts.

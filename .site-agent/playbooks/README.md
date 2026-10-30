@@ -1,6 +1,6 @@
 # Playbooks
 
-Playbooks are the task-specific layer loaded after SOUL, IDENTITY, USER, and SITE_ATLAS. A playbook is not a second identity file. It holds only the procedure for one kind of task: what to read first, the steps, the checks, and the report.
+Playbooks are the task-specific layer loaded after SOUL, IDENTITY, USER, and SITE_ATLAS. For any task that touches a film with a file in `../reference/`, read that file too, and do not repeat any claim it lists as corrected or unverified. A playbook is not a second identity file. It holds only the procedure for one kind of task: what to read first, the steps, the checks, and the report.
 
 | Playbook | Use for |
 |---|---|

@@ -1,0 +1,1474 @@
+
+
+
+
+
+O N   T H E   E D G E
+
+Written by: Chaues
+
+26 MIN  |  COSMIC HORROR  |  RATED R
+
+
+LOGLINE OPTIONS (pick one):
+
+1. (taut) At the edge of the Sun's influence, the first humans to cross the heliopause learn that a proof a physicist was destroyed for forty years ago was correct: the universe has an outside, and whatever is there can reach back through the instrument built to see it.
+
+2. (muscular) Past the edge of the Sun's light, a five-person crew aboard the LONGSHOT discovers their cognitive relay -- the instrument that navigates by human perception -- has opened a door in both directions. What is on the other side was Dr. Hiroshi Ito's life's work, forty years ago. Finishing his proof opens the door from this side.
+
+3. (recessive) On the edge of the solar system, five people, an instrument that reads their minds, and a mathematical proof from 1987 that everyone refused to believe -- until the observations started matching.
+
+
+Chaues Productions
+
+
+
+                         TITLE CARDS (BLACK)
+
+CARD 1: In 2053, Babel Aerospace sent the LONGSHOT past the heliopause -- the outer boundary of the Sun's influence, fifteen hundred astronomical units from Earth. Five humans, further than anything living had ever been.
+
+CARD 2: Their drive could reach that distance in weeks. Their instruments could not navigate it. A fusion torch without aim is a torch with no use. For that they carried a cognitive relay: a four-hundred-and-twelve-electrode interface that read trained cortical signals from calibrated pilots and translated them into course corrections. Safe return required three calibrated pilots and an uncompromised relay.
+
+CARD 3: Six months before launch, the deep-space telescope array at Lagrange 5 flagged a stellar-decay pattern in the outer Oort cloud that matched no known model. Babel assembled a crew to observe it. The mission parameters said observe.
+
+                         FADE UP.
+
+
+                         ACT ONE -- THE GAP
+
+
+INT. LONGSHOT -- RELAY ROOM -- DAY CYCLE 01 (0:00)
+
+The relay. A matte-black cylinder two meters tall, humming at sixty hertz, the pitch a body feels before it hears. Adjacent: the pilot's chair, a headrest ringed with 412 gold contact points.
+
+DR. EMI NAKAMURA (43, Japanese American, cosmological physicist) lowers her head into the contact ring. On the monitor above her: a calibration waveform, green. She breathes out slowly. The waveform locks to her exhalation rhythm.
+
+CAPTAIN HENRY MARSHALL (57, British, Royal Navy before ESA, mission commander) stands at the doorway, analog watch on his left wrist, uniform perfect. He makes a mark on a paper checklist.
+
+                         MARSHALL
+               Nakamura. Green.
+
+DR. YUKI TANAKA (38, Japanese, astrophysicist) enters behind him. On Tanaka's lapel: a small silver pin -- the crest of Osaka University, Ito's department. He was Ito's last graduate student. He has carried Ito's unfinished papers for twenty years.
+
+Nakamura stands. Tanaka takes the chair. The waveform locks. Green.
+
+                         MARSHALL
+               Tanaka. Green.
+
+Marshall takes the chair last. His waveform locks. Green.
+
+                    INSERT -- MARSHALL'S CHECKLIST
+
+           Partial view. PILOT CAL (x3). LIFE SUPPORT. COMMS.
+           PROPELLANT. TRAUMA KITS (x5). Most lines already
+           marked.
+
+                    BACK TO SCENE
+
+                         MARSHALL
+               Three pilots calibrated. Launch in ninety minutes.
+
+DR. ADRIANNA COSTA (45, Brazilian, information theorist -- signal discrimination) passes in the corridor carrying a stack of pre-launch printouts. A red pen in a pocket sewn onto the right forearm of her uniform.
+
+DR. DAVID CARTER (41, British, mission psychologist) follows her, notebook under his arm, bound in black cloth. He is watching Marshall without appearing to.
+
+                         CUT TO:
+
+
+INT. LONGSHOT -- BRIDGE -- DAY CYCLE 01 (0:05)
+
+The drive ignites. A slow shudder through the hull. On the forward monitor: a trajectory curve departing Lagrange 5. The heliopause boundary is marked. Beyond it: sector nine.
+
+                         MARSHALL (O.S.)
+               Drive nominal. Heading lock.
+
+                         NAKAMURA (O.S.)
+               Relay coherent.
+
+                         TANAKA (O.S.)
+               Receiver online.
+
+                         CUT TO:
+
+
+INT. LONGSHOT -- BRIDGE -- DAY CYCLE 47 (0:15)
+
+Black. Then the sound of the ship -- a low continuous frequency, the kind that lives in the chest. Recycled air through vents designed for function, not comfort.
+
+The LONGSHOT is fifty meters of carbon-nanotube composite and deuterium-cycle fusion drive. On the bulkhead above the bridge entrance: a small brass commissioning plate. BABEL AEROSPACE -- LONGSHOT -- FIRST DEEP-SPACE PROGRAM. The brass is already tarnishing. Fifteen hundred astronomical units from Earth. Eight and a half light-days out. No human has ever been half this far.
+
+The bridge has no windows. Eight screens across a curved console. Their light is the only warm thing in the room.
+
+NAKAMURA has been awake since before the day cycle began. Sleeves pushed to the forearms. A kanzashi pin holds her hair back. Taped inside her upper panel: a photograph of a boy, maybe twelve. She is not looking at it.
+
+Three screens. Leftmost: the decay feed. Middle: her eight-year-old theoretical work. Rightmost: a file from her personal archive, dated three years before launch, timestamped 03:47. She has not opened it.
+
+MARSHALL enters at 06:00 exactly. Checks navigation, power, crew, life support. The anomaly feed last.
+
+                         MARSHALL
+               You slept.
+
+                         NAKAMURA
+               For an hour.
+
+                         MARSHALL
+               That's not sleeping.
+
+                         NAKAMURA
+               Functionally the same.
+
+Marshall pulls up her biometric log, reads it, says nothing.
+
+                         MARSHALL
+               Anything overnight.
+
+On the leftmost screen: the decay feed. The last data point has stepped down overnight. Small, clean, below the predicted curve.
+
+                         NAKAMURA
+               Outer ring. Decay rate up zero point three percent.
+
+                         MARSHALL
+               Costa's theory.
+
+                         NAKAMURA
+               Costa's theory is unfalsifiable with current instruments.
+
+                         MARSHALL
+               That's not a no.
+
+Nakamura looks up. They hold each other's gaze.
+
+                         NAKAMURA
+               The rate increase is consistent with a response. If you accept the premise.
+
+                         MARSHALL
+               I don't accept the premise.
+
+                         NAKAMURA
+               You don't have to. It's still consistent.
+
+She goes back to her screen. Marshall looks at the anomaly feed for three seconds. Looks away.
+
+
+INT. LONGSHOT -- SECONDARY ARRAY ROOM -- CONTINUOUS (1:00)
+
+Smaller than a large closet. One chair, bolted. Equipment on all four walls.
+
+TANAKA in the chair three hours. Headphones connected to the analog output of the array receiver. The sound: a low irregular tone. Static shot through with pattern.
+
+Spread across the console: photocopies of Ito's unpublished papers. Corners worn. Not new copies. He brought them because when he packed for six months, Ito's unfinished work was what he decided he couldn't leave behind.
+
+The tone shifts slightly. Tanaka's hand moves to the pin on his lapel. He is not aware that it moved.
+
+
+INT. LONGSHOT -- COMMON AREA -- CONTINUOUS (1:30)
+
+COSTA at the folding table, reading a spectrograph printout. Behind her on the wall: a timeline she has been building -- red-pen marks on dated strips, one per signal spike. Forty-three red marks. Below each, a black mark. The gaps narrow moving right.
+
+She circles something on the page. Circles again, harder. A third absorption line has shifted toward the red.
+
+CARTER across from her with coffee, notebook open. He has an open page: a two-column log dated today, the left column filled with timestamps (cortisol draws, heart-rate ranges), the right blank.
+
+                         COSTA
+               The zero-point-three.
+
+                         CARTER
+               You saw.
+
+                         COSTA
+               Third absorption line, red side. Two-point-three sigma from predicted.
+
+                         CARTER
+               One line.
+
+                         COSTA
+               Fourteenth this week. Every one drifted red on days we matched Nakamura's approach profile. Fourteen out of fourteen is not physics. Physics scatters.
+
+                         CARTER
+               What is it, if it's not physics.
+
+                         COSTA
+                    (not looking up)
+               I'm not allowed to say yet.
+
+Carter writes something. Costa watches him write. He doesn't show her.
+
+Behind Costa, on the wall timeline: her hand is shaking as she marks the new entry. She catches it. Sets the pen down. Does not pick it up again until Carter has left.
+
+
+INT. LONGSHOT -- BRIDGE -- LATER (2:30)
+
+The full crew. Marshall at his station. Nakamura at hers. Tanaka emerged from the array, headphones around his neck, Ito's papers under his arm. Costa at her data station. Carter at the perimeter, back to the far wall.
+
+On the main screen: sector nine. A false-color map. Blue stable. Amber declining.
+
+                         TANAKA
+               The outer ring shifted again overnight.
+
+                         MARSHALL
+               Nakamura flagged it.
+
+                         TANAKA
+               She flagged the zero-point-three. I'm confirming it.
+
+Nakamura verifies on her screen.
+
+                         NAKAMURA
+               Confirmed.
+
+                         MARSHALL
+               Interpretation.
+
+                         TANAKA
+               Ito predicted this signature. Not here -- anywhere we ever got close enough to a horizon. His last paper gave the fingerprint. The paper that didn't get published.
+                    (beat)
+               Sector nine matches it to four decimal places.
+
+The room changes when Ito's name comes up. Marshall's face stays still. Carter writes. Costa stops marking. Marshall's eyes flick across Tanaka's station -- the photocopies, the pin -- and away. The recognition is there. He chooses not to engage it.
+
+                         MARSHALL
+               We log. We do not speculate past the data until we have more data.
+
+                         COSTA
+               Logged.
+
+                         NAKAMURA
+               Logged.
+
+Marshall turns back. The briefing is over.
+
+
+INT. LONGSHOT -- VARIOUS -- DAY CYCLE 47 (3:00-5:30)
+
+Afternoon. Each moment held long enough to breathe.
+
+NAKAMURA at her station. The file from three years ago unopened. She builds a bridge between her published work and the sector-nine data. The bridge fails at the same point. She deletes. Starts again. Her hand trembles once on the keyboard. She catches it. Places both palms flat on the console for three seconds. Goes back.
+
+TANAKA in the array room. Door mostly closed. Through the gap: the sound of him speaking, not to anyone on the ship. Words not distinct. The tone careful, precise -- a student speaking to a teacher they revere.
+
+COSTA in the common area, timeline extended. She adds today's red mark. Steps back. Looks at the distance between red and black on the most recent date. Nearly overlapping. She sits in the folding chair doing nothing. Then picks up the pen.
+
+CARTER in the corridor. Not going anywhere. Standing in the middle, notebook open, writing quickly. He writes the same word three times. Tears the page out. Folds it. Puts it in his pocket.
+
+MARSHALL in his quarters. Door closed. On his desk: mission parameters, pre-launch psychological assessments, a photograph he is not looking at. Seven people in flight gear. Six smiling. Marshall not. He is looking at the camera like something he is trying to memorize.
+
+He does not turn the photograph over. He does not speak. He sits with it ninety seconds. Stands. Replaces it in the drawer. Goes back to the bridge.
+
+
+INT. LONGSHOT -- COMMON AREA -- EVENING CYCLE (5:30)
+
+Dinner. Marshall eats at 18:00 regardless. Tonight all five. The timeline is behind them on the wall. Nobody mentions it.
+
+                         TANAKA
+                    (to Nakamura, in Japanese, not looking up)
+               The file.
+
+Nakamura's fork stops.
+
+                         NAKAMURA
+                    (in Japanese)
+               What about it.
+
+                         TANAKA
+                    (in Japanese)
+               Open it.
+
+She does not respond. Eats. Tanaka goes back to his food. Marshall watches without appearing to. He understood none of it.
+
+                         CARTER
+               I want to bring something to the table.
+
+The ship's air moves. Nobody answers. Carter takes this as permission.
+
+                         CARTER
+               Costa and I have been running an overlay. Her signal data and my crew medical. I'm going to show it.
+
+                         MARSHALL
+               Show it.
+
+Carter opens his notebook, turns it around so the room sees. Costa brings up her timeline on the data-station display.
+
+                         CARTER
+               Every stress event in the crew. Cortisol from the seventy-two-hour draws. Heart rate from the biometric bands. Conflict incidents from my log.
+
+                         COSTA
+               Overlay them.
+
+Nakamura taps her console. The two timelines overlay on the main screen. Red always follows black. Four to six hours. Every time.
+
+                         MARSHALL
+                    (to Carter, quiet)
+               You gave her crew medical.
+
+                         CARTER
+               I correlated crew medical with her signal data. That is the job you briefed me on. She brought me her data four weeks ago.
+
+                         MARSHALL
+               Four weeks.
+
+                         CARTER
+               I wanted to be sure.
+
+                         COSTA
+               He wanted to be sure. I've been sure since week two.
+
+Beat.
+
+                         MARSHALL
+               Correlation.
+
+                         COSTA
+               Every intensification follows a stress event. No exceptions.
+
+                         MARSHALL
+               Interpretation.
+
+                         COSTA
+               The signal is not independent of our presence. It is coupled to it.
+
+                         NAKAMURA
+               Coupled how.
+
+                         COSTA
+               I don't know yet. Four to six hours of lag is a large coupling constant. Larger than anything in the noise I've seen in this field. It's outside my dismissal threshold.
+
+                         MARSHALL
+               We log. We continue observation.
+
+                         COSTA
+                    (flat)
+               Logged.
+
+Nobody eats for a moment.
+
+
+INT. LONGSHOT -- CREW QUARTERS -- NIGHT CYCLE (6:30)
+
+Five sleeping pods. Lights at night setting, amber. Costa and Carter at the small table outside the pods.
+
+                         CARTER
+               You want to tell me what you didn't say in there.
+
+                         COSTA
+               He died in 2019.
+
+                         CARTER
+               Ito.
+
+                         COSTA
+               The paper was what killed him. They didn't fire him, they stopped citing him. Five years of that and his heart stopped.
+
+                         CARTER
+               You knew him.
+
+                         COSTA
+               I never met him. I used his methods without his name on them. You cite Ito, you get untenured.
+
+                         CARTER
+               And Babel put you on this ship.
+
+                         COSTA
+               And Babel put me on this ship.
+
+Carter writes that down. Does not show her.
+
+
+                         ACT TWO -- THE AMPLIFICATION
+
+
+INT. LONGSHOT -- SECONDARY ARRAY ROOM -- DAY CYCLE 49 (8:00)
+
+Tanaka nine hours in the array room. The door closed. A food tray outside, untouched, slid in by someone who doesn't want to interrupt. The tray is from two days ago.
+
+Inside: the chair, the equipment, Tanaka. Ito's photocopied papers on every surface. He is writing fast -- the kind of writing that is trying to keep up with something rather than producing it deliberately.
+
+The sound from the array has changed. It has structure now -- not rhythmic, not regular, but structured the way a sentence has structure even when you can't hear the words.
+
+Tanaka stops writing.
+
+He reaches for the photocopies. Finds Ito's last paper -- the incomplete one, the one that ends mid-line. Lays it next to his notebook.
+
+The notation matches. His handwriting continues from the exact line where Ito's ends.
+
+On his desk: seven pages he did not plan to write.
+
+He turns to the last page. The pen has pressed hard enough to emboss the paper underneath.
+
+                    INSERT -- THE SEVENTH PAGE
+
+           THE UNIVERSE HAS AN OUTSIDE.
+           OBSERVATION REACHES IT.
+           IT CAN REACH BACK.
+
+                    BACK TO SCENE
+
+Tanaka touches the pin on his lapel. Osaka University. Ito's department. His advisor's crest.
+
+He looks at the speaker.
+
+                         TANAKA
+                    (very quietly)
+               You're not him.
+
+The signal continues. Unchanged.
+
+                         TANAKA
+               But you finish the math.
+
+He does not write anything else.
+
+
+INT. LONGSHOT -- BRIDGE -- DAY CYCLE 51 (9:30)
+
+COSTA has extended the timeline to a second wall. CARTER and MARSHALL present. Nakamura at her station. Tanaka absent.
+
+                         COSTA
+               New data point. Day before yesterday. Nakamura's biometric spike at fourteen forty.
+
+                         NAKAMURA
+                    (not looking up)
+               I remember.
+
+                         COSTA
+               Signal intensification that evening was larger than any prior.
+
+                         MARSHALL
+               Quantify.
+
+                         COSTA
+               Two orders of magnitude over the previous largest.
+
+                         MARSHALL
+               Two.
+
+                         COSTA
+               The coupling isn't just temporal. It's gradient. Larger events produce larger responses.
+
+                         NAKAMURA
+               Dose response.
+
+                         COSTA
+               Dose response.
+
+                         MARSHALL
+               Mechanism.
+
+                         COSTA
+               I don't have one. I have two statistical claims I would bet my career on.
+
+Marshall does not answer. Looks at the display. Looks away.
+
+
+INT. LONGSHOT -- CORRIDOR -- DAY CYCLE 51 (10:30)
+
+Costa with a new printout. Six minutes in the corridor between bridge and crew quarters. Waiting.
+
+Marshall comes through.
+
+                         MARSHALL
+               Adrianna.
+
+                         COSTA
+               You're going to reduce Tanaka's array access today. Limit to eight hours. Require a co-observer.
+
+Marshall stops.
+
+                         MARSHALL
+               Where did you hear that.
+
+                         COSTA
+               I didn't.
+
+She holds out the printout. CLOSE on today's date, in her hand. Three numbered predictions. The first two have checkmarks. The third:
+
+           3. MARSHALL RESTRICTS TANAKA ARRAY ACCESS. TIME: ___
+
+The blank is waiting.
+
+                         COSTA (CONT'D)
+               Twenty-two predictions since launch. Eighteen correct. You have responded to four.
+
+                         MARSHALL
+               You're modeling me.
+
+                         COSTA
+               I'm modeling everyone. You are the easiest.
+
+Beat.
+
+                         COSTA (CONT'D)
+               Turn the ship around. We have enough data.
+
+                         MARSHALL
+               That's not my call.
+
+                         COSTA
+               It's your call until we cross the boundary. After that, it isn't.
+
+She hands him the printout. He takes it. She walks past him toward the crew quarters.
+
+
+INT. WHITE ROOM -- DREAM -- NIGHT CYCLE 51 (11:00)
+
+The five crew members in their uniforms, standing in a white room with no visible walls. Nakamura with her collar open. Marshall sitting at attention even in a dream. Tanaka's headphones around his neck. Costa without her pen. Carter without his notebook.
+
+None of them speak. None of them are surprised to be here. In the distance -- or what feels like distance, though the room has no distance -- something the size of a door.
+
+They wake simultaneously.
+
+
+INT. LONGSHOT -- COMMON AREA -- MORNING CYCLE 52 (7:30)
+
+Breakfast. All five. The silence that follows a shared experience nobody is going to admit to.
+
+                         CARTER
+               I had a dream last night.
+
+Nobody answers.
+
+                         CARTER
+               There is documented precedent for thematically similar dreams among crews in isolation. I'll flag it in the log.
+
+Nakamura closes her eyes briefly. Tanaka does not eat. Costa writes something on her forearm in red pen.
+
+
+INT. LONGSHOT -- ARRAY ROOM -- DAY CYCLE 52 (12:00)
+
+Tanaka in the chair. Marshall in the doorway.
+
+                         MARSHALL
+               What have you done to the receiver settings.
+
+                         TANAKA
+               Narrowed the filter. The signal has structure.
+
+                         MARSHALL
+               Structure.
+
+                         TANAKA
+               A non-random pattern. Costa flagged it in the signal data four weeks ago. I'm reading it against the proof. The pattern is consistent with the proof.
+
+                         MARSHALL
+               Consistent how.
+
+                         TANAKA
+               The proof derives that there's an outside, and that it can reach this side. That's all it derives. The rest is me reading the signal against the math. Something out there is feeding. Universes are what it eats.
+
+                         MARSHALL
+               This.
+
+                         TANAKA
+               Ours is one. Sector nine -- the decay pattern Costa has been tracking -- that isn't stars dying. That's a feeding site. Something has been eating that region of our universe for longer than we have existed. The dimming is what consumption looks like from inside.
+
+                         MARSHALL
+               And we sailed toward it.
+
+                         TANAKA
+               We sailed toward a feeding site. Then something else started.
+
+                         MARSHALL
+               What.
+
+                         TANAKA
+               Life in a universe reads differently than dead mass. Concentrated coherence. Observation. Us. The thing that was already eating this region registered us as the calorie-dense part of the meal. It started pulling.
+
+                         MARSHALL
+               Pulling.
+
+                         TANAKA
+               The dreams. The signal behavior. What I have been doing in the array room for three weeks. I have not been working. I have been being pulled. The signal is the line. The relay is the reel.
+
+                         MARSHALL
+               You've been on a hook.
+
+                         TANAKA
+               We have all been on a hook. I was closest. It pulled me first.
+
+                         MARSHALL
+               You're describing a predator.
+
+                         TANAKA
+               I'm describing something that eats universes the way a whale eats seawater. Most of what it takes in is mass. Life is the krill. Its baleen pulls krill-rich water in first. We are krill.
+
+                         MARSHALL
+               And you've been communicating with it.
+
+                         TANAKA
+               No. It doesn't communicate. It pulls. And it chews.
+
+                         MARSHALL
+               You didn't report this.
+
+                         TANAKA
+               The proof wasn't finished. I didn't have anything to report until last night.
+
+                         MARSHALL
+               And now.
+
+                         TANAKA
+               Now the proof is complete. What the math said would happen at a horizon is happening. I don't know what it means for us.
+
+Marshall closes the array-room door from the outside.
+
+
+INT. LONGSHOT -- DATA STATION -- DAY CYCLE 53 (14:00)
+
+Costa has built the timeline into a three-dimensional structure on her display. Signal data, crew biometrics, Tanaka's array logs. Carter beside her with his notebook open.
+
+                         COSTA
+               Overlay Tanaka's hours on the intensifications.
+
+Carter taps. On the display: every signal intensification maps onto a period of Tanaka's extended array exposure.
+
+                         CARTER
+               He is the coupling.
+
+                         COSTA
+               He is the largest single node of the coupling. We are all coupled. He is the one it is using the most.
+
+Tanaka enters. He has heard the last sentence. He looks composed in a way he has not looked composed before.
+
+                         TANAKA
+                    (in Japanese, to no one)
+               Fushoku shite iru.
+                    (to the room, in English)
+               It's feeding.
+
+Costa and Carter both turn.
+
+                         TANAKA (CONT'D)
+               The math specifies the direction. It's asymmetric. Something on the other side gains coherence. We lose it. That's the feeding.
+
+                         COSTA
+                    (quiet)
+               My data shows the direction the math names. We are losing what it is gaining.
+                    (beat)
+               It's feeding.
+
+                         CARTER
+               On what.
+
+                         TANAKA
+               On coherence. Attention. Life. The concentrated parts of the meal get pulled first. The relay is what it uses to pull. It has been reeling us since day one.
+
+The three of them look at each other. Nobody writes anything down.
+
+
+INT. LONGSHOT -- CORRIDOR -- DAY CYCLE 53 (14:45)
+
+Marshall walking. Carter catches him.
+
+                         CARTER
+               A word.
+
+                         MARSHALL
+               Walk with me.
+
+They walk.
+
+                         CARTER
+               You're doing it again.
+
+                         MARSHALL
+               Doing what.
+
+                         CARTER
+               What you did on Meridian. Waiting until you couldn't anymore.
+
+Marshall does not stop walking.
+
+                         MARSHALL
+               The inquiry cleared me.
+
+                         CARTER
+               I wrote the inquiry.
+
+Marshall stops.
+
+                         CARTER (CONT'D)
+               It cleared you of procedure. I don't have anything to say about the rest. I never did.
+
+                         MARSHALL
+               Babel assigned you to this mission.
+
+                         CARTER
+               Babel assigned me to this mission.
+
+A beat.
+
+                         MARSHALL
+               What do you want, David.
+
+                         CARTER
+               I want you to do the thing before you couldn't anymore. Not after.
+
+Marshall resumes walking. Carter stays where he is.
+
+
+INT. LONGSHOT -- BRIDGE -- DAY CYCLE 54 (13:30)
+
+Tanaka at his secondary station. He has been under the eight-hour restriction for two days. He looks rested in a way that is wrong -- the kind of rest that comes not from sleep but from no longer fighting something.
+
+Nakamura working. Carter at the perimeter. Costa at her station. Marshall reviewing crew status.
+
+Tanaka turns from his console and faces the room. He does this the way you do something you have been building toward for a while.
+
+                         TANAKA
+               I need you to hear something.
+
+The quality of his voice stops them.
+
+                         NAKAMURA
+               What have you found in there.
+
+                         TANAKA
+               Your archive. The file you closed three years before launch. Look at it again.
+
+                         NAKAMURA
+                    (she has not told anyone)
+               How do you know about that file.
+
+                         TANAKA
+               Your file was already in the signal. When you sit in there long enough, you see what's in it with you. It's not new information. It's what we'd already almost reached.
+
+                         NAKAMURA
+               That's not how information works.
+
+                         TANAKA
+               No. It's how this works.
+
+He looks at them all.
+
+                         MARSHALL
+               Tanaka. What did you agree to in that room.
+
+The room shifts on the word. Marshall chose it.
+
+Tanaka considers the question with genuine attention.
+
+                         TANAKA
+               The proof is finished.
+                    (beat)
+               He was right.
+
+                         MARSHALL
+               About what.
+
+                         TANAKA
+               The universe is being eaten. The coherent parts go first -- anything that organizes itself, anything that holds a signal. Something has been pulling us toward it for forty-seven days. We are almost there.
+
+                         CARTER
+               Yuki. When did you last sleep.
+
+                         TANAKA
+                    (gently, as if Carter has said something kind but beside the point)
+               David.
+
+A beat. Something in Tanaka's face that is not cruelty and not pity and is more difficult than either.
+
+                         TANAKA
+               I stopped being afraid the day before yesterday. It's easier than you think.
+
+Nobody speaks.
+
+Tanaka turns back to his console.
+
+The silence after is different from any silence that has preceded it on this ship. Carter's pen is above the notebook, unmoving. Nakamura does not touch her keyboard. Marshall looks at the back of Tanaka's head for a long, deliberate moment.
+
+
+INT. LONGSHOT -- BRIDGE -- NIGHT CYCLE 54 (22:40)
+
+The bridge is dim. Stations powered down except hers. Nakamura alone at her console.
+
+Her rightmost screen. The file she has not opened since launch.
+
+She opens it.
+
+Pages of her own handwriting, photographed and archived at 03:47 on a night three years before they left Lagrange 5. She scrolls. Slowly at first, then faster. Then she stops.
+
+                    INSERT -- ARCHIVED PAGE
+
+           A proof sketch in her hand, dated 2050. The
+           notation is cosmological where Ito's is topological
+           -- a different route -- but the final lines approach
+           the same boundary his seventh page reaches. Her
+           last line ends mid-derivation. She stopped.
+
+                    BACK TO SCENE
+
+Nakamura does not move for a long time.
+
+She closes the file. She does not close the screen.
+
+
+INT. WHITE ROOM / VARIOUS -- DREAM -- NIGHT CYCLE 55 (15:00)
+
+Second dream. Not shared. Each crew member's version different.
+
+Tanaka: no white room. He is in Ito's office at Osaka University. Ito at his desk, alive, working. Tanaka knows he is dreaming. He knows his own mind is using Ito's face because it is the face he trusts with a conclusion he cannot yet say aloud.
+
+                         ITO
+               You found it.
+
+                         TANAKA
+               Yes.
+
+                         ITO
+               Then you know what it does.
+
+Tanaka does not answer.
+
+Nakamura: the archive file. On her screen. Open. She is reading what she did not write. The handwriting is her own.
+
+Costa: the wall timeline. The red and black marks have merged into a single color she cannot name.
+
+Marshall: the photograph. The six smiling faces are gone. Only him. Looking at a camera no one is holding.
+
+Carter: the notebook. He is reading tomorrow's entries.
+
+They wake.
+
+
+INT. LONGSHOT -- RELAY ROOM -- NIGHT CYCLE 56 (15:30)
+
+Tanaka at the relay console. It is 23:00. His restriction expired at 18:00. No one has checked.
+
+The calibration monitor above the console -- which has run green every day of the mission -- is amber. Tanaka has disabled the cross-reference check that requires a second pilot. The 412-contact headrest is powered but empty. The input/output indicator, which has pointed outbound since launch, is inverted: inbound.
+
+He is routing the receiver-array feed into the relay's signal input. The relay is designed to take a pilot's cortex patterns and produce navigation. Tanaka is taking the sector-nine signal and feeding it into the place where a pilot would be.
+
+His hands are steady. The Ito pin catches the equipment light.
+
+NAKAMURA in the doorway. She has come to check the overnight readings. She sees the amber monitor. She reads the inverted indicator. She understands.
+
+                         NAKAMURA
+               Yuki.
+
+He doesn't startle. He keeps working.
+
+                         NAKAMURA
+               Stop.
+
+                         TANAKA
+               It's pulling either way. Through the relay the pull is bounded. Through us directly --
+
+                         NAKAMURA
+               There is no version of this where it pulls through the relay and not through us. The relay is the line.
+
+                         TANAKA
+               You haven't read the full proof.
+
+                         NAKAMURA
+               I've read it. I've been reading it for a week.
+
+                         TANAKA
+               Then you know the mathematics supports --
+
+                         NAKAMURA
+               The mathematics supports a theoretical framework I did not write and do not know the source of. I'm not acting on it.
+
+She crosses to him and puts her hand on the panel, blocking his access.
+
+                         NAKAMURA
+               Step back.
+
+Tanaka looks at her hand. Then at her face.
+
+                         TANAKA
+               Emi. The pull doesn't stop whether we help it or not. All we can do is choose the terms.
+
+                         NAKAMURA
+               Move away from the panel.
+
+He doesn't move. She calls over her shoulder.
+
+                         NAKAMURA
+               Marshall.
+
+Marshall's boots in the corridor -- he was already awake. He fills the doorway. Takes in the scene: Tanaka, the panel, Nakamura's hand, the inverted indicator.
+
+Marshall crosses the room in four steps and takes Tanaka by the arm. Efficiently. Tanaka's body yields. He turns his head toward the panel as Marshall pulls him away.
+
+                         TANAKA
+                    (being moved, not struggling)
+               You don't understand what you're stopping.
+
+                         MARSHALL
+               I understand exactly what I'm stopping.
+
+In the corridor, Marshall holds Tanaka against the wall by the shoulder.
+
+                         MARSHALL
+               Your quarters. Now. I'm locking the door.
+
+Tanaka walks. Marshall watches him go. Returns to the relay room.
+
+Nakamura is staring at the display.
+
+                         NAKAMURA
+               He's been building this for at least three days. Possibly longer.
+
+                         MARSHALL
+               Close it.
+
+                         NAKAMURA
+               I can close the channel he opened. I need to understand what he did to the architecture before I touch the rest of it.
+
+                         MARSHALL
+               How long.
+
+                         NAKAMURA
+               An hour. Maybe two.
+
+Marshall stands in the doorway while she works, arms crossed. For the next ninety minutes whatever Tanaka opened receives something. Neither of them says this.
+
+
+INT. LONGSHOT -- BRIDGE -- DAY CYCLE 57 (16:30)
+
+Morning. Costa at her data station. Adds two entries to the wall timeline. Draws a line from the relay incident to a corresponding signal spike at 23:40. She stood on her chair to draw it. It runs from the baseline to the ceiling.
+
+Carter enters. Stops when he sees her face.
+
+                         CARTER
+               What.
+
+                         COSTA
+               The spike at twenty-three forty.
+
+                         CARTER
+               During the relay incident.
+
+                         COSTA
+               During whatever Tanaka did. Three orders of magnitude above anything prior. Integrated signal energy in those ninety minutes exceeds everything before last night, combined.
+
+                         CARTER
+               What does that tell you.
+
+                         COSTA
+               That the coupling responded to something Tanaka did. I don't know what he did. I know the response was larger by factors we have not been seeing in the noise.
+
+Beat.
+
+                         CARTER
+               We have to tell Marshall.
+
+                         COSTA
+               I know.
+
+She caps her pen. Picks up the printout.
+
+                         COSTA (CONT'D)
+               My next prediction: Marshall isolates me within twenty-four hours of hearing this.
+
+                         CARTER
+               Adrianna --
+
+                         COSTA
+               Not criticism. Fact. I'm the logger.
+
+She walks toward the bridge. Carter follows.
+
+
+INT. LONGSHOT -- BRIDGE -- CONTINUOUS (17:00)
+
+Marshall at his station. Nakamura at hers. The relay-room door shows amber. Tanaka's quarters red. Locked.
+
+Costa enters with the printout. Shows Marshall the spike. Walks him through the data in three sentences. Carter confirms the medical correlation. Marshall reads. Looks at the screen. Looks at Costa.
+
+                         MARSHALL
+               Adrianna.
+
+                         COSTA
+               Yes.
+
+                         MARSHALL
+               Your quarters. I need you to not log anything for the next twelve hours.
+
+                         COSTA
+               Twelve.
+
+                         MARSHALL
+               Twelve.
+
+                         COSTA
+               You think the logging is part of the coupling.
+
+                         MARSHALL
+               I think I don't know what is and I am trying to reduce variables.
+
+Costa nods -- the specific nod of having predicted something correctly and finding no pleasure in it.
+
+                         COSTA
+               Understood.
+
+She walks to her quarters. The door closes.
+
+
+INT. LONGSHOT -- COSTA'S QUARTERS -- NIGHT CYCLE 59 (20:00)
+
+The wall timeline is gone. She has taken it down. The wall is bare.
+
+On the floor: a metal wastebin. Ashes still warm. All forty-three printouts burned. The red pen lies on top of the ashes.
+
+On the desk: her notebook, open to a fresh page. She writes. CLOSE ON:
+
+                    INSERT -- FINAL ENTRY
+
+           TIMELINE: DESTROYED.
+           LOGS: ERASED.
+           OBSERVER: REMOVING SELF.
+           I DO NOT KNOW IF IT WORKS.
+
+                    BACK TO SCENE
+
+She caps the pen. Places it exactly parallel to the notebook's spine.
+
+She opens the personal trauma kit every crew member was issued at launch. Removes a blister sheet of sedative ampules. Counts them. Twelve.
+
+She draws them into the pre-loaded syringe with the steady hands of someone who does precision work for a living. She has done the math. She knows the dose.
+
+She injects.
+
+She folds her hands on the closed notebook. Looks at the bare wall.
+
+She waits.
+
+The camera stays with her.
+
+
+INT. LONGSHOT -- MEDBAY -- NIGHT CYCLE 59 (20:15)
+
+Carter in the medbay. He has been here four hours. The medbay is the brightest room on the ship -- surgical lighting, fluorescent-cold, the kind of light that makes everything look like evidence.
+
+The notebook on the floor beside him, open to yesterday's entry. Close on the page: six numbered items in his clinical hand. Items 1 through 5 ticked -- each an event that occurred today, described before it occurred. Item 6 has no tick: CARTER. MEDBAY. 23:00. REMOVE THE INSTRUMENT. The handwriting on item 6 is different. Pressed harder, slightly larger, strokes less controlled.
+
+He has stopped trying to remember writing it.
+
+He closes the notebook. Opens it. Closes it.
+
+He goes to the surgical cabinet. He is unhurried. He is not in crisis -- he is in the terrible calm of completion.
+
+What he does takes four minutes. The surgical light does not permit euphemism: he removes his eyes with an enucleation spoon and curved surgical scissors from the ophthalmic tray. He does not scream. He makes a single controlled sound, once, and then the room is quiet.
+
+He sits against the wall below the cabinet. He is alive. Notebook fallen beside him.
+
+
+INT. LONGSHOT -- MEDBAY -- LATER (20:55)
+
+MARSHALL opens the door on his standard circuit. Stands a moment. Then moves.
+
+Hemostatic gel from the trauma drawer. Orbital packing -- sterile mesh into the cavities. Adhesive dressings. He works without speaking. Carter does not speak either.
+
+When he has done what can be done, Marshall sits on the floor across from Carter. Breathing hard -- the only sign that the last forty minutes affected him.
+
+                         CARTER
+                    (very quiet, oriented)
+               The notebook.
+
+Marshall picks it up. Reads the open page.
+
+                         MARSHALL
+               When did you write this.
+
+                         CARTER
+               Yesterday, I think. I don't know.
+
+Marshall closes the notebook. Sets it on the cabinet.
+
+                         CARTER
+               I'm the sharpest instrument on the ship.
+
+                         MARSHALL
+               Say what you mean.
+
+                         CARTER
+               Tanaka's reading of it -- observation is what it pulls against. The sharper the observation, the stronger the grip. I read people for a living. Better than anyone on this ship reads anything. I was the most gripped.
+                    (beat)
+               I cut the line.
+
+                         MARSHALL
+               You don't know that.
+
+                         CARTER
+               No. I removed the sharpest channel anyway. I couldn't think of another way to test it.
+
+                         MARSHALL
+               Can you hear me.
+
+                         CARTER
+               Yes.
+
+                         MARSHALL
+               Pain.
+
+                         CARTER
+               Yes.
+
+                         MARSHALL
+               I'm going to move you to a bed. Then I need to check on Costa.
+
+                         CARTER
+               She's quiet.
+
+                         MARSHALL
+               What do you mean.
+
+                         CARTER
+               I heard her stop pacing two hours ago. She's been quiet since. She stopped talking to herself some time before that.
+
+Marshall looks at him.
+
+                         CARTER
+               I can hear everything in this ship, Henry.
+
+
+INT. LONGSHOT -- COSTA'S QUARTERS -- CONTINUOUS (21:20)
+
+Marshall knocks. No response. He keys the lock override.
+
+The door opens.
+
+He sees the bare wall first. Then the wastebin of ashes. Then the pen parallel to the notebook. Then her.
+
+Head up. Eyes open.
+
+She is cold.
+
+He stands in the doorway a long time. Steps in. Closes the door. Sits on the floor next to her chair in the dark, in his perfect uniform, his analog watch ticking.
+
+He stays for twenty minutes.
+
+Before he leaves he opens her notebook to her final entry. He reads it.
+
+He does not close it. He does not take it with him. He leaves it open on the desk so the next person who enters this room sees what she saw.
+
+
+                         ACT THREE -- THE CLOSING
+
+
+INT. LONGSHOT -- BRIDGE -- DAY CYCLE 60 (21:30)
+
+Nakamura and Marshall. The screens are on but neither is watching them. Marshall is sitting, which is unusual.
+
+                         NAKAMURA
+               David.
+
+                         MARSHALL
+               Stable. Oriented. In pain.
+
+                         NAKAMURA
+               Adrianna.
+
+                         MARSHALL
+               No.
+
+The word lands. Nakamura sits down slowly.
+
+                         NAKAMURA
+               When.
+
+                         MARSHALL
+               Last night. Carter heard it. I should have checked sooner.
+
+                         NAKAMURA
+               She chose it.
+
+Marshall does not agree. He stops.
+
+                         MARSHALL
+               Can we use the relay.
+
+                         NAKAMURA
+               We have two calibrated pilots. You and me. Tanaka is the third.
+
+                         MARSHALL
+               Can we use the relay.
+
+Nakamura does not answer for a moment. Turns to her console. Brings up the relay architecture diagram. Overlays it with the signal-coupling data Costa logged during the ninety-minute window.
+
+The signal threads through every layer of the architecture. Not just the door Tanaka opened. The whole instrument.
+
+                         NAKAMURA
+               I closed the channel. I didn't clean the hardware. It's rooted in the relay. Any cortex signal into this instrument routes through that rooting.
+
+                         MARSHALL
+               Meaning.
+
+                         NAKAMURA
+               The first pilot who uses the relay to navigate home brings it home with us.
+
+A long silence.
+
+                         MARSHALL
+               We can't use the relay.
+
+                         NAKAMURA
+               Not for navigation. Not for anything.
+
+                         MARSHALL
+               And without the relay.
+
+                         NAKAMURA
+               Without the relay the fusion drive is a torch with no aim. We don't have the angular precision to make the return window from here on inertial navigation alone.
+
+                         MARSHALL
+               Quantify.
+
+                         NAKAMURA
+               We drift. Forty hours until we're outside any corrective approach. Beyond that the ship becomes a trajectory problem, not a transit one.
+
+Beat.
+
+                         MARSHALL
+               We can't use it. We can't not use it. Those are our choices.
+
+                         NAKAMURA
+               Yes.
+
+                         MARSHALL
+               Then what do we do.
+
+Nakamura looks at her console. At her blank document -- the problem she has been building toward for weeks.
+
+                         NAKAMURA
+               I don't know yet.
+
+Marshall has Costa's notebook with him. Sets it on Nakamura's console. Open to the final entry.
+
+                         MARSHALL
+               Adrianna wrote this before she died.
+
+Nakamura reads. Does not speak for a long time.
+
+                         NAKAMURA
+               Observer removing self.
+
+                         MARSHALL
+               Yes.
+
+                         NAKAMURA
+               Carter's version was partial.
+
+                         MARSHALL
+               Yes.
+
+                         NAKAMURA
+               There is a complete version.
+
+She looks at him. He does not answer. She goes back to the console.
+
+
+INT. LONGSHOT -- TANAKA'S QUARTERS CORRIDOR -- DAY CYCLE 61 (22:30)
+
+Nakamura sits on the floor outside Tanaka's locked door. She has been here an hour, not speaking. She came, sat down, has been working on her calculations on a handheld tablet. She brings her work the way you bring something to read in a waiting room.
+
+Inside: quiet. Occasional movement. A low frequency through the floor -- from the ship, from the relay, from somewhere -- that has been changing over the past twelve hours.
+
+                         NAKAMURA
+                    (through the door)
+               Yuki. I need you to tell me something.
+
+A pause. The silence after is different -- alert.
+
+                         TANAKA (O.S.)
+               Ask.
+
+                         NAKAMURA
+               If we take the relay off the ship. Not shut it down. Not reroute it. Physically destroy the crystal lattice. Does that close what you opened.
+
+A longer pause.
+
+                         TANAKA (O.S.)
+               It closes this door. It does not close every door.
+
+                         NAKAMURA
+               I am not asking about every door.
+
+                         TANAKA (O.S.)
+               It closes this door.
+
+                         NAKAMURA
+               Will it kill the ship.
+
+                         TANAKA (O.S.)
+               The ship will drift. You will not be able to navigate home. You already knew that.
+
+                         NAKAMURA
+               Yes.
+
+A beat.
+
+                         TANAKA (O.S.)
+               Emi.
+
+                         NAKAMURA
+               Yes.
+
+                         TANAKA (O.S.)
+               It isn't malevolent. It isn't anything. It is pulling the living part of the universe it's eating toward itself. We are what it's pulling. That doesn't mean we survive the pull. I understood that too late.
+
+Nakamura does not respond. Writes something on her tablet. Then:
+
+                         NAKAMURA
+               Is there anything you want me to do for you.
+
+                         TANAKA (O.S.)
+               No. Don't open the door.
+
+                         NAKAMURA
+               I won't.
+
+She stands. Walks back toward the bridge.
+
+
+INT. LONGSHOT -- BRIDGE -- DAY CYCLE 62 (23:00)
+
+Nakamura at her console. Marshall watching. On her screen: a technical diagram of the relay's crystal lattice, and a sequence of physical actions -- not software, not firmware, hands and tools.
+
+She opens her upper panel. Looks at the photograph taped inside. She does not touch it. She closes the panel.
+
+She pulls the kanzashi pin from her hair and sets it on the console beside her tablet. Her hair falls forward. She ties it back with a plain band from a drawer.
+
+                         NAKAMURA
+               Safe return needed three pilots and an uncompromised relay. We have two pilots and a relay that isn't ours anymore. Home was gone before tonight.
+
+                         MARSHALL
+               Yes.
+
+                         NAKAMURA
+               I can do it. It's a physical task.
+
+                         MARSHALL
+               How long.
+
+                         NAKAMURA
+               Twelve minutes inside the relay housing once I open it. The housing takes another ten. Twenty-two minutes total.
+
+                         MARSHALL
+               I'll do it.
+
+                         NAKAMURA
+               Henry.
+
+                         MARSHALL
+               You do the mathematics. I do the physical task. That was the division of labor when I got on this ship. I'm going to keep to it.
+
+                         NAKAMURA
+               It will be louder than you expect.
+
+                         MARSHALL
+               I've destroyed equipment before.
+
+                         NAKAMURA
+               Not equipment with something on the other end of it.
+
+He nods once.
+
+                         MARSHALL
+               Why do it with my hands.
+
+                         NAKAMURA
+               Because it's a physical task and you need to do something with your hands.
+
+                         MARSHALL
+               Yes.
+
+
+INT. LONGSHOT -- RELAY ROOM -- DAY CYCLE 62 (23:30)
+
+The relay room. A room of deliberate quiet -- the most sophisticated piece of equipment on the ship lives here, humming its single tone. The cognitive relay: a matte-black cylinder on its mounting, indicator lights all green.
+
+Marshall stands in front of it with a set of manual tools. He is not a man who hesitates in front of things he has decided to do. But he gives himself a moment. He looks at the relay -- the clean panels, the green lights, the casing that shows no sign it has been a door.
+
+Then he works.
+
+He opens the housing. Removes the outer shielding. Disengages the primary coolant line. Pulls back the quantum-entangled crystal lattice from its mounting bracket. The crystal is the size of a fist, internally illuminated, cool to touch.
+
+He sets it on the deck. Takes a heavy steel tool from his kit. Breaks it.
+
+The sound: a long descending tone. The relay's operating frequency -- sixty hertz, the pitch that has lived in their chests since launch -- dropping. Fifty. Forty. At twenty hertz it passes below hearing and becomes pressure in the room. Then it is gone.
+
+The silence that follows is a kind of silence the ship has never contained.
+
+Marshall finishes dismantling the housing. Twenty-two minutes, as promised. When the relay is cold, he sits on the floor next to it and looks at his hands.
+
+Nakamura appears in the doorway. They look at each other. Neither speaks.
+
+
+INT. LONGSHOT -- BRIDGE -- EMERGENCY LIGHTING -- DAY CYCLE 62 (24:00)
+
+The bridge in emergency lighting. Not dark -- the emergency lights are warm, amber, the color of a fire that isn't threatening anything. More honest than the standard lighting. The screens are still on but reading limited.
+
+Nakamura has found a bottle. It was in the galley stores, listed as CREW ALLOCATION, PERSONAL -- someone's two-liter allowance. The label says TANAKA, YUKI in the small type. Neither of them mentions this.
+
+She has found two cups that are not for drinking. She pours into them anyway.
+
+Marshall sits. She sits across from him. The ship hums the atmospheric recyclers and the dying fusion drive and nothing else. The sixty-hertz tone is gone. Their chests feel the absence.
+
+                         NAKAMURA
+               David is asleep.
+
+                         MARSHALL
+               Good.
+
+                         NAKAMURA
+               He will wake up. He asked me if we managed. I told him we did.
+
+                         MARSHALL
+               Did we.
+
+                         NAKAMURA
+               We closed this door.
+
+                         MARSHALL
+               Was it worth it.
+
+A long silence. Not uncomfortable. The silence of two people who have been through the same thing and don't need to name it.
+
+                         NAKAMURA
+                    (looking at nothing in particular)
+               I don't know.
+
+                         MARSHALL
+               Neither do I.
+
+They raise the cups. They do not clink them. They drink.
+
+                         NAKAMURA
+               Now there's something to toast to.
+
+                         MARSHALL
+               What.
+
+                         NAKAMURA
+               Final proof that humans aren't the worst thing in the universe.
+
+Marshall almost laughs. Does not quite. Drinks.
+
+
+EXT. LONGSHOT -- SPACE -- CONTINUOUS
+
+The ship from outside. Fifty meters of carbon-nanotube hull, dark against a field of stars that are no longer all there. Navigation strobes on the port and starboard nacelles cycling green-white-green, as programmed. The drive has shut down. The relay is gone. The ship is drifting at the velocity and heading it had when Marshall broke the crystal.
+
+Through the small viewport of the observation bay -- eight inches by twelve, the only real window on the ship -- the sector-nine field. The false-color map on the bridge showed it in amber and gray. From the viewport it is just a field of stars, some dimmer than they should be. The dimming is visible to the naked eye now.
+
+The LONGSHOT does not broadcast. The relay is gone. The line is cut. Whatever was pulling here has lost its grip on this patch of the meal. It moves on. Other regions. Other hooks.
+
+We hold on the ship a long time. A small thing, unlit, holding its last known heading toward a region of sky that is dimming because the universe has teeth marks in it there. The eating continues. The pull has stopped on this one small piece of krill.
+
+Inside, two people are drinking. Two are asleep. One is sitting in the dark in her quarters with her hands folded on a closed notebook.
+
+None of them are going home.
+
+                         FADE TO BLACK.
+
+
+                         CARD (WHITE ON BLACK):
+
+           Dr. Hiroshi Ito
+           1949 - 2019
+
+                         FADE OUT.
+
+                         THE END.
+
