@@ -53,8 +53,8 @@
        no video file exists, the element stays empty and the page works as
        before. Only the Journey view shows it; Map & list stays opaque so
        the map stays readable. */
-    /* Layer order, bottom to top: .bars-bg (-4, opaque base plate) → the
-       header's still hero (-3) → #overture, the drive-in clip (-2) → content.
+    /* Layer order, bottom to top: .bars-bg (-4, opaque base plate) →
+       #overture, the drive-in clip (-2) → the header's still hero (-1) → content.
        This element carries an opaque background, so anything meant to be seen
        has to sit above it. */
     .bars-bg { position: fixed; inset: 0; z-index: -4; pointer-events: none; overflow: hidden; background: var(--paper); transition: opacity .8s ease; }
@@ -120,22 +120,17 @@
       border-radius: 0 0 12px 12px; overflow: hidden;
       display: flex; align-items: baseline; gap: 48px;
     }
-    /* The still hero stays as the base plate under the video: it shows if the
-       clip is blocked, on reduced motion, and in print. */
+    /* The header keeps its own still at every width: the hero (and its shade)
+       sit above the drive-in clip at -2, still under the title and lede.
+       The clip carries on behind the masthead and the epigraph. */
     .page-header::before {
-      content: ''; position: absolute; inset: 0; z-index: -3;
+      content: ''; position: absolute; inset: 0; z-index: -1;
       background: url('assets/imgs/bars/whiskey-glass.jpg') left 65% / cover no-repeat;
       filter: brightness(.75) saturate(1.15);
     }
     .page-header::after {
-      content: ''; position: absolute; inset: 0; z-index: -3;
+      content: ''; position: absolute; inset: 0; z-index: -1;
       background: linear-gradient(to bottom, rgba(20,18,28,.35), rgba(20,18,28,.6));
-    }
-    /* On a phone the header keeps its own still: lift the hero (and its
-       shade) above the drive-in clip at -2, still under the title and lede.
-       The clip carries on behind the masthead and the epigraph. */
-    @media (max-width: 600px) {
-      .page-header::before, .page-header::after { z-index: -1; }
     }
     /* Title hard left, the night's shape hard right. */
     .page-header-text { flex: 0 1 auto; min-width: 0; margin-right: auto; }
